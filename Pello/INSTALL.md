@@ -15,7 +15,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
 This process-scoped execution-policy option does not change your computer's
 execution policy. The script supports Windows PowerShell 5.1 and PowerShell 7.
 
-The script finds 64-bit Python 3.10+ and Git, creates `.venv`, installs exact
+The script finds 64-bit Python 3.11+ and Git, creates `.venv`, installs exact
 dependencies from `requirements-lock.txt`, installs the editable local package,
 creates missing configuration and SQLite tables, and runs dependency, entry-point,
 unit-test, and offline-demo checks. Existing configuration and jobs are preserved.
@@ -120,8 +120,9 @@ need their own verification.
 ## Limits
 
 Successful installation and a small real SDK test do not establish full autonomous
-V1 behavior. The current supervisor is deterministic, and the offline correction
-is preprogrammed. General generated code and acceptance tests run as local Python
+V1 behavior. The legacy offline correction is preprogrammed; Phase 2 uses a real
+AI supervisor and Phase 3A adds an incremental command (see PHASE3A.md). General
+generated code and acceptance tests run as local Python
 processes; they require a stronger OS isolation boundary for untrusted projects.
 The AST restriction applies specifically to the installation probe. Keep runtime
 data out of simultaneous OneDrive synchronization if file locking causes problems.

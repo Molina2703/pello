@@ -1,27 +1,43 @@
-# Current plan
+# Pello — plan de implementación
 
-Phase 2 is REAL SDK VERIFIED for one bounded development cycle: AI planning,
-a separate executor, independent local verification, and AI review coordinated
-by Python. Project `phase2-leads-retained` ended with COMPLETE after 12 passing
-acceptance tests. Three real SDK turns were used; 43 local tests passed.
+## Entrega actual: Fase 3A
 
-## Next Phase 3 engineering task (not started)
+Pipeline secuencial sobre Fase 2: plan global, incrementos dependientes,
+intentos/exchanges, suites externas, revisión por política, checkpoints y
+reanudación. Demostración real pequeña tras tests deterministas, sin repetir
+automáticamente un demo bloqueado. Estado medido: reports/PHASE3A.md y STATE.md.
 
-Implement a configurable rotation policy independently for supervisor and
-executor. Reconstruct a bounded prompt from stored specification, plan, task,
-architecture decisions, verified outcomes and unresolved issues. Verify that a
-replacement session continues unfinished work without repeating completed tasks.
-Persist replacement lineage and handle unavailable/active-writer sessions as
-explicit blockers. Preserve the bridge's operation reservations and correlation.
-Do not automatically start this work without a new user request.
+## Próximo hito: n8n DEV y diario de operaciones externas
 
-## Later phases
+Sobre la configuración por proyecto implementada, crear un adaptador mínimo
+MCP/API para una instancia n8n DEV explícitamente autorizada. Inspeccionar versión
+y capacidades, resolver referencias seguras de conexión y aplicar allowlist de
+operaciones/recursos. Persistir intención, IDs remotos y resultado, utilizar
+idempotencia cuando exista y reconciliar por lectura antes de repetir una
+escritura incierta. No basta un archivo JSON ni una prueba exclusivamente Python.
 
-- Phase 4: bounded AI diagnosis/repair, dependent-task continuation, cancellation
-  and safe reconciliation of interrupted effects.
-- Strengthen the verifier's OS isolation before accepting untrusted projects.
-- Phase 5: measured evaluations and full V1 acceptance coverage.
+## Hitos que faltan para la V1
 
-The original installation and both pre-inference blocked Phase 2 attempts remain
-in historical reports/evidence. They are not substitutes for the final real
-cycle; see `reports/PHASE2.md` for current evidence and limits.
+1. **Integración vertical DEV y reparación:** crear/modificar un workflow ficticio
+   en la instancia autorizada, ejecutar escenarios y guardar evidencia de IDs,
+   inputs/outputs, fallos y correcciones. Conectar verificadores remotos al pipeline.
+2. **Aislamiento:** usuario restringido, VM/contenedor y límites de red/filesystem/
+   procesos antes de código no confiable o credenciales de mayor alcance. El
+   perfil actual no es sandbox de OS fuerte.
+3. **Memoria/versionado y rotación:** construir contexto por rol desde plan,
+   decisiones, checkpoints y estado remoto confirmado. Registrar linaje, política
+   de rotación y conflictos de escritor. Verificar continuación sin repetir trabajo.
+4. **Operación desatendida:** ampliar recuperación local a turnos SDK interrumpidos,
+   cuota, reinicios Windows y cancelación/reconciliación. Después, launcher local
+   supervisado; no requiere cloud de Pello ni promete 24/7.
+5. **Reporte diario y correo:** separar implementación, criterios cubiertos,
+   integración, bloqueos y consumo. Scheduler local y outbox idempotente con envío
+   simulado primero; correo real solo desde un buzón autorizado.
+6. **Aceptación V1 de negocio:** otra ficha realista, infraestructura DEV autorizada,
+   recurso realmente desplegado, pruebas externas, reparación, cambio de sesión y
+   reinicio. Entrega documentada y aprobación final humana.
+
+La descomposición autónoma de fichas amplias y pruebas asistidas por IA se
+evaluarán contra el manifiesto escrito por el dueño que usa este prototipo.
+Medir overhead de incrementos y routing Luna/Sol: 70–80% económico es hipótesis,
+no porcentaje obligatorio. Reviewer ChatGPT futuro es opcional, no dependencia.

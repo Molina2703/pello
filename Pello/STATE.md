@@ -1,6 +1,14 @@
 # Persistent state
 
-## Current state: Phase 2 verified
+## Current work: Phase 3A
+
+2026-10-24, America/Bogota. Branch codex/pello-phase3a, base 61f52e7.
+Incremental pipeline implemented; deterministic regression suite is being checked
+before the sole bounded live demonstration. See PHASE3A.md and PHASE3A-AUDIT.md.
+The Phase 2 result below is preserved historical evidence. No external integration,
+rotation, deployment or email is claimed by the current work.
+
+## Historical state: Phase 2 verified
 
 Verified on 2026-10-23, America/Bogota. Branch: `codex/pello-phase2`.
 Pre-change checkpoint: `3a9b0fe`; earlier Phase 2 checkpoint: `0630125`.
@@ -30,7 +38,7 @@ Legacy jobs/events and original reports/tests were preserved. The original mock
 job `clinica-reservas-demo-20261024040808-1a32bd` remains LISTO_PARA_REVISION.
 Initial real SDK smoke remains in `evidence/first-sdk-smoke/`.
 
-## Exact next task
+## Historical next task (superseded by the Phase 3A request)
 
 Upon a new Phase 3 request, add configurable per-role session rotation and bounded
 context reconstruction from the existing durable data, testing continuation

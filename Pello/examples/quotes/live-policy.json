@@ -1,0 +1,9 @@
+{
+  "max_attempts": 1,
+  "max_turns": 5,
+  "review": "every_increment",
+  "routine_model": "gpt-6-luna",
+  "advanced_model": "gpt-6.1-sol",
+  "routine_effort": "low",
+  "advanced_effort": "medium"
+}

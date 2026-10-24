@@ -1,0 +1,11 @@
+{
+  "architecture_constraints": ["Biblioteca estándar, datos ficticios, sin red", "Usar centavos enteros y componentes pequeños con interfaces explícitas", "T2 consume el módulo aprobado de T1; no reimplementarlo ni modificarlo"],
+  "tools": [
+    {"tool":"python","environment":"local","connection_ref":"","allowed_operations":["implement","run_tests"],"resource_ids":[],"verification":"Suites unittest externas con hashes y conteos fijados","enabled":true},
+    {"tool":"git","environment":"local","connection_ref":"","allowed_operations":["inspect","checkpoint"],"resource_ids":[],"verification":"Commit coincide con fuente verificada","enabled":true}
+  ],
+  "increments": [
+    {"task_id":"T1","specification":"Implementar pricing.py normalize_item(record) exactamente como PRODUCT.md: tipos estrictos, sku normalizado, centavos enteros, sin mutación ni estado global.","inputs":["dict con sku, quantity, unit_cents"],"outputs":["dict nuevo con sku, quantity, unit_cents, total_cents"],"components":["pricing.py"],"acceptance_criteria":["Normalización y cálculo exactos", "Tipos estrictos excluyen bool", "Campos requeridos y sku no vacío", "Límites de cantidad y precio", "Idempotencia y determinismo", "Entrada preservada y claves extras ignoradas"],"depends_on":[],"suite":"pricing","expected_tests":6,"risk":"routine"},
+    {"task_id":"T2","specification":"Implementar quotes.py quote_items(items), importando y llamando pricing.normalize_item por registro. Preservar orden, sumar subtotal_cents y contar item_count. Solo listas no vacías de hasta 100 registros; inválidos ValueError. Mantener T1 aprobado sin cambios.","inputs":["lista de registros y artefacto pricing.py aprobado"],"outputs":["dict con items normalizados, subtotal_cents e item_count"],"components":["quotes.py"],"acceptance_criteria":["Totales y orden correctos", "Uso observable de pricing.normalize_item", "Solo lista no vacía hasta 100", "Propagar rechazo de registros inválidos", "Salida exacta sin mutar entradas", "Determinismo y compatibilidad con T1"],"depends_on":["T1"],"suite":"quotes","expected_tests":6,"risk":"routine"}
+  ]
+}

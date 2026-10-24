@@ -39,7 +39,7 @@ function Find-Python {
     }
     foreach ($candidate in $pythonCandidates) {
         if (-not (Test-Path -LiteralPath $candidate -PathType Leaf)) { continue }
-        & $candidate -c 'import sys, venv; raise SystemExit(0 if sys.version_info >= (3,10) and sys.maxsize > 2**32 else 1)' 2>$null
+        & $candidate -c 'import sys, venv; raise SystemExit(0 if sys.version_info >= (3,11) and sys.maxsize > 2**32 else 1)' 2>$null
         if ($LASTEXITCODE -eq 0) { return $candidate }
     }
     return $null
@@ -59,14 +59,14 @@ try {
         Install-UserPrerequisite -PackageId 'Python.Python.3.12'
         $python = Find-Python
     }
-    if (-not $python) { throw 'A working 64-bit Python 3.10+ could not be found. Use -PythonExe with its full path.' }
+    if (-not $python) { throw 'A working 64-bit Python 3.11+ could not be found. Use -PythonExe with its full path.' }
     if (-not (Get-Command git.exe -ErrorAction SilentlyContinue)) { Install-UserPrerequisite -PackageId 'Git.Git' }
     if (-not (Get-Command git.exe -ErrorAction SilentlyContinue)) { throw 'Git unavailable after installation; reopen PowerShell and rerun setup.' }
     $venvPython = Join-Path $projectRoot '.venv\Scripts\python.exe'
     if (-not (Test-Path -LiteralPath $venvPython)) {
         Invoke-Checked -Executable $python -ArgumentList @('-m', 'venv', (Join-Path $projectRoot '.venv'))
     }
-    Invoke-Checked -Executable $venvPython -ArgumentList @('-c', 'import sys; assert sys.prefix != sys.base_prefix; assert sys.version_info >= (3,10); print(sys.version); print(sys.executable)')
+    Invoke-Checked -Executable $venvPython -ArgumentList @('-c', 'import sys; assert sys.prefix != sys.base_prefix; assert sys.version_info >= (3,11); print(sys.version); print(sys.executable)')
     Invoke-Checked -Executable $venvPython -ArgumentList @('-m', 'pip', 'install', '-r', (Join-Path $projectRoot 'requirements-lock.txt'))
     Invoke-Checked -Executable $venvPython -ArgumentList @('-m', 'pip', 'install', '--no-deps', '-e', $projectRoot)
     Invoke-Checked -Executable $venvPython -ArgumentList @('-m', 'athis_autopilot.installation', '--init')

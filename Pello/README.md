@@ -1,10 +1,17 @@
-# ATHIS DEV AUTOPILOT V1 — Prototipo local
+# Pello — ingeniero de automatización de negocio, prototipo local
+
+Fase 3A añade `pello.cmd pipeline`: plan global, incrementos dependientes,
+intentos, verificación, revisión y checkpoints persistentes. Ver [guía](PHASE3A.md),
+[contrato](SPEC.md), [estado](STATE.md) y [resultado medido](reports/PHASE3A.md).
+La V1 completa requiere todavía integración real DEV, rotación, recuperación
+avanzada y correo diario. Se conservan el comando `supervised` y las evidencias
+históricas. Las secciones del prototipo original más abajo son históricas.
 
 La orden `pello.cmd supervised` implementa el ciclo acotado de Fase 2.
 Ver [uso y límites](PHASE2.md) y [resultado observado](reports/PHASE2.md).
 Fase 2: **REAL SDK VERIFIED**, con tres turnos reales, 12 pruebas de aceptación
 y decisión final COMPLETE. La suite local tiene 43 pruebas aprobadas. Pello V1
-completo sigue pendiente; no se inició la Fase 3.
+completo sigue pendiente. Ese resultado histórico precede la ampliación Fase 3A.
 
 > **Instalación local actual:** ver [INSTALL.md](INSTALL.md) y
 > [resultados verificados](reports/INSTALLATION.md). Usar `setup.ps1` y

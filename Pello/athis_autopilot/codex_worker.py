@@ -60,7 +60,7 @@ def main(argv=None, *, client=None, thread_cache=None) -> int:
     p.add_argument('--result', type=Path, required=True)
     p.add_argument('--role', choices=['supervisor', 'executor'])
     p.add_argument('--model')
-    p.add_argument('--effort', choices=['low', 'medium'])
+    p.add_argument('--effort', choices=['low', 'medium', 'high'])
     p.add_argument('--schema', type=Path)
     p.add_argument('--instructions', type=Path)
     p.add_argument('--prepare-only', action='store_true')
@@ -113,6 +113,9 @@ def main(argv=None, *, client=None, thread_cache=None) -> int:
         # this app-server process until its first turn materializes its rollout.
         persist_session(args, thread.id)
         turn_options = {}
+        if args.model:
+            # Retained handles may be routed to another approved model per turn.
+            turn_options['model'] = args.model
         if args.effort:
             from openai_codex.generated.v2_all import ReasoningEffort
             turn_options['effort'] = ReasoningEffort(args.effort)

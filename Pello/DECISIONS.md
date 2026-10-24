@@ -1,4 +1,4 @@
-# Engineering decisions
+# Engineering decisions — historical Phase 2
 
 1. **Reuse the prototype.** `SupervisedCycle` extends the existing supervisor's
    SQLite lifecycle and Git initialization. Additive `pello_*` tables preserve
@@ -38,3 +38,24 @@
    no-inference SDK roundtrip tested this correction before the subsequently
    authorized real cycle passed. Both blocked attempts were preserved. The final
    suite has 43 passing tests, including correct aggregation of failing subtests.
+
+## Fase 3A: decisiones vigentes
+
+1. Pello desarrolla automatización de negocio: la entrega final exige recursos
+   reales verificados. Esta ampliación sigue local y no completa la V1.
+2. Pipeline sobre la base existente, migración aditiva v3 y tablas históricas
+   preservadas. Claves task/attempt/phase permiten intercambios repetidos sin
+   eliminar los presupuestos configurables. supervised conserva su límite de tres.
+3. El dueño fija contrato inicial y suites; la IA produce arquitectura/instrucciones
+   y Python controla gates. Replanificar criterios no es parte de una reparación.
+4. Tester determinista y Reviewer sobre supervisor read-only. Frecuencia configurable;
+   riesgo alto siempre se revisa. Tests fallidos jamás se aprueban por opinión IA.
+5. Dependencias requieren aprobación y checkpoint; se reejecutan suites anteriores.
+   Git/SQLite se reconcilian con intención PREPARED, padre, mensaje y fuente.
+6. Luna/Sol por riesgo/historial y capacidad observable, modelo enviado por turno;
+   catálogo/esfuerzo validados y razón registrada. Sin Astra ni API de pago.
+7. Configuración de herramientas por proyecto con referencias no secretas y
+   límites explícitos. En Fase 3A solo Python/Git; n8n necesita un adaptador DEV.
+8. La solicitud actual prioriza pipeline antes de rotación; el antiguo orden de
+   fases queda histórico. Demo real: cinco turnos y un intento por incremento;
+   reparaciones e interrupciones se prueban principalmente con respuestas inyectadas.

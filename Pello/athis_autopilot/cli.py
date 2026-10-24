@@ -10,7 +10,7 @@ from .supervisor import Supervisor
 
 def main():
     project = Path(__file__).resolve().parent.parent
-    cli = argparse.ArgumentParser(prog='python -m athis_autopilot.cli', description='ATHIS DEV AUTOPILOT V1')
+    cli = argparse.ArgumentParser(prog='pello', description='Pello — desarrollo incremental y automatización de negocio')
     cli.add_argument('--root', type=Path, help='Runtime, state, evidence location')
     sub = cli.add_subparsers(dest='command', required=True)
     start = sub.add_parser('start', help='New autonomous job from a product specification')
@@ -36,6 +36,17 @@ def main():
     supervised.add_argument('--model', default='gpt-6-luna', help='Must be present in the authenticated SDK catalog')
     supervised.add_argument('--effort', choices=['low', 'medium'], default='low')
     supervised.add_argument('--timeout', type=int, default=180, help='Seconds per model turn; no automatic retries')
+    pipeline = sub.add_parser('pipeline', help='Pello: plan global e incrementos dependientes verificados')
+    pipeline_source = pipeline.add_mutually_exclusive_group(required=True)
+    pipeline_source.add_argument('--spec', type=Path)
+    pipeline_source.add_argument('--resume', metavar='PROJECT_ID')
+    pipeline_source.add_argument('--status', metavar='PROJECT_ID')
+    pipeline.add_argument('--suite', type=Path)
+    pipeline.add_argument('--manifest', type=Path, help='Contrato de incrementos y herramientas sin secretos')
+    pipeline.add_argument('--policy', type=Path, help='Límites y selección de modelos en JSON')
+    pipeline.add_argument('--project-id')
+    pipeline.add_argument('--timeout', type=int, default=180)
+    pipeline.add_argument('--stop-after', type=int, help='Pausa después de N checkpoints de este proceso')
     args = cli.parse_args()
     if args.root is None:
         config_path = project / 'config' / 'pello.json'
@@ -77,6 +88,31 @@ def main():
             auth_code = 0 if auth.get('authenticated') else 2
         print(json.dumps(checks, indent=2, ensure_ascii=False))
         return auth_code or (0 if checks['git_installed'] and checks['codex_python_sdk_installed'] else 2)
+    if args.command == 'pipeline':
+        from .pipeline import IncrementalPipeline
+        from .pipeline_contracts import PipelinePolicy
+        try:
+            if args.stop_after is not None and args.stop_after < 1:
+                cli.error('--stop-after debe ser positivo')
+            core = IncrementalPipeline(args.root, timeout=args.timeout)
+            if args.spec:
+                if args.suite is None or args.manifest is None:
+                    cli.error('--spec requiere --suite y --manifest')
+                policy = PipelinePolicy.model_validate_json(args.policy.read_text(encoding='utf-8-sig')) if args.policy else PipelinePolicy()
+                project_id = core.create_pipeline(args.spec, args.suite, args.manifest, policy=policy, project_id=args.project_id)
+            else:
+                if args.policy:
+                    cli.error('La política queda fijada al crear el proyecto')
+                project_id = args.resume or args.status
+            print('PROJECT_ID:', project_id, flush=True)
+            result = core.pipeline_report(project_id) if args.status else core.run_pipeline(project_id, stop_after=args.stop_after)
+            print(json.dumps({key: result[key] for key in ('project_id', 'stage', 'evidence_class', 'passed',
+                'verified_increments', 'planned_increments', 'acceptance_criteria_verified', 'acceptance_criteria_total',
+                'blocker', 'usage_latest_total_per_thread', 'report_path')}, indent=2, ensure_ascii=False))
+            return 0 if result['passed'] or (result['stage'] == 'PAUSED' and result['integrity']) else 2
+        except ValueError as exc:
+            print('PELLO PIPELINE ERROR:', exc)
+            return 2
     if args.command == 'supervised':
         from .supervised import SupervisedCycle
         try:
