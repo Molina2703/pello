@@ -1,9 +1,14 @@
 # Pello — ingeniero de automatización de negocio, prototipo local
+> **Objetivo canónico de Pello V1:** toda tarea de desarrollo, arquitectura, revisión o documentación debe consultar [PELLO_V1_PRODUCT_SPEC.md](PELLO_V1_PRODUCT_SPEC.md) en su totalidad. El documento define el producto objetivo; el estado implementado debe comprobarse por separado. Esta regla también está en [AGENTS.md](AGENTS.md).
 
-Fase 3A añade `pello.cmd pipeline`: plan global, incrementos dependientes,
+Fase 3A.1 corrige la verificación de fuente y separa Planner/Reviewer con modelos
+configurables por responsabilidad. Ver [alcance y uso](PHASE3A1.md) y
+[plan vigente](PLAN.md). La integración n8n no se implementa en esta fase.
+
+Fase 3A añadió `pello.cmd pipeline`: plan global, incrementos dependientes,
 intentos, verificación, revisión y checkpoints persistentes. Ver [guía](PHASE3A.md),
 [contrato](SPEC.md), [estado](STATE.md) y [resultado medido](reports/PHASE3A.md).
-La V1 completa requiere todavía integración real DEV, rotación, recuperación
+La V1 completa requiere todavía integración real mediante MCP oficial, rotación, recuperación
 avanzada y correo diario. Se conservan el comando `supervised` y las evidencias
 históricas. Las secciones del prototipo original más abajo son históricas.
 
@@ -23,7 +28,13 @@ completo sigue pendiente. Ese resultado histórico precede la ampliación Fase 3
 > documentación original del prototipo; las instrucciones actuales y las
 > limitaciones de la validación están en esos dos documentos.
 
-## Qué construimos
+## Prototipo original — documentación histórica
+
+Las instrucciones y políticas siguientes describen el prototipo anterior;
+sus referencias DEV y revisión humana general fueron sustituidas por V1.3 y
+PLAN.md. No definen la arquitectura ni política de publicación actuales.
+
+### Qué construimos
 
 Un supervisor de trabajos que carga una ficha de producto, desarrolla por medio de **Codex Python SDK** (o un motor mock para probar la orquestación), ejecuta una **suite independiente** de pruebas, proporciona el diagnóstico de fallos al desarrollador, repite el ciclo con límite, registra estado en SQLite y genera evidencia verificable.
 
@@ -127,3 +138,4 @@ athis-dev-autopilot-v1/
 ## Próximo escalón (no incluido)
 
 Completar una ejecución real en tu máquina, luego añadir aislamiento del verificador, integración n8n DEV/MCP, pruebas con APIs y Playwright, control de costes, interruptor de emergencia y notificaciones. Después, persistencia frente a reinicios y concurrencia.
+

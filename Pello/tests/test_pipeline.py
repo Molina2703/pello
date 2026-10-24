@@ -27,7 +27,8 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(result['checkpoints'][1]['parent_head'], result['checkpoints'][0]['commit_sha'])
             self.assertIn('a.py', json.loads(result['checkpoints'][0]['snapshot']))
             self.assertIn('b.py', json.loads(result['checkpoints'][1]['snapshot']))
-            self.assertEqual(len(result['sessions']), 2)
+            self.assertEqual({s['role'] for s in result['sessions']}, {'planner', 'executor', 'reviewer'})
+            self.assertEqual(len({s['thread_id'] for s in result['sessions']}), 3)
 
     def test_pause_restore_and_no_duplicate_completion(self):
         with tempfile.TemporaryDirectory() as tmp:

@@ -88,6 +88,17 @@ class IncrementReview(Message):
     feedback: Text
 
 
+class ModelProfile(Message):
+    model: Literal['gpt-6-luna', 'gpt-6-sol', 'gpt-6.1-sol']
+    effort: Literal['low', 'medium', 'high']
+
+
+def default_role_profiles():
+    return {role: ModelProfile(model=model, effort=effort) for role, model, effort in (
+        ('planner', 'gpt-6.1-sol', 'high'), ('coder', 'gpt-6-luna', 'medium'),
+        ('reviewer', 'gpt-6.1-sol', 'high'), ('tester', 'gpt-6.1-sol', 'medium'))}
+
+
 class PipelinePolicy(Message):
     max_attempts: int = Field(default=2, ge=1, le=10)
     max_turns: int = Field(default=12, ge=1, le=60)
@@ -96,6 +107,19 @@ class PipelinePolicy(Message):
     advanced_model: str = 'gpt-6.1-sol'
     routine_effort: Literal['low', 'medium', 'high'] = 'low'
     advanced_effort: Literal['low', 'medium', 'high'] = 'medium'
+    # Tester is deterministic by default; this profile is available only when
+    # a future explicit test-design/diagnosis invocation needs a model.
+    role_profiles: dict[Literal['planner', 'coder', 'reviewer', 'tester'], ModelProfile] = Field(default_factory=default_role_profiles)
+
+    @model_validator(mode='before')
+    @classmethod
+    def preserve_explicit_legacy_policy(cls, value):
+        if isinstance(value, dict) and 'role_profiles' not in value and all(
+                k in value for k in ('routine_model', 'advanced_model', 'routine_effort', 'advanced_effort')):
+            # Old persisted policies retain their original routing; no rewrite
+            # of historical configuration or implicit upgrade to pricier models.
+            value = {**value, 'role_profiles': {}}
+        return value
 
     @model_validator(mode='after')
     def allowed_models(self):

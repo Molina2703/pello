@@ -1,0 +1,74 @@
+{
+  "evidence_class": "REAL LOCAL SQLITE/GIT; NO SDK INVOCATIONS",
+  "all_original_rows_preserved": {
+    "jobs": true,
+    "events": true,
+    "pello_migrations": true,
+    "pello_projects": true,
+    "pello_tasks": true,
+    "pello_sessions": true,
+    "pello_exchanges": true,
+    "pello_operations": true,
+    "pello_pipeline_projects": true,
+    "pello_pipeline_attempts": true,
+    "pello_pipeline_exchanges": true,
+    "pello_pipeline_operations": true,
+    "pello_pipeline_checkpoints": true
+  },
+  "sqlite_integrity": "ok",
+  "phase2_passed": true,
+  "phase3a_passed": true,
+  "phase3a_sdk_operations": 5,
+  "phase3a_checkpoints": [
+    {
+      "project_id": "phase3a-quotes-first",
+      "task_id": "T1",
+      "attempt": 1,
+      "parent_head": "c6999cc4056c242e5e3efc35cbdbbb70fa9fab55",
+      "commit_sha": "1712620d24f3a059ec7913c7084ade204b326dc2",
+      "snapshot": "{\".gitignore\": \"01d8d0360f02a0c00e236a4eb2a1d8bdf83377acf442eaafad7a136bf14d6bb0\", \"pricing.py\": \"328304fd81995ecc167197ba87c1bd10c7a2e5492641d3373967c70f6629e7c9\", \"PRODUCT.md\": \"747287e226de666eb5be43921e9101d9653e89870495a3d9163c299e14303d7a\"}",
+      "stage": "COMMITTED",
+      "created": "2026-10-24T06:14:08+00:00"
+    },
+    {
+      "project_id": "phase3a-quotes-first",
+      "task_id": "T2",
+      "attempt": 1,
+      "parent_head": "1712620d24f3a059ec7913c7084ade204b326dc2",
+      "commit_sha": "6a9c4b2096d0414b062b214165bb0ac22298b886",
+      "snapshot": "{\".gitignore\": \"01d8d0360f02a0c00e236a4eb2a1d8bdf83377acf442eaafad7a136bf14d6bb0\", \"pricing.py\": \"328304fd81995ecc167197ba87c1bd10c7a2e5492641d3373967c70f6629e7c9\", \"PRODUCT.md\": \"747287e226de666eb5be43921e9101d9653e89870495a3d9163c299e14303d7a\", \"quotes.py\": \"07b609749f521748c5823511f637efa1c8ace60af4c6cae49965dce2c4f883e8\"}",
+      "stage": "COMMITTED",
+      "created": "2026-10-24T06:14:20+00:00"
+    }
+  ],
+  "historical_sessions_preserved": [
+    {
+      "project_id": "phase3a-quotes-first",
+      "role": "executor",
+      "thread_id": "01a16c8b-306b-7b63-aec8-9e679cc73685",
+      "created": "2026-10-24T06:13:43+00:00",
+      "last_successful_turn": "01a16c8b-93ec-7332-a39f-2b2500f98dd6",
+      "task_id": "T2",
+      "status": "READY"
+    },
+    {
+      "project_id": "phase3a-quotes-first",
+      "role": "supervisor",
+      "thread_id": "01a16c8b-1568-7073-a78e-4ca5956536b9",
+      "created": "2026-10-24T06:13:37+00:00",
+      "last_successful_turn": "01a16c8b-b741-70e3-aac5-9f672469d19d",
+      "task_id": "T2",
+      "status": "READY"
+    }
+  ],
+  "legacy_policy": {
+    "max_attempts": 1,
+    "max_turns": 5,
+    "review": "every_increment",
+    "routine_model": "gpt-6-luna",
+    "advanced_model": "gpt-6.1-sol",
+    "routine_effort": "low",
+    "advanced_effort": "medium",
+    "role_profiles": {}
+  }
+}

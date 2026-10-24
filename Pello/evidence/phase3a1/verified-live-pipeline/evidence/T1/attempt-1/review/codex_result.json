@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a16f23-4ba7-7a63-8ecc-7df8f90e0e15",
+  "turn_id": "01a16f23-4d03-7c92-ab86-766f811e31c4",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 13638,
+      "output_tokens": 163,
+      "reasoning_output_tokens": 61,
+      "total_tokens": 13801
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 13638,
+      "output_tokens": 163,
+      "reasoning_output_tokens": 61,
+      "total_tokens": 13801
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3a1-quotes-first\",\"task_id\":\"T1\",\"attempt\":1,\"verdict\":\"PASS\",\"diagnosis\":\"none\",\"feedback\":\"pricing.py cumple el contrato de T1: validación, normalización, cálculo exacto, preservación de entrada e idempotencia. Solo se modificó el componente asignado. Las 6 pruebas independientes pasaron, sin omisiones y con integridad verificada.\"}",
+  "error": null
+}

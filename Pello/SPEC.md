@@ -1,5 +1,11 @@
 # Pello V1 — contrato de producto
 
+> Definición vigente: PELLO_V1_PRODUCT_SPEC.md (V1.3), PHASE3A1.md y PLAN.md.
+> El texto siguiente es el contrato histórico de 3A. Sus decisiones DEV y
+> aprobación general de activación están superadas: una instancia Railway,
+> MCP oficial configurado por el usuario, Available in MCP y publicación
+> autónoma dentro del alcance autorizado. Retirar MCP no despublica la entrega.
+
 Pello es el ingeniero interno de desarrollo de software y automatización de
 negocio de ATHIS GROUP. Su objetivo es convertir fichas aprobadas en soluciones
 implementadas, integradas, probadas y documentadas con supervisión humana mínima.

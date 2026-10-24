@@ -1,46 +1,48 @@
-# Pello — plan de implementación
+# Pello — plan vigente hacia V1.3
 
-## Entrega actual: Fase 3A
+La fuente de producto es [PELLO_V1_PRODUCT_SPEC.md](PELLO_V1_PRODUCT_SPEC.md).
+Fase 3A.1 corrige verificación, separa Reviewer y configura modelos por rol.
+Ver contrato/evidencia en [PHASE3A1.md](PHASE3A1.md). La demostración histórica
+3A se conserva en reports/PHASE3A.md y evidence/phase3a/.
 
-Completada: dos incrementos reales, cinco turnos Luna/low y 69 tests locales
-aprobados; siguiente hito no iniciado.
+## Próxima fase propuesta: 3B, piloto vertical por MCP oficial
 
-Pipeline secuencial sobre Fase 2: plan global, incrementos dependientes,
-intentos/exchanges, suites externas, revisión por política, checkpoints y
-reanudación. Demostración real pequeña tras tests deterministas, sin repetir
-automáticamente un demo bloqueado. Estado medido: reports/PHASE3A.md y STATE.md.
+Solo mediante una nueva instrucción del usuario. Una instancia primaria n8n
+Railway, conexión al MCP oficial configurada manualmente en config.toml.
+Reutilizar herramientas conectadas; sin proxy propio, segunda instancia DEV,
+duplicados por ambiente ni acceso administrativo alternativo que eluda MCP.
 
-## Próximo hito: n8n DEV y diario de operaciones externas
+1. Comprobar desde el proceso SDK herramientas, permisos y capacidades reales.
+   Si falta una operación, registrar el bloqueo; no introducir otra vía automáticamente.
+2. Workflow QA autorizado: crear/modificar, registrar ID automáticamente, preservar
+   configuración/versión no secreta, revisar, publicar y verificar estado/ejecución.
+   Publicación autónoma dentro del alcance y efectos inicialmente autorizados.
+3. Probar el mecanismo real requerido, incluidos webhooks publicados cuando
+   corresponda, con recursos controlados; comprobar credenciales adjuntas.
+4. Registrar intención, ID, respuesta y evidencia. Reconciliar por lectura o
+   bloquear resultados inciertos antes de repetir. Aplicar presupuestos, STOP
+   y aislamiento proporcionales al piloto antes de habilitar efectos externos.
+5. Respetar Available in MCP. Al entregar, identificar workflows listos para
+   retirar acceso MCP; deben seguir publicados y operativos.
 
-Sobre la configuración por proyecto implementada, crear un adaptador mínimo
-MCP/API para una instancia n8n DEV explícitamente autorizada. Inspeccionar versión
-y capacidades, resolver referencias seguras de conexión y aplicar allowlist de
-operaciones/recursos. Persistir intención, IDs remotos y resultado, utilizar
-idempotencia cuando exista y reconciliar por lectura antes de repetir una
-escritura incierta. No basta un archivo JSON ni una prueba exclusivamente Python.
+No basta exportar JSON ni pasar tests locales para afirmar integración real.
+No contactar clientes ni producir efectos fuera del alcance.
 
-## Hitos que faltan para la V1
+## Hitos posteriores
 
-1. **Integración vertical DEV y reparación:** crear/modificar un workflow ficticio
-   en la instancia autorizada, ejecutar escenarios y guardar evidencia de IDs,
-   inputs/outputs, fallos y correcciones. Conectar verificadores remotos al pipeline.
-2. **Aislamiento:** usuario restringido, VM/contenedor y límites de red/filesystem/
-   procesos antes de código no confiable o credenciales de mayor alcance. El
-   perfil actual no es sandbox de OS fuerte.
-3. **Memoria/versionado y rotación:** construir contexto por rol desde plan,
-   decisiones, checkpoints y estado remoto confirmado. Registrar linaje, política
-   de rotación y conflictos de escritor. Verificar continuación sin repetir trabajo.
-4. **Operación desatendida:** ampliar recuperación local a turnos SDK interrumpidos,
-   cuota, reinicios Windows y cancelación/reconciliación. Después, launcher local
-   supervisado; no requiere cloud de Pello ni promete 24/7.
-5. **Reporte diario y correo:** separar implementación, criterios cubiertos,
-   integración, bloqueos y consumo. Scheduler local y outbox idempotente con envío
-   simulado primero; correo real solo desde un buzón autorizado.
-6. **Aceptación V1 de negocio:** otra ficha realista, infraestructura DEV autorizada,
-   recurso realmente desplegado, pruebas externas, reparación, cambio de sesión y
-   reinicio. Entrega documentada y aprobación final humana.
+- Requisitos estables desde lenguaje natural, validación de ambigüedades,
+  incrementos/contratos y pruebas independientes antes del Coder.
+- Reparación y escalada demostradas mediante SDK real; los mocks no bastan.
+- Servicio auxiliar, restauración y registro/limpieza autorizada de datos QA.
+- Rotación y reconstrucción de contexto, recuperación real, STOP y operación
+  prolongada en Windows mientras haya recursos y autenticación.
+- Progreso por requisitos, programación de reportes y correo autorizado.
+- Aceptación final de negocio según §13.1, entrega y ciclo de acceso MCP.
 
-La descomposición autónoma de fichas amplias y pruebas asistidas por IA se
-evaluarán contra el manifiesto escrito por el dueño que usa este prototipo.
-Medir overhead de incrementos y routing Luna/Sol: 70–80% económico es hipótesis,
-no porcentaje obligatorio. Reviewer ChatGPT futuro es opcional, no dependencia.
+## Política habitual y adaptación
+
+Planner Sol High; Coder Luna Medium; Reviewer Sol High; Tester determinista o
+variable cuando necesite IA. Configuración explícita, disponibilidad comprobada,
+escalada por evidencia y registro de resultados. El 70–80% es una pauta flexible
+por responsabilidad, no cuota de modelos económicos, tokens o costes.
+No requiere API de pago ni Reviewer ChatGPT externo.

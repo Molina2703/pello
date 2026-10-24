@@ -1,5 +1,18 @@
 # Engineering decisions — historical Phase 2
 
+## Alineación vigente de Fase 3A.1
+
+La fuente final es PELLO_V1_PRODUCT_SPEC.md. Aceptación desde copias limpias de
+fuente/suites, sin bytecode previo; Reviewer en hilo distinto del Planner/Coder,
+solo evidencia objetiva y lectura. Perfiles por rol configurables con validación
+de catálogo y escalada; políticas históricas explícitas conservan sus valores.
+La migración v4 preserva sesiones supervisor/executor y habilita nuevos roles.
+
+PLAN.md sustituye el requisito n8n DEV y la interpretación económica del 70–80%.
+Una instancia Railway, MCP oficial ya configurado y publicación autorizada sin
+aprobaciones repetitivas; no proxy, duplicación por ambiente ni bypass administrativo.
+Las decisiones históricas siguientes se conservan para interpretar la evidencia.
+
 1. **Reuse the prototype.** `SupervisedCycle` extends the existing supervisor's
    SQLite lifecycle and Git initialization. Additive `pello_*` tables preserve
    legacy jobs/events. The existing SDK worker/adapter gains role, model, effort,

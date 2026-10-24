@@ -1,6 +1,27 @@
 # Persistent state
 
-## Current state: Phase 3A verified
+## Current state: Phase 3A.1 verified
+
+2026-10-24, America/Bogota. Branch codex/pello-phase3a1; starting HEAD d25363a.
+Increment 1 checkpoint 5966281: clean current-source acceptance, 76 local tests.
+Increment 2: separate planner/executor/reviewer threads, role-specific profiles,
+conservative v4 session migration and V1.3 roadmap alignment. Final suite: 87/87.
+
+Real SDK fixture phase3a1-quotes-first: COMPLETE, five turns, two dependent
+increments, two checkpoints, 12 unique acceptance cases / 18 executions with
+regression. Planner gpt-6.1-sol/high; Coder gpt-6-luna/medium; Reviewer
+gpt-6.1-sol/high. Reopening preserves five operations without inference.
+New runtime: runtime/phase3a1/; original runtime/jobs.sqlite3 remains unchanged.
+Evidence: evidence/phase3a1/live-result.json and verified-live-pipeline/.
+Report: reports/PHASE3A1.md. All 341 preservation hashes unchanged; v4 migration
+and historical reopening validated on disposable copies, not the original DB.
+
+Ready to begin bounded Phase 3B on a new instruction, starting with capability/
+permission checks and the controls needed before first external writes (PLAN.md).
+No n8n integration or publication started. Full V1 remains incomplete.
+Historical states and the superseded DEV proposal below are preserved as history.
+
+## Historical state: Phase 3A verified
 
 2026-10-24, America/Bogota. Branch codex/pello-phase3a, base 61f52e7.
 Implementation checkpoint 30ed940. phase3a-quotes-first: COMPLETE,

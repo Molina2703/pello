@@ -1,0 +1,15 @@
+test_distinct_persisted_threads_objective_context_and_resume (test_phase3a1_roles.IndependentReviewerTests.test_distinct_persisted_threads_objective_context_and_resume) ... ok
+test_duplicate_reviewer_identity_is_rejected (test_phase3a1_roles.IndependentReviewerTests.test_duplicate_reviewer_identity_is_rejected) ... ok
+test_legacy_plan_output_replays_without_repeating_planning (test_phase3a1_roles.IndependentReviewerTests.test_legacy_plan_output_replays_without_repeating_planning) ... ok
+test_legacy_review_is_not_relabelled_as_independent (test_phase3a1_roles.IndependentReviewerTests.test_legacy_review_is_not_relabelled_as_independent) ... ok
+test_defaults_by_responsibility_and_deterministic_tester_option (test_phase3a1_roles.RolePolicyTests.test_defaults_by_responsibility_and_deterministic_tester_option) ... ok
+test_lighter_profiles_and_coder_escalation (test_phase3a1_roles.RolePolicyTests.test_lighter_profiles_and_coder_escalation) ... ok
+test_old_persisted_policy_keeps_original_models_and_efforts (test_phase3a1_roles.RolePolicyTests.test_old_persisted_policy_keeps_original_models_and_efforts) ... ok
+test_unavailable_model_effort_missing_profile_and_unknown_role_fail_closed (test_phase3a1_roles.RolePolicyTests.test_unavailable_model_effort_missing_profile_and_unknown_role_fail_closed) ... ok
+test_failed_migration_rolls_back_session_schema_and_data (test_phase3a1_roles.SessionMigrationTests.test_failed_migration_rolls_back_session_schema_and_data) ... ok
+test_migration_preserves_every_historical_session_and_is_idempotent (test_phase3a1_roles.SessionMigrationTests.test_migration_preserves_every_historical_session_and_is_idempotent) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 13.630s
+
+OK

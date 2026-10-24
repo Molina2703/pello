@@ -35,6 +35,21 @@ class Bridge(Supervisor):
                 PRIMARY KEY(project_id,phase));
             ''')
             cx.execute('INSERT OR IGNORE INTO pello_migrations VALUES(2,?)', (now(),))
+        # SQLite cannot widen a CHECK constraint with ALTER COLUMN. Rebuild only
+        # this small table, atomically, preserving all seven columns and old roles.
+        with self.db() as cx:
+            cx.execute('BEGIN IMMEDIATE')
+            if not cx.execute('SELECT 1 FROM pello_migrations WHERE version=4').fetchone():
+                cx.execute('ALTER TABLE pello_sessions RENAME TO pello_sessions_before_v4')
+                cx.execute('''CREATE TABLE pello_sessions(
+                    project_id TEXT NOT NULL,
+                    role TEXT NOT NULL CHECK(role IN ('supervisor','executor','planner','reviewer','tester')),
+                    thread_id TEXT NOT NULL UNIQUE, created TEXT NOT NULL,
+                    last_successful_turn TEXT, task_id TEXT, status TEXT NOT NULL,
+                    PRIMARY KEY(project_id,role))''')
+                cx.execute('INSERT INTO pello_sessions SELECT * FROM pello_sessions_before_v4')
+                cx.execute('DROP TABLE pello_sessions_before_v4')
+                cx.execute('INSERT INTO pello_migrations VALUES(4,?)', (now(),))
 
     def project(self, project_id):
         with self.db() as cx:

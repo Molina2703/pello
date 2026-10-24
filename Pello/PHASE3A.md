@@ -1,5 +1,10 @@
 # Pello — pipeline incremental, Fase 3A
 
+> Guía histórica de Fase 3A. La operación actual se describe en PHASE3A1.md.
+> Reviewer compartido, política routine/advanced y requisito de instancia DEV
+> quedan superados por V1.3. Se conserva el texto para interpretar el demo y
+> sus evidencias; no es el plan vigente de integración.
+
 `pipeline` extiende la instalación; `supervised` mantiene el flujo Fase 2 y sus
 tres turnos. Los datos históricos no se sustituyen.
 

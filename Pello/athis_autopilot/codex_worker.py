@@ -58,7 +58,7 @@ def main(argv=None, *, client=None, thread_cache=None) -> int:
     p.add_argument('--prompt', type=Path, required=True)
     p.add_argument('--thread-file', type=Path, required=True)
     p.add_argument('--result', type=Path, required=True)
-    p.add_argument('--role', choices=['supervisor', 'executor'])
+    p.add_argument('--role', choices=['supervisor', 'executor', 'planner', 'reviewer', 'tester'])
     p.add_argument('--model')
     p.add_argument('--effort', choices=['low', 'medium', 'high'])
     p.add_argument('--schema', type=Path)
@@ -71,7 +71,7 @@ def main(argv=None, *, client=None, thread_cache=None) -> int:
     from openai_codex import Codex, CodexConfig, Sandbox, ApprovalMode
     # Reuse the user's login; never silently fall back to paid API authentication.
     overrides = restricted_overrides() if args.role else ('forced_login_method="chatgpt"',)
-    sandbox = Sandbox.read_only if args.role == 'supervisor' else Sandbox.workspace_write
+    sandbox = Sandbox.read_only if args.role in ('supervisor', 'planner', 'reviewer', 'tester') else Sandbox.workspace_write
     scope = nullcontext(client) if client is not None else Codex(CodexConfig(config_overrides=overrides))
     with scope as client:
         account = client.account().account
@@ -123,6 +123,8 @@ def main(argv=None, *, client=None, thread_cache=None) -> int:
             turn_options['output_schema'] = json.loads(args.schema.read_text(encoding='utf-8'))
         (args.result.parent / 'model-turn-submitted.json').write_text(json.dumps({
             'thread_id': thread.id, 'role': args.role, 'at_utc': datetime.now(timezone.utc).isoformat(),
+            'model': args.model, 'effort': args.effort, 'sandbox': sandbox.value,
+            'approval_mode': 'deny_all',
             'note': 'Submission boundary, not proof of model completion'}), encoding='utf-8')
         turn = thread.run(args.prompt.read_text(encoding='utf-8'), **turn_options)
         status = getattr(turn.status, 'value', str(turn.status))

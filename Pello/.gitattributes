@@ -2,3 +2,8 @@
 evidence/phase3a/verified-live-pipeline/** -text -whitespace
 # The supplied request retains its original Markdown hard breaks.
 evidence/phase3a/REQUEST.md -whitespace
+# Preserve this phase's raw SDK evidence and the authoritative supplied document.
+evidence/phase3a1/verified-live-pipeline/** -text -whitespace
+PELLO_V1_PRODUCT_SPEC.md -text -whitespace
+# The pre-existing README edit includes a final blank line; retain it.
+README.md whitespace=-blank-at-eof

@@ -1,0 +1,11 @@
+{
+  "max_attempts": 1,
+  "max_turns": 5,
+  "review": "every_increment",
+  "role_profiles": {
+    "planner": {"model": "gpt-6.1-sol", "effort": "high"},
+    "coder": {"model": "gpt-6-luna", "effort": "medium"},
+    "reviewer": {"model": "gpt-6.1-sol", "effort": "high"},
+    "tester": {"model": "gpt-6.1-sol", "effort": "medium"}
+  }
+}

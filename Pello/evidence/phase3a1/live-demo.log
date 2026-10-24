@@ -1,0 +1,19 @@
+PROJECT_ID: phase3a1-quotes-first
+{
+  "project_id": "phase3a1-quotes-first",
+  "stage": "COMPLETE",
+  "evidence_class": "VERIFIED THROUGH REAL CODEX SDK",
+  "passed": true,
+  "verified_increments": 2,
+  "planned_increments": 2,
+  "acceptance_criteria_verified": 12,
+  "acceptance_criteria_total": 12,
+  "blocker": "",
+  "usage_latest_total_per_thread": {
+    "input_tokens": 184118,
+    "output_tokens": 2429,
+    "total_tokens": 186547,
+    "cached_input_tokens": 135808
+  },
+  "report_path": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3a1\\supervised\\phase3a1-quotes-first\\pipeline-report.md"
+}

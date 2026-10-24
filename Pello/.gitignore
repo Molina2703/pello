@@ -11,3 +11,5 @@ dist/
 config/pello.json
 evidence/setup-*.log
 .setup-repro/
+evidence/phase3a1/baseline-tables.json
+evidence/phase3a1/preexisting-README.md

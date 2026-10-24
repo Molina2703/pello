@@ -21,19 +21,28 @@ def probe_capabilities():
     return json.loads(stdout)
 
 
-def select_model(policy, capabilities, *, phase, risk='routine', attempt=1):
+def select_model(policy, capabilities, *, phase, risk='routine', attempt=1, responsibility=None):
     if not capabilities.get('authenticated'):
         raise CodexBlocked('ChatGPT authentication required')
     remaining = capabilities.get('remaining_percent')
     if remaining is not None and remaining <= 0:
         raise CodexBlocked('Quota exhausted; preserve state before continuing')
-    advanced = risk == 'high' or attempt > 1
-    model = policy.advanced_model if advanced else policy.routine_model
-    effort = policy.advanced_effort if advanced else policy.routine_effort
-    # Review/planning are separate responsibilities; routine tiny fixtures need no expensive default.
+    responsibility = responsibility or {'plan': 'planner', 'execute': 'coder', 'review': 'reviewer'}.get(phase.rsplit('/', 1)[-1])
+    if responsibility not in ('planner', 'coder', 'reviewer', 'tester'):
+        raise CodexBlocked('Unknown model responsibility; no implicit profile')
+    advanced = (risk == 'high' or attempt > 1) and (not policy.role_profiles or responsibility == 'coder')
+    if policy.role_profiles and not advanced:
+        profile = policy.role_profiles.get(responsibility)
+        if profile is None:
+            raise CodexBlocked('Missing configured model profile for ' + responsibility)
+        model, effort = profile.model, profile.effort
+    else:
+        model = policy.advanced_model if advanced else policy.routine_model
+        effort = policy.advanced_effort if advanced else policy.routine_effort
     if effort not in capabilities.get('models', {}).get(model, []):
         raise CodexBlocked(f'Unavailable configured model/effort {model}/{effort}; no silent substitution')
-    return {'model': model, 'effort': effort, 'reason': ('risk/failure escalation' if advanced else 'routine bounded increment'),
+    return {'model': model, 'effort': effort, 'responsibility': responsibility,
+            'reason': ('risk/failure escalation' if advanced else 'role profile' if policy.role_profiles else 'legacy routine bounded increment'),
             'phase': phase, 'remaining_percent_at_probe': remaining, 'capabilities_at': capabilities.get('at')}
 
 
