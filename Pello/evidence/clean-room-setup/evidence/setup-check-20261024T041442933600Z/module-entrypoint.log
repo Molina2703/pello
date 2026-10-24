@@ -1,0 +1,19 @@
+usage: python -m athis_autopilot.cli [-h] [--root ROOT]
+                                     {start,demo,resume,status,doctor,login}
+                                     ...
+
+ATHIS DEV AUTOPILOT V1
+
+positional arguments:
+  {start,demo,resume,status,doctor,login}
+    start               New autonomous job from a product specification
+    demo                Offline red -> green demonstration using deterministic
+                        mock
+    resume              Resume an existing job from SQLite
+    status              Inspect persistent job state
+    doctor              Check prerequisites; does not run model turns
+    login               Authenticate official Codex SDK using ChatGPT
+
+options:
+  -h, --help            show this help message and exit
+  --root ROOT           Runtime, state, evidence location

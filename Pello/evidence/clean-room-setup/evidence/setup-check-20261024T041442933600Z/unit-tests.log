@@ -1,0 +1,9 @@
+test_invalid_spec_rejected (test_supervisor.SupervisorTests.test_invalid_spec_rejected) ... ok
+test_red_green_and_evidence (test_supervisor.SupervisorTests.test_red_green_and_evidence) ... ok
+test_resume_terminal_is_safe (test_supervisor.SupervisorTests.test_resume_terminal_is_safe) ... ok
+test_suite_tamper_fails_closed (test_supervisor.SupervisorTests.test_suite_tamper_fails_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 4.958s
+
+OK

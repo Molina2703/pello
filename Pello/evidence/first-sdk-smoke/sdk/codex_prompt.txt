@@ -1,0 +1,7 @@
+Installation smoke test. Work ONLY in the current workspace.
+Create a file named pello_probe.py containing ONLY this unannotated function:
+def add(a, b):
+    return a + b
+Use the file editing tool to create it. Do not run shell commands, access networks,
+read credentials, use plugins/MCP, or modify other files. Finish after writing it.
+The installer independently checks the file and runs tests outside your workspace.

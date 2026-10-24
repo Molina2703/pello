@@ -1,0 +1,105 @@
+test_invalid_spec_rejected (test_supervisor.SupervisorTests.test_invalid_spec_rejected) ... ERROR
+test_red_green_and_evidence (test_supervisor.SupervisorTests.test_red_green_and_evidence) ... ERROR
+test_resume_terminal_is_safe (test_supervisor.SupervisorTests.test_resume_terminal_is_safe) ... ERROR
+test_suite_tamper_fails_closed (test_supervisor.SupervisorTests.test_suite_tamper_fails_closed) ... ERROR
+
+======================================================================
+ERROR: test_invalid_spec_rejected (test_supervisor.SupervisorTests.test_invalid_spec_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque est� siendo utilizado por otro proceso: 'C:\\Users\\USUARIO\\AppData\\Local\\Temp\\tmpjhfe5_82\\jobs.sqlite3'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 930, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 905, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque est� siendo utilizado por otro proceso: 'C:\\Users\\USUARIO\\AppData\\Local\\Temp\\tmpjhfe5_82\\jobs.sqlite3'
+
+======================================================================
+ERROR: test_red_green_and_evidence (test_supervisor.SupervisorTests.test_red_green_and_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque est� siendo utilizado por otro proceso: 'C:\\Users\\USUARIO\\AppData\\Local\\Temp\\tmpamiogj4x\\jobs.sqlite3'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 930, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 905, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque est� siendo utilizado por otro proceso: 'C:\\Users\\USUARIO\\AppData\\Local\\Temp\\tmpamiogj4x\\jobs.sqlite3'
+
+======================================================================
+ERROR: test_resume_terminal_is_safe (test_supervisor.SupervisorTests.test_resume_terminal_is_safe)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque est� siendo utilizado por otro proceso: 'C:\\Users\\USUARIO\\AppData\\Local\\Temp\\tmpqd62jjyn\\jobs.sqlite3'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 930, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 905, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque est� siendo utilizado por otro proceso: 'C:\\Users\\USUARIO\\AppData\\Local\\Temp\\tmpqd62jjyn\\jobs.sqlite3'
+
+======================================================================
+ERROR: test_suite_tamper_fails_closed (test_supervisor.SupervisorTests.test_suite_tamper_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque est� siendo utilizado por otro proceso: 'C:\\Users\\USUARIO\\AppData\\Local\\Temp\\tmp_jnt3dyv\\jobs.sqlite3'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 930, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 905, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque est� siendo utilizado por otro proceso: 'C:\\Users\\USUARIO\\AppData\\Local\\Temp\\tmp_jnt3dyv\\jobs.sqlite3'
+
+----------------------------------------------------------------------
+Ran 4 tests in 4.204s
+
+FAILED (errors=4)

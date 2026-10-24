@@ -1,0 +1,13 @@
+runtime/
+__pycache__/
+*.pyc
+.venv/
+.env
+.env.*
+*.sqlite3
+*.egg-info/
+build/
+dist/
+config/pello.json
+evidence/setup-*.log
+.setup-repro/

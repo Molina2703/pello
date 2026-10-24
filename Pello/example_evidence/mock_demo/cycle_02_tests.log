@@ -1,0 +1,15 @@
+$ /opt/pyvenv/bin/python -m unittest discover -s /mnt/data/athis-dev-autopilot-v1/runtime/jobs/clinica-reservas-demo-20261021192421-0ee010/acceptance -p test_*.py -v
+
+test_AC01_confirmed_booking (test_booking.ClinicAcceptance.test_AC01_confirmed_booking) ... ok
+test_AC02_must_confirm_first (test_booking.ClinicAcceptance.test_AC02_must_confirm_first) ... ok
+test_AC03_no_double_booking (test_booking.ClinicAcceptance.test_AC03_no_double_booking) ... ok
+test_AC04_idempotent_webhook (test_booking.ClinicAcceptance.test_AC04_idempotent_webhook) ... ok
+test_AC05_cancel_releases_slot (test_booking.ClinicAcceptance.test_AC05_cancel_releases_slot) ... ok
+test_AC06_available_slots (test_booking.ClinicAcceptance.test_AC06_available_slots) ... ok
+test_AC07_reject_missing_data (test_booking.ClinicAcceptance.test_AC07_reject_missing_data) ... ok
+test_AC08_concurrent_single_winner (test_booking.ClinicAcceptance.test_AC08_concurrent_single_winner) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.002s
+
+OK

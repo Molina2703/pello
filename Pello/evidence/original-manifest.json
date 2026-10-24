@@ -1,0 +1,114 @@
+{
+  "archive_path": "C:\\Users\\USUARIO\\Downloads\\ATHIS-DEV-AUTOPILOT-V1.zip",
+  "archive_sha256": "7607e3afc6e011142bc18ffc79ae5ad7aafc6ebb7fc305f5890b75a2169da86e",
+  "original_files": [
+    {
+      "path": ".gitignore",
+      "original_sha256": "59d4ef8386d5f413414214aada86e5d92d2d6587f71b12f4f547a459d3a88951",
+      "current_sha256": "c75c02630eca46690e5be6a54c1339012d68b22df1a1711991642415777ba5e8",
+      "modified": true
+    },
+    {
+      "path": "README.md",
+      "original_sha256": "e8850e5ab778b9b2ce01b51d21f30cc74ef3a4a0be126611a3da2f471d1bab70",
+      "current_sha256": "ad27de29d820021a4b77e4816f0dc6c0a53eb06f2f7b474992d15ad3b765ec51",
+      "modified": true
+    },
+    {
+      "path": "athis_autopilot/__init__.py",
+      "original_sha256": "717acc4cd976f270e62fc730c0313283e9bd795f66585c6f0c732fa40191f35f",
+      "current_sha256": "717acc4cd976f270e62fc730c0313283e9bd795f66585c6f0c732fa40191f35f",
+      "modified": false
+    },
+    {
+      "path": "athis_autopilot/__main__.py",
+      "original_sha256": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+      "current_sha256": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+      "modified": false
+    },
+    {
+      "path": "athis_autopilot/cli.py",
+      "original_sha256": "5afbdf82301e8b38881b549c7903956944e6c01ceabc99473ea0c7d8bf530330",
+      "current_sha256": "6ec956ccab5e75ab86d3b9fb2b1bb850ef43772d496ca7130bbcc7ba579c538b",
+      "modified": true
+    },
+    {
+      "path": "athis_autopilot/codex_worker.py",
+      "original_sha256": "78948a5912bbc321f421561ea844dab1e1e35bec507d619e6864c6f3a9ca3370",
+      "current_sha256": "d7147cefd2826bb3f3663e3e0a7624b1dff49f14ed0e93b889d7a315118ae978",
+      "modified": true
+    },
+    {
+      "path": "athis_autopilot/engines.py",
+      "original_sha256": "21b66b70fa33bff0f5bc9f4f2088869ed889d0ae1441312407160e6d3a613256",
+      "current_sha256": "f5bed688bf48e1bc3d4f1e4613c91be3642cb6dc888b75ef2a3a5f7512c8c71d",
+      "modified": true
+    },
+    {
+      "path": "athis_autopilot/supervisor.py",
+      "original_sha256": "06663ed7b537c259d0cb794c02e3f8fc2232d97939d0ebf4006d33d82ff9fba8",
+      "current_sha256": "8d3d5c462ada61bc7a85684395240b9ecd9b39208b067b0dcff7ee2625b663c3",
+      "modified": true
+    },
+    {
+      "path": "example_evidence/mock_demo/LEEME.txt",
+      "original_sha256": "ada894d1d504e4862ddcf8fc024114898f06e4823d69fb4f9263b629990afacc",
+      "current_sha256": "ada894d1d504e4862ddcf8fc024114898f06e4823d69fb4f9263b629990afacc",
+      "modified": false
+    },
+    {
+      "path": "example_evidence/mock_demo/booking.py",
+      "original_sha256": "f6141a06ebb63df5a175b1f33fa0a3cbed0244fe58a2a4c9d2aeac325975549d",
+      "current_sha256": "f6141a06ebb63df5a175b1f33fa0a3cbed0244fe58a2a4c9d2aeac325975549d",
+      "modified": false
+    },
+    {
+      "path": "example_evidence/mock_demo/cycle_01_tests.log",
+      "original_sha256": "55d815a5a63cb18cfa9056c49c218146800b2c6a80c982b8b6134903a532a664",
+      "current_sha256": "55d815a5a63cb18cfa9056c49c218146800b2c6a80c982b8b6134903a532a664",
+      "modified": false
+    },
+    {
+      "path": "example_evidence/mock_demo/cycle_02_tests.log",
+      "original_sha256": "3bb2b4e64eb6108974f425cbcc20236c8cb133777b17381b7a775cf90cffb43a",
+      "current_sha256": "3bb2b4e64eb6108974f425cbcc20236c8cb133777b17381b7a775cf90cffb43a",
+      "modified": false
+    },
+    {
+      "path": "example_evidence/mock_demo/report.json",
+      "original_sha256": "ece6cb62ba252050c6198676e0519a1e07ddf647fc6165c86c134aa55b9c6f74",
+      "current_sha256": "ece6cb62ba252050c6198676e0519a1e07ddf647fc6165c86c134aa55b9c6f74",
+      "modified": false
+    },
+    {
+      "path": "example_evidence/mock_demo/report.md",
+      "original_sha256": "8b79504e964a4f820e454b567bea175cb35df083c6354182f81f6f79f6e8ed87",
+      "current_sha256": "8b79504e964a4f820e454b567bea175cb35df083c6354182f81f6f79f6e8ed87",
+      "modified": false
+    },
+    {
+      "path": "examples/clinica/acceptance/test_booking.py",
+      "original_sha256": "16c656d3b30440e7ab81c2fad665a6e047fb29a05fc20fc7416b3032dcd9e707",
+      "current_sha256": "16c656d3b30440e7ab81c2fad665a6e047fb29a05fc20fc7416b3032dcd9e707",
+      "modified": false
+    },
+    {
+      "path": "examples/clinica/spec.json",
+      "original_sha256": "0b6722f2de27003eb6110b1d36d868384f24ae145ca241db1d591704afe04f3e",
+      "current_sha256": "0b6722f2de27003eb6110b1d36d868384f24ae145ca241db1d591704afe04f3e",
+      "modified": false
+    },
+    {
+      "path": "requirements-codex.txt",
+      "original_sha256": "6fe2dfc7e09fa7efb3887409e447f9fe3432d9387fc99f4e80678e1a7ab2b3de",
+      "current_sha256": "4ece799b8a279f3a384178489f034e3ace586e8f1b3f3f06c3db27041aa01774",
+      "modified": true
+    },
+    {
+      "path": "tests/test_supervisor.py",
+      "original_sha256": "91b90d45d5d6b79c6e9432afa1598ef725b902c66e15ce09315a095715dbe408",
+      "current_sha256": "91b90d45d5d6b79c6e9432afa1598ef725b902c66e15ce09315a095715dbe408",
+      "modified": false
+    }
+  ]
+}

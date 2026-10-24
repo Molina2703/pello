@@ -1,0 +1,11 @@
+{
+  "python": "3.12.6",
+  "os": "Windows-11-10.0.26300-SP0",
+  "python_executable": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+  "virtual_environment": true,
+  "git_installed": true,
+  "codex_python_sdk_installed": true,
+  "runtime_root": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime",
+  "chatgpt_codex_login_verified": null,
+  "notes": "SDK availability is NOT proof of an authenticated, usable Codex account."
+}

@@ -1,0 +1,2 @@
+# Only necessary for --mode codex, not for the offline demonstration.
+openai-codex==0.163.0

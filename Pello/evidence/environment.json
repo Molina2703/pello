@@ -1,0 +1,13 @@
+{
+  "os": "Windows-11-10.0.26300-SP0",
+  "architecture": "AMD64",
+  "python": "3.12.6",
+  "python_executable": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+  "virtual_environment": true,
+  "git": "git version 2.51.0.windows.2",
+  "node": "v22.22.0",
+  "sdk": "0.163.0",
+  "sdk_runtime": "0.163.0",
+  "sqlite": "3.45.3",
+  "package": "0.1.0"
+}

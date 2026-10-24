@@ -1,0 +1,101 @@
+$ /opt/pyvenv/bin/python -m unittest discover -s /mnt/data/athis-dev-autopilot-v1/runtime/jobs/clinica-reservas-demo-20261021192421-0ee010/acceptance -p test_*.py -v
+
+test_AC01_confirmed_booking (test_booking.ClinicAcceptance.test_AC01_confirmed_booking) ... ok
+test_AC02_must_confirm_first (test_booking.ClinicAcceptance.test_AC02_must_confirm_first) ... FAIL
+test_AC03_no_double_booking (test_booking.ClinicAcceptance.test_AC03_no_double_booking) ... FAIL
+test_AC04_idempotent_webhook (test_booking.ClinicAcceptance.test_AC04_idempotent_webhook) ... FAIL
+test_AC05_cancel_releases_slot (test_booking.ClinicAcceptance.test_AC05_cancel_releases_slot) ... ok
+test_AC06_available_slots (test_booking.ClinicAcceptance.test_AC06_available_slots) ... FAIL
+test_AC07_reject_missing_data (test_booking.ClinicAcceptance.test_AC07_reject_missing_data) ... 
+  test_AC07_reject_missing_data (test_booking.ClinicAcceptance.test_AC07_reject_missing_data) (field='slot') ... FAIL
+  test_AC07_reject_missing_data (test_booking.ClinicAcceptance.test_AC07_reject_missing_data) (field='customer_id') ... FAIL
+  test_AC07_reject_missing_data (test_booking.ClinicAcceptance.test_AC07_reject_missing_data) (field='request_id') ... FAIL
+test_AC08_concurrent_single_winner (test_booking.ClinicAcceptance.test_AC08_concurrent_single_winner) ... FAIL
+
+======================================================================
+FAIL: test_AC02_must_confirm_first (test_booking.ClinicAcceptance.test_AC02_must_confirm_first)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/athis-dev-autopilot-v1/runtime/jobs/clinica-reservas-demo-20261021192421-0ee010/acceptance/test_booking.py", line 18, in test_AC02_must_confirm_first
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_AC03_no_double_booking (test_booking.ClinicAcceptance.test_AC03_no_double_booking)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/athis-dev-autopilot-v1/runtime/jobs/clinica-reservas-demo-20261021192421-0ee010/acceptance/test_booking.py", line 24, in test_AC03_no_double_booking
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_AC04_idempotent_webhook (test_booking.ClinicAcceptance.test_AC04_idempotent_webhook)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/athis-dev-autopilot-v1/runtime/jobs/clinica-reservas-demo-20261021192421-0ee010/acceptance/test_booking.py", line 31, in test_AC04_idempotent_webhook
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_AC06_available_slots (test_booking.ClinicAcceptance.test_AC06_available_slots)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/athis-dev-autopilot-v1/runtime/jobs/clinica-reservas-demo-20261021192421-0ee010/acceptance/test_booking.py", line 44, in test_AC06_available_slots
+    self.assertEqual(self.app.slots([SLOT, other]), [other])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['2026-11-05T09:00:00-05:00', '2026-11-05T10:00:00-05:00'] != ['2026-11-05T10:00:00-05:00']
+
+First differing element 0:
+'2026-11-05T09:00:00-05:00'
+'2026-11-05T10:00:00-05:00'
+
+First list contains 1 additional elements.
+First extra element 1:
+'2026-11-05T10:00:00-05:00'
+
+- ['2026-11-05T09:00:00-05:00', '2026-11-05T10:00:00-05:00']
++ ['2026-11-05T10:00:00-05:00']
+
+======================================================================
+FAIL: test_AC07_reject_missing_data (test_booking.ClinicAcceptance.test_AC07_reject_missing_data) (field='slot')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/athis-dev-autopilot-v1/runtime/jobs/clinica-reservas-demo-20261021192421-0ee010/acceptance/test_booking.py", line 52, in test_AC07_reject_missing_data
+    with self.subTest(field=field), self.assertRaises(ValueError):
+                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_AC07_reject_missing_data (test_booking.ClinicAcceptance.test_AC07_reject_missing_data) (field='customer_id')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/athis-dev-autopilot-v1/runtime/jobs/clinica-reservas-demo-20261021192421-0ee010/acceptance/test_booking.py", line 52, in test_AC07_reject_missing_data
+    with self.subTest(field=field), self.assertRaises(ValueError):
+                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_AC07_reject_missing_data (test_booking.ClinicAcceptance.test_AC07_reject_missing_data) (field='request_id')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/athis-dev-autopilot-v1/runtime/jobs/clinica-reservas-demo-20261021192421-0ee010/acceptance/test_booking.py", line 52, in test_AC07_reject_missing_data
+    with self.subTest(field=field), self.assertRaises(ValueError):
+                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_AC08_concurrent_single_winner (test_booking.ClinicAcceptance.test_AC08_concurrent_single_winner)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/athis-dev-autopilot-v1/runtime/jobs/clinica-reservas-demo-20261021192421-0ee010/acceptance/test_booking.py", line 64, in test_AC08_concurrent_single_winner
+    self.assertEqual(results.count('ok'), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 16 != 1
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.010s
+
+FAILED (failures=8)

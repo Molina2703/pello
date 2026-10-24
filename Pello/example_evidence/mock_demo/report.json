@@ -1,0 +1,83 @@
+{
+  "agent_usage_by_turn": [
+    {
+      "file": "cycle_01_agent.json",
+      "usage": null,
+      "turn_id": null
+    },
+    {
+      "file": "cycle_02_agent.json",
+      "usage": null,
+      "turn_id": null
+    }
+  ],
+  "usd_cost_verified": null,
+  "job_id": "clinica-reservas-demo-20261021192421-0ee010",
+  "status": "LISTO_PARA_REVISION",
+  "mode": "mock",
+  "codex_executed": false,
+  "turns_attempted": 2,
+  "fixes_attempted": 1,
+  "last_test_count": 8,
+  "suite_sha256": "13c09a7aa97b6bd0d1395b5a406fee81df45b4a1652fab8c8375ece70b995423",
+  "suite_sha256_still_matches": true,
+  "last_error": "",
+  "created": "2026-10-21T19:24:21+00:00",
+  "updated": "2026-10-21T19:24:23+00:00",
+  "events": [
+    {
+      "seq": 12,
+      "job_id": "clinica-reservas-demo-20261021192421-0ee010",
+      "at": "2026-10-21T19:24:21+00:00",
+      "kind": "created",
+      "details": "{\"engine\": \"mock\"}"
+    },
+    {
+      "seq": 13,
+      "job_id": "clinica-reservas-demo-20261021192421-0ee010",
+      "at": "2026-10-21T19:24:21+00:00",
+      "kind": "agent_start",
+      "details": "{\"attempt\": 1, \"fixing\": false}"
+    },
+    {
+      "seq": 14,
+      "job_id": "clinica-reservas-demo-20261021192421-0ee010",
+      "at": "2026-10-21T19:24:21+00:00",
+      "kind": "agent_finished",
+      "details": "{\"attempt\": 1}"
+    },
+    {
+      "seq": 15,
+      "job_id": "clinica-reservas-demo-20261021192421-0ee010",
+      "at": "2026-10-21T19:24:22+00:00",
+      "kind": "verification_failed",
+      "details": "{\"log\": \"/mnt/data/athis-dev-autopilot-v1/runtime/jobs/clinica-reservas-demo-20261021192421-0ee010/evidence/cycle_01_tests.log\", \"tests\": 8}"
+    },
+    {
+      "seq": 16,
+      "job_id": "clinica-reservas-demo-20261021192421-0ee010",
+      "at": "2026-10-21T19:24:22+00:00",
+      "kind": "agent_start",
+      "details": "{\"attempt\": 2, \"fixing\": true}"
+    },
+    {
+      "seq": 17,
+      "job_id": "clinica-reservas-demo-20261021192421-0ee010",
+      "at": "2026-10-21T19:24:22+00:00",
+      "kind": "agent_finished",
+      "details": "{\"attempt\": 2}"
+    },
+    {
+      "seq": 18,
+      "job_id": "clinica-reservas-demo-20261021192421-0ee010",
+      "at": "2026-10-21T19:24:23+00:00",
+      "kind": "verified",
+      "details": "{\"log\": \"/mnt/data/athis-dev-autopilot-v1/runtime/jobs/clinica-reservas-demo-20261021192421-0ee010/evidence/cycle_02_tests.log\", \"tests\": 8}"
+    }
+  ],
+  "evidence_logs": [
+    "cycle_01_tests.log",
+    "cycle_02_tests.log"
+  ],
+  "review_gate": "A HUMAN MUST REVIEW BEFORE ANY PRODUCTION DEPLOYMENT"
+}

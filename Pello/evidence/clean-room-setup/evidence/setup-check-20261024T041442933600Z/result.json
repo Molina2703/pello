@@ -1,0 +1,33 @@
+{
+  "at_utc": "20261024T041442933600Z",
+  "python": "3.12.6",
+  "os": "Windows-11-10.0.26300-SP0",
+  "executable": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.setup-repro\\.venv\\Scripts\\python.exe",
+  "checks": {
+    "pip-check": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "unit-tests": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "module-entrypoint": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "console-entrypoint": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "doctor": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "mock-demo": {
+      "exit_code": 0,
+      "passed": true
+    }
+  },
+  "passed": true
+}

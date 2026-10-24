@@ -1,0 +1,35 @@
+{
+  "local_installation": "VERIFIED",
+  "archive_preserved": true,
+  "unit_tests": {
+    "baseline": "4 cleanup errors",
+    "after_repair": "4 passed"
+  },
+  "mock_demo": {
+    "attempts": 2,
+    "corrections": 1,
+    "final_acceptance_tests_passed": 8
+  },
+  "sdk": {
+    "version": "0.163.0",
+    "authentication": "chatgpt",
+    "real_turns": 1,
+    "independent_tests_passed": 6,
+    "status": "REAL INTEGRATION VERIFIED"
+  },
+  "main_setup_checks": "evidence\\setup-check-20261024T041217599690Z\\result.json",
+  "clean_room_setup_checks": "evidence\\clean-room-setup\\evidence\\setup-check-20261024T041442933600Z\\result.json",
+  "sqlite_integrity": "ok",
+  "jobs": [
+    [
+      "clinica-reservas-demo-20261024040808-1a32bd",
+      "LISTO_PARA_REVISION",
+      "mock",
+      2,
+      1,
+      8
+    ]
+  ],
+  "full_v1_verified": false,
+  "cleanup": "Optional .setup-repro cleanup rejected by automatic approval review; retained and ignored"
+}

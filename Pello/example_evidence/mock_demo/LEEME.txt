@@ -1,0 +1,5 @@
+Evidencia real del simulador OFFLINE en este entorno (2026-10-21).
+La primera suite registra fallos reales; la segunda aprueba 8/8.
+El corrector 'mock' fue PREPROGRAMADO: ninguna llamada real a Codex.
+La prueba con el motor oficial Codex se ejecuta desde tu propio PC.
+Los logs incluyen rutas originales de la ejecución dentro del entorno de prueba.

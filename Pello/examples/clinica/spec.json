@@ -1,0 +1,22 @@
+{
+  "id": "clinica-reservas-demo",
+  "name": "Motor local de reservas odontologicas - sandbox",
+  "problem": "Demostrar agendamiento seguro y reintentos idempotentes antes de integrar WhatsApp y Calendar.",
+  "outcome": "Un motor Python sin dependencias externas que evita que dos clientes reserven el mismo horario.",
+  "scope": "SOLO sandbox local; NO contactar clientes, NO tocar n8n ni Google Calendar.",
+  "interface": "Crear booking.py con clase ClinicBooking. constructor sin argumentos; reserve(slot: str, customer_id: str, request_id: str, confirmed: bool) -> dict con claves slot, customer_id y request_id; cancel(request_id: str) -> bool; slots(candidates: list[str]) -> list[str].",
+  "requirements": [
+    "AC01: La reserva confirmada regresa un diccionario con los tres datos del pedido.",
+    "AC02: Se rechaza una reserva no confirmada sin ocupar el horario.",
+    "AC03: Dos clientes diferentes no pueden reservar el mismo horario.",
+    "AC04: El mismo request_id y los mismos datos son idempotentes; una clave reutilizada con datos distintos se rechaza.",
+    "AC05: Cancelar libera el horario y la misma cancelacion repetida responde False.",
+    "AC06: La lista de horarios excluye reservas confirmadas y recupera horarios cancelados.",
+    "AC07: Se rechazan campos de texto vacios.",
+    "AC08: Dos peticiones concurrentes sobre el mismo horario producen exactamente una reserva exitosa."
+  ],
+  "constraints": ["Python standard library only", "Datos totalmente ficticios", "No claves ni servicios externos", "Escribir solo en workspace", "No modificar pruebas de aceptacion"],
+  "max_fix_cycles": 5,
+  "codex_turn_timeout_seconds": 900,
+  "test_timeout_seconds": 40
+}

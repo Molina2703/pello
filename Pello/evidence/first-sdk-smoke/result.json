@@ -1,0 +1,45 @@
+{
+  "status": "REAL INTEGRATION VERIFIED",
+  "started_at": "2026-10-24T04:10:07.050472+00:00",
+  "workspace": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\sdk-smoke\\first-install\\workspace",
+  "turns_attempted": 1,
+  "tests_passed": true,
+  "authentication": {
+    "authenticated": true,
+    "auth_type": "chatgpt",
+    "status": "REAL LOCAL VERIFIED"
+  },
+  "sdk": {
+    "status": "completed",
+    "thread_id": "01a16c1a-1fb1-7b70-877f-b7a52c96f575",
+    "turn_id": "01a16c1a-2557-7ec3-a55d-7c85f14b8b43",
+    "usage": {
+      "last": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 17280,
+        "input_tokens": 17468,
+        "output_tokens": 17,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 17485
+      },
+      "model_context_window": 475000,
+      "total": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 30720,
+        "input_tokens": 34842,
+        "output_tokens": 87,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 34929
+      }
+    },
+    "final_response": "Created `pello_probe.py` with exactly the requested function.",
+    "error": null
+  },
+  "source_sha256": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772",
+  "test_count": 6,
+  "changed_files": [
+    "__pycache__/pello_probe.cpython-312.pyc",
+    "pello_probe.py"
+  ],
+  "finished_at": "2026-10-24T04:10:31.614608+00:00"
+}

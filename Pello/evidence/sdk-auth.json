@@ -1,0 +1,5 @@
+{
+  "authenticated": true,
+  "auth_type": "chatgpt",
+  "requires_openai_auth": true
+}

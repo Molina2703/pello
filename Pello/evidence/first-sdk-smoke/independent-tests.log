@@ -1,0 +1,11 @@
+test_float (__main__.ProbeTests.test_float) ... ok
+test_large (__main__.ProbeTests.test_large) ... ok
+test_negative (__main__.ProbeTests.test_negative) ... ok
+test_positive (__main__.ProbeTests.test_positive) ... ok
+test_unchanged_arguments (__main__.ProbeTests.test_unchanged_arguments) ... ok
+test_zero (__main__.ProbeTests.test_zero) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+OK

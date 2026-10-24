@@ -1,0 +1,1 @@
+The raw result was preserved unchanged. Its changed_files list includes __pycache__/pello_probe.cpython-312.pyc, which the independent verifier created after Codex finished. The Codex-authored source file is pello_probe.py. Future probe runs disable verifier bytecode writes.
