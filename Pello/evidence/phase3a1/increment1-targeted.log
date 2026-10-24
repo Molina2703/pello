@@ -1,0 +1,12 @@
+test_current_correct_source_passes_despite_wrong_cached_behavior (test_verification_source.SourceVerificationTests.test_current_correct_source_passes_despite_wrong_cached_behavior) ... ok
+test_historical_acceptance_from_preserved_source (test_verification_source.SourceVerificationTests.test_historical_acceptance_from_preserved_source) ... ok
+test_mutation_of_materialized_source_invalidates_verification (test_verification_source.SourceVerificationTests.test_mutation_of_materialized_source_invalidates_verification) ... ok
+test_phase2_also_rejects_stale_bytecode (test_verification_source.SourceVerificationTests.test_phase2_also_rejects_stale_bytecode) ... ok
+test_pipeline_failure_has_no_approval_checkpoint_or_dependent_execution (test_verification_source.SourceVerificationTests.test_pipeline_failure_has_no_approval_checkpoint_or_dependent_execution) ... ok
+test_sourceless_project_bytecode_cannot_supply_acceptance_behavior (test_verification_source.SourceVerificationTests.test_sourceless_project_bytecode_cannot_supply_acceptance_behavior) ... ok
+test_stale_bytecode_fails_and_original_files_remain_untouched (test_verification_source.SourceVerificationTests.test_stale_bytecode_fails_and_original_files_remain_untouched) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 6.363s
+
+OK

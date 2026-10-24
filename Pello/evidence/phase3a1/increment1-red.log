@@ -1,0 +1,82 @@
+test_current_correct_source_passes_despite_wrong_cached_behavior (test_verification_source.SourceVerificationTests.test_current_correct_source_passes_despite_wrong_cached_behavior) ... FAIL
+test_historical_acceptance_from_preserved_source (test_verification_source.SourceVerificationTests.test_historical_acceptance_from_preserved_source) ... ok
+test_mutation_of_materialized_source_invalidates_verification (test_verification_source.SourceVerificationTests.test_mutation_of_materialized_source_invalidates_verification) ... FAIL
+test_phase2_also_rejects_stale_bytecode (test_verification_source.SourceVerificationTests.test_phase2_also_rejects_stale_bytecode) ... FAIL
+test_pipeline_failure_has_no_approval_checkpoint_or_dependent_execution (test_verification_source.SourceVerificationTests.test_pipeline_failure_has_no_approval_checkpoint_or_dependent_execution) ... FAIL
+test_sourceless_project_bytecode_cannot_supply_acceptance_behavior (test_verification_source.SourceVerificationTests.test_sourceless_project_bytecode_cannot_supply_acceptance_behavior) ... FAIL
+test_stale_bytecode_fails_and_original_files_remain_untouched (test_verification_source.SourceVerificationTests.test_stale_bytecode_fails_and_original_files_remain_untouched) ... FAIL
+
+======================================================================
+FAIL: test_current_correct_source_passes_despite_wrong_cached_behavior (test_verification_source.SourceVerificationTests.test_current_correct_source_passes_despite_wrong_cached_behavior)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_verification_source.py", line 71, in test_current_correct_source_passes_despite_wrong_cached_behavior
+    self.assertEqual(proc.returncode, 0, proc.stderr)
+AssertionError: 1 != 0 : test_value (test_value.Check.test_value) ... FAIL
+
+======================================================================
+FAIL: test_value (test_value.Check.test_value)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\AppData\Local\Temp\tmps95x9c0t\acceptance\test_value.py", line 4, in test_value
+    def test_value(self): self.assertEqual(value(), 7)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 9 != 7
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)
+
+
+======================================================================
+FAIL: test_mutation_of_materialized_source_invalidates_verification (test_verification_source.SourceVerificationTests.test_mutation_of_materialized_source_invalidates_verification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_verification_source.py", line 93, in test_mutation_of_materialized_source_invalidates_verification
+    self.assertFalse(result['successful'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_phase2_also_rejects_stale_bytecode (test_verification_source.SourceVerificationTests.test_phase2_also_rejects_stale_bytecode)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_verification_source.py", line 117, in test_phase2_also_rejects_stale_bytecode
+    self.assertFalse(result['passed'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_pipeline_failure_has_no_approval_checkpoint_or_dependent_execution (test_verification_source.SourceVerificationTests.test_pipeline_failure_has_no_approval_checkpoint_or_dependent_execution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_verification_source.py", line 101, in test_pipeline_failure_has_no_approval_checkpoint_or_dependent_execution
+    self.assertFalse(report['passed']); self.assertEqual(report['stage'], 'BLOCKED')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_sourceless_project_bytecode_cannot_supply_acceptance_behavior (test_verification_source.SourceVerificationTests.test_sourceless_project_bytecode_cannot_supply_acceptance_behavior)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_verification_source.py", line 82, in test_sourceless_project_bytecode_cannot_supply_acceptance_behavior
+    self.assertNotEqual(proc.returncode, 0)
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_stale_bytecode_fails_and_original_files_remain_untouched (test_verification_source.SourceVerificationTests.test_stale_bytecode_fails_and_original_files_remain_untouched)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_verification_source.py", line 60, in test_stale_bytecode_fails_and_original_files_remain_untouched
+    self.assertEqual(proc.returncode, 1, proc.stderr)
+AssertionError: 0 != 1 : test_value (test_value.Check.test_value) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+
+
+----------------------------------------------------------------------
+Ran 7 tests in 9.289s
+
+FAILED (failures=6)
