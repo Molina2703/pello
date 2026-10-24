@@ -7,6 +7,10 @@ La V1 completa requiere todavía integración real DEV, rotación, recuperación
 avanzada y correo diario. Se conservan el comando `supervised` y las evidencias
 históricas. Las secciones del prototipo original más abajo son históricas.
 
+Resultado Fase 3A: **VERIFIED THROUGH REAL CODEX SDK**. Dos incrementos dependientes,
+cinco turnos, 12 tests únicos (18 ejecuciones incluyendo regresión), dos checkpoints
+y 69 tests locales aprobados. Reabrir el proyecto terminado no repite inferencia.
+
 La orden `pello.cmd supervised` implementa el ciclo acotado de Fase 2.
 Ver [uso y límites](PHASE2.md) y [resultado observado](reports/PHASE2.md).
 Fase 2: **REAL SDK VERIFIED**, con tres turnos reales, 12 pruebas de aceptación

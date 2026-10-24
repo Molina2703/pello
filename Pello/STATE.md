@@ -1,12 +1,19 @@
 # Persistent state
 
-## Current work: Phase 3A
+## Current state: Phase 3A verified
 
 2026-10-24, America/Bogota. Branch codex/pello-phase3a, base 61f52e7.
-Incremental pipeline implemented; deterministic regression suite is being checked
-before the sole bounded live demonstration. See PHASE3A.md and PHASE3A-AUDIT.md.
-The Phase 2 result below is preserved historical evidence. No external integration,
-rotation, deployment or email is claimed by the current work.
+Implementation checkpoint 30ed940. phase3a-quotes-first: COMPLETE,
+VERIFIED THROUGH REAL CODEX SDK. Two dependent increments, one attempt each,
+five gpt-6-luna/low turns: plan, execute/review T1, execute/review T2.
+T1 pricing.py passed 6 tests; T2 quotes.py passed 6 plus the 6 T1 regression tests.
+Two Git checkpoints; T2 consumes pricing.normalize_item unchanged. 69 automated
+tests pass, including the original 43. Reopening added no operations/turns.
+All baseline rows preserved, SQLite ok, original archive unchanged.
+Evidence: evidence/phase3a/verified-live-pipeline/. Report: reports/PHASE3A.md;
+machine summary: reports/phase3a-result.json. No external integration, rotation,
+deployment or email claimed. Phase 3A stopped; next milestone requires a new
+request: n8n DEV adapter with allowlist and operation reconciliation (PLAN.md).
 
 ## Historical state: Phase 2 verified
 
@@ -27,7 +34,8 @@ Pre-change checkpoint: `3a9b0fe`; earlier Phase 2 checkpoint: `0630125`.
 - Two earlier pre-inference blocked projects remain unchanged:
   `phase2-leads-first` and `phase2-leads-authorized`. Later attempts were explicitly
   authorized. No automatic retry or repair was executed.
-- No Phase 3 implementation, background service, deployment or remote push.
+- At that historical checkpoint there was no Phase 3 implementation, background
+  service, deployment or remote push.
 
 ## Historical installation
 

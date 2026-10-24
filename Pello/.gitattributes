@@ -1,0 +1,2 @@
+# Preserve raw evidence bytes so the SHA-256 manifest works across checkouts.
+evidence/phase3a/verified-live-pipeline/** -text

@@ -1,0 +1,71 @@
+{
+  "authenticated": true,
+  "models": {
+    "gpt-6.1-sol": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max",
+      "ultra"
+    ],
+    "gpt-6-astra": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max",
+      "ultra"
+    ],
+    "gpt-6-sol": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max",
+      "ultra"
+    ],
+    "gpt-6-luna": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "gpt-5.6-sol": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max",
+      "ultra"
+    ],
+    "gpt-5.6-terra": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max",
+      "ultra"
+    ],
+    "gpt-5.6-luna": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ]
+  },
+  "remaining_percent": 40,
+  "usage_windows": [
+    {
+      "used_percent": 60,
+      "resets_at": 1792829432
+    },
+    {
+      "used_percent": 9,
+      "resets_at": 1793416232
+    }
+  ],
+  "at": "2026-10-24T06:13:33+00:00"
+}

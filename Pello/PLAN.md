@@ -2,6 +2,9 @@
 
 ## Entrega actual: Fase 3A
 
+Completada: dos incrementos reales, cinco turnos Luna/low y 69 tests locales
+aprobados; siguiente hito no iniciado.
+
 Pipeline secuencial sobre Fase 2: plan global, incrementos dependientes,
 intentos/exchanges, suites externas, revisión por política, checkpoints y
 reanudación. Demostración real pequeña tras tests deterministas, sin repetir

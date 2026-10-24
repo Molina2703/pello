@@ -1,0 +1,11 @@
+test_bounds (test_pricing.PricingAcceptance.test_bounds) ... ok
+test_idempotent_and_deterministic (test_pricing.PricingAcceptance.test_idempotent_and_deterministic) ... ok
+test_no_mutation_and_ignored_extras (test_pricing.PricingAcceptance.test_no_mutation_and_ignored_extras) ... ok
+test_normalization_and_total (test_pricing.PricingAcceptance.test_normalization_and_total) ... ok
+test_required_fields_and_sku (test_pricing.PricingAcceptance.test_required_fields_and_sku) ... ok
+test_types_exclude_boolean (test_pricing.PricingAcceptance.test_types_exclude_boolean) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+OK

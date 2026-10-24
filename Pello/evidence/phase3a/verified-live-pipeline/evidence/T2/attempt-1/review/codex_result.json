@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a16c8b-1568-7073-a78e-4ca5956536b9",
+  "turn_id": "01a16c8b-b741-70e3-aac5-9f672469d19d",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 15616,
+      "input_tokens": 19609,
+      "output_tokens": 108,
+      "reasoning_output_tokens": 0,
+      "total_tokens": 19717
+    },
+    "model_context_window": 258400,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 15616,
+      "input_tokens": 47463,
+      "output_tokens": 557,
+      "reasoning_output_tokens": 0,
+      "total_tokens": 48020
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3a-quotes-first\",\"task_id\":\"T2\",\"attempt\":1,\"verdict\":\"PASS\",\"diagnosis\":\"none\",\"feedback\":\"The supplied independent verification reports all 6 expected T2 tests passed and all 6 T1 regression tests passed, with source integrity true and no timeouts. The diff dynamically calls pricing.normalize_item for each item, validates list size, preserves order and duplicates, and returns the required totals and count without changing pricing.py.\"}",
+  "error": null
+}

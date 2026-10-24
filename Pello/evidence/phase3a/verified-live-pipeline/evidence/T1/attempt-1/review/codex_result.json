@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a16c8b-1568-7073-a78e-4ca5956536b9",
+  "turn_id": "01a16c8b-88d4-7470-8a1c-f2ba97c095e5",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 15752,
+      "output_tokens": 90,
+      "reasoning_output_tokens": 0,
+      "total_tokens": 15842
+    },
+    "model_context_window": 258400,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 27854,
+      "output_tokens": 449,
+      "reasoning_output_tokens": 0,
+      "total_tokens": 28303
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3a-quotes-first\",\"task_id\":\"T1\",\"attempt\":1,\"verdict\":\"PASS\",\"diagnosis\":\"none\",\"feedback\":\"The supplied independent verification reports all 6 expected T1 tests passed with source integrity true and no timeout. The diff implements the required strict validation, SKU normalization, exact output fields, integer-cent total, and input-preserving behavior.\"}",
+  "error": null
+}

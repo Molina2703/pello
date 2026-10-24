@@ -1,0 +1,11 @@
+test_consumes_verified_dependency (test_quotes.QuotesAcceptance.test_consumes_verified_dependency) ... ok
+test_deterministic_duplicate_preservation (test_quotes.QuotesAcceptance.test_deterministic_duplicate_preservation) ... ok
+test_exact_output_and_no_mutation (test_quotes.QuotesAcceptance.test_exact_output_and_no_mutation) ... ok
+test_invalid_record_propagates (test_quotes.QuotesAcceptance.test_invalid_record_propagates) ... ok
+test_list_bounds (test_quotes.QuotesAcceptance.test_list_bounds) ... ok
+test_totals_and_order (test_quotes.QuotesAcceptance.test_totals_and_order) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+OK

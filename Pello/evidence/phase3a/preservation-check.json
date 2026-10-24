@@ -1,0 +1,18 @@
+{
+  "tests": 69,
+  "turns": 5,
+  "baseline_rows_preserved": {
+    "jobs": true,
+    "events": true,
+    "pello_migrations": true,
+    "pello_projects": true,
+    "pello_tasks": true,
+    "pello_sessions": true,
+    "pello_exchanges": true,
+    "pello_operations": true
+  },
+  "sqlite_integrity": "ok",
+  "original_archive_unchanged": true,
+  "curated_files": 57,
+  "report": "reports/phase3a-result.json"
+}

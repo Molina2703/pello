@@ -19,7 +19,7 @@ dependencias, criterios, suites y conteos. La IA añade un plan global e instruc
 no cambia esos contratos. Descomposición completamente autónoma desde una ficha
 amplia y diseño de pruebas por IA siguen pendientes.
 
-Estados de intento: PENDING → EXECUTED → VERIFIED → REVIEWED → APPROVED; fallo →
+Estados de intento: PENDING → EXECUTED → VERIFYING → VERIFIED → REVIEWED → APPROVED; fallo →
 FAILED → otro intento acotado. Los dependientes esperan aprobación y checkpoint.
 El Tester es determinista. El Reviewer usa el supervisor read-only y recibe fuente,
 diff y tests reales. Política every_increment o final; riesgo alto siempre se revisa.

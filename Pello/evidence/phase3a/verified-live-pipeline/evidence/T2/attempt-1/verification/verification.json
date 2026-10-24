@@ -1,0 +1,42 @@
+{
+  "project_id": "phase3a-quotes-first",
+  "task_id": "T2",
+  "attempt": 1,
+  "passed": true,
+  "suites": [
+    {
+      "task_id": "T1",
+      "passed": true,
+      "counts": {
+        "tests_executed": 6,
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0,
+        "successful": true
+      },
+      "expected_tests": 6,
+      "source_integrity": true,
+      "timed_out": false,
+      "reproduction": "\"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe\" -I \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\athis_autopilot\\verification_worker.py\" --workspace \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\supervised\\phase3a-quotes-first\\workspace\" --suite \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\supervised\\phase3a-quotes-first\\acceptance\\pricing\" --result \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\supervised\\phase3a-quotes-first\\evidence\\T2\\attempt-1\\verification\\T1\\tests.json\"",
+      "evidence_directory": "evidence/T2/attempt-1/verification/T1",
+      "diagnostics": ""
+    },
+    {
+      "task_id": "T2",
+      "passed": true,
+      "counts": {
+        "tests_executed": 6,
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0,
+        "successful": true
+      },
+      "expected_tests": 6,
+      "source_integrity": true,
+      "timed_out": false,
+      "reproduction": "\"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe\" -I \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\athis_autopilot\\verification_worker.py\" --workspace \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\supervised\\phase3a-quotes-first\\workspace\" --suite \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\supervised\\phase3a-quotes-first\\acceptance\\quotes\" --result \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\supervised\\phase3a-quotes-first\\evidence\\T2\\attempt-1\\verification\\T2\\tests.json\"",
+      "evidence_directory": "evidence/T2/attempt-1/verification/T2",
+      "diagnostics": ""
+    }
+  ]
+}
