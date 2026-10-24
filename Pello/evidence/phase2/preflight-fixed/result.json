@@ -1,0 +1,20 @@
+{
+  "supervisor": {
+    "status": "ready",
+    "thread_id": "01a16c33-4748-72c1-b37d-99643b131943",
+    "role": "supervisor",
+    "sandbox": "read-only",
+    "model": "gpt-6-luna",
+    "effort": "low"
+  },
+  "executor": {
+    "status": "ready",
+    "thread_id": "01a16c33-56a7-7323-b480-46a54b7c220c",
+    "role": "executor",
+    "sandbox": "workspace-write",
+    "model": "gpt-6-luna",
+    "effort": "low"
+  },
+  "distinct_sessions": true,
+  "model_turns_executed": 0
+}

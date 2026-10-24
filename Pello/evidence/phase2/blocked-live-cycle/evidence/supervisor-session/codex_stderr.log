@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\codex_worker.py", line 89, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\codex_worker.py", line 43, in main
+    with Codex(CodexConfig(config_overrides=overrides)) as client:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\.venv\Lib\site-packages\openai_codex\api.py", line 89, in __init__
+    self._init = validate_initialize_metadata(self._client.initialize())
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\.venv\Lib\site-packages\openai_codex\client.py", line 306, in initialize
+    result = self.request(
+             ^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\.venv\Lib\site-packages\openai_codex\client.py", line 363, in request
+    result = self._request_raw(method, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\.venv\Lib\site-packages\openai_codex\client.py", line 384, in _request_raw
+    raise item
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\.venv\Lib\site-packages\openai_codex\client.py", line 867, in _reader_loop
+    msg = self._read_message()
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\.venv\Lib\site-packages\openai_codex\client.py", line 909, in _read_message
+    raise TransportClosedError(
+openai_codex.errors.TransportClosedError: Codex process closed stdout. stderr_tail=Error: invalid transport
+in `mcp_servers."node_repl"`
+

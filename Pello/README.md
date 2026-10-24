@@ -1,5 +1,10 @@
 # ATHIS DEV AUTOPILOT V1 — Prototipo local
 
+La orden `pello.cmd supervised` implementa el ciclo acotado de Fase 2.
+Ver [uso y límites](PHASE2.md) y [resultado observado](reports/PHASE2.md).
+El ciclo real completo sigue pendiente de validación tras el bloqueo inicial
+documentado; no se afirma que Pello V1 esté terminado.
+
 > **Instalación local actual:** ver [INSTALL.md](INSTALL.md) y
 > [resultados verificados](reports/INSTALLATION.md). Usar `setup.ps1` y
 > `pello.cmd` para trabajar dentro del entorno virtual. El texto de abajo es la

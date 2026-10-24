@@ -1,0 +1,48 @@
+{
+  "phase2_status": "IMPLEMENTED / UNVERIFIED",
+  "live_cycle": "BLOCKED",
+  "project_id": "phase2-leads-first",
+  "unit_tests_passed": 31,
+  "local_integration_tests_passed": 7,
+  "total_automated_tests_passed": 38,
+  "legacy_mock_acceptance_tests_passed": 8,
+  "live_model_turns": 0,
+  "ai_planning_decision": null,
+  "executor_implementation": null,
+  "ai_review_decision": null,
+  "lead_acceptance_real_tests_executed": 0,
+  "lead_acceptance_tests_defined": 12,
+  "corrected_sdk_preparation": {
+    "supervisor": {
+      "status": "ready",
+      "thread_id": "01a16c33-4748-72c1-b37d-99643b131943",
+      "role": "supervisor",
+      "sandbox": "read-only",
+      "model": "gpt-6-luna",
+      "effort": "low"
+    },
+    "executor": {
+      "status": "ready",
+      "thread_id": "01a16c33-56a7-7323-b480-46a54b7c220c",
+      "role": "executor",
+      "sandbox": "workspace-write",
+      "model": "gpt-6-luna",
+      "effort": "low"
+    },
+    "distinct_sessions": true,
+    "model_turns_executed": 0
+  },
+  "old_jobs_and_events_preserved": true,
+  "additive_tables": [
+    "pello_migrations",
+    "pello_projects",
+    "pello_tasks",
+    "pello_sessions",
+    "pello_exchanges",
+    "pello_operations"
+  ],
+  "database_integrity": "ok",
+  "checkpoint": "3a9b0fe",
+  "no_automatic_retry": true,
+  "full_v1_complete": false
+}
