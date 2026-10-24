@@ -1,2 +1,4 @@
 # Preserve raw evidence bytes so the SHA-256 manifest works across checkouts.
-evidence/phase3a/verified-live-pipeline/** -text
+evidence/phase3a/verified-live-pipeline/** -text -whitespace
+# The supplied request retains its original Markdown hard breaks.
+evidence/phase3a/REQUEST.md -whitespace
