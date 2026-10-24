@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\codex_worker.py", line 94, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\codex_worker.py", line 65, in main
+    thread = client.thread_resume(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\.venv\Lib\site-packages\openai_codex\api.py", line 243, in thread_resume
+    resumed = self._client.thread_resume(thread_id, params)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\.venv\Lib\site-packages\openai_codex\client.py", line 491, in thread_resume
+    return self.request("thread/resume", payload, response_model=ThreadResumeResponse)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\.venv\Lib\site-packages\openai_codex\client.py", line 363, in request
+    result = self._request_raw(method, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\.venv\Lib\site-packages\openai_codex\client.py", line 384, in _request_raw
+    raise item
+openai_codex.errors.InvalidRequestError: JSON-RPC error -32600: no rollout found for thread id 01a16c39-5484-7f01-bec6-755c01f31057

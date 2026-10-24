@@ -79,3 +79,42 @@ class LocalIntegrationTests(unittest.TestCase):
         import json
         report = json.loads((supervisor.root / 'jobs' / job_id / 'report.json').read_text())
         self.assertFalse(report['codex_executed'])
+
+    def test_sdk_style_session_callback_before_first_turn(self):
+        from phase2_support import FakeBackend
+        from athis_autopilot.supervisor import now
+        import sqlite3
+        class CallbackBackend(FakeBackend):
+            creates_session_in_turn = True
+            def run(self, **kwargs):
+                if not kwargs['thread_file'].exists():
+                    thread_id = 'callback-' + kwargs['role']
+                    kwargs['thread_file'].write_text(thread_id)
+                    from contextlib import closing
+                    with closing(sqlite3.connect(kwargs['session_db'])) as cx, cx:
+                        cx.execute('INSERT INTO pello_sessions VALUES(?,?,?,?,?,?,?)',
+                            (kwargs['project_id'], kwargs['role'], thread_id, now(), None, kwargs['task_id'], 'IN_FLIGHT'))
+                return super().run(**kwargs)
+        with tempfile.TemporaryDirectory() as tmp:
+            backend = CallbackBackend()
+            cycle, project_id, _ = make_project(tmp, backend=backend)
+            result = cycle.run_supervised(project_id)
+            self.assertTrue(result['passed'])
+            self.assertEqual(backend.preparations, [])
+            self.assertEqual(len(result['sessions']), 2)
+
+    def test_multiple_failed_subtests_remain_one_failed_test_for_review(self):
+        from phase2_support import FakeBackend
+        with tempfile.TemporaryDirectory() as tmp:
+            backend = FakeBackend(); backend.review_action = 'REPAIR'
+            cycle, _, _ = make_project(tmp, backend=backend)
+            source = Path(tmp) / 'owner-tests/test_example.py'
+            source.write_text('import unittest\nfrom example import value\nclass Checks(unittest.TestCase):\n'
+                              '    def test_values(self):\n        for i in range(4):\n'
+                              '            with self.subTest(i=i): self.assertEqual(value(), i + 99)\n')
+            project_id = cycle.create_supervised(Path(tmp) / 'spec.md', source.parent, project_id='subtests-project')
+            result = cycle.run_supervised(project_id)
+            self.assertTrue(result['cycle_finished'])
+            self.assertEqual(result['verification']['tests_executed'], 1)
+            self.assertEqual(result['verification']['failed'], 1)
+            self.assertEqual(result['supervisor_decision']['decision'], 'REPAIR')

@@ -1,0 +1,42 @@
+{
+  "supervisor": [
+    {
+      "status": "ready",
+      "thread_id": "01a16c40-9178-76d1-998d-d6bca142e09d",
+      "role": "supervisor",
+      "sandbox": "read-only",
+      "model": "gpt-6-luna",
+      "effort": "low"
+    },
+    {
+      "status": "ready",
+      "thread_id": "01a16c40-9178-76d1-998d-d6bca142e09d",
+      "role": "supervisor",
+      "sandbox": "read-only",
+      "model": "gpt-6-luna",
+      "effort": "low"
+    }
+  ],
+  "executor": [
+    {
+      "status": "ready",
+      "thread_id": "01a16c40-9405-7591-9841-28ead4f88ed5",
+      "role": "executor",
+      "sandbox": "workspace-write",
+      "model": "gpt-6-luna",
+      "effort": "low"
+    },
+    {
+      "status": "ready",
+      "thread_id": "01a16c40-9405-7591-9841-28ead4f88ed5",
+      "role": "executor",
+      "sandbox": "workspace-write",
+      "model": "gpt-6-luna",
+      "effort": "low"
+    }
+  ],
+  "same_worker_pid": 26608,
+  "model_turns_executed": 0,
+  "cache_roundtrip_passed": true,
+  "worker_closed": true
+}

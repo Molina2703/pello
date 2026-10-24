@@ -90,6 +90,10 @@ class SupervisedCycle(Bridge):
             if not thread_file.exists() or thread_file.read_text().strip() != existing['thread_id']:
                 raise ValueError('Session file/database mismatch; reconciliation required')
             return existing
+        if getattr(self.backend, 'creates_session_in_turn', False):
+            # A fresh SDK thread has no resumable rollout until its first turn.
+            # The worker starts it and commits its real ID before calling run().
+            return {'role': role, 'thread_id': None, 'status': 'NOT_STARTED'}
         ready = self.backend.prepare(workspace=folder / 'workspace', thread_file=thread_file,
                                      out_dir=folder / 'evidence' / (role + '-session'), role=role,
                                      model=project['model'], effort=project['effort'])
@@ -126,7 +130,8 @@ class SupervisedCycle(Bridge):
             response = self.backend.run(workspace=folder / 'workspace', thread_file=folder / (role + '-thread.txt'),
                                         out_dir=folder / 'evidence' / phase, role=role,
                                         model=project['model'], effort=project['effort'], prompt=prompt,
-                                        schema=schema, timeout=self.timeout)
+                                        schema=schema, timeout=self.timeout, session_db=self.db_path,
+                                        project_id=project_id, task_id=project['task_id'])
         session = next(x for x in self.sessions(project_id) if x['role'] == role)
         if response.get('status') != 'completed' or response.get('thread_id') != session['thread_id'] or not response.get('turn_id'):
             raise ValueError('SDK result is incomplete or belongs to the wrong role/session')
@@ -258,6 +263,9 @@ class SupervisedCycle(Bridge):
                     action(project)
         except Exception as exc:
             self.block(project_id, f'{type(exc).__name__}: {exc}')
+        finally:
+            if hasattr(self.backend, 'close'):
+                self.backend.close()
         return self.supervised_report(project_id)
 
     def supervised_report(self, project_id):

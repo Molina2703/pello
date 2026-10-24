@@ -1,6 +1,6 @@
 """Bounded AI context and role sessions over the existing SDK subprocess adapter."""
 import json
-from .engines import run_codex
+from .engines import run_codex, CodexWorkerProcess
 
 ROLE_INSTRUCTIONS = {
     'supervisor': ('You are Pello technical supervisor. Reason about the supplied product and evidence. '
@@ -46,12 +46,28 @@ def context_prompt(project, phase, *, task=None, execution=None, verification=No
 
 class SDKBackend:
     """No model calls outside the three reserved workflow operations."""
+    creates_session_in_turn = True
+
+    def __init__(self):
+        self.runner = None
+
     def prepare(self, *, workspace, thread_file, out_dir, role, model, effort):
+        # Diagnostic only. An empty thread is not resumable from a new process;
+        # the production bridge creates a thread and its first turn together.
         return run_codex(workspace, '', thread_file, out_dir, 60, role=role,
                          model=model, effort=effort, prepare_only=True,
                          instructions=ROLE_INSTRUCTIONS[role])
 
-    def run(self, *, workspace, thread_file, out_dir, role, model, effort, prompt, schema, timeout):
+    def run(self, *, workspace, thread_file, out_dir, role, model, effort, prompt, schema, timeout,
+            session_db, project_id, task_id):
+        if self.runner is None:
+            self.runner = CodexWorkerProcess(out_dir.parent)
         return run_codex(workspace, prompt, thread_file, out_dir, timeout, role=role,
                          model=model, effort=effort, output_schema=schema,
-                         instructions=ROLE_INSTRUCTIONS[role])
+                         instructions=ROLE_INSTRUCTIONS[role], session_db=session_db,
+                         project_id=project_id, task_id=task_id, runner=self.runner)
+
+    def close(self):
+        if self.runner is not None:
+            self.runner.close()
+            self.runner = None

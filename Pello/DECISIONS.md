@@ -27,6 +27,14 @@
    an invalid separate entry. The corrected path was verified without inference;
    unusual names fail closed. Original blocked records/logs are preserved.
 8. **Respect the run boundary.** The user prohibited automatically repeating a
-   blocked live demonstration. No second live cycle was launched. Full live
-   validation needs new authorization; rotation/compaction and repair remain
-   later phases.
+   blocked live demonstration. Each subsequent attempt received explicit human
+   authorization. The final cycle completed with exactly three real turns in
+   total. Rotation/compaction and repair remain later phases.
+9. **Retain SDK role handles through a cycle.** An explicitly authorized second
+   attempt exposed that a fresh empty thread cannot be resumed from a different
+   process. The first turn now follows creation in the same worker, with its
+   SQLite session record committed first. The worker caches the distinct role
+   handles for planning/execution/review and closes at the cycle boundary. A
+   no-inference SDK roundtrip tested this correction before the subsequently
+   authorized real cycle passed. Both blocked attempts were preserved. The final
+   suite has 43 passing tests, including correct aggregation of failing subtests.

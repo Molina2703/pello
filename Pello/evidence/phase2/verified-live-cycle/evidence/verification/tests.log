@@ -1,0 +1,17 @@
+test_01_normalization (test_leads.LeadAcceptance.test_01_normalization) ... ok
+test_02_input_shape (test_leads.LeadAcceptance.test_02_input_shape) ... ok
+test_03_required_fields (test_leads.LeadAcceptance.test_03_required_fields) ... ok
+test_04_required_types (test_leads.LeadAcceptance.test_04_required_types) ... ok
+test_05_empty_name (test_leads.LeadAcceptance.test_05_empty_name) ... ok
+test_06_invalid_email (test_leads.LeadAcceptance.test_06_invalid_email) ... ok
+test_07_valid_email (test_leads.LeadAcceptance.test_07_valid_email) ... ok
+test_08_phone_bounds (test_leads.LeadAcceptance.test_08_phone_bounds) ... ok
+test_09_phone_characters (test_leads.LeadAcceptance.test_09_phone_characters) ... ok
+test_10_sources (test_leads.LeadAcceptance.test_10_sources) ... ok
+test_11_new_dictionary (test_leads.LeadAcceptance.test_11_new_dictionary) ... ok
+test_12_idempotence (test_leads.LeadAcceptance.test_12_idempotence) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.004s
+
+OK

@@ -1,114 +1,109 @@
-# Pello Fase 2 — resultado observado
+# Pello Fase 2 — REAL SDK VERIFIED
 
-**Estado: IMPLEMENTED / UNVERIFIED para el ciclo real completo.** La única
-demostración intentada quedó **BLOCKED antes del primer turno de modelo**.
-No se declara aprobada la Fase 2 ni terminado Pello V1.
+La Fase 2 quedó verificada con un ciclo real de supervisor, ejecutor y revisión,
+sin transferencia manual de mensajes. **Pello V1 completo sigue pendiente.**
+Fecha de usuario: 2026-10-23, America/Bogota; evidencia técnica en UTC.
 
-## Implementación y pruebas
+## Resultado
 
-- Supervisor de IA con contexto acotado y salida estructurada mediante SDK.
-- Mensajes Pydantic, correlación proyecto/tarea y plan secuencial persistente.
-- Puente Python en SQLite, mediante tablas adicionales sin destruir las previas.
-- Sesiones separadas por rol, creación/reanudación y registro del último turno.
-- Flujo CLI: planificación -> ejecución -> verificación independiente -> revisión.
-- Límite de tres operaciones; sin reintentos, reparación ni siguiente tarea.
-- Rechazo de falsas aprobaciones, cero pruebas, hilos duplicados, cambios de
-  pruebas/código y recuperación ambigua. Resultados del ejecutor son afirmaciones;
-  cambios de archivos y pruebas son observaciones independientes de Python.
-
-| Verificación | Resultado | Clasificación |
-| --- | --- | --- |
-| Línea base anterior | 4 pruebas originales aprobadas | REAL LOCAL VERIFIED |
-| Pruebas unitarias finales | 31 aprobadas, incluidas las 4 originales | MOCK VERIFIED / REAL LOCAL VERIFIED |
-| Integración local con modelos inyectados y SQLite/verificador reales | 7 aprobadas | MOCK VERIFIED / REAL LOCAL VERIFIED |
-| Total automatizado | 38 aprobadas | No demuestra razonamiento real de IA |
-| Regresión del demo clínico original | 2 intentos, 1 corrección, 8 pruebas finales aprobadas | MOCK VERIFIED |
-| Catálogo y autenticación | SDK 0.163.0; gpt-6-luna disponible con esfuerzo low; ChatGPT | REAL LOCAL VERIFIED |
-| Preparación SDK corregida | 2 hilos distintos creados, sin inferencia | REAL LOCAL VERIFIED |
-| Ciclo real supervisor/ejecutor/revisión | No ejecutado; 0 turnos | BLOCKED |
-| Aceptación del nuevo módulo leads.py | No ejecutada en demostración real | IMPLEMENTED / UNVERIFIED |
-
-## Bloqueo real y corrección
-
-La única orden real fue:
-
-```powershell
-.\pello.cmd supervised --spec examples\leads\SPEC.md --suite examples\leads\acceptance --project-id phase2-leads-first --model gpt-6-luna --effort low --timeout 180
-```
-
-Terminó con código **2**, durante la preparación del supervisor. No hubo plan,
-decisión de supervisor, turno de ejecutor, módulo generado ni revisión de IA.
-La causa fue `invalid transport in mcp_servers."node_repl"`: entrecomillar un
-identificador normal en una opción `-c` creó otra entrada MCP inválida.
-
-Se corrigió la construcción de opciones y se añadieron dos pruebas de regresión.
-Los nombres con caracteres especiales se rechazan de forma segura. Luego se
-comprobó exclusivamente la inicialización SDK, sin llamar `thread.run`:
-
-- Supervisor: `01a16c33-4748-72c1-b37d-99643b131943`, permiso solicitado `read-only`.
-- Ejecutor: `01a16c33-56a7-7323-b480-46a54b7c220c`, `workspace-write`.
-- Modelo: `gpt-6-luna`, razonamiento bajo; cero turnos de inferencia.
-
-Estos hilos de diagnóstico y sus resultados están guardados en archivos. El
-almacenamiento SQLite de sesiones/último turno y la reanudación entre fases se
-probaron con respuestas inyectadas; falta comprobarlos durante el ciclo real.
-El proyecto bloqueado se conserva, sin borrar ni reescribir su historia.
-
-No se hizo otro intento porque la solicitud dice:
-**“Do not retry a blocked live demonstration automatically.”**
-Por tanto, la Fase 2 necesita autorización para una nueva demostración acotada.
-
-## Archivos y evidencia
-
-Nuevos módulos: `messages.py`, `bridge.py`, `ai_supervisor.py`, `supervised.py` y
-`verification_worker.py`. Modificados: `cli.py`, `codex_worker.py`, `engines.py`
-y `supervisor.py`. También se corrigió `codex_executed`: intentar un turno ya no
-se confunde con haberlo completado.
-
-Nuevas pruebas: `tests/phase2_support.py`, `test_phase2_messages.py`,
-`test_phase2_bridge.py`, `test_phase2_integration.py`, `test_phase2_worker.py`.
-Fixture: `examples/leads/SPEC.md` y suite externa con 12 pruebas. Documentación:
-`PHASE2.md`, `DECISIONS.md`, actualizaciones de README/SPEC/PLAN/STATE.
-
-Checkpoint anterior: `3a9b0fe`, rama `codex/pello-phase2`. Copia previa de la base:
-`evidence/phase2/jobs-before-phase2.sqlite3` (solo local). Evidencia de esta fase:
-
-- `evidence/phase2/baseline-tests.log`
-- `evidence/phase2/automated-tests-final.log`
-- `evidence/phase2/legacy-demo-regression.log`
-- `evidence/phase2/model-catalog.json`
-- `evidence/phase2/live-cycle-cli.log`
-- `evidence/phase2/preflight-fixed/result.json`
-- `runtime/supervised/phase2-leads-first/report.json` y su carpeta `evidence/`
-- `reports/phase2-result.json`, resumen reproducible del estado observado.
-
-## Cobertura actual de los criterios V1
-
-| Criterio | Evidencia actual |
+| Comprobación | Resultado |
 | --- | --- |
-| AC01 especificación -> plan persistente | MOCK VERIFIED; pendiente con supervisor real |
-| AC02 supervisor real instruye al ejecutor | IMPLEMENTED / UNVERIFIED |
-| AC03 transferencia automática Python | MOCK VERIFIED; pendiente extremo a extremo real |
-| AC04 Codex modifica archivos | REAL SDK VERIFIED en el smoke histórico de Fase 1; no en Fase 2 |
-| AC05 verificación independiente | REAL LOCAL VERIFIED; nueva fixture real pendiente |
-| AC06 reparación autónoma real | NOT IMPLEMENTED; mock anterior no satisface este criterio |
-| AC07 sesiones independientes persistentes | MOCK VERIFIED; creación SDK real sin turnos confirmada |
-| AC08 rotación con contexto durable | NOT IMPLEMENTED, Fase 3 |
-| AC09 recuperación segura | MOCK VERIFIED para reinicio ordinario; efectos ambiguos bloquean |
-| AC10 varias tareas dependientes reales | NOT IMPLEMENTED; esta fase ejecuta solo una |
-| AC11 informes basados en evidencia | REAL LOCAL VERIFIED, con bloqueo real reflejado |
-| AC12 evaluación reproducible | MOCK VERIFIED / REAL LOCAL VERIFIED; evaluación V1 completa pendiente |
+| Proyecto / tarea | `phase2-leads-retained` / `T1` |
+| Configuración | SDK 0.163.0, ChatGPT, `gpt-6-luna`, razonamiento `low` |
+| Turnos SDK reales | 3: planificación, desarrollo, revisión |
+| Decisión inicial | `CONTINUE`, una tarea con criterios y dependencias persistidos |
+| Salida del ejecutor | `leads.py`, validación y normalización determinista de leads ficticios |
+| Pruebas independientes | 12 aprobadas, 0 fallidas, 0 omitidas |
+| Decisión final del supervisor | `COMPLETE`: recibió los resultados reales del verificador |
+| Suite local final | 43 aprobadas: 34 unitarias y 9 de integración local |
+| Demo clínico anterior | Conservado: 2 intentos, 1 corrección, 8 pruebas finales aprobadas |
+| Reapertura del proyecto terminado | Código 0, ningún turno ni ejecución adicional |
+| Integridad | Suite y código coinciden con hashes; SQLite correcto; datos previos conservados |
 
-## Próximo paso y límites
+Las pruebas de integración local usan respuestas inyectadas y procesos/SQLite
+reales. Se distinguen del ciclo de IA real anterior; no se presentan mocks como
+prueba de razonamiento supervisor.
 
-Paso inmediato: autorizar **un nuevo intento de máximo tres turnos reales**, con
-la configuración corregida. Debe planificar, implementar `leads.py`, ejecutar las
-12 pruebas independientes, revisar los resultados y detenerse. No reintentar si
-vuelve a bloquearse. No se debe presentar la preparación de sesiones como prueba
-de razonamiento supervisor real.
+## Componentes y archivos
 
-Después de aprobar esa demostración, la siguiente tarea exacta de Fase 3 será
-añadir rotación configurable por rol y reconstrucción del contexto desde las
-tablas existentes, comprobando continuidad sin repetir tareas completadas.
-No se inició Fase 3. Continúa pendiente un aislamiento de SO más fuerte para
-Python generado no confiable; `-I`, hashes y timeout no constituyen esa frontera.
+- `ai_supervisor.py`: contexto acotado, instrucciones por rol, conexión SDK.
+- `messages.py`: tareas, decisiones, resultados y verificaciones validados.
+- `bridge.py`: migración aditiva, proyectos/tareas/sesiones/exchanges/operaciones.
+- `supervised.py`: un ciclo finito, correlación, reservas y gates de verificación.
+- `verification_worker.py`: unittest independiente, JSON y conteo correcto de subtests.
+- Modificados `cli.py`, `codex_worker.py`, `engines.py` y `supervisor.py`: orden
+  `supervised`, worker SDK retenido, persistencia antes del primer turno, salida
+  estructurada, permisos, timeout y cierre, informe de ejecución basado en turnos
+  completados. No se reinstaló el proyecto ni se agregaron servicios externos.
+- Fixture `examples/leads/`: especificación Markdown y 12 pruebas externas.
+- Pruebas `test_phase2_messages.py`, `test_phase2_bridge.py`,
+  `test_phase2_integration.py`, `test_phase2_worker.py` y soporte inyectado.
+- Actualizados README/SPEC/PLAN/STATE/DECISIONS y guía `PHASE2.md`.
+
+## Sesiones y evidencia
+
+| Rol/fase | Thread ID | Turn ID |
+| --- | --- | --- |
+| Supervisor / plan | `01a16c44-6047-7783-8696-388dd4198e63` | `01a16c44-620a-7101-9071-a44196165b48` |
+| Ejecutor | `01a16c44-820c-71c3-bd9c-54c7dfa3fa15` | `01a16c44-83ac-7953-ad6c-4e62489a1510` |
+| Supervisor / revisión | mismo hilo del supervisor | `01a16c44-f0f2-70c3-b386-0a6ff9c2a568` |
+
+Los dos roles y sus últimos turnos exitosos están en SQLite. El supervisor
+solicitó acceso de solo lectura; el ejecutor, escritura en el workspace sin
+raíces adicionales. Los tests permanecieron fuera de esa área y conservaron su
+hash. Se desactivaron MCP heredados, apps/plugins, web search y agentes extra.
+
+Evidencia principal: `evidence/phase2/verified-live-cycle/`, con prompts,
+esquemas, respuestas SDK, IDs, pruebas, snapshots, código y manifiesto SHA-256.
+Original operativo: `runtime/supervised/phase2-leads-retained/`.
+Resumen legible por máquina: `reports/phase2-result.json`.
+Suite completa: `evidence/phase2/final-all-tests.log`.
+Reapertura: `evidence/phase2/completed-project-reopen.log`.
+
+Los contadores SDK finales por hilo suman 77.060 tokens de entrada y 1.555 de
+salida, 78.615 totales; 49.152 de entrada estaban en caché. Son contadores, no un
+cargo USD verificado. La revisión incluye acumulativamente la planificación;
+no se suma esta última por segunda vez.
+
+## Incidencias corregidas y preservadas
+
+Dos intentos previos se bloquearon antes de inferencia: uno por sintaxis de
+opciones MCP y otro por reabrir un hilo vacío en un proceso nuevo. Ambos informes
+se conservan; cada nuevo intento tuvo autorización humana explícita. No hubo
+reintentos automáticos ni turnos de reparación. **La fase consumió tres turnos
+SDK reales en total.**
+
+El worker ahora crea cada hilo, persiste su ID antes del primer turno y conserva
+ambos handles durante el ciclo. Esto evita depender de la persistencia de un
+hilo vacío y permite que la revisión use el mismo hilo supervisor. El worker se
+cierra al terminar. La toma de una sesión con otro escritor activo no se fuerza;
+se bloquea para reconciliación. Los informes anteriores están preservados en
+`PHASE2-PRE-LIVE.md` y en las carpetas de evidencia de cada intento.
+
+## Criterios V1
+
+| Criterio | Evidencia alcanzada |
+| --- | --- |
+| AC01 especificación -> plan persistente | REAL SDK VERIFIED |
+| AC02 supervisor real instruye al ejecutor | REAL SDK VERIFIED |
+| AC03 transferencia Python sin copia manual | REAL SDK VERIFIED |
+| AC04 modificaciones de código reales | REAL SDK VERIFIED |
+| AC05 verificación independiente | REAL SDK VERIFIED / REAL LOCAL VERIFIED |
+| AC06 corrección autónoma tras fallo | NOT IMPLEMENTED en IA real; solo simulación local |
+| AC07 sesiones independientes persistentes | REAL SDK VERIFIED para IDs, roles y turnos exitosos |
+| AC08 rotación sin perder contexto | NOT IMPLEMENTED, Fase 3 |
+| AC09 recuperación de interrupciones | MOCK VERIFIED; reapertura terminada REAL LOCAL VERIFIED; interrupción SDK real pendiente |
+| AC10 varias tareas dependientes reales | NOT IMPLEMENTED; este ciclo ejecutó una tarea |
+| AC11 informes según evidencia | REAL LOCAL VERIFIED / REAL SDK VERIFIED |
+| AC12 evaluación reproducible | REAL LOCAL VERIFIED para esta suite; evaluación V1 completa pendiente |
+
+## Próximo paso exacto
+
+Fase 3, solo mediante una nueva solicitud: implementar una política configurable
+de rotación por rol y reconstruir contexto acotado desde especificación, plan,
+decisiones, tareas y pruebas guardadas. Verificar que un hilo reemplazado pueda
+continuar sin repetir tareas completadas. No se inició esa fase.
+
+Siguen pendientes la recuperación avanzada de operaciones SDK interrumpidas,
+reparación autónoma, tareas múltiples y aislamiento fuerte del verificador.
+Python `-I`, hashes y timeout no aíslan por completo código malicioso del SO.

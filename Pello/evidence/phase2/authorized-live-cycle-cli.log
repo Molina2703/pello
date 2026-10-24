@@ -1,0 +1,13 @@
+PROJECT_ID: phase2-leads-authorized
+{
+  "project_id": "phase2-leads-authorized",
+  "task_id": null,
+  "stage": "BLOCKED",
+  "evidence_class": "BLOCKED",
+  "sdk_turns_reserved": 1,
+  "supervisor_decision": null,
+  "verification": null,
+  "blocker": "EngineError: Codex worker exited 1: Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\athis_autopilot\\codex_worker.py\", line 94, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\athis_autopilot\\codex_worker.py\", line 65, in main\n    thread = client.thread_resume(\n             ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Lib\\site-packages\\openai_codex\\api.py\", line 243, in thread_resume\n    resumed = self._client.thread_resume(thread_id, params)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Lib\\site-packages\\openai_codex\\client.py\", line 491, in thread_resume\n    return self.request(\"thread/resume\", payload, response_model=ThreadResumeResponse)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Lib\\site-packages\\openai_codex\\client.py\", line 363, in request\n    result = self._request_raw(method, params)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Lib\\site-packages\\openai_codex\\client.py\", line 384, in _request_raw\n    raise item\nopenai_codex.errors.InvalidRequestError: JSON-RPC error -32600: no rollout found for thread id 01a16c39-5484-7f01-bec6-755c01f31057\n",
+  "report_path": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\supervised\\phase2-leads-authorized\\report.md",
+  "evidence_directory": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\supervised\\phase2-leads-authorized\\evidence"
+}

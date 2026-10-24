@@ -1,0 +1,48 @@
+test_completed_sdk_output_recovers_without_repeating_turn (test_phase2_bridge.BridgeTests.test_completed_sdk_output_recovers_without_repeating_turn) ... ok
+test_duplicate_or_forward_task_dependencies_rejected (test_phase2_bridge.BridgeTests.test_duplicate_or_forward_task_dependencies_rejected) ... ok
+test_duplicate_project_rejected (test_phase2_bridge.BridgeTests.test_duplicate_project_rejected) ... ok
+test_failed_nested_turn_does_not_retry (test_phase2_bridge.BridgeTests.test_failed_nested_turn_does_not_retry) ... ok
+test_fake_evidence_never_becomes_real_after_restart (test_phase2_bridge.BridgeTests.test_fake_evidence_never_becomes_real_after_restart) ... ok
+test_in_flight_restart_blocks_without_new_call (test_phase2_bridge.BridgeTests.test_in_flight_restart_blocks_without_new_call) ... ok
+test_invalid_structured_response_is_saved_but_not_processed (test_phase2_bridge.BridgeTests.test_invalid_structured_response_is_saved_but_not_processed) ... ok
+test_migration_preserves_original_tables_and_data (test_phase2_bridge.BridgeTests.test_migration_preserves_original_tables_and_data) ... ok
+test_plan_and_message_persist_across_restart (test_phase2_bridge.BridgeTests.test_plan_and_message_persist_across_restart) ... ok
+test_shared_role_thread_rejected_before_executor_turn (test_phase2_bridge.BridgeTests.test_shared_role_thread_rejected_before_executor_turn) ... ok
+test_suite_tamper_blocks_before_verification (test_phase2_bridge.BridgeTests.test_suite_tamper_blocks_before_verification) ... ok
+test_three_operation_cap (test_phase2_bridge.BridgeTests.test_three_operation_cap) ... ok
+test_wrong_executor_correlation_blocks (test_phase2_bridge.BridgeTests.test_wrong_executor_correlation_blocks) ... ok
+test_wrong_supervisor_project_blocks (test_phase2_bridge.BridgeTests.test_wrong_supervisor_project_blocks) ... ok
+test_wrong_supervisor_review_task_rejected (test_phase2_bridge.BridgeTests.test_wrong_supervisor_review_task_rejected) ... ok
+test_end_to_end_bridge_and_actual_independent_verifier (test_phase2_integration.LocalIntegrationTests.test_end_to_end_bridge_and_actual_independent_verifier) ... ok
+test_failed_tests_cannot_be_overridden_by_complete (test_phase2_integration.LocalIntegrationTests.test_failed_tests_cannot_be_overridden_by_complete) ... ok
+test_multiple_failed_subtests_remain_one_failed_test_for_review (test_phase2_integration.LocalIntegrationTests.test_multiple_failed_subtests_remain_one_failed_test_for_review) ... ok
+test_original_report_does_not_claim_failed_attempt_was_execution (test_phase2_integration.LocalIntegrationTests.test_original_report_does_not_claim_failed_attempt_was_execution) ... ok
+test_repair_is_persisted_and_stops_without_repair_turn (test_phase2_integration.LocalIntegrationTests.test_repair_is_persisted_and_stops_without_repair_turn) ... ok
+test_report_detects_changed_source_after_verification (test_phase2_integration.LocalIntegrationTests.test_report_detects_changed_source_after_verification) ... ok
+test_restart_between_phases_and_completed_task_is_not_repeated (test_phase2_integration.LocalIntegrationTests.test_restart_between_phases_and_completed_task_is_not_repeated) ... ok
+test_sdk_style_session_callback_before_first_turn (test_phase2_integration.LocalIntegrationTests.test_sdk_style_session_callback_before_first_turn) ... ok
+test_zero_executed_tests_never_passes (test_phase2_integration.LocalIntegrationTests.test_zero_executed_tests_never_passes) ... ok
+test_correlation (test_phase2_messages.MessageTests.test_correlation) ... ok
+test_false_passing_verification_rejected (test_phase2_messages.MessageTests.test_false_passing_verification_rejected) ... ok
+test_malformed_json_rejected (test_phase2_messages.MessageTests.test_malformed_json_rejected) ... ok
+test_markdown_fences_rejected (test_phase2_messages.MessageTests.test_markdown_fences_rejected) ... ok
+test_missing_field_rejected (test_phase2_messages.MessageTests.test_missing_field_rejected) ... ok
+test_nonempty_reason_required (test_phase2_messages.MessageTests.test_nonempty_reason_required) ... ok
+test_output_size_bound (test_phase2_messages.MessageTests.test_output_size_bound) ... ok
+test_unknown_action_rejected (test_phase2_messages.MessageTests.test_unknown_action_rejected) ... ok
+test_unknown_field_rejected (test_phase2_messages.MessageTests.test_unknown_field_rejected) ... ok
+test_valid_structured_decision (test_phase2_messages.MessageTests.test_valid_structured_decision) ... ok
+test_existing_thread_is_resumed_without_replacement (test_phase2_worker.WorkerConfigurationTests.test_existing_thread_is_resumed_without_replacement) ... ok
+test_fresh_thread_is_persisted_and_run_in_same_worker (test_phase2_worker.WorkerConfigurationTests.test_fresh_thread_is_persisted_and_run_in_same_worker) ... ok
+test_inherited_mcp_servers_disabled_with_cli_key_syntax (test_phase2_worker.WorkerConfigurationTests.test_inherited_mcp_servers_disabled_with_cli_key_syntax) ... ok
+test_review_reuses_handle_in_same_sdk_process (test_phase2_worker.WorkerConfigurationTests.test_review_reuses_handle_in_same_sdk_process) ... ok
+test_unrepresentable_mcp_name_fails_closed (test_phase2_worker.WorkerConfigurationTests.test_unrepresentable_mcp_name_fails_closed) ... ok
+test_invalid_spec_rejected (test_supervisor.SupervisorTests.test_invalid_spec_rejected) ... ok
+test_red_green_and_evidence (test_supervisor.SupervisorTests.test_red_green_and_evidence) ... ok
+test_resume_terminal_is_safe (test_supervisor.SupervisorTests.test_resume_terminal_is_safe) ... ok
+test_suite_tamper_fails_closed (test_supervisor.SupervisorTests.test_suite_tamper_fails_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 43 tests in 33.643s
+
+OK

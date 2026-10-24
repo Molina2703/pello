@@ -1,47 +1,37 @@
 # Persistent state
 
-## Current Phase 2 state
+## Current state: Phase 2 verified
 
-- Branch: `codex/pello-phase2`; pre-change checkpoint: `3a9b0fe`.
-- Implemented: AI role prompts, typed message bridge, additive SQLite tables,
-  separate sessions, bounded context, independent verification, `supervised` CLI.
-- Pre-migration database backup: `evidence/phase2/jobs-before-phase2.sqlite3`
-  (local and ignored by Git).
-- Only live cycle: `phase2-leads-first`; `BLOCKED` during session preparation.
-  Zero model turns; no real plan, executor implementation, lead acceptance
-  execution, or supervisor review was produced in Phase 2.
-- Cause: quoted MCP override names created an invalid server entry. Fixed and
-  regression-tested. The blocked cycle was not retried.
-- Corrected diagnostic preparation: supervisor
-  `01a16c33-4748-72c1-b37d-99643b131943` (`read-only`) and executor
-  `01a16c33-56a7-7323-b480-46a54b7c220c` (`workspace-write`). Both ready, distinct
-  IDs; these diagnostic sessions have no successful model turn.
-- Configuration: catalog-confirmed `gpt-6-luna`, low reasoning; existing ChatGPT
-  authentication. No API key introduced.
-- Next action: authorize one new bounded real demonstration before Phase 3.
-  See `reports/PHASE2.md`, `DECISIONS.md`, and `PLAN.md`.
+Verified on 2026-10-23, America/Bogota. Branch: `codex/pello-phase2`.
+Pre-change checkpoint: `3a9b0fe`; earlier Phase 2 checkpoint: `0630125`.
 
-## Installation state (preserved historical evidence)
+- Project `phase2-leads-retained`, task `T1`: REAL SDK VERIFIED.
+- Three real SDK turns: AI plan, separate executor development, AI review.
+- Model: catalog-confirmed `gpt-6-luna`, low reasoning, existing ChatGPT login.
+- Generated `leads.py`; all 12 owner-controlled acceptance tests passed.
+- Supervisor decision: COMPLETE. Python independently enforced the success gate.
+- Supervisor thread: `01a16c44-6047-7783-8696-388dd4198e63`.
+- Executor thread: `01a16c44-820c-71c3-bd9c-54c7dfa3fa15`.
+- Both role/session records and last successful turns are in `runtime/jobs.sqlite3`.
+- 43 automated tests passed: 34 unit and 9 local integration, including originals.
+- Completed project reopened from another CLI process without additional turns.
+- Evidence: `evidence/phase2/verified-live-cycle/`; report: `reports/PHASE2.md`.
+- Two earlier pre-inference blocked projects remain unchanged:
+  `phase2-leads-first` and `phase2-leads-authorized`. Later attempts were explicitly
+  authorized. No automatic retry or repair was executed.
+- No Phase 3 implementation, background service, deployment or remote push.
 
-Verified on 2026-10-23, America/Bogota (evidence timestamps use UTC).
+## Historical installation
 
-- Project: this Pello source folder; isolated Python environment: `.venv`.
-- Original ZIP preserved in `C:\Users\USUARIO\Downloads`; archive and file hashes:
-  `evidence/original-manifest.json`.
-- Default configuration: `config/pello.json`; operational database:
-  `runtime/jobs.sqlite3`.
-- Original mock job: `clinica-reservas-demo-20261024040808-1a32bd`.
-  Final state: `LISTO_PARA_REVISION`, 2 attempts, 1 correction, 8 passing tests.
-  This is deterministic MOCK VERIFIED evidence.
-- SDK smoke: `runtime/sdk-smoke/first-install/result.json` and portable evidence
-  under `evidence/first-sdk-smoke/`. Status: REAL INTEGRATION VERIFIED.
-- SDK thread: `01a16c1a-1fb1-7b70-877f-b7a52c96f575`.
-- SDK turn: `01a16c1a-2557-7ec3-a55d-7c85f14b8b43`.
-- One real turn completed; its generated module passed 6 independent tests.
-- Existing ChatGPT authentication reused; credentials remain outside this project.
-- No product Codex job or complete autonomous V1 loop has been validated.
+Original ZIP is preserved in Downloads; hashes: `evidence/original-manifest.json`.
+The isolated environment remains `.venv`; local configuration: `config/pello.json`.
+Operational database backup before Phase 2: `evidence/phase2/jobs-before-phase2.sqlite3`.
+Legacy jobs/events and original reports/tests were preserved. The original mock
+job `clinica-reservas-demo-20261024040808-1a32bd` remains LISTO_PARA_REVISION.
+Initial real SDK smoke remains in `evidence/first-sdk-smoke/`.
 
-Use `pello.cmd doctor --check-auth` for current prerequisites/account state. The
-saved authentication result is historical evidence, not a promise of future access.
-See `reports/INSTALLATION.md` for exact setup verification and `PLAN.md` for the
-next development task. No background service or scheduled process is installed.
+## Exact next task
+
+Upon a new Phase 3 request, add configurable per-role session rotation and bounded
+context reconstruction from the existing durable data, testing continuation
+without duplicate execution of completed tasks. Full V1 is not complete.

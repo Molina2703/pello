@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a16c44-820c-71c3-bd9c-54c7dfa3fa15",
+  "turn_id": "01a16c44-83ac-7953-ad6c-4e62489a1510",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 13056,
+      "input_tokens": 13417,
+      "output_tokens": 97,
+      "reasoning_output_tokens": 0,
+      "total_tokens": 13514
+    },
+    "model_context_window": 258400,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 37632,
+      "input_tokens": 51546,
+      "output_tokens": 936,
+      "reasoning_output_tokens": 0,
+      "total_tokens": 52482
+    }
+  },
+  "final_response": "{\"project_id\":\"phase2-leads-retained\",\"task_id\":\"T1\",\"execution_summary\":\"Created leads.py with deterministic normalization and ValueError validation for fictional lead records. A local smoke check confirmed output shape, normalization, idempotence, ignored extra keys, and input preservation. Independent external suite was not available in the workspace.\",\"files_modified\":[\"leads.py\"],\"errors\":[],\"evidence_paths\":[\"leads.py\"]}",
+  "error": null
+}

@@ -1,48 +1,113 @@
 {
-  "phase2_status": "IMPLEMENTED / UNVERIFIED",
-  "live_cycle": "BLOCKED",
-  "project_id": "phase2-leads-first",
-  "unit_tests_passed": 31,
-  "local_integration_tests_passed": 7,
-  "total_automated_tests_passed": 38,
+  "phase2_status": "REAL SDK VERIFIED",
+  "project_id": "phase2-leads-retained",
+  "task_id": "T1",
+  "unit_tests_passed": 34,
+  "local_integration_tests_passed": 9,
+  "total_automated_tests_passed": 43,
+  "real_acceptance_tests_passed": 12,
   "legacy_mock_acceptance_tests_passed": 8,
-  "live_model_turns": 0,
-  "ai_planning_decision": null,
-  "executor_implementation": null,
-  "ai_review_decision": null,
-  "lead_acceptance_real_tests_executed": 0,
-  "lead_acceptance_tests_defined": 12,
-  "corrected_sdk_preparation": {
-    "supervisor": {
-      "status": "ready",
-      "thread_id": "01a16c33-4748-72c1-b37d-99643b131943",
-      "role": "supervisor",
-      "sandbox": "read-only",
-      "model": "gpt-6-luna",
-      "effort": "low"
+  "actual_sdk_turns": 3,
+  "turns": {
+    "plan": {
+      "thread_id": "01a16c44-6047-7783-8696-388dd4198e63",
+      "turn_id": "01a16c44-620a-7101-9071-a44196165b48",
+      "status": "completed"
     },
-    "executor": {
-      "status": "ready",
-      "thread_id": "01a16c33-56a7-7323-b480-46a54b7c220c",
-      "role": "executor",
-      "sandbox": "workspace-write",
-      "model": "gpt-6-luna",
-      "effort": "low"
+    "execute": {
+      "thread_id": "01a16c44-820c-71c3-bd9c-54c7dfa3fa15",
+      "turn_id": "01a16c44-83ac-7953-ad6c-4e62489a1510",
+      "status": "completed"
     },
-    "distinct_sessions": true,
-    "model_turns_executed": 0
+    "review": {
+      "thread_id": "01a16c44-6047-7783-8696-388dd4198e63",
+      "turn_id": "01a16c44-f0f2-70c3-b386-0a6ff9c2a568",
+      "status": "completed"
+    }
   },
-  "old_jobs_and_events_preserved": true,
-  "additive_tables": [
-    "pello_migrations",
-    "pello_projects",
-    "pello_tasks",
-    "pello_sessions",
-    "pello_exchanges",
-    "pello_operations"
+  "supervisor_decision": {
+    "project_id": "phase2-leads-retained",
+    "task_id": "T1",
+    "decision": "COMPLETE",
+    "tasks": [],
+    "reasoning_summary": "The independent verifier reports T1 as PASSED: all 12 tests passed, with no failures or skips. The planned implementation task is independently verified.",
+    "next_action": "Stop; no further action is required."
+  },
+  "execution": {
+    "project_id": "phase2-leads-retained",
+    "task_id": "T1",
+    "executor_session_id": "01a16c44-820c-71c3-bd9c-54c7dfa3fa15",
+    "execution_status": "completed",
+    "files_modified": [
+      "leads.py"
+    ],
+    "claimed_files_modified": [
+      "leads.py"
+    ],
+    "execution_summary": "Created leads.py with deterministic normalization and ValueError validation for fictional lead records. A local smoke check confirmed output shape, normalization, idempotence, ignored extra keys, and input preservation. Independent external suite was not available in the workspace.",
+    "errors": [],
+    "evidence_paths": [
+      "evidence/execute/codex_result.json",
+      "evidence/after-execution.json"
+    ],
+    "usage_metadata": {
+      "last": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 13056,
+        "input_tokens": 13417,
+        "output_tokens": 97,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 13514
+      },
+      "model_context_window": 258400,
+      "total": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 37632,
+        "input_tokens": 51546,
+        "output_tokens": 936,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52482
+      }
+    }
+  },
+  "sessions": [
+    {
+      "project_id": "phase2-leads-retained",
+      "role": "executor",
+      "thread_id": "01a16c44-820c-71c3-bd9c-54c7dfa3fa15",
+      "created": "2026-10-24T04:56:31+00:00",
+      "last_successful_turn": "01a16c44-83ac-7953-ad6c-4e62489a1510",
+      "task_id": "T1",
+      "status": "READY"
+    },
+    {
+      "project_id": "phase2-leads-retained",
+      "role": "supervisor",
+      "thread_id": "01a16c44-6047-7783-8696-388dd4198e63",
+      "created": "2026-10-24T04:56:23+00:00",
+      "last_successful_turn": "01a16c44-f0f2-70c3-b386-0a6ff9c2a568",
+      "task_id": "T1",
+      "status": "READY"
+    }
   ],
-  "database_integrity": "ok",
-  "checkpoint": "3a9b0fe",
-  "no_automatic_retry": true,
-  "full_v1_complete": false
+  "completed_project_reopen_added_turns": 0,
+  "suite_integrity": true,
+  "source_integrity": true,
+  "old_jobs_and_events_preserved": true,
+  "model": "gpt-6-luna",
+  "effort": "low",
+  "historical_pre_inference_blockers": [
+    "phase2-leads-first",
+    "phase2-leads-authorized"
+  ],
+  "later_attempts_explicitly_authorized": true,
+  "full_v1_complete": false,
+  "usage_latest_total_per_thread": {
+    "input_tokens": 77060,
+    "output_tokens": 1555,
+    "total_tokens": 78615,
+    "cached_input_tokens": 49152
+  },
+  "usage_note": "Thread totals are cumulative. Count latest executor and supervisor totals once; do not add planning total again.",
+  "next_phase3_task": "Configurable per-role rotation and bounded context reconstruction; prove continuation without duplicate completed work"
 }

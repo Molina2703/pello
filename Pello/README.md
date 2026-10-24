@@ -2,8 +2,9 @@
 
 La orden `pello.cmd supervised` implementa el ciclo acotado de Fase 2.
 Ver [uso y límites](PHASE2.md) y [resultado observado](reports/PHASE2.md).
-El ciclo real completo sigue pendiente de validación tras el bloqueo inicial
-documentado; no se afirma que Pello V1 esté terminado.
+Fase 2: **REAL SDK VERIFIED**, con tres turnos reales, 12 pruebas de aceptación
+y decisión final COMPLETE. La suite local tiene 43 pruebas aprobadas. Pello V1
+completo sigue pendiente; no se inició la Fase 3.
 
 > **Instalación local actual:** ver [INSTALL.md](INSTALL.md) y
 > [resultados verificados](reports/INSTALLATION.md). Usar `setup.ps1` y

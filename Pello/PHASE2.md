@@ -2,6 +2,17 @@
 
 This command extends the existing installation without replacing legacy jobs:
 
+Current result: **REAL SDK VERIFIED** for `phase2-leads-retained`: three real
+turns, 12 passing independent tests, supervisor decision COMPLETE, and 43 passing
+local automated tests. Full V1 is unfinished. The earlier blocked attempts below
+are preserved historical evidence; each subsequent attempt was explicitly authorized.
+
+The SDK worker stays alive for one cycle and retains two distinct role handles.
+Each new thread is persisted to SQLite before inference and receives its first
+turn in that same process. A completed supervisor handle is reused for review.
+This avoids trying to reopen an empty, not-yet-materialized thread from another
+process. A thread held by an external writer still requires reconciliation.
+
 ```powershell
 .\pello.cmd supervised --spec examples\leads\SPEC.md --suite examples\leads\acceptance
 ```
@@ -60,3 +71,9 @@ This run's only live attempt, `phase2-leads-first`, blocked during session setup
 with **zero model turns**, due to an MCP override syntax defect. The defect was
 fixed and both role presets initialized successfully without inference. The
 blocked live cycle was not repeated. See `reports/PHASE2.md` for observed evidence.
+
+Update: a second attempt was explicitly authorized and blocked before inference
+on the empty-thread lifecycle defect described above. That defect is now fixed,
+42 tests pass, and the retained-worker RPC path was verified without inference.
+No further model cycle was launched without authorization. A subsequent explicitly
+authorized cycle passed after this correction; see the current report for proof.

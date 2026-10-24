@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a16c44-6047-7783-8696-388dd4198e63",
+  "turn_id": "01a16c44-f0f2-70c3-b386-0a6ff9c2a568",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 11520,
+      "input_tokens": 13770,
+      "output_tokens": 81,
+      "reasoning_output_tokens": 0,
+      "total_tokens": 13851
+    },
+    "model_context_window": 258400,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 11520,
+      "input_tokens": 25514,
+      "output_tokens": 619,
+      "reasoning_output_tokens": 0,
+      "total_tokens": 26133
+    }
+  },
+  "final_response": "{\"project_id\":\"phase2-leads-retained\",\"task_id\":\"T1\",\"decision\":\"COMPLETE\",\"tasks\":[],\"reasoning_summary\":\"The independent verifier reports T1 as PASSED: all 12 tests passed, with no failures or skips. The planned implementation task is independently verified.\",\"next_action\":\"Stop; no further action is required.\"}",
+  "error": null
+}
