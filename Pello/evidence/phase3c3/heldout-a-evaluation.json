@@ -1,0 +1,21 @@
+{
+  "evaluation_id": "phase3c3-heldout-a-v2",
+  "verdict": "FAIL",
+  "objective_verdict": "FAIL",
+  "reviewer_verdict": "not_reached",
+  "critical_failures": [
+    "Real C1 to C2 pipeline did not complete; no compatible persisted plan or first actionable increment",
+    "Oversized duplicated review context reserved an SDK turn without submitting it"
+  ],
+  "semantic_quality": "not evaluated; no completeness or correctness claim from 37 extracted requirements",
+  "failure_evidence": "heldout-a-planning.log; context-correction/initial-failed-operations.json",
+  "reproduction": [
+    "Use frozen heldout-a-spec.md with real ProductPlanningCore.plan_product",
+    "The saved 37-requirement interpretation expands review payload beyond 55,000 characters",
+    "Original _invoke reserves review-analysis then _prompt raises before backend.run"
+  ],
+  "original_FAIL_preserved": true,
+  "new_blind_fixture_required_after_correction": true,
+  "specification_sha256": "9ade6c83162fcf07f3d959ff59343c5804934c59c2d89c3cdd68268370845b2c",
+  "rubric_sha256": "8f8cca8054c6bed730e9ccfddf5d1913cd41a1a6f7eae52ccba521097a434db4"
+}

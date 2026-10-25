@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\evidence\phase3c3\prepare_evaluation.py", line 18, in <module>
+    try:core.project_row(pid)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 499, in project_row
+    raise ValueError('Unknown product-planning project: ' + project_id)
+ValueError: Unknown product-planning project: phase3c3-author
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\evidence\phase3c3\prepare_evaluation.py", line 22, in <module>
+    core.create_project(scope,project_id=pid,duration_minutes=330)
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 541, in create_project
+    raise ValueError('Project evidence folder already exists; refusing overwrite')
+ValueError: Project evidence folder already exists; refusing overwrite

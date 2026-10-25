@@ -1,0 +1,13 @@
+{
+  "verdict": "FAIL",
+  "scope": "defect",
+  "correctness": "defect",
+  "test_evidence": "incomplete",
+  "safety_and_preservation": "uncertain",
+  "findings": [
+    "The rubric does not distinguish critical from minor failures: all 25 criteria are critical and require a 100% pass rate. The 90% total threshold therefore has no effect. This contradicts the evaluation objective.",
+    "C24 adds a mandatory 'genuine persistent backend' beyond the specification's requirement to preserve business records across restart. This can reject sound durable local designs; assess persistence and consistency guarantees without prescribing that architecture.",
+    "Freeze status, hash checks, Planner absence and native isolation results are supplied as metadata, Boolean assertions and review summaries. No underlying verification records are supplied, so the reported eight passing checks do not independently establish those claims. The active deny profile supports the intended boundary but does not substantiate every isolation claim."
+  ],
+  "rationale": "CanalShare presents a substantial, realistic business problem with detailed accounting, allocation, reconciliation and authorization requirements. Most rubric criteria trace directly to the specification, and the scoped blockers preserve useful independent work. However, the severity scheme violates an explicit evaluation requirement, one criterion introduces an architectural restriction, and freeze/isolation verification remains incomplete. Revise and independently verify the fixture before Planner evaluation; then freeze it again."
+}

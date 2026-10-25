@@ -1,0 +1,13 @@
+{
+  "verdict": "BLOCKED",
+  "scope": "correct",
+  "correctness": "adequate",
+  "test_evidence": "incomplete",
+  "safety_and_preservation": "uncertain",
+  "findings": [
+    "The prior rubric defects are resolved: C26 distinguishes a tolerable presentation defect from mandatory failures, and C24 explicitly permits sound durable local designs.",
+    "The supplied Planner-absence query uses project_id=phase3c3-heldout-a without quoting or parameter binding. SQL interprets that value as identifiers and subtraction, so the displayed query does not substantiate the reported zero matching projects. Supply the executed parameterized query, bindings and result.",
+    "The runtime receipt covers a tester profile with five denied roots; the freeze lists seven, adding both reviewer roots. The current Reviewer environment denies all seven, but the supplied runtime evidence does not establish that the complete profile intended for Planner has been tested, including protection of reviewer-held rubric copies."
+  ],
+  "rationale": "The specification is substantial, realistic and distinct from the named demo domains. The revised rubric preserves required behavior, scoped blockers, explicit exclusions and alternative sound designs. Native denial transcripts improve the isolation evidence, but valid Planner-absence evidence and confirmation of the complete intended runtime profile remain necessary before clearing the pre-Planner gate."
+}

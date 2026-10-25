@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\evidence\phase3c3\review_preparation.py", line 40, in <module>
+    review=core.review_engineering_increment(pid,'3c3-heldout-a-preparation',evidence=evidence)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 1278, in review_engineering_increment
+    review, _ = self._invoke(project_id, version['version'], phase, 'reviewer', evidence, EngineeringReview)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 998, in _invoke
+    selection = select_model(policy, caps,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\model_policy.py", line 29, in select_model
+    raise CodexBlocked('Quota exhausted; preserve state before continuing')
+athis_autopilot.engines.CodexBlocked: Quota exhausted; preserve state before continuing

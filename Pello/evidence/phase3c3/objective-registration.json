@@ -1,0 +1,7 @@
+{
+  "registered_at": "2026-10-25T22:00:47.923297+00:00",
+  "planner_exists": false,
+  "objective_script_sha256": "f85eacf92192cffbb1ff31bc4b0114c083efe1f773296cff509ae4cd8bf14c41",
+  "critical_objective_rule": "Every mandatory objective check must PASS; independent Reviewer cannot override FAIL",
+  "semantic_criteria": "Frozen hidden rubric, all 25 critical PASS required"
+}

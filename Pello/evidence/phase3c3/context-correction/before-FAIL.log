@@ -1,0 +1,28 @@
+test_distinct_source_maps_are_never_replaced_by_a_reference (test_planning_context_budget.PlanningContextBudgetTests.test_distinct_source_maps_are_never_replaced_by_a_reference) ... ok
+test_duplicate_source_map_can_be_factored_losslessly_under_same_limit (test_planning_context_budget.PlanningContextBudgetTests.test_duplicate_source_map_can_be_factored_losslessly_under_same_limit) ... ERROR
+test_small_historical_context_encoding_is_unchanged (test_planning_context_budget.PlanningContextBudgetTests.test_small_historical_context_encoding_is_unchanged) ... ok
+test_unreducible_context_rejected_before_turn_reservation (test_planning_context_budget.PlanningContextBudgetTests.test_unreducible_context_rejected_before_turn_reservation) ... FAIL
+
+======================================================================
+ERROR: test_duplicate_source_map_can_be_factored_losslessly_under_same_limit (test_planning_context_budget.PlanningContextBudgetTests.test_duplicate_source_map_can_be_factored_losslessly_under_same_limit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_planning_context_budget.py", line 24, in test_duplicate_source_map_can_be_factored_losslessly_under_same_limit
+    prompt=ProductPlanningCore._prompt('review-analysis',payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 1136, in _prompt
+    raise ValueError('Planning context exceeds 55,000 characters; no silent truncation')
+ValueError: Planning context exceeds 55,000 characters; no silent truncation
+
+======================================================================
+FAIL: test_unreducible_context_rejected_before_turn_reservation (test_planning_context_budget.PlanningContextBudgetTests.test_unreducible_context_rejected_before_turn_reservation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_planning_context_budget.py", line 15, in test_unreducible_context_rejected_before_turn_reservation
+    self.assertEqual(core.project_row('context-budget')['used_turns'],0)
+AssertionError: 1 != 0
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.622s
+
+FAILED (failures=1, errors=1)

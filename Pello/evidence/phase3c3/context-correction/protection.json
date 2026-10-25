@@ -1,0 +1,7 @@
+{
+  "at": "2026-10-25T22:14:37.438152+00:00",
+  "hashes": {
+    "tests\\test_planning_context_budget.py": "7a9da0b13a0597bca186726e6b282134a5493b8721f93401c38b95b4b66db85c"
+  },
+  "defect": "Held-out A real pipeline overflow after reservation; lossless factorization and pre-reservation guard only"
+}
