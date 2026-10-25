@@ -1,0 +1,21 @@
+{
+  "status": "completed",
+  "thread_id": "01a17084-975a-7fc3-959a-1ed021d11a4d",
+  "server": "n8n",
+  "action": "call",
+  "tool": "get_workflow_sdk_reference",
+  "result": {
+    "_meta": null,
+    "content": [
+      {
+        "type": "text",
+        "text": "## SDK Import Statement\n\n```javascript\nimport { workflow, node, trigger, sticky, placeholder, newCredential, ifElse, switchCase, merge, splitInBatches, nextBatch, languageModel, memory, tool, outputParser, embedding, embeddings, vectorStore, retriever, documentLoader, textSplitter, reranker, fromAi, expr } from '@n8n/workflow-sdk';\n```"
+      }
+    ],
+    "isError": null,
+    "structuredContent": {
+      "reference": "## SDK Import Statement\n\n```javascript\nimport { workflow, node, trigger, sticky, placeholder, newCredential, ifElse, switchCase, merge, splitInBatches, nextBatch, languageModel, memory, tool, outputParser, embedding, embeddings, vectorStore, retriever, documentLoader, textSplitter, reranker, fromAi, expr } from '@n8n/workflow-sdk';\n```"
+    }
+  },
+  "model_inference": false
+}

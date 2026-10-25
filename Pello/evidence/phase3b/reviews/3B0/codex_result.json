@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a17083-f2cc-7ce1-b467-c75639408e4c",
+  "turn_id": "01a17083-f44f-78b3-9ee0-28a83e0bad06",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 19162,
+      "output_tokens": 560,
+      "reasoning_output_tokens": 441,
+      "total_tokens": 19722
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 19162,
+      "output_tokens": 560,
+      "reasoning_output_tokens": 441,
+      "total_tokens": 19722
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3b\",\"task_id\":\"3B0\",\"attempt\":1,\"verdict\":\"PASS\",\"diagnosis\":\"none\",\"feedback\":\"No blocking defects found within 3B0. Source restricts MCP calls to read-only tools through the configured n8n endpoint, uses no model turns in transport contexts, and disables MCP for Planner/Reviewer. Evidence reports successful SDK connectivity, zero mutations, untouched protected workflows, and passing targeted and baseline tests. Mutation journaling, creation, and publishing remain explicitly deferred.\"}",
+  "error": null
+}

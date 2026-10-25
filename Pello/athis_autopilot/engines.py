@@ -146,7 +146,7 @@ def run_mock(workspace: Path, *, fixing: bool) -> dict:
 
 def run_codex(workspace: Path, prompt: str, thread_file: Path, out_dir: Path, timeout_s: int,
               *, role=None, model=None, effort=None, output_schema=None, prepare_only=False,
-              instructions='', session_db=None, project_id=None, task_id=None, runner=None) -> dict:
+              instructions='', session_db=None, project_id=None, task_id=None, runner=None, mcp_request=None) -> dict:
     out_dir.mkdir(parents=True, exist_ok=True)
     prompt_file = out_dir / 'codex_prompt.txt'
     result_file = out_dir / 'codex_result.json'
@@ -158,6 +158,10 @@ def run_codex(workspace: Path, prompt: str, thread_file: Path, out_dir: Path, ti
                         ('--session-db', session_db), ('--project-id', project_id), ('--task-id', task_id)):
         if value is not None:
             command.extend([flag, str(value)])
+    if mcp_request is not None:
+        request_file = out_dir / 'mcp-request.json'
+        request_file.write_text(json.dumps(mcp_request), encoding='utf-8')
+        command.extend(['--mcp-request', str(request_file)])
     if prepare_only:
         command.append('--prepare-only')
     if output_schema is not None:

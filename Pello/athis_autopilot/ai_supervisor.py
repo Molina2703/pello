@@ -79,3 +79,9 @@ class SDKBackend:
         if self.runner is not None:
             self.runner.close()
             self.runner = None
+
+    def mcp(self, *, workspace, out_dir, request, timeout=150):
+        if self.runner is None:
+            self.runner = CodexWorkerProcess(out_dir.parent)
+        return run_codex(workspace, '', out_dir / 'transport-thread.txt', out_dir, timeout,
+                         role='executor', runner=self.runner, mcp_request=request)

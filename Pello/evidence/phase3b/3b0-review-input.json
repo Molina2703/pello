@@ -1,0 +1,42 @@
+{
+  "contract": "Read-only SDK worker preflight; only n8n official endpoint; no model in MCP transport; no writes; Planner/Reviewer all MCP disabled. Mutation journal, workflow creation and publishing are deferred to 3B1/2/3.",
+  "source_files": [
+    "athis_autopilot/n8n_mcp.py",
+    "athis_autopilot/codex_worker.py",
+    "athis_autopilot/ai_supervisor.py",
+    "athis_autopilot/engines.py"
+  ],
+  "verification": {
+    "targeted_tests_passed": 4,
+    "baseline_log_tail": "urce.SourceVerificationTests.test_stale_bytecode_fails_and_original_files_remain_untouched) ... ok\n\n----------------------------------------------------------------------\nRan 91 tests in 127.914s\n\nOK\n",
+    "real_sdk_mcp_connected": true,
+    "oauth": "oAuth",
+    "server": "n8n",
+    "server_info": {
+      "description": null,
+      "icons": null,
+      "name": "n8n MCP Server",
+      "title": null,
+      "version": "1.2.0",
+      "websiteUrl": null
+    },
+    "required_tools_present": [
+      "search_workflows",
+      "get_workflow_details",
+      "get_workflow_sdk_reference",
+      "validate_workflow",
+      "create_workflow_from_code",
+      "update_workflow",
+      "publish_workflow",
+      "execute_workflow",
+      "get_workflow_execution"
+    ],
+    "read_only_search_result": {
+      "data": [],
+      "count": 0
+    },
+    "mutations": 0,
+    "protected_workflows_touched": false
+  },
+  "implementation_note": "Core uses native CodexClient mcpServer/tool/call RPC in executor transport contexts; no custom MCP proxy or REST. Independent engineering review uses same SDKBackend with role reviewer. One initial rejected RPC method typo was corrected from installed generated schema; only read operations repeated."
+}

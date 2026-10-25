@@ -1,0 +1,9 @@
+{
+  "starting_branch": "codex/pello-phase3a1",
+  "starting_head": "3c400b6f239c22f9ae9b5c02090ac057da1edb98",
+  "preexisting_untracked": [
+    "Pello-Contexto-Arquitectura-Fase2.zip",
+    "Pello/INFORME-ARQUITECTURA-FASE2.md",
+    "Pello/paquete-contexto-arquitectura-fase2/"
+  ]
+}

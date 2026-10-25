@@ -1,0 +1,85 @@
+{
+  "inventory": [
+    {
+      "name": "n8n",
+      "authStatus": "oAuth",
+      "runtimeStatus": "connected",
+      "serverInfo": {
+        "description": null,
+        "icons": null,
+        "name": "n8n MCP Server",
+        "title": null,
+        "version": "1.2.0",
+        "websiteUrl": null
+      },
+      "tools": [
+        "get_workflow_versions_diff",
+        "publish_agent",
+        "create_workflow_from_code",
+        "list_n8n_gateway_services",
+        "rename_data_table_column",
+        "add_data_table_rows",
+        "get_data_table_rows",
+        "mutate_agent",
+        "revert_agent",
+        "update_agent_integration",
+        "get_agent",
+        "prepare_workflow_pin_data",
+        "publish_workflow",
+        "archive_workflow",
+        "search_agents",
+        "verify_agent_mcp_server",
+        "validate_agent",
+        "install_community_node",
+        "list_workflow_tags",
+        "add_data_table_column",
+        "list_credentials",
+        "unpublish_workflow",
+        "search_workflow_executions",
+        "delete_agent",
+        "get_workflow_best_practices",
+        "get_workflow_execution",
+        "execute_workflow",
+        "search_nodes",
+        "call_agent",
+        "search_data_tables",
+        "rename_data_table",
+        "delete_data_table_column",
+        "search_workflows",
+        "unpublish_agent",
+        "discover_agent_assets",
+        "create_agent",
+        "get_workflow_history",
+        "get_workflow_version",
+        "search_projects",
+        "update_workflow",
+        "get_node_types",
+        "create_data_table",
+        "get_workflow_sdk_reference",
+        "get_workflow_details",
+        "restore_workflow_version",
+        "get_agent_builder_reference",
+        "explore_node_resources",
+        "test_workflow",
+        "validate_node_config",
+        "validate_workflow",
+        "list_agent_versions"
+      ],
+      "toolsError": null
+    }
+  ],
+  "search": {
+    "_meta": null,
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"data\":[],\"count\":0}"
+      }
+    ],
+    "isError": null,
+    "structuredContent": {
+      "data": [],
+      "count": 0
+    }
+  }
+}

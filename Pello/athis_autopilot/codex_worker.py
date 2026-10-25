@@ -67,6 +67,7 @@ def main(argv=None, *, client=None, thread_cache=None) -> int:
     p.add_argument('--session-db', type=Path)
     p.add_argument('--project-id')
     p.add_argument('--task-id')
+    p.add_argument('--mcp-request', type=Path)
     args = p.parse_args(argv)
     from openai_codex import Codex, CodexConfig, Sandbox, ApprovalMode
     # Reuse the user's login; never silently fall back to paid API authentication.
@@ -77,6 +78,12 @@ def main(argv=None, *, client=None, thread_cache=None) -> int:
         account = client.account().account
         if account is None or getattr(account.root, 'type', None) != 'chatgpt':
             raise RuntimeError('ChatGPT authentication required; run pello login')
+        if args.mcp_request:
+            from .n8n_mcp import worker_request
+            response = worker_request(client, role=args.role, workspace=args.workspace,
+                request=json.loads(args.mcp_request.read_text(encoding='utf-8')))
+            args.result.write_text(json.dumps(response, ensure_ascii=False, indent=2), encoding='utf-8')
+            return 0
         if args.model:
             catalog = client.models().data
             selected = next((item for item in catalog if item.model == args.model), None)
