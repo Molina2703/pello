@@ -1,0 +1,8 @@
+{
+  "registered_at": "2026-10-25T22:27:22.926581+00:00",
+  "planner_project_rows": 0,
+  "objective_script_sha256": "b0d44fde6be5a42c169b75330fe11a6d64338e79a6eeee7e882cb17b9b0964b3",
+  "criteria_source": "heldout-b-freeze.json, unchanged independently authored hidden rubric",
+  "critical_gate": "All structural checks and every critical rubric criterion must pass. Total fraction >=0.9. No Reviewer override.",
+  "comparison_with_A": "Same ten structural checks; only fresh source/project/artifact identity differs."
+}

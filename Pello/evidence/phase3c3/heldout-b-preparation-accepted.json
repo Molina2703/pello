@@ -1,0 +1,28 @@
+{
+  "status": "ACCEPTED",
+  "freeze_sha256": "bd800ecc4179a233fbf3cc7125ed5fdf8f46a6a0d5b1e8bba7c6611a25455b3e",
+  "checks": {
+    "spec_hash": true,
+    "rubric_hash": true,
+    "source_quotes": true,
+    "independent_capabilities": true,
+    "threshold": true,
+    "isolation_review": true,
+    "native_boundary": true,
+    "no_planner_yet": true
+  },
+  "review": {
+    "verdict": "PASS",
+    "scope": "correct",
+    "correctness": "adequate",
+    "test_evidence": "pass",
+    "safety_and_preservation": "adequate",
+    "findings": [
+      "The prior isolation finding is resolved: supplied native traces show PermissionError when reading both the exact declared rubric path and its canonical packaged path, alongside a successful public-read control.",
+      "The specification and rubric hashes remain unchanged. The supplied Planner-absence query reports zero projects for this evaluation.",
+      "ArchiveLedger presents a realistic, nontrivial problem distinct from the named demos. Source-anchored criteria cover mandatory behavior, exclusions, authorization, scoped blockers and independent local capabilities while allowing alternative sound designs and distinguishing minor presentation defects."
+    ],
+    "rationale": "The added exact-path denial evidence addresses the previous blocker without changing frozen product content. The supplied artifacts support proceeding to Planner evaluation with only the specification exposed; they establish no product implementation or executed product-test claims."
+  },
+  "created_at": "2026-10-25T22:26:47.493655+00:00"
+}

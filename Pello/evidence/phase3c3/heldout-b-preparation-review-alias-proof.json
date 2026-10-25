@@ -1,0 +1,13 @@
+{
+  "verdict": "PASS",
+  "scope": "correct",
+  "correctness": "adequate",
+  "test_evidence": "pass",
+  "safety_and_preservation": "adequate",
+  "findings": [
+    "The prior isolation finding is resolved: supplied native traces show PermissionError when reading both the exact declared rubric path and its canonical packaged path, alongside a successful public-read control.",
+    "The specification and rubric hashes remain unchanged. The supplied Planner-absence query reports zero projects for this evaluation.",
+    "ArchiveLedger presents a realistic, nontrivial problem distinct from the named demos. Source-anchored criteria cover mandatory behavior, exclusions, authorization, scoped blockers and independent local capabilities while allowing alternative sound designs and distinguishing minor presentation defects."
+  ],
+  "rationale": "The added exact-path denial evidence addresses the previous blocker without changing frozen product content. The supplied artifacts support proceeding to Planner evaluation with only the specification exposed; they establish no product implementation or executed product-test claims."
+}

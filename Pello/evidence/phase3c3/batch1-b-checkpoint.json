@@ -1,0 +1,15 @@
+{
+  "status": "ACCEPTED",
+  "at": "2026-10-25T22:27:50.359250+00:00",
+  "evaluation": "phase3c3-heldout-b-v1",
+  "hashes": {
+    "heldout-b-spec.md": "7a692ecfd1f947401e5a72875775be0ce6ce5ed1b4c8c4d64c4af99f13a82bc1",
+    "heldout-b-freeze.json": "bd800ecc4179a233fbf3cc7125ed5fdf8f46a6a0d5b1e8bba7c6611a25455b3e",
+    "heldout-b-preparation-accepted.json": "63e1f34e01990cb691885fb0ebea31a7d09a131041b0801b7f46f4a1b81b5dde",
+    "heldout-b-preparation-review-alias-proof.json": "d13e36e1fecddfa37d6fd2175c9da83e741e384eb94e9e583daca07d9f08ded9",
+    "objective_checks_b.py": "b0d44fde6be5a42c169b75330fe11a6d64338e79a6eeee7e882cb17b9b0964b3",
+    "objective-registration-b.json": "9896037c61975c89657a7d023be621283f9093c34d7bccb5186b4031f85cc09d"
+  },
+  "original_CanalShare_FAIL_preserved": true,
+  "new_expected_solution_not_sent_to_Planner_or_added_to_Git": true
+}
