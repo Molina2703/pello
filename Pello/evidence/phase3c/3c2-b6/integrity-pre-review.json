@@ -1,0 +1,39 @@
+{
+  "historical_total": 1493,
+  "historical_matching": 1493,
+  "historical_discrepancies": [],
+  "protected_suites": [
+    {
+      "batch": "3c2-b1",
+      "intact": true,
+      "suite_hash": "47179ffe5948c85bd9cc0a970ba76314732831e269f4a70c71423638bfa49324"
+    },
+    {
+      "batch": "3c2-b2",
+      "intact": true,
+      "suite_hash": "91d4bce4950cbb1878592b738349324526b15caa46a1854654c19121f302c413"
+    },
+    {
+      "batch": "3c2-b3",
+      "intact": true,
+      "suite_hash": "9b47bd76ef8c6f8eb242e59b5aa84549c90c199b5e92a7ecb9057a0e3bfb779e"
+    },
+    {
+      "batch": "3c2-b4",
+      "intact": true,
+      "suite_hash": "6565b96385e26b37bba0702dd00999ac5d795f14c0f8a00e1ae56a82ddd6ea0e"
+    },
+    {
+      "batch": "3c2-b5",
+      "intact": true,
+      "suite_hash": "284bdaa6715705c8ed4bd97912483bc2cef4470522f4256b1827bc7d743d9d3f"
+    },
+    {
+      "batch": "3c2-b6",
+      "intact": true,
+      "suite_hash": "2161620f14c3ce97145fabbf0b599dc30bf8447f883002d228fd060d68c481cc"
+    }
+  ],
+  "external_operations_in_this_continuation": 0,
+  "n8n_calls_in_this_continuation": 0
+}

@@ -76,7 +76,7 @@ def main():
         print(log,flush=True)
         if result.returncode or not data['tests_run'] or not data['suite_integrity']: raise SystemExit(2)
         return
-    core=ProductPlanningCore(BASE/'runtime/phase3c',timeout=240)
+    core=ProductPlanningCore(BASE/'runtime/phase3c',timeout=360 if batch=='3c2-b6' else 240)
     try:
         pid='phase3c-c2-review'
         if args.action=='review':
@@ -98,6 +98,8 @@ def main():
                     'Actual integrated results (latest revision; shared values factored without information loss): '+json.dumps(integrated_results(out),ensure_ascii=False),
                     'Retained prior findings: '+json.dumps({p.name:json.loads(p.read_text(encoding='utf-8')) for p in out.glob('*-review.json')},ensure_ascii=False),
                     'No Planner reasoning is supplied. Engineering code inspected as data.']}
+            if (out/'integration-scope.json').exists():
+                evidence['scope_constraints'].append(json.loads((out/'integration-scope.json').read_text(encoding='utf-8')))
             (out/'review-input.json').write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8')
             verdict=core.review_engineering_increment(pid,args.review_id or batch,evidence=evidence)
             (out/((args.review_id or batch)+'-review.json')).write_text(json.dumps(verdict,indent=2)+'\n',encoding='utf-8')

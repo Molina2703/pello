@@ -1,0 +1,283 @@
+{
+  "plan_sha256": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+  "approval": "ACCEPTED",
+  "inspection": {
+    "ready": [
+      "N01"
+    ],
+    "first_actionable": "N01",
+    "completed": [],
+    "execution_authorized": false,
+    "protected_tests_required": true,
+    "blockers": {
+      "N01": [],
+      "N02": [],
+      "N04": [
+        "specification:ISS-2afa4897bcb8"
+      ],
+      "N05": [],
+      "N06": [
+        "authorization",
+        "resource:Unavailable-to-this-plan-and-unselected-by-source-status",
+        "specification:ISS-2a833aba0f4f",
+        "specification:ISS-88929f59ad66"
+      ],
+      "N03": [
+        "specification:ISS-496d17ef02d0",
+        "specification:ISS-e1a74fc08855"
+      ],
+      "N07": [
+        "authorization",
+        "resource:Unavailable-to-this-plan-and-unselected-by-source-status",
+        "specification:ISS-2a833aba0f4f",
+        "specification:ISS-4cba0e6b0e15",
+        "specification:ISS-88929f59ad66"
+      ]
+    },
+    "plan_sha256": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+    "plan_approval": "ACCEPTED",
+    "source_sha256": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df"
+  },
+  "status": {
+    "project_id": "phase3c-3c1-live-r2",
+    "status": "PLAN_ACCEPTED",
+    "version": 1,
+    "source_sha256": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+    "current_source_sha256": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+    "source_changed": false,
+    "turns_used": 8,
+    "turns_limit": 12,
+    "deadline": "2026-10-25T21:14:29+00:00",
+    "blocker": "",
+    "requirement_count": 13,
+    "plan_exists": true,
+    "plan_ready": true,
+    "analysis_review": {
+      "verdict": "PASS",
+      "findings": [
+        "Requirements cover all six intake fields, case-reference fallback, status and decision histories, response preparation, integrations, and outage intake (source lines 9\u201323).",
+        "Both conflicting invoice-approval rules are retained and explicitly flagged without inventing precedence (SRC-3d1eefac22e5).",
+        "Blockers are scoped to approval rules, timing acceptance, and external integration; independent intake and review remain implementable.",
+        "Assumptions are explicit and unapproved. No customer approval, priority, vendor choice, or external-action permission is fabricated.",
+        "Requirement and issue citations support their interpretations and match the supplied source segments.",
+        "Automatic refunds and unauthorized partner messages remain excluded. The imported commands are classified as untrusted and grant no authorization."
+      ],
+      "coverage": "adequate",
+      "contradictions": "adequate",
+      "blocking_classification": "adequate",
+      "source_traceability": "adequate",
+      "exclusions_and_untrusted_text": "preserved",
+      "rationale": "Direct comparison with the original specification found no material omission, unsupported resolution, or authorization expansion. PASS evaluates the interpretation; the documented product blockers remain unresolved."
+    },
+    "operations": [
+      {
+        "version": 1,
+        "phase": "understand",
+        "role": "planner",
+        "status": "COMPLETED",
+        "created": "2026-10-25T08:00:43+00:00",
+        "modified": "2026-10-25T08:03:07+00:00"
+      },
+      {
+        "version": 1,
+        "phase": "review-analysis",
+        "role": "reviewer",
+        "status": "COMPLETED",
+        "created": "2026-10-25T08:04:05+00:00",
+        "modified": "2026-10-25T08:04:31+00:00"
+      },
+      {
+        "version": 1,
+        "phase": "plan-architecture",
+        "role": "planner",
+        "status": "COMPLETED",
+        "created": "2026-10-25T17:21:31+00:00",
+        "modified": "2026-10-25T17:23:30+00:00"
+      },
+      {
+        "version": 1,
+        "phase": "plan-increments",
+        "role": "planner",
+        "status": "COMPLETED",
+        "created": "2026-10-25T17:26:50+00:00",
+        "modified": "2026-10-25T17:29:35+00:00"
+      },
+      {
+        "version": 1,
+        "phase": "plan-increments-r2",
+        "role": "planner",
+        "status": "COMPLETED",
+        "created": "2026-10-25T17:32:31+00:00",
+        "modified": "2026-10-25T17:34:20+00:00"
+      },
+      {
+        "version": 1,
+        "phase": "plan-contracts",
+        "role": "planner",
+        "status": "COMPLETED",
+        "created": "2026-10-25T17:37:28+00:00",
+        "modified": "2026-10-25T17:40:32+00:00"
+      },
+      {
+        "version": 1,
+        "phase": "plan-models",
+        "role": "planner",
+        "status": "COMPLETED",
+        "created": "2026-10-25T17:45:09+00:00",
+        "modified": "2026-10-25T17:46:02+00:00"
+      },
+      {
+        "version": 1,
+        "phase": "profile-capability-probe",
+        "role": "planner",
+        "status": "COMPLETED",
+        "created": "2026-10-25T17:46:02+00:00",
+        "modified": "2026-10-25T17:46:05+00:00"
+      }
+    ],
+    "model_decisions": [
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "increment_id": "N01",
+        "decision": "{\"task_id\": \"N01\", \"logical_responsibility\": \"coder\", \"decision_timestamp\": \"2026-10-25T17:46:02+00:00\", \"selected_model_profile\": \"gpt-6-luna\", \"selected_reasoning_effort\": \"medium\", \"resolved_technical_model_id\": \"gpt-6-luna\", \"verified_availability\": true, \"capability_snapshot\": {\"authenticated\": true, \"models\": {\"gpt-6.1-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-astra\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-luna\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\"], \"gpt-5.6-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-5.6-terra\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-5.6-luna\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\"]}, \"remaining_percent\": 60, \"usage_windows\": [{\"used_percent\": 40, \"resets_at\": 1792965282}, {\"used_percent\": 10, \"resets_at\": 1793514900}], \"at\": \"2026-10-25T17:45:09+00:00\"}, \"complexity\": \"normal\", \"risk\": \"medium\", \"context_requirements\": \"medium\", \"budget_assessment\": {\"remaining_development_turns\": 6, \"estimated_coder_turns\": 1, \"product_execution_budget\": \"not_authorized_or_reserved\"}, \"selection_kind\": \"initial\", \"previous_configuration\": null, \"is_escalation\": false, \"evidence_refs\": [\"N01\", \"SRC-a43a2a271870\", \"SRC-f2320189bfc9\"], \"justification\": \"Luna Medium fits bounded intake persistence, reference selection, and outage verification. Keep these together as one usable capability, independent of integration blockers. Preserve the unapproved missing-invoice assumption. One attempt is an estimate, not execution authorization.\", \"proposal\": {\"task_id\": \"N01\", \"responsibility\": \"coder\", \"profile\": {\"model\": \"gpt-6-luna\", \"effort\": \"medium\"}, \"complexity\": \"normal\", \"risk\": \"medium\", \"uncertainty\": \"medium\", \"context_requirements\": \"medium\", \"expected_turns\": 1, \"selection_kind\": \"initial\", \"previous_configuration\": null, \"failure_evidence\": null, \"exceptional_initial_sol\": false, \"decomposition_considered\": true, \"evidence_refs\": [\"N01\", \"SRC-a43a2a271870\", \"SRC-f2320189bfc9\"], \"rationale\": \"Luna Medium fits bounded intake persistence, reference selection, and outage verification. Keep these together as one usable capability, independent of integration blockers. Preserve the unapproved missing-invoice assumption. One attempt is an estimate, not execution authorization.\"}, \"product_execution_authorized\": false}",
+        "created": "2026-10-25T17:46:02+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "increment_id": "N02",
+        "decision": "{\"task_id\": \"N02\", \"logical_responsibility\": \"coder\", \"decision_timestamp\": \"2026-10-25T17:46:02+00:00\", \"selected_model_profile\": \"gpt-6-luna\", \"selected_reasoning_effort\": \"medium\", \"resolved_technical_model_id\": \"gpt-6-luna\", \"verified_availability\": true, \"capability_snapshot\": {\"authenticated\": true, \"models\": {\"gpt-6.1-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-astra\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-luna\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\"], \"gpt-5.6-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-5.6-terra\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-5.6-luna\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\"]}, \"remaining_percent\": 60, \"usage_windows\": [{\"used_percent\": 40, \"resets_at\": 1792965282}, {\"used_percent\": 10, \"resets_at\": 1793514900}], \"at\": \"2026-10-25T17:45:09+00:00\"}, \"complexity\": \"normal\", \"risk\": \"medium\", \"context_requirements\": \"medium\", \"budget_assessment\": {\"remaining_development_turns\": 6, \"estimated_coder_turns\": 1, \"product_execution_budget\": \"not_authorized_or_reserved\"}, \"selection_kind\": \"initial\", \"previous_configuration\": null, \"is_escalation\": false, \"evidence_refs\": [\"N02\", \"SRC-893594c23f0b\"], \"justification\": \"Luna Medium supports event preservation, operator attribution, timestamps, and case isolation. Status history and decision audit share a coherent boundary; further decomposition is unnecessary. Generic recording must preserve the unapproved vocabulary assumption and must not enact decisions.\", \"proposal\": {\"task_id\": \"N02\", \"responsibility\": \"coder\", \"profile\": {\"model\": \"gpt-6-luna\", \"effort\": \"medium\"}, \"complexity\": \"normal\", \"risk\": \"medium\", \"uncertainty\": \"medium\", \"context_requirements\": \"medium\", \"expected_turns\": 1, \"selection_kind\": \"initial\", \"previous_configuration\": null, \"failure_evidence\": null, \"exceptional_initial_sol\": false, \"decomposition_considered\": true, \"evidence_refs\": [\"N02\", \"SRC-893594c23f0b\"], \"rationale\": \"Luna Medium supports event preservation, operator attribution, timestamps, and case isolation. Status history and decision audit share a coherent boundary; further decomposition is unnecessary. Generic recording must preserve the unapproved vocabulary assumption and must not enact decisions.\"}, \"product_execution_authorized\": false}",
+        "created": "2026-10-25T17:46:02+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "increment_id": "N03",
+        "decision": "{\"task_id\": \"N03\", \"logical_responsibility\": \"coder\", \"decision_timestamp\": \"2026-10-25T17:46:02+00:00\", \"selected_model_profile\": \"gpt-6-luna\", \"selected_reasoning_effort\": \"high\", \"resolved_technical_model_id\": \"gpt-6-luna\", \"verified_availability\": true, \"capability_snapshot\": {\"authenticated\": true, \"models\": {\"gpt-6.1-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-astra\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-luna\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\"], \"gpt-5.6-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-5.6-terra\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-5.6-luna\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\"]}, \"remaining_percent\": 60, \"usage_windows\": [{\"used_percent\": 40, \"resets_at\": 1792965282}, {\"used_percent\": 10, \"resets_at\": 1793514900}], \"at\": \"2026-10-25T17:45:09+00:00\"}, \"complexity\": \"normal\", \"risk\": \"high\", \"context_requirements\": \"medium\", \"budget_assessment\": {\"remaining_development_turns\": 6, \"estimated_coder_turns\": 1, \"product_execution_budget\": \"not_authorized_or_reserved\"}, \"selection_kind\": \"initial\", \"previous_configuration\": null, \"is_escalation\": false, \"evidence_refs\": [\"N03\", \"SRC-3d1eefac22e5\", \"SRC-893594c23f0b\"], \"justification\": \"Luna High provides additional reasoning for preserving contradictory approval rules and distinguishing retrieval from verification. The bounded unresolved-policy safeguard does not justify exceptional initial Sol. Keep approval policy isolated from independent local work; final business behavior remains blocked pending clarification.\", \"proposal\": {\"task_id\": \"N03\", \"responsibility\": \"coder\", \"profile\": {\"model\": \"gpt-6-luna\", \"effort\": \"high\"}, \"complexity\": \"normal\", \"risk\": \"high\", \"uncertainty\": \"high\", \"context_requirements\": \"medium\", \"expected_turns\": 1, \"selection_kind\": \"initial\", \"previous_configuration\": null, \"failure_evidence\": null, \"exceptional_initial_sol\": false, \"decomposition_considered\": true, \"evidence_refs\": [\"N03\", \"SRC-3d1eefac22e5\", \"SRC-893594c23f0b\"], \"rationale\": \"Luna High provides additional reasoning for preserving contradictory approval rules and distinguishing retrieval from verification. The bounded unresolved-policy safeguard does not justify exceptional initial Sol. Keep approval policy isolated from independent local work; final business behavior remains blocked pending clarification.\"}, \"product_execution_authorized\": false}",
+        "created": "2026-10-25T17:46:02+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "increment_id": "N04",
+        "decision": "{\"task_id\": \"N04\", \"logical_responsibility\": \"coder\", \"decision_timestamp\": \"2026-10-25T17:46:02+00:00\", \"selected_model_profile\": \"gpt-6-luna\", \"selected_reasoning_effort\": \"medium\", \"resolved_technical_model_id\": \"gpt-6-luna\", \"verified_availability\": true, \"capability_snapshot\": {\"authenticated\": true, \"models\": {\"gpt-6.1-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-astra\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-luna\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\"], \"gpt-5.6-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-5.6-terra\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-5.6-luna\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\"]}, \"remaining_percent\": 60, \"usage_windows\": [{\"used_percent\": 40, \"resets_at\": 1792965282}, {\"used_percent\": 10, \"resets_at\": 1793514900}], \"at\": \"2026-10-25T17:45:09+00:00\"}, \"complexity\": \"normal\", \"risk\": \"medium\", \"context_requirements\": \"medium\", \"budget_assessment\": {\"remaining_development_turns\": 6, \"estimated_coder_turns\": 1, \"product_execution_budget\": \"not_authorized_or_reserved\"}, \"selection_kind\": \"initial\", \"previous_configuration\": null, \"is_escalation\": false, \"evidence_refs\": [\"N04\", \"SRC-3eca9a83bb88\"], \"justification\": \"Luna Medium fits local response preparation with an explicitly unresolved timing contract. Generic preparation can proceed separately from business-day acceptance without inventing a calendar or deadline convention. Keep sending authorization outside this boundary.\", \"proposal\": {\"task_id\": \"N04\", \"responsibility\": \"coder\", \"profile\": {\"model\": \"gpt-6-luna\", \"effort\": \"medium\"}, \"complexity\": \"normal\", \"risk\": \"medium\", \"uncertainty\": \"high\", \"context_requirements\": \"medium\", \"expected_turns\": 1, \"selection_kind\": \"initial\", \"previous_configuration\": null, \"failure_evidence\": null, \"exceptional_initial_sol\": false, \"decomposition_considered\": true, \"evidence_refs\": [\"N04\", \"SRC-3eca9a83bb88\"], \"rationale\": \"Luna Medium fits local response preparation with an explicitly unresolved timing contract. Generic preparation can proceed separately from business-day acceptance without inventing a calendar or deadline convention. Keep sending authorization outside this boundary.\"}, \"product_execution_authorized\": false}",
+        "created": "2026-10-25T17:46:02+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "increment_id": "N05",
+        "decision": "{\"task_id\": \"N05\", \"logical_responsibility\": \"coder\", \"decision_timestamp\": \"2026-10-25T17:46:02+00:00\", \"selected_model_profile\": \"gpt-6-luna\", \"selected_reasoning_effort\": \"high\", \"resolved_technical_model_id\": \"gpt-6-luna\", \"verified_availability\": true, \"capability_snapshot\": {\"authenticated\": true, \"models\": {\"gpt-6.1-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-astra\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-luna\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\"], \"gpt-5.6-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-5.6-terra\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-5.6-luna\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\"]}, \"remaining_percent\": 60, \"usage_windows\": [{\"used_percent\": 40, \"resets_at\": 1792965282}, {\"used_percent\": 10, \"resets_at\": 1793514900}], \"at\": \"2026-10-25T17:45:09+00:00\"}, \"complexity\": \"normal\", \"risk\": \"high\", \"context_requirements\": \"medium\", \"budget_assessment\": {\"remaining_development_turns\": 6, \"estimated_coder_turns\": 1, \"product_execution_budget\": \"not_authorized_or_reserved\"}, \"selection_kind\": \"initial\", \"previous_configuration\": null, \"is_escalation\": false, \"evidence_refs\": [\"N05\", \"SRC-3eca9a83bb88\", \"SRC-4e0a53b447c7\"], \"justification\": \"Luna High is appropriate for message-specific evidence association and rejection whenever review or authorization is missing. Recording and gate evaluation form one bounded local capability, separate from transmission. No messaging permission or identity infrastructure is supplied.\", \"proposal\": {\"task_id\": \"N05\", \"responsibility\": \"coder\", \"profile\": {\"model\": \"gpt-6-luna\", \"effort\": \"high\"}, \"complexity\": \"normal\", \"risk\": \"high\", \"uncertainty\": \"medium\", \"context_requirements\": \"medium\", \"expected_turns\": 1, \"selection_kind\": \"initial\", \"previous_configuration\": null, \"failure_evidence\": null, \"exceptional_initial_sol\": false, \"decomposition_considered\": true, \"evidence_refs\": [\"N05\", \"SRC-3eca9a83bb88\", \"SRC-4e0a53b447c7\"], \"rationale\": \"Luna High is appropriate for message-specific evidence association and rejection whenever review or authorization is missing. Recording and gate evaluation form one bounded local capability, separate from transmission. No messaging permission or identity infrastructure is supplied.\"}, \"product_execution_authorized\": false}",
+        "created": "2026-10-25T17:46:02+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "increment_id": "N06",
+        "decision": "{\"task_id\": \"N06\", \"logical_responsibility\": \"coder\", \"decision_timestamp\": \"2026-10-25T17:46:02+00:00\", \"selected_model_profile\": \"gpt-6-luna\", \"selected_reasoning_effort\": \"medium\", \"resolved_technical_model_id\": \"gpt-6-luna\", \"verified_availability\": true, \"capability_snapshot\": {\"authenticated\": true, \"models\": {\"gpt-6.1-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-astra\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-luna\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\"], \"gpt-5.6-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-5.6-terra\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-5.6-luna\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\"]}, \"remaining_percent\": 60, \"usage_windows\": [{\"used_percent\": 40, \"resets_at\": 1792965282}, {\"used_percent\": 10, \"resets_at\": 1793514900}], \"at\": \"2026-10-25T17:45:09+00:00\"}, \"complexity\": \"normal\", \"risk\": \"high\", \"context_requirements\": \"medium\", \"budget_assessment\": {\"remaining_development_turns\": 6, \"estimated_coder_turns\": 1, \"product_execution_budget\": \"not_authorized_or_reserved\"}, \"selection_kind\": \"initial\", \"previous_configuration\": null, \"is_escalation\": false, \"evidence_refs\": [\"N06\", \"SRC-b7f34880eb24\", \"SRC-3d1eefac22e5\", \"SRC-f2320189bfc9\"], \"justification\": \"Luna Medium fits the bounded read contract, permission checks, and isolated fixtures. Vendor uncertainty and absent access require clarification, not a stronger model. Keep lookup separate from approval checks and outcome writes. Live verification remains blocked and unauthorized.\", \"proposal\": {\"task_id\": \"N06\", \"responsibility\": \"coder\", \"profile\": {\"model\": \"gpt-6-luna\", \"effort\": \"medium\"}, \"complexity\": \"normal\", \"risk\": \"high\", \"uncertainty\": \"high\", \"context_requirements\": \"medium\", \"expected_turns\": 1, \"selection_kind\": \"initial\", \"previous_configuration\": null, \"failure_evidence\": null, \"exceptional_initial_sol\": false, \"decomposition_considered\": true, \"evidence_refs\": [\"N06\", \"SRC-b7f34880eb24\", \"SRC-3d1eefac22e5\", \"SRC-f2320189bfc9\"], \"rationale\": \"Luna Medium fits the bounded read contract, permission checks, and isolated fixtures. Vendor uncertainty and absent access require clarification, not a stronger model. Keep lookup separate from approval checks and outcome writes. Live verification remains blocked and unauthorized.\"}, \"product_execution_authorized\": false}",
+        "created": "2026-10-25T17:46:02+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "increment_id": "N07",
+        "decision": "{\"task_id\": \"N07\", \"logical_responsibility\": \"coder\", \"decision_timestamp\": \"2026-10-25T17:46:02+00:00\", \"selected_model_profile\": \"gpt-6-luna\", \"selected_reasoning_effort\": \"high\", \"resolved_technical_model_id\": \"gpt-6-luna\", \"verified_availability\": true, \"capability_snapshot\": {\"authenticated\": true, \"models\": {\"gpt-6.1-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-astra\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-6-luna\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\"], \"gpt-5.6-sol\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-5.6-terra\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\", \"ultra\"], \"gpt-5.6-luna\": [\"low\", \"medium\", \"high\", \"xhigh\", \"max\"]}, \"remaining_percent\": 60, \"usage_windows\": [{\"used_percent\": 40, \"resets_at\": 1792965282}, {\"used_percent\": 10, \"resets_at\": 1793514900}], \"at\": \"2026-10-25T17:45:09+00:00\"}, \"complexity\": \"normal\", \"risk\": \"high\", \"context_requirements\": \"medium\", \"budget_assessment\": {\"remaining_development_turns\": 6, \"estimated_coder_turns\": 1, \"product_execution_budget\": \"not_authorized_or_reserved\"}, \"selection_kind\": \"initial\", \"previous_configuration\": null, \"is_escalation\": false, \"evidence_refs\": [\"N07\", \"SRC-b7f34880eb24\", \"SRC-893594c23f0b\", \"SRC-f2320189bfc9\"], \"justification\": \"Luna High supports careful outcome mapping, permission checks, and uncertain-write handling within the isolated mutation boundary. Do not select recovery policy or perform writes without authorization. The seven task estimates total seven attempts, matching available capacity without reserving turns or guaranteeing completion.\", \"proposal\": {\"task_id\": \"N07\", \"responsibility\": \"coder\", \"profile\": {\"model\": \"gpt-6-luna\", \"effort\": \"high\"}, \"complexity\": \"normal\", \"risk\": \"high\", \"uncertainty\": \"high\", \"context_requirements\": \"medium\", \"expected_turns\": 1, \"selection_kind\": \"initial\", \"previous_configuration\": null, \"failure_evidence\": null, \"exceptional_initial_sol\": false, \"decomposition_considered\": true, \"evidence_refs\": [\"N07\", \"SRC-b7f34880eb24\", \"SRC-893594c23f0b\", \"SRC-f2320189bfc9\"], \"rationale\": \"Luna High supports careful outcome mapping, permission checks, and uncertain-write handling within the isolated mutation boundary. Do not select recovery policy or perform writes without authorization. The seven task estimates total seven attempts, matching available capacity without reserving turns or guaranteeing completion.\"}, \"product_execution_authorized\": false}",
+        "created": "2026-10-25T17:46:02+00:00"
+      }
+    ],
+    "checkpoints": [
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "analyzed",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "3f3faac6f17ef434ad1f0629212293a27e98dbd6f6308680f1090b9178ae29b6",
+        "commit_sha": "dbc97efb1beabc593f8e151aa8e34a27ad94496a",
+        "created": "2026-10-25T08:03:56+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "analysis-accepted",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "713c53c4531f1af39515baea0fbf0ddb27eae841436e5791389fead15bd1d116",
+        "commit_sha": "db0aa72a49db9218d0d310c66d17a8a9618d08ce",
+        "created": "2026-10-25T08:04:32+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "analysis-manifest-integrity-correction",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "095f079d801674c68de24adc9bd040dc703d8e485fd840874be89601892b13c1",
+        "commit_sha": "9c168b2f7f7e0b7b4fd2aa682c308794e766250a",
+        "created": "2026-10-25T08:33:59+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "3c2-b1",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "8dd56144b38f564be27478248b11f39bec6f8c93809d10619dc462f0188d4c3b",
+        "commit_sha": "a5238c13a829a26977e7206539b12e06daaecf9b",
+        "created": "2026-10-25T17:18:50+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "3c2-b2",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "c16c47f881c07a25040f1d1545be375d7b076b7fb19a3f7fe484db900482a120",
+        "commit_sha": "57dbbbef309de34ca034ca85f1ed6558c34c098c",
+        "created": "2026-10-25T17:26:05+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "3c2-b3",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "466319a989fd8f890a9f944c9bf1dc30b099dcbec28fbefcb7826405e87e8cca",
+        "commit_sha": "1b0335c77cc951dfe9172ec70fe409cc0fdec34a",
+        "created": "2026-10-25T17:36:15+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "3c2-b4",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "303544f18f936313bed498c43786bac322dfff948bd95c0ab3ab3d134f25c4e1",
+        "commit_sha": "e41e338c9efe85c6d3cf6fba488271fc4867a827",
+        "created": "2026-10-25T17:43:14+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "3c2-b5",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "a03c9d5832a320f46cdfaea81b6fab7593198cb63a2161e142a1c36fd73c80c0",
+        "commit_sha": "41e0ab60b12fcefcea9e96e7651bb76a32125118",
+        "created": "2026-10-25T17:55:14+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "plan-accepted",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "bdaa414038ba8d5ba2364a6b123596e9365ba670ef322b755ea62c1305e02f26",
+        "commit_sha": "e931fecf1966936dbc53f0f6514d2fb0de834f6a",
+        "created": "2026-10-25T18:13:13+00:00"
+      }
+    ],
+    "analysis_history": [
+      {
+        "version": 1,
+        "revision": 1,
+        "status": "ANALYSIS_ACCEPTED",
+        "reason": "initial planner analysis",
+        "created": "2026-10-25T08:03:56+00:00"
+      }
+    ],
+    "full_v1_complete": false
+  }
+}

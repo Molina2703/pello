@@ -1,0 +1,120 @@
+{
+  "source_artifact": "evidence/phase3c/3c1-final-analysis.json",
+  "source_sha256": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+  "plan_sha256": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+  "requirements_total": 13,
+  "requirements_covered": 12,
+  "untrusted_requirements_excluded_from_work": 1,
+  "source_segments": 16,
+  "functional_increments": 7,
+  "contracts": 7,
+  "criteria": 34,
+  "model_decisions": 7,
+  "plan_history_rows": 1,
+  "restart_plan_digest_matches": true,
+  "sdk_turns_before_reconstruction": 27,
+  "sdk_turns_after_reconstruction": 27,
+  "pipeline_inspection": {
+    "ready": [
+      "N01"
+    ],
+    "first_actionable": "N01",
+    "completed": [],
+    "execution_authorized": false,
+    "protected_tests_required": true,
+    "blockers": {
+      "N01": [],
+      "N02": [],
+      "N04": [
+        "specification:ISS-2afa4897bcb8"
+      ],
+      "N05": [],
+      "N06": [
+        "authorization",
+        "resource:Unavailable-to-this-plan-and-unselected-by-source-status",
+        "specification:ISS-2a833aba0f4f",
+        "specification:ISS-88929f59ad66"
+      ],
+      "N03": [
+        "specification:ISS-496d17ef02d0",
+        "specification:ISS-e1a74fc08855"
+      ],
+      "N07": [
+        "authorization",
+        "resource:Unavailable-to-this-plan-and-unselected-by-source-status",
+        "specification:ISS-2a833aba0f4f",
+        "specification:ISS-4cba0e6b0e15",
+        "specification:ISS-88929f59ad66"
+      ]
+    },
+    "plan_sha256": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+    "plan_approval": "PROPOSED",
+    "source_sha256": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df"
+  },
+  "test_lifecycle": {
+    "criteria": "proposed",
+    "executed": false,
+    "observed_results": [],
+    "protected": false,
+    "tests": "not_generated"
+  },
+  "stage_hashes": {
+    "architecture": "c3a84415a843fe75592acb162826f531785c1deadac037c95abe86f605d9e4bf",
+    "contracts": "bbb4f8ad84d80861b6b0d48dc8ab23b6b0a7034153e5e327a46a323d5820007f",
+    "increments": "550636dd9a4815f6d1c8ed80b4acec78d6ece0666a312d5b6726e6afaea1be18",
+    "models": "a0810302ce51459e52d9f0eb3c1c377942b4e140d5f4b3ea8e0df305f316ec7f"
+  },
+  "stage_refs": {
+    "architecture": "architecture.json",
+    "contracts": "contracts.json",
+    "increments": "increments-r2.json",
+    "models": "models-r2.json"
+  },
+  "current_approval": "PROPOSED",
+  "preservation": {
+    "historical_total": 1493,
+    "historical_matching": 1493,
+    "historical_discrepancies": [],
+    "protected_suites": [
+      {
+        "batch": "3c2-b1",
+        "intact": true,
+        "suite_hash": "47179ffe5948c85bd9cc0a970ba76314732831e269f4a70c71423638bfa49324"
+      },
+      {
+        "batch": "3c2-b2",
+        "intact": true,
+        "suite_hash": "91d4bce4950cbb1878592b738349324526b15caa46a1854654c19121f302c413"
+      },
+      {
+        "batch": "3c2-b3",
+        "intact": true,
+        "suite_hash": "9b47bd76ef8c6f8eb242e59b5aa84549c90c199b5e92a7ecb9057a0e3bfb779e"
+      },
+      {
+        "batch": "3c2-b4",
+        "intact": true,
+        "suite_hash": "6565b96385e26b37bba0702dd00999ac5d795f14c0f8a00e1ae56a82ddd6ea0e"
+      },
+      {
+        "batch": "3c2-b5",
+        "intact": true,
+        "suite_hash": "284bdaa6715705c8ed4bd97912483bc2cef4470522f4256b1827bc7d743d9d3f"
+      },
+      {
+        "batch": "3c2-b6",
+        "intact": true,
+        "suite_hash": "2161620f14c3ce97145fabbf0b599dc30bf8447f883002d228fd060d68c481cc"
+      }
+    ],
+    "external_operations_in_this_continuation": 0,
+    "n8n_calls_in_this_continuation": 0
+  },
+  "accepted_batch_reviews": {
+    "3c2-b1": "PASS",
+    "3c2-b2": "PASS",
+    "3c2-b3": "PASS",
+    "3c2-b4": "PASS",
+    "3c2-b5": "PASS"
+  }
+}

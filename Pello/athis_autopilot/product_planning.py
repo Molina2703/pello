@@ -473,6 +473,11 @@ class ProductPlanningCore(Bridge):
               project_id TEXT NOT NULL, version INTEGER NOT NULL, increment_id TEXT NOT NULL,
               decision TEXT NOT NULL, created TEXT NOT NULL,
               PRIMARY KEY(project_id,version,increment_id));
+            CREATE TABLE IF NOT EXISTS pello_product_plan_history(
+              project_id TEXT NOT NULL, version INTEGER NOT NULL, revision INTEGER NOT NULL,
+              plan_json TEXT NOT NULL, review_json TEXT, status TEXT NOT NULL,
+              reason TEXT NOT NULL, created TEXT NOT NULL,
+              PRIMARY KEY(project_id,version,revision));
             CREATE TABLE IF NOT EXISTS pello_product_checkpoints(
               project_id TEXT NOT NULL, version INTEGER NOT NULL, phase TEXT NOT NULL,
               source_hash TEXT NOT NULL, artifact_hash TEXT NOT NULL, commit_sha TEXT NOT NULL,
@@ -798,6 +803,154 @@ class ProductPlanningCore(Bridge):
         if result.item_count!=3:raise ValueError('Actual model capability smoke check failed')
         return {'task_id':chosen['task_id'],'model':profile.model,'effort':profile.effort,'thread_id':raw['thread_id'],
             'turn_id':raw['turn_id'],'observed':result.model_dump(),'product_execution':False,'tools_invoked_by_pello':False}
+
+    @staticmethod
+    def plan_digest(value):
+        return hashlib.sha256(json.dumps(value,sort_keys=True,ensure_ascii=False,separators=(',',':')).encode()).hexdigest()
+
+    def _compile_product_plan(self, payload, stages, stage_refs):
+        from .planning_contracts import (ArchitectureProposal,FunctionalIncrements,IncrementContracts,
+            ModelDecisionProposal,validate_architecture,validate_increments,validate_contracts,
+            validate_model_decision,manifest_from_contracts)
+        from .pipeline_contracts import ModelProfile
+        analysis=validate_planning_input(payload['requirements'])
+        architecture=ArchitectureProposal.model_validate(stages['architecture']['proposal'])
+        increments=FunctionalIncrements.model_validate(stages['increments']['proposal'])
+        contracts=IncrementContracts.model_validate(stages['contracts']['proposal'])
+        graph=validate_architecture(architecture,analysis)
+        readiness=validate_increments(increments,architecture,analysis)
+        validation=validate_contracts(contracts,increments,architecture,analysis)
+        records=stages['models']['records'];decisions={r['task_id']:r for r in records}
+        if set(decisions)!={i.task_id for i in increments.increments} or len(records)!=len(decisions):
+            raise ValueError('Model decisions must cover increments exactly once')
+        for record in records:
+            p=ModelDecisionProposal.model_validate(record['proposal'])
+            check=validate_model_decision(p,record['capability_snapshot'],budget_remaining=record['budget_assessment']['remaining_development_turns'])
+            if p.task_id!=record['task_id'] or any(check[k]!=record[k] for k in
+                    ('selected_model_profile','selected_reasoning_effort','resolved_technical_model_id','verified_availability')):
+                raise ValueError('Persisted model selection differs from its validated proposal')
+        manifest=manifest_from_contracts(contracts,increments,architecture,analysis)
+        by_id={i.task_id:i for i in increments.increments}
+        for inc in manifest.increments:
+            record=decisions[inc.task_id]
+            inc.source_requirement_ids=list(dict.fromkeys(by_id[inc.task_id].requirement_ids+architecture.global_requirement_ids))
+            inc.planning_blockers=[b for b in graph['blockers'][inc.task_id] if not b.startswith('dependency:')]
+            inc.coder_profile=ModelProfile(model=record['selected_model_profile'],effort=record['selected_reasoning_effort'])
+            inc.model_decision_ref=self.plan_digest(record)
+        return {'schema_version':1,'project_id':payload['project_id'],'source_version':payload['version'],
+            'source_sha256':payload['source_sha256'],'requirements':analysis.model_dump(mode='json'),
+            'stages':stages,'stage_refs':stage_refs,'stage_hashes':{k:self.plan_digest(v) for k,v in stages.items()},
+            'manifest':manifest.model_dump(mode='json'),'readiness':readiness,'validation':validation,
+            'acceptance_lifecycle':{'criteria':'proposed','tests':'not_generated','protected':False,'executed':False,'observed_results':[]},
+            'execution_authorized':False}
+
+    def persist_plan(self, project_id: str) -> dict:
+        self._stop_check();payload=self.planner_input(project_id);version=self.version_row(project_id)
+        if version['plan']:return self.reconstruct_plan(project_id)['plan']
+        directory=self.folder(project_id)/'evidence'/f'version-{version["version"]}'/'planning'
+        stages={};refs={}
+        for name in ('architecture','increments','contracts','models'):
+            stages[name]=self.planning_stage(project_id,name)
+            pointer=directory/(name+'-current.json')
+            revision=json.loads(pointer.read_text())['revision'] if pointer.exists() else None
+            refs[name]=f'{name}-r{revision}.json' if revision else name+'.json'
+        plan=self._compile_product_plan(payload,stages,refs)
+        encoded=json.dumps(plan,ensure_ascii=False,sort_keys=True)
+        with self.db() as cx:
+            cx.execute('BEGIN IMMEDIATE')
+            if cx.execute('SELECT plan FROM pello_product_versions WHERE project_id=? AND version=?',(project_id,version['version'])).fetchone()[0]:
+                raise CodexBlocked('Plan concurrently persisted; reconstruct it')
+            cx.execute('INSERT INTO pello_product_plan_history VALUES(?,?,?,?,?,?,?,?)',
+                (project_id,version['version'],1,encoded,None,'PLAN_PROPOSED','validated autonomous planning stages',now()))
+            for record in stages['models']['records']:
+                cx.execute('INSERT INTO pello_product_model_decisions VALUES(?,?,?,?,?)',
+                    (project_id,version['version'],record['task_id'],json.dumps(record,ensure_ascii=False),record['decision_timestamp']))
+            cx.execute("UPDATE pello_product_versions SET plan=?,status='PLAN_PROPOSED' WHERE project_id=? AND version=?",(encoded,project_id,version['version']))
+            cx.execute("UPDATE pello_product_projects SET status='PLAN_PROPOSED',modified=? WHERE project_id=?",(now(),project_id))
+        self.reconstruct_plan(project_id)
+        return plan
+
+    def reconstruct_plan(self, project_id: str) -> dict:
+        self._stop_check();payload=self.planner_input(project_id);version=self.version_row(project_id)
+        if not version['plan']:raise CodexBlocked('No durable plan exists')
+        plan=json.loads(version['plan'])
+        with self.db() as cx:
+            row=cx.execute('SELECT * FROM pello_product_plan_history WHERE project_id=? AND version=? ORDER BY revision DESC LIMIT 1',(project_id,version['version'])).fetchone()
+            records=[dict(r) for r in cx.execute('SELECT increment_id,decision FROM pello_product_model_decisions WHERE project_id=? AND version=?',(project_id,version['version']))]
+        if not row or json.loads(row['plan_json'])!=plan:raise CodexBlocked('Current plan differs from immutable history')
+        if self._compile_product_plan(payload,plan['stages'],plan['stage_refs'])!=plan:
+            raise CodexBlocked('Durable plan fails deterministic reconstruction')
+        model_records={r['task_id']:r for r in plan['stages']['models']['records']}
+        if len(records)!=len(model_records) or any(json.loads(r['decision'])!=model_records.get(r['increment_id']) for r in records):
+            raise CodexBlocked('SQLite model decisions differ from the plan')
+        directory=self.folder(project_id)/'evidence'/f'version-{version["version"]}'/'planning'
+        for name,value in plan['stages'].items():
+            filename=plan['stage_refs'][name]
+            if not re.fullmatch(name+r'(?:-r[1-3])?\.json',filename):raise CodexBlocked('Invalid stage artifact identity')
+            self._ensure_json_artifact(directory/filename,value)
+            match=re.fullmatch(name+r'-r([1-3])\.json',filename)
+            if match:self._ensure_json_artifact(directory/(name+'-current.json'),{'revision':int(match[1])})
+        self._ensure_json_artifact(directory/'plan-r1.json',plan)
+        self._ensure_json_artifact(directory/'execution-manifest.json',plan['manifest'])
+        review=EngineeringReview.model_validate_json(version['plan_review']) if version['plan_review'] else None
+        accepted=bool(review and review.verdict=='PASS' and row['status']=='PLAN_ACCEPTED')
+        if row['status']=='PLAN_ACCEPTED' and not accepted:raise CodexBlocked('Accepted plan lacks an independent PASS')
+        if accepted:
+            if row['review_json']!=version['plan_review']:raise CodexBlocked('Plan review differs from immutable acceptance history')
+            self._ensure_json_artifact(directory/'plan-review.json',review.model_dump(mode='json'))
+        workspace=self.folder(project_id)/'workspace'/f'planning-v{version["version"]}'
+        for name in ('plan-r1.json','execution-manifest.json'):
+            self._ensure_json_artifact(workspace/name,json.loads((directory/name).read_text(encoding='utf-8')))
+        if accepted:
+            self._ensure_json_artifact(workspace/'plan-review.json',review.model_dump(mode='json'))
+            with self.db() as cx:
+                checkpoint=cx.execute("SELECT 1 FROM pello_product_checkpoints WHERE project_id=? AND version=? AND phase='plan-accepted'",(project_id,version['version'])).fetchone()
+            if not checkpoint:self._checkpoint(project_id,version['version'],'plan-accepted',evidence_dir=directory,workspace_subdir=f'planning-v{version["version"]}')
+        return {'plan':plan,'plan_sha256':self.plan_digest(plan),'approval':'ACCEPTED' if accepted else 'PROPOSED',
+            'source_unchanged':True,'execution_authorized':False}
+
+    def inspect_plan(self, project_id: str) -> dict:
+        from .pipeline import IncrementalPipeline
+        recovered=self.reconstruct_plan(project_id)
+        return {**IncrementalPipeline.inspect_planned_manifest(recovered['plan']['manifest']),
+            'plan_sha256':recovered['plan_sha256'],'plan_approval':recovered['approval'],
+            'source_sha256':recovered['plan']['source_sha256']}
+
+    def plan_product(self, project_id: str) -> dict:
+        version=self.version_row(project_id)
+        if version['plan']:return self.reconstruct_plan(project_id)
+        if not version['analysis']:self.understand(project_id)
+        if self.review_analysis(project_id)['verdict']!='PASS':raise CodexBlocked('Analysis review did not accept planning input')
+        for name,generate in (('architecture',self.propose_architecture),('increments',self.propose_increments),
+                ('contracts',self.propose_contracts),('models',self.propose_models)):
+            directory=self.folder(project_id)/'evidence'/f'version-{version["version"]}'/'planning'
+            if not (directory/(name+'.json')).exists() and not (directory/(name+'-current.json')).exists():generate(project_id)
+        self.persist_plan(project_id)
+        return self.reconstruct_plan(project_id)
+
+    def approve_plan(self, project_id: str, *, review_project_id: str, review_phase: str) -> dict:
+        recovered=self.reconstruct_plan(project_id);version=self.version_row(project_id)
+        if recovered['approval']=='ACCEPTED':return recovered
+        with self.db() as cx:
+            op=cx.execute('SELECT * FROM pello_product_operations WHERE project_id=? AND phase=? ORDER BY version DESC LIMIT 1',(review_project_id,review_phase)).fetchone()
+            threads={r['role']:r['thread_id'] for r in cx.execute('SELECT role,thread_id FROM pello_sessions WHERE project_id=?',(project_id,))}
+        if not op or op['status']!='COMPLETED' or op['role']!='reviewer':raise CodexBlocked('Independent completed Reviewer operation required')
+        raw=json.loads(op['response']);review=EngineeringReview.model_validate_json(raw['final_response'])
+        if review.verdict!='PASS' or raw['thread_id']==threads.get('planner'):raise CodexBlocked('Independent Reviewer PASS required')
+        path=self.folder(review_project_id)/'evidence'/f'version-{op["version"]}'/review_phase/'input.json'
+        evidence=json.loads(path.read_text(encoding='utf-8'));request=json.loads(op['request'])
+        if hashlib.sha256(json.dumps(evidence,ensure_ascii=False,sort_keys=True).encode()).hexdigest()!=request['input_sha256']:
+            raise CodexBlocked('Reviewer evidence identity differs from its journal')
+        checks=next((c for c in evidence['scope_constraints'] if isinstance(c,dict) and c.get('plan_sha256')==recovered['plan_sha256']),None)
+        if (not checks or checks['regression']['exit_code']!=0 or checks['regression']['tests_run']<1
+                or not checks['protected_suites_intact'] or evidence['test_exit_code']!=0
+                or evidence['tests_failed']!=0 or evidence['tests_passed']!=evidence['tests_run']):
+            raise CodexBlocked('Mandatory objective acceptance gates are not satisfied for this plan')
+        with self.db() as cx:
+            cx.execute("UPDATE pello_product_plan_history SET review_json=?,status='PLAN_ACCEPTED' WHERE project_id=? AND version=? AND revision=1",(review.model_dump_json(),project_id,version['version']))
+            cx.execute("UPDATE pello_product_versions SET plan_review=?,status='PLAN_ACCEPTED' WHERE project_id=? AND version=?",(review.model_dump_json(),project_id,version['version']))
+            cx.execute("UPDATE pello_product_projects SET status='PLAN_ACCEPTED',blocker='',modified=? WHERE project_id=?",(now(),project_id))
+        return self.reconstruct_plan(project_id)
 
     def _invoke(self, project_id, version, phase, role, payload, output_model, *, profile_override=None):
         project = self.project_row(project_id)
@@ -1175,7 +1328,9 @@ class ProductPlanningCore(Bridge):
             'turns_used': project['used_turns'], 'turns_limit': project['max_turns'],
             'deadline': project['deadline'], 'blocker': project['blocker'],
             'requirement_count': len(json.loads(version['analysis'])['requirements']) if version['analysis'] else 0,
-            'plan_ready': bool(version['plan']), 'analysis_review': json.loads(latest_review_row['review_json']) if latest_review_row and latest_review_row['review_json'] else (json.loads(version['analysis_review']) if version['analysis_review'] else None),
+            'plan_exists': bool(version['plan']),
+            'plan_ready': bool(version['status']=='PLAN_ACCEPTED' and version['plan'] and version['plan_review'] and not stale and EngineeringReview.model_validate_json(version['plan_review']).verdict=='PASS'),
+            'analysis_review': json.loads(latest_review_row['review_json']) if latest_review_row and latest_review_row['review_json'] else (json.loads(version['analysis_review']) if version['analysis_review'] else None),
             'operations': operations, 'model_decisions': decisions, 'checkpoints': checkpoints,
             'analysis_history': analysis_history,
             'full_v1_complete': False}

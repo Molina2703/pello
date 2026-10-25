@@ -1,0 +1,9 @@
+{
+  "hashes": {
+    "tests/test_product_plan_recovery.py": "e24dc882742fa5dd322f665424a9896ad43fb27c103ac04c3e2520b4e127dba5",
+    "tests/test_product_plan_approval.py": "db5bbf5a0bc0e754bb564c63991452f52cd1e64b9e09f2eaf888a60e0cecc2f5"
+  },
+  "suite_hash": "2161620f14c3ce97145fabbf0b599dc30bf8447f883002d228fd060d68c481cc",
+  "controlled_revision": 2,
+  "reason": "Add positive recorded approval, objective FAIL precedence and interrupted acceptance checkpoint coverage; original twelve assertions unchanged"
+}

@@ -49,6 +49,17 @@ def select_model(policy, capabilities, *, phase, risk='routine', attempt=1, resp
             'phase': phase, 'remaining_percent_at_probe': remaining, 'capabilities_at': capabilities.get('at')}
 
 
+def select_increment_model(policy,capabilities,owner,*,phase,attempt=1):
+    from .pipeline_contracts import ModelProfile
+    profile=owner.get('coder_profile')
+    if profile:
+        selected_policy=policy.model_copy(deep=True)
+        selected_policy.role_profiles['coder']=ModelProfile.model_validate(profile)
+        result=select_model(selected_policy,capabilities,phase=phase,responsibility='coder',attempt=attempt)
+        return {**result,'reason':'validated task-specific Planner profile','decision_ref':owner.get('model_decision_ref')}
+    return select_model(policy,capabilities,phase=phase,risk=owner.get('risk','routine'),attempt=attempt,responsibility='coder')
+
+
 def main():
     from openai_codex import CodexConfig
     from openai_codex.client import CodexClient

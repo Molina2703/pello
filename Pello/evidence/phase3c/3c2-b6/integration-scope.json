@@ -1,0 +1,70 @@
+{
+  "plan_sha256": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+  "regression": {
+    "command": [
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "exit_code": 0,
+    "tests_run": 217,
+    "elapsed_seconds": 266.735,
+    "passed": true
+  },
+  "protected_suites_intact": true,
+  "historical_integrity": {
+    "matching": 1493,
+    "total": 1493
+  },
+  "integrated_pipeline_result": {
+    "ready": [
+      "N01"
+    ],
+    "first_actionable": "N01",
+    "completed": [],
+    "execution_authorized": false,
+    "protected_tests_required": true,
+    "blockers": {
+      "N01": [],
+      "N02": [],
+      "N04": [
+        "specification:ISS-2afa4897bcb8"
+      ],
+      "N05": [],
+      "N06": [
+        "authorization",
+        "resource:Unavailable-to-this-plan-and-unselected-by-source-status",
+        "specification:ISS-2a833aba0f4f",
+        "specification:ISS-88929f59ad66"
+      ],
+      "N03": [
+        "specification:ISS-496d17ef02d0",
+        "specification:ISS-e1a74fc08855"
+      ],
+      "N07": [
+        "authorization",
+        "resource:Unavailable-to-this-plan-and-unselected-by-source-status",
+        "specification:ISS-2a833aba0f4f",
+        "specification:ISS-4cba0e6b0e15",
+        "specification:ISS-88929f59ad66"
+      ]
+    },
+    "plan_sha256": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+    "plan_approval": "PROPOSED",
+    "source_sha256": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df"
+  },
+  "plan_reconstructed_without_inference": true,
+  "test_evidence": "Actual full transcript: evidence/phase3c/3c2-b6/final-regression.log; development fixture, not a blind evaluation.",
+  "prior_accepted_batches": {
+    "3c2-b1": "PASS",
+    "3c2-b2": "PASS",
+    "3c2-b3": "PASS",
+    "3c2-b4": "PASS",
+    "3c2-b5": "PASS"
+  }
+}

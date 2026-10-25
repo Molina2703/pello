@@ -24,6 +24,11 @@ class Increment(Message):
     suite: Text
     expected_tests: int = Field(ge=1, le=500)
     risk: Literal['routine', 'high'] = 'routine'
+    # Optional planning metadata; legacy manifests retain their existing semantics.
+    source_requirement_ids: list[Identifier] = Field(default_factory=list,max_length=50)
+    planning_blockers: list[Text] = Field(default_factory=list,max_length=40)
+    coder_profile: 'ModelProfile | None' = None
+    model_decision_ref: str | None = None
 
     @model_validator(mode='after')
     def paths(self):

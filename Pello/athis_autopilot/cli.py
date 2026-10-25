@@ -65,6 +65,8 @@ def main():
     planning_action.add_argument('--create', action='store_true', help='Create a bounded project without invoking a model')
     planning_action.add_argument('--understand', action='store_true', help='Extract structured requirements via the existing SDK Planner')
     planning_action.add_argument('--planner-input', action='store_true', help='Inspect validated accepted requirements without model inference')
+    planning_action.add_argument('--plan', action='store_true', help='Generate and persist a plan through the existing Planner; planning does not authorize execution')
+    planning_action.add_argument('--inspect-plan', action='store_true', help='Reconstruct the saved plan and inspect pipeline readiness without inference or Coder execution')
     planning_action.add_argument('--review-analysis', action='store_true', help='Independently review a saved analysis')
     planning_action.add_argument('--reprocess-analysis', action='store_true', help='Create an append-only normalized analysis revision from the saved Planner response')
     planning_action.add_argument('--review-increment', metavar='INCREMENT_ID', help='Independent read-only engineering review after objective tests pass')
@@ -163,6 +165,10 @@ def main():
                     result = core.understand(args.project_id)
                 elif args.planner_input:
                     result = core.planner_input(args.project_id)
+                elif args.plan:
+                    result = core.plan_product(args.project_id)
+                elif args.inspect_plan:
+                    result = core.inspect_plan(args.project_id)
                 elif args.review_analysis:
                     result = core.review_analysis(args.project_id)
                 elif args.reprocess_analysis:
