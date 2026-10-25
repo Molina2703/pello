@@ -1,0 +1,20 @@
+{
+  "id": "phase3c3-authorization-20261025",
+  "authorized_at": "2026-10-25T18:43:28+00:00",
+  "user_authorization": "Autorizo 60 turnos acumulados y ese plazo",
+  "source": "User reply to explicit limit/deadline question in current task",
+  "deadline": "2026-10-26T00:45:00+00:00",
+  "cumulative_sdk_limit": 60,
+  "already_consumed": 28,
+  "remaining_at_grant": 32,
+  "per_project_limit": 12,
+  "external_operations": 0,
+  "no_counter_reset": true,
+  "scope": "Phase 3C-3 local independent blind planning evaluation, localized correction if justified, fresh evaluation and final independent review; no Phase 3D",
+  "allocation": {
+    "initial_evaluation_and_reviews": 10,
+    "localized_correction_and_review": 4,
+    "fresh_evaluation": 9,
+    "failure_reserve": 9
+  }
+}

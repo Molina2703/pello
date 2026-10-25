@@ -1,0 +1,52 @@
+test_all_read_only_roles_disable_every_reading_surface (test_planning_isolation.PlanningIsolationTests.test_all_read_only_roles_disable_every_reading_surface) ... 
+  test_all_read_only_roles_disable_every_reading_surface (test_planning_isolation.PlanningIsolationTests.test_all_read_only_roles_disable_every_reading_surface) (role='planner') ... FAIL
+  test_all_read_only_roles_disable_every_reading_surface (test_planning_isolation.PlanningIsolationTests.test_all_read_only_roles_disable_every_reading_surface) (role='reviewer') ... FAIL
+  test_all_read_only_roles_disable_every_reading_surface (test_planning_isolation.PlanningIsolationTests.test_all_read_only_roles_disable_every_reading_surface) (role='tester') ... FAIL
+  test_all_read_only_roles_disable_every_reading_surface (test_planning_isolation.PlanningIsolationTests.test_all_read_only_roles_disable_every_reading_surface) (role='supervisor') ... FAIL
+test_executor_keeps_existing_implementation_tools (test_planning_isolation.PlanningIsolationTests.test_executor_keeps_existing_implementation_tools) ... ok
+test_resume_reapplies_restrictions (test_planning_isolation.PlanningIsolationTests.test_resume_reapplies_restrictions) ... FAIL
+
+======================================================================
+FAIL: test_all_read_only_roles_disable_every_reading_surface (test_planning_isolation.PlanningIsolationTests.test_all_read_only_roles_disable_every_reading_surface) (role='planner')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_planning_isolation.py", line 47, in test_all_read_only_roles_disable_every_reading_surface
+    self.assertIs(config.get('features.'+name), False, name)
+AssertionError: None is not False : shell_tool
+
+======================================================================
+FAIL: test_all_read_only_roles_disable_every_reading_surface (test_planning_isolation.PlanningIsolationTests.test_all_read_only_roles_disable_every_reading_surface) (role='reviewer')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_planning_isolation.py", line 47, in test_all_read_only_roles_disable_every_reading_surface
+    self.assertIs(config.get('features.'+name), False, name)
+AssertionError: None is not False : shell_tool
+
+======================================================================
+FAIL: test_all_read_only_roles_disable_every_reading_surface (test_planning_isolation.PlanningIsolationTests.test_all_read_only_roles_disable_every_reading_surface) (role='tester')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_planning_isolation.py", line 47, in test_all_read_only_roles_disable_every_reading_surface
+    self.assertIs(config.get('features.'+name), False, name)
+AssertionError: None is not False : shell_tool
+
+======================================================================
+FAIL: test_all_read_only_roles_disable_every_reading_surface (test_planning_isolation.PlanningIsolationTests.test_all_read_only_roles_disable_every_reading_surface) (role='supervisor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_planning_isolation.py", line 47, in test_all_read_only_roles_disable_every_reading_surface
+    self.assertIs(config.get('features.'+name), False, name)
+AssertionError: None is not False : shell_tool
+
+======================================================================
+FAIL: test_resume_reapplies_restrictions (test_planning_isolation.PlanningIsolationTests.test_resume_reapplies_restrictions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_planning_isolation.py", line 55, in test_resume_reapplies_restrictions
+    self.assertIs(options.get('config', {}).get('features.shell_tool'), False)
+AssertionError: None is not False
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.781s
+
+FAILED (failures=5)

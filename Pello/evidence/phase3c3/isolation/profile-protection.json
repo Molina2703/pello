@@ -1,0 +1,6 @@
+{
+  "hashes": {
+    "tests\\test_blind_permissions.py": "16e3e7820c9ef83880bdc8700a7ddfbaef647b7167a53f149b88430fa2c29cc6"
+  },
+  "reason": "Reviewer BLOCKED: enforce deny reads via named SDK permissions; legacy sandbox overrides custom profile"
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "batch": 1,
+    "exit_code": 0,
+    "tests": 6
+  },
+  {
+    "batch": 2,
+    "exit_code": 0,
+    "tests": 10
+  },
+  {
+    "batch": 3,
+    "exit_code": 0,
+    "tests": 11
+  },
+  {
+    "batch": 4,
+    "exit_code": 0,
+    "tests": 8
+  },
+  {
+    "batch": 5,
+    "exit_code": 0,
+    "tests": 13
+  },
+  {
+    "batch": 6,
+    "exit_code": 0,
+    "tests": 15
+  }
+]

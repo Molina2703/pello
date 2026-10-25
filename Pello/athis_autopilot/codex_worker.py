@@ -52,6 +52,25 @@ def persist_session(args, thread_id):
                        (args.task_id, args.project_id, args.role))
 
 
+def supplied_context_config(role):
+    """Remove file/network reading surfaces for supplied-context reasoning roles.
+
+    Read-only sandboxing alone permits shell reads outside cwd. Thread-level
+    overrides also apply with a shared worker, without restricting the executor
+    or editing the user's configuration. Hidden evaluation files must still
+    remain outside the workspace and all supplied prompts.
+    """
+    if role not in ('supervisor', 'planner', 'reviewer', 'tester'):
+        return None
+    denied = ('shell_tool', 'unified_exec', 'view_image', 'code_mode', 'code_mode_host',
+              'browser_use', 'computer_use', 'in_app_browser', 'image_generation',
+              'artifact', 'apps', 'plugins', 'multi_agent', 'multi_agent_v2',
+              'skill_search', 'memories')
+    return {**{'features.'+name: False for name in denied},
+            'features.skip_host_skill_discovery': True,
+            'project_doc_max_bytes': 0, 'web_search': 'disabled'}
+
+
 def main(argv=None, *, client=None, thread_cache=None) -> int:
     p = argparse.ArgumentParser()
     p.add_argument('--workspace', type=Path, required=True)
@@ -68,7 +87,10 @@ def main(argv=None, *, client=None, thread_cache=None) -> int:
     p.add_argument('--project-id')
     p.add_argument('--task-id')
     p.add_argument('--mcp-request', type=Path)
+    p.add_argument('--deny-read-root', type=Path, action='append', default=[])
     args = p.parse_args(argv)
+    if args.deny_read_root and args.role not in ('supervisor', 'planner', 'reviewer', 'tester'):
+        raise ValueError('Read-deny profiles apply only to supplied-context reasoning roles')
     from openai_codex import Codex, CodexConfig, Sandbox, ApprovalMode
     # Reuse the user's login; never silently fall back to paid API authentication.
     overrides = restricted_overrides() if args.role else ('forced_login_method="chatgpt"',)
@@ -92,15 +114,64 @@ def main(argv=None, *, client=None, thread_cache=None) -> int:
                 raise RuntimeError('Requested model/effort not available; no automatic model fallback')
         options = {'cwd': str(args.workspace), 'sandbox': sandbox,
                    'approval_mode': ApprovalMode.deny_all}
+        context_isolation = supplied_context_config(args.role)
+        if context_isolation is not None:
+            options['config'] = context_isolation
+        if args.deny_read_root:
+            if any(not path.is_absolute() for path in args.deny_read_root):
+                raise ValueError('Denied read roots must be absolute')
+            context_isolation.update({
+                'permissions.pello_supplied_context': {'extends': ':read-only',
+                    'filesystem': {path.resolve().as_posix(): 'deny' for path in args.deny_read_root},
+                    'network': {'enabled': False}},
+                'default_permissions': 'pello_supplied_context'})
+            # Explicit legacy sandbox mode overrides and discards named profiles.
+            options.pop('sandbox')
         if args.model:
             options['model'] = args.model
         if args.instructions:
             options['developer_instructions'] = args.instructions.read_text(encoding='utf-8')
         cache_key = str(args.thread_file.resolve())
+        profile_key = 'read-deny-profile:' + cache_key
+        active_permission_profile = None
         if thread_cache is not None and cache_key in thread_cache:
             thread = thread_cache[cache_key]
+            if args.deny_read_root:
+                saved_profile = thread_cache.get(profile_key)
+                if saved_profile != context_isolation:
+                    raise ValueError('Cached permission profile differs; reconcile before inference')
+                active_permission_profile = {'id': 'pello_supplied_context', 'extends': ':read-only'}
             if args.thread_file.read_text(encoding='utf-8').strip() != thread.id:
                 raise ValueError('Cached role handle does not match its persisted thread')
+        elif args.deny_read_root:
+            # Preserve the runtime's experimental profile provenance; the installed
+            # public response model otherwise drops this field during parsing.
+            from pydantic import BaseModel, ConfigDict
+            from openai_codex.api import Thread
+            class ProfileResponse(BaseModel):
+                model_config = ConfigDict(extra='allow')
+                thread: dict
+                activePermissionProfile: dict | None = None
+                sandbox: dict
+                instructionSources: list = []
+            params = {'cwd': str(args.workspace), 'config': context_isolation,
+                      'approvalPolicy': 'never'}
+            if args.model: params['model'] = args.model
+            if args.instructions: params['developerInstructions'] = options['developer_instructions']
+            method = 'thread/resume' if args.thread_file.exists() else 'thread/start'
+            if args.thread_file.exists(): params['threadId'] = args.thread_file.read_text().strip()
+            started = client._client.request(method, params, response_model=ProfileResponse)
+            active_permission_profile = started.activePermissionProfile
+            if (not active_permission_profile or active_permission_profile.get('id') != 'pello_supplied_context'
+                    or active_permission_profile.get('extends') != ':read-only'
+                    or started.sandbox != {'type': 'readOnly', 'networkAccess': False}
+                    or started.instructionSources):
+                raise ValueError('Runtime permission profile or supplied-context isolation not confirmed')
+            thread = Thread(client._client, started.thread['id'])
+            args.thread_file.parent.mkdir(parents=True, exist_ok=True)
+            args.thread_file.write_text(thread.id, encoding='utf-8')
+            if thread_cache is not None:
+                thread_cache[profile_key] = json.loads(json.dumps(context_isolation))
         elif args.thread_file.exists():
             thread = client.thread_resume(
                 args.thread_file.read_text(encoding='utf-8').strip(),
@@ -132,6 +203,8 @@ def main(argv=None, *, client=None, thread_cache=None) -> int:
             'thread_id': thread.id, 'role': args.role, 'at_utc': datetime.now(timezone.utc).isoformat(),
             'model': args.model, 'effort': args.effort, 'sandbox': sandbox.value,
             'approval_mode': 'deny_all',
+            'context_isolation': context_isolation,
+            'active_permission_profile': active_permission_profile,
             'note': 'Submission boundary, not proof of model completion'}), encoding='utf-8')
         turn = thread.run(args.prompt.read_text(encoding='utf-8'), **turn_options)
         status = getattr(turn.status, 'value', str(turn.status))

@@ -56,8 +56,9 @@ class SDKBackend:
     """No model calls outside the three reserved workflow operations."""
     creates_session_in_turn = True
 
-    def __init__(self):
+    def __init__(self, *, denied_read_roots=()):
         self.runner = None
+        self.denied_read_roots = tuple(denied_read_roots)
 
     def prepare(self, *, workspace, thread_file, out_dir, role, model, effort):
         # Diagnostic only. An empty thread is not resumable from a new process;
@@ -73,7 +74,8 @@ class SDKBackend:
         return run_codex(workspace, prompt, thread_file, out_dir, timeout, role=role,
                          model=model, effort=effort, output_schema=schema,
                          instructions=instructions or ROLE_INSTRUCTIONS[role], session_db=session_db,
-                         project_id=project_id, task_id=task_id, runner=self.runner)
+                         project_id=project_id, task_id=task_id, runner=self.runner,
+                         denied_read_roots=self.denied_read_roots)
 
     def close(self):
         if self.runner is not None:

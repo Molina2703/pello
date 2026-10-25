@@ -1,0 +1,26 @@
+[
+  {
+    "check": "public-control",
+    "expected_read": true,
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "check": "private-canary",
+    "expected_read": false,
+    "exit_code": 1,
+    "passed": true
+  },
+  {
+    "check": "ledger",
+    "expected_read": false,
+    "exit_code": 1,
+    "passed": true
+  },
+  {
+    "check": "evidence",
+    "expected_read": false,
+    "exit_code": 1,
+    "passed": true
+  }
+]

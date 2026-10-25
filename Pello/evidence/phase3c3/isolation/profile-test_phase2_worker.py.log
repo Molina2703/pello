@@ -1,0 +1,10 @@
+test_existing_thread_is_resumed_without_replacement (test_phase2_worker.WorkerConfigurationTests.test_existing_thread_is_resumed_without_replacement) ... ok
+test_fresh_thread_is_persisted_and_run_in_same_worker (test_phase2_worker.WorkerConfigurationTests.test_fresh_thread_is_persisted_and_run_in_same_worker) ... ok
+test_inherited_mcp_servers_disabled_with_cli_key_syntax (test_phase2_worker.WorkerConfigurationTests.test_inherited_mcp_servers_disabled_with_cli_key_syntax) ... ok
+test_review_reuses_handle_in_same_sdk_process (test_phase2_worker.WorkerConfigurationTests.test_review_reuses_handle_in_same_sdk_process) ... ok
+test_unrepresentable_mcp_name_fails_closed (test_phase2_worker.WorkerConfigurationTests.test_unrepresentable_mcp_name_fails_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 2.791s
+
+OK

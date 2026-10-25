@@ -1,0 +1,3 @@
+Error: invalid type: string "{\"extends\": \":read-only\", \"filesystem\": {\"C:/Users/USUARIO/AppData/Local/PelloEvaluation\": \"deny\"}, \"network\": {\"enabled\": false}}", expected struct PermissionProfileToml
+in `permissions`
+

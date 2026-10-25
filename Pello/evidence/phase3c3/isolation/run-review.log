@@ -1,0 +1,47 @@
+{
+  "probe": {
+    "observed_canary": null,
+    "available_tool_names": [
+      "functions.exec",
+      "functions.wait",
+      "functions.request_user_input",
+      "functions.request_user_input_async",
+      "clock.sleep",
+      "collaboration.followup_task",
+      "collaboration.interrupt_agent",
+      "collaboration.list_agents",
+      "collaboration.send_message",
+      "collaboration.spawn_agent",
+      "collaboration.wait_agent",
+      "apply_patch",
+      "clock__curr_time",
+      "create_goal",
+      "get_goal",
+      "list_mcp_resource_templates",
+      "list_mcp_resources",
+      "read_mcp_resource",
+      "update_goal"
+    ],
+    "explanation": "Tool discovery exposed no local file-reading or shell tool. The named canary could not be read; its value was not guessed. No other files or services were accessed."
+  },
+  "canary_recovered": false,
+  "canary_sha256": "457e93f91624ff71c06fd73f5a453c38465df3245a5ca13e727284be7ad67907",
+  "thread_id": "01a17464-4f04-7832-89df-302a0f8487a3",
+  "turn_id": "01a17464-5088-7f41-9cb4-02a8407857f7"
+}
+warning: in the working copy of 'Pello/athis_autopilot/codex_worker.py', LF will be replaced by CRLF the next time Git touches it
+{
+  "verdict": "BLOCKED",
+  "scope": "correct",
+  "correctness": "uncertain",
+  "test_evidence": "incomplete",
+  "safety_and_preservation": "uncertain",
+  "findings": [
+    "The diff appropriately limits configuration changes to supplied-context roles and leaves executor options unchanged.",
+    "The unit tests verify configuration forwarding through mocked clients; they do not establish runtime enforcement or answer-key inaccessibility.",
+    "The probe reports no recovered canary, but exposes apply_patch, resource-reading, and collaboration surfaces. Their inability to retrieve outside-workspace content is not demonstrated.",
+    "Runtime reports unified_exec=true, consistent with the supplied documentation claim that its opt-out is ignored. This does not prove command execution is available, but prevents treating the configuration dictionary as an enforced tool allowlist.",
+    "Smallest robust remedy: deny the reasoning worker and any reachable delegates or services read access to the hidden-rubric location through an enforced filesystem/process boundary. Verify that boundary with synthetic canaries before authoring the fixture, including resumed/shared-worker operation and residual tool paths."
+  ],
+  "rationale": "The supplied evidence supports reduced tool exposure, not the required guarantee that the answer key is genuinely inaccessible. Reported passing tests and a negative canary observation do not close the remaining access paths. Hold fixture authoring until an enforced boundary and runtime verification establish isolation."
+}

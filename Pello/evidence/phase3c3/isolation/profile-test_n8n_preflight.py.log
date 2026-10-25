@@ -1,0 +1,9 @@
+test_connection_profile_keeps_other_servers_disabled_and_role_scoped (test_n8n_preflight.N8nPreflightTests.test_connection_profile_keeps_other_servers_disabled_and_role_scoped) ... ok
+test_native_sdk_rpc_uses_executor_thread_and_exact_safe_arguments (test_n8n_preflight.N8nPreflightTests.test_native_sdk_rpc_uses_executor_thread_and_exact_safe_arguments) ... ok
+test_protected_workflows_and_unscoped_search_are_rejected_before_rpc (test_n8n_preflight.N8nPreflightTests.test_protected_workflows_and_unscoped_search_are_rejected_before_rpc) ... ok
+test_wrong_endpoint_and_mutation_are_rejected (test_n8n_preflight.N8nPreflightTests.test_wrong_endpoint_and_mutation_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.468s
+
+OK

@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\evidence\phase3c3\run_isolation.py", line 28, in <module>
+    try: core.project_row(pid)
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 499, in project_row
+    raise ValueError('Unknown product-planning project: ' + project_id)
+ValueError: Unknown product-planning project: phase3c3-isolation-review
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\evidence\phase3c3\run_isolation.py", line 29, in <module>
+    except ValueError: core.create_project('PELLO_V1_PRODUCT_SPEC.md', project_id=pid, duration_minutes=350)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 535, in create_project
+    segments = MarkdownSource.parse(source_text)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 259, in parse
+    raise ValueError('Markdown must yield 1-400 bounded source segments')
+ValueError: Markdown must yield 1-400 bounded source segments

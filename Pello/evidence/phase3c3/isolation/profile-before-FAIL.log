@@ -1,0 +1,93 @@
+test_denied_roots_cannot_silently_change_executor_permissions (test_blind_permissions.BlindPermissionTests.test_denied_roots_cannot_silently_change_executor_permissions) ... usage: python.exe -m unittest [-h] --workspace WORKSPACE --prompt PROMPT
+                              --thread-file THREAD_FILE --result RESULT
+                              [--role {supervisor,executor,planner,reviewer,tester}]
+                              [--model MODEL] [--effort {low,medium,high}]
+                              [--schema SCHEMA] [--instructions INSTRUCTIONS]
+                              [--prepare-only] [--session-db SESSION_DB]
+                              [--project-id PROJECT_ID] [--task-id TASK_ID]
+                              [--mcp-request MCP_REQUEST]
+python.exe -m unittest: error: unrecognized arguments: --deny-read-root C:\Users\USUARIO\AppData\Local\Temp\tmpkjsa1z3u\hidden
+ERROR
+test_missing_or_substituted_runtime_profile_blocks_before_inference (test_blind_permissions.BlindPermissionTests.test_missing_or_substituted_runtime_profile_blocks_before_inference) ... usage: python.exe -m unittest [-h] --workspace WORKSPACE --prompt PROMPT
+                              --thread-file THREAD_FILE --result RESULT
+                              [--role {supervisor,executor,planner,reviewer,tester}]
+                              [--model MODEL] [--effort {low,medium,high}]
+                              [--schema SCHEMA] [--instructions INSTRUCTIONS]
+                              [--prepare-only] [--session-db SESSION_DB]
+                              [--project-id PROJECT_ID] [--task-id TASK_ID]
+                              [--mcp-request MCP_REQUEST]
+python.exe -m unittest: error: unrecognized arguments: --deny-read-root C:\Users\USUARIO\AppData\Local\Temp\tmprjq_ku_k\hidden
+ERROR
+test_named_read_deny_profile_is_selected_and_receipted (test_blind_permissions.BlindPermissionTests.test_named_read_deny_profile_is_selected_and_receipted) ... usage: python.exe -m unittest [-h] --workspace WORKSPACE --prompt PROMPT
+                              --thread-file THREAD_FILE --result RESULT
+                              [--role {supervisor,executor,planner,reviewer,tester}]
+                              [--model MODEL] [--effort {low,medium,high}]
+                              [--schema SCHEMA] [--instructions INSTRUCTIONS]
+                              [--prepare-only] [--session-db SESSION_DB]
+                              [--project-id PROJECT_ID] [--task-id TASK_ID]
+                              [--mcp-request MCP_REQUEST]
+python.exe -m unittest: error: unrecognized arguments: --deny-read-root C:\Users\USUARIO\AppData\Local\Temp\tmpxu7e_2tj\hidden
+ERROR
+
+======================================================================
+ERROR: test_denied_roots_cannot_silently_change_executor_permissions (test_blind_permissions.BlindPermissionTests.test_denied_roots_cannot_silently_change_executor_permissions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_blind_permissions.py", line 47, in test_denied_roots_cannot_silently_change_executor_permissions
+    self.run_profile(role='executor')
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_blind_permissions.py", line 29, in run_profile
+    main(argv,client=Client())
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\codex_worker.py", line 90, in main
+    args = p.parse_args(argv)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 1900, in parse_args
+    self.error(msg)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2671, in error
+    self.exit(2, _('%(prog)s: error: %(message)s\n') % args)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2658, in exit
+    _sys.exit(status)
+SystemExit: 2
+
+======================================================================
+ERROR: test_missing_or_substituted_runtime_profile_blocks_before_inference (test_blind_permissions.BlindPermissionTests.test_missing_or_substituted_runtime_profile_blocks_before_inference)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_blind_permissions.py", line 43, in test_missing_or_substituted_runtime_profile_blocks_before_inference
+    self.run_profile(reported=':read-only')
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_blind_permissions.py", line 29, in run_profile
+    main(argv,client=Client())
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\codex_worker.py", line 90, in main
+    args = p.parse_args(argv)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 1900, in parse_args
+    self.error(msg)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2671, in error
+    self.exit(2, _('%(prog)s: error: %(message)s\n') % args)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2658, in exit
+    _sys.exit(status)
+SystemExit: 2
+
+======================================================================
+ERROR: test_named_read_deny_profile_is_selected_and_receipted (test_blind_permissions.BlindPermissionTests.test_named_read_deny_profile_is_selected_and_receipted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_blind_permissions.py", line 33, in test_named_read_deny_profile_is_selected_and_receipted
+    params,receipt=self.run_profile()
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_blind_permissions.py", line 29, in run_profile
+    main(argv,client=Client())
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\codex_worker.py", line 90, in main
+    args = p.parse_args(argv)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 1900, in parse_args
+    self.error(msg)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2671, in error
+    self.exit(2, _('%(prog)s: error: %(message)s\n') % args)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2658, in exit
+    _sys.exit(status)
+SystemExit: 2
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.530s
+
+FAILED (errors=3)

@@ -1,0 +1,8 @@
+test_denied_roots_cannot_silently_change_executor_permissions (test_blind_permissions.BlindPermissionTests.test_denied_roots_cannot_silently_change_executor_permissions) ... ok
+test_missing_or_substituted_runtime_profile_blocks_before_inference (test_blind_permissions.BlindPermissionTests.test_missing_or_substituted_runtime_profile_blocks_before_inference) ... ok
+test_named_read_deny_profile_is_selected_and_receipted (test_blind_permissions.BlindPermissionTests.test_named_read_deny_profile_is_selected_and_receipted) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.689s
+
+OK

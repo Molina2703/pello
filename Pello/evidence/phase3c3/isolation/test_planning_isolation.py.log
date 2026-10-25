@@ -1,0 +1,8 @@
+test_all_read_only_roles_disable_every_reading_surface (test_planning_isolation.PlanningIsolationTests.test_all_read_only_roles_disable_every_reading_surface) ... ok
+test_executor_keeps_existing_implementation_tools (test_planning_isolation.PlanningIsolationTests.test_executor_keeps_existing_implementation_tools) ... ok
+test_resume_reapplies_restrictions (test_planning_isolation.PlanningIsolationTests.test_resume_reapplies_restrictions) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.620s
+
+OK

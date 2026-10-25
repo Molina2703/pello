@@ -1,0 +1,7 @@
+{
+  "created_at": "2026-10-25T18:45:35.830107+00:00",
+  "reason": "Read-only sandbox leaves shell and other read surfaces enabled; blind rubric access must be prevented before evaluation",
+  "hashes": {
+    "tests\\test_planning_isolation.py": "9246ec6565742e7510d79dc54799800bfd4660c1c5f368b654c2e9dd324f8c7c"
+  }
+}

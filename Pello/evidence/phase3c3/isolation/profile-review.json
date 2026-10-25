@@ -1,0 +1,14 @@
+{
+  "verdict": "PASS",
+  "scope": "correct",
+  "correctness": "adequate",
+  "test_evidence": "pass",
+  "safety_and_preservation": "adequate",
+  "findings": [
+    "The correction replaces tool suppression alone with a named filesystem deny profile and removes the legacy sandbox argument that discarded it.",
+    "Runtime profile confirmation, native successful public reads, and denied private reads support enforcement independently of the model's null-canary response.",
+    "Resume reapplies the profile; cached handles reject changed profile configuration before inference.",
+    "No concrete isolation bypass is demonstrated under the stated storage layout, disabled external connections, and public-only Planner input."
+  ],
+  "rationale": "The supplied native results and active permission profile address the prior blocker. The answer-key locations now have an enforced read boundary rather than relying solely on instructions or tool visibility. This supports proceeding with fixture authoring within the specified denied roots."
+}
