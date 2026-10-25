@@ -1,0 +1,110 @@
+{
+  "at": "2026-10-25T23:01:22.285290+00:00",
+  "status": "PARTIAL",
+  "scope": "Accepted localized engineering corrections; blind generalization not demonstrated",
+  "budget_reservations": 49,
+  "operation_statuses": [
+    {
+      "status": "COMPLETED",
+      "operations": 48
+    },
+    {
+      "status": "NOT_SUBMITTED_CONTEXT_REJECTED",
+      "operations": 1
+    }
+  ],
+  "authorization": {
+    "id": "phase3c3-authorization-20261025",
+    "max_turns": 60,
+    "deadline": "2026-10-26T00:45:00+00:00"
+  },
+  "projects": [
+    {
+      "project_id": "phase3c-3c1-live",
+      "used_turns": 3,
+      "max_turns": 12,
+      "deadline": "2026-10-25T08:27:57+00:00",
+      "status": "ANALYSIS_ACCEPTED"
+    },
+    {
+      "project_id": "phase3c-eng-review",
+      "used_turns": 9,
+      "max_turns": 12,
+      "deadline": "2026-10-25T08:41:16+00:00",
+      "status": "NEW"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "used_turns": 8,
+      "max_turns": 12,
+      "deadline": "2026-10-25T21:14:29+00:00",
+      "status": "PLAN_ACCEPTED"
+    },
+    {
+      "project_id": "phase3c-c2-review",
+      "used_turns": 8,
+      "max_turns": 12,
+      "deadline": "2026-10-25T21:11:19+00:00",
+      "status": "NEW"
+    },
+    {
+      "project_id": "phase3c3-isolation-review",
+      "used_turns": 4,
+      "max_turns": 12,
+      "deadline": "2026-10-26T00:38:05+00:00",
+      "status": "NEW"
+    },
+    {
+      "project_id": "phase3c3-author",
+      "used_turns": 4,
+      "max_turns": 12,
+      "deadline": "2026-10-26T00:30:03+00:00",
+      "status": "NEW"
+    },
+    {
+      "project_id": "phase3c3-review-a",
+      "used_turns": 4,
+      "max_turns": 12,
+      "deadline": "2026-10-26T00:33:30+00:00",
+      "status": "NEW"
+    },
+    {
+      "project_id": "phase3c3-heldout-a",
+      "used_turns": 2,
+      "max_turns": 12,
+      "deadline": "2026-10-26T00:44:36+00:00",
+      "status": "BLOCKED"
+    },
+    {
+      "project_id": "phase3c3-review-b",
+      "used_turns": 3,
+      "max_turns": 12,
+      "deadline": "2026-10-26T00:44:27+00:00",
+      "status": "NEW"
+    },
+    {
+      "project_id": "phase3c3-heldout-b",
+      "used_turns": 1,
+      "max_turns": 12,
+      "deadline": "2026-10-26T00:44:52+00:00",
+      "status": "BLOCKED"
+    },
+    {
+      "project_id": "phase3c3-review-c",
+      "used_turns": 2,
+      "max_turns": 12,
+      "deadline": "2026-10-26T00:44:42+00:00",
+      "status": "NEW"
+    },
+    {
+      "project_id": "phase3c3-heldout-c",
+      "used_turns": 1,
+      "max_turns": 12,
+      "deadline": "2026-10-26T00:44:56+00:00",
+      "status": "BLOCKED"
+    }
+  ],
+  "stop_set": false,
+  "external_business_operations": 0,
+  "phase3D_started": false
+}

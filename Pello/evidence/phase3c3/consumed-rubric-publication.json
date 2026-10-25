@@ -1,0 +1,26 @@
+[
+  {
+    "freeze": "heldout-a-freeze.json",
+    "rubric_copy": "evidence\\phase3c3\\consumed-rubrics\\heldout-a-rubric.json",
+    "sha256": "855a9a31f8a2b649845e97bcfc5f9a1bc03a748710cd14d2c66a9f3420c2a03e",
+    "published_only_after_case_consumed": true
+  },
+  {
+    "freeze": "heldout-a-freeze-v2.json",
+    "rubric_copy": "evidence\\phase3c3\\consumed-rubrics\\heldout-a-rubric-v2.json",
+    "sha256": "8f8cca8054c6bed730e9ccfddf5d1913cd41a1a6f7eae52ccba521097a434db4",
+    "published_only_after_case_consumed": true
+  },
+  {
+    "freeze": "heldout-b-freeze.json",
+    "rubric_copy": "evidence\\phase3c3\\consumed-rubrics\\heldout-b-rubric.json",
+    "sha256": "5445b18a88010996556d8ccdfc5a04bfc8db40b370eaad874eb09bce43cb7523",
+    "published_only_after_case_consumed": true
+  },
+  {
+    "freeze": "heldout-c-freeze.json",
+    "rubric_copy": "evidence\\phase3c3\\consumed-rubrics\\heldout-c-rubric.json",
+    "sha256": "3674c9e42de22b346e4d7d6d93fb0772b04b04b998cb70c13eb8174feaccd20e",
+    "published_only_after_case_consumed": true
+  }
+]

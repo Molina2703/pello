@@ -1,0 +1,18 @@
+test_aggregate_shortfall_is_explicit_without_fabricating_product_authorization (test_planning_model_recovery.ModelRecoveryTests.test_aggregate_shortfall_is_explicit_without_fabricating_product_authorization) ... ok
+test_saved_decisions_resume_without_new_probe_or_sdk_call (test_planning_model_recovery.ModelRecoveryTests.test_saved_decisions_resume_without_new_probe_or_sdk_call) ... ok
+test_adaptation_requires_previous_configuration_and_evidence (test_planning_models.PlannedModelTests.test_adaptation_requires_previous_configuration_and_evidence) ... ok
+test_budget_rejection (test_planning_models.PlannedModelTests.test_budget_rejection) ... ok
+test_initial_luna_efforts_are_adaptive (test_planning_models.PlannedModelTests.test_initial_luna_efforts_are_adaptive) ... ok
+test_justified_exceptional_initial_sol (test_planning_models.PlannedModelTests.test_justified_exceptional_initial_sol) ... ok
+test_machine_readable_record_and_no_execution_authorization (test_planning_models.PlannedModelTests.test_machine_readable_record_and_no_execution_authorization) ... ok
+test_ordinary_fail_and_progress_allow_remaining_on_luna (test_planning_models.PlannedModelTests.test_ordinary_fail_and_progress_allow_remaining_on_luna) ... ok
+test_ordinary_fail_does_not_justify_sol (test_planning_models.PlannedModelTests.test_ordinary_fail_does_not_justify_sol) ... ok
+test_persistent_evidence_allows_adaptive_sol_effort (test_planning_models.PlannedModelTests.test_persistent_evidence_allows_adaptive_sol_effort) ... ok
+test_replanning_and_decomposition_can_retain_luna (test_planning_models.PlannedModelTests.test_replanning_and_decomposition_can_retain_luna) ... ok
+test_unavailable_model_or_effort_rejected (test_planning_models.PlannedModelTests.test_unavailable_model_or_effort_rejected) ... ok
+test_unjustified_initial_sol_rejected (test_planning_models.PlannedModelTests.test_unjustified_initial_sol_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.608s
+
+OK

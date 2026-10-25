@@ -1,0 +1,8 @@
+test_crlf_source_preserves_canonical_segment_text (test_review_source_references.ReviewSourceReferenceTests.test_crlf_source_preserves_canonical_segment_text) ... ok
+test_large_review_payload_reconstructs_every_original_field (test_review_source_references.ReviewSourceReferenceTests.test_large_review_payload_reconstructs_every_original_field) ... ok
+test_nonmatching_source_text_is_not_hidden_behind_a_reference (test_review_source_references.ReviewSourceReferenceTests.test_nonmatching_source_text_is_not_hidden_behind_a_reference) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.005s
+
+OK

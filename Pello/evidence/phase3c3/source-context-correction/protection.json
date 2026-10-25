@@ -1,0 +1,7 @@
+{
+  "at": "2026-10-25T22:51:58.928427+00:00",
+  "hashes": {
+    "tests\\test_review_source_references.py": "dc1926c837fa804c1818791d3c1016b85a9cd450d5bc666caf0e28fa1ddad402"
+  },
+  "reason": "Actual held-out C overflow after duplicate-map factoring: exact source line references only, no lost content or raised limit"
+}

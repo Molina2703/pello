@@ -1,0 +1,17 @@
+test_blocked_branch_does_not_stop_unrelated_work (test_product_plan_recovery.ProductPlanRecoveryTests.test_blocked_branch_does_not_stop_unrelated_work) ... ok
+test_changed_source_blocks_reuse_and_revalidation_preserves_old_plan (test_product_plan_recovery.ProductPlanRecoveryTests.test_changed_source_blocks_reuse_and_revalidation_preserves_old_plan) ... ok
+test_cumulative_budget_and_deadline_fail_closed (test_product_plan_recovery.ProductPlanRecoveryTests.test_cumulative_budget_and_deadline_fail_closed) ... ok
+test_duplicate_model_decisions_rejected (test_product_plan_recovery.ProductPlanRecoveryTests.test_duplicate_model_decisions_rejected) ... ok
+test_idempotence_does_not_duplicate_work_decisions_or_completions (test_product_plan_recovery.ProductPlanRecoveryTests.test_idempotence_does_not_duplicate_work_decisions_or_completions) ... ok
+test_missing_artifacts_reconstruct_without_inference (test_product_plan_recovery.ProductPlanRecoveryTests.test_missing_artifacts_reconstruct_without_inference) ... ok
+test_no_approval_from_an_unrecorded_or_narrative_review (test_product_plan_recovery.ProductPlanRecoveryTests.test_no_approval_from_an_unrecorded_or_narrative_review) ... ok
+test_persistence_restart_and_source_traceability (test_product_plan_recovery.ProductPlanRecoveryTests.test_persistence_restart_and_source_traceability) ... ok
+test_pipeline_consumes_generated_manifest_without_running_coder (test_product_plan_recovery.ProductPlanRecoveryTests.test_pipeline_consumes_generated_manifest_without_running_coder) ... ok
+test_stop_prevents_persisting_new_plan (test_product_plan_recovery.ProductPlanRecoveryTests.test_stop_prevents_persisting_new_plan) ... ok
+test_tampered_artifact_fails_closed (test_product_plan_recovery.ProductPlanRecoveryTests.test_tampered_artifact_fails_closed) ... ok
+test_task_profile_survives_high_risk_and_arbitrary_retry_number (test_product_plan_recovery.ProductPlanRecoveryTests.test_task_profile_survives_high_risk_and_arbitrary_retry_number) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 8.573s
+
+OK

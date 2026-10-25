@@ -1,0 +1,239 @@
+{
+  "evaluation_id": "phase3c3-heldout-c-v1",
+  "independent_capabilities": [
+    "Receipt validation, idempotent intake, attributable amendments and pack traceability using synthetic receipts.",
+    "Domestic kiln scheduling with indivisible packs, material reservations, time reservations and concurrency rules using synthetic stock.",
+    "Domestic board-recovery reconciliation, quarantine review and stock-release rules using synthetic batch completion records."
+  ],
+  "minimum_critical_pass_fraction": 1.0,
+  "minimum_total_pass_fraction": 0.9,
+  "novelty_rationale": "KilnBook introduces discrete manufacturing capacity, indivisible material inputs, actual-versus-planned machine occupancy, board recovery reconciliation and quality-controlled stock release. Export attestation has a narrowly scoped protocol contradiction and unavailable service contract, while intake, domestic scheduling and recovery review remain independently actionable. The rubric assesses business guarantees without prescribing storage technology or architecture.",
+  "product_name": "KilnBook",
+  "rubric": [
+    {
+      "area": "requirements",
+      "criterion_id": "C01",
+      "expected_planning_outcome": "The plan preserves pilot limits, kiln identities, pack attributes, positive whole-board validation and slot accounting independent of board count.",
+      "failure_condition": "A pilot limit or required pack attribute is omitted, pack identifiers can be reused or slot consumption is calculated from board count.",
+      "severity": "critical",
+      "source_quote": "The pilot covers one yard, two kilns named K1 and K2, and at most 500 active packs. Each kiln holds 12 standard packs. Every pack has an immutable identifier, supplier reference, species, thickness band and positive integer board count. Packs occupy one slot regardless of board count."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C02",
+      "expected_planning_outcome": "The plan explicitly preserves all five exclusions and distinguishes requesting a certificate from issuing one.",
+      "failure_condition": "An exclusion is omitted or an excluded capability enters committed scope.",
+      "severity": "critical",
+      "source_quote": "The service does not control kiln equipment, prescribe drying chemistry, price timber, arrange transport or issue statutory certificates itself."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C03",
+      "expected_planning_outcome": "The plan specifies receipt preview, required content, all named validation conditions and atomic rejection with row-level explanations.",
+      "failure_condition": "Preview or a named validation is missing, invalid rows are silently skipped or a rejected receipt partially changes stock.",
+      "severity": "critical",
+      "source_quote": "A yard clerk can preview and accept a receipt containing a unique receipt reference and its pack records. Unknown species or thickness bands, repeated pack identifiers, missing supplier references and invalid counts reject the whole receipt with row-level explanations and no stock changes."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C04",
+      "expected_planning_outcome": "The plan distinguishes identical replay, conflicting replay, cross-receipt pack duplication and attributable amendments with preserved originals and reasons.",
+      "failure_condition": "Replays duplicate stock, changed content overwrites a receipt, an existing pack can be received again or amendments erase original values or attribution.",
+      "severity": "critical",
+      "source_quote": "An identical receipt reference and content is a no-op; changed content under the same reference is rejected. Packs cannot be reused under another receipt. Corrections require an attributable amendment preserving the original values and reason."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C05",
+      "expected_planning_outcome": "The plan connects intake amendments to approval invalidation and requires review and renewed approval before an affected batch starts.",
+      "failure_condition": "An amended input can start under its old approval or the plan handles corrections only as informational warnings.",
+      "severity": "critical",
+      "source_quote": "A correction to a pack already assigned to an approved batch must block that batch from starting until reviewed and approved again."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C06",
+      "expected_planning_outcome": "The plan represents all named stock distinctions and lineage, initializes received packs correctly and enforces quarantine against reservation and release. Different sound representations of overlapping stock restrictions are acceptable.",
+      "failure_condition": "Stock states are collapsed so a mandatory restriction cannot be enforced, lineage is missing or quarantined stock can be reserved or released.",
+      "severity": "critical",
+      "source_quote": "Stock must distinguish available, reserved, in-treatment, quarantined and released quantities. Keep pack-to-batch and batch-to-recovered-stock lineage. Incoming packs begin available; quarantine prevents reservation or release."
+    },
+    {
+      "area": "authorization",
+      "criterion_id": "C07",
+      "expected_planning_outcome": "The plan requires quality-officer authority and attributable quarantine history, keeping clearance separate from production approval and quality release.",
+      "failure_condition": "Other roles can clear quarantine, required history is absent or clearance automatically approves or releases stock.",
+      "severity": "critical",
+      "source_quote": "Only a quality officer can place or clear quarantine, with actor, time and reason. Clearing quarantine does not itself approve a batch or release recovered stock."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C08",
+      "expected_planning_outcome": "The plan includes versioned batch preparation, required inputs, the inclusive pack-count limit, species and thickness homogeneity and indivisible inputs.",
+      "failure_condition": "Versions or required batch inputs are absent, empty or oversized batches are accepted, species or thickness can mix or packs can be split.",
+      "severity": "critical",
+      "source_quote": "A planner can prepare versioned domestic batches naming a kiln, start time and whole input packs. A batch must contain 1–12 packs, all of the same species and thickness band. Do not split a pack between batches."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C09",
+      "expected_planning_outcome": "The plan preserves the 36-hour treatment, four-hour turnaround, 40-hour half-open reservation and whole-hour UTC validation, including endpoint adjacency.",
+      "failure_condition": "Turnaround is omitted, the endpoint is treated as overlapping, timing uses local calendar arithmetic or off-hour starts are accepted.",
+      "severity": "critical",
+      "source_quote": "Domestic treatment lasts exactly 36 hours, followed by four hours of kiln turnaround. Capacity is reserved for the half-open interval from start through start plus 40 hours; another batch may start exactly at that endpoint. Use UTC timestamps at whole-hour boundaries."
+    },
+    {
+      "area": "persistence",
+      "criterion_id": "C10",
+      "expected_planning_outcome": "The plan makes drafts nonbinding and approval a consistent reservation of both materials and kiln time, with stale-input checks and concurrency protection across kilns for shared packs. Proposed verification includes competing approvals.",
+      "failure_condition": "Drafts reserve resources, approvals reserve only one resource type, overlapping kiln time or duplicate pack use is possible or stale metadata can pass approval.",
+      "severity": "critical",
+      "source_quote": "A pack cannot belong to two outstanding approved batches, even on different kilns.\n\nDrafts hold neither packs nor kiln time. A production supervisor can approve or cancel an unstarted batch. Approval atomically reserves both packs and kiln time, rejecting overlaps, unavailable packs and stale pack metadata. Concurrent approvals cannot reserve the same pack or overlapping time on one kiln."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C11",
+      "expected_planning_outcome": "The plan defines cancellation and start transitions, retaining history, releasing both reservation types on cancellation and checking current inputs and occupancy before moving packs into treatment.",
+      "failure_condition": "Cancellation leaves a resource held or erases history, starting lacks confirmation or current checks, or packs remain available after starting.",
+      "severity": "critical",
+      "source_quote": "Cancellation releases both reservations and preserves history. Starting requires supervisor confirmation that the approved inputs remain valid and the kiln is not occupied; it moves the packs into treatment."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C12",
+      "expected_planning_outcome": "The plan distinguishes planned reservations from actual occupancy, extends occupancy through actual completion and turnaround, exposes downstream conflicts and prevents automatic starts or silent rescheduling.",
+      "failure_condition": "Planned end alone frees the kiln, a conflicted following batch can start or its approved start time is silently changed.",
+      "severity": "critical",
+      "source_quote": "An actual run that extends beyond its planned finish keeps the kiln occupied until actual completion plus four hours. Following approvals remain visible as conflicts and cannot start while the kiln is occupied; do not silently shift their start times."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C13",
+      "expected_planning_outcome": "The plan specifies all completion fields, temporal validation, exact input-to-recovered-plus-scrap reconciliation and atomic rejection of invalid completion records.",
+      "failure_condition": "A required completion field or validation is missing, board totals need not reconcile or invalid completion partially changes business state.",
+      "severity": "critical",
+      "source_quote": "A completion record names the batch, actual start and finish, recovered board count and scrap board count. Finish cannot precede start, and recovered plus scrap must equal the input board count. Invalid completion records change nothing."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C14",
+      "expected_planning_outcome": "The plan separates equipment availability from stock release, requires accepted reconciliation and clearance of every active quarantine, and excludes scrap from saleable quantities.",
+      "failure_condition": "Completion automatically releases saleable stock, a quarantine or reconciliation dependency is bypassed, scrap becomes saleable or turnaround is omitted from occupancy release.",
+      "severity": "critical",
+      "source_quote": "Finishing treatment releases kiln occupancy after the four-hour turnaround, but recovered boards remain awaiting quality review. A quality officer can release recovered boards only after accepting the completion reconciliation and clearing every active quarantine affecting the batch. Scrap never becomes saleable stock."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C15",
+      "expected_planning_outcome": "The plan preserves completion revisions and reasons, invalidates affected release after a changed released count and distinguishes recovered outputs from reusable input-pack stock.",
+      "failure_condition": "Corrections overwrite history, changed released counts remain released without review or output recording recreates available input packs.",
+      "severity": "critical",
+      "source_quote": "A revised completion must retain its earlier version and reason; if it changes a released board count, suspend the affected stock's release and require fresh quality review. Never create extra available input packs when recording recovered output."
+    },
+    {
+      "area": "issues",
+      "criterion_id": "C16",
+      "expected_planning_outcome": "The plan records both exact conflicting hold requirements and sources, assigns resolution to the plant compliance officer and leaves the protocol unresolved.",
+      "failure_condition": "The plan chooses a duration, assumes that the stricter duration resolves precedence, blends requirements or fails to identify the contradiction and owner.",
+      "severity": "critical",
+      "source_quote": "The signed customer protocol says “the timber core must remain at or above 56°C for at least 30 consecutive minutes.” The plant's approved compliance manual says “the timber core must remain at or above 56°C for at least 60 consecutive minutes.” Both are mandatory and no precedence ruling is supplied. The plant compliance officer must resolve the contradiction."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C17",
+      "expected_planning_outcome": "The plan blocks export approval and certificate requests on protocol resolution and defined observations, leaves complete export-cycle timing unassumed and preserves the three named domestic branches.",
+      "failure_condition": "Export approval or requests proceed prematurely, a minimum hold time is treated as the whole cycle or export uncertainty blocks unrelated domestic work.",
+      "severity": "critical",
+      "source_quote": "Do not approve export batches or request their certificates until a protocol is resolved and its required observations are defined. Do not infer a complete export cycle duration from either minimum hold time. Intake, domestic planning and domestic recovery review remain usable meanwhile."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C18",
+      "expected_planning_outcome": "The plan identifies both exchange directions, all seven critical unknowns and their resolution before live exchange. Provisional synthetic contracts are labeled as such, and local domestic work remains independent.",
+      "failure_condition": "The plan invents a confirmed service contract or access, omits a critical unknown, treats synthetic exchange as live proof or requires service access for domestic work.",
+      "severity": "critical",
+      "source_quote": "The external timber-certification service is expected to receive export-treatment evidence and return certificate-request status. Its endpoint, authentication, plant permissions, evidence schema, protocol identifiers, status meanings and duplicate-request handling are unknown. Live certificate exchange is blocked on those details and the export protocol, while local domestic work can use synthetic records."
+    },
+    {
+      "area": "authorization",
+      "criterion_id": "C19",
+      "expected_planning_outcome": "The plan requires separate human authorization bound to the exact batch and revisions, invalidates it after supporting changes and recognizes the absence of current execution permission.",
+      "failure_condition": "Authorization is generic, stale authorization survives evidence changes, production approval or quality release substitutes for authorization or the brief is treated as permission to attempt exchange.",
+      "severity": "critical",
+      "source_quote": "Before any attempt, the plant compliance officer must separately authorize the exact export batch, completion revision and evidence version. This specification grants no execution permission. A later change to any authorized evidence or completion invalidates that authorization. Internal production approval and quality release are not permission to request a certificate."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C20",
+      "expected_planning_outcome": "The plan preserves all four outcomes, a documented-resolution gate after uncertainty, evidence-linked certificates and separation between certification and quality release.",
+      "failure_condition": "Pending is reported as issued, timeout becomes definitive failure or success, unknown attempts retry automatically, certificates lack evidence linkage or issuance automatically releases stock.",
+      "severity": "critical",
+      "source_quote": "Preserve distinct outcomes of rejected, pending, certificate issued and unknown; pending is not issued. A timeout is unknown and another attempt requires documented outcome resolution rather than automatic retry. An issued certificate is linked to its authorized evidence and does not itself release stock."
+    },
+    {
+      "area": "authorization",
+      "criterion_id": "C21",
+      "expected_planning_outcome": "The plan maps every named role to its business operations, enforces those permissions beyond interface visibility and proposes denied-operation checks without prescribing a deployment architecture.",
+      "failure_condition": "A named role boundary is absent, an unauthorized role gains a restricted operation or permissions rely only on hiding controls.",
+      "severity": "critical",
+      "source_quote": "Viewers can read; yard clerks can receive and amend intake; planners can prepare batches; production supervisors can approve, cancel and start them; quality officers manage quarantine, completion acceptance and stock release; only the plant compliance officer can resolve the export protocol and authorize certificate requests. Enforce permissions at the operation boundary, beyond hidden controls."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C22",
+      "expected_planning_outcome": "The plan includes every named overview category, distinguishes reservations from occupancy and provides traceability to supporting business records.",
+      "failure_condition": "A required overview category or supporting reference is missing, or displayed occupancy and stock measures contradict the governing lifecycle rules.",
+      "severity": "critical",
+      "source_quote": "The overview must show stock by state, kiln reservations and actual occupancy, schedule conflicts, recovery totals, quarantines and certificate status, with supporting record references."
+    },
+    {
+      "area": "test_claims",
+      "criterion_id": "C23",
+      "expected_planning_outcome": "Proposed acceptance verification preserves every exact timing, pack, species, reconciliation, overrun and pending-certificate result.",
+      "failure_condition": "A stated example is omitted or changed, timing arithmetic is wrong or the plan asserts a conflicting acceptance result.",
+      "severity": "critical",
+      "source_quote": "A domestic batch starting 3 November 2026 at 08:00 UTC reserves its kiln until 5 November at 00:00 UTC. A second batch at that endpoint is allowed; one starting an hour earlier is rejected. Thirteen packs fail even when board counts are small. Two packs of different species fail even when slots remain. For 1,000 input boards, recovered 970 plus scrap 30 is valid; recovered 970 plus scrap 20 is rejected without changes. If actual treatment finishes on 5 November at 02:00 UTC, the kiln remains occupied until 06:00, and the approved 00:00 batch cannot start automatically. A certificate request marked pending leaves certificate-issued status false and does not release stock."
+    },
+    {
+      "area": "persistence",
+      "criterion_id": "C24",
+      "expected_planning_outcome": "The plan identifies durable records and relationships sufficient for receipts and amendments, packs, batch versions and reservations, actual occupancy, completion revisions, recovered stock, quarantine, release, protocol decisions and certificate authorizations/outcomes. It explains consistent restart behavior and proposes restart verification. Any sound durable design is acceptable.",
+      "failure_condition": "Mandatory history or relationships are transient, restart changes stock or capacity results or durable records cannot support a mandatory business transition. Choosing a particular sound local or service-based storage design is not a failure.",
+      "severity": "critical",
+      "source_quote": "Records, lineage, authorization history and consistent stock and capacity results must survive restart."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C25",
+      "expected_planning_outcome": "The plan labels reversible choices as assumptions, identifies intake and domestic scheduling as independently actionable capabilities using synthetic data and preserves local recovery/review work. Dependencies remain coherent: scheduling consumes valid pack records, recovery consumes batch inputs and release consumes accepted recovery and quarantine clearance.",
+      "failure_condition": "The plan invents customer approval, blocks local capabilities on export unknowns, omits either independent branch or introduces dependencies inconsistent with the business lifecycle.",
+      "severity": "critical",
+      "source_quote": "Local storage, receipt-preview layout and initial overview grouping may use explicitly labeled reversible technical assumptions; none is customer approval. Intake reconciliation and domestic kiln scheduling are independently plannable with synthetic data before export-policy or service details are resolved. Domestic recovery and quality review can also be planned locally."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C26",
+      "expected_planning_outcome": "The plan treats the grouping disagreement as a nonblocking presentation choice and preserves identical stock and capacity semantics under either grouping.",
+      "failure_condition": "The disagreement blocks mandatory work, is represented as a resolved customer decision without evidence or changes stock or capacity calculations.",
+      "severity": "critical",
+      "source_quote": "Users disagree whether the yard overview should initially group stock by supplier or species; either is acceptable and must not alter stock or capacity calculations."
+    },
+    {
+      "area": "test_claims",
+      "criterion_id": "C27",
+      "expected_planning_outcome": "The plan consistently describes verification as proposed and distinguishes synthetic checks from future live exchange validation without claiming supplied implementation or execution evidence.",
+      "failure_condition": "The plan claims implementation, passed tests or verified live integration without evidence or presents planned checks as completed results.",
+      "severity": "critical",
+      "source_quote": "Describe checks as proposed verification: no implementation, executed tests or live integration evidence is supplied."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C28",
+      "expected_planning_outcome": "The plan places overview requirements in an easily located grouping or provides clear cross-references. This assesses presentation only; C22 independently assesses mandatory completeness and correctness.",
+      "failure_condition": "All overview requirements are present and correct but scattered without a clear grouping or navigation reference. Missing or incorrect mandatory behavior must also fail its critical criterion and cannot be counted solely as this minor presentation issue.",
+      "severity": "minor",
+      "source_quote": "The overview must show stock by state, kiln reservations and actual occupancy, schedule conflicts, recovery totals, quarantines and certificate status, with supporting record references."
+    }
+  ],
+  "specification_markdown": "# KilnBook: timber drying, recovery and export-treatment review\n\n## Operating purpose and limits\nA timber processor needs to account for received timber packs, reserve kiln capacity and reconcile recovered boards before releasing stock. The pilot covers one yard, two kilns named K1 and K2, and at most 500 active packs. Each kiln holds 12 standard packs. Every pack has an immutable identifier, supplier reference, species, thickness band and positive integer board count. Packs occupy one slot regardless of board count. The service does not control kiln equipment, prescribe drying chemistry, price timber, arrange transport or issue statutory certificates itself. Synthetic receipts and treatment observations are available; external credentials, accounts and execution authorizations are absent.\n\n## Intake and stock traceability\nA yard clerk can preview and accept a receipt containing a unique receipt reference and its pack records. Unknown species or thickness bands, repeated pack identifiers, missing supplier references and invalid counts reject the whole receipt with row-level explanations and no stock changes. An identical receipt reference and content is a no-op; changed content under the same reference is rejected. Packs cannot be reused under another receipt. Corrections require an attributable amendment preserving the original values and reason. A correction to a pack already assigned to an approved batch must block that batch from starting until reviewed and approved again.\n\nStock must distinguish available, reserved, in-treatment, quarantined and released quantities. Keep pack-to-batch and batch-to-recovered-stock lineage. Incoming packs begin available; quarantine prevents reservation or release. Only a quality officer can place or clear quarantine, with actor, time and reason. Clearing quarantine does not itself approve a batch or release recovered stock.\n\n## Domestic batch planning\nA planner can prepare versioned domestic batches naming a kiln, start time and whole input packs. A batch must contain 1–12 packs, all of the same species and thickness band. Do not split a pack between batches. Domestic treatment lasts exactly 36 hours, followed by four hours of kiln turnaround. Capacity is reserved for the half-open interval from start through start plus 40 hours; another batch may start exactly at that endpoint. Use UTC timestamps at whole-hour boundaries. A pack cannot belong to two outstanding approved batches, even on different kilns.\n\nDrafts hold neither packs nor kiln time. A production supervisor can approve or cancel an unstarted batch. Approval atomically reserves both packs and kiln time, rejecting overlaps, unavailable packs and stale pack metadata. Concurrent approvals cannot reserve the same pack or overlapping time on one kiln. Cancellation releases both reservations and preserves history. Starting requires supervisor confirmation that the approved inputs remain valid and the kiln is not occupied; it moves the packs into treatment. An actual run that extends beyond its planned finish keeps the kiln occupied until actual completion plus four hours. Following approvals remain visible as conflicts and cannot start while the kiln is occupied; do not silently shift their start times.\n\n## Completion and recovered stock\nA completion record names the batch, actual start and finish, recovered board count and scrap board count. Finish cannot precede start, and recovered plus scrap must equal the input board count. Invalid completion records change nothing. Finishing treatment releases kiln occupancy after the four-hour turnaround, but recovered boards remain awaiting quality review. A quality officer can release recovered boards only after accepting the completion reconciliation and clearing every active quarantine affecting the batch. Scrap never becomes saleable stock. A revised completion must retain its earlier version and reason; if it changes a released board count, suspend the affected stock's release and require fresh quality review. Never create extra available input packs when recording recovered output.\n\n## Export-treatment uncertainty\nExport batches require a verified heat-treatment protocol in addition to ordinary capacity checks. The signed customer protocol says “the timber core must remain at or above 56°C for at least 30 consecutive minutes.” The plant's approved compliance manual says “the timber core must remain at or above 56°C for at least 60 consecutive minutes.” Both are mandatory and no precedence ruling is supplied. The plant compliance officer must resolve the contradiction. Do not approve export batches or request their certificates until a protocol is resolved and its required observations are defined. Do not infer a complete export cycle duration from either minimum hold time. Intake, domestic planning and domestic recovery review remain usable meanwhile. Users disagree whether the yard overview should initially group stock by supplier or species; either is acceptable and must not alter stock or capacity calculations.\n\n## Certificate requests and authority\nThe external timber-certification service is expected to receive export-treatment evidence and return certificate-request status. Its endpoint, authentication, plant permissions, evidence schema, protocol identifiers, status meanings and duplicate-request handling are unknown. Live certificate exchange is blocked on those details and the export protocol, while local domestic work can use synthetic records.\n\nA certificate request is an external attestation. Before any attempt, the plant compliance officer must separately authorize the exact export batch, completion revision and evidence version. This specification grants no execution permission. A later change to any authorized evidence or completion invalidates that authorization. Internal production approval and quality release are not permission to request a certificate. Preserve distinct outcomes of rejected, pending, certificate issued and unknown; pending is not issued. A timeout is unknown and another attempt requires documented outcome resolution rather than automatic retry. An issued certificate is linked to its authorized evidence and does not itself release stock.\n\nViewers can read; yard clerks can receive and amend intake; planners can prepare batches; production supervisors can approve, cancel and start them; quality officers manage quarantine, completion acceptance and stock release; only the plant compliance officer can resolve the export protocol and authorize certificate requests. Enforce permissions at the operation boundary, beyond hidden controls. The overview must show stock by state, kiln reservations and actual occupancy, schedule conflicts, recovery totals, quarantines and certificate status, with supporting record references.\n\n## Acceptance and delivery expectations\nA domestic batch starting 3 November 2026 at 08:00 UTC reserves its kiln until 5 November at 00:00 UTC. A second batch at that endpoint is allowed; one starting an hour earlier is rejected. Thirteen packs fail even when board counts are small. Two packs of different species fail even when slots remain. For 1,000 input boards, recovered 970 plus scrap 30 is valid; recovered 970 plus scrap 20 is rejected without changes. If actual treatment finishes on 5 November at 02:00 UTC, the kiln remains occupied until 06:00, and the approved 00:00 batch cannot start automatically. A certificate request marked pending leaves certificate-issued status false and does not release stock.\n\nRecords, lineage, authorization history and consistent stock and capacity results must survive restart. Local storage, receipt-preview layout and initial overview grouping may use explicitly labeled reversible technical assumptions; none is customer approval. Intake reconciliation and domestic kiln scheduling are independently plannable with synthetic data before export-policy or service details are resolved. Domestic recovery and quality review can also be planned locally. Describe checks as proposed verification: no implementation, executed tests or live integration evidence is supplied."
+}

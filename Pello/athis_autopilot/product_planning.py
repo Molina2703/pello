@@ -1147,6 +1147,18 @@ class ProductPlanningCore(Bridge):
                 interpretation['source_segments_ref'] = '#/source_segments'
                 packed['context_encoding'] = 'The interpretation source map is identical to top-level source_segments, supplied once; source_segments_ref refers to that complete map.'
                 prompt = prompt[:prompt.index('\nDATA JSON:\n')+len('\nDATA JSON:\n')] + json.dumps(packed, ensure_ascii=False, separators=(',', ':'))
+                if len(prompt) > 55_000 and isinstance(packed.get('original_product_specification_markdown'), str):
+                    lines = packed['original_product_specification_markdown'].splitlines()
+                    segments = packed['source_segments']
+                    if all(isinstance(s.get('start_line'), int) and isinstance(s.get('end_line'), int)
+                            and 1 <= s['start_line'] <= s['end_line'] <= len(lines)
+                            and s.get('text') == '\n'.join(lines[s['start_line']-1:s['end_line']]).strip()
+                            for s in segments):
+                        for segment in segments:
+                            segment.pop('text')
+                            segment['source_text_lines_ref'] = [segment['start_line'], segment['end_line']]
+                        packed['context_encoding'] += " Segment source_text_lines_ref is a 1-based inclusive line range in original_product_specification_markdown; reconstruct text by joining those splitlines() with '\\n' then strip(). The complete original source is supplied once; no requirement or source content is omitted."
+                        prompt = prompt[:prompt.index('\nDATA JSON:\n')+len('\nDATA JSON:\n')] + json.dumps(packed, ensure_ascii=False, separators=(',', ':'))
         if len(prompt) > 55_000:
             raise ValueError('Planning context exceeds 55,000 characters; no silent truncation')
         return prompt

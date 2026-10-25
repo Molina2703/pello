@@ -1,0 +1,36 @@
+test_crlf_source_preserves_canonical_segment_text (test_review_source_references.ReviewSourceReferenceTests.test_crlf_source_preserves_canonical_segment_text) ... ERROR
+test_large_review_payload_reconstructs_every_original_field (test_review_source_references.ReviewSourceReferenceTests.test_large_review_payload_reconstructs_every_original_field) ... ERROR
+test_nonmatching_source_text_is_not_hidden_behind_a_reference (test_review_source_references.ReviewSourceReferenceTests.test_nonmatching_source_text_is_not_hidden_behind_a_reference) ... ok
+
+======================================================================
+ERROR: test_crlf_source_preserves_canonical_segment_text (test_review_source_references.ReviewSourceReferenceTests.test_crlf_source_preserves_canonical_segment_text)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_review_source_references.py", line 24, in test_crlf_source_preserves_canonical_segment_text
+    def test_crlf_source_preserves_canonical_segment_text(self):self.round_trip(self.payload('\r\n'))
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_review_source_references.py", line 13, in round_trip
+    before=copy.deepcopy(value);prompt=ProductPlanningCore._prompt('review-analysis',value)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 1151, in _prompt
+    raise ValueError('Planning context exceeds 55,000 characters; no silent truncation')
+ValueError: Planning context exceeds 55,000 characters; no silent truncation
+
+======================================================================
+ERROR: test_large_review_payload_reconstructs_every_original_field (test_review_source_references.ReviewSourceReferenceTests.test_large_review_payload_reconstructs_every_original_field)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_review_source_references.py", line 23, in test_large_review_payload_reconstructs_every_original_field
+    def test_large_review_payload_reconstructs_every_original_field(self):self.round_trip(self.payload())
+                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_review_source_references.py", line 13, in round_trip
+    before=copy.deepcopy(value);prompt=ProductPlanningCore._prompt('review-analysis',value)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 1151, in _prompt
+    raise ValueError('Planning context exceeds 55,000 characters; no silent truncation')
+ValueError: Planning context exceeds 55,000 characters; no silent truncation
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.006s
+
+FAILED (errors=2)

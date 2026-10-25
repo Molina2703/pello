@@ -1,0 +1,16 @@
+{
+  "evaluation_id": "phase3c3-heldout-c-v1",
+  "verdict": "FAIL",
+  "objective_verdict": "FAIL",
+  "reviewer_verdict": "not_reached",
+  "critical_failures": [
+    "Real pipeline did not reach independent interpretation review or persistent compatible plan",
+    "Source-plus-source-map review context still exceeded 55,000 characters after first-level factoring"
+  ],
+  "semantic_quality": "39 extracted requirements are typed-valid, not semantically accepted",
+  "new_budget_guard_worked": true,
+  "SDK_turns_reserved_for_rejected_review": 0,
+  "new_blind_fixture_required_after_any_correction": true,
+  "specification_sha256": "ab227a640a8a4e25fdadbf3c3c9900873549b26eaaeaffe4fb7a2ebad4c624b7",
+  "rubric_sha256": "3674c9e42de22b346e4d7d6d93fb0772b04b04b998cb70c13eb8174feaccd20e"
+}

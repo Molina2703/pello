@@ -1,0 +1,13 @@
+test_cannot_claim_pass_or_protection_from_generation (test_planning_acceptance.PlanningAcceptanceTests.test_cannot_claim_pass_or_protection_from_generation) ... ok
+test_contracts_are_proposals_not_executed_tests (test_planning_acceptance.PlanningAcceptanceTests.test_contracts_are_proposals_not_executed_tests) ... ok
+test_empty_observation_and_duplicate_criterion_rejected (test_planning_acceptance.PlanningAcceptanceTests.test_empty_observation_and_duplicate_criterion_rejected) ... ok
+test_existing_manifest_accepts_automatic_conversion (test_planning_acceptance.PlanningAcceptanceTests.test_existing_manifest_accepts_automatic_conversion) ... ok
+test_missing_contract_rejected (test_planning_acceptance.PlanningAcceptanceTests.test_missing_contract_rejected) ... ok
+test_missing_exclusion_coverage_rejected (test_planning_acceptance.PlanningAcceptanceTests.test_missing_exclusion_coverage_rejected) ... ok
+test_normal_invalid_and_boundary_coverage_required (test_planning_acceptance.PlanningAcceptanceTests.test_normal_invalid_and_boundary_coverage_required) ... ok
+test_unknown_requirement_rejected (test_planning_acceptance.PlanningAcceptanceTests.test_unknown_requirement_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.018s
+
+OK

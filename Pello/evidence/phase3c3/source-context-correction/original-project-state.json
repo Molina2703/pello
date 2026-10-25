@@ -1,0 +1,13 @@
+{
+  "project_id": "phase3c3-heldout-c",
+  "source_path": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\evidence\\phase3c3\\heldout-c-spec.md",
+  "source_hash": "ab227a640a8a4e25fdadbf3c3c9900873549b26eaaeaffe4fb7a2ebad4c624b7",
+  "current_version": 1,
+  "max_turns": 12,
+  "used_turns": 1,
+  "deadline": "2026-10-26T00:44:56+00:00",
+  "status": "ANALYZED",
+  "blocker": "",
+  "created": "2026-10-25T22:44:56+00:00",
+  "modified": "2026-10-25T22:48:08+00:00"
+}

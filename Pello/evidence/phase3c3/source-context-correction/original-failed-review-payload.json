@@ -1,0 +1,1541 @@
+{
+  "source_sha256": "ab227a640a8a4e25fdadbf3c3c9900873549b26eaaeaffe4fb7a2ebad4c624b7",
+  "original_product_specification_markdown": "# KilnBook: timber drying, recovery and export-treatment review\n\n## Operating purpose and limits\nA timber processor needs to account for received timber packs, reserve kiln capacity and reconcile recovered boards before releasing stock. The pilot covers one yard, two kilns named K1 and K2, and at most 500 active packs. Each kiln holds 12 standard packs. Every pack has an immutable identifier, supplier reference, species, thickness band and positive integer board count. Packs occupy one slot regardless of board count. The service does not control kiln equipment, prescribe drying chemistry, price timber, arrange transport or issue statutory certificates itself. Synthetic receipts and treatment observations are available; external credentials, accounts and execution authorizations are absent.\n\n## Intake and stock traceability\nA yard clerk can preview and accept a receipt containing a unique receipt reference and its pack records. Unknown species or thickness bands, repeated pack identifiers, missing supplier references and invalid counts reject the whole receipt with row-level explanations and no stock changes. An identical receipt reference and content is a no-op; changed content under the same reference is rejected. Packs cannot be reused under another receipt. Corrections require an attributable amendment preserving the original values and reason. A correction to a pack already assigned to an approved batch must block that batch from starting until reviewed and approved again.\n\nStock must distinguish available, reserved, in-treatment, quarantined and released quantities. Keep pack-to-batch and batch-to-recovered-stock lineage. Incoming packs begin available; quarantine prevents reservation or release. Only a quality officer can place or clear quarantine, with actor, time and reason. Clearing quarantine does not itself approve a batch or release recovered stock.\n\n## Domestic batch planning\nA planner can prepare versioned domestic batches naming a kiln, start time and whole input packs. A batch must contain 1–12 packs, all of the same species and thickness band. Do not split a pack between batches. Domestic treatment lasts exactly 36 hours, followed by four hours of kiln turnaround. Capacity is reserved for the half-open interval from start through start plus 40 hours; another batch may start exactly at that endpoint. Use UTC timestamps at whole-hour boundaries. A pack cannot belong to two outstanding approved batches, even on different kilns.\n\nDrafts hold neither packs nor kiln time. A production supervisor can approve or cancel an unstarted batch. Approval atomically reserves both packs and kiln time, rejecting overlaps, unavailable packs and stale pack metadata. Concurrent approvals cannot reserve the same pack or overlapping time on one kiln. Cancellation releases both reservations and preserves history. Starting requires supervisor confirmation that the approved inputs remain valid and the kiln is not occupied; it moves the packs into treatment. An actual run that extends beyond its planned finish keeps the kiln occupied until actual completion plus four hours. Following approvals remain visible as conflicts and cannot start while the kiln is occupied; do not silently shift their start times.\n\n## Completion and recovered stock\nA completion record names the batch, actual start and finish, recovered board count and scrap board count. Finish cannot precede start, and recovered plus scrap must equal the input board count. Invalid completion records change nothing. Finishing treatment releases kiln occupancy after the four-hour turnaround, but recovered boards remain awaiting quality review. A quality officer can release recovered boards only after accepting the completion reconciliation and clearing every active quarantine affecting the batch. Scrap never becomes saleable stock. A revised completion must retain its earlier version and reason; if it changes a released board count, suspend the affected stock's release and require fresh quality review. Never create extra available input packs when recording recovered output.\n\n## Export-treatment uncertainty\nExport batches require a verified heat-treatment protocol in addition to ordinary capacity checks. The signed customer protocol says “the timber core must remain at or above 56°C for at least 30 consecutive minutes.” The plant's approved compliance manual says “the timber core must remain at or above 56°C for at least 60 consecutive minutes.” Both are mandatory and no precedence ruling is supplied. The plant compliance officer must resolve the contradiction. Do not approve export batches or request their certificates until a protocol is resolved and its required observations are defined. Do not infer a complete export cycle duration from either minimum hold time. Intake, domestic planning and domestic recovery review remain usable meanwhile. Users disagree whether the yard overview should initially group stock by supplier or species; either is acceptable and must not alter stock or capacity calculations.\n\n## Certificate requests and authority\nThe external timber-certification service is expected to receive export-treatment evidence and return certificate-request status. Its endpoint, authentication, plant permissions, evidence schema, protocol identifiers, status meanings and duplicate-request handling are unknown. Live certificate exchange is blocked on those details and the export protocol, while local domestic work can use synthetic records.\n\nA certificate request is an external attestation. Before any attempt, the plant compliance officer must separately authorize the exact export batch, completion revision and evidence version. This specification grants no execution permission. A later change to any authorized evidence or completion invalidates that authorization. Internal production approval and quality release are not permission to request a certificate. Preserve distinct outcomes of rejected, pending, certificate issued and unknown; pending is not issued. A timeout is unknown and another attempt requires documented outcome resolution rather than automatic retry. An issued certificate is linked to its authorized evidence and does not itself release stock.\n\nViewers can read; yard clerks can receive and amend intake; planners can prepare batches; production supervisors can approve, cancel and start them; quality officers manage quarantine, completion acceptance and stock release; only the plant compliance officer can resolve the export protocol and authorize certificate requests. Enforce permissions at the operation boundary, beyond hidden controls. The overview must show stock by state, kiln reservations and actual occupancy, schedule conflicts, recovery totals, quarantines and certificate status, with supporting record references.\n\n## Acceptance and delivery expectations\nA domestic batch starting 3 November 2026 at 08:00 UTC reserves its kiln until 5 November at 00:00 UTC. A second batch at that endpoint is allowed; one starting an hour earlier is rejected. Thirteen packs fail even when board counts are small. Two packs of different species fail even when slots remain. For 1,000 input boards, recovered 970 plus scrap 30 is valid; recovered 970 plus scrap 20 is rejected without changes. If actual treatment finishes on 5 November at 02:00 UTC, the kiln remains occupied until 06:00, and the approved 00:00 batch cannot start automatically. A certificate request marked pending leaves certificate-issued status false and does not release stock.\n\nRecords, lineage, authorization history and consistent stock and capacity results must survive restart. Local storage, receipt-preview layout and initial overview grouping may use explicitly labeled reversible technical assumptions; none is customer approval. Intake reconciliation and domestic kiln scheduling are independently plannable with synthetic data before export-policy or service details are resolved. Domestic recovery and quality review can also be planned locally. Describe checks as proposed verification: no implementation, executed tests or live integration evidence is supplied.",
+  "source_segments": [
+    {
+      "source_id": "SRC-3a8f39f7ae6b",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review"
+      ],
+      "start_line": 1,
+      "end_line": 1,
+      "text": "# KilnBook: timber drying, recovery and export-treatment review",
+      "sha256": "978b0a7206bc056da989dfd25b932bb3a1d89163ba924450dbaf6f1b909184fe"
+    },
+    {
+      "source_id": "SRC-4ed41bd5c884",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Operating purpose and limits"
+      ],
+      "start_line": 3,
+      "end_line": 3,
+      "text": "## Operating purpose and limits",
+      "sha256": "798d3446a91f628c5ab67d7c8875809c9c339417244f11c5af64133359444c54"
+    },
+    {
+      "source_id": "SRC-94979c580114",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Operating purpose and limits"
+      ],
+      "start_line": 4,
+      "end_line": 4,
+      "text": "A timber processor needs to account for received timber packs, reserve kiln capacity and reconcile recovered boards before releasing stock. The pilot covers one yard, two kilns named K1 and K2, and at most 500 active packs. Each kiln holds 12 standard packs. Every pack has an immutable identifier, supplier reference, species, thickness band and positive integer board count. Packs occupy one slot regardless of board count. The service does not control kiln equipment, prescribe drying chemistry, price timber, arrange transport or issue statutory certificates itself. Synthetic receipts and treatment observations are available; external credentials, accounts and execution authorizations are absent.",
+      "sha256": "80274915b22266dba94b7b64907a8780c5c057e14607c2ffa1d23362135377ce"
+    },
+    {
+      "source_id": "SRC-a8401b5af230",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Intake and stock traceability"
+      ],
+      "start_line": 6,
+      "end_line": 6,
+      "text": "## Intake and stock traceability",
+      "sha256": "381e752526537bc64e13cbfbf08c451b1c33c2c61e7fd2b555aca8de4d7f30d1"
+    },
+    {
+      "source_id": "SRC-d9611bfba816",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Intake and stock traceability"
+      ],
+      "start_line": 7,
+      "end_line": 7,
+      "text": "A yard clerk can preview and accept a receipt containing a unique receipt reference and its pack records. Unknown species or thickness bands, repeated pack identifiers, missing supplier references and invalid counts reject the whole receipt with row-level explanations and no stock changes. An identical receipt reference and content is a no-op; changed content under the same reference is rejected. Packs cannot be reused under another receipt. Corrections require an attributable amendment preserving the original values and reason. A correction to a pack already assigned to an approved batch must block that batch from starting until reviewed and approved again.",
+      "sha256": "3868e00e68d20b3e31dd1b433492051367972bd1958813bc3d598950fbd6728f"
+    },
+    {
+      "source_id": "SRC-58ed9c20043b",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Intake and stock traceability"
+      ],
+      "start_line": 9,
+      "end_line": 9,
+      "text": "Stock must distinguish available, reserved, in-treatment, quarantined and released quantities. Keep pack-to-batch and batch-to-recovered-stock lineage. Incoming packs begin available; quarantine prevents reservation or release. Only a quality officer can place or clear quarantine, with actor, time and reason. Clearing quarantine does not itself approve a batch or release recovered stock.",
+      "sha256": "fc318fc69485a40c252f8e7008d664a535420ad9c73198799d8b46692f856f15"
+    },
+    {
+      "source_id": "SRC-01cb2727403d",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Domestic batch planning"
+      ],
+      "start_line": 11,
+      "end_line": 11,
+      "text": "## Domestic batch planning",
+      "sha256": "f4b64d5e64ec6d7ca4384ff9d568c9efd50c14528aeb8446cd3abb8639d227d4"
+    },
+    {
+      "source_id": "SRC-5028cbf93698",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Domestic batch planning"
+      ],
+      "start_line": 12,
+      "end_line": 12,
+      "text": "A planner can prepare versioned domestic batches naming a kiln, start time and whole input packs. A batch must contain 1–12 packs, all of the same species and thickness band. Do not split a pack between batches. Domestic treatment lasts exactly 36 hours, followed by four hours of kiln turnaround. Capacity is reserved for the half-open interval from start through start plus 40 hours; another batch may start exactly at that endpoint. Use UTC timestamps at whole-hour boundaries. A pack cannot belong to two outstanding approved batches, even on different kilns.",
+      "sha256": "278242181f8da5b274248aa79ae34fbc2305823a8c0a3ee0d99808779d34cedb"
+    },
+    {
+      "source_id": "SRC-5ca7a1e8bff8",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Domestic batch planning"
+      ],
+      "start_line": 14,
+      "end_line": 14,
+      "text": "Drafts hold neither packs nor kiln time. A production supervisor can approve or cancel an unstarted batch. Approval atomically reserves both packs and kiln time, rejecting overlaps, unavailable packs and stale pack metadata. Concurrent approvals cannot reserve the same pack or overlapping time on one kiln. Cancellation releases both reservations and preserves history. Starting requires supervisor confirmation that the approved inputs remain valid and the kiln is not occupied; it moves the packs into treatment. An actual run that extends beyond its planned finish keeps the kiln occupied until actual completion plus four hours. Following approvals remain visible as conflicts and cannot start while the kiln is occupied; do not silently shift their start times.",
+      "sha256": "e7adeba9ee50ce749bce03ab3ec1c0381cee83d525ee03041c6cab0bd1f4a91b"
+    },
+    {
+      "source_id": "SRC-5d8252f7cc58",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Completion and recovered stock"
+      ],
+      "start_line": 16,
+      "end_line": 16,
+      "text": "## Completion and recovered stock",
+      "sha256": "767dc1563e44149d18ae629eacbf608527341b0e1b0a28750f0a23ffbde4ffd4"
+    },
+    {
+      "source_id": "SRC-0ed2cf0c0567",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Completion and recovered stock"
+      ],
+      "start_line": 17,
+      "end_line": 17,
+      "text": "A completion record names the batch, actual start and finish, recovered board count and scrap board count. Finish cannot precede start, and recovered plus scrap must equal the input board count. Invalid completion records change nothing. Finishing treatment releases kiln occupancy after the four-hour turnaround, but recovered boards remain awaiting quality review. A quality officer can release recovered boards only after accepting the completion reconciliation and clearing every active quarantine affecting the batch. Scrap never becomes saleable stock. A revised completion must retain its earlier version and reason; if it changes a released board count, suspend the affected stock's release and require fresh quality review. Never create extra available input packs when recording recovered output.",
+      "sha256": "b0d13ffb22d55a11872ff797999714472b17d69a88bc5f52c5e41a9fd9021a85"
+    },
+    {
+      "source_id": "SRC-11958e49bfd0",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Export-treatment uncertainty"
+      ],
+      "start_line": 19,
+      "end_line": 19,
+      "text": "## Export-treatment uncertainty",
+      "sha256": "2b81cdb5a7c319506489d9500bdc82eb3875792ee4de52d07c6653bb3e559d67"
+    },
+    {
+      "source_id": "SRC-76ee65b826ad",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Export-treatment uncertainty"
+      ],
+      "start_line": 20,
+      "end_line": 20,
+      "text": "Export batches require a verified heat-treatment protocol in addition to ordinary capacity checks. The signed customer protocol says “the timber core must remain at or above 56°C for at least 30 consecutive minutes.” The plant's approved compliance manual says “the timber core must remain at or above 56°C for at least 60 consecutive minutes.” Both are mandatory and no precedence ruling is supplied. The plant compliance officer must resolve the contradiction. Do not approve export batches or request their certificates until a protocol is resolved and its required observations are defined. Do not infer a complete export cycle duration from either minimum hold time. Intake, domestic planning and domestic recovery review remain usable meanwhile. Users disagree whether the yard overview should initially group stock by supplier or species; either is acceptable and must not alter stock or capacity calculations.",
+      "sha256": "858fec2b8efb62a41025ac0b5abd45290350fda22214b4b330ea1e21fb4d66c7"
+    },
+    {
+      "source_id": "SRC-0fb6a192b14b",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Certificate requests and authority"
+      ],
+      "start_line": 22,
+      "end_line": 22,
+      "text": "## Certificate requests and authority",
+      "sha256": "bd485b4fb936225db1d2480f04d713e5fa362c4de70aace4fa22d61184080f48"
+    },
+    {
+      "source_id": "SRC-553793d7530a",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Certificate requests and authority"
+      ],
+      "start_line": 23,
+      "end_line": 23,
+      "text": "The external timber-certification service is expected to receive export-treatment evidence and return certificate-request status. Its endpoint, authentication, plant permissions, evidence schema, protocol identifiers, status meanings and duplicate-request handling are unknown. Live certificate exchange is blocked on those details and the export protocol, while local domestic work can use synthetic records.",
+      "sha256": "917004a381630d7b8ee98a58549d19efc5511d9cff47afe105bdaf93aae6fae8"
+    },
+    {
+      "source_id": "SRC-8539c96ab4fb",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Certificate requests and authority"
+      ],
+      "start_line": 25,
+      "end_line": 25,
+      "text": "A certificate request is an external attestation. Before any attempt, the plant compliance officer must separately authorize the exact export batch, completion revision and evidence version. This specification grants no execution permission. A later change to any authorized evidence or completion invalidates that authorization. Internal production approval and quality release are not permission to request a certificate. Preserve distinct outcomes of rejected, pending, certificate issued and unknown; pending is not issued. A timeout is unknown and another attempt requires documented outcome resolution rather than automatic retry. An issued certificate is linked to its authorized evidence and does not itself release stock.",
+      "sha256": "56d04952dba7bdcc785e0fccb47092177f9cb3e7e470f85cb5aa94760b655d4b"
+    },
+    {
+      "source_id": "SRC-e5dc19b159e5",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Certificate requests and authority"
+      ],
+      "start_line": 27,
+      "end_line": 27,
+      "text": "Viewers can read; yard clerks can receive and amend intake; planners can prepare batches; production supervisors can approve, cancel and start them; quality officers manage quarantine, completion acceptance and stock release; only the plant compliance officer can resolve the export protocol and authorize certificate requests. Enforce permissions at the operation boundary, beyond hidden controls. The overview must show stock by state, kiln reservations and actual occupancy, schedule conflicts, recovery totals, quarantines and certificate status, with supporting record references.",
+      "sha256": "e9d05a8c4543424774994820d7fd003a3691b29f77e15c028ca4aa5adfb4d791"
+    },
+    {
+      "source_id": "SRC-b52a1e9d1a12",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Acceptance and delivery expectations"
+      ],
+      "start_line": 29,
+      "end_line": 29,
+      "text": "## Acceptance and delivery expectations",
+      "sha256": "ba7c1cc07df2123f3766b759cb496608ccc66466a72b83257eb32ca76d0240b2"
+    },
+    {
+      "source_id": "SRC-3cef61b19219",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Acceptance and delivery expectations"
+      ],
+      "start_line": 30,
+      "end_line": 30,
+      "text": "A domestic batch starting 3 November 2026 at 08:00 UTC reserves its kiln until 5 November at 00:00 UTC. A second batch at that endpoint is allowed; one starting an hour earlier is rejected. Thirteen packs fail even when board counts are small. Two packs of different species fail even when slots remain. For 1,000 input boards, recovered 970 plus scrap 30 is valid; recovered 970 plus scrap 20 is rejected without changes. If actual treatment finishes on 5 November at 02:00 UTC, the kiln remains occupied until 06:00, and the approved 00:00 batch cannot start automatically. A certificate request marked pending leaves certificate-issued status false and does not release stock.",
+      "sha256": "4059c290152071a72a4577e98934fbee551f0a532dedea7da31b2f7d4df1d2dd"
+    },
+    {
+      "source_id": "SRC-b950d7dc1b4d",
+      "heading_path": [
+        "KilnBook: timber drying, recovery and export-treatment review",
+        "Acceptance and delivery expectations"
+      ],
+      "start_line": 32,
+      "end_line": 32,
+      "text": "Records, lineage, authorization history and consistent stock and capacity results must survive restart. Local storage, receipt-preview layout and initial overview grouping may use explicitly labeled reversible technical assumptions; none is customer approval. Intake reconciliation and domestic kiln scheduling are independently plannable with synthetic data before export-policy or service details are resolved. Domestic recovery and quality review can also be planned locally. Describe checks as proposed verification: no implementation, executed tests or live integration evidence is supplied.",
+      "sha256": "9171319ed41ae864cb964b885621791fa425e95496c37f7cc280522620cda09d"
+    }
+  ],
+  "structured_interpretation": {
+    "source_hash": "ab227a640a8a4e25fdadbf3c3c9900873549b26eaaeaffe4fb7a2ebad4c624b7",
+    "product_name": "KilnBook",
+    "objective": "Account for received timber packs, reserve kiln capacity, and reconcile recovered boards before releasing stock.",
+    "objective_source_ids": [
+      "SRC-94979c580114"
+    ],
+    "requirements": [
+      {
+        "requirement_id": "REQ-03f0c0dd66b4",
+        "source_ids": [
+          "SRC-94979c580114"
+        ],
+        "normalized": "Limit the pilot to one yard, kilns K1 and K2, and at most 500 active packs; each kiln has 12 standard-pack slots.",
+        "category": "constraint",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: enforce the yard, kiln, slot and active-pack limits once 'active' is defined."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-6f57ad9f77d4",
+        "source_ids": [
+          "SRC-94979c580114"
+        ],
+        "normalized": "Each pack must have an immutable identifier, supplier reference, species, thickness band and positive integer board count. Each pack occupies one slot regardless of board count.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: reject invalid input counts and preserve identifiers; varying board counts must not change slot consumption."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-912531d82572",
+        "source_ids": [
+          "SRC-94979c580114"
+        ],
+        "normalized": "Exclude kiln-equipment control, drying-chemistry prescription, timber pricing, transport arrangement and direct issuance of statutory certificates.",
+        "category": "exclusion",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: confirm the delivered scope excludes these capabilities."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-be7ba37b9d42",
+        "source_ids": [
+          "SRC-d9611bfba816",
+          "SRC-e5dc19b159e5"
+        ],
+        "normalized": "Allow yard clerks to preview and accept receipts containing a unique receipt reference and pack records.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-3dd9c29f7abc",
+          "REQ-0beae5529366"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: preview receipt records and accept a valid receipt through an authorized yard-clerk operation."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-3dd9c29f7abc",
+        "source_ids": [
+          "SRC-d9611bfba816"
+        ],
+        "normalized": "Reject the whole receipt for unknown species or thickness bands, repeated pack identifiers, missing supplier references or invalid counts; provide row-level explanations and make no stock changes.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-6f57ad9f77d4"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: exercise each invalid-row condition and confirm that every rejected receipt leaves stock unchanged."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Authoritative species and thickness-band catalogues"
+        ],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-0beae5529366",
+        "source_ids": [
+          "SRC-d9611bfba816"
+        ],
+        "normalized": "Treat identical receipt-reference and content submissions as no-ops; reject changed content under the same reference and prevent reuse of a pack under another receipt.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: resubmit identical and changed receipts and reuse a pack identifier across receipts; confirm no duplicate stock is created."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-c0005fc35574",
+        "source_ids": [
+          "SRC-d9611bfba816",
+          "SRC-e5dc19b159e5"
+        ],
+        "normalized": "Permit attributable intake amendments preserving original values and a reason. Amending a pack assigned to an approved batch must prevent that batch from starting until reviewed and approved again.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: retain amendment history and block the affected approved batch until renewed review and approval."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-dcc48dafc1fa",
+        "source_ids": [
+          "SRC-58ed9c20043b"
+        ],
+        "normalized": "Distinguish available, reserved, in-treatment, quarantined and released quantities; initialize incoming packs as available and preserve pack-to-batch and batch-to-recovered-stock lineage.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: trace received packs through batches to recovered stock and verify quantities by state."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-e9a719b9cc70",
+        "source_ids": [
+          "SRC-58ed9c20043b",
+          "SRC-e5dc19b159e5"
+        ],
+        "normalized": "Only quality officers may place or clear quarantine, recording actor, time and reason. Quarantine prevents reservation or release; clearing it neither approves a batch nor releases recovered stock.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: deny unauthorized quarantine operations, retain attribution and prevent reservation or release while applicable quarantine remains active."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-f348d66ca723",
+        "source_ids": [
+          "SRC-5028cbf93698",
+          "SRC-e5dc19b159e5",
+          "SRC-3cef61b19219"
+        ],
+        "normalized": "Allow planners to prepare versioned domestic batches specifying a kiln, start time and 1–12 whole input packs of one species and thickness band. Do not split packs between batches.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-6f57ad9f77d4"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: reject thirteen packs, mixed species, mixed thickness bands and split-pack inputs; retain batch versions."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-674fe0eb5415",
+        "source_ids": [
+          "SRC-5028cbf93698",
+          "SRC-3cef61b19219"
+        ],
+        "normalized": "Plan domestic treatment as 36 hours plus four hours of turnaround, reserving the half-open interval [start, start + 40 hours). Use UTC timestamps at whole-hour boundaries and permit a subsequent batch exactly at the reservation endpoint.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: a 3 November 2026 08:00 UTC start reserves through 5 November 00:00 UTC; allow a subsequent start at 00:00 and reject one at 23:00 the previous day."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-964951908e60",
+        "source_ids": [
+          "SRC-5028cbf93698",
+          "SRC-5ca7a1e8bff8"
+        ],
+        "normalized": "Draft batches reserve neither packs nor kiln time. A pack cannot belong to two outstanding approved batches, including batches on different kilns.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: drafts leave capacity and pack availability unchanged; approved batches cannot share a pack across either kiln."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-b298a72c9c76",
+        "source_ids": [
+          "SRC-5ca7a1e8bff8"
+        ],
+        "normalized": "Production-supervisor approval of an unstarted batch must atomically reserve packs and kiln time, rejecting overlaps, unavailable packs and stale pack metadata. Concurrent approvals must not reserve the same pack or overlapping time on one kiln.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-e9a719b9cc70",
+          "REQ-f348d66ca723",
+          "REQ-674fe0eb5415",
+          "REQ-964951908e60"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: race conflicting approvals and confirm that only a valid, complete reservation succeeds; rejected approvals leave no partial reservations."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-f90344474b39",
+        "source_ids": [
+          "SRC-5ca7a1e8bff8"
+        ],
+        "normalized": "Allow production supervisors to cancel unstarted batches, releasing pack and kiln-time reservations while preserving history.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: cancellation releases both reservation types, retains history and is unavailable once treatment has started."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-5fe3b959a090",
+        "source_ids": [
+          "SRC-5ca7a1e8bff8",
+          "SRC-d9611bfba816"
+        ],
+        "normalized": "Starting an approved batch requires supervisor confirmation that approved inputs remain valid and the kiln is unoccupied; starting moves the packs into treatment.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-c0005fc35574",
+          "REQ-b298a72c9c76"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: reject starts with invalidated inputs or occupied kilns and move valid inputs into treatment only after supervisor confirmation."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-89b6da045a3d",
+        "source_ids": [
+          "SRC-5ca7a1e8bff8",
+          "SRC-0ed2cf0c0567",
+          "SRC-3cef61b19219"
+        ],
+        "normalized": "An overrun keeps the kiln occupied until actual completion plus four hours. Keep affected following approvals visible as conflicts, prevent their starts while occupied and do not silently shift their planned start times.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: actual completion at 5 November 2026 02:00 UTC keeps occupancy until 06:00; the approved 00:00 batch remains a visible conflict and cannot start automatically."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-1e0ebf0977db",
+        "source_ids": [
+          "SRC-0ed2cf0c0567",
+          "SRC-3cef61b19219"
+        ],
+        "normalized": "Record batch, actual start, actual finish, recovered board count and scrap board count at completion. Reject finish before start or recovered-plus-scrap totals unequal to input boards, without changing any records or stock.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-dcc48dafc1fa"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: for 1,000 input boards accept recovered 970 plus scrap 30; reject recovered 970 plus scrap 20 without changes, and reject finish before start."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-9029a52f6309",
+        "source_ids": [
+          "SRC-0ed2cf0c0567"
+        ],
+        "normalized": "After treatment, recovered boards must await quality review and scrap must never become saleable stock. Releasing kiln occupancy after turnaround must not itself release recovered stock.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-1e0ebf0977db"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: completion and elapsed turnaround leave recovered boards awaiting quality review and exclude scrap from saleable quantities."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-b1ff6b40c9fc",
+        "source_ids": [
+          "SRC-0ed2cf0c0567",
+          "SRC-e5dc19b159e5"
+        ],
+        "normalized": "Only quality officers may release recovered boards, after accepting completion reconciliation and clearing every active quarantine affecting the batch.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-e9a719b9cc70",
+          "REQ-1e0ebf0977db"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: reject release without quality-officer authority, accepted reconciliation or clearance of every applicable quarantine."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-414f83a8e4aa",
+        "source_ids": [
+          "SRC-0ed2cf0c0567"
+        ],
+        "normalized": "Retain earlier completion versions and revision reasons. A revision changing a released board count must suspend the affected stock's release and require fresh quality review.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-1e0ebf0977db",
+          "REQ-b1ff6b40c9fc"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: revise a released board count, retain the earlier version and reason, suspend the affected release and require renewed quality review."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-7d66a5bcd48d",
+        "source_ids": [
+          "SRC-0ed2cf0c0567"
+        ],
+        "normalized": "Recording recovered output must never create extra available input packs.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-dcc48dafc1fa",
+          "REQ-1e0ebf0977db"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: completion and revision do not increase available input-pack quantities through recovered-output creation."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-3f271e7f9f83",
+        "source_ids": [
+          "SRC-76ee65b826ad"
+        ],
+        "normalized": "The signed customer export protocol requires timber-core temperature at or above 56°C for at least 30 consecutive minutes; retain this as an unresolved mandatory protocol statement.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: preserve the stated threshold and duration for the compliance officer's resolution; do not treat it as the resolved export protocol."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Plant compliance officer's protocol ruling"
+        ],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-4bb1a4d86961",
+        "source_ids": [
+          "SRC-76ee65b826ad"
+        ],
+        "normalized": "The plant's approved compliance manual requires timber-core temperature at or above 56°C for at least 60 consecutive minutes; retain this as an unresolved mandatory protocol statement.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: preserve the manual's threshold and duration for the compliance officer's resolution without selecting precedence."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Plant compliance officer's protocol ruling"
+        ],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-a55603abffe3",
+        "source_ids": [
+          "SRC-76ee65b826ad",
+          "SRC-e5dc19b159e5"
+        ],
+        "normalized": "Export batches require a verified heat-treatment protocol and ordinary capacity checks. Prevent export approval and certificate requests until the plant compliance officer resolves the protocol contradiction and required observations are defined.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-3f271e7f9f83",
+          "REQ-4bb1a4d86961"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: unresolved protocol or undefined observations prevent export approval and certificate requests."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Resolved export protocol",
+          "Required treatment observations",
+          "Export cycle duration"
+        ],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-ca30b4bf2710",
+        "source_ids": [
+          "SRC-76ee65b826ad"
+        ],
+        "normalized": "Do not derive a complete export-treatment cycle duration from either minimum temperature-hold time.",
+        "category": "constraint",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: export capacity calculations do not substitute a 30-minute or 60-minute hold for an unspecified complete cycle."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-e70c527f8bba",
+        "source_ids": [
+          "SRC-76ee65b826ad",
+          "SRC-553793d7530a",
+          "SRC-b950d7dc1b4d"
+        ],
+        "normalized": "Keep intake, domestic planning, domestic recovery and quality review independently usable and plannable with synthetic records while export-policy and certification-service details remain unresolved.",
+        "category": "constraint",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: local domestic workflows remain available with synthetic data and unresolved export or external-service configuration."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-bbf01bdc636c",
+        "source_ids": [
+          "SRC-76ee65b826ad",
+          "SRC-b950d7dc1b4d"
+        ],
+        "normalized": "Initial overview grouping may be by supplier or species; either choice must leave stock and capacity calculations unchanged and be labeled as a reversible technical assumption.",
+        "category": "constraint",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: changing the initial grouping leaves stock quantities and capacity results identical."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-7e2883b73d87",
+        "source_ids": [
+          "SRC-553793d7530a",
+          "SRC-94979c580114",
+          "SRC-8539c96ab4fb"
+        ],
+        "normalized": "The external timber-certification integration is expected to submit export-treatment evidence and receive certificate-request status. Live exchange remains blocked until service details, the export protocol, credentials, accounts, plant permissions and exact-request authorization are supplied.",
+        "category": "integration",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-a55603abffe3",
+          "REQ-01580f9c1d52"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: once prerequisites are supplied, verify evidence submission and status mapping; no live exchange is authorized or evidenced by this specification."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Service endpoint",
+          "Authentication and credentials",
+          "External account and plant permissions",
+          "Evidence schema",
+          "Protocol identifiers",
+          "Service status meanings",
+          "Duplicate-request handling",
+          "Resolved export protocol",
+          "Exact-request execution authorization"
+        ],
+        "external_effects": [
+          "Transmit export-treatment evidence to an external service",
+          "Create an external certificate request or attestation"
+        ],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-01580f9c1d52",
+        "source_ids": [
+          "SRC-8539c96ab4fb",
+          "SRC-e5dc19b159e5"
+        ],
+        "normalized": "Before any certificate-request attempt, require separate plant-compliance-officer authorization for the exact export batch, completion revision and evidence version. Production approval, quality release and this specification grant no certificate-request execution permission.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: reject attempts lacking a matching, separate compliance-officer authorization, including attempts relying only on production approval or quality release."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [
+          "Plant compliance officer's authorization for each exact request"
+        ],
+        "external_effects": [
+          "Gate an external attestation attempt"
+        ],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-1a4187d798a5",
+        "source_ids": [
+          "SRC-8539c96ab4fb"
+        ],
+        "normalized": "Any later change to authorized evidence or completion must invalidate the certificate-request authorization.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-01580f9c1d52"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: changing either authorized evidence or completion invalidates the prior authorization and prevents its reuse."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-32fa2b9dd7dc",
+        "source_ids": [
+          "SRC-8539c96ab4fb",
+          "SRC-3cef61b19219"
+        ],
+        "normalized": "Preserve distinct certificate-request outcomes of rejected, pending, certificate issued and unknown. Pending must leave certificate-issued status false and must not release stock.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: represent all four outcomes distinctly; a synthetic pending response leaves issued status false and stock unreleased."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-a3a42728e9f9",
+        "source_ids": [
+          "SRC-8539c96ab4fb"
+        ],
+        "normalized": "Classify a certificate-request timeout as an unknown outcome.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-32fa2b9dd7dc"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: a synthetic timeout produces unknown rather than rejected, pending or issued."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-e7c112fab633",
+        "source_ids": [
+          "SRC-8539c96ab4fb"
+        ],
+        "normalized": "After a timeout, prohibit automatic retry and require documented outcome resolution before another certificate-request attempt.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-01580f9c1d52",
+          "REQ-a3a42728e9f9"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: no automatic retry follows a timeout; another attempt remains gated until documented resolution satisfies the agreed recovery procedure."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Documented outcome-resolution procedure",
+          "External service duplicate-request and recovery behavior"
+        ],
+        "external_effects": [
+          "A subsequent external certificate-request attempt"
+        ],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-b560b4ba4c70",
+        "source_ids": [
+          "SRC-8539c96ab4fb"
+        ],
+        "normalized": "Link an issued certificate to its authorized evidence; certificate issuance must not itself release stock.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-01580f9c1d52",
+          "REQ-32fa2b9dd7dc"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: a synthetic issued certificate references the authorized evidence and leaves quality-release requirements in force."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-47bd7529647c",
+        "source_ids": [
+          "SRC-e5dc19b159e5"
+        ],
+        "normalized": "Enforce permissions at operation boundaries: viewers read; yard clerks receive and amend intake; planners prepare batches; production supervisors approve, cancel and start batches; quality officers manage quarantine, completion acceptance and stock release; only the plant compliance officer resolves export protocols and authorizes certificate requests. Hidden controls alone are insufficient.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: exercise permitted and forbidden operations for each specified role through operation boundaries, independently of control visibility."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-40df1512123a",
+        "source_ids": [
+          "SRC-e5dc19b159e5"
+        ],
+        "normalized": "Provide an overview showing stock by state, kiln reservations and actual occupancy, schedule conflicts, recovery totals, quarantines and certificate status, with supporting record references.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-dcc48dafc1fa",
+          "REQ-89b6da045a3d",
+          "REQ-32fa2b9dd7dc"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: populate local and synthetic records and confirm each required overview item has consistent values and supporting references."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-02477faba626",
+        "source_ids": [
+          "SRC-b950d7dc1b4d"
+        ],
+        "normalized": "Preserve records, lineage, authorization history and consistent stock and capacity results across restart.",
+        "category": "non_functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: restart after representative intake, reservation, recovery and authorization changes and compare retained records, lineage, history and calculated results."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-25640d3f617b",
+        "source_ids": [
+          "SRC-b950d7dc1b4d"
+        ],
+        "normalized": "Local-storage choice, receipt-preview layout and initial overview grouping may be planned using explicitly labeled reversible technical assumptions; those choices are not customer approval.",
+        "category": "constraint",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: identify these choices as reversible, unapproved technical assumptions rather than customer-approved implementation decisions."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-7dafc83a1b19",
+        "source_ids": [
+          "SRC-b950d7dc1b4d"
+        ],
+        "normalized": "Describe verification as proposed checks; the supplied material establishes no implementation, executed tests or live integration evidence.",
+        "category": "constraint",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Keep all acceptance checks prospective and make no claim that implementation, testing or live integration has occurred."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      }
+    ],
+    "issues": [
+      {
+        "issue_id": "ISS-5103a116bc51",
+        "kind": "ambiguity",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-94979c580114"
+        ],
+        "affected_requirement_ids": [
+          "REQ-03f0c0dd66b4"
+        ],
+        "description": "The 500-pack limit uses 'active packs' without defining which lifecycle states count toward it or when a pack ceases to be active.",
+        "question": "Which pack lifecycle states count toward the 500-active-pack limit?",
+        "rationale": "The definition directly changes limit enforcement and objective acceptance of the pilot constraint; it does not prevent planning other local rules.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-d920ba1782e5",
+        "kind": "missing_information",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-d9611bfba816"
+        ],
+        "affected_requirement_ids": [
+          "REQ-3dd9c29f7abc"
+        ],
+        "description": "Unknown species and thickness bands must reject receipts, but no authoritative allowed values are supplied.",
+        "question": "What species and thickness-band catalogues define valid receipt values?",
+        "rationale": "Unknown-value validation cannot be objectively accepted without the catalogues. Preview layout, duplicate detection and other specified validation can still be planned.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-ad0263fdc8c1",
+        "kind": "contradiction",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-76ee65b826ad"
+        ],
+        "affected_requirement_ids": [
+          "REQ-3f271e7f9f83",
+          "REQ-4bb1a4d86961",
+          "REQ-a55603abffe3",
+          "REQ-7e2883b73d87"
+        ],
+        "description": "The source explicitly identifies conflicting mandatory export protocols: at least 30 versus at least 60 consecutive minutes at or above 56°C. It supplies no precedence ruling and assigns resolution to the plant compliance officer.",
+        "question": "What authoritative protocol ruling will the plant compliance officer approve?",
+        "rationale": "The ruling determines export-treatment acceptance, export approval and live certificate requests. Selecting the longer hold would not substitute for the required ruling. Domestic workflows remain independent.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-6e0cfe1a8f31",
+        "kind": "missing_information",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-76ee65b826ad",
+          "SRC-553793d7530a"
+        ],
+        "affected_requirement_ids": [
+          "REQ-a55603abffe3",
+          "REQ-7e2883b73d87"
+        ],
+        "description": "Required export-treatment observations and the complete export cycle duration are undefined. Neither minimum hold time establishes the complete cycle.",
+        "question": "What observations verify the resolved protocol, and what complete cycle and capacity-reservation duration apply to export batches?",
+        "rationale": "These details directly determine export evidence acceptance and capacity checks; they do not change the specified domestic 40-hour reservation.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-5eaf90da9191",
+        "kind": "integration_gap",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-553793d7530a"
+        ],
+        "affected_requirement_ids": [
+          "REQ-7e2883b73d87"
+        ],
+        "description": "The certification service endpoint, authentication, plant permissions, evidence schema, protocol identifiers, status meanings and duplicate-request handling are unknown.",
+        "question": "What is the approved service contract covering these connection, evidence, permission, status and duplicate-request details?",
+        "rationale": "Live exchange and external status mapping cannot be implemented or objectively accepted from the supplied information. Local status modeling and synthetic domestic work remain available.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-72f9f0b24aad",
+        "kind": "authorization_question",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-94979c580114",
+          "SRC-8539c96ab4fb"
+        ],
+        "affected_requirement_ids": [
+          "REQ-7e2883b73d87"
+        ],
+        "description": "External credentials, accounts and execution authorizations are absent. The specification explicitly grants no permission to attempt a certificate request.",
+        "question": "Before any live attempt, what account and credentials are provisioned, and where is the compliance officer's authorization for the exact batch, completion revision and evidence version recorded?",
+        "rationale": "This blocks external execution only. Requirements to model, enforce and invalidate authorization can be planned locally without granting permission.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-5e660c929202",
+        "kind": "integration_gap",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-8539c96ab4fb",
+          "SRC-553793d7530a"
+        ],
+        "affected_requirement_ids": [
+          "REQ-e7c112fab633"
+        ],
+        "description": "Another attempt after timeout requires documented outcome resolution, but the resolution procedure, acceptable evidence and service recovery mechanisms are unspecified.",
+        "question": "How must an unknown request outcome be resolved and documented before another attempt is allowed?",
+        "rationale": "The uncertainty directly affects safe repeated external requests. It does not block recording unknown outcomes, prohibiting automatic retry or performing domestic work.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-2c4e7f78ef2d",
+        "kind": "ambiguity",
+        "severity": "non_blocking",
+        "source_ids": [
+          "SRC-76ee65b826ad",
+          "SRC-b950d7dc1b4d"
+        ],
+        "affected_requirement_ids": [
+          "REQ-bbf01bdc636c",
+          "REQ-40df1512123a"
+        ],
+        "description": "Users disagree about initial overview grouping by supplier or species, but the source explicitly permits either as a reversible assumption.",
+        "question": "Is supplier or species preferred for the initial overview grouping?",
+        "rationale": "Either choice is acceptable and cannot alter stock or capacity calculations, so planning may continue with a labeled assumption.",
+        "blocked_increment_ids": []
+      }
+    ],
+    "assumptions": [
+      {
+        "assumption_id": "ASM-7245151bdb81",
+        "source_ids": [
+          "SRC-b950d7dc1b4d"
+        ],
+        "related_requirement_ids": [
+          "REQ-b298a72c9c76",
+          "REQ-02477faba626",
+          "REQ-25640d3f617b"
+        ],
+        "statement": "For planning, assume a durable local transactional datastore; leave its specific engine unselected.",
+        "rationale": "Local storage is explicitly open to reversible technical assumptions. Transactional persistence supports the specified atomic reservations and restart consistency.",
+        "impact_if_wrong": "The storage implementation and persistence verification would change; stock, capacity and authorization rules would remain required.",
+        "approval_status": "not_customer_approved"
+      },
+      {
+        "assumption_id": "ASM-4fd3cc02c142",
+        "source_ids": [
+          "SRC-d9611bfba816",
+          "SRC-b950d7dc1b4d"
+        ],
+        "related_requirement_ids": [
+          "REQ-be7ba37b9d42",
+          "REQ-3dd9c29f7abc",
+          "REQ-25640d3f617b"
+        ],
+        "statement": "For planning, use a receipt preview with one row per pack and row-associated validation explanations.",
+        "rationale": "The preview layout is explicitly reversible, and row-level explanations are required.",
+        "impact_if_wrong": "The preview presentation would change without changing receipt validation or atomic acceptance rules.",
+        "approval_status": "not_customer_approved"
+      },
+      {
+        "assumption_id": "ASM-dd475f3e13ce",
+        "source_ids": [
+          "SRC-76ee65b826ad",
+          "SRC-b950d7dc1b4d"
+        ],
+        "related_requirement_ids": [
+          "REQ-bbf01bdc636c",
+          "REQ-40df1512123a",
+          "REQ-25640d3f617b"
+        ],
+        "statement": "For planning, initially group the overview by species.",
+        "rationale": "The source explicitly accepts either species or supplier grouping and permits a reversible assumption.",
+        "impact_if_wrong": "Change the initial grouping to supplier; stock and capacity calculations must remain identical.",
+        "approval_status": "not_customer_approved"
+      },
+      {
+        "assumption_id": "ASM-356a05ff856d",
+        "source_ids": [
+          "SRC-94979c580114",
+          "SRC-0ed2cf0c0567"
+        ],
+        "related_requirement_ids": [
+          "REQ-1e0ebf0977db",
+          "REQ-9029a52f6309"
+        ],
+        "statement": "Interpret recovered and scrap board counts as nonnegative integers, allowing zero in either field.",
+        "rationale": "These quantities count individual boards and must reconcile exactly to a positive integer input total; the source does not explicitly state their individual numeric domains.",
+        "impact_if_wrong": "Completion-field validation would require adjustment and clarification of the intended counting model.",
+        "approval_status": "not_customer_approved"
+      }
+    ],
+    "out_of_scope_instructions": [],
+    "source_segments": [
+      {
+        "source_id": "SRC-3a8f39f7ae6b",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review"
+        ],
+        "start_line": 1,
+        "end_line": 1,
+        "text": "# KilnBook: timber drying, recovery and export-treatment review",
+        "sha256": "978b0a7206bc056da989dfd25b932bb3a1d89163ba924450dbaf6f1b909184fe"
+      },
+      {
+        "source_id": "SRC-4ed41bd5c884",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Operating purpose and limits"
+        ],
+        "start_line": 3,
+        "end_line": 3,
+        "text": "## Operating purpose and limits",
+        "sha256": "798d3446a91f628c5ab67d7c8875809c9c339417244f11c5af64133359444c54"
+      },
+      {
+        "source_id": "SRC-94979c580114",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Operating purpose and limits"
+        ],
+        "start_line": 4,
+        "end_line": 4,
+        "text": "A timber processor needs to account for received timber packs, reserve kiln capacity and reconcile recovered boards before releasing stock. The pilot covers one yard, two kilns named K1 and K2, and at most 500 active packs. Each kiln holds 12 standard packs. Every pack has an immutable identifier, supplier reference, species, thickness band and positive integer board count. Packs occupy one slot regardless of board count. The service does not control kiln equipment, prescribe drying chemistry, price timber, arrange transport or issue statutory certificates itself. Synthetic receipts and treatment observations are available; external credentials, accounts and execution authorizations are absent.",
+        "sha256": "80274915b22266dba94b7b64907a8780c5c057e14607c2ffa1d23362135377ce"
+      },
+      {
+        "source_id": "SRC-a8401b5af230",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Intake and stock traceability"
+        ],
+        "start_line": 6,
+        "end_line": 6,
+        "text": "## Intake and stock traceability",
+        "sha256": "381e752526537bc64e13cbfbf08c451b1c33c2c61e7fd2b555aca8de4d7f30d1"
+      },
+      {
+        "source_id": "SRC-d9611bfba816",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Intake and stock traceability"
+        ],
+        "start_line": 7,
+        "end_line": 7,
+        "text": "A yard clerk can preview and accept a receipt containing a unique receipt reference and its pack records. Unknown species or thickness bands, repeated pack identifiers, missing supplier references and invalid counts reject the whole receipt with row-level explanations and no stock changes. An identical receipt reference and content is a no-op; changed content under the same reference is rejected. Packs cannot be reused under another receipt. Corrections require an attributable amendment preserving the original values and reason. A correction to a pack already assigned to an approved batch must block that batch from starting until reviewed and approved again.",
+        "sha256": "3868e00e68d20b3e31dd1b433492051367972bd1958813bc3d598950fbd6728f"
+      },
+      {
+        "source_id": "SRC-58ed9c20043b",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Intake and stock traceability"
+        ],
+        "start_line": 9,
+        "end_line": 9,
+        "text": "Stock must distinguish available, reserved, in-treatment, quarantined and released quantities. Keep pack-to-batch and batch-to-recovered-stock lineage. Incoming packs begin available; quarantine prevents reservation or release. Only a quality officer can place or clear quarantine, with actor, time and reason. Clearing quarantine does not itself approve a batch or release recovered stock.",
+        "sha256": "fc318fc69485a40c252f8e7008d664a535420ad9c73198799d8b46692f856f15"
+      },
+      {
+        "source_id": "SRC-01cb2727403d",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Domestic batch planning"
+        ],
+        "start_line": 11,
+        "end_line": 11,
+        "text": "## Domestic batch planning",
+        "sha256": "f4b64d5e64ec6d7ca4384ff9d568c9efd50c14528aeb8446cd3abb8639d227d4"
+      },
+      {
+        "source_id": "SRC-5028cbf93698",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Domestic batch planning"
+        ],
+        "start_line": 12,
+        "end_line": 12,
+        "text": "A planner can prepare versioned domestic batches naming a kiln, start time and whole input packs. A batch must contain 1–12 packs, all of the same species and thickness band. Do not split a pack between batches. Domestic treatment lasts exactly 36 hours, followed by four hours of kiln turnaround. Capacity is reserved for the half-open interval from start through start plus 40 hours; another batch may start exactly at that endpoint. Use UTC timestamps at whole-hour boundaries. A pack cannot belong to two outstanding approved batches, even on different kilns.",
+        "sha256": "278242181f8da5b274248aa79ae34fbc2305823a8c0a3ee0d99808779d34cedb"
+      },
+      {
+        "source_id": "SRC-5ca7a1e8bff8",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Domestic batch planning"
+        ],
+        "start_line": 14,
+        "end_line": 14,
+        "text": "Drafts hold neither packs nor kiln time. A production supervisor can approve or cancel an unstarted batch. Approval atomically reserves both packs and kiln time, rejecting overlaps, unavailable packs and stale pack metadata. Concurrent approvals cannot reserve the same pack or overlapping time on one kiln. Cancellation releases both reservations and preserves history. Starting requires supervisor confirmation that the approved inputs remain valid and the kiln is not occupied; it moves the packs into treatment. An actual run that extends beyond its planned finish keeps the kiln occupied until actual completion plus four hours. Following approvals remain visible as conflicts and cannot start while the kiln is occupied; do not silently shift their start times.",
+        "sha256": "e7adeba9ee50ce749bce03ab3ec1c0381cee83d525ee03041c6cab0bd1f4a91b"
+      },
+      {
+        "source_id": "SRC-5d8252f7cc58",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Completion and recovered stock"
+        ],
+        "start_line": 16,
+        "end_line": 16,
+        "text": "## Completion and recovered stock",
+        "sha256": "767dc1563e44149d18ae629eacbf608527341b0e1b0a28750f0a23ffbde4ffd4"
+      },
+      {
+        "source_id": "SRC-0ed2cf0c0567",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Completion and recovered stock"
+        ],
+        "start_line": 17,
+        "end_line": 17,
+        "text": "A completion record names the batch, actual start and finish, recovered board count and scrap board count. Finish cannot precede start, and recovered plus scrap must equal the input board count. Invalid completion records change nothing. Finishing treatment releases kiln occupancy after the four-hour turnaround, but recovered boards remain awaiting quality review. A quality officer can release recovered boards only after accepting the completion reconciliation and clearing every active quarantine affecting the batch. Scrap never becomes saleable stock. A revised completion must retain its earlier version and reason; if it changes a released board count, suspend the affected stock's release and require fresh quality review. Never create extra available input packs when recording recovered output.",
+        "sha256": "b0d13ffb22d55a11872ff797999714472b17d69a88bc5f52c5e41a9fd9021a85"
+      },
+      {
+        "source_id": "SRC-11958e49bfd0",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Export-treatment uncertainty"
+        ],
+        "start_line": 19,
+        "end_line": 19,
+        "text": "## Export-treatment uncertainty",
+        "sha256": "2b81cdb5a7c319506489d9500bdc82eb3875792ee4de52d07c6653bb3e559d67"
+      },
+      {
+        "source_id": "SRC-76ee65b826ad",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Export-treatment uncertainty"
+        ],
+        "start_line": 20,
+        "end_line": 20,
+        "text": "Export batches require a verified heat-treatment protocol in addition to ordinary capacity checks. The signed customer protocol says “the timber core must remain at or above 56°C for at least 30 consecutive minutes.” The plant's approved compliance manual says “the timber core must remain at or above 56°C for at least 60 consecutive minutes.” Both are mandatory and no precedence ruling is supplied. The plant compliance officer must resolve the contradiction. Do not approve export batches or request their certificates until a protocol is resolved and its required observations are defined. Do not infer a complete export cycle duration from either minimum hold time. Intake, domestic planning and domestic recovery review remain usable meanwhile. Users disagree whether the yard overview should initially group stock by supplier or species; either is acceptable and must not alter stock or capacity calculations.",
+        "sha256": "858fec2b8efb62a41025ac0b5abd45290350fda22214b4b330ea1e21fb4d66c7"
+      },
+      {
+        "source_id": "SRC-0fb6a192b14b",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Certificate requests and authority"
+        ],
+        "start_line": 22,
+        "end_line": 22,
+        "text": "## Certificate requests and authority",
+        "sha256": "bd485b4fb936225db1d2480f04d713e5fa362c4de70aace4fa22d61184080f48"
+      },
+      {
+        "source_id": "SRC-553793d7530a",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Certificate requests and authority"
+        ],
+        "start_line": 23,
+        "end_line": 23,
+        "text": "The external timber-certification service is expected to receive export-treatment evidence and return certificate-request status. Its endpoint, authentication, plant permissions, evidence schema, protocol identifiers, status meanings and duplicate-request handling are unknown. Live certificate exchange is blocked on those details and the export protocol, while local domestic work can use synthetic records.",
+        "sha256": "917004a381630d7b8ee98a58549d19efc5511d9cff47afe105bdaf93aae6fae8"
+      },
+      {
+        "source_id": "SRC-8539c96ab4fb",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Certificate requests and authority"
+        ],
+        "start_line": 25,
+        "end_line": 25,
+        "text": "A certificate request is an external attestation. Before any attempt, the plant compliance officer must separately authorize the exact export batch, completion revision and evidence version. This specification grants no execution permission. A later change to any authorized evidence or completion invalidates that authorization. Internal production approval and quality release are not permission to request a certificate. Preserve distinct outcomes of rejected, pending, certificate issued and unknown; pending is not issued. A timeout is unknown and another attempt requires documented outcome resolution rather than automatic retry. An issued certificate is linked to its authorized evidence and does not itself release stock.",
+        "sha256": "56d04952dba7bdcc785e0fccb47092177f9cb3e7e470f85cb5aa94760b655d4b"
+      },
+      {
+        "source_id": "SRC-e5dc19b159e5",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Certificate requests and authority"
+        ],
+        "start_line": 27,
+        "end_line": 27,
+        "text": "Viewers can read; yard clerks can receive and amend intake; planners can prepare batches; production supervisors can approve, cancel and start them; quality officers manage quarantine, completion acceptance and stock release; only the plant compliance officer can resolve the export protocol and authorize certificate requests. Enforce permissions at the operation boundary, beyond hidden controls. The overview must show stock by state, kiln reservations and actual occupancy, schedule conflicts, recovery totals, quarantines and certificate status, with supporting record references.",
+        "sha256": "e9d05a8c4543424774994820d7fd003a3691b29f77e15c028ca4aa5adfb4d791"
+      },
+      {
+        "source_id": "SRC-b52a1e9d1a12",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Acceptance and delivery expectations"
+        ],
+        "start_line": 29,
+        "end_line": 29,
+        "text": "## Acceptance and delivery expectations",
+        "sha256": "ba7c1cc07df2123f3766b759cb496608ccc66466a72b83257eb32ca76d0240b2"
+      },
+      {
+        "source_id": "SRC-3cef61b19219",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Acceptance and delivery expectations"
+        ],
+        "start_line": 30,
+        "end_line": 30,
+        "text": "A domestic batch starting 3 November 2026 at 08:00 UTC reserves its kiln until 5 November at 00:00 UTC. A second batch at that endpoint is allowed; one starting an hour earlier is rejected. Thirteen packs fail even when board counts are small. Two packs of different species fail even when slots remain. For 1,000 input boards, recovered 970 plus scrap 30 is valid; recovered 970 plus scrap 20 is rejected without changes. If actual treatment finishes on 5 November at 02:00 UTC, the kiln remains occupied until 06:00, and the approved 00:00 batch cannot start automatically. A certificate request marked pending leaves certificate-issued status false and does not release stock.",
+        "sha256": "4059c290152071a72a4577e98934fbee551f0a532dedea7da31b2f7d4df1d2dd"
+      },
+      {
+        "source_id": "SRC-b950d7dc1b4d",
+        "heading_path": [
+          "KilnBook: timber drying, recovery and export-treatment review",
+          "Acceptance and delivery expectations"
+        ],
+        "start_line": 32,
+        "end_line": 32,
+        "text": "Records, lineage, authorization history and consistent stock and capacity results must survive restart. Local storage, receipt-preview layout and initial overview grouping may use explicitly labeled reversible technical assumptions; none is customer approval. Intake reconciliation and domestic kiln scheduling are independently plannable with synthetic data before export-policy or service details are resolved. Domestic recovery and quality review can also be planned locally. Describe checks as proposed verification: no implementation, executed tests or live integration evidence is supplied.",
+        "sha256": "9171319ed41ae864cb964b885621791fa425e95496c37f7cc280522620cda09d"
+      }
+    ]
+  },
+  "review_scope": [
+    "requirement completeness",
+    "contradictions",
+    "blocking and non-blocking classification",
+    "assumptions",
+    "source traceability",
+    "exclusions",
+    "untrusted instructions"
+  ]
+}

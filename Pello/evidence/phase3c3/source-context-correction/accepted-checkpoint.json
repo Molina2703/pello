@@ -1,0 +1,33 @@
+{
+  "status": "ACCEPTED_CORRECTION_ONLY",
+  "created_at": "2026-10-25T23:01:22.280290+00:00",
+  "review": {
+    "verdict": "PASS",
+    "scope": "correct",
+    "correctness": "adequate",
+    "test_evidence": "pass",
+    "safety_and_preservation": "adequate",
+    "findings": [],
+    "rationale": "The correction replaces segment text only when it exactly matches reconstruction from valid inclusive source lines. The complete source, canonical payload and 55,000-character limit remain intact; nonmatching content fails closed. Supplied transcripts report 59 passing tests, including reconstruction, CRLF and mismatch checks. Approval is limited to this engineering correction; the original blind-run FAILs remain unchanged and no generalization success is established."
+  },
+  "complete_local_regression": {
+    "command": [
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "exit_code": 0,
+    "tests_run": 233,
+    "tests_passed": 233,
+    "seconds": 259.984
+  },
+  "protected_C2_checks": 63,
+  "historical_hashes_matching": 1493,
+  "blind_generalization": "UNVERIFIED; original A/B/C remain FAIL",
+  "source_or_rubric_expectations_weakened": false
+}

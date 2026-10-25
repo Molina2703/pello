@@ -1,0 +1,9 @@
+{
+  "canonical_payload_characters": 71399,
+  "packed_prompt_characters": 51204,
+  "every_original_field_reconstructed_equal": true,
+  "full_original_source_retained": true,
+  "limit_unchanged": 55000,
+  "source_sha256": "ab227a640a8a4e25fdadbf3c3c9900873549b26eaaeaffe4fb7a2ebad4c624b7",
+  "original_C_verdict": "FAIL; not rerun or relabeled"
+}

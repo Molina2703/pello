@@ -24,6 +24,17 @@ if evidence_revision:
 freeze=json.loads((out/('heldout-c-freeze'+revision+'.json')).read_text())
 spec=(out/'heldout-c-spec.md').read_bytes();rubric=Path(freeze['private_rubric_path']).read_bytes()
 fixture=HeldOutFixture.model_validate_json(rubric)
+fixture_context=fixture.model_dump(mode='json')
+import copy
+restored=copy.deepcopy(fixture_context)
+for criterion in fixture_context['rubric']:
+    quote=criterion.pop('source_quote');start=fixture.specification_markdown.index(quote) if quote else None
+    criterion['source_quote_ref']=None if start is None else {'start':start,'end':start+len(quote),'start_line':fixture.specification_markdown[:start].count('\n')+1}
+for criterion in restored['rubric']:
+    packed=next(c for c in fixture_context['rubric'] if c['criterion_id']==criterion['criterion_id'])
+    ref=packed['source_quote_ref']
+    assert criterion['source_quote']==('' if ref is None else fixture.specification_markdown[ref['start']:ref['end']])
+fixture_context['context_encoding']='Frozen source_quote text is represented losslessly by exact offsets into the complete specification_markdown supplied once. Expected outcomes, failure conditions, severity and all thresholds are unchanged. Exact quote reconstruction was asserted before this review.'
 checks={'spec_hash':hashlib.sha256(spec).hexdigest()==freeze['specification_sha256'],
         'rubric_hash':hashlib.sha256(rubric).hexdigest()==freeze['rubric_sha256'],
         'source_quotes':all(not c.source_quote or c.source_quote in spec.decode() for c in fixture.rubric),
@@ -47,7 +58,7 @@ try:
         core.create_project(scope,project_id=pid,duration_minutes=min(330,remaining))
     evidence={'objective':'Batch 1: independently assess novelty, relevance, completeness, frozen rubric and enforced isolation BEFORE Pello Planner is evaluated. Confirm realistic business problem with required features; rubric must permit alternative sound designs and distinguish critical from minor. No architecture, graph or manual increments may be supplied to Planner. Original development fixture was Vendor Return Desk; other known demos are appointment/clinic booking, chatbot/HMP, ADSA and numeric webhook QA. This new author session has received none of their plans. Planner gets only the specification; key stays in denied private directory, author artifacts, ledger and .codex transcripts. All those paths are denied. No Planner project exists yet. Reject incomplete or trivial evaluation.',
         'changed_files':['heldout-c-spec.md','private frozen rubric','heldout-c-freeze.json'],
-        'diff':json.dumps({'fixture':fixture.model_dump(mode='json'),'freeze':freeze,'objective_checks':checks,
+        'diff':json.dumps({'fixture':fixture_context,'freeze':freeze,'objective_checks':checks,
             'freeze_verification':{'specification':{'expected':freeze['specification_sha256'],'actual':hashlib.sha256(spec).hexdigest()},'rubric':{'expected':freeze['rubric_sha256'],'actual':hashlib.sha256(rubric).hexdigest()},'Planner_rows_query':'SELECT count(*) FROM pello_product_projects WHERE project_id=?','bindings':['phase3c3-heldout-c'],'Planner_rows_observed':0},
             'complete_boundary_verification':boundary,
             'native_checks':None if boundary else json.loads((out/'isolation/native-objective.json').read_text()),
