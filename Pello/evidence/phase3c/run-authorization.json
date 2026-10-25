@@ -1,0 +1,23 @@
+{
+  "run_id": "phase3c-development-20261025",
+  "created_at_utc": "2026-10-25T07:17:59Z",
+  "scope": "Implement Pello Phase 3C increments 3C-1, 3C-2, and 3C-3 sequentially; local planning only.",
+  "hard_limits": {
+    "deadline_utc": "2026-10-25T13:17:59Z",
+    "total_codex_sdk_model_turns": 30,
+    "product_planning_project_turns": 12,
+    "coder_attempts_per_increment": 3,
+    "external_mcp_calls": 0,
+    "n8n_mutations": 0,
+    "production_http_requests": 0,
+    "customer_operations": 0,
+    "new_workflows": 0,
+    "paid_api_calls": 0,
+    "allowed_codex_model_profiles": ["gpt-6-luna", "gpt-6-sol", "gpt-6.1-sol"],
+    "astra_allowed": false
+  },
+  "stop_control": "Check runtime/phase3c/STOP immediately before each SDK model operation and any external operation; the latter are prohibited in this run.",
+  "accounting": "Count actual SDK model invocations only; deterministic local test runs are recorded separately. No monetary budget is claimed because this runtime cannot enforce live billing amounts.",
+  "exhaustion_policy": "Stop the affected increment, preserve resumable state, and do not extend any hard limit without a new user authorization.",
+  "authorization_source": "User request to execute Phase 3C; selected bounded operational limits recorded before implementation."
+}

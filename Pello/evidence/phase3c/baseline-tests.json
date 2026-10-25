@@ -1,0 +1,11 @@
+{
+  "command": ".venv/Scripts/python.exe -m unittest discover -s tests -v",
+  "tests": 126,
+  "passed": 126,
+  "failed": 0,
+  "skipped": 0,
+  "elapsed_seconds": 218.945,
+  "exit_code": 0,
+  "observed_final_output": "Ran 126 tests in 218.945s; OK",
+  "captured_by": "Codex exec session 54675"
+}

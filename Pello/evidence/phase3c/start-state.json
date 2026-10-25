@@ -1,0 +1,36 @@
+{
+  "captured_at_utc": "2026-10-25T07:18:25Z",
+  "branch": "codex/pello-phase3b",
+  "head": "5b4955d52b09ce59673e2f5225b9b91ba25008fb",
+  "tracked_worktree_changes": [],
+  "authoritative_and_historical_file_sha256": {
+    "PELLO_V1_PRODUCT_SPEC.md": "6bca1e0b8d871201601e83b6cdbeadb0554fa52be18a8d624a29ca46ca44674d",
+    "AGENTS.md": "315a75d89bec944e81ab89212d9bd9d206b3be5bfda20b17d0b5dc5a692af94c",
+    "README.md": "2c007edec9e3228c7acddff9eda5e31ee40fd1881a1ce531f4ada9448d4a47b9",
+    "PHASE3A1.md": "2714e1e563dc1a69e601fa15a0840e26ccf9b8e2ce3bec9943515656f0928b92",
+    "PHASE3B.md": "00a08c7b9bf3e0364012ab82d1206673d910ca7bcdf06a1a460eb884fccd30a8",
+    "PELLO_PHASE3B_COMPLETION_REPORT.md": "109698885c1f9cfd52170b6a0396a65a87835dda024e79798d1b222cd35f9b48",
+    "reports/PHASE3B-PUBLICATION-PLAN.md": "b2c676ec3c7e90944f8a8a6db2c747870c5abcc732ace7227a8628803cc9213e",
+    "evidence/phase3b-completion/final-objective-summary.json": "3431ef317e873d2e2e9667bfd39425632e27c4a2b308443816015225e6904c6d",
+    "evidence/phase3b-completion/final-preservation-resume.json": "7397dc1125147b08ba617bccff8a6fc54fbbdab4e4d8cf9fdf9b50db558fad90"
+  },
+  "regression_baseline": {
+    "command": ".venv/Scripts/python.exe -m unittest discover -s tests -v",
+    "tests": 126,
+    "passed": 126,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_seconds": 218.945,
+    "exit_code": 0
+  },
+  "phase3b_state": "COMPLETE; preserved; no external operations authorized in Phase 3C",
+  "preexisting_untracked_repository_paths_at_initial_check": [
+    "../Pello-Contexto-Arquitectura-Fase2.zip",
+    "INFORME-ARQUITECTURA-FASE2.md",
+    "paquete-contexto-arquitectura-fase2/"
+  ],
+  "phase3c_run_files_created_after_initial_check": [
+    "evidence/phase3c/run-authorization.json",
+    "evidence/phase3c/start-state.json"
+  ]
+}
