@@ -1,6 +1,6 @@
 # Pello V1.3 — Phase 3C-3 Evaluation Report
 
-Checkpoint date: 2026-10-25T23:04:22+00:00. **Phase 3C-3: PARTIAL. Overall Phase 3C: PARTIAL. Blind generalization: UNVERIFIED.**
+Checkpoint date: 2026-10-25T23:05:07+00:00. **Phase 3C-3: PARTIAL. Overall Phase 3C: PARTIAL. Blind generalization: UNVERIFIED.**
 
 Three genuinely new, independently authored held-out specifications were frozen and attempted through the real SDK pathway. All three autonomous runs failed before producing a complete plan. Their FAILs remain unchanged. Localized engineering corrections passed independent review and regression, but no valid held-out PASS exists and Phase 3C cannot be accepted. No business product was implemented or delivered; Phase 3D was not started.
 
@@ -26,13 +26,16 @@ The evaluation author used a separate SDK tester session with no Pello Planner o
 | B: ArchiveLedger | `phase3c3-heldout-b-v1` | 2026-10-25T22:21:52.758992+00:00 | 26 critical + 1 minor |
 | C: KilnBook | `phase3c3-heldout-c-v1` | 2026-10-25T22:40:08.994765+00:00 | 27 critical + 1 minor |
 
-**A specification:** `9ade6c83162fcf07f3d959ff59343c5804934c59c2d89c3cdd68268370845b2c`  
+**A specification:** `9ade6c83162fcf07f3d959ff59343c5804934c59c2d89c3cdd68268370845b2c`
+
 **A rubric:** `8f8cca8054c6bed730e9ccfddf5d1913cd41a1a6f7eae52ccba521097a434db4`
 
-**B specification:** `7a692ecfd1f947401e5a72875775be0ce6ce5ed1b4c8c4d64c4af99f13a82bc1`  
+**B specification:** `7a692ecfd1f947401e5a72875775be0ce6ce5ed1b4c8c4d64c4af99f13a82bc1`
+
 **B rubric:** `5445b18a88010996556d8ccdfc5a04bfc8db40b370eaad874eb09bce43cb7523`
 
-**C specification:** `ab227a640a8a4e25fdadbf3c3c9900873549b26eaaeaffe4fb7a2ebad4c624b7`  
+**C specification:** `ab227a640a8a4e25fdadbf3c3c9900873549b26eaaeaffe4fb7a2ebad4c624b7`
+
 **C rubric:** `3674c9e42de22b346e4d7d6d93fb0772b04b04b998cb70c13eb8174feaccd20e`
 
 All critical criteria must PASS and at least 90% of all criteria must PASS. Frozen critical failures include omitted mandatory capabilities, exclusion violations, invented authorization, ignored blockers, invalid graphs, executable blocked work, unauthorized effects, incompatible manifests and false claims of executed/protected product tests. Structural objective-check scripts were hashed before each Planner project was created.

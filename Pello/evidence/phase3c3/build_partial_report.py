@@ -5,11 +5,11 @@ from datetime import datetime,timezone
 
 out=Path('evidence/phase3c3');state=json.loads((out/'interim-state.json').read_text())
 reg=json.loads((out/'correction-regression.json').read_text());protected=json.loads((out/'correction-protected.json').read_text())
-integrity=json.loads((out/'correction-integrity.json').read_text());head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+integrity=json.loads((out/'correction-integrity.json').read_text());head=subprocess.check_output(['git','log','-1','--format=%H','--','athis_autopilot/product_planning.py'],text=True).strip()
 frozen={letter:json.loads((out/name).read_text()) for letter,name in [('A','heldout-a-freeze-v2.json'),('B','heldout-b-freeze.json'),('C','heldout-c-freeze.json')]}
 assert all(json.loads((out/f'heldout-{letter.lower()}-evaluation.json').read_text())['verdict']=='FAIL' for letter in frozen)
 rows='\n'.join(f"| {letter}: {name} | `{frozen[letter]['evaluation_id']}` | {frozen[letter]['created_at']} | {frozen[letter]['critical_criteria']} critical + 1 minor |" for letter,name in [('A','CanalShare'),('B','ArchiveLedger'),('C','KilnBook')])
-hashes='\n\n'.join(f"**{letter} specification:** `{f['specification_sha256']}`  \n**{letter} rubric:** `{f['rubric_sha256']}`" for letter,f in frozen.items())
+hashes='\n\n'.join(f"**{letter} specification:** `{f['specification_sha256']}`\n\n**{letter} rubric:** `{f['rubric_sha256']}`" for letter,f in frozen.items())
 report=f'''# Pello V1.3 — Phase 3C-3 Evaluation Report
 
 Checkpoint date: {datetime.now(timezone.utc).isoformat(timespec='seconds')}. **Phase 3C-3: PARTIAL. Overall Phase 3C: PARTIAL. Blind generalization: UNVERIFIED.**
