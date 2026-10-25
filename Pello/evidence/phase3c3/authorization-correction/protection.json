@@ -1,0 +1,7 @@
+{
+  "at": "2026-10-25T22:34:38.287057+00:00",
+  "hashes": {
+    "tests\\test_authorization_schema_contract.py": "a3ef8600190a0f002f21233ea913410df78b391f5851714df616fdd7c8b31a6f"
+  },
+  "reason": "Actual fresh blind B typed authorization flag mismatch; expose existing invariant without weakening validator"
+}

@@ -1,0 +1,17 @@
+{
+  "original_project_row": {
+    "project_id": "phase3c3-heldout-a",
+    "source_path": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\evidence\\phase3c3\\heldout-a-spec.md",
+    "source_hash": "9ade6c83162fcf07f3d959ff59343c5804934c59c2d89c3cdd68268370845b2c",
+    "current_version": 1,
+    "max_turns": 12,
+    "used_turns": 2,
+    "deadline": "2026-10-26T00:44:36+00:00",
+    "status": "ANALYZED",
+    "blocker": "",
+    "created": "2026-10-25T22:08:36+00:00",
+    "modified": "2026-10-25T22:11:24+00:00"
+  },
+  "new_status": "BLOCKED",
+  "reason": "Original blind evaluation FAIL preserved; this fixture is consumed and is not rerun for a blind claim."
+}

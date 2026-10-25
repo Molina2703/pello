@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-25T22:37:18.525976+00:00",
+  "budget_reservations_including_one_never_submitted_charge": 45,
+  "cumulative_limit": 60,
+  "remaining": 15,
+  "minimum_evaluation_path": 10,
+  "failure_reserve": 5,
+  "deadline": "2026-10-26T00:45:00+00:00",
+  "per_project_limits_preserved": true,
+  "no_counter_reset": true
+}

@@ -65,7 +65,7 @@ class RequirementDraft(Message):
     uncertainty: Literal['clear', 'ambiguous', 'inferred']
     external_dependencies: list[str] = Field(max_length=20)
     external_effects: list[str] = Field(max_length=20)
-    authorization_required: bool
+    authorization_required: bool = Field(description="For category='authorization' this must be true, including local role enforcement rules. It records an authorization requirement and never grants permission, approves an external effect, or authorizes implementation. Other categories use the source-based value.")
 
     @model_validator(mode='after')
     def authority_and_priority(self):

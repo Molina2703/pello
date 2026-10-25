@@ -1,0 +1,14 @@
+{
+  "old_model_facing_field": {
+    "type": "boolean",
+    "title": "Authorization Required"
+  },
+  "new_model_facing_field": {
+    "description": "For category='authorization' this must be true, including local role enforcement rules. It records an authorization requirement and never grants permission, approves an external effect, or authorizes implementation. Other categories use the source-based value.",
+    "title": "Authorization Required",
+    "type": "boolean"
+  },
+  "runtime_guard_unchanged": true,
+  "original_B_result_still_rejected": true,
+  "historical_consumption_preserved": true
+}

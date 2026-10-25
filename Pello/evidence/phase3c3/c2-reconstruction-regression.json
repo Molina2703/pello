@@ -1,0 +1,11 @@
+{
+  "verdict": "PASS",
+  "source_project": "phase3c-3c1-live-r2",
+  "plan_sha256": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+  "accepted": "ACCEPTED",
+  "first_actionable": "N01",
+  "project_sdk_counter_before": 8,
+  "project_sdk_counter_after": 8,
+  "plan_history_rows": 1,
+  "model_decision_rows": 7
+}

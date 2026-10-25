@@ -1,0 +1,13 @@
+{
+  "verdict": "PASS",
+  "scope": "correct",
+  "correctness": "adequate",
+  "test_evidence": "pass",
+  "safety_and_preservation": "adequate",
+  "findings": [
+    "The description exposes the existing authorization-category invariant, including local role enforcement, without granting business or execution permission. Field requiredness and runtime validation remain unchanged.",
+    "The supplied transcripts report 56 passing tests. Targeted checks cover schema visibility, rejection of authorization=false for authorization requirements, and continued acceptance of false for ordinary functional requirements.",
+    "The patch contains no source, rubric, failed-output or history edits. This engineering correction does not establish blind generalization or reverse ArchiveLedger's original failure."
+  ],
+  "rationale": "The change narrowly clarifies the model-facing contract while preserving enforcement. The supplied tests support acceptance of this correction; a new unseen evaluation remains necessary to demonstrate blind generalization."
+}

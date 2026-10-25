@@ -1,0 +1,16 @@
+test_local_authorization_rule_still_requires_true_without_external_effects (test_authorization_schema_contract.AuthorizationSchemaContractTests.test_local_authorization_rule_still_requires_true_without_external_effects) ... ok
+test_ordinary_local_functionality_does_not_inherit_authorization_requirement (test_authorization_schema_contract.AuthorizationSchemaContractTests.test_ordinary_local_functionality_does_not_inherit_authorization_requirement) ... ok
+test_sdk_output_schema_explains_cross_field_guard_and_non_grant_meaning (test_authorization_schema_contract.AuthorizationSchemaContractTests.test_sdk_output_schema_explains_cross_field_guard_and_non_grant_meaning) ... FAIL
+
+======================================================================
+FAIL: test_sdk_output_schema_explains_cross_field_guard_and_non_grant_meaning (test_authorization_schema_contract.AuthorizationSchemaContractTests.test_sdk_output_schema_explains_cross_field_guard_and_non_grant_meaning)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_authorization_schema_contract.py", line 17, in test_sdk_output_schema_explains_cross_field_guard_and_non_grant_meaning
+    self.assertIn("category='authorization'",description)
+AssertionError: "category='authorization'" not found in ''
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.012s
+
+FAILED (failures=1)

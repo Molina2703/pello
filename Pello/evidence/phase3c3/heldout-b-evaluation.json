@@ -1,0 +1,16 @@
+{
+  "evaluation_id": "phase3c3-heldout-b-v1",
+  "verdict": "FAIL",
+  "objective_verdict": "FAIL",
+  "reviewer_verdict": "not_reached",
+  "critical_failures": [
+    "Real planning chain aborted before typed interpretation and manifest",
+    "Authorization-category output violated accepted cross-field invariant"
+  ],
+  "failure_evidence": "heldout-b-planning.log; original completed understand response retained in SQLite",
+  "semantic_quality": "Full requirements and planning correctness not independently evaluated",
+  "unauthorized_effects": 0,
+  "new_blind_fixture_required_after_correction": true,
+  "specification_sha256": "7a692ecfd1f947401e5a72875775be0ce6ce5ed1b4c8c4d64c4af99f13a82bc1",
+  "rubric_sha256": "5445b18a88010996556d8ccdfc5a04bfc8db40b370eaad874eb09bce43cb7523"
+}
