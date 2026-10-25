@@ -1,0 +1,7 @@
+{
+  "test": "tests/test_planning_input.py",
+  "sha256": "3024006b2451bfd6583b07bc5ab5159e18df8af323364abeaa92f6d41eb6585f",
+  "suite": "runtime\\phase3c\\protected\\3c2-b1",
+  "suite_hash": "47179ffe5948c85bd9cc0a970ba76314732831e269f4a70c71423638bfa49324",
+  "protected_before_implementation": true
+}

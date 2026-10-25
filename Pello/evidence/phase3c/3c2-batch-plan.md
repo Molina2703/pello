@@ -1,0 +1,7 @@
+# Phase 3C-2 bounded continuation
+
+Authorization: continuation-authorization-20261025.json. Preserve cumulative 14/30 used SDK turns; no external operations. Six sequential accepted batches: (1) validated accepted-analysis ingress and scope controls; (2) architecture and deterministic graph; (3) coherent increments/readiness; (4) contracts/criteria and manifest mapping; (5) catalog-validated typed model decisions; (6) durable plan/recovery and safe pipeline inspection.
+
+Each batch freezes its new behavioral acceptance file before implementation, records hashes using the existing files_hash mechanism, runs targeted tests, supplies source/diff plus actual transcripts to a separate existing SDK Reviewer session, and requires PASS before committing/continuing. Rejected results remain. Full regression at final integration. Engineering changes to Core control/validation are performed by the authorized Sol development session because they cross integrity, authorization, and persistence boundaries; product Coder selections remain Luna first and task specific. No claim that engineering repairs are autonomous Pello repairs.
+
+Batch 1 acceptance: actual accepted JSON round trip, required fields, duplicate IDs, source hash integrity, cross references, exclusions, blockers and unapproved assumptions. CLI only delegates to validated Core ingress. Historical tests unchanged. New run ledger gates all subsequent SDK reservations globally and atomically, while original per-project counters remain.

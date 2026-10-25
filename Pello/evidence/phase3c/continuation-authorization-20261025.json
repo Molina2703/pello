@@ -1,0 +1,15 @@
+{
+  "id": "phase3c-continuation-20261025",
+  "authorized_at": "2026-10-25T17:14:29+00:00",
+  "deadline": "2026-10-25T21:14:29+00:00",
+  "user_authorization": "Doy autorizaci\u00f3n ahora, hazlo",
+  "scope": "Six Phase 3C-2 batches; Phase 3C-3 only after accepted C2 and enough remaining bounded capacity. No Phase 3D.",
+  "cumulative_sdk_limit": 30,
+  "already_consumed": 14,
+  "additional_turns_available": 16,
+  "external_operations": 0,
+  "per_project_limit": 12,
+  "coder_attempts_per_batch": 3,
+  "supersedes_expired_window": "phase3c-development-20261025",
+  "no_counter_reset": true
+}

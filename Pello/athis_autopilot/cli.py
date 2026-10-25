@@ -64,6 +64,7 @@ def main():
     planning_action = planning.add_mutually_exclusive_group(required=True)
     planning_action.add_argument('--create', action='store_true', help='Create a bounded project without invoking a model')
     planning_action.add_argument('--understand', action='store_true', help='Extract structured requirements via the existing SDK Planner')
+    planning_action.add_argument('--planner-input', action='store_true', help='Inspect validated accepted requirements without model inference')
     planning_action.add_argument('--review-analysis', action='store_true', help='Independently review a saved analysis')
     planning_action.add_argument('--reprocess-analysis', action='store_true', help='Create an append-only normalized analysis revision from the saved Planner response')
     planning_action.add_argument('--review-increment', metavar='INCREMENT_ID', help='Independent read-only engineering review after objective tests pass')
@@ -160,6 +161,8 @@ def main():
                     cli.error('--spec solo aplica con --create o --revalidate')
                 if args.understand:
                     result = core.understand(args.project_id)
+                elif args.planner_input:
+                    result = core.planner_input(args.project_id)
                 elif args.review_analysis:
                     result = core.review_analysis(args.project_id)
                 elif args.reprocess_analysis:
