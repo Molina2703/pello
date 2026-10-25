@@ -68,7 +68,8 @@ class PublicationTests(unittest.TestCase):
             with core.db() as cx:cx.execute('UPDATE pello_n8n_projects SET max_mutations=3 WHERE project_id=?',(pid,))
             before=len(backend.remote);report=core.run_pipeline(pid)
             self.assertEqual(report['stage'],'BLOCKED');self.assertIn('budget',report['blocker'].lower())
-            self.assertEqual(len(backend.remote),before);self.assertEqual(backend.http_calls,[])
+            self.assertEqual([r['tool'] for r in backend.remote[before:]],['get_workflow_details'])
+            self.assertEqual(backend.http_calls,[])
             self.assertFalse((core.folder(pid)/'workspace/publication.json').exists())
 
     def test_version_drift_blocks_publication_and_http(self):

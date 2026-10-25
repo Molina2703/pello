@@ -51,12 +51,15 @@ def main():
     pilot_source = pilot.add_mutually_exclusive_group(required=True)
     pilot_source.add_argument('--new', action='store_true')
     pilot_source.add_argument('--resume', metavar='PROJECT_ID')
+    pilot_source.add_argument('--publish-only', metavar='PROJECT_ID')
     pilot_source.add_argument('--status', metavar='PROJECT_ID')
     pilot_source.add_argument('--stop', metavar='PROJECT_ID')
     pilot_source.add_argument('--reconcile-create', metavar='PROJECT_ID')
     pilot.add_argument('--project-id')
     pilot.add_argument('--timeout', type=int, default=240)
     pilot.add_argument('--stop-after', type=int)
+    pilot.add_argument('--authorize-closeout', type=Path,help='Explicit human closeout grant JSON; records without resetting usage')
+    pilot.add_argument('--publication-review-round',type=int,choices=[1,2],default=1,help='Round2 only repairs the recorded stage-contract mismatch')
     args = cli.parse_args()
     if args.root is None:
         config_path = project / 'config' / 'pello.json'
@@ -106,15 +109,18 @@ def main():
                 cli.error('--stop-after debe ser positivo')
             core = N8nPipeline(args.root, timeout=args.timeout)
             project_id = core.create_qa_project(project_id=args.project_id) if args.new else (
-                args.resume or args.status or args.stop or args.reconcile_create)
+                args.resume or args.publish_only or args.status or args.stop or args.reconcile_create)
             print('PROJECT_ID:', project_id, flush=True)
+            if args.authorize_closeout:
+                core.journal.authorize_closeout(project_id,json.loads(args.authorize_closeout.read_text(encoding='utf-8')))
             if args.stop:
                 (core.folder(project_id)/'STOP').write_text('Emergency STOP requested by operator\n',encoding='utf-8')
             if args.reconcile_create:
                 core.journal.reconcile_create(project_id,'create')
                 print(json.dumps({'project_id':project_id,'workflow_id':core.journal.resource(project_id)['workflow_id']},indent=2))
                 return 0
-            result = core.pipeline_report(project_id) if args.status else core.run_pipeline(project_id,stop_after=args.stop_after)
+            result = (core.pipeline_report(project_id) if args.status else core.publish_increment(project_id,review_round=args.publication_review_round) if args.publish_only
+                      else core.run_pipeline(project_id,stop_after=args.stop_after))
             print(json.dumps({key:result[key] for key in ('project_id','stage','passed','verified_increments',
                 'planned_increments','workflow_id','external_integration','blocker','report_path')},indent=2,ensure_ascii=False))
             return 0 if result['passed'] or (result['stage']=='PAUSED' and result['integrity']) else 2

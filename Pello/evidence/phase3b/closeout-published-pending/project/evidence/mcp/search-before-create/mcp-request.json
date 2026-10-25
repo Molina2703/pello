@@ -1,0 +1,1 @@
+{"action": "call", "tool": "search_workflows", "arguments": {"query": "PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a", "limit": 20}, "operation": {"db": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\jobs.sqlite3", "project_id": "phase3b-qa-first", "key": "search-before-create"}}

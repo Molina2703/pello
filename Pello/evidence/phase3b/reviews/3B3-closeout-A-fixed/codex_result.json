@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a170ee-8e90-7710-a95b-19ca49a0f1eb",
+  "turn_id": "01a170ee-9009-7b21-847d-a2ad9310d629",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 37623,
+      "output_tokens": 1307,
+      "reasoning_output_tokens": 1119,
+      "total_tokens": 38930
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 37623,
+      "output_tokens": 1307,
+      "reasoning_output_tokens": 1119,
+      "total_tokens": 38930
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3b\",\"task_id\":\"3B3-closeout-A-fixed\",\"attempt\":1,\"verdict\":\"FAIL\",\"diagnosis\":\"implementation\",\"feedback\":\"Uncertain publication cannot resume through the Increment A entry point. If publish_workflow succeeds remotely but its response is lost, journal.call marks it UNCERTAIN and publish_increment catches the exception and blocks the project. The next publish_increment rejects BLOCKED before reaching the owned-read reconciliation logic. authorize_closeout only clears the mutation-budget blocker. The passing uncertainty test injects an UNCERTAIN row into an otherwise resumable project, missing this failure path. Provide scoped recovery that performs the owned read and reconciles without resubmission. Verify it with a backend that activates the workflow and then raises, followed by a fresh-instance resume that reaches the publication review/pause without another publish or any HTTP POST.\"}",
+  "error": null
+}

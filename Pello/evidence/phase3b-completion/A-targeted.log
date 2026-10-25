@@ -1,0 +1,39 @@
+test_already_published_reviewed_version_is_not_published_again (test_phase3b_closeout.CloseoutTests.test_already_published_reviewed_version_is_not_published_again) ... FAIL
+test_explicit_authorization_is_scoped_idempotent_and_preserves_counters (test_phase3b_closeout.CloseoutTests.test_explicit_authorization_is_scoped_idempotent_and_preserves_counters) ... ok
+test_publication_checkpoint_precedes_all_http_and_resume_finishes_once (test_phase3b_closeout.CloseoutTests.test_publication_checkpoint_precedes_all_http_and_resume_finishes_once) ... FAIL
+test_uncertain_publish_is_reconciled_by_read_without_resubmission (test_phase3b_closeout.CloseoutTests.test_uncertain_publish_is_reconciled_by_read_without_resubmission) ... FAIL
+
+======================================================================
+FAIL: test_already_published_reviewed_version_is_not_published_again (test_phase3b_closeout.CloseoutTests.test_already_published_reviewed_version_is_not_published_again)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_phase3b_closeout.py", line 51, in test_already_published_reviewed_version_is_not_published_again
+    self.assertTrue(core.run_pipeline(pid)['passed']);self.assertEqual(len(backend.http_calls),4)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_publication_checkpoint_precedes_all_http_and_resume_finishes_once (test_phase3b_closeout.CloseoutTests.test_publication_checkpoint_precedes_all_http_and_resume_finishes_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_phase3b_closeout.py", line 43, in test_publication_checkpoint_precedes_all_http_and_resume_finishes_once
+    b=core.run_pipeline(pid);self.assertTrue(b['passed'],b['blocker']);self.assertEqual(len(backend.http_calls),4)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : IntegrityError: UNIQUE constraint failed: pello_pipeline_exchanges.project_id, pello_pipeline_exchanges.task_id, pello_pipeline_exchanges.attempt, pello_pipeline_exchanges.kind
+
+======================================================================
+FAIL: test_uncertain_publish_is_reconciled_by_read_without_resubmission (test_phase3b_closeout.CloseoutTests.test_uncertain_publish_is_reconciled_by_read_without_resubmission)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_phase3b_closeout.py", line 60, in test_uncertain_publish_is_reconciled_by_read_without_resubmission
+    a=core.publish_increment(pid);self.assertEqual(a['stage'],'PAUSED',a['blocker'])
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'BLOCKED' != 'PAUSED'
+- BLOCKED
++ PAUSED
+ : FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\USUARIO\\AppData\\Local\\Temp\\tmpsa8czm16\\supervised\\closeout-qa\\evidence\\mcp\\publish-reconciliation.json'
+
+----------------------------------------------------------------------
+Ran 4 tests in 22.757s
+
+FAILED (failures=3)

@@ -1,0 +1,10 @@
+test_actual_identity_version_and_mcp_exposure (test_draft.DraftAcceptance.test_actual_identity_version_and_mcp_exposure) ... ok
+test_independent_contract_cases (test_draft.DraftAcceptance.test_independent_contract_cases) ... ok
+test_real_manual_execution_results (test_draft.DraftAcceptance.test_real_manual_execution_results) ... ok
+test_remote_definition_matches_source (test_draft.DraftAcceptance.test_remote_definition_matches_source) ... ok
+test_safe_source_structure (test_draft.DraftAcceptance.test_safe_source_structure) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.159s
+
+OK

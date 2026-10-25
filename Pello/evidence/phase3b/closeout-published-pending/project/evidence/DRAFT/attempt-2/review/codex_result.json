@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a170b6-2c05-7bc1-a726-4f4943ba5212",
+  "turn_id": "01a170b7-4634-7341-8271-478906842584",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 23472,
+      "output_tokens": 130,
+      "reasoning_output_tokens": 52,
+      "total_tokens": 23602
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 40603,
+      "output_tokens": 954,
+      "reasoning_output_tokens": 758,
+      "total_tokens": 41557
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3b-qa-first\",\"task_id\":\"DRAFT\",\"attempt\":2,\"verdict\":\"PASS\",\"diagnosis\":\"none\",\"feedback\":\"Body guards resolve the prior invalid-input defect. Workflow structure, expressions, and remote draft match the contract. All 5 independent tests passed with source integrity verified.\"}",
+  "error": null
+}

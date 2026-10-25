@@ -1,0 +1,31 @@
+{
+  "older_phases": {
+    "files": 773,
+    "changed": []
+  },
+  "previous_phase3b": {
+    "files": 506,
+    "changed": []
+  },
+  "pello_n8n_operations": {
+    "previous_rows": 17,
+    "unchanged": true
+  },
+  "pello_pipeline_operations": {
+    "previous_rows": 6,
+    "unchanged": true
+  },
+  "pello_pipeline_checkpoints": {
+    "previous_rows": 1,
+    "unchanged": true
+  },
+  "config": {
+    "n8n": {
+      "server": "n8n",
+      "endpoint": "https://n8n-production-3374.up.railway.app/mcp-server/http",
+      "configured": true
+    },
+    "n8n_section_unchanged": true,
+    "whole_file_unchanged": true
+  }
+}

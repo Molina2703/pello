@@ -1,0 +1,33 @@
+test_already_published_reviewed_version_is_not_published_again (test_phase3b_closeout.CloseoutTests.test_already_published_reviewed_version_is_not_published_again) ... FAIL
+test_explicit_authorization_is_scoped_idempotent_and_preserves_counters (test_phase3b_closeout.CloseoutTests.test_explicit_authorization_is_scoped_idempotent_and_preserves_counters) ... ok
+test_publication_checkpoint_precedes_all_http_and_resume_finishes_once (test_phase3b_closeout.CloseoutTests.test_publication_checkpoint_precedes_all_http_and_resume_finishes_once) ... ok
+test_uncertain_publish_is_reconciled_by_read_without_resubmission (test_phase3b_closeout.CloseoutTests.test_uncertain_publish_is_reconciled_by_read_without_resubmission) ... FAIL
+
+======================================================================
+FAIL: test_already_published_reviewed_version_is_not_published_again (test_phase3b_closeout.CloseoutTests.test_already_published_reviewed_version_is_not_published_again)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_phase3b_closeout.py", line 50, in test_already_published_reviewed_version_is_not_published_again
+    a=core.publish_increment(pid);self.assertEqual(a['stage'],'PAUSED',a['blocker'])
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'BLOCKED' != 'PAUSED'
+- BLOCKED
++ PAUSED
+ : CodexBlocked: Mutation budget exhausted before publication; no extra Coder turn or remote operation
+
+======================================================================
+FAIL: test_uncertain_publish_is_reconciled_by_read_without_resubmission (test_phase3b_closeout.CloseoutTests.test_uncertain_publish_is_reconciled_by_read_without_resubmission)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_phase3b_closeout.py", line 62, in test_uncertain_publish_is_reconciled_by_read_without_resubmission
+    a=core.publish_increment(pid);self.assertEqual(a['stage'],'PAUSED',a['blocker'])
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'BLOCKED' != 'PAUSED'
+- BLOCKED
++ PAUSED
+ : CodexBlocked: Mutation budget exhausted before publication; no extra Coder turn or remote operation
+
+----------------------------------------------------------------------
+Ran 4 tests in 23.700s
+
+FAILED (failures=2)

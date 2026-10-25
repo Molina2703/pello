@@ -30,7 +30,10 @@ def select_model(policy, capabilities, *, phase, risk='routine', attempt=1, resp
     responsibility = responsibility or {'plan': 'planner', 'execute': 'coder', 'review': 'reviewer'}.get(phase.rsplit('/', 1)[-1])
     if responsibility not in ('planner', 'coder', 'reviewer', 'tester'):
         raise CodexBlocked('Unknown model responsibility; no implicit profile')
-    advanced = (risk == 'high' or attempt > 1) and (not policy.role_profiles or responsibility == 'coder')
+    # A retry counter is not evidence that Luna cannot solve an increment.
+    # Explicit risk classification remains available; ordinary retries retain
+    # the selected role profile until planning/review justifies a new choice.
+    advanced = risk == 'high' and (not policy.role_profiles or responsibility == 'coder')
     if policy.role_profiles and not advanced:
         profile = policy.role_profiles.get(responsibility)
         if profile is None:

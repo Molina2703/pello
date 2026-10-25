@@ -1,0 +1,18 @@
+test_fresh_instance_recovers_a_realistically_lost_publish_response (test_phase3b_closeout.CloseoutTests.test_fresh_instance_recovers_a_realistically_lost_publish_response) ... FAIL
+
+======================================================================
+FAIL: test_fresh_instance_recovers_a_realistically_lost_publish_response (test_phase3b_closeout.CloseoutTests.test_fresh_instance_recovers_a_realistically_lost_publish_response)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_phase3b_closeout.py", line 30, in test_fresh_instance_recovers_a_realistically_lost_publish_response
+    self.assertEqual(result['stage'],'PAUSED',result['blocker']);self.assertEqual(backend.http_calls,[])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'BLOCKED' != 'PAUSED'
+- BLOCKED
++ PAUSED
+ : CodexBlocked: CodexBlocked: External operation uncertain; reconcile before retrying: TimeoutError
+
+----------------------------------------------------------------------
+Ran 1 test in 6.218s
+
+FAILED (failures=1)

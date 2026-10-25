@@ -1,0 +1,172 @@
+{
+  "workflow": {
+    "active": false,
+    "activeVersion": null,
+    "activeVersionId": null,
+    "canExecute": true,
+    "connections": {
+      "QA Result": {
+        "main": [
+          [
+            {
+              "index": 0,
+              "node": "QA Response",
+              "type": "main"
+            }
+          ]
+        ]
+      },
+      "QA Webhook": {
+        "main": [
+          [
+            {
+              "index": 0,
+              "node": "QA Result",
+              "type": "main"
+            }
+          ]
+        ]
+      }
+    },
+    "createdAt": "2026-10-25T01:38:51.213Z",
+    "description": "Pello Phase 3B synthetic credential-free integration QA",
+    "id": "Tbuvwcxde8MEMYcJ",
+    "isArchived": false,
+    "meta": {
+      "aiBuilderAssisted": true,
+      "builderVariant": "mcp"
+    },
+    "name": "PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a",
+    "nodeCount": 3,
+    "nodeGroups": [],
+    "nodes": [
+      {
+        "id": "51e967c4-6940-477e-8713-e73e0f59a5fc",
+        "name": "QA Webhook",
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "pello-3b-bb491b32d40943d5ad8a",
+          "responseMode": "responseNode"
+        },
+        "position": [
+          0,
+          0
+        ],
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.2,
+        "webhookId": "8a6a3c3c-904a-4f3b-b613-f1fd9484a36f"
+      },
+      {
+        "id": "2e753fca-51fb-4228-b37f-834b7e6b6d49",
+        "name": "QA Result",
+        "parameters": {
+          "jsonOutput": "={{ typeof $json.body === 'object' && $json.body !== null && typeof $json.body.request_id === 'string' && $json.body.request_id.startsWith('pello-3b-') && typeof $json.body.value === 'number' && Number.isFinite($json.body.value) && $json.body.value >= -1000000 && $json.body.value <= 1000000 && $json.body.op === 'double' ? {request_id: $json.body.request_id, status: 'ok', result: $json.body.value * 2} : {request_id: typeof $json.body === 'object' && $json.body !== null && typeof $json.body.request_id === 'string' ? $json.body.request_id : null, status: 'invalid', error: 'invalid_input'} }}",
+          "mode": "raw"
+        },
+        "position": [
+          224,
+          0
+        ],
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.5
+      },
+      {
+        "id": "009a6da4-ce95-4843-b4a2-0fa3f282531b",
+        "name": "QA Response",
+        "parameters": {
+          "options": {
+            "responseCode": "={{ $json.status === 'ok' ? 200 : 400 }}"
+          },
+          "respondWith": "json",
+          "responseBody": "={{ $json }}"
+        },
+        "position": [
+          448,
+          0
+        ],
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.5
+      }
+    ],
+    "parentFolderId": null,
+    "scopes": [
+      "execution:delete",
+      "execution:list",
+      "execution:read",
+      "execution:reveal",
+      "workflow:create",
+      "workflow:delete",
+      "workflow:disableRedaction",
+      "workflow:enableRedaction",
+      "workflow:execute",
+      "workflow:execute-chat",
+      "workflow:export",
+      "workflow:import",
+      "workflow:list",
+      "workflow:move",
+      "workflow:publish",
+      "workflow:read",
+      "workflow:share",
+      "workflow:unpublish",
+      "workflow:unshare",
+      "workflow:update"
+    ],
+    "settings": {
+      "availableInMCP": true,
+      "executionOrder": "v1"
+    },
+    "tags": [],
+    "triggerCount": 0,
+    "updatedAt": "2026-10-25T01:40:01.163Z",
+    "versionId": "851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7"
+  },
+  "workflow_id": "Tbuvwcxde8MEMYcJ",
+  "official_validation": {
+    "nodeCount": 3,
+    "valid": true
+  },
+  "mcp_available": true,
+  "manual_cases": [
+    {
+      "payload": {
+        "request_id": "pello-3b-valid",
+        "value": 21,
+        "op": "double"
+      },
+      "http_status": 200,
+      "expected": {
+        "request_id": "pello-3b-valid",
+        "status": "ok",
+        "result": 42
+      },
+      "execution_id": "5",
+      "observed_output": {
+        "request_id": "pello-3b-valid",
+        "result": 42,
+        "status": "ok"
+      },
+      "passed": true
+    },
+    {
+      "payload": {
+        "request_id": "pello-3b-invalid",
+        "value": "not-a-number",
+        "op": "double"
+      },
+      "http_status": 400,
+      "expected": {
+        "request_id": "pello-3b-invalid",
+        "status": "invalid",
+        "error": "invalid_input"
+      },
+      "execution_id": "6",
+      "observed_output": {
+        "error": "invalid_input",
+        "request_id": "pello-3b-invalid",
+        "status": "invalid"
+      },
+      "passed": true
+    }
+  ],
+  "blueprint_sha256": "be6a13643b09fcec855a4832878a5914a281a71fd74b25629048351625e2d653"
+}

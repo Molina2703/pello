@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a17181-7033-7883-a818-e74ae5e9176d",
+  "turn_id": "01a17181-71ac-72d3-8f9b-bdc130a5ab28",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 41078,
+      "output_tokens": 936,
+      "reasoning_output_tokens": 830,
+      "total_tokens": 42014
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 41078,
+      "output_tokens": 936,
+      "reasoning_output_tokens": 830,
+      "total_tokens": 42014
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3b\",\"task_id\":\"3B3-closeout-A-ready\",\"attempt\":1,\"verdict\":\"PASS\",\"diagnosis\":\"none\",\"feedback\":\"No blocking defect found in the supplied bounded increment. The reported 126/126 regression pass supports scoped authorization, publication recovery without resubmission, corrected A review metadata, and retry-policy behavior. Final B HTTP acceptance and independent review remain pending; further live operations require renewed human time authorization.\"}",
+  "error": null
+}

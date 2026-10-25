@@ -1,0 +1,12 @@
+PROJECT_ID: phase3b-qa-first
+{
+  "project_id": "phase3b-qa-first",
+  "stage": "BLOCKED",
+  "passed": false,
+  "verified_increments": 1,
+  "planned_increments": 2,
+  "workflow_id": "Tbuvwcxde8MEMYcJ",
+  "external_integration": "DRAFT REAL MCP VERIFIED; PUBLISHING PENDING",
+  "blocker": "CodexBlocked: Independent publication review did not approve: Publication evidence shows the reviewed version is active, and all 5 DRAFT regression tests passed. However, the required published suite result (1 test) is missing. Supply that independent verification before approval. HTTP acceptance remains pending under Increment B.",
+  "report_path": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\supervised\\phase3b-qa-first\\pipeline-report.md"
+}

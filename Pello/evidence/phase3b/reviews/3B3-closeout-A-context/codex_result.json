@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a17178-91c6-7931-9b9a-ddfeb47f4a6d",
+  "turn_id": "01a17178-9440-7890-a810-b2bb131d5a5d",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 9984,
+      "input_tokens": 40612,
+      "output_tokens": 1404,
+      "reasoning_output_tokens": 1295,
+      "total_tokens": 42016
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 9984,
+      "input_tokens": 40612,
+      "output_tokens": 1404,
+      "reasoning_output_tokens": 1295,
+      "total_tokens": 42016
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3b\",\"task_id\":\"3B3-closeout-A-context\",\"attempt\":1,\"verdict\":\"BLOCKED\",\"diagnosis\":\"infrastructure\",\"feedback\":\"The required full125 regression result is missing: full123 predates the latest fixes. Supply the completed passing regression for the reviewed source. Targeted closeout and publication tests pass; no additional blocking implementation defect is established. Live publication and Increment B HTTP acceptance are not required for this engineering review.\"}",
+  "error": null
+}

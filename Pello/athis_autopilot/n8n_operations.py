@@ -11,6 +11,9 @@ from .n8n_mcp import PROTECTED_IDS, READ_TOOLS, RESOURCE_READS, redact_result
 from .supervisor import now
 
 MUTATIONS = {'create_workflow_from_code', 'update_workflow', 'publish_workflow', 'execute_workflow', 'test_workflow'}
+CLOSEOUT_AUTHORIZATION={'authorization_id':'user-phase3b3-completion-20261024','workflow_id':'Tbuvwcxde8MEMYcJ',
+    'cumulative_mutations':14,'additional_mutations':8,'http_posts':4,'deadline_extension_seconds':5400,
+    'source':'Explicit human request: PELLO — PHASE 3B.3 COMPLETION, section 4'}
 
 
 def encoded(value):
@@ -144,7 +147,64 @@ class N8nJournal:
                 response TEXT, thread_id TEXT, created TEXT NOT NULL, modified TEXT NOT NULL,
                 PRIMARY KEY(project_id,op_key));
                 CREATE TABLE IF NOT EXISTS pello_n8n_executions(
-                project_id TEXT NOT NULL, execution_id TEXT NOT NULL, PRIMARY KEY(project_id,execution_id));''')
+                project_id TEXT NOT NULL, execution_id TEXT NOT NULL, PRIMARY KEY(project_id,execution_id));
+                CREATE TABLE IF NOT EXISTS pello_n8n_authorizations(
+                project_id TEXT NOT NULL,authorization_id TEXT NOT NULL,event TEXT NOT NULL,
+                before_state TEXT NOT NULL,after_state TEXT NOT NULL,authority TEXT NOT NULL,created TEXT NOT NULL,
+                PRIMARY KEY(project_id,authorization_id,event));''')
+
+    def authorize_closeout(self,project_id,authorization):
+        """Apply the human's exact closeout grant, never reset operation counters.
+
+        Operator/Core entry point, not a model tool. Each event is append-only.
+        The one 90-minute extension is applied only after the stored deadline
+        expires; repeated invocations cannot renew an already extended deadline.
+        """
+        if authorization!=CLOSEOUT_AUTHORIZATION:raise CodexBlocked('Authorization exceeds or differs from the explicit closeout grant')
+        with self.core.db() as cx:
+            cx.execute('BEGIN IMMEDIATE')
+            resource=dict(cx.execute('SELECT * FROM pello_n8n_projects WHERE project_id=?',(project_id,)).fetchone())
+            if resource['workflow_id']!=authorization['workflow_id']:raise CodexBlocked('Closeout grant targets another resource')
+            auth_id=authorization['authorization_id']
+            events={r['event'] for r in cx.execute('SELECT event FROM pello_n8n_authorizations WHERE project_id=? AND authorization_id=?',(project_id,auth_id))}
+            if 'mutations' not in events:
+                if resource['max_mutations']!=6:raise CodexBlocked('Unexpected previous mutation budget')
+                updated={**resource,'max_mutations':14}
+                cx.execute('INSERT INTO pello_n8n_authorizations VALUES(?,?,?,?,?,?,?)',
+                    (project_id,auth_id,'mutations',encoded(resource),encoded(updated),encoded(authorization),now()))
+                cx.execute('UPDATE pello_n8n_projects SET max_mutations=14 WHERE project_id=?',(project_id,))
+                resource=updated
+            elif resource['max_mutations']!=14:raise CodexBlocked('Authorized cumulative budget drifted')
+            if time.time()>=resource['deadline']:
+                if 'deadline' in events:raise CodexBlocked('The one authorized deadline extension is exhausted')
+                updated={**resource,'deadline':time.time()+5400}
+                cx.execute('INSERT INTO pello_n8n_authorizations VALUES(?,?,?,?,?,?,?)',
+                    (project_id,auth_id,'deadline',encoded(resource),encoded(updated),encoded(authorization),now()))
+                cx.execute('UPDATE pello_n8n_projects SET deadline=? WHERE project_id=?',(updated['deadline'],project_id))
+            project=self.core.project(project_id)
+            if project['stage']=='BLOCKED' and 'Mutation budget exhausted before publication' in project['blocker']:
+                self.core.set_stage(cx,project_id,'PAUSED',blocker='')
+
+    def reconcile_publication(self,project_id,key,read_key):
+        from .n8n_qa import fingerprint
+        resource=self.resource(project_id);ops=self.operations(project_id)
+        op=next(r for r in ops if r['op_key']==key);read=next(r for r in ops if r['op_key']==read_key)
+        if op['tool']!='publish_workflow' or op['status'] not in ('IN_FLIGHT','SUBMITTED','UNCERTAIN'):
+            raise CodexBlocked('No uncertain publication to reconcile')
+        intent=json.loads(op['request'])
+        if intent.get('workflowId')!=resource['workflow_id'] or intent.get('versionId')!=resource['reviewed_version']:
+            raise CodexBlocked('Uncertain publication intent differs from the currently reviewed resource')
+        if read['tool']!='get_workflow_details' or read['status']!='CONFIRMED':raise CodexBlocked('Publication reconciliation requires a confirmed owned read')
+        remote=mcp_data(json.loads(read['response']))['workflow']
+        if (remote['id']!=resource['workflow_id'] or remote.get('active') is not True or
+            remote.get('activeVersionId')!=resource['reviewed_version'] or remote.get('versionId')!=resource['reviewed_version'] or
+            fingerprint(remote)!=resource['reviewed_hash']):raise CodexBlocked('Publication readback does not confirm the reviewed version')
+        evidence=self.core.folder(project_id)/'evidence/mcp'/f'{key}-reconciliation.json'
+        evidence.parent.mkdir(parents=True,exist_ok=True)
+        evidence.write_text(encoded({'previous_operation':op,'read_operation':read_key,'read_response_sha256':digest(json.loads(read['response']))}),encoding='utf-8')
+        finish_operation({'db':str(self.core.db_path),'project_id':project_id,'key':key},
+            {'structuredContent':{'success':True,'workflowId':remote['id'],'activeVersionId':remote['activeVersionId'],
+                                  'reconciled_from':op['status'],'read_operation':read_key},'content':[],'isError':False})
 
     def configure(self, project_id, name, webhook_path, *, max_calls=40, max_mutations=6, seconds=2400):
         import re

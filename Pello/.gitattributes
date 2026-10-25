@@ -8,3 +8,4 @@ PELLO_V1_PRODUCT_SPEC.md -text -whitespace
 # The pre-existing README edit includes a final blank line; retain it.
 README.md whitespace=-blank-at-eof
 evidence/phase3b/** -text -whitespace
+evidence/phase3b-completion/** -text -whitespace

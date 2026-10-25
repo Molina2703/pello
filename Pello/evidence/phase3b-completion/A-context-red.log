@@ -1,0 +1,15 @@
+test_staged_review_context_and_scoped_retry_preserve_final_protected_suite (test_phase3b_closeout.CloseoutTests.test_staged_review_context_and_scoped_retry_preserve_final_protected_suite) ... ERROR
+
+======================================================================
+ERROR: test_staged_review_context_and_scoped_retry_preserve_final_protected_suite (test_phase3b_closeout.CloseoutTests.test_staged_review_context_and_scoped_retry_preserve_final_protected_suite)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_phase3b_closeout.py", line 39, in test_staged_review_context_and_scoped_retry_preserve_final_protected_suite
+    result=restored.publish_increment(pid,review_round=2)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: N8nPipeline.publish_increment() got an unexpected keyword argument 'review_round'
+
+----------------------------------------------------------------------
+Ran 1 test in 6.236s
+
+FAILED (errors=1)

@@ -57,7 +57,7 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(result['tasks'][1]['state'], 'PENDING')
             self.assertIn('test_value', result['attempts'][0]['feedback'])
 
-    def test_bounded_repair_preserves_history_and_escalates(self):
+    def test_bounded_repair_preserves_history_and_continues_with_luna(self):
         with tempfile.TemporaryDirectory() as tmp:
             core, pid, backend = fixture(tmp)
             backend.fail_first = True
@@ -67,7 +67,7 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual([a['stage'] for a in history], ['FAILED', 'APPROVED'])
             self.assertEqual(len([e for e in result['exchanges'] if e['task_id'] == 'A' and e['kind'] == 'execution']), 2)
             repair_call = backend.calls.index(('A', 2, 'execute'))
-            self.assertEqual(backend.choices[repair_call][0], 'gpt-6.1-sol')
+            self.assertEqual(backend.choices[repair_call][0], 'gpt-6-luna')
             self.assertEqual(len(result['checkpoints']), 2)
 
     def test_read_only_reviewer_cannot_change_code(self):
@@ -257,7 +257,7 @@ class PipelineContractsTests(unittest.TestCase):
     def test_catalogue_validation_and_quota_fail_closed(self):
         policy = PipelinePolicy(); capabilities = PipelineBackend().capabilities()
         self.assertEqual(select_model(policy, capabilities, phase='execute')['model'], 'gpt-6-luna')
-        self.assertEqual(select_model(policy, capabilities, phase='execute', attempt=2)['model'], 'gpt-6.1-sol')
+        self.assertEqual(select_model(policy, capabilities, phase='execute', attempt=2)['model'], 'gpt-6-luna')
         capabilities['remaining_percent'] = 0
         with self.assertRaises(CodexBlocked): select_model(policy, capabilities, phase='execute')
         capabilities['remaining_percent'] = None; capabilities['models'] = {}

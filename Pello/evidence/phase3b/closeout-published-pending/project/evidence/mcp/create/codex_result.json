@@ -1,0 +1,30 @@
+{
+  "status": "completed",
+  "thread_id": "01a170b5-ddbe-7dd1-b4ee-d699af120b1d",
+  "server": "n8n",
+  "action": "call",
+  "tool": "create_workflow_from_code",
+  "result": {
+    "_meta": null,
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"workflowId\": \"Tbuvwcxde8MEMYcJ\",\n  \"name\": \"PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a\",\n  \"nodeCount\": 3,\n  \"url\": \"https://n8n-production-3374.up.railway.app/workflow/Tbuvwcxde8MEMYcJ\",\n  \"autoAssignedCredentials\": [],\n  \"targetProject\": {\n    \"id\": \"bG1xeZ6LHCNrzQvR\",\n    \"name\": \"santiago molina <grupoathis@gmail.com>\",\n    \"type\": \"personal\"\n  }\n}"
+      }
+    ],
+    "isError": null,
+    "structuredContent": {
+      "workflowId": "Tbuvwcxde8MEMYcJ",
+      "name": "PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a",
+      "nodeCount": 3,
+      "url": "https://n8n-production-3374.up.railway.app/workflow/Tbuvwcxde8MEMYcJ",
+      "autoAssignedCredentials": [],
+      "targetProject": {
+        "id": "bG1xeZ6LHCNrzQvR",
+        "name": "santiago molina <grupoathis@gmail.com>",
+        "type": "personal"
+      }
+    }
+  },
+  "model_inference": false
+}

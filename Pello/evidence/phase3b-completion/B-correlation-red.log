@@ -1,0 +1,20 @@
+test_identical_valid_requests_are_correlated_in_execution_time_order (test_phase3b_closeout.CloseoutTests.test_identical_valid_requests_are_correlated_in_execution_time_order) ... FAIL
+
+======================================================================
+FAIL: test_identical_valid_requests_are_correlated_in_execution_time_order (test_phase3b_closeout.CloseoutTests.test_identical_valid_requests_are_correlated_in_execution_time_order)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_phase3b_closeout.py", line 32, in test_identical_valid_requests_are_correlated_in_execution_time_order
+    self.assertEqual(ids['valid'],'mock-http-1');self.assertEqual(ids['repeat-valid'],'mock-http-4')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'mock-http-4' != 'mock-http-1'
+- mock-http-4
+?           ^
++ mock-http-1
+?           ^
+
+
+----------------------------------------------------------------------
+Ran 1 test in 8.028s
+
+FAILED (failures=1)

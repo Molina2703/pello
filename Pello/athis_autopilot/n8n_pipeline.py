@@ -14,7 +14,7 @@ from .n8n_operations import N8nJournal, mcp_data, digest, MUTATIONS, check_stop
 from .n8n_http import QAHttpJournal
 from .n8n_qa import QAContract, validate_blueprint, check_cases, sdk_code, verify_remote, fingerprint, cases
 from .pipeline import IncrementalPipeline, write_json, encoded
-from .pipeline_contracts import PipelinePolicy
+from .pipeline_contracts import PipelinePolicy, IncrementReview
 from .supervised import workspace_snapshot
 from .supervisor import now
 
@@ -189,7 +189,7 @@ class N8nPipeline(IncrementalPipeline):
     def _execute_increment(self,project,task,attempt):
         if task['task_id']=='PUBLISH':
             self._publication_budget(project['id'])
-            super()._execute_increment(project,task,attempt)
+            self._publication_artifact(project,task,attempt)
             self._advance_attempt(project['id'],task['task_id'],attempt['attempt'],'PENDING')
             self._publish(project,task,attempt)
             return
@@ -231,17 +231,34 @@ class N8nPipeline(IncrementalPipeline):
             'mcp_available':available,'manual_cases':manual,'blueprint_sha256':digest(blueprint)})
         self._advance_attempt(pid,task['task_id'],attempt['attempt'],'EXECUTED',after_snapshot=encoded(workspace_snapshot(workspace)))
 
+    def _publication_artifact(self,project,task,attempt):
+        executed=any(r['kind']=='execution' for r in self.pipeline_exchanges(project['id'],task['task_id'],attempt['attempt']))
+        if executed:
+            if workspace_snapshot(self.folder(project['id'])/'workspace')!=json.loads(attempt['after_snapshot']):
+                raise CodexBlocked('Publication artifact changed after its recorded Coder execution')
+        else:super()._execute_increment(project,task,attempt)
+
     def _publication_budget(self,pid):
         resource=self.journal.resource(pid);check_stop(self.db_path,resource)
         operations=self.journal.operations(pid)
-        if any(r['tool'] in MUTATIONS and r['status'] in ('IN_FLIGHT','SUBMITTED','UNCERTAIN') for r in operations):
+        if any(r['tool'] in MUTATIONS and r['status'] in ('IN_FLIGHT','SUBMITTED','UNCERTAIN') and
+               not (r['op_key']=='publish' and r['tool']=='publish_workflow') for r in operations):
             raise CodexBlocked('Uncertain mutation blocks publication')
         already=any(r['op_key']=='publish' and r['status']=='CONFIRMED' for r in operations)
         if not already and sum(r['tool'] in MUTATIONS for r in operations)>=resource['max_mutations']:
-            raise CodexBlocked('Mutation budget exhausted before publication; no extra Coder turn or remote operation')
+            # Read-only reconciliation consumes no mutation allowance. Never
+            # require another publish just to prove an earlier one succeeded.
+            sequence=sum(r['op_key'].startswith('budget-publication-read-') for r in operations)
+            read_key='budget-publication-read-'+str(sequence)
+            remote=mcp_data(self.journal.call(pid,read_key,'get_workflow_details',{'workflowId':resource['workflow_id']}))['workflow']
+            self._reviewed_remote(remote,json.loads((self.folder(pid)/'workspace/workflow.json').read_text()),self.contract(pid),resource)
+            if not remote.get('active') or remote.get('activeVersionId')!=resource['reviewed_version']:
+                raise CodexBlocked('Mutation budget exhausted before publication; no extra Coder turn or write')
+            prior=next((r for r in operations if r['op_key']=='publish'),None)
+            if prior and prior['status'] in ('IN_FLIGHT','SUBMITTED','UNCERTAIN'):self.journal.reconcile_publication(pid,'publish',read_key)
         if len(operations)>=resource['max_calls']:raise CodexBlocked('MCP call budget exhausted')
 
-    def _publish(self,project,task,attempt):
+    def _publish(self,project,task,attempt,*,publication_only=False):
         pid=project['id'];workspace=self.folder(pid)/'workspace';resource=self.journal.resource(pid);contract=self.contract(pid)
         intent=json.loads((workspace/'publication.json').read_text())
         if intent!={'action':'publish','workflow_id':resource['workflow_id'],'version_id':resource['reviewed_version']}:
@@ -250,10 +267,16 @@ class N8nPipeline(IncrementalPipeline):
             raise CodexBlocked('Draft checkpoint and independent review are mandatory')
         blueprint=json.loads((workspace/'workflow.json').read_text())
         sequence=sum(r['op_key'].startswith('publish-preflight-') for r in self.journal.operations(pid))
-        remote=mcp_data(self.journal.call(pid,'publish-preflight-'+str(sequence),'get_workflow_details',{'workflowId':resource['workflow_id']}))['workflow']
+        read_key='publish-preflight-'+str(sequence)
+        remote=mcp_data(self.journal.call(pid,read_key,'get_workflow_details',{'workflowId':resource['workflow_id']}))['workflow']
         self._reviewed_remote(remote,blueprint,contract,resource)
-        publication=mcp_data(self.journal.call(pid,'publish','publish_workflow',
-            {'workflowId':resource['workflow_id'],'versionId':resource['reviewed_version']}))
+        if remote.get('active') and remote.get('activeVersionId')==resource['reviewed_version']:
+            prior=next((r for r in self.journal.operations(pid) if r['op_key']=='publish'),None)
+            if prior and prior['status'] in ('IN_FLIGHT','SUBMITTED','UNCERTAIN'):self.journal.reconcile_publication(pid,'publish',read_key)
+            publication={'already_published':True,'workflowId':remote['id'],'activeVersionId':remote['activeVersionId'],'read_operation':read_key}
+        else:
+            publication=mcp_data(self.journal.call(pid,'publish','publish_workflow',
+                {'workflowId':resource['workflow_id'],'versionId':resource['reviewed_version']}))
         published=None
         for poll in range(3):
             if poll:time.sleep(2)
@@ -262,6 +285,10 @@ class N8nPipeline(IncrementalPipeline):
             if published.get('active') and published.get('activeVersionId')==resource['reviewed_version']:break
         if not published.get('active') or published.get('activeVersionId')!=resource['reviewed_version']:
             raise CodexBlocked('Actual publication state/version is unconfirmed; do not repeat publish blindly')
+        if publication_only:
+            return {'workflow':published,'previous_workflow':remote,'publication':publication,
+                    'reviewed_hash':resource['reviewed_hash'],'reviewed_version':resource['reviewed_version'],
+                    'verified':True,'http_acceptance':'PENDING'}
         selected=cases(contract);http_cases=[]
         for name,index in (('valid',0),('invalid-type',1),('negative',2),('repeat-valid',0)):
             case=selected[index];observed=self.http.post(pid,name,case['payload'])
@@ -279,6 +306,84 @@ class N8nPipeline(IncrementalPipeline):
             'execution_results':execution_results,'verified':True})
         self._advance_attempt(pid,task['task_id'],attempt['attempt'],'EXECUTED',after_snapshot=encoded(workspace_snapshot(workspace)))
 
+    def publish_increment(self,pid,*,review_round=1):
+        """Increment A: existing Coder instruction, publish, review, then pause.
+
+        Publication evidence lives outside the Coder workspace. The original
+        PUBLISH acceptance/task stays pending until Increment B verifies HTTP.
+        """
+        with self.project_lock(pid):
+            try:
+                project=self.project(pid)
+                if review_round not in (1,2):raise CodexBlocked('Only the explicitly scoped publication review correction is supported')
+                if review_round==2:
+                    prior=self.operation(pid,'closeout-publication/review')
+                    if not prior or prior['status']!='COMPLETED':raise CodexBlocked('Prior publication review is not safely completed')
+                    prior_context=json.loads(json.loads(prior['request'])['prompt'].split('PIPELINE CONTEXT (JSON):\n',1)[1])
+                    prior_review=IncrementReview.model_validate_json(json.loads(prior['response'])['final_response'])
+                    owner=prior_context['current_increment']['owner']
+                    if (prior_review.verdict not in ('FAIL','BLOCKED') or owner['suite']!='published' or owner['expected_tests']!=1 or
+                        prior_context['verification'].get('passed') is not True or
+                        prior_context['verification']['suites'][0]['counts']['tests_executed']!=5):
+                        raise CodexBlocked('Review retry is restricted to the proven Increment A suite-context mismatch')
+                    if project['stage']=='BLOCKED':
+                        if not project['blocker'].startswith('CodexBlocked: Independent publication review did not approve:'):
+                            raise CodexBlocked('An unrelated blocker cannot be cleared by the review-context correction')
+                        self._integrity(project);self._check_checkpoint(pid)
+                        write_json(self.folder(pid)/'evidence/closeout/review-context-correction.json',{
+                            'previous_project_state':project,'previous_review':prior_review.model_dump(),
+                            'diagnosis':'Increment A wrongly inherited the final published-suite metadata. A needs draft5 plus fresh publication predicates; full published1 remains mandatory in B.',
+                            'model_decision':'Reuse Coder artifact and same independent Reviewer profile; no Coder escalation or workflow change.'})
+                        with self.db() as cx:self.set_stage(cx,pid,'PAUSED',blocker='')
+                        project=self.project(pid)
+                if project['stage']=='BLOCKED':
+                    operations=self.journal.operations(pid)
+                    uncertain=next((r for r in operations if r['op_key']=='publish' and r['tool']=='publish_workflow' and
+                                    r['status'] in ('IN_FLIGHT','SUBMITTED','UNCERTAIN')),None)
+                    others_uncertain=any(r['tool'] in MUTATIONS and r['op_key']!='publish' and
+                                         r['status'] in ('IN_FLIGHT','SUBMITTED','UNCERTAIN') for r in operations)
+                    if (not uncertain or others_uncertain or
+                        not project['blocker'].startswith('CodexBlocked: External operation uncertain;')):
+                        raise CodexBlocked(project['blocker'])
+                    self._integrity(project);self._check_checkpoint(pid)
+                    resource=self.journal.resource(pid);key='closeout-reconcile-'+str(len(operations))
+                    remote=mcp_data(self.journal.call(pid,key,'get_workflow_details',{'workflowId':resource['workflow_id']}))['workflow']
+                    self._reviewed_remote(remote,json.loads((self.folder(pid)/'workspace/workflow.json').read_text()),self.contract(pid),resource)
+                    self.journal.reconcile_publication(pid,'publish',key)
+                    write_json(self.folder(pid)/'evidence/closeout/recovery.json',{'previous_project_state':project,'owned_read':key,'outcome':'publication confirmed without resubmission'})
+                    with self.db() as cx:self.set_stage(cx,pid,'PAUSED',blocker='')
+                    project=self.project(pid)
+                self._integrity(project);self._check_checkpoint(pid);self._ensure_capabilities(pid)
+                task=next(t for t in self.tasks(pid) if t['task_id']=='PUBLISH')
+                attempt=self._next_attempt(project,task);self._publication_budget(pid)
+                self._publication_artifact(project,task,attempt)
+                self._advance_attempt(pid,'PUBLISH',attempt['attempt'],'PENDING')
+                workspace=self.folder(pid)/'workspace';snapshot=workspace_snapshot(workspace)
+                owner=next(o for o in self.manifest(pid).increments if o.task_id=='DRAFT')
+                tests=self._run_suite(project,owner,self.folder(pid)/f'evidence/closeout/draft-recheck-{review_round}',snapshot)
+                if not tests['passed']:raise CodexBlocked('Protected draft acceptance failed before publication')
+                self._integrity(project)
+                proof=self._publish(project,task,attempt,publication_only=True)
+                context={'project_id':pid,'business_product_spec':project['spec'],
+                    'current_increment':{'owner':{**json.loads(task['definition'])['owner'],
+                        'specification':'Closeout Increment A only: rerun the five protected draft tests, then verify reviewed-version publication and actual active state. The final published suite and four real HTTP cases belong to Increment B and remain mandatory/pending.',
+                        'suite':'draft','expected_tests':5,'components':['publication.json'],
+                        'outputs':['Publication evidence held by Core outside Coder workspace'],
+                        'acceptance_criteria':['Five protected draft regressions pass','Fresh remote ID/version/hash/credentials match review','Exact reviewed version is active','No HTTP POST in Increment A']}},
+                    'attempt':{'attempt':attempt['attempt']},'verification':{'passed':True,'suites':[tests]},
+                    'actual_source':json.loads((workspace/'workflow.json').read_text()),'publication_evidence':proof}
+                review_phase='closeout-publication/review' if review_round==1 else 'closeout-publication/attempt-2/review'
+                review,raw=self._call(project,review_phase,'reviewer',context,IncrementReview)
+                if (review.project_id,review.task_id,review.attempt)!=(pid,'PUBLISH',attempt['attempt']) or review.verdict!='PASS':
+                    raise CodexBlocked('Independent publication review did not approve: '+review.feedback)
+                proof.update(review=review.model_dump(),review_round=review_round,review_thread_id=raw['thread_id'],review_turn_id=raw['turn_id'],draft_acceptance=tests)
+                write_json(self.folder(pid)/'evidence/closeout/publication.json',proof)
+                with self.db() as cx:self.set_stage(cx,pid,'PAUSED',blocker='Publication verified; HTTP acceptance pending')
+            except Exception as exc:self.block(pid,f'{type(exc).__name__}: {exc}')
+            finally:
+                if hasattr(self.backend,'close'):self.backend.close()
+        return self.pipeline_report(pid)
+
     @staticmethod
     def _reviewed_remote(remote,blueprint,contract,resource):
         verify_remote(remote,blueprint,contract)
@@ -293,6 +398,9 @@ class N8nPipeline(IncrementalPipeline):
                 {'workflowId':resource['workflow_id'],'startedAfter':self.http.operations(pid)[0]['created'],'limit':20}))
             records=[r for r in listing.get('data',[]) if r.get('mode')=='webhook' and r.get('status')=='success']
             if len(records)>=len(http_cases):break
+        # The approved repeated valid case uses the identical request_id/body.
+        # n8n lists newest first; match chronological executions to send order.
+        records.sort(key=lambda r:r.get('startedAt') or '')
         verified=[];used=set();seen_ids=set()
         for record in records:
             eid=str(record['id'])
@@ -325,6 +433,7 @@ class N8nPipeline(IncrementalPipeline):
         report.update(workflow_id=resource['workflow_id'],external_operations=self.journal.operations(pid),http_operations=self.http.operations(pid),
             external_integration=('TESTED WITH MOCKS' if type(self.backend) is not SDKBackend or self.http.simulated else
                 'VERIFIED REAL PUBLISHED QA' if report['passed'] else
+                'PUBLISHED REAL MCP VERIFIED; HTTP PENDING' if (self.folder(pid)/'evidence/closeout/publication.json').exists() else
                 'DRAFT REAL MCP VERIFIED; PUBLISHING PENDING' if report['verified_increments'] else 'PENDING'))
         write_json(self.folder(pid)/'pipeline-report.json',report)
         (self.folder(pid)/'pipeline-report.md').write_text('# Pello n8n QA\n\nEstado: '+report['stage']+

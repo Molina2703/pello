@@ -15,6 +15,14 @@ from athis_autopilot.pipeline_contracts import ModelProfile, PipelinePolicy
 
 
 class RolePolicyTests(unittest.TestCase):
+    def test_ordinary_retry_counts_do_not_choose_a_stronger_model(self):
+        policy=PipelinePolicy();caps=PipelineBackend().capabilities();caps['models']['gpt-6-luna'].append('high')
+        for effort in ('low','medium','high'):
+            policy.role_profiles['coder']=ModelProfile(model='gpt-6-luna',effort=effort)
+            for attempt in (1,2,7):
+                result=select_model(policy,caps,phase='execute',attempt=attempt)
+                self.assertEqual((result['model'],result['effort']),('gpt-6-luna',effort))
+
     def test_defaults_by_responsibility_and_deterministic_tester_option(self):
         policy = PipelinePolicy(); capabilities = PipelineBackend().capabilities()
         for phase, role, model, effort in [('plan', 'planner', 'gpt-6.1-sol', 'high'),
@@ -30,12 +38,13 @@ class RolePolicyTests(unittest.TestCase):
         policy.role_profiles['planner'] = ModelProfile(model='gpt-6-luna', effort='low')
         caps = PipelineBackend().capabilities()
         self.assertEqual(select_model(policy, caps, phase='plan')['model'], 'gpt-6-luna')
-        self.assertEqual(select_model(policy, caps, phase='execute', attempt=2)['model'], 'gpt-6.1-sol')
+        self.assertEqual(select_model(policy, caps, phase='execute', attempt=2)['model'], 'gpt-6-luna')
         self.assertEqual(select_model(policy, caps, phase='execute', risk='high')['reason'], 'risk/failure escalation')
         self.assertEqual(select_model(policy, caps, phase='review', attempt=2)['effort'], 'high')
         configured = PipelinePolicy(advanced_effort='high')
         self.assertEqual(select_model(configured, caps, phase='plan')['effort'], 'high')
-        self.assertEqual(select_model(configured, caps, phase='execute', attempt=2)['effort'], 'high')
+        self.assertEqual(select_model(configured, caps, phase='execute', attempt=2)['effort'], 'medium')
+        self.assertEqual(select_model(configured, caps, phase='execute', risk='high')['effort'], 'high')
         self.assertTrue(configured.role_profiles)
 
     def test_unavailable_model_effort_missing_profile_and_unknown_role_fail_closed(self):

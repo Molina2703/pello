@@ -1,0 +1,11 @@
+test_budget_exhaustion_blocks_before_publish_coder_or_any_remote_effect (test_n8n_publication.PublicationTests.test_budget_exhaustion_blocks_before_publish_coder_or_any_remote_effect) ... ok
+test_four_post_limit_confirmed_cache_and_scoped_payload (test_n8n_publication.PublicationTests.test_four_post_limit_confirmed_cache_and_scoped_payload) ... ok
+test_http_uncertainty_stop_budget_and_scope_are_enforced_without_repetition (test_n8n_publication.PublicationTests.test_http_uncertainty_stop_budget_and_scope_are_enforced_without_repetition) ... ok
+test_internal_execution_tokens_are_redacted_in_both_mcp_representations (test_n8n_publication.PublicationTests.test_internal_execution_tokens_are_redacted_in_both_mcp_representations) ... ok
+test_mock_published_pipeline_verifies_http_executions_and_resume_has_no_effects (test_n8n_publication.PublicationTests.test_mock_published_pipeline_verifies_http_executions_and_resume_has_no_effects) ... ok
+test_version_drift_blocks_publication_and_http (test_n8n_publication.PublicationTests.test_version_drift_blocks_publication_and_http) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 26.883s
+
+OK

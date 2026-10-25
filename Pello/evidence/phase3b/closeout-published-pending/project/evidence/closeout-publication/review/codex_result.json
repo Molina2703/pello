@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a170b6-2c05-7bc1-a726-4f4943ba5212",
+  "turn_id": "01a170f4-c07b-7621-84ad-bca391145038",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 16896,
+      "input_tokens": 26740,
+      "output_tokens": 252,
+      "reasoning_output_tokens": 156,
+      "total_tokens": 26992
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 16896,
+      "input_tokens": 67343,
+      "output_tokens": 1206,
+      "reasoning_output_tokens": 914,
+      "total_tokens": 68549
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3b-qa-first\",\"task_id\":\"PUBLISH\",\"attempt\":1,\"verdict\":\"BLOCKED\",\"diagnosis\":\"infrastructure\",\"feedback\":\"Publication evidence shows the reviewed version is active, and all 5 DRAFT regression tests passed. However, the required published suite result (1 test) is missing. Supply that independent verification before approval. HTTP acceptance remains pending under Increment B.\"}",
+  "error": null
+}

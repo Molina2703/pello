@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a170f3-25d8-7b11-a15c-4a9032bcfb29",
+  "turn_id": "01a170f3-275f-74f2-83df-a5166456bb2b",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 38918,
+      "output_tokens": 791,
+      "reasoning_output_tokens": 684,
+      "total_tokens": 39709
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 38918,
+      "output_tokens": 791,
+      "reasoning_output_tokens": 684,
+      "total_tokens": 39709
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3b\",\"task_id\":\"3B3-closeout-A-recovery\",\"attempt\":1,\"verdict\":\"PASS\",\"diagnosis\":\"none\",\"feedback\":\"No blocking defect identified in the bounded increment. Authorization preserves counters; recovery confirms the owned reviewed publication by read without resubmission; publication review pauses before HTTP acceptance. All 11 relevant post-fix tests passed. Evidence is simulated; real publication and final HTTP acceptance remain pending as contracted.\"}",
+  "error": null
+}

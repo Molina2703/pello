@@ -52,6 +52,15 @@ class QAHttpJournal:
             cx.execute('BEGIN IMMEDIATE');check_stop(self.core.db_path,resource)
             published=any(r['tool']=='publish_workflow' and r['status']=='CONFIRMED' and
                 json.loads(r['request']).get('versionId')==resource['reviewed_version'] for r in self.core.journal.operations(pid))
+            if not published:
+                from .n8n_operations import mcp_data
+                from .n8n_qa import fingerprint
+                for operation in self.core.journal.operations(pid):
+                    if operation['tool']!='get_workflow_details' or operation['status']!='CONFIRMED':continue
+                    remote=mcp_data(json.loads(operation['response'])).get('workflow',{})
+                    if (remote.get('id')==resource['workflow_id'] and remote.get('active') is True and
+                        remote.get('versionId')==resource['reviewed_version'] and remote.get('activeVersionId')==resource['reviewed_version'] and
+                        fingerprint(remote)==resource['reviewed_hash']):published=True;break
             if not resource['workflow_id'] or not published: raise CodexBlocked('QA HTTP requires confirmed publication of the reviewed owned workflow')
             rows=cx.execute('SELECT status FROM pello_n8n_http WHERE project_id=?',(pid,)).fetchall()
             if any(r['status']!='CONFIRMED' for r in rows):raise CodexBlocked('Uncertain HTTP execution blocks additional POSTs')

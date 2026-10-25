@@ -1,0 +1,10 @@
+{
+  "n8n": {
+    "server": "n8n",
+    "endpoint": "https://n8n-production-3374.up.railway.app/mcp-server/http",
+    "configured": true
+  },
+  "config_sha256": "72610a55b6681845dacb27c02f4d92a572c7b682a02cb712523f89108c7d5f77",
+  "n8n_section_sha256": "501cd21a2cd6316a1a0e0bc111e56df30a5da14806cfd81df9c32c926ebb677b",
+  "note": "Hashes only; no authentication values exported."
+}

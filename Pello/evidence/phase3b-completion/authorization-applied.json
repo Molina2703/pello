@@ -1,0 +1,46 @@
+{
+  "before": {
+    "project_id": "phase3b-qa-first",
+    "name": "PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a",
+    "webhook_path": "pello-3b-bb491b32d40943d5ad8a",
+    "workflow_id": "Tbuvwcxde8MEMYcJ",
+    "deadline": 1792895866.1871383,
+    "max_calls": 40,
+    "max_mutations": 6,
+    "reviewed_version": "851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7",
+    "reviewed_hash": "fe405097af942f9bb1359545d55a7be3e17b979692b3f0db8b707c4bff4de816"
+  },
+  "after": {
+    "project_id": "phase3b-qa-first",
+    "name": "PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a",
+    "webhook_path": "pello-3b-bb491b32d40943d5ad8a",
+    "workflow_id": "Tbuvwcxde8MEMYcJ",
+    "deadline": 1792901363.5452378,
+    "max_calls": 40,
+    "max_mutations": 14,
+    "reviewed_version": "851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7",
+    "reviewed_hash": "fe405097af942f9bb1359545d55a7be3e17b979692b3f0db8b707c4bff4de816"
+  },
+  "events": [
+    {
+      "project_id": "phase3b-qa-first",
+      "authorization_id": "user-phase3b3-completion-20261024",
+      "event": "mutations",
+      "before_state": "{\"deadline\":1792895866.1871383,\"max_calls\":40,\"max_mutations\":6,\"name\":\"PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a\",\"project_id\":\"phase3b-qa-first\",\"reviewed_hash\":\"fe405097af942f9bb1359545d55a7be3e17b979692b3f0db8b707c4bff4de816\",\"reviewed_version\":\"851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7\",\"webhook_path\":\"pello-3b-bb491b32d40943d5ad8a\",\"workflow_id\":\"Tbuvwcxde8MEMYcJ\"}",
+      "after_state": "{\"deadline\":1792895866.1871383,\"max_calls\":40,\"max_mutations\":14,\"name\":\"PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a\",\"project_id\":\"phase3b-qa-first\",\"reviewed_hash\":\"fe405097af942f9bb1359545d55a7be3e17b979692b3f0db8b707c4bff4de816\",\"reviewed_version\":\"851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7\",\"webhook_path\":\"pello-3b-bb491b32d40943d5ad8a\",\"workflow_id\":\"Tbuvwcxde8MEMYcJ\"}",
+      "authority": "{\"additional_mutations\":8,\"authorization_id\":\"user-phase3b3-completion-20261024\",\"cumulative_mutations\":14,\"deadline_extension_seconds\":5400,\"http_posts\":4,\"source\":\"Explicit human request: PELLO \u2014 PHASE 3B.3 COMPLETION, section 4\",\"workflow_id\":\"Tbuvwcxde8MEMYcJ\"}",
+      "created": "2026-10-25T02:39:23+00:00"
+    },
+    {
+      "project_id": "phase3b-qa-first",
+      "authorization_id": "user-phase3b3-completion-20261024",
+      "event": "deadline",
+      "before_state": "{\"deadline\":1792895866.1871383,\"max_calls\":40,\"max_mutations\":14,\"name\":\"PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a\",\"project_id\":\"phase3b-qa-first\",\"reviewed_hash\":\"fe405097af942f9bb1359545d55a7be3e17b979692b3f0db8b707c4bff4de816\",\"reviewed_version\":\"851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7\",\"webhook_path\":\"pello-3b-bb491b32d40943d5ad8a\",\"workflow_id\":\"Tbuvwcxde8MEMYcJ\"}",
+      "after_state": "{\"deadline\":1792901363.5452378,\"max_calls\":40,\"max_mutations\":14,\"name\":\"PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a\",\"project_id\":\"phase3b-qa-first\",\"reviewed_hash\":\"fe405097af942f9bb1359545d55a7be3e17b979692b3f0db8b707c4bff4de816\",\"reviewed_version\":\"851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7\",\"webhook_path\":\"pello-3b-bb491b32d40943d5ad8a\",\"workflow_id\":\"Tbuvwcxde8MEMYcJ\"}",
+      "authority": "{\"additional_mutations\":8,\"authorization_id\":\"user-phase3b3-completion-20261024\",\"cumulative_mutations\":14,\"deadline_extension_seconds\":5400,\"http_posts\":4,\"source\":\"Explicit human request: PELLO \u2014 PHASE 3B.3 COMPLETION, section 4\",\"workflow_id\":\"Tbuvwcxde8MEMYcJ\"}",
+      "created": "2026-10-25T02:39:23+00:00"
+    }
+  ],
+  "previous_operations_unchanged": true,
+  "turns": 6
+}

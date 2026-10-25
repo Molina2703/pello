@@ -1,0 +1,22 @@
+{
+  "status": "completed",
+  "thread_id": "01a170b7-29bd-75f0-ab2a-3bd6701f787a",
+  "server": "n8n",
+  "action": "call",
+  "tool": "execute_workflow",
+  "result": {
+    "_meta": null,
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"executionId\":\"6\",\"status\":\"started\"}"
+      }
+    ],
+    "isError": null,
+    "structuredContent": {
+      "executionId": "6",
+      "status": "started"
+    }
+  },
+  "model_inference": false
+}

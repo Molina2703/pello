@@ -1,0 +1,21 @@
+test_ordinary_retry_counts_do_not_choose_a_stronger_model (test_phase3a1_roles.RolePolicyTests.test_ordinary_retry_counts_do_not_choose_a_stronger_model) ... FAIL
+
+======================================================================
+FAIL: test_ordinary_retry_counts_do_not_choose_a_stronger_model (test_phase3a1_roles.RolePolicyTests.test_ordinary_retry_counts_do_not_choose_a_stronger_model)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_phase3a1_roles.py", line 24, in test_ordinary_retry_counts_do_not_choose_a_stronger_model
+    self.assertEqual((result['model'],result['effort']),('gpt-6-luna',effort))
+AssertionError: Tuples differ: ('gpt-6.1-sol', 'medium') != ('gpt-6-luna', 'low')
+
+First differing element 0:
+'gpt-6.1-sol'
+'gpt-6-luna'
+
+- ('gpt-6.1-sol', 'medium')
++ ('gpt-6-luna', 'low')
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+FAILED (failures=1)

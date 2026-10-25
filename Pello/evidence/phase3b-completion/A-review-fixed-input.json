@@ -1,0 +1,31 @@
+{
+  "contract": "Closeout Increment A: resume same project/workflow, explicit user-authorized cumulative mutation budget14 (+8) with append-only authority events and at most one90-minute extension only after expiry; no counter reset or new workflow. Separate publish/review pause from protected final PUBLISH/HTTP acceptance. Skip already-correct publication and reconcile uncertain publish by owned read. Tiny model-policy correction removes automatic retry-count escalation, keeps configurable Luna profiles and explicit high risk. No dynamic Planner policy redesign. All code tests are simulated; real publication will run only after this engineering review. Increment B HTTP implementation already exists and its protected tests remain unchanged.",
+  "source_files": [
+    "athis_autopilot/n8n_pipeline.py",
+    "athis_autopilot/n8n_operations.py",
+    "athis_autopilot/n8n_http.py",
+    "athis_autopilot/model_policy.py",
+    "athis_autopilot/cli.py",
+    "tests/test_phase3b_closeout.py",
+    "tests/test_phase3a1_roles.py",
+    "PHASE3B.md",
+    "tests/test_n8n_publication.py"
+  ],
+  "verification": {
+    "regression_log": "SourceVerificationTests.test_phase2_also_rejects_stale_bytecode) ... ok\ntest_pipeline_failure_has_no_approval_checkpoint_or_dependent_execution (test_verification_source.SourceVerificationTests.test_pipeline_failure_has_no_approval_checkpoint_or_dependent_execution) ... ok\ntest_sourceless_project_bytecode_cannot_supply_acceptance_behavior (test_verification_source.SourceVerificationTests.test_sourceless_project_bytecode_cannot_supply_acceptance_behavior) ... ok\ntest_stale_bytecode_fails_and_original_files_remain_untouched (test_verification_source.SourceVerificationTests.test_stale_bytecode_fails_and_original_files_remain_untouched) ... ok\n\n----------------------------------------------------------------------\nRan 123 tests in 199.784s\n\nOK\n",
+    "targeted": "test_already_published_reviewed_version_is_not_published_again (test_phase3b_closeout.CloseoutTests.test_already_published_reviewed_version_is_not_published_again) ... ok\ntest_explicit_authorization_is_scoped_idempotent_and_preserves_counters (test_phase3b_closeout.CloseoutTests.test_explicit_authorization_is_scoped_idempotent_and_preserves_counters) ... ok\ntest_publication_checkpoint_precedes_all_http_and_resume_finishes_once (test_phase3b_closeout.CloseoutTests.test_publication_checkpoint_precedes_all_http_and_resume_finishes_once) ... ok\ntest_uncertain_publish_is_reconciled_by_read_without_resubmission (test_phase3b_closeout.CloseoutTests.test_uncertain_publish_is_reconciled_by_read_without_resubmission) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 29.555s\n\nOK\n"
+  },
+  "existing_real_state": {
+    "workflow_id": "Tbuvwcxde8MEMYcJ",
+    "reviewed_version": "851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7",
+    "mcp_operations": 17,
+    "mutations": 6,
+    "http": 0,
+    "model_turns": 6,
+    "model_max": 10,
+    "mcp_max": 40,
+    "original_project_checkpoint": "8df481210e7a2692fdefe58a2851ee7ae51204ff"
+  },
+  "failure_history": "RED missing methods and retry escalation tests. Initial split implementation duplicated execution exchange on resume and lacked mock evidence parent directory. Corrected localized: recorded publication artifact reuse, parent mkdir. First full suite preserved FAIL3; final123 PASS. Existing n8n workflow and prior operation rows untouched so far. New A independent product publication review is journaled as an actual project model turn; finalB Reviewer remains required. Existing acceptance hashes and workflow.json unchanged.",
+  "correction": "Previous independent code review FAIL preserved. Strengthened two tests to exhaust the mutation cap: both failed RED. At cap, Core now performs a scoped owned read before any Coder turn, validates reviewed graph/version/hash, reconciles uncertain success or skips already-active publication. If draft is still inactive it stops before Coder and writes. New writes remain metered by journal.prepare. Final123 PASS; all original acceptance suites untouched. Human authorization has now been recorded locally:14cap, original deadline was expired so one90-minute extension, prior17 operations byte-for-byte unchanged; no real n8n closeout calls yet."
+}
