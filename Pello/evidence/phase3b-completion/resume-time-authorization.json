@@ -1,0 +1,33 @@
+{
+  "authorization": {
+    "actor": "human user",
+    "answer": "Autorizar 20 minutos para cerrar",
+    "source": "Explicit reply to questionItemId call_57c9efd2faaa4c6780730cfe952b67ae",
+    "seconds": 1200,
+    "scope": "Same reviewed QA, two remaining reviews, four authorized POSTs; caps14/40/10/4 unchanged"
+  },
+  "authorization_id": "user-closeout-resume-20m-20261025",
+  "before": {
+    "project_id": "phase3b-qa-first",
+    "name": "PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a",
+    "webhook_path": "pello-3b-bb491b32d40943d5ad8a",
+    "workflow_id": "Tbuvwcxde8MEMYcJ",
+    "deadline": 1792901363.5452378,
+    "max_calls": 40,
+    "max_mutations": 14,
+    "reviewed_version": "851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7",
+    "reviewed_hash": "fe405097af942f9bb1359545d55a7be3e17b979692b3f0db8b707c4bff4de816"
+  },
+  "after": {
+    "project_id": "phase3b-qa-first",
+    "name": "PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a",
+    "webhook_path": "pello-3b-bb491b32d40943d5ad8a",
+    "workflow_id": "Tbuvwcxde8MEMYcJ",
+    "deadline": 1792907339.655695,
+    "max_calls": 40,
+    "max_mutations": 14,
+    "reviewed_version": "851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7",
+    "reviewed_hash": "fe405097af942f9bb1359545d55a7be3e17b979692b3f0db8b707c4bff4de816"
+  },
+  "original_operations_unchanged": true
+}

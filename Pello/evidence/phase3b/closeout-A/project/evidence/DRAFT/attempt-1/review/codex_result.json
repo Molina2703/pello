@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a170b6-2c05-7bc1-a726-4f4943ba5212",
+  "turn_id": "01a170b6-2d59-7d02-bc60-510ba2f39ceb",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 17131,
+      "output_tokens": 824,
+      "reasoning_output_tokens": 706,
+      "total_tokens": 17955
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 17131,
+      "output_tokens": 824,
+      "reasoning_output_tokens": 706,
+      "total_tokens": 17955
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3b-qa-first\",\"task_id\":\"DRAFT\",\"attempt\":1,\"verdict\":\"FAIL\",\"diagnosis\":\"implementation\",\"feedback\":\"All 5 independent tests passed, but an empty-string body breaks invalid-input handling: typeof ($json.body && $json.body.request_id) evaluates to 'string', then request_id.startsWith throws. Guard body explicitly in both validation and request_id fallback so this input returns HTTP 400 with request_id:null, status:'invalid', error:'invalid_input'.\"}",
+  "error": null
+}

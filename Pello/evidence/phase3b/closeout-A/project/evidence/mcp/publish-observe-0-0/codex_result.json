@@ -1,0 +1,144 @@
+{
+  "status": "completed",
+  "thread_id": "01a170f4-b5bb-7c22-ad3b-46c7aeab64dc",
+  "server": "n8n",
+  "action": "call",
+  "tool": "get_workflow_details",
+  "result": {
+    "_meta": null,
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"workflow\":{\"id\":\"Tbuvwcxde8MEMYcJ\",\"name\":\"PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a\",\"active\":true,\"isArchived\":false,\"versionId\":\"851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7\",\"activeVersionId\":\"851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7\",\"triggerCount\":1,\"nodeCount\":3,\"createdAt\":\"2026-10-25T01:38:51.213Z\",\"updatedAt\":\"2026-10-25T01:40:01.163Z\",\"settings\":{\"executionOrder\":\"v1\",\"availableInMCP\":true},\"tags\":[],\"parentFolderId\":null,\"description\":\"Pello Phase 3B synthetic credential-free integration QA\",\"scopes\":[\"execution:delete\",\"execution:list\",\"execution:read\",\"execution:reveal\",\"workflow:create\",\"workflow:delete\",\"workflow:disableRedaction\",\"workflow:enableRedaction\",\"workflow:execute\",\"workflow:execute-chat\",\"workflow:export\",\"workflow:import\",\"workflow:list\",\"workflow:move\",\"workflow:publish\",\"workflow:read\",\"workflow:share\",\"workflow:unpublish\",\"workflow:unshare\",\"workflow:update\"],\"canExecute\":true,\"connections\":{\"QA Webhook\":{\"main\":[[{\"node\":\"QA Result\",\"type\":\"main\",\"index\":0}]]},\"QA Result\":{\"main\":[[{\"node\":\"QA Response\",\"type\":\"main\",\"index\":0}]]}},\"nodes\":[{\"id\":\"51e967c4-6940-477e-8713-e73e0f59a5fc\",\"name\":\"QA Webhook\",\"type\":\"n8n-nodes-base.webhook\",\"typeVersion\":2.2,\"position\":[0,0],\"parameters\":{\"httpMethod\":\"POST\",\"path\":\"pello-3b-bb491b32d40943d5ad8a\",\"responseMode\":\"responseNode\"},\"webhookId\":\"8a6a3c3c-904a-4f3b-b613-f1fd9484a36f\"},{\"id\":\"2e753fca-51fb-4228-b37f-834b7e6b6d49\",\"name\":\"QA Result\",\"type\":\"n8n-nodes-base.set\",\"typeVersion\":3.5,\"position\":[224,0],\"parameters\":{\"mode\":\"raw\",\"jsonOutput\":\"={{ typeof $json.body === 'object' && $json.body !== null && typeof $json.body.request_id === 'string' && $json.body.request_id.startsWith('pello-3b-') && typeof $json.body.value === 'number' && Number.isFinite($json.body.value) && $json.body.value >= -1000000 && $json.body.value <= 1000000 && $json.body.op === 'double' ? {request_id: $json.body.request_id, status: 'ok', result: $json.body.value * 2} : {request_id: typeof $json.body === 'object' && $json.body !== null && typeof $json.body.request_id === 'string' ? $json.body.request_id : null, status: 'invalid', error: 'invalid_input'} }}\"}},{\"id\":\"009a6da4-ce95-4843-b4a2-0fa3f282531b\",\"name\":\"QA Response\",\"type\":\"n8n-nodes-base.respondToWebhook\",\"typeVersion\":1.5,\"position\":[448,0],\"parameters\":{\"respondWith\":\"json\",\"responseBody\":\"={{ $json }}\",\"options\":{\"responseCode\":\"={{ $json.status === 'ok' ? 200 : 400 }}\"}}}],\"nodeGroups\":[],\"activeVersion\":{\"sameAsDraft\":true},\"meta\":{\"aiBuilderAssisted\":true,\"builderVariant\":\"mcp\"}},\"triggerInfo\":\"This workflow has the following trigger(s):\\n\\n\\nWebhook trigger(s):\\n\\n\\n\\t\\t\\t\\t<trigger 1>\\n\\t\\t\\t\\t\\t - Node name: QA Webhook\\n\\t\\t\\t\\t\\t - Production URL: https://n8n-production-3374.up.railway.app/webhook/pello-3b-bb491b32d40943d5ad8a\\n\\t\\t\\t\\t\\t - Test URL: https://n8n-production-3374.up.railway.app/webhook-test/pello-3b-bb491b32d40943d5ad8a\\n\\t\\t\\t\\t\\t - HTTP Method: POST\\n\\t\\t\\t\\t\\t - Response Mode: Webhook is configured to respond using \\\"Respond to Webhook\\\" node.\\n\\t\\t\\t\\t\\t - No credentials required for this webhook.\\n\\t\\t\\t\\t</trigger 1>\\n\\nTo execute a webhook trigger, pass triggerNodeName and inputs: { triggerNodeName: \\\"<node name>\\\", inputs: { webhookData: { headers?, query?, body? } } }.\"}"
+      }
+    ],
+    "isError": null,
+    "structuredContent": {
+      "workflow": {
+        "id": "Tbuvwcxde8MEMYcJ",
+        "name": "PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a",
+        "active": true,
+        "isArchived": false,
+        "versionId": "851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7",
+        "activeVersionId": "851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7",
+        "triggerCount": 1,
+        "nodeCount": 3,
+        "createdAt": "2026-10-25T01:38:51.213Z",
+        "updatedAt": "2026-10-25T01:40:01.163Z",
+        "settings": {
+          "executionOrder": "v1",
+          "availableInMCP": true
+        },
+        "tags": [],
+        "parentFolderId": null,
+        "description": "Pello Phase 3B synthetic credential-free integration QA",
+        "scopes": [
+          "execution:delete",
+          "execution:list",
+          "execution:read",
+          "execution:reveal",
+          "workflow:create",
+          "workflow:delete",
+          "workflow:disableRedaction",
+          "workflow:enableRedaction",
+          "workflow:execute",
+          "workflow:execute-chat",
+          "workflow:export",
+          "workflow:import",
+          "workflow:list",
+          "workflow:move",
+          "workflow:publish",
+          "workflow:read",
+          "workflow:share",
+          "workflow:unpublish",
+          "workflow:unshare",
+          "workflow:update"
+        ],
+        "canExecute": true,
+        "connections": {
+          "QA Webhook": {
+            "main": [
+              [
+                {
+                  "node": "QA Result",
+                  "type": "main",
+                  "index": 0
+                }
+              ]
+            ]
+          },
+          "QA Result": {
+            "main": [
+              [
+                {
+                  "node": "QA Response",
+                  "type": "main",
+                  "index": 0
+                }
+              ]
+            ]
+          }
+        },
+        "nodes": [
+          {
+            "id": "51e967c4-6940-477e-8713-e73e0f59a5fc",
+            "name": "QA Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 2.2,
+            "position": [
+              0,
+              0
+            ],
+            "parameters": {
+              "httpMethod": "POST",
+              "path": "pello-3b-bb491b32d40943d5ad8a",
+              "responseMode": "responseNode"
+            },
+            "webhookId": "8a6a3c3c-904a-4f3b-b613-f1fd9484a36f"
+          },
+          {
+            "id": "2e753fca-51fb-4228-b37f-834b7e6b6d49",
+            "name": "QA Result",
+            "type": "n8n-nodes-base.set",
+            "typeVersion": 3.5,
+            "position": [
+              224,
+              0
+            ],
+            "parameters": {
+              "mode": "raw",
+              "jsonOutput": "={{ typeof $json.body === 'object' && $json.body !== null && typeof $json.body.request_id === 'string' && $json.body.request_id.startsWith('pello-3b-') && typeof $json.body.value === 'number' && Number.isFinite($json.body.value) && $json.body.value >= -1000000 && $json.body.value <= 1000000 && $json.body.op === 'double' ? {request_id: $json.body.request_id, status: 'ok', result: $json.body.value * 2} : {request_id: typeof $json.body === 'object' && $json.body !== null && typeof $json.body.request_id === 'string' ? $json.body.request_id : null, status: 'invalid', error: 'invalid_input'} }}"
+            }
+          },
+          {
+            "id": "009a6da4-ce95-4843-b4a2-0fa3f282531b",
+            "name": "QA Response",
+            "type": "n8n-nodes-base.respondToWebhook",
+            "typeVersion": 1.5,
+            "position": [
+              448,
+              0
+            ],
+            "parameters": {
+              "respondWith": "json",
+              "responseBody": "={{ $json }}",
+              "options": {
+                "responseCode": "={{ $json.status === 'ok' ? 200 : 400 }}"
+              }
+            }
+          }
+        ],
+        "nodeGroups": [],
+        "activeVersion": {
+          "sameAsDraft": true
+        },
+        "meta": {
+          "aiBuilderAssisted": true,
+          "builderVariant": "mcp"
+        }
+      },
+      "triggerInfo": "This workflow has the following trigger(s):\n\n\nWebhook trigger(s):\n\n\n\t\t\t\t<trigger 1>\n\t\t\t\t\t - Node name: QA Webhook\n\t\t\t\t\t - Production URL: https://n8n-production-3374.up.railway.app/webhook/pello-3b-bb491b32d40943d5ad8a\n\t\t\t\t\t - Test URL: https://n8n-production-3374.up.railway.app/webhook-test/pello-3b-bb491b32d40943d5ad8a\n\t\t\t\t\t - HTTP Method: POST\n\t\t\t\t\t - Response Mode: Webhook is configured to respond using \"Respond to Webhook\" node.\n\t\t\t\t\t - No credentials required for this webhook.\n\t\t\t\t</trigger 1>\n\nTo execute a webhook trigger, pass triggerNodeName and inputs: { triggerNodeName: \"<node name>\", inputs: { webhookData: { headers?, query?, body? } } }."
+    }
+  },
+  "model_inference": false
+}

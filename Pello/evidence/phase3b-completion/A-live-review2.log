@@ -1,0 +1,12 @@
+PROJECT_ID: phase3b-qa-first
+{
+  "project_id": "phase3b-qa-first",
+  "stage": "PAUSED",
+  "passed": false,
+  "verified_increments": 1,
+  "planned_increments": 2,
+  "workflow_id": "Tbuvwcxde8MEMYcJ",
+  "external_integration": "PUBLISHED REAL MCP VERIFIED; HTTP PENDING",
+  "blocker": "Publication verified; HTTP acceptance pending",
+  "report_path": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\supervised\\phase3b-qa-first\\pipeline-report.md"
+}

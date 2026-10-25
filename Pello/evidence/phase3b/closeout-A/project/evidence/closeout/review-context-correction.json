@@ -1,0 +1,26 @@
+{
+  "previous_project_state": {
+    "id": "phase3b-qa-first",
+    "spec": "Synthetic n8n MCP QA only. Do not access HMP workflows, credentials or customer services.\nContract: {\"workflow_name\": \"PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a\", \"webhook_path\": \"pello-3b-bb491b32d40943d5ad8a\", \"request_id_prefix\": \"pello-3b-\", \"operation\": \"double\", \"value_min\": -1000000, \"value_max\": 1000000, \"success_http_status\": 200, \"invalid_http_status\": 400}\nValid: {request_id,status:\"ok\",result:value*2}; invalid: {request_id:string or null,status:\"invalid\",error:\"invalid_input\"}.\nWebhook -> Edit Fields -> Respond to Webhook only. No Code, HTTP Request, schedule, credentials or other workflows.",
+    "stage": "BLOCKED",
+    "suite_hash": "6ca4a4a082259cb2ec78da09826bc126c79ab1e8e2abb7e60fa52a9c7611218c",
+    "expected_tests": 6,
+    "model": "gpt-6-luna",
+    "effort": "low",
+    "created": "2026-10-25T01:37:46+00:00",
+    "modified": "2026-10-25T02:47:40+00:00",
+    "task_id": "PUBLISH",
+    "blocker": "CodexBlocked: Independent publication review did not approve: Publication evidence shows the reviewed version is active, and all 5 DRAFT regression tests passed. However, the required published suite result (1 test) is missing. Supply that independent verification before approval. HTTP acceptance remains pending under Increment B.",
+    "evidence_class": "IMPLEMENTED"
+  },
+  "previous_review": {
+    "project_id": "phase3b-qa-first",
+    "task_id": "PUBLISH",
+    "attempt": 1,
+    "verdict": "BLOCKED",
+    "diagnosis": "infrastructure",
+    "feedback": "Publication evidence shows the reviewed version is active, and all 5 DRAFT regression tests passed. However, the required published suite result (1 test) is missing. Supply that independent verification before approval. HTTP acceptance remains pending under Increment B."
+  },
+  "diagnosis": "Increment A wrongly inherited the final published-suite metadata. A needs draft5 plus fresh publication predicates; full published1 remains mandatory in B.",
+  "model_decision": "Reuse Coder artifact and same independent Reviewer profile; no Coder escalation or workflow change."
+}

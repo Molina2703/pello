@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a170b6-2c05-7bc1-a726-4f4943ba5212",
+  "turn_id": "01a17188-f32a-7902-a97b-2c160aae631e",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 26752,
+      "input_tokens": 30351,
+      "output_tokens": 170,
+      "reasoning_output_tokens": 75,
+      "total_tokens": 30521
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 43648,
+      "input_tokens": 97694,
+      "output_tokens": 1376,
+      "reasoning_output_tokens": 989,
+      "total_tokens": 99070
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3b-qa-first\",\"task_id\":\"PUBLISH\",\"attempt\":1,\"verdict\":\"PASS\",\"diagnosis\":\"none\",\"feedback\":\"Increment A passes: all 5 protected draft tests passed, and remote evidence confirms the reviewed workflow version is active with matching nodes and no credentials. No HTTP POST is shown. The final published suite and four HTTP cases remain mandatory for Increment B.\"}",
+  "error": null
+}
