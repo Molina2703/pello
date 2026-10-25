@@ -1,0 +1,28 @@
+{
+  "model_schema_fields": {
+    "global_requirement_ids": {
+      "description": "Existing requirement IDs only from categories exclusion, constraint, non_functional or authorization. A functional requirement or business_rule must be assigned to work nodes even when cross-cutting; neither category may be globalized. An authorization global must also map to a local enforcement work node. Do not change requirement categories or use global placement to bypass blockers.",
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,95}$",
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Global Requirement Ids",
+      "type": "array"
+    },
+    "required_resources": {
+      "description": "Resource identifiers needing separate availability/permission checks, including genuinely missing infrastructure or external services. Do not put provided local Python/SQLite/Git capabilities, supplied synthetic data, source rules, assumptions, or future task outputs here; functional prerequisites belong in depends_on and inputs. Use [] when no such resource prerequisite is missing. With no supplied resource inventory, every listed identifier is treated as unavailable; a declaration is never availability or authorization.",
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,95}$",
+        "type": "string"
+      },
+      "maxItems": 12,
+      "title": "Required Resources",
+      "type": "array"
+    }
+  },
+  "validator_source_unchanged": true,
+  "previous_original_test_assertions_unchanged": true,
+  "rejected_original_architecture_preserved": "original-rejected-architecture.json",
+  "new_blind_specification_required": true
+}

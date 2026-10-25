@@ -1,0 +1,8 @@
+test_failed_objective_gate_cannot_be_overridden_by_reviewer_pass (test_product_plan_approval.ProductPlanApprovalTests.test_failed_objective_gate_cannot_be_overridden_by_reviewer_pass) ... ok
+test_interrupted_accepted_checkpoint_recovers_without_repeating_review (test_product_plan_approval.ProductPlanApprovalTests.test_interrupted_accepted_checkpoint_recovers_without_repeating_review) ... ok
+test_recorded_independent_pass_accepts_and_restart_preserves_checkpoint (test_product_plan_approval.ProductPlanApprovalTests.test_recorded_independent_pass_accepts_and_restart_preserves_checkpoint) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 4.891s
+
+OK

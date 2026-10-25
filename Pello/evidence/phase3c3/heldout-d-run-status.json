@@ -1,0 +1,7 @@
+{
+  "status": "FAIL_OR_BLOCKED",
+  "error_type": "ValueError",
+  "error": "Global constraints must refer only to source constraints/exclusions",
+  "project_id": "phase3c3-heldout-d",
+  "at": "2026-10-25T23:27:21.643260+00:00"
+}

@@ -1,0 +1,219 @@
+{
+  "architecture": [
+    "Objective: produce monthly contributor royalty statements with contract allocation, cash reconciliation, advance recoupment, carryforward accounting and controlled payment submission. Pilot boundaries are one legal entity, USD, 300 works and 800 contributors. [SRC-2c591ad4b67f]",
+    "Proposed architecture, not a customer-approved implementation: separate contract registration, local evidence reconciliation, deterministic calculation, settlement approval, correction handling, foreign withholding and bank integration. Keep local capabilities independent of unavailable bank access and unresolved tax policy. [SRC-95a2c6884e96, SRC-7a6aa49b7646, SRC-c93e7c3e326e]",
+    "Reversible, unapproved assumptions: local persistent storage with technology undecided; tabular import preview; initial statement grouping by work. These correspond to the supplied storage and presentation assumptions and must preserve required atomicity, durability and totals. [SRC-95a2c6884e96, SRC-c93e7c3e326e]",
+    "Keep calculations separate from committed balance movements. Drafts do not mutate balances; approval records movements atomically and prevents repeated or competing application. Approved history remains immutable. [SRC-df30a98764e5]",
+    "Implement the foreign-policy blocking guard independently of foreign withholding calculation. Foreign earnings, carryforward and advances, plus domestic settlement and payment preparation, remain available without selecting either conflicting rate. [SRC-c93e7c3e326e]",
+    "Separate local payment preparation, authorization and outcome guards from external submission and definitive bank-evidence recognition. No external operation is authorized or performed by this plan. [SRC-7a6aa49b7646, SRC-781d6d31edab]",
+    "Work-node dependencies represent required producer capabilities. Optional dependency lists are empty because no optional optimization is justified by the supplied source. Runtime gates remain scoped to affected events, approval actions, foreign payable outputs or live operations. [SRC-fb19f3251bdd, SRC-c93e7c3e326e, SRC-7a6aa49b7646]"
+  ],
+  "data_entities": [
+    "Work, contributor and contract version: effective dates, contributors, domestic/foreign tax status, lead contributor and positive integer basis-point shares totaling 10,000; retain actor, time, reason and previous values for changes. [SRC-fb19f3251bdd]",
+    "Sales evidence and reversal evidence: event identifier, work identifier, original sale timestamp, gross cents, platform fee cents, bank reference and a reversal's original-sale reference. Preserve both records and prohibit repeated full reversal. [SRC-d72c6636b30e]",
+    "Bank transaction: unique identifier, reference, signed cent amount and booking timestamp; event linkage supports exact matching and prevents transaction reuse. Unmatched records remain visible exceptions. [SRC-4a8d6228aef8]",
+    "Event royalty allocation: selected original-sale contract, cash-confirmed month, signed royalty pool and contributor shares whose sum equals the pool. [SRC-4a8d6228aef8, SRC-7df48c15dc86]",
+    "Advance obligation: obligation identifier, contributor, issue date, original amount and remaining balance; retain applications in deterministic recoupment order. [SRC-17d8456c098a]",
+    "Contributor monthly statement: event earnings, opening and closing carryforward, advance applications, remaining advances and cash due. [SRC-17d8456c098a]",
+    "Versioned settlement draft and approved settlement: accounting month, calculation inputs, opening balances and recorded earnings, carryforward and advance movements. Changed inputs invalidate unapproved drafts. [SRC-df30a98764e5]",
+    "Post-approval adjustment: reference the original event and approved statement and post in the next open month. Its relationship to a contract-driven settlement revision remains unresolved. [SRC-fb19f3251bdd, SRC-df30a98764e5]",
+    "Foreign withholding policy: preserve both unresolved mandatory rates and require head-of-tax resolution before producing foreign withholding amounts or payable instructions. [SRC-c93e7c3e326e]",
+    "Payment instruction and treasury authorization: exact approved settlement revision, beneficiary list and positive cent amounts; changed details invalidate authorization. [SRC-7a6aa49b7646]",
+    "Payment attempt, outcome and evidence links: rejected, accepted for processing, paid or unknown; documented resolution for unknown outcomes; definitive bank evidence for paid status; retained links to the authorized instruction. [SRC-781d6d31edab]"
+  ],
+  "interfaces": [
+    "Proposed local contract interface: maintain versioned contracts and contributor status, validate shares and dates, retain change history and report missing coverage by affected work events. [SRC-fb19f3251bdd]",
+    "Proposed sales preview/import interface: show the specified fields and row-level reasons; validate the entire batch before changing records; support identical replay and separate full reversals. [SRC-d72c6636b30e]",
+    "Proposed local bank-evidence and matching interface: import transaction evidence, enforce reference/amount/sign matching and one-event transaction use, and display reconciliation exceptions. No live bank connection is required. [SRC-4a8d6228aef8]",
+    "Proposed calculation and statement interface: consume eligible events and opening balances, calculate signed allocations and recoupment without mutation, and expose the required statement components. [SRC-7df48c15dc86, SRC-17d8456c098a, SRC-df30a98764e5]",
+    "Proposed approval interface: require finance-manager permission, valid draft inputs, an approved predecessor and agreeing opening balances; commit movements atomically. First-month initialization is unresolved. [SRC-df30a98764e5]",
+    "Proposed correction interface: preserve approved history and reference original evidence while posting next-open-month adjustments; finalize revision semantics only after clarification. [SRC-fb19f3251bdd, SRC-df30a98764e5]",
+    "Proposed policy interface: only the head of tax resolves foreign withholding policy; unresolved policy prevents foreign withholding and payable outputs without disabling independent calculations. [SRC-c93e7c3e326e, SRC-781d6d31edab]",
+    "Proposed local payment interface: prepare positive instructions, bind treasury authorization to exact details, retain outcomes and enforce timeout and paid-resubmission guards. [SRC-7a6aa49b7646, SRC-781d6d31edab]",
+    "Deferred external bank interfaces: payment-file submission, transaction outcomes and definitive paid evidence. Endpoint, authentication, permissions, beneficiary schema, file schema, status meanings and duplicate behavior remain unspecified. [SRC-7a6aa49b7646, SRC-781d6d31edab]"
+  ],
+  "operational_constraints": [
+    "Use integer cents and UTC accounting months and event timestamps throughout; retain the sale date for contract selection and bank booking month for settlement. [SRC-2c591ad4b67f, SRC-4a8d6228aef8]",
+    "Exclude book selling, customer refund processing, contract negotiation, currency conversion, tax-return submission, contributor bank debits and partial reversals. Recording a royalty reversal does not add customer refund processing to scope. [SRC-2c591ad4b67f, SRC-d72c6636b30e]",
+    "Missing contract coverage affects only the work's affected events. Unmatched sales produce no settlement earnings, and unexplained bank transactions remain exceptions. Zero-net events require no bank transaction and earn zero royalties. [SRC-fb19f3251bdd, SRC-4a8d6228aef8, SRC-32daae7fa799]",
+    "Synthetic contracts, sales statements and bank transactions are stated available. External accounts, credentials and payment authorizations are absent; no external resource is assumed available. [SRC-2c591ad4b67f]",
+    "Records, evidence links, approved history and consistent balances must survive restart. Storage technology is an explicitly unapproved reversible choice. [SRC-95a2c6884e96]",
+    "All verification below is proposed work. The supplied material demonstrates no implementation, executed tests or live integration. [SRC-95a2c6884e96]"
+  ],
+  "security_considerations": [
+    "Enforce permissions beyond screen visibility: viewers read; rights clerks maintain contracts; finance clerks import evidence, reconcile cash and record advances; finance managers approve settlements; treasury officers alone authorize payments; the head of tax alone resolves withholding policy. [SRC-781d6d31edab]",
+    "Settlement approval and payment authorization are separate. Require treasury authorization for the exact approved revision, beneficiaries and amounts before every payment attempt; changed details invalidate authorization. These requirements do not supply actual execution permission. [SRC-7a6aa49b7646]",
+    "Treat timeout outcomes as unknown, prohibit automatic retries and require documented resolution before another attempt. Processing acceptance cannot establish paid status. [SRC-781d6d31edab]",
+    "Require definitive bank evidence before marking paid, retain the link to the authorized instruction and prohibit resubmitting paid amounts. [SRC-781d6d31edab]",
+    "Preserve sales and reversal evidence, contract change history and approved settlements; use atomic approval and concurrency controls to prevent duplicate earnings application or advance recoupment. These are proposed implementation controls for explicit source requirements. [SRC-d72c6636b30e, SRC-fb19f3251bdd, SRC-df30a98764e5]"
+  ],
+  "technical_risks": [
+    "Blocking foreign branch: mandatory 10% and 15% withholding rules conflict. REQ-31689359142c and REQ-0a2ea211098c require head-of-tax resolution; fractional-cent rounding and calculation granularity also need clarification. N06's numerical outputs remain blocked. N03's foreign-output guard, pre-withholding calculations and domestic preparation remain available. [SRC-c93e7c3e326e, SRC-32daae7fa799, SRC-2c591ad4b67f]",
+    "Blocking bank contract: unknown submission details, outcome meanings, duplicate behavior and definitive transaction evidence directly affect REQ-d022116c9ef8 and REQ-d01950c3de60, represented by N07 and N08. Local reconciliation, calculation and payment guards are independent. [SRC-7a6aa49b7646, SRC-781d6d31edab]",
+    "Blocking live execution: absent accounts, credentials and exact treasury authorization directly prevent execution of REQ-d022116c9ef8 in N07. Authorization enforcement can be planned and locally verified without actual payment permission. [SRC-2c591ad4b67f, SRC-7a6aa49b7646]",
+    "Blocking first-month acceptance: the predecessor-approval rule does not specify how to initialize the first month and accept its opening balances. This directly affects REQ-34acbe41b0c5's approval branch in N04, not N03's draft calculation or domestic preparation. [SRC-df30a98764e5, SRC-17d8456c098a]",
+    "Blocking correction semantics: the relationship between a new settlement revision and next-open-month adjustments is unresolved. This directly affects REQ-5eb2a2909e47 in N05; it must not become a prerequisite for unrelated initial approvals or local calculations. [SRC-fb19f3251bdd, SRC-df30a98764e5]",
+    "Non-blocking import ambiguity: provisionally reject repeated identifiers within one batch while treating identical matches against stored events as no-ops. This unapproved interpretation affects REQ-77b35fef4dda and can be revised after clarification. [SRC-d72c6636b30e]",
+    "Non-blocking presentation disagreement: initially group by work under an unapproved reversible assumption; either work or retailer grouping is acceptable if totals remain unchanged. No retailer field or additional retailer-data requirement is inferred. [SRC-c93e7c3e326e, SRC-d72c6636b30e, SRC-95a2c6884e96]"
+  ],
+  "completion_definition": [
+    "Proposed local verification covers contract validation, sale-date version selection, audited changes and isolation of missing coverage to affected work events, without bank access or tax-policy resolution. [SRC-fb19f3251bdd, SRC-95a2c6884e96]",
+    "Proposed import and reconciliation checks cover all-or-nothing rejection, row reasons, identical replay, changed-content rejection, full reversal uniqueness, exact signed matching, transaction non-reuse, zero-net handling and visible exceptions. An unmatched sale must produce no earnings. [SRC-d72c6636b30e, SRC-4a8d6228aef8, SRC-32daae7fa799]",
+    "Proposed numerical checks reproduce the supplied examples: net receipts 10,005 produce a 2,001 pool; A receives 1,201 and B 800; a full reversal produces A=-1,201 and B=-800. [SRC-32daae7fa799]",
+    "Proposed balance checks reproduce earnings 1,201 clearing debit 100 and recouping 700 then 401, leaving advance balance 199 and cash due zero; earnings 1,500 with no debit and advances 1,300 produce domestic cash due 200. [SRC-32daae7fa799]",
+    "Proposed draft, approval and restart checks demonstrate nonmutating drafts, input-change invalidation, predecessor and opening-balance validation, atomic movements, repeated/concurrent approval protection and persistent consistent history. First-month approval acceptance remains conditional on its missing initialization rule. [SRC-df30a98764e5, SRC-95a2c6884e96]",
+    "Proposed policy checks demonstrate that foreign withholding and payable outputs stay blocked while foreign earnings and balances, domestic settlement and domestic preparation continue. Numerical foreign acceptance requires an authorized policy decision and rounding details. [SRC-c93e7c3e326e, SRC-32daae7fa799]",
+    "Proposed payment-control checks cover role enforcement beyond screens, exact treasury authorization, invalidation on changed details, strictly positive instructions, all four outcomes, no automatic retry after timeout and no resubmission of paid amounts. [SRC-7a6aa49b7646, SRC-781d6d31edab]",
+    "Correction acceptance remains conditional on clarified revision/adjustment semantics. Live submission and definitive paid recognition remain conditional on the bank contract and required access; submission additionally requires actual exact treasury authorization. No execution or verification result is claimed by this plan. [SRC-fb19f3251bdd, SRC-df30a98764e5, SRC-7a6aa49b7646, SRC-781d6d31edab, SRC-95a2c6884e96]"
+  ],
+  "global_requirement_ids": [
+    "REQ-a53d825c62a0",
+    "REQ-16e7c394338c",
+    "REQ-0972bf500f3a",
+    "REQ-1619068cb5d4",
+    "REQ-d75c5b098545",
+    "REQ-1dbf9907095b"
+  ],
+  "nodes": [
+    {
+      "task_id": "N01",
+      "objective": "Plan the contract register, effective-date validation, contributor status, audited changes and role enforcement shared by subsequent capabilities. Resolve contracts per original sale date and isolate missing coverage to affected work events. [SRC-fb19f3251bdd, SRC-781d6d31edab]",
+      "requirement_ids": [
+        "REQ-1a01faad9624",
+        "REQ-edd45f4c0ad7",
+        "REQ-cb8b6d836518",
+        "REQ-53d2c9219478"
+      ],
+      "depends_on": [],
+      "optional_dependencies": [],
+      "required_resources": [
+        "Suppliedcontract-registerandrolerules",
+        "Syntheticcontractsstatedavailableinthebrief"
+      ],
+      "operation_kind": "local_logic"
+    },
+    {
+      "task_id": "N02",
+      "objective": "Plan local sales preview/import, idempotency, preserved full-reversal evidence, bank-evidence import and cash reconciliation. Enforce exact matching, transaction non-reuse, visible exceptions and booking-month eligibility. Matching remains available without live bank access; missing contract coverage prevents only affected settlement eligibility. [SRC-d72c6636b30e, SRC-4a8d6228aef8, SRC-fb19f3251bdd]",
+      "requirement_ids": [
+        "REQ-e0270ce5cfb9",
+        "REQ-77b35fef4dda",
+        "REQ-8d368fe47a03",
+        "REQ-7685ea07ef00",
+        "REQ-8e9b57a117b6",
+        "REQ-2831a7f759b9",
+        "REQ-81db9988251a"
+      ],
+      "depends_on": ["N01"],
+      "optional_dependencies": [],
+      "required_resources": [
+        "SyntheticlocalSalesStatementsAndBankTransactionsStatedAvailableInTheBrief",
+        "WorkAndContractLookupFromN01",
+        "SuppliedImportAndMatchingRules"
+      ],
+      "operation_kind": "local_logic"
+    },
+    {
+      "task_id": "N03",
+      "objective": "Plan deterministic signed royalty allocation, monthly contributor aggregation, advance recording and recoupment, carryforward handling, nonmutating drafts and statement presentation. Keep domestic payment preparation available and create only positive instructions. Implement the unresolved-foreign-policy output guard while continuing foreign earnings and balance calculations. No bank or foreign-policy decision is a dependency. [SRC-7df48c15dc86, SRC-17d8456c098a, SRC-df30a98764e5, SRC-c93e7c3e326e, SRC-7a6aa49b7646]",
+      "requirement_ids": [
+        "REQ-7be1e1125580",
+        "REQ-3f647bb9e4b6",
+        "REQ-1914f26976af",
+        "REQ-6c98796b6d7d",
+        "REQ-1bc1887bd99b",
+        "REQ-e82b79e3bcb1",
+        "REQ-aee92e407d56",
+        "REQ-9c70af2055ae",
+        "REQ-c2a25174c4a9",
+        "REQ-e4c54c555183",
+        "REQ-0910f299a7f7"
+      ],
+      "depends_on": ["N01", "N02"],
+      "optional_dependencies": [],
+      "required_resources": [
+        "ContractSelectionAndEligibleEventOutputsFromN01AndN02",
+        "RecordedAdvanceAndOpeningBalanceInputsForDraftCalculation",
+        "SuppliedNumericalAcceptanceExamples",
+        "ExplicitlyUnapprovedWorkGroupingAssumption"
+      ],
+      "operation_kind": "local_logic"
+    },
+    {
+      "task_id": "N04",
+      "objective": "Plan atomic, idempotent and concurrency-protected settlement approval plus separate treasury authorization and local payment outcome guards. Scope the unresolved first-month initialization rule to approval acceptance; local authorization matching, outcome preservation, timeout guards and paid-resubmission prevention can be designed independently. Domestic preparation is already covered by N03. Do not depend on correction-policy resolution or live bank access. [SRC-df30a98764e5, SRC-7a6aa49b7646, SRC-781d6d31edab]",
+      "requirement_ids": [
+        "REQ-34acbe41b0c5",
+        "REQ-9765c8c85ed3",
+        "REQ-0910f299a7f7",
+        "REQ-edb5775c6d76",
+        "REQ-b924d60fcd07",
+        "REQ-dbbeb90a348d"
+      ],
+      "depends_on": ["N01", "N03"],
+      "optional_dependencies": [],
+      "required_resources": [
+        "DraftAndBalanceOutputsFromN03",
+        "RoleEnforcementFromN01",
+        "FirstMonthInitializationDecisionUnavailable",
+        "ActualApprovedRevisionAndExactTreasuryAuthorizationRequiredAtPaymentAttemptTimeButNotSupplied"
+      ],
+      "operation_kind": "local_logic"
+    },
+    {
+      "task_id": "N05",
+      "objective": "Plan post-approval corrections that preserve approved history, reference original evidence, post in the next open month and never automatically recover paid money. Final correction behavior remains blocked until the relationship between contract-driven revisions and next-open-month adjustments is clarified; this node does not gate unrelated local work or initial approval. [SRC-fb19f3251bdd, SRC-df30a98764e5]",
+      "requirement_ids": ["REQ-5eb2a2909e47"],
+      "depends_on": ["N04"],
+      "optional_dependencies": [],
+      "required_resources": [
+        "ApprovedSettlementHistoryAndOriginalEventReferencesFromN02AndN04",
+        "RevisionVersusNextOpenMonthAdjustmentClarificationUnavailable"
+      ],
+      "operation_kind": "local_logic"
+    },
+    {
+      "task_id": "N06",
+      "objective": "Preserve the mandatory 10% and 15% foreign withholding alternatives without choosing either. Plan numerical withholding only after head-of-tax resolution and clarification of rounding and calculation granularity. This unresolved branch is not a dependency of domestic preparation or the foreign-output blocking guard. [SRC-c93e7c3e326e, SRC-32daae7fa799]",
+      "requirement_ids": [
+        "REQ-31689359142c",
+        "REQ-0a2ea211098c"
+      ],
+      "depends_on": ["N03"],
+      "optional_dependencies": [],
+      "required_resources": [
+        "ForeignContributorCashDueFromN03",
+        "HeadOfTaxPolicyResolutionUnavailable",
+        "ForeignWithholdingRoundingAndGranularityDecisionUnavailable"
+      ],
+      "operation_kind": "local_logic"
+    },
+    {
+      "task_id": "N07",
+      "objective": "Plan, but do not perform, external payment-file submission and outcome exchange. Block live execution until the bank contract, access and exact treasury authorization exist. Domestic submission has no dependency on foreign-policy resolution; foreign payable instructions remain subject to N03's guard and N06's unresolved policy. Enforce N04's authorization and retry protections. [SRC-2c591ad4b67f, SRC-7a6aa49b7646, SRC-781d6d31edab, SRC-c93e7c3e326e]",
+      "requirement_ids": ["REQ-d022116c9ef8"],
+      "depends_on": ["N04"],
+      "optional_dependencies": [],
+      "required_resources": [
+        "BankEndpointAuthenticationPermissionsBeneficiaryRequirementsFileSchemaStatusMeaningsAndDuplicate" ,
+        "TheBankIntegrationContractIsUnavailable",
+        "ExternalAccountsAndCredentialsAreUnavailable",
+        "ExactTreasuryPaymentAuthorizationIsAbsent"
+      ],
+      "operation_kind": "external_operation"
+    },
+    {
+      "task_id": "N08",
+      "objective": "Plan, but do not perform, acquisition and validation of definitive bank transaction evidence before marking a payment paid. Preserve the authorized-instruction link through N04. Final evidence recognition remains blocked by the missing bank contract; it must not be replaced by acceptance-for-processing status. [SRC-781d6d31edab, SRC-7a6aa49b7646]",
+      "requirement_ids": ["REQ-d01950c3de60"],
+      "depends_on": ["N04", "N07"],
+      "optional_dependencies": [],
+      "required_resources": [
+        "AuthorizedInstructionAndOutcomeRecordsFromN04AndN07",
+        "AgreedDefinitiveBankEvidenceContractUnavailable",
+        "ActualDefinitiveBankTransactionEvidenceNotSupplied"
+      ],
+      "operation_kind": "external_operation"
+    }
+  ]
+}

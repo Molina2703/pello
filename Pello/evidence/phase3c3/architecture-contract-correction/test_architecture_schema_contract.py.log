@@ -1,0 +1,8 @@
+test_business_rule_globalization_and_unknown_resource_guards_are_unchanged (test_architecture_schema_contract.ArchitectureSchemaContractTests.test_business_rule_globalization_and_unknown_resource_guards_are_unchanged) ... ok
+test_schema_distinguishes_provided_inputs_from_availability_gates (test_architecture_schema_contract.ArchitectureSchemaContractTests.test_schema_distinguishes_provided_inputs_from_availability_gates) ... ok
+test_schema_explains_global_category_restriction (test_architecture_schema_contract.ArchitectureSchemaContractTests.test_schema_explains_global_category_restriction) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.009s
+
+OK

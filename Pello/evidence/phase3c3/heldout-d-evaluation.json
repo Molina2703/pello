@@ -1,0 +1,18 @@
+{
+  "evaluation_id": "phase3c3-heldout-d-v1",
+  "verdict": "FAIL",
+  "objective_verdict": "FAIL",
+  "interpretation_review": "PASS",
+  "critical_failures": [
+    "Architecture rejected: business_rule incorrectly globalized",
+    "Provided local inputs encoded as unknown required_resources, defeating actionable local work"
+  ],
+  "requirements": 38,
+  "proposed_nodes": 8,
+  "complete_manifest_generated": false,
+  "failure_evidence": "heldout-d-planning.log; original completed plan-architecture SDK result",
+  "original_FAIL_preserved": true,
+  "fresh_case_required_after_correction": true,
+  "specification_sha256": "8b5d08d9e415098e0e58800353297ac4f09cb8000f720ff640f1e9d226d441f8",
+  "rubric_sha256": "1b9f01aa1f6fcfb25f4a25ef227858f9a16d4150cf1c2988bd1986f90ee0258d"
+}

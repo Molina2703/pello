@@ -1,0 +1,7 @@
+{
+  "at": "2026-10-25T23:31:35.483803+00:00",
+  "hashes": {
+    "tests\\test_architecture_schema_contract.py": "742e6bbf5cdc226e108ab272d1a2dc756d160ebf5f7df2c8c860c0f51c620074"
+  },
+  "reason": "Actual fresh D architecture violates global category restriction and uses provided local inputs as unavailable resources; clarify existing model-facing contracts only"
+}

@@ -1,0 +1,13 @@
+test_completed_prerequisite_unlocks_only_independent_work (test_planning_increments.FunctionalIncrementTests.test_completed_prerequisite_unlocks_only_independent_work) ... ok
+test_coverage_references_and_next_action (test_planning_increments.FunctionalIncrementTests.test_coverage_references_and_next_action) ... ok
+test_dependencies_cannot_be_silently_changed (test_planning_increments.FunctionalIncrementTests.test_dependencies_cannot_be_silently_changed) ... ok
+test_external_operation_requires_explicit_effects_and_permissions (test_planning_increments.FunctionalIncrementTests.test_external_operation_requires_explicit_effects_and_permissions) ... ok
+test_local_logic_cannot_claim_external_effects (test_planning_increments.FunctionalIncrementTests.test_local_logic_cannot_claim_external_effects) ... ok
+test_missing_increment (test_planning_increments.FunctionalIncrementTests.test_missing_increment) ... ok
+test_requirement_mapping_cannot_drift (test_planning_increments.FunctionalIncrementTests.test_requirement_mapping_cannot_drift) ... ok
+test_unsafe_component_path_rejected (test_planning_increments.FunctionalIncrementTests.test_unsafe_component_path_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.011s
+
+OK

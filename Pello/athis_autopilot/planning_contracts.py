@@ -12,7 +12,7 @@ class WorkNode(Message):
     requirement_ids: list[Identifier] = Field(min_length=1,max_length=30)
     depends_on: list[Identifier] = Field(max_length=8)
     optional_dependencies: list[Identifier] = Field(max_length=8)
-    required_resources: list[Identifier] = Field(max_length=12)
+    required_resources: list[Identifier] = Field(max_length=12,description="Resource identifiers needing separate availability/permission checks, including genuinely missing infrastructure or external services. Do not put provided local Python/SQLite/Git capabilities, supplied synthetic data, source rules, assumptions, or future task outputs here; functional prerequisites belong in depends_on and inputs. Use [] when no such resource prerequisite is missing. With no supplied resource inventory, every listed identifier is treated as unavailable; a declaration is never availability or authorization.")
     operation_kind: Literal['local_logic','external_operation']
 
 
@@ -24,7 +24,7 @@ class ArchitectureProposal(Message):
     security_considerations: list[Text] = Field(min_length=1,max_length=12)
     technical_risks: list[Text] = Field(min_length=1,max_length=12)
     completion_definition: list[Text] = Field(min_length=1,max_length=12)
-    global_requirement_ids: list[Identifier] = Field(max_length=30)
+    global_requirement_ids: list[Identifier] = Field(max_length=30,description="Existing requirement IDs only from categories exclusion, constraint, non_functional or authorization. A functional requirement or business_rule must be assigned to work nodes even when cross-cutting; neither category may be globalized. An authorization global must also map to a local enforcement work node. Do not change requirement categories or use global placement to bypass blockers.")
     nodes: list[WorkNode] = Field(min_length=1,max_length=8)
 
 

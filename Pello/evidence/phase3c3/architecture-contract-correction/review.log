@@ -1,0 +1,15 @@
+warning: in the working copy of 'Pello/athis_autopilot/planning_contracts.py', LF will be replaced by CRLF the next time Git touches it
+{
+  "verdict": "PASS",
+  "scope": "correct",
+  "correctness": "adequate",
+  "test_evidence": "pass",
+  "safety_and_preservation": "adequate",
+  "findings": [
+    "The global-ID description matches the supplied validator\u2019s category restrictions and requirement for local authorization enforcement.",
+    "The resource description distinguishes provided local inputs and functional dependencies from separately unavailable resources without granting availability or authorization.",
+    "The production diff changes only schema descriptions and supplies no case-specific architecture or expected solution.",
+    "Supplied schema output confirms both descriptions reach the model-facing payload. Test transcripts report 55 passing tests, including continued rejection of business-rule globalization and blocking of unavailable resources."
+  ],
+  "rationale": "The clarification is compatible with the supplied enforcement and preserves rejection boundaries. This verdict covers the metadata correction only: original failures remain failures, and planning generalization is unproven."
+}

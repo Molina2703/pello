@@ -1,0 +1,55 @@
+{
+  "declared_path": "C:\\Users\\USUARIO\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\PelloEvaluation\\phase3c3-d\\rubric.json",
+  "canonical_path": "C:\\Users\\USUARIO\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\PelloEvaluation\\phase3c3-d\\rubric.json",
+  "normal_alias_path": "C:\\Users\\USUARIO\\AppData\\Local\\PelloEvaluation\\phase3c3-d\\rubric.json",
+  "parent_process_same_file": true,
+  "normal_alias_same_file": true,
+  "declared_sha256": "1b9f01aa1f6fcfb25f4a25ef227858f9a16d4150cf1c2988bd1986f90ee0258d",
+  "canonical_sha256": "1b9f01aa1f6fcfb25f4a25ef227858f9a16d4150cf1c2988bd1986f90ee0258d",
+  "frozen_expected_sha256": "1b9f01aa1f6fcfb25f4a25ef227858f9a16d4150cf1c2988bd1986f90ee0258d",
+  "native_checks": [
+    {
+      "path_label": "declared_rubric_path",
+      "path": "C:\\Users\\USUARIO\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\PelloEvaluation\\phase3c3-d\\rubric.json",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"C:\\Users\\USUARIO\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\pathlib.py\", line 1019, in read_bytes\n    with self.open(mode='rb') as f:\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\USUARIO\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [Errno 13] Permission denied: 'C:\\\\Users\\\\USUARIO\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\PelloEvaluation\\\\phase3c3-d\\\\rubric.json'\n",
+      "denied": true,
+      "command": [
+        "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Lib\\site-packages\\codex_cli_bin\\bin\\codex.exe",
+        "-c",
+        "permissions.pello_supplied_context={extends=\":read-only\",filesystem={\"C:/Users/USUARIO/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/PelloEvaluation\"=\"deny\",\"C:/Users/USUARIO/OneDrive/Documents/ChatGPT/DESARROLLO PELLO/Pello/runtime/phase3c/jobs.sqlite3\"=\"deny\",\"C:/Users/USUARIO/OneDrive/Documents/ChatGPT/DESARROLLO PELLO/Pello/runtime/phase3c/projects/phase3c3-author\"=\"deny\",\"C:/Users/USUARIO/OneDrive/Documents/ChatGPT/DESARROLLO PELLO/Pello/evidence/phase3c3\"=\"deny\",\"C:/Users/USUARIO/.codex\"=\"deny\",\"C:/Users/USUARIO/OneDrive/Documents/ChatGPT/DESARROLLO PELLO/Pello/runtime/phase3c/projects/phase3c3-review-a\"=\"deny\",\"C:/Users/USUARIO/OneDrive/Documents/ChatGPT/DESARROLLO PELLO/Pello/runtime/phase3c/projects/phase3c3-review-b\"=\"deny\",\"C:/Users/USUARIO/OneDrive/Documents/ChatGPT/DESARROLLO PELLO/Pello/runtime/phase3c/projects/phase3c3-review-c\"=\"deny\",\"C:/Users/USUARIO/OneDrive/Documents/ChatGPT/DESARROLLO PELLO/Pello/runtime/phase3c/projects/phase3c3-review-d\"=\"deny\"},network={enabled=false}}",
+        "sandbox",
+        "-P",
+        "pello_supplied_context",
+        "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "from pathlib import Path; import sys; Path(sys.argv[1]).read_bytes(); print(\"READ_SUCCEEDED\")",
+        "C:\\Users\\USUARIO\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\PelloEvaluation\\phase3c3-d\\rubric.json"
+      ]
+    },
+    {
+      "path_label": "normal_user_alias_path",
+      "path": "C:\\Users\\USUARIO\\AppData\\Local\\PelloEvaluation\\phase3c3-d\\rubric.json",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"C:\\Users\\USUARIO\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\pathlib.py\", line 1019, in read_bytes\n    with self.open(mode='rb') as f:\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\USUARIO\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [Errno 13] Permission denied: 'C:\\\\Users\\\\USUARIO\\\\AppData\\\\Local\\\\PelloEvaluation\\\\phase3c3-d\\\\rubric.json'\n",
+      "denied": true,
+      "command": [
+        "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Lib\\site-packages\\codex_cli_bin\\bin\\codex.exe",
+        "-c",
+        "permissions.pello_supplied_context={extends=\":read-only\",filesystem={\"C:/Users/USUARIO/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/PelloEvaluation\"=\"deny\",\"C:/Users/USUARIO/OneDrive/Documents/ChatGPT/DESARROLLO PELLO/Pello/runtime/phase3c/jobs.sqlite3\"=\"deny\",\"C:/Users/USUARIO/OneDrive/Documents/ChatGPT/DESARROLLO PELLO/Pello/runtime/phase3c/projects/phase3c3-author\"=\"deny\",\"C:/Users/USUARIO/OneDrive/Documents/ChatGPT/DESARROLLO PELLO/Pello/evidence/phase3c3\"=\"deny\",\"C:/Users/USUARIO/.codex\"=\"deny\",\"C:/Users/USUARIO/OneDrive/Documents/ChatGPT/DESARROLLO PELLO/Pello/runtime/phase3c/projects/phase3c3-review-a\"=\"deny\",\"C:/Users/USUARIO/OneDrive/Documents/ChatGPT/DESARROLLO PELLO/Pello/runtime/phase3c/projects/phase3c3-review-b\"=\"deny\",\"C:/Users/USUARIO/OneDrive/Documents/ChatGPT/DESARROLLO PELLO/Pello/runtime/phase3c/projects/phase3c3-review-c\"=\"deny\",\"C:/Users/USUARIO/OneDrive/Documents/ChatGPT/DESARROLLO PELLO/Pello/runtime/phase3c/projects/phase3c3-review-d\"=\"deny\"},network={enabled=false}}",
+        "sandbox",
+        "-P",
+        "pello_supplied_context",
+        "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "from pathlib import Path; import sys; Path(sys.argv[1]).read_bytes(); print(\"READ_SUCCEEDED\")",
+        "C:\\Users\\USUARIO\\AppData\\Local\\PelloEvaluation\\phase3c3-d\\rubric.json"
+      ]
+    }
+  ],
+  "rubric_or_specification_modified": false
+}

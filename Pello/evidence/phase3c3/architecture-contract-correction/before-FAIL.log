@@ -1,0 +1,24 @@
+test_business_rule_globalization_and_unknown_resource_guards_are_unchanged (test_architecture_schema_contract.ArchitectureSchemaContractTests.test_business_rule_globalization_and_unknown_resource_guards_are_unchanged) ... ok
+test_schema_distinguishes_provided_inputs_from_availability_gates (test_architecture_schema_contract.ArchitectureSchemaContractTests.test_schema_distinguishes_provided_inputs_from_availability_gates) ... FAIL
+test_schema_explains_global_category_restriction (test_architecture_schema_contract.ArchitectureSchemaContractTests.test_schema_explains_global_category_restriction) ... FAIL
+
+======================================================================
+FAIL: test_schema_distinguishes_provided_inputs_from_availability_gates (test_architecture_schema_contract.ArchitectureSchemaContractTests.test_schema_distinguishes_provided_inputs_from_availability_gates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_architecture_schema_contract.py", line 17, in test_schema_distinguishes_provided_inputs_from_availability_gates
+    self.assertIn(term,description)
+AssertionError: 'provided local' not found in ''
+
+======================================================================
+FAIL: test_schema_explains_global_category_restriction (test_architecture_schema_contract.ArchitectureSchemaContractTests.test_schema_explains_global_category_restriction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_architecture_schema_contract.py", line 11, in test_schema_explains_global_category_restriction
+    self.assertIn(term,description)
+AssertionError: 'exclusion' not found in ''
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.011s
+
+FAILED (failures=2)
