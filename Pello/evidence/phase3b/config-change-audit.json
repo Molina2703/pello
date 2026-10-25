@@ -1,0 +1,36 @@
+{
+  "modified_utc": "2026-10-25T01:38:13.546024+00:00",
+  "sha256": "72610a55b6681845dacb27c02f4d92a572c7b682a02cb712523f89108c7d5f77",
+  "n8n": {
+    "server": "n8n",
+    "endpoint": "https://n8n-production-3374.up.railway.app/mcp-server/http",
+    "configured": true
+  },
+  "mcp_server_names": [
+    "node_repl",
+    "n8n_chatbot_wsp_dev",
+    "n8n_chatbot_wsp",
+    "n8n"
+  ],
+  "top_level_keys": [
+    "model",
+    "model_reasoning_effort",
+    "service_tier",
+    "approval_policy",
+    "approvals_reviewer",
+    "sandbox_mode",
+    "notify",
+    "windows",
+    "projects",
+    "marketplaces",
+    "plugins",
+    "desktop",
+    "features",
+    "mcp_servers",
+    "tui",
+    "apps"
+  ],
+  "model": "gpt-6.1-sol",
+  "model_reasoning_effort": "high",
+  "note": "Global file hash changed after initial audit. No config write command was issued by this task; do not overwrite concurrent settings. Secret values not inspected/exported."
+}

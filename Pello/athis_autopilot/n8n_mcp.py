@@ -16,6 +16,21 @@ RESOURCE_READS = {'get_workflow_details', 'get_workflow_history', 'get_workflow_
                   'get_workflow_execution', 'search_workflow_executions'}
 
 
+def redact_result(value):
+    """Keep execution metadata, never persist internal resume/auth secrets."""
+    if isinstance(value,dict):
+        return {k:('[REDACTED]' if k.lower().replace('_','').replace('-','') in
+            {'resumetoken','accesstoken','refreshtoken','authorization','password','apikey','privatekey','secret'} and v
+            else redact_result(v)) for k,v in value.items()}
+    if isinstance(value,list): return [redact_result(v) for v in value]
+    if isinstance(value,str) and value.lstrip().startswith(('{','[')):
+        try: parsed=json.loads(value)
+        except (ValueError,TypeError): return value
+        cleaned=redact_result(parsed)
+        if cleaned!=parsed: return json.dumps(cleaned,ensure_ascii=False)
+    return value
+
+
 def connection_summary():
     home = Path(os.environ.get('CODEX_HOME', str(Path.home() / '.codex')))
     config = tomllib.loads((home / 'config.toml').read_text(encoding='utf-8'))
@@ -73,7 +88,7 @@ def worker_request(client, *, role, workspace, request):
         if proof: claim_operation(proof, tool, arguments, thread.id)
         raw = rpc.request('mcpServer/tool/call', {'threadId': thread.id, 'server': SERVER,
                           'tool': tool, 'arguments': arguments}, response_model=McpServerToolCallResponse)
-        result = raw.model_dump(mode='json', by_alias=True)
+        result = redact_result(raw.model_dump(mode='json', by_alias=True))
         if proof: finish_operation(proof, result)
     return {'status': 'completed', 'thread_id': thread.id, 'server': SERVER,
             'action': action, 'tool': tool, 'result': result, 'model_inference': False}

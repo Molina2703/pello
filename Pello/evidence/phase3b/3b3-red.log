@@ -1,0 +1,74 @@
+test_budget_exhaustion_blocks_before_publish_coder_or_any_remote_effect (test_n8n_publication.PublicationTests.test_budget_exhaustion_blocks_before_publish_coder_or_any_remote_effect) ... ERROR
+test_http_uncertainty_stop_budget_and_scope_are_enforced_without_repetition (test_n8n_publication.PublicationTests.test_http_uncertainty_stop_budget_and_scope_are_enforced_without_repetition) ... ERROR
+test_internal_execution_tokens_are_redacted_in_both_mcp_representations (test_n8n_publication.PublicationTests.test_internal_execution_tokens_are_redacted_in_both_mcp_representations) ... ok
+test_mock_published_pipeline_verifies_http_executions_and_resume_has_no_effects (test_n8n_publication.PublicationTests.test_mock_published_pipeline_verifies_http_executions_and_resume_has_no_effects) ... ERROR
+test_version_drift_blocks_publication_and_http (test_n8n_publication.PublicationTests.test_version_drift_blocks_publication_and_http) ... ERROR
+
+======================================================================
+ERROR: test_budget_exhaustion_blocks_before_publish_coder_or_any_remote_effect (test_n8n_publication.PublicationTests.test_budget_exhaustion_blocks_before_publish_coder_or_any_remote_effect)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_n8n_publication.py", line 66, in test_budget_exhaustion_blocks_before_publish_coder_or_any_remote_effect
+    core,pid,backend=self.draft(tmp)
+                     ^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_n8n_publication.py", line 52, in draft
+    backend=PublishBackend();core=N8nPipeline(Path(tmp),backend=backend,http_transport=backend.http)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\n8n_pipeline.py", line 87, in __init__
+    super().__init__(*args,**kwargs)
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\pipeline_store.py", line 12, in __init__
+    super().__init__(*args, **kwargs)
+TypeError: SupervisedCycle.__init__() got an unexpected keyword argument 'http_transport'
+
+======================================================================
+ERROR: test_http_uncertainty_stop_budget_and_scope_are_enforced_without_repetition (test_n8n_publication.PublicationTests.test_http_uncertainty_stop_budget_and_scope_are_enforced_without_repetition)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_n8n_publication.py", line 82, in test_http_uncertainty_stop_budget_and_scope_are_enforced_without_repetition
+    core,pid,backend=self.draft(tmp)
+                     ^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_n8n_publication.py", line 52, in draft
+    backend=PublishBackend();core=N8nPipeline(Path(tmp),backend=backend,http_transport=backend.http)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\n8n_pipeline.py", line 87, in __init__
+    super().__init__(*args,**kwargs)
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\pipeline_store.py", line 12, in __init__
+    super().__init__(*args, **kwargs)
+TypeError: SupervisedCycle.__init__() got an unexpected keyword argument 'http_transport'
+
+======================================================================
+ERROR: test_mock_published_pipeline_verifies_http_executions_and_resume_has_no_effects (test_n8n_publication.PublicationTests.test_mock_published_pipeline_verifies_http_executions_and_resume_has_no_effects)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_n8n_publication.py", line 58, in test_mock_published_pipeline_verifies_http_executions_and_resume_has_no_effects
+    core,pid,backend=self.draft(tmp);report=core.run_pipeline(pid)
+                     ^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_n8n_publication.py", line 52, in draft
+    backend=PublishBackend();core=N8nPipeline(Path(tmp),backend=backend,http_transport=backend.http)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\n8n_pipeline.py", line 87, in __init__
+    super().__init__(*args,**kwargs)
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\pipeline_store.py", line 12, in __init__
+    super().__init__(*args, **kwargs)
+TypeError: SupervisedCycle.__init__() got an unexpected keyword argument 'http_transport'
+
+======================================================================
+ERROR: test_version_drift_blocks_publication_and_http (test_n8n_publication.PublicationTests.test_version_drift_blocks_publication_and_http)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_n8n_publication.py", line 76, in test_version_drift_blocks_publication_and_http
+    core,pid,backend=self.draft(tmp);backend.drift=True;report=core.run_pipeline(pid)
+                     ^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_n8n_publication.py", line 52, in draft
+    backend=PublishBackend();core=N8nPipeline(Path(tmp),backend=backend,http_transport=backend.http)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\n8n_pipeline.py", line 87, in __init__
+    super().__init__(*args,**kwargs)
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\pipeline_store.py", line 12, in __init__
+    super().__init__(*args, **kwargs)
+TypeError: SupervisedCycle.__init__() got an unexpected keyword argument 'http_transport'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.014s
+
+FAILED (errors=4)

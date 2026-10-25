@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a170c0-f549-7d83-b6d1-3d78e064bd87",
+  "turn_id": "01a170c0-f6b9-7ce2-a76e-b0fa2ee8f985",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 9984,
+      "input_tokens": 29391,
+      "output_tokens": 712,
+      "reasoning_output_tokens": 601,
+      "total_tokens": 30103
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 9984,
+      "input_tokens": 29391,
+      "output_tokens": 712,
+      "reasoning_output_tokens": 601,
+      "total_tokens": 30103
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3b\",\"task_id\":\"3B3\",\"attempt\":1,\"verdict\":\"PASS\",\"diagnosis\":\"none\",\"feedback\":\"Supplied source and passing evidence support this bounded local increment. The exhausted mutation budget blocks publication before Coder or remote operations; exact-version readback, four-POST limits, uncertainty guards, and distinct owned execution checks are implemented. Real publication and production webhook verification remain blocked at 6/6 mutations, as permitted by the contract.\"}",
+  "error": null
+}

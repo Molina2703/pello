@@ -1,0 +1,17 @@
+{
+  "before": {
+    "mcp_operations": 17,
+    "model_turns": 6,
+    "http_operations": 0
+  },
+  "after": {
+    "mcp_operations": 17,
+    "model_turns": 6,
+    "http_operations": 0
+  },
+  "stop_prevented_new_operations": true,
+  "controlled_stop_marker_removed": true,
+  "budget_blocker": "CodexBlocked: Mutation budget exhausted before publication; no extra Coder turn or remote operation",
+  "repeat_resume_added_operations": false,
+  "workflow_id": "Tbuvwcxde8MEMYcJ"
+}

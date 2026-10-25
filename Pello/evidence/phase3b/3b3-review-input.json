@@ -1,0 +1,28 @@
+{
+  "contract": "3B3 localized extension prepares exact-version publication from already independently reviewed DRAFT, actual active-version readback, four journaled scoped synthetic HTTP POSTs, matching four distinct owned successful webhook executions, final protected verification, independent review/checkpoint. Existing official SDK MCP only; no admin REST. This engineering increment may close as locally implemented but REAL PUBLICATION BLOCKED: actual prior draft repair consumed six of six immutable mutation calls. User forbids self-extension. Do not treat accurately reported pending live publication as a code defect; assess whether guards really prevent it.",
+  "source_files": [
+    "athis_autopilot/n8n_pipeline.py",
+    "athis_autopilot/n8n_http.py",
+    "athis_autopilot/n8n_mcp.py",
+    "athis_autopilot/n8n_operations.py",
+    "athis_autopilot/n8n_qa.py",
+    "tests/test_n8n_publication.py"
+  ],
+  "verification": {
+    "regression_log": "tale_bytecode) ... ok\ntest_pipeline_failure_has_no_approval_checkpoint_or_dependent_execution (test_verification_source.SourceVerificationTests.test_pipeline_failure_has_no_approval_checkpoint_or_dependent_execution) ... ok\ntest_sourceless_project_bytecode_cannot_supply_acceptance_behavior (test_verification_source.SourceVerificationTests.test_sourceless_project_bytecode_cannot_supply_acceptance_behavior) ... ok\ntest_stale_bytecode_fails_and_original_files_remain_untouched (test_verification_source.SourceVerificationTests.test_stale_bytecode_fails_and_original_files_remain_untouched) ... ok\n\n----------------------------------------------------------------------\nRan 118 tests in 169.134s\n\nOK\n",
+    "targeted_log": "test_budget_exhaustion_blocks_before_publish_coder_or_any_remote_effect (test_n8n_publication.PublicationTests.test_budget_exhaustion_blocks_before_publish_coder_or_any_remote_effect) ... ok\ntest_four_post_limit_confirmed_cache_and_scoped_payload (test_n8n_publication.PublicationTests.test_four_post_limit_confirmed_cache_and_scoped_payload) ... ok\ntest_http_uncertainty_stop_budget_and_scope_are_enforced_without_repetition (test_n8n_publication.PublicationTests.test_http_uncertainty_stop_budget_and_scope_are_enforced_without_repetition) ... ok\ntest_internal_execution_tokens_are_redacted_in_both_mcp_representations (test_n8n_publication.PublicationTests.test_internal_execution_tokens_are_redacted_in_both_mcp_representations) ... ok\ntest_mock_published_pipeline_verifies_http_executions_and_resume_has_no_effects (test_n8n_publication.PublicationTests.test_mock_published_pipeline_verifies_http_executions_and_resume_has_no_effects) ... ok\ntest_version_drift_blocks_publication_and_http (test_n8n_publication.PublicationTests.test_version_drift_blocks_publication_and_http) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 25.573s\n\nOK\n"
+  },
+  "real_previous_evidence": {
+    "workflow_id": "Tbuvwcxde8MEMYcJ",
+    "reviewed_version": "851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7",
+    "draft_tests": "5/5 PASS; actual Reviewer initially FAIL, automatic localized correction, then PASS, no duplicate create",
+    "external_calls": 17,
+    "mutations": 6,
+    "mutation_limit": 6,
+    "model_turns": 6,
+    "model_limit": 10,
+    "published": false,
+    "production_webhook_tests": "NOT RUN"
+  },
+  "safety": "No code changes initial limits or creates a replacement project. Publication budget check runs before Coder/MCP. Planner and Reviewer remain MCP disabled. HTTP only Core-owned route, no redirects/proxies/admin APIs, bounded4, uncertainty blocks new POSTs. Native MCP result sanitizes internal resumeToken and authentication fields, including duplicated JSON text. Existing current-phase execution exports sanitized; historical773 files untouched. Confirmed resume does not repeat external effects; mock-only final reports stay explicitly mock."
+}

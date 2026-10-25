@@ -37,4 +37,7 @@ max_mutations=6; publicar necesita otra mutación. No se amplió el límite.
 
 Evidencia inmutable: evidence/phase3b/live-draft/ (161 archivos, estado SQLite
 exportado, fuentes, respuestas SDK/MCP, verificaciones, revisiones y hashes).
-Históricos: 773 archivos y config.toml sin cambios según auditoría de hashes.
+Auditoría previa al piloto: 773 archivos y config.toml sin cambios. Auditoría
+posterior: los 773 históricos siguen intactos; huella global de config.toml
+distinta, causa no establecida. Nombre/endpoint/estado habilitado de n8n correctos.
+Se preservó la configuración actual sin sobrescribirla; detalle en informe final.

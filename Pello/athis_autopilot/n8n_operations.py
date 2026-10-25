@@ -7,7 +7,7 @@ import sqlite3
 import time
 
 from .engines import CodexBlocked
-from .n8n_mcp import PROTECTED_IDS, READ_TOOLS, RESOURCE_READS
+from .n8n_mcp import PROTECTED_IDS, READ_TOOLS, RESOURCE_READS, redact_result
 from .supervisor import now
 
 MUTATIONS = {'create_workflow_from_code', 'update_workflow', 'publish_workflow', 'execute_workflow', 'test_workflow'}
@@ -97,6 +97,7 @@ def claim_operation(proof, tool, arguments, thread_id):
 
 def finish_operation(proof, response):
     """Capture returned IDs in SQLite before writing response files or returning."""
+    response=redact_result(response)
     data = mcp_data(response)
     with closing(sqlite3.connect(proof['db'], timeout=15)) as cx, cx:
         cx.row_factory = sqlite3.Row; cx.execute('BEGIN IMMEDIATE')

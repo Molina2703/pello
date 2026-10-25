@@ -10,7 +10,8 @@ from .ai_supervisor import ROLE_INSTRUCTIONS, SDKBackend
 from .engines import CodexBlocked
 from .messages import Identifier, parse_response
 from .model_policy import probe_capabilities, select_model
-from .n8n_operations import N8nJournal, mcp_data, digest
+from .n8n_operations import N8nJournal, mcp_data, digest, MUTATIONS, check_stop
+from .n8n_http import QAHttpJournal
 from .n8n_qa import QAContract, validate_blueprint, check_cases, sdk_code, verify_remote, fingerprint, cases
 from .pipeline import IncrementalPipeline, write_json, encoded
 from .pipeline_contracts import PipelinePolicy
@@ -83,9 +84,10 @@ def final_execution_output(data,workflow_id,execution_id):
 
 
 class N8nPipeline(IncrementalPipeline):
-    def __init__(self,*args,**kwargs):
+    def __init__(self,*args,http_transport=None,**kwargs):
         super().__init__(*args,**kwargs)
         self.journal=N8nJournal(self)
+        self.http=QAHttpJournal(self,http_transport)
 
     def create_qa_project(self, *, project_id=None):
         with self.db() as cx:
@@ -185,7 +187,12 @@ class N8nPipeline(IncrementalPipeline):
         return {**case,'execution_id':str(execution_id),'observed_output':observed,'passed':observed==case['expected']}
 
     def _execute_increment(self,project,task,attempt):
-        if task['task_id']=='PUBLISH': raise CodexBlocked('Publication implementation belongs to the next checkpoint, 3B3')
+        if task['task_id']=='PUBLISH':
+            self._publication_budget(project['id'])
+            super()._execute_increment(project,task,attempt)
+            self._advance_attempt(project['id'],task['task_id'],attempt['attempt'],'PENDING')
+            self._publish(project,task,attempt)
+            return
         super()._execute_increment(project,task,attempt)
         pid=project['id']; workspace=self.folder(pid)/'workspace'; contract=self.contract(pid)
         try:
@@ -224,6 +231,88 @@ class N8nPipeline(IncrementalPipeline):
             'mcp_available':available,'manual_cases':manual,'blueprint_sha256':digest(blueprint)})
         self._advance_attempt(pid,task['task_id'],attempt['attempt'],'EXECUTED',after_snapshot=encoded(workspace_snapshot(workspace)))
 
+    def _publication_budget(self,pid):
+        resource=self.journal.resource(pid);check_stop(self.db_path,resource)
+        operations=self.journal.operations(pid)
+        if any(r['tool'] in MUTATIONS and r['status'] in ('IN_FLIGHT','SUBMITTED','UNCERTAIN') for r in operations):
+            raise CodexBlocked('Uncertain mutation blocks publication')
+        already=any(r['op_key']=='publish' and r['status']=='CONFIRMED' for r in operations)
+        if not already and sum(r['tool'] in MUTATIONS for r in operations)>=resource['max_mutations']:
+            raise CodexBlocked('Mutation budget exhausted before publication; no extra Coder turn or remote operation')
+        if len(operations)>=resource['max_calls']:raise CodexBlocked('MCP call budget exhausted')
+
+    def _publish(self,project,task,attempt):
+        pid=project['id'];workspace=self.folder(pid)/'workspace';resource=self.journal.resource(pid);contract=self.contract(pid)
+        intent=json.loads((workspace/'publication.json').read_text())
+        if intent!={'action':'publish','workflow_id':resource['workflow_id'],'version_id':resource['reviewed_version']}:
+            raise CodexBlocked('Publication artifact does not match the reviewed owned version')
+        if not any(t['task_id']=='DRAFT' and t['state']=='APPROVED' for t in self.tasks(pid)):
+            raise CodexBlocked('Draft checkpoint and independent review are mandatory')
+        blueprint=json.loads((workspace/'workflow.json').read_text())
+        sequence=sum(r['op_key'].startswith('publish-preflight-') for r in self.journal.operations(pid))
+        remote=mcp_data(self.journal.call(pid,'publish-preflight-'+str(sequence),'get_workflow_details',{'workflowId':resource['workflow_id']}))['workflow']
+        self._reviewed_remote(remote,blueprint,contract,resource)
+        publication=mcp_data(self.journal.call(pid,'publish','publish_workflow',
+            {'workflowId':resource['workflow_id'],'versionId':resource['reviewed_version']}))
+        published=None
+        for poll in range(3):
+            if poll:time.sleep(2)
+            published=mcp_data(self.journal.call(pid,f'publish-observe-{sequence}-{poll}','get_workflow_details',{'workflowId':resource['workflow_id']}))['workflow']
+            self._reviewed_remote(published,blueprint,contract,resource)
+            if published.get('active') and published.get('activeVersionId')==resource['reviewed_version']:break
+        if not published.get('active') or published.get('activeVersionId')!=resource['reviewed_version']:
+            raise CodexBlocked('Actual publication state/version is unconfirmed; do not repeat publish blindly')
+        selected=cases(contract);http_cases=[]
+        for name,index in (('valid',0),('invalid-type',1),('negative',2),('repeat-valid',0)):
+            case=selected[index];observed=self.http.post(pid,name,case['payload'])
+            record={'name':name,'payload':case['payload'],'expected_status':case['http_status'],'expected_body':case['expected'],
+                **observed,'passed':observed['status']==case['http_status'] and observed['body']==case['expected']}
+            http_cases.append(record)
+            if not record['passed']:raise CodexBlocked('Real published webhook contract failed; HTTP evidence retained: '+name)
+        execution_results=self._webhook_executions(pid,http_cases,sequence)
+        final=mcp_data(self.journal.call(pid,'publish-final-'+str(sequence),'get_workflow_details',{'workflowId':resource['workflow_id']}))['workflow']
+        self._reviewed_remote(final,blueprint,contract,resource)
+        if not final.get('active') or final.get('activeVersionId')!=resource['reviewed_version']:
+            raise CodexBlocked('Published version changed during webhook verification')
+        write_json(workspace/'remote-published.json',{'workflow':final,'workflow_id':resource['workflow_id'],
+            'reviewed_version':resource['reviewed_version'],'publication':publication,'http_cases':http_cases,
+            'execution_results':execution_results,'verified':True})
+        self._advance_attempt(pid,task['task_id'],attempt['attempt'],'EXECUTED',after_snapshot=encoded(workspace_snapshot(workspace)))
+
+    @staticmethod
+    def _reviewed_remote(remote,blueprint,contract,resource):
+        verify_remote(remote,blueprint,contract)
+        if remote['id']!=resource['workflow_id'] or remote['versionId']!=resource['reviewed_version'] or fingerprint(remote)!=resource['reviewed_hash']:
+            raise CodexBlocked('Remote identity/version/configuration differs from independently reviewed draft')
+
+    def _webhook_executions(self,pid,http_cases,sequence):
+        resource=self.journal.resource(pid);records=[]
+        for poll in range(3):
+            if poll:time.sleep(2)
+            listing=mcp_data(self.journal.call(pid,f'webhook-list-{sequence}-{poll}','search_workflow_executions',
+                {'workflowId':resource['workflow_id'],'startedAfter':self.http.operations(pid)[0]['created'],'limit':20}))
+            records=[r for r in listing.get('data',[]) if r.get('mode')=='webhook' and r.get('status')=='success']
+            if len(records)>=len(http_cases):break
+        verified=[];used=set();seen_ids=set()
+        for record in records:
+            eid=str(record['id'])
+            if eid in seen_ids:continue
+            seen_ids.add(eid)
+            data=mcp_data(self.journal.call(pid,f'webhook-result-{sequence}-{eid}','get_workflow_execution',
+                {'workflowId':resource['workflow_id'],'executionId':eid,'includeData':True,'truncateData':2}))
+            output=final_execution_output(data,resource['workflow_id'],eid)
+            if (data.get('execution') or {}).get('mode')!='webhook':raise CodexBlocked('Execution is not a real webhook invocation')
+            run=(data.get('data') or {}).get('resultData',{}).get('runData',{}).get('QA Webhook',[])
+            try:payload=run[0]['data']['main'][0][0]['json']['body']
+            except (IndexError,KeyError,TypeError):continue
+            match=next((i for i,c in enumerate(http_cases) if i not in used and c['payload']==payload and c['expected_body']==output),None)
+            if match is not None:
+                used.add(match);verified.append({'id':eid,'workflow_id':resource['workflow_id'],'mode':'webhook',
+                    'successful':True,'case':http_cases[match]['name'],'input':payload,'output':output})
+            if len(used)==len(http_cases):break
+        if len(used)!=len(http_cases):raise CodexBlocked('Corresponding successful webhook executions not verified; do not repeat HTTP POSTs')
+        return verified
+
     def _finish_review(self,project,task,attempt):
         super()._finish_review(project,task,attempt)
         if task['task_id']=='DRAFT' and self.attempts(project['id'],task['task_id'])[-1]['stage']=='REVIEWED':
@@ -233,8 +322,9 @@ class N8nPipeline(IncrementalPipeline):
 
     def pipeline_report(self,pid):
         report=super().pipeline_report(pid); resource=self.journal.resource(pid)
-        report.update(workflow_id=resource['workflow_id'],external_operations=self.journal.operations(pid),
-            external_integration=('TESTED WITH MOCKS' if type(self.backend) is not SDKBackend else
+        report.update(workflow_id=resource['workflow_id'],external_operations=self.journal.operations(pid),http_operations=self.http.operations(pid),
+            external_integration=('TESTED WITH MOCKS' if type(self.backend) is not SDKBackend or self.http.simulated else
+                'VERIFIED REAL PUBLISHED QA' if report['passed'] else
                 'DRAFT REAL MCP VERIFIED; PUBLISHING PENDING' if report['verified_increments'] else 'PENDING'))
         write_json(self.folder(pid)/'pipeline-report.json',report)
         (self.folder(pid)/'pipeline-report.md').write_text('# Pello n8n QA\n\nEstado: '+report['stage']+

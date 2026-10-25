@@ -1,0 +1,174 @@
+{
+  "status": "completed",
+  "thread_id": "01a170b7-3418-7fd2-b565-c0a179b728d7",
+  "server": "n8n",
+  "action": "call",
+  "tool": "get_workflow_execution",
+  "result": {
+    "_meta": null,
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"execution\": {\"id\": \"6\", \"workflowId\": \"Tbuvwcxde8MEMYcJ\", \"mode\": \"manual\", \"status\": \"success\", \"startedAt\": \"2026-10-25T01:40:16.183Z\", \"stoppedAt\": \"2026-10-25T01:40:16.229Z\", \"retryOf\": null, \"retrySuccessId\": null, \"waitTill\": null}, \"data\": {\"version\": 1, \"startData\": {}, \"resultData\": {\"runData\": {\"QA Webhook\": [{\"startTime\": 1792892416192, \"executionIndex\": 0, \"source\": [], \"hints\": [], \"executionTime\": 1, \"executionStatus\": \"success\", \"data\": {\"main\": [[{\"json\": {\"headers\": {}, \"query\": {}, \"body\": {\"request_id\": \"pello-3b-invalid\", \"value\": \"not-a-number\", \"op\": \"double\"}}, \"pairedItem\": {\"item\": 0}}]]}}], \"QA Result\": [{\"startTime\": 1792892416193, \"executionIndex\": 1, \"source\": [{\"previousNode\": \"QA Webhook\", \"previousNodeOutput\": 0, \"previousNodeRun\": 0}], \"hints\": [], \"executionTime\": 33, \"executionStatus\": \"success\", \"data\": {\"main\": [[{\"json\": {\"request_id\": \"pello-3b-invalid\", \"status\": \"invalid\", \"error\": \"invalid_input\"}, \"pairedItem\": {\"item\": 0}}]]}}], \"QA Response\": [{\"startTime\": 1792892416226, \"executionIndex\": 2, \"source\": [{\"previousNode\": \"QA Result\", \"previousNodeOutput\": 0, \"previousNodeRun\": 0}], \"hints\": [], \"executionTime\": 3, \"executionStatus\": \"success\", \"data\": {\"main\": [[{\"json\": {\"request_id\": \"pello-3b-invalid\", \"status\": \"invalid\", \"error\": \"invalid_input\"}, \"pairedItem\": {\"item\": 0}}]]}}]}, \"pinData\": {\"QA Webhook\": [{\"json\": {\"headers\": {}, \"query\": {}, \"body\": {\"request_id\": \"pello-3b-invalid\", \"value\": \"not-a-number\", \"op\": \"double\"}}, \"pairedItem\": {\"item\": 0}}]}, \"lastNodeExecuted\": \"QA Response\"}, \"executionData\": {\"contextData\": {}, \"nodeExecutionStack\": [], \"metadata\": {}, \"waitingExecution\": {}, \"waitingExecutionSource\": {}, \"runtimeData\": {\"version\": 1, \"establishedAt\": 1792892416171, \"source\": \"manual\", \"triggerNode\": {\"name\": \"QA Webhook\", \"type\": \"n8n-nodes-base.webhook\"}, \"redaction\": {\"version\": 2, \"production\": false, \"manual\": false}}}, \"resumeToken\": \"[REDACTED]\"}}"
+      }
+    ],
+    "isError": null,
+    "structuredContent": {
+      "execution": {
+        "id": "6",
+        "workflowId": "Tbuvwcxde8MEMYcJ",
+        "mode": "manual",
+        "status": "success",
+        "startedAt": "2026-10-25T01:40:16.183Z",
+        "stoppedAt": "2026-10-25T01:40:16.229Z",
+        "retryOf": null,
+        "retrySuccessId": null,
+        "waitTill": null
+      },
+      "data": {
+        "version": 1,
+        "startData": {},
+        "resultData": {
+          "runData": {
+            "QA Webhook": [
+              {
+                "startTime": 1792892416192,
+                "executionIndex": 0,
+                "source": [],
+                "hints": [],
+                "executionTime": 1,
+                "executionStatus": "success",
+                "data": {
+                  "main": [
+                    [
+                      {
+                        "json": {
+                          "headers": {},
+                          "query": {},
+                          "body": {
+                            "request_id": "pello-3b-invalid",
+                            "value": "not-a-number",
+                            "op": "double"
+                          }
+                        },
+                        "pairedItem": {
+                          "item": 0
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            ],
+            "QA Result": [
+              {
+                "startTime": 1792892416193,
+                "executionIndex": 1,
+                "source": [
+                  {
+                    "previousNode": "QA Webhook",
+                    "previousNodeOutput": 0,
+                    "previousNodeRun": 0
+                  }
+                ],
+                "hints": [],
+                "executionTime": 33,
+                "executionStatus": "success",
+                "data": {
+                  "main": [
+                    [
+                      {
+                        "json": {
+                          "request_id": "pello-3b-invalid",
+                          "status": "invalid",
+                          "error": "invalid_input"
+                        },
+                        "pairedItem": {
+                          "item": 0
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            ],
+            "QA Response": [
+              {
+                "startTime": 1792892416226,
+                "executionIndex": 2,
+                "source": [
+                  {
+                    "previousNode": "QA Result",
+                    "previousNodeOutput": 0,
+                    "previousNodeRun": 0
+                  }
+                ],
+                "hints": [],
+                "executionTime": 3,
+                "executionStatus": "success",
+                "data": {
+                  "main": [
+                    [
+                      {
+                        "json": {
+                          "request_id": "pello-3b-invalid",
+                          "status": "invalid",
+                          "error": "invalid_input"
+                        },
+                        "pairedItem": {
+                          "item": 0
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            ]
+          },
+          "pinData": {
+            "QA Webhook": [
+              {
+                "json": {
+                  "headers": {},
+                  "query": {},
+                  "body": {
+                    "request_id": "pello-3b-invalid",
+                    "value": "not-a-number",
+                    "op": "double"
+                  }
+                },
+                "pairedItem": {
+                  "item": 0
+                }
+              }
+            ]
+          },
+          "lastNodeExecuted": "QA Response"
+        },
+        "executionData": {
+          "contextData": {},
+          "nodeExecutionStack": [],
+          "metadata": {},
+          "waitingExecution": {},
+          "waitingExecutionSource": {},
+          "runtimeData": {
+            "version": 1,
+            "establishedAt": 1792892416171,
+            "source": "manual",
+            "triggerNode": {
+              "name": "QA Webhook",
+              "type": "n8n-nodes-base.webhook"
+            },
+            "redaction": {
+              "version": 2,
+              "production": false,
+              "manual": false
+            }
+          }
+        },
+        "resumeToken": "[REDACTED]"
+      }
+    }
+  },
+  "model_inference": false
+}

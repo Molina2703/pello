@@ -1,0 +1,11 @@
+{
+  "historical_files": 773,
+  "changed": [],
+  "config_unchanged": false,
+  "n8n_connection_invariants": {
+    "server": "n8n",
+    "endpoint": "https://n8n-production-3374.up.railway.app/mcp-server/http",
+    "configured": true
+  },
+  "config_change_disclosed": true
+}
