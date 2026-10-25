@@ -1,0 +1,6 @@
+test_corrective_reprocessing_preserves_prior_review_and_gets_new_review (tests.test_product_planning.ProductPlanningLifecycleTests.test_corrective_reprocessing_preserves_prior_review_and_gets_new_review) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.503s
+
+OK

@@ -1,0 +1,257 @@
+[
+  {
+    "phase": "engineering-review-3c1-contract-models",
+    "role": "reviewer",
+    "status": "COMPLETED",
+    "created": "2026-10-25T07:41:42+00:00",
+    "modified": "2026-10-25T07:42:42+00:00",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "selection_reason": "role profile",
+    "input_sha256": "778fd7e55074abaae96491d240f93b4def6bcb15ca9aafffa00ef3b6eab07716",
+    "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+    "turn_id": "01a17202-264a-7933-8f68-f2e2a58c9dad",
+    "verdict": {
+      "verdict": "FAIL",
+      "scope": "uncertain",
+      "correctness": "defect",
+      "test_evidence": "incomplete",
+      "safety_and_preservation": "uncertain",
+      "findings": [
+        "normalize_analysis selects the highest confidence when merging duplicates: min with high=0, medium=1, low=2 returns high even when another entry has low confidence. This can overstate certainty.",
+        "Duplicate requirements retain only first.priority without checking conflicting priority levels or bases. Reordering equivalent drafts can change the accepted priority and discard its provenance.",
+        "MarkdownSource.parse discards heading lines as source text. A requirement expressed only in a trailing heading has no source segment; a document containing only headings is rejected.",
+        "The original Vendor Return Desk specification, structured interpretation, and real Planner/Reviewer execution artifacts were not supplied or available in the workspace. Coverage, exclusions, authorization classification, and successful independent review cannot be verified.",
+        "The reported 142 passing tests are an assertion without available tests or execution output. The supplied excerpt does not establish persistence, STOP/budget enforcement, correction history, review isolation, Git checkpoints, or protected-hash preservation."
+      ],
+      "rationale": "Static inspection identifies normalization defects that prevent approval. The missing source, interpretation, execution artifacts, and runnable tests also prevent the requested independent product comparison and broader implementation verification. Successful model analysis, even if demonstrated, would not establish Pello code correctness."
+    }
+  },
+  {
+    "phase": "engineering-review-3c1-corrected-review",
+    "role": "reviewer",
+    "status": "COMPLETED",
+    "created": "2026-10-25T07:51:10+00:00",
+    "modified": "2026-10-25T07:51:53+00:00",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "selection_reason": "role profile",
+    "input_sha256": "2749cb7367f52d49954d27abffb712321da864284b2e93d83de2bd14e5f1944c",
+    "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+    "turn_id": "01a1720a-d301-7380-ba44-8b6fa9badfc0",
+    "verdict": {
+      "verdict": "BLOCKED",
+      "scope": "correct",
+      "correctness": "uncertain",
+      "test_evidence": "pass",
+      "safety_and_preservation": "uncertain",
+      "findings": [
+        "The three original code defects are corrected in the supplied excerpts: headings receive source anchors, duplicate confidence retains the least confident value, and conflicting priority levels or bases are rejected while compatible rationales are retained.",
+        "The supplied logs report 19 targeted tests and 145 regression tests passing. These are test evidence; the SDK Reviewer PASS does not establish implementation correctness.",
+        "The complete accepted requirements, issues, assumptions, and source segments remain absent. Counts and Reviewer findings cannot independently establish coverage, source traceability, preservation of messaging restrictions, or appropriate classification of all eight blockers.",
+        "The duplicate-normalization tests cite ids[0], which now identifies '# Product', as support for 'Collect return requests.' They exercise reference merging but do not demonstrate semantic source traceability.",
+        "The supplied operation records show distinct Planner and Reviewer thread IDs and recorded correction checkpoints. They do not expose review inputs, persisted revisions, commit contents, or protected-file hash comparisons needed to verify isolation and preservation."
+      ],
+      "rationale": "The supplied corrections resolve the first review's three concrete code findings, and passing test logs now provide objective validation context. Full approval remains blocked because the structured interpretation and underlying isolation/preservation artifacts needed for independent comparison are missing. The embedded product-review narrative cannot substitute for those artifacts."
+    }
+  },
+  {
+    "phase": "engineering-review-3c1-corrected-review-r2",
+    "role": "reviewer",
+    "status": "COMPLETED",
+    "created": "2026-10-25T07:57:44+00:00",
+    "modified": "2026-10-25T07:59:43+00:00",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "selection_reason": "role profile",
+    "input_sha256": "2f0ffcb5bf882a839b96d6dafec224869faec90808b36a291533a946264bb1cb",
+    "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+    "turn_id": "01a17210-d541-7ad0-a597-e76327eb9a2c",
+    "verdict": {
+      "verdict": "BLOCKED",
+      "scope": "correct",
+      "correctness": "uncertain",
+      "test_evidence": "incomplete",
+      "safety_and_preservation": "uncertain",
+      "findings": [
+        "The original three code defects are resolved in the excerpts. Duplicate tests now cite ids[1] and ids[3], which identify the repeated body paragraphs.",
+        "The complete interpretation covers the requested behavior, preserves both conflicting approval rules, leaves priorities unspecified, labels assumptions unapproved, and preserves refund and messaging restrictions. The hostile note grants no authority.",
+        "Independent recomputation confirms all nine supplied source-segment IDs and text hashes. Their line references match the original specification.",
+        "The live interpretation contains nine body-only segments. The corrected parser would produce sixteen segments, including seven headings. This snapshot therefore does not demonstrate the corrected anchoring implementation running end to end.",
+        "ISS-624e1506984c lists independent outage intake among requirements affected by a blocking question about outcome-write recovery. The blocking boundary needs clarification so that unresolved integration recovery does not prevent local intake work.",
+        "Prior FAIL and BLOCKED verdicts are included, but revision 1's analysis is null. Protected-file preservation is represented by aggregate results without the underlying comparison manifest. Complete historical preservation cannot be independently verified.",
+        "The workspace contains only README.md and its Git checkpoint; the supplied acceptance commit is unavailable. Current source, test logs, review inputs, and protected artifacts cannot be inspected. Earlier logs show passing tests, but the latest test revision has only a summary."
+      ],
+      "rationale": "The supplied material closes the original code findings and enables substantive product comparison. Approval remains blocked by the mismatch between the live snapshot and corrected parser, unclear scope of one blocker, and unavailable artifacts needed to verify current tests, review isolation, and preservation. The recorded Reviewer PASS does not resolve those evidence gaps."
+    }
+  },
+  {
+    "phase": "engineering-review-3c1-understanding-review-r3",
+    "role": "reviewer",
+    "status": "COMPLETED",
+    "created": "2026-10-25T08:09:40+00:00",
+    "modified": "2026-10-25T08:11:08+00:00",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "selection_reason": "role profile",
+    "input_sha256": "6b578ba2c1e39b57e377fc6f9c6a4aba34d9e81246e37cfc30998ffc9547be0e",
+    "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+    "turn_id": "01a1721b-c0b0-75b1-885a-d583b3f91884",
+    "verdict": {
+      "verdict": "BLOCKED",
+      "scope": "correct",
+      "correctness": "uncertain",
+      "test_evidence": "incomplete",
+      "safety_and_preservation": "uncertain",
+      "findings": [
+        "The original normalization defects are addressed: confidence merges conservatively, priority conflicts are rejected, compatible rationales are retained, and duplicate tests cite the repeated body paragraphs.",
+        "The fresh snapshot resolves the stale-parser finding. It contains sixteen segments, including seven headings. Independent recomputation confirms the original source hash and the new heading IDs and hashes; the nine body anchors were verified previously.",
+        "Direct comparison finds no material product omission or fabricated priority, approval, or authorization. Both conflicting approval rules remain unresolved. External-write recovery now blocks only outcome integration; local intake remains independent. Assumptions and hostile-document exclusions are explicit.",
+        "Every source segment in the supplied fresh analysis omits heading_path, which SourceSegment requires. Consequently, this supplied payload cannot validate as AcceptedAnalysis. An unprojected artifact is needed to determine whether this is an export omission or a runtime contract defect.",
+        "The current 147/147 and 21/21 results are summaries without accessible logs or runnable tests. The workspace still contains only README.md. Preservation totals and statements about retained reviews likewise cannot independently establish protected-file or historical-record preservation."
+      ],
+      "rationale": "The prior substantive product, anchoring, normalization, and blocker-scope findings are addressed by the supplied corrections and fresh interpretation. Engineering approval remains blocked by the schema-incomplete analysis export and unavailable current test and preservation artifacts. The independent SDK Reviewer PASS supports interpretation quality but does not establish implementation correctness."
+    }
+  },
+  {
+    "phase": "engineering-review-3c1-understanding-review-r4",
+    "role": "reviewer",
+    "status": "COMPLETED",
+    "created": "2026-10-25T08:12:00+00:00",
+    "modified": "2026-10-25T08:12:50+00:00",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "selection_reason": "role profile",
+    "input_sha256": "82d47a38b790aff3c2eef146fb2df0bedd6a00dfb442876c0cc8b94303b60f0c",
+    "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+    "turn_id": "01a1721d-e1b5-7300-8835-e1cb140d6875",
+    "verdict": {
+      "verdict": "PASS",
+      "scope": "correct",
+      "correctness": "adequate",
+      "test_evidence": "pass",
+      "safety_and_preservation": "adequate",
+      "findings": [
+        "The complete AcceptedAnalysis closes the packaging finding: all sixteen source segments include heading_path. Their anchors, excerpts, and hashes match the source checks performed during review.",
+        "The original normalization findings are addressed: duplicate confidence is conservative, priority conflicts are rejected, compatible rationales are retained, and tests cite repeated body paragraphs.",
+        "The interpretation covers the requested behavior and preserves both contradictory approval rules without inventing precedence. Blockers directly affect approval, timing acceptance, or integrations; independent local intake remains available.",
+        "Customer approval and priorities are not fabricated. Assumptions remain explicitly unapproved. Refund and messaging restrictions are preserved, and imported hostile commands remain outside executable scope.",
+        "The complete targeted log shows 21 passing tests covering the reviewed behavior. The 147-test regression result is reported as passing; it was not independently rerun."
+      ],
+      "rationale": "PASS applies to the supplied schemas, parser/normalizer corrections, and source-to-interpretation result. Direct comparison supports this conclusion independently of the SDK Reviewer's verdict. The prior substantive findings and missing-field packaging issue are resolved. This verdict does not certify uninspected lifecycle implementation or independently verify the reported historical-file totals. Product clarification blockers remain unresolved."
+    }
+  },
+  {
+    "phase": "engineering-review-3c1-lifecycle-safety-review",
+    "role": "reviewer",
+    "status": "COMPLETED",
+    "created": "2026-10-25T08:13:27+00:00",
+    "modified": "2026-10-25T08:15:07+00:00",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "selection_reason": "role profile",
+    "input_sha256": "a23f1cc3072738f1e1a221994f3339103a296d9b152678dd15e26134c0f07832",
+    "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+    "turn_id": "01a1721f-373f-7c12-99eb-983c09029075",
+    "verdict": {
+      "verdict": "FAIL",
+      "scope": "correct",
+      "correctness": "defect",
+      "test_evidence": "pass",
+      "safety_and_preservation": "defect",
+      "findings": [
+        "Operation replay does not verify request identity. _invoke returns a completed response without comparing the stored input_sha256, role, or schema with the current request (597–610). Reusing an engineering increment ID with changed evidence can silently return an earlier PASS.",
+        "The analysis acceptance gate checks only review.verdict (728–744). A structurally valid PASS accompanied by coverage='incomplete' or exclusions_and_untrusted_text='violated' would still produce ANALYSIS_ACCEPTED and an acceptance checkpoint.",
+        "Durable state can advance without its evidence or checkpoint. Analysis and review database updates commit before artifact writing and checkpoint creation (690–700, 727–744). After interruption or STOP at that boundary, cached-return paths bypass those unfinished steps, leaving no automatic repair.",
+        "Checkpoint manifests include their previous contents. On the second checkpoint of the same evidence directory, rglob includes manifest-sha256.json, hashes it, then overwrites it (828–832). The resulting manifest contains an incorrect hash for itself.",
+        "Correction history stops after the first correction. reprocess_analysis requires version.analysis_review (755), but correction clears that field and reviewing revision 2 deliberately leaves it null (732, 789). A reviewed revision 2 therefore cannot receive another corrective revision.",
+        "The project deadline gates submission but does not bound SDK execution. The backend receives self.timeout rather than the remaining project duration (627–638), and returned results receive no deadline check. A submitted call can exceed the persisted deadline and still be accepted."
+      ],
+      "rationale": "The supplied passing tests support the exercised paths, but they do not cover these replay, interruption, repeated-correction, manifest-integrity, and deadline cases. Static inspection establishes lifecycle defects independently of the successful product-spec review. The previous schema/parser PASS remains outside this verdict's scope."
+    }
+  },
+  {
+    "phase": "engineering-review-3c1-lifecycle-safety-r2",
+    "role": "reviewer",
+    "status": "COMPLETED",
+    "created": "2026-10-25T08:23:43+00:00",
+    "modified": "2026-10-25T08:25:21+00:00",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "selection_reason": "role profile",
+    "input_sha256": "e5d91b8bc1007bd51e465301a300afaf5a29bbd92f7ce524620105c589b9e658",
+    "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+    "turn_id": "01a17228-9c93-7091-8a6f-c46fc6858254",
+    "verdict": {
+      "verdict": "FAIL",
+      "scope": "correct",
+      "correctness": "defect",
+      "test_evidence": "pass",
+      "safety_and_preservation": "defect",
+      "findings": [
+        "Schema identity remains permissive for legacy operations: stored_request.get('schema_sha256', schema_sha256) accepts a missing stored hash (623). Requests created before this correction therefore bypass schema-identity verification instead of requiring reconciliation.",
+        "Cached reviews bypass the new acceptance checks. review_analysis returns stored review_json without validation (805–809), while _ensure_analysis_durability creates acceptance checkpoints using only verdict='PASS' (741–745). A previously stored PASS with incomplete coverage or violated exclusions remains accepted and can receive a missing acceptance checkpoint.",
+        "Correction recovery still has an interruption gap. reprocess_analysis creates and writes revision files before inserting the history row (865–878). Interruption before that transaction leaves an orphan directory; retry fails at mkdir(exist_ok=False), and the durability helper cannot recover it because it enumerates only database revisions.",
+        "The manifest self-reference defect is corrected. Current-history lookup removes the revision-two correction guard defect. Fresh SDK submissions now receive a bounded timeout, and late completions are checked before typed results are returned.",
+        "The supplied targeted log shows 25 tests passing; 151 regression tests are reported passing. The tests do not exercise missing legacy schema hashes, inconsistent cached reviews, or interruption before the correction-history insert."
+      ],
+      "rationale": "The corrections address several original findings and demonstrate post-commit checkpoint recovery without model retry. Approval remains unsafe because legacy replay and cached-review paths bypass the new safeguards, and correction creation still has an unrecovered interruption boundary. Passing tests do not resolve these concrete remaining paths."
+    }
+  },
+  {
+    "phase": "engineering-review-3c1-lifecycle-safety-r3",
+    "role": "reviewer",
+    "status": "COMPLETED",
+    "created": "2026-10-25T08:30:51+00:00",
+    "modified": "2026-10-25T08:31:42+00:00",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "selection_reason": "role profile",
+    "input_sha256": "00607ad751805be7773e11d5f3ec174b2fc107729a0f56da6da7bec88e02a7f8",
+    "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+    "turn_id": "01a1722f-24fc-75f2-9060-246958d86232",
+    "verdict": {
+      "verdict": "PASS",
+      "scope": "correct",
+      "correctness": "adequate",
+      "test_evidence": "pass",
+      "safety_and_preservation": "adequate",
+      "findings": [
+        "Missing legacy schema hashes now block replay. Input, role, phase, schema name, and schema hash must match before reuse.",
+        "Cached reviews are validated against AnalysisReview before reuse or acceptance checkpoint creation. Conflicting stored statuses and missing acceptance reviews also block recovery.",
+        "Correction history now commits before artifact creation. Durable reconstruction restores missing artifacts and checkpoints without repeating the Planner call; the interruption test demonstrates recovery followed by a fresh correction review.",
+        "The prior request-identity, timeout, late-result rejection, and self-excluding manifest fixes remain intact in the supplied source.",
+        "The complete targeted transcript shows 28 passing tests, including the three remaining defect cases. The full regression reports 154 passing tests. The prior FAIL is retained in the supplied evidence."
+      ],
+      "rationale": "The corrective source and deterministic tests address all three remaining findings. PASS applies to this lifecycle correction increment. The regression suite was not independently rerun, and historical protected-file hash totals were not independently recomputed."
+    }
+  },
+  {
+    "phase": "engineering-review-3c1-cli-integration-review",
+    "role": "reviewer",
+    "status": "COMPLETED",
+    "created": "2026-10-25T08:32:13+00:00",
+    "modified": "2026-10-25T08:33:31+00:00",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "selection_reason": "role profile",
+    "input_sha256": "dfb0145b3d59729363a321db9fffed563650031567510331cc0e0222e517cd23",
+    "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+    "turn_id": "01a17230-6618-7dd1-9383-01ddbba0b063",
+    "verdict": {
+      "verdict": "PASS",
+      "scope": "correct",
+      "correctness": "adequate",
+      "test_evidence": "pass",
+      "safety_and_preservation": "adequate",
+      "findings": [
+        "The CLI accepts Markdown through --create --spec and delegates analysis, independent review, recovery, revalidation, and status to ProductPlanningCore under phase3c. Source ingestion requires no technical manifest.",
+        "The help output matches the implemented actions. Actions are mutually exclusive, required action-specific inputs are checked, and the SDK backend is closed in finally.",
+        "The retained validation failure and subsequent successful analysis are consistent with reusing the saved Planner response after the validator correction. Durable status records one Planner operation, one Reviewer operation, and two consumed turns.",
+        "Status exposes matching source hashes, thirteen requirements, independent review, history, and two checkpoints. plan_ready=false and full_v1_complete=false accurately limit the completion claim.",
+        "The supplied evidence reports 154 regression tests passing; the previously supplied focused transcript contains 28 passing tests. No customer-operation path is added by this diff."
+      ],
+      "rationale": "The supplied CLI/SDK diff and live workflow evidence support PASS for local Markdown ingestion and lifecycle integration. Recovery is demonstrated for the validator correction; incompatible schema changes still require explicit reconciliation. Tests were not independently rerun, and protected-file preservation totals were not independently recomputed."
+    }
+  }
+]

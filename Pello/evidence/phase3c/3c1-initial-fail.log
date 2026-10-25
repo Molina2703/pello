@@ -1,0 +1,163 @@
+test_empty_oversized_secret_and_pem_sources_are_rejected (tests.test_product_planning.MarkdownSourceTests.test_empty_oversized_secret_and_pem_sources_are_rejected) ... ok
+test_section_spans_have_exact_line_references_and_stable_ids (tests.test_product_planning.MarkdownSourceTests.test_section_spans_have_exact_line_references_and_stable_ids) ... ok
+test_segment_content_hash_matches_source_excerpt (tests.test_product_planning.MarkdownSourceTests.test_segment_content_hash_matches_source_excerpt) ... ok
+test_implementation_decision_and_model_directed_text_cannot_be_customer_approved (tests.test_product_planning.NormalizationTests.test_implementation_decision_and_model_directed_text_cannot_be_customer_approved) ... ok
+test_repeated_requirements_merge_with_all_traceability_and_stable_id (tests.test_product_planning.NormalizationTests.test_repeated_requirements_merge_with_all_traceability_and_stable_id) ... ERROR
+test_unknown_sources_dependencies_and_cycles_are_rejected (tests.test_product_planning.NormalizationTests.test_unknown_sources_dependencies_and_cycles_are_rejected) ... ok
+test_in_flight_call_without_result_is_reconciled_not_repeated (tests.test_product_planning.ProductPlanningLifecycleTests.test_in_flight_call_without_result_is_reconciled_not_repeated) ... FAIL
+test_in_flight_call_without_result_is_reconciled_not_repeated (tests.test_product_planning.ProductPlanningLifecycleTests.test_in_flight_call_without_result_is_reconciled_not_repeated) ... ERROR
+test_real_lifecycle_traceability_independent_review_and_restart_replay (tests.test_product_planning.ProductPlanningLifecycleTests.test_real_lifecycle_traceability_independent_review_and_restart_replay) ... ERROR
+test_source_drift_requires_new_immutable_version (tests.test_product_planning.ProductPlanningLifecycleTests.test_source_drift_requires_new_immutable_version) ... ERROR
+test_source_drift_requires_new_immutable_version (tests.test_product_planning.ProductPlanningLifecycleTests.test_source_drift_requires_new_immutable_version) ... ERROR
+test_stop_blocks_before_reserving_model_turn (tests.test_product_planning.ProductPlanningLifecycleTests.test_stop_blocks_before_reserving_model_turn) ... ok
+test_turn_budget_exhaustion_does_not_reset_on_resume (tests.test_product_planning.ProductPlanningLifecycleTests.test_turn_budget_exhaustion_does_not_reset_on_resume) ... ERROR
+test_turn_budget_exhaustion_does_not_reset_on_resume (tests.test_product_planning.ProductPlanningLifecycleTests.test_turn_budget_exhaustion_does_not_reset_on_resume) ... ERROR
+test_unknown_model_configuration_fails_closed_without_call (tests.test_product_planning.ProductPlanningLifecycleTests.test_unknown_model_configuration_fails_closed_without_call) ... ok
+
+======================================================================
+ERROR: test_repeated_requirements_merge_with_all_traceability_and_stable_id (tests.test_product_planning.NormalizationTests.test_repeated_requirements_merge_with_all_traceability_and_stable_id)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_product_planning.py", line 153, in test_repeated_requirements_merge_with_all_traceability_and_stable_id
+    accepted = normalize_analysis(draft, segments, 'a'*64)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 337, in normalize_analysis
+    raise ValueError('Objective source references are invalid')
+ValueError: Objective source references are invalid
+
+======================================================================
+ERROR: test_in_flight_call_without_result_is_reconciled_not_repeated (tests.test_product_planning.ProductPlanningLifecycleTests.test_in_flight_call_without_result_is_reconciled_not_repeated)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque est� siendo utilizado por otro proceso: 'C:\\Users\\USUARIO\\AppData\\Local\\Temp\\tmpbja5c8yc\\runtime\\jobs.sqlite3'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_product_planning.py", line 199, in tearDown
+    self.tmp.cleanup()
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 930, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 905, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque est� siendo utilizado por otro proceso: 'C:\\Users\\USUARIO\\AppData\\Local\\Temp\\tmpbja5c8yc\\runtime\\jobs.sqlite3'
+
+======================================================================
+ERROR: test_real_lifecycle_traceability_independent_review_and_restart_replay (tests.test_product_planning.ProductPlanningLifecycleTests.test_real_lifecycle_traceability_independent_review_and_restart_replay)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_product_planning.py", line 207, in test_real_lifecycle_traceability_independent_review_and_restart_replay
+    analysis = self.core.understand('returns-planning')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 629, in understand
+    accepted = normalize_analysis(raw, segments, version['source_hash'])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 337, in normalize_analysis
+    raise ValueError('Objective source references are invalid')
+ValueError: Objective source references are invalid
+
+======================================================================
+ERROR: test_source_drift_requires_new_immutable_version (tests.test_product_planning.ProductPlanningLifecycleTests.test_source_drift_requires_new_immutable_version)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_product_planning.py", line 253, in test_source_drift_requires_new_immutable_version
+    analysis = self.core.understand('returns-planning')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 629, in understand
+    accepted = normalize_analysis(raw, segments, version['source_hash'])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 337, in normalize_analysis
+    raise ValueError('Objective source references are invalid')
+ValueError: Objective source references are invalid
+
+======================================================================
+ERROR: test_source_drift_requires_new_immutable_version (tests.test_product_planning.ProductPlanningLifecycleTests.test_source_drift_requires_new_immutable_version)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque est� siendo utilizado por otro proceso: 'C:\\Users\\USUARIO\\AppData\\Local\\Temp\\tmplmozxvvf\\runtime\\jobs.sqlite3'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_product_planning.py", line 199, in tearDown
+    self.tmp.cleanup()
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 930, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 905, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque est� siendo utilizado por otro proceso: 'C:\\Users\\USUARIO\\AppData\\Local\\Temp\\tmplmozxvvf\\runtime\\jobs.sqlite3'
+
+======================================================================
+ERROR: test_turn_budget_exhaustion_does_not_reset_on_resume (tests.test_product_planning.ProductPlanningLifecycleTests.test_turn_budget_exhaustion_does_not_reset_on_resume)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_product_planning.py", line 245, in test_turn_budget_exhaustion_does_not_reset_on_resume
+    self.core.understand('returns-planning')
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 629, in understand
+    accepted = normalize_analysis(raw, segments, version['source_hash'])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 337, in normalize_analysis
+    raise ValueError('Objective source references are invalid')
+ValueError: Objective source references are invalid
+
+======================================================================
+ERROR: test_turn_budget_exhaustion_does_not_reset_on_resume (tests.test_product_planning.ProductPlanningLifecycleTests.test_turn_budget_exhaustion_does_not_reset_on_resume)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque est� siendo utilizado por otro proceso: 'C:\\Users\\USUARIO\\AppData\\Local\\Temp\\tmp_s1xxsjb\\runtime\\jobs.sqlite3'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_product_planning.py", line 199, in tearDown
+    self.tmp.cleanup()
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 930, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 905, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque est� siendo utilizado por otro proceso: 'C:\\Users\\USUARIO\\AppData\\Local\\Temp\\tmp_s1xxsjb\\runtime\\jobs.sqlite3'
+
+======================================================================
+FAIL: test_in_flight_call_without_result_is_reconciled_not_repeated (tests.test_product_planning.ProductPlanningLifecycleTests.test_in_flight_call_without_result_is_reconciled_not_repeated)
+----------------------------------------------------------------------
+athis_autopilot.engines.CodexBlocked: Unresolved model operation; inspect saved evidence before resubmission
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_product_planning.py", line 280, in test_in_flight_call_without_result_is_reconciled_not_repeated
+    with self.assertRaisesRegex(CodexBlocked, 'reconcile'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "reconcile" does not match "Unresolved model operation; inspect saved evidence before resubmission"
+
+----------------------------------------------------------------------
+Ran 12 tests in 3.335s
+
+FAILED (failures=1, errors=7)

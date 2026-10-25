@@ -1,0 +1,15 @@
+{
+  "verdict": "FAIL",
+  "scope": "correct",
+  "correctness": "defect",
+  "test_evidence": "pass",
+  "safety_and_preservation": "defect",
+  "findings": [
+    "Schema identity remains permissive for legacy operations: stored_request.get('schema_sha256', schema_sha256) accepts a missing stored hash (623). Requests created before this correction therefore bypass schema-identity verification instead of requiring reconciliation.",
+    "Cached reviews bypass the new acceptance checks. review_analysis returns stored review_json without validation (805�809), while _ensure_analysis_durability creates acceptance checkpoints using only verdict='PASS' (741�745). A previously stored PASS with incomplete coverage or violated exclusions remains accepted and can receive a missing acceptance checkpoint.",
+    "Correction recovery still has an interruption gap. reprocess_analysis creates and writes revision files before inserting the history row (865�878). Interruption before that transaction leaves an orphan directory; retry fails at mkdir(exist_ok=False), and the durability helper cannot recover it because it enumerates only database revisions.",
+    "The manifest self-reference defect is corrected. Current-history lookup removes the revision-two correction guard defect. Fresh SDK submissions now receive a bounded timeout, and late completions are checked before typed results are returned.",
+    "The supplied targeted log shows 25 tests passing; 151 regression tests are reported passing. The tests do not exercise missing legacy schema hashes, inconsistent cached reviews, or interruption before the correction-history insert."
+  ],
+  "rationale": "The corrections address several original findings and demonstrate post-commit checkpoint recovery without model retry. Approval remains unsafe because legacy replay and cached-review paths bypass the new safeguards, and correction creation still has an unrecovered interruption boundary. Passing tests do not resolve these concrete remaining paths."
+}

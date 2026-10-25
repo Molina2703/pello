@@ -60,6 +60,21 @@ def main():
     pilot.add_argument('--stop-after', type=int)
     pilot.add_argument('--authorize-closeout', type=Path,help='Explicit human closeout grant JSON; records without resetting usage')
     pilot.add_argument('--publication-review-round',type=int,choices=[1,2],default=1,help='Round2 only repairs the recorded stage-contract mismatch')
+    planning = sub.add_parser('plan-spec', help='Interpret a natural-language product specification and persist its traceable requirements')
+    planning_action = planning.add_mutually_exclusive_group(required=True)
+    planning_action.add_argument('--create', action='store_true', help='Create a bounded project without invoking a model')
+    planning_action.add_argument('--understand', action='store_true', help='Extract structured requirements via the existing SDK Planner')
+    planning_action.add_argument('--review-analysis', action='store_true', help='Independently review a saved analysis')
+    planning_action.add_argument('--reprocess-analysis', action='store_true', help='Create an append-only normalized analysis revision from the saved Planner response')
+    planning_action.add_argument('--review-increment', metavar='INCREMENT_ID', help='Independent read-only engineering review after objective tests pass')
+    planning_action.add_argument('--status', action='store_true', help='Read durable state without invoking a model')
+    planning_action.add_argument('--revalidate', action='store_true', help='Create a new immutable version after source changes')
+    planning.add_argument('--spec', type=Path, help='Markdown product specification')
+    planning.add_argument('--project-id', required=True)
+    planning.add_argument('--max-turns', type=int, default=12, help='Project SDK model-turn limit (1-12)')
+    planning.add_argument('--duration-minutes', type=int, default=60, help='Project deadline (1-360 minutes)')
+    planning.add_argument('--evidence', type=Path, help='Structured engineering review evidence JSON')
+    planning.add_argument('--reason', help='Bounded correction rationale required with --reprocess-analysis')
     args = cli.parse_args()
     if args.root is None:
         config_path = project / 'config' / 'pello.json'
@@ -129,6 +144,44 @@ def main():
             return 2
         finally:
             if 'core' in locals() and hasattr(core.backend,'close'): core.backend.close()
+    if args.command == 'plan-spec':
+        from .product_planning import ProductPlanningCore
+        from .engines import CodexBlocked, EngineError
+        try:
+            planning_root = args.root / 'phase3c'
+            core = ProductPlanningCore(planning_root)
+            if args.create:
+                if args.spec is None:
+                    cli.error('--create requiere --spec')
+                result = {'project_id': core.create_project(args.spec, project_id=args.project_id,
+                    max_turns=args.max_turns, duration_minutes=args.duration_minutes), 'status': 'NEW'}
+            else:
+                if args.spec is not None and not args.revalidate:
+                    cli.error('--spec solo aplica con --create o --revalidate')
+                if args.understand:
+                    result = core.understand(args.project_id)
+                elif args.review_analysis:
+                    result = core.review_analysis(args.project_id)
+                elif args.reprocess_analysis:
+                    if not args.reason:
+                        cli.error('--reprocess-analysis requiere --reason')
+                    result = core.reprocess_analysis(args.project_id, reason=args.reason)
+                elif args.review_increment:
+                    if args.evidence is None:
+                        cli.error('--review-increment requiere --evidence')
+                    result = core.review_engineering_increment(args.project_id, args.review_increment,
+                        evidence=json.loads(args.evidence.read_text(encoding='utf-8-sig')))
+                elif args.revalidate:
+                    result = {'project_id': args.project_id, 'version': core.revalidate(args.project_id, args.spec), 'status': 'NEW'}
+                else:
+                    result = core.status(args.project_id)
+            print(json.dumps(result, indent=2, ensure_ascii=False))
+            return 0
+        except (ValueError, CodexBlocked, EngineError) as exc:
+            print('PELLO PLAN-SPEC ERROR:', exc)
+            return 2
+        finally:
+            if 'core' in locals() and hasattr(core.backend, 'close'): core.backend.close()
     if args.command == 'pipeline':
         from .pipeline import IncrementalPipeline
         from .pipeline_contracts import PipelinePolicy

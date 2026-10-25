@@ -1,0 +1,29 @@
+usage: pello plan-spec [-h]
+                       (--create | --understand | --review-analysis | --reprocess-analysis | --review-increment INCREMENT_ID | --status | --revalidate)
+                       [--spec SPEC] --project-id PROJECT_ID
+                       [--max-turns MAX_TURNS]
+                       [--duration-minutes DURATION_MINUTES]
+                       [--evidence EVIDENCE] [--reason REASON]
+
+options:
+  -h, --help            show this help message and exit
+  --create              Create a bounded project without invoking a model
+  --understand          Extract structured requirements via the existing SDK
+                        Planner
+  --review-analysis     Independently review a saved analysis
+  --reprocess-analysis  Create an append-only normalized analysis revision
+                        from the saved Planner response
+  --review-increment INCREMENT_ID
+                        Independent read-only engineering review after
+                        objective tests pass
+  --status              Read durable state without invoking a model
+  --revalidate          Create a new immutable version after source changes
+  --spec SPEC           Markdown product specification
+  --project-id PROJECT_ID
+  --max-turns MAX_TURNS
+                        Project SDK model-turn limit (1-12)
+  --duration-minutes DURATION_MINUTES
+                        Project deadline (1-360 minutes)
+  --evidence EVIDENCE   Structured engineering review evidence JSON
+  --reason REASON       Bounded correction rationale required with
+                        --reprocess-analysis

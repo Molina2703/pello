@@ -1,0 +1,15 @@
+{
+  "verdict": "PASS",
+  "scope": "correct",
+  "correctness": "adequate",
+  "test_evidence": "pass",
+  "safety_and_preservation": "adequate",
+  "findings": [
+    "Missing legacy schema hashes now block replay. Input, role, phase, schema name, and schema hash must match before reuse.",
+    "Cached reviews are validated against AnalysisReview before reuse or acceptance checkpoint creation. Conflicting stored statuses and missing acceptance reviews also block recovery.",
+    "Correction history now commits before artifact creation. Durable reconstruction restores missing artifacts and checkpoints without repeating the Planner call; the interruption test demonstrates recovery followed by a fresh correction review.",
+    "The prior request-identity, timeout, late-result rejection, and self-excluding manifest fixes remain intact in the supplied source.",
+    "The complete targeted transcript shows 28 passing tests, including the three remaining defect cases. The full regression reports 154 passing tests. The prior FAIL is retained in the supplied evidence."
+  ],
+  "rationale": "The corrective source and deterministic tests address all three remaining findings. PASS applies to this lifecycle correction increment. The regression suite was not independently rerun, and historical protected-file hash totals were not independently recomputed."
+}

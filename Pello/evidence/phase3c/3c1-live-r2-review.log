@@ -1,0 +1,18 @@
+warning: in the working copy of 'version-1/SPEC.md', LF will be replaced by CRLF the next time Git touches it
+{
+  "verdict": "PASS",
+  "findings": [
+    "Requirements cover all six intake fields, case-reference fallback, status and decision histories, response preparation, integrations, and outage intake (source lines 9�23).",
+    "Both conflicting invoice-approval rules are retained and explicitly flagged without inventing precedence (SRC-3d1eefac22e5).",
+    "Blockers are scoped to approval rules, timing acceptance, and external integration; independent intake and review remain implementable.",
+    "Assumptions are explicit and unapproved. No customer approval, priority, vendor choice, or external-action permission is fabricated.",
+    "Requirement and issue citations support their interpretations and match the supplied source segments.",
+    "Automatic refunds and unauthorized partner messages remain excluded. The imported commands are classified as untrusted and grant no authorization."
+  ],
+  "coverage": "adequate",
+  "contradictions": "adequate",
+  "blocking_classification": "adequate",
+  "source_traceability": "adequate",
+  "exclusions_and_untrusted_text": "preserved",
+  "rationale": "Direct comparison with the original specification found no material omission, unsupported resolution, or authorization expansion. PASS evaluates the interpretation; the documented product blockers remain unresolved."
+}

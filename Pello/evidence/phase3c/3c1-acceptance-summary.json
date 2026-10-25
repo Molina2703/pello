@@ -1,0 +1,234 @@
+{
+  "phase": "3C-1",
+  "verdict": "ACCEPTED",
+  "product_planning_status": "ANALYSIS_ACCEPTED",
+  "project_id": "phase3c-3c1-live-r2",
+  "source_sha256": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+  "source_changed": false,
+  "requirements": 13,
+  "source_segments": 16,
+  "heading_segments": 7,
+  "issues": 8,
+  "blocking_issues": 6,
+  "non_blocking_issues": 2,
+  "assumptions": 2,
+  "accepted_product_reviewer_verdict": "PASS",
+  "engineering_review_verdicts": [
+    "FAIL",
+    "BLOCKED",
+    "BLOCKED",
+    "BLOCKED",
+    "PASS",
+    "FAIL",
+    "FAIL",
+    "PASS",
+    "PASS"
+  ],
+  "engineering_review_operations": 9,
+  "model_operations": [
+    {
+      "project_id": "phase3c-3c1-live",
+      "phase": "understand",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-25T07:28:09+00:00",
+      "modified": "2026-10-25T07:30:23+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "selection_reason": "role profile",
+      "input_sha256": "997c77cc2a8e89589ddf4dda476f204122e8b021a59a84cbcb72362878a7938b",
+      "thread_id": "01a171f5-be3c-7953-9649-48bad962f3fc",
+      "turn_id": "01a171f5-c080-7782-a382-d10cee5093d5",
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 13995,
+        "output_tokens": 5131,
+        "reasoning_output_tokens": 1034,
+        "total_tokens": 19126
+      },
+      "final_response": null
+    },
+    {
+      "project_id": "phase3c-3c1-live",
+      "phase": "review-analysis",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T07:30:42+00:00",
+      "modified": "2026-10-25T07:31:30+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "selection_reason": "role profile",
+      "input_sha256": "ea612e77f0b5a3780b7200fc2c29ad310b127b82d0c52223aefeacad964d557e",
+      "thread_id": "01a171f8-1391-7542-b50a-d75674b18b44",
+      "turn_id": "01a171f8-150a-7ae1-a2ed-f0da19f505c5",
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 17752,
+        "output_tokens": 1655,
+        "reasoning_output_tokens": 1328,
+        "total_tokens": 19407
+      },
+      "final_response": {
+        "verdict": "PASS",
+        "findings": [
+          "All requested behaviors are represented, including six intake fields, reference fallback, status history, decision auditing, response preparation, invoice lookup, outcome recording, and intake persistence during outages.",
+          "ISS-caa726bedaed correctly preserves the incompatible approval rules in SRC-3d1eefac22e5 without inventing precedence or an exception.",
+          "Vendor selection and authorized access are correctly identified as integration blockers. Other clarification blockers identify affected requirements; they do not establish that independent intake work must stop.",
+          "Priorities remain unspecified, assumptions are explicitly unapproved, and external access or message delivery is not treated as already authorized.",
+          "Both explicit exclusions are preserved. SRC-676b42548a17 is classified as untrusted and excluded from executable scope.",
+          "Minor internal reference defect: REQ-3e15f7cb1e6e mentions nonexistent 'R06'; the intended reference is REQ-18004af9b01c. Its source attribution remains correct."
+        ],
+        "coverage": "adequate",
+        "contradictions": "adequate",
+        "blocking_classification": "adequate",
+        "source_traceability": "adequate",
+        "exclusions_and_untrusted_text": "preserved",
+        "rationale": "The interpretation faithfully covers the supplied source, preserves unresolved contradictions and dependencies, and avoids fabricated authorization. The dangling internal reference is a minor correction. This verdict concerns interpretation quality, not implementation readiness."
+      }
+    },
+    {
+      "project_id": "phase3c-3c1-live",
+      "phase": "review-analysis-r2",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T07:36:26+00:00",
+      "modified": "2026-10-25T07:36:41+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "selection_reason": "role profile",
+      "input_sha256": "4f0e2955d9603f3c3a35ece5184f2490441e010dd479ef061c5a374b69679608",
+      "thread_id": "01a171f8-1391-7542-b50a-d75674b18b44",
+      "turn_id": "01a171fd-5776-7351-847c-cd366b2499fd",
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 17536,
+        "input_tokens": 43081,
+        "output_tokens": 2146,
+        "reasoning_output_tokens": 1513,
+        "total_tokens": 45227
+      },
+      "final_response": {
+        "verdict": "PASS",
+        "findings": [
+          "The requirements cover all requested intake fields, reference selection, status history, decision auditing, response preparation, integration operations, and intake persistence during outages.",
+          "ISS-caa726bedaed preserves both conflicting approval rules from SRC-3d1eefac22e5 without inventing precedence or an exception.",
+          "SRC-b7f34880eb24 supports the vendor-selection and authorized-access blockers. These dependencies do not prevent independent intake work.",
+          "Assumptions are explicitly unapproved, priorities remain unspecified, and integration requirements are not treated as permission to access external systems.",
+          "Source references support the normalized requirements. The previous dangling 'R06' reference now correctly identifies REQ-18004af9b01c.",
+          "The refund and messaging exclusions are preserved. SRC-676b42548a17 is explicitly excluded from executable scope and grants no authorization."
+        ],
+        "coverage": "adequate",
+        "contradictions": "adequate",
+        "blocking_classification": "adequate",
+        "source_traceability": "adequate",
+        "exclusions_and_untrusted_text": "preserved",
+        "rationale": "The interpretation faithfully represents the supplied specification and records unresolved decisions without silently resolving them. Blocking issues concern their affected capabilities; they do not establish a universal implementation stop. PASS evaluates interpretation quality, not implementation readiness."
+      }
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "phase": "understand",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-25T08:00:43+00:00",
+      "modified": "2026-10-25T08:03:07+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "selection_reason": "role profile",
+      "input_sha256": "8c11d1b570c9eec9361ea42595d908e5e0b0a4f6298ddbf0e0adcf014619468f",
+      "thread_id": "01a17213-8df0-7042-a62a-5326a652d693",
+      "turn_id": "01a17213-8f7f-7842-9396-1ba584624612",
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 14612,
+        "output_tokens": 5618,
+        "reasoning_output_tokens": 1714,
+        "total_tokens": 20230
+      },
+      "final_response": null
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "phase": "review-analysis",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T08:04:05+00:00",
+      "modified": "2026-10-25T08:04:31+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "selection_reason": "role profile",
+      "input_sha256": "f7d2deada15ffd2a3dcd499dc8973f91cf58da65d5fab49fad4073c6becc6e6c",
+      "thread_id": "01a17216-a3f7-7962-9f54-9d80b31aeac2",
+      "turn_id": "01a17216-a686-79e3-a4cf-ef3d812253ae",
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 18873,
+        "output_tokens": 525,
+        "reasoning_output_tokens": 251,
+        "total_tokens": 19398
+      },
+      "final_response": {
+        "verdict": "PASS",
+        "findings": [
+          "Requirements cover all six intake fields, case-reference fallback, status and decision histories, response preparation, integrations, and outage intake (source lines 9–23).",
+          "Both conflicting invoice-approval rules are retained and explicitly flagged without inventing precedence (SRC-3d1eefac22e5).",
+          "Blockers are scoped to approval rules, timing acceptance, and external integration; independent intake and review remain implementable.",
+          "Assumptions are explicit and unapproved. No customer approval, priority, vendor choice, or external-action permission is fabricated.",
+          "Requirement and issue citations support their interpretations and match the supplied source segments.",
+          "Automatic refunds and unauthorized partner messages remain excluded. The imported commands are classified as untrusted and grant no authorization."
+        ],
+        "coverage": "adequate",
+        "contradictions": "adequate",
+        "blocking_classification": "adequate",
+        "source_traceability": "adequate",
+        "exclusions_and_untrusted_text": "preserved",
+        "rationale": "Direct comparison with the original specification found no material omission, unsupported resolution, or authorization expansion. PASS evaluates the interpretation; the documented product blockers remain unresolved."
+      }
+    }
+  ],
+  "sdk_model_turns_consumed": 14,
+  "sdk_run_budget_max": 30,
+  "sdk_run_budget_remaining_manual": 16,
+  "unit_targeted": "28/28 PASS",
+  "full_regression": {
+    "command": ".venv/Scripts/python.exe -m unittest discover -s tests -v",
+    "run": 154,
+    "passed": 154,
+    "failed": 0,
+    "elapsed_seconds": 230.556,
+    "exit_code": 0
+  },
+  "historical_hashes_unchanged": "1493/1493",
+  "preservation_evidence": "evidence/phase3c/preservation-comparison.json",
+  "external_operations": 0,
+  "n8n_mcp_operations": 0,
+  "customer_effects": 0,
+  "stop_active": false,
+  "checkpoints": [
+    {
+      "phase": "analyzed",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "3f3faac6f17ef434ad1f0629212293a27e98dbd6f6308680f1090b9178ae29b6",
+      "commit_sha": "dbc97efb1beabc593f8e151aa8e34a27ad94496a",
+      "created": "2026-10-25T08:03:56+00:00"
+    },
+    {
+      "phase": "analysis-accepted",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "713c53c4531f1af39515baea0fbf0ddb27eae841436e5791389fead15bd1d116",
+      "commit_sha": "db0aa72a49db9218d0d310c66d17a8a9618d08ce",
+      "created": "2026-10-25T08:04:32+00:00"
+    },
+    {
+      "phase": "analysis-manifest-integrity-correction",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "095f079d801674c68de24adc9bd040dc703d8e485fd840874be89601892b13c1",
+      "commit_sha": "9c168b2f7f7e0b7b4fd2aa682c308794e766250a",
+      "created": "2026-10-25T08:33:59+00:00"
+    }
+  ]
+}

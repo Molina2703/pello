@@ -1,0 +1,37 @@
+PELLO PLAN-SPEC ERROR: 12 validation errors for RequirementAnalysis
+requirements.0
+  Value error, Source requirements must be distinguished from proposals, not silently downgraded [type=value_error, input_value={'draft_id': 'R01', 'sour...zation_required': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
+requirements.1
+  Value error, Source requirements must be distinguished from proposals, not silently downgraded [type=value_error, input_value={'draft_id': 'R02', 'sour...zation_required': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
+requirements.2
+  Value error, Source requirements must be distinguished from proposals, not silently downgraded [type=value_error, input_value={'draft_id': 'R03', 'sour...zation_required': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
+requirements.3
+  Value error, Source requirements must be distinguished from proposals, not silently downgraded [type=value_error, input_value={'draft_id': 'R04', 'sour...zation_required': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
+requirements.4
+  Value error, Source requirements must be distinguished from proposals, not silently downgraded [type=value_error, input_value={'draft_id': 'R05', 'sour...zation_required': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
+requirements.5
+  Value error, Source requirements must be distinguished from proposals, not silently downgraded [type=value_error, input_value={'draft_id': 'R06', 'sour...zation_required': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
+requirements.6
+  Value error, Source requirements must be distinguished from proposals, not silently downgraded [type=value_error, input_value={'draft_id': 'R07', 'sour...zation_required': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
+requirements.7
+  Value error, Source requirements must be distinguished from proposals, not silently downgraded [type=value_error, input_value={'draft_id': 'R08', 'sour...ization_required': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
+requirements.8
+  Value error, Source requirements must be distinguished from proposals, not silently downgraded [type=value_error, input_value={'draft_id': 'R09', 'sour...zation_required': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
+requirements.9
+  Value error, Source requirements must be distinguished from proposals, not silently downgraded [type=value_error, input_value={'draft_id': 'R10', 'sour...ization_required': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
+requirements.10
+  Value error, Source requirements must be distinguished from proposals, not silently downgraded [type=value_error, input_value={'draft_id': 'R11', 'sour...ization_required': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
+requirements.11
+  Value error, Source requirements must be distinguished from proposals, not silently downgraded [type=value_error, input_value={'draft_id': 'R12', 'sour...zation_required': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error

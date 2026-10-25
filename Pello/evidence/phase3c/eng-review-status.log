@@ -1,0 +1,61 @@
+{
+  "project_id": "phase3c-eng-review",
+  "status": "NEW",
+  "version": 1,
+  "source_sha256": "6bca1e0b8d871201601e83b6cdbeadb0554fa52be18a8d624a29ca46ca44674d",
+  "current_source_sha256": "6bca1e0b8d871201601e83b6cdbeadb0554fa52be18a8d624a29ca46ca44674d",
+  "source_changed": false,
+  "turns_used": 5,
+  "turns_limit": 12,
+  "deadline": "2026-10-25T08:41:16+00:00",
+  "blocker": "",
+  "requirement_count": 0,
+  "plan_ready": false,
+  "analysis_review": null,
+  "operations": [
+    {
+      "version": 1,
+      "phase": "engineering-review-3c1-contract-models",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T07:41:42+00:00",
+      "modified": "2026-10-25T07:42:42+00:00"
+    },
+    {
+      "version": 1,
+      "phase": "engineering-review-3c1-corrected-review",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T07:51:10+00:00",
+      "modified": "2026-10-25T07:51:53+00:00"
+    },
+    {
+      "version": 1,
+      "phase": "engineering-review-3c1-corrected-review-r2",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T07:57:44+00:00",
+      "modified": "2026-10-25T07:59:43+00:00"
+    },
+    {
+      "version": 1,
+      "phase": "engineering-review-3c1-understanding-review-r3",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T08:09:40+00:00",
+      "modified": "2026-10-25T08:11:08+00:00"
+    },
+    {
+      "version": 1,
+      "phase": "engineering-review-3c1-understanding-review-r4",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T08:12:00+00:00",
+      "modified": "2026-10-25T08:12:50+00:00"
+    }
+  ],
+  "model_decisions": [],
+  "checkpoints": [],
+  "analysis_history": [],
+  "full_v1_complete": false
+}

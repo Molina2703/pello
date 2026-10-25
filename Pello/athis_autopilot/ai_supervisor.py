@@ -67,12 +67,12 @@ class SDKBackend:
                          instructions=ROLE_INSTRUCTIONS[role])
 
     def run(self, *, workspace, thread_file, out_dir, role, model, effort, prompt, schema, timeout,
-            session_db, project_id, task_id):
+            session_db, project_id, task_id, instructions=None):
         if self.runner is None:
             self.runner = CodexWorkerProcess(out_dir.parent)
         return run_codex(workspace, prompt, thread_file, out_dir, timeout, role=role,
                          model=model, effort=effort, output_schema=schema,
-                         instructions=ROLE_INSTRUCTIONS[role], session_db=session_db,
+                         instructions=instructions or ROLE_INSTRUCTIONS[role], session_db=session_db,
                          project_id=project_id, task_id=task_id, runner=self.runner)
 
     def close(self):

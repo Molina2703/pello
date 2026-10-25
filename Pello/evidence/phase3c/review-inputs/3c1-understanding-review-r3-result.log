@@ -1,0 +1,15 @@
+{
+  "verdict": "BLOCKED",
+  "scope": "correct",
+  "correctness": "uncertain",
+  "test_evidence": "incomplete",
+  "safety_and_preservation": "uncertain",
+  "findings": [
+    "The original normalization defects are addressed: confidence merges conservatively, priority conflicts are rejected, compatible rationales are retained, and duplicate tests cite the repeated body paragraphs.",
+    "The fresh snapshot resolves the stale-parser finding. It contains sixteen segments, including seven headings. Independent recomputation confirms the original source hash and the new heading IDs and hashes; the nine body anchors were verified previously.",
+    "Direct comparison finds no material product omission or fabricated priority, approval, or authorization. Both conflicting approval rules remain unresolved. External-write recovery now blocks only outcome integration; local intake remains independent. Assumptions and hostile-document exclusions are explicit.",
+    "Every source segment in the supplied fresh analysis omits heading_path, which SourceSegment requires. Consequently, this supplied payload cannot validate as AcceptedAnalysis. An unprojected artifact is needed to determine whether this is an export omission or a runtime contract defect.",
+    "The current 147/147 and 21/21 results are summaries without accessible logs or runnable tests. The workspace still contains only README.md. Preservation totals and statements about retained reviews likewise cannot independently establish protected-file or historical-record preservation."
+  ],
+  "rationale": "The prior substantive product, anchoring, normalization, and blocker-scope findings are addressed by the supplied corrections and fresh interpretation. Engineering approval remains blocked by the schema-incomplete analysis export and unavailable current test and preservation artifacts. The independent SDK Reviewer PASS supports interpretation quality but does not establish implementation correctness."
+}

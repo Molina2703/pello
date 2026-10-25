@@ -1,0 +1,17 @@
+{
+  "verdict": "BLOCKED",
+  "scope": "correct",
+  "correctness": "uncertain",
+  "test_evidence": "incomplete",
+  "safety_and_preservation": "uncertain",
+  "findings": [
+    "The original three code defects are resolved in the excerpts. Duplicate tests now cite ids[1] and ids[3], which identify the repeated body paragraphs.",
+    "The complete interpretation covers the requested behavior, preserves both conflicting approval rules, leaves priorities unspecified, labels assumptions unapproved, and preserves refund and messaging restrictions. The hostile note grants no authority.",
+    "Independent recomputation confirms all nine supplied source-segment IDs and text hashes. Their line references match the original specification.",
+    "The live interpretation contains nine body-only segments. The corrected parser would produce sixteen segments, including seven headings. This snapshot therefore does not demonstrate the corrected anchoring implementation running end to end.",
+    "ISS-624e1506984c lists independent outage intake among requirements affected by a blocking question about outcome-write recovery. The blocking boundary needs clarification so that unresolved integration recovery does not prevent local intake work.",
+    "Prior FAIL and BLOCKED verdicts are included, but revision 1's analysis is null. Protected-file preservation is represented by aggregate results without the underlying comparison manifest. Complete historical preservation cannot be independently verified.",
+    "The workspace contains only README.md and its Git checkpoint; the supplied acceptance commit is unavailable. Current source, test logs, review inputs, and protected artifacts cannot be inspected. Earlier logs show passing tests, but the latest test revision has only a summary."
+  ],
+  "rationale": "The supplied material closes the original code findings and enables substantive product comparison. Approval remains blocked by the mismatch between the live snapshot and corrected parser, unclear scope of one blocker, and unavailable artifacts needed to verify current tests, review isolation, and preservation. The recorded Reviewer PASS does not resolve those evidence gaps."
+}

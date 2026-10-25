@@ -1,0 +1,16 @@
+{
+  "verdict": "FAIL",
+  "scope": "correct",
+  "correctness": "defect",
+  "test_evidence": "pass",
+  "safety_and_preservation": "defect",
+  "findings": [
+    "Operation replay does not verify request identity. _invoke returns a completed response without comparing the stored input_sha256, role, or schema with the current request (597�610). Reusing an engineering increment ID with changed evidence can silently return an earlier PASS.",
+    "The analysis acceptance gate checks only review.verdict (728�744). A structurally valid PASS accompanied by coverage='incomplete' or exclusions_and_untrusted_text='violated' would still produce ANALYSIS_ACCEPTED and an acceptance checkpoint.",
+    "Durable state can advance without its evidence or checkpoint. Analysis and review database updates commit before artifact writing and checkpoint creation (690�700, 727�744). After interruption or STOP at that boundary, cached-return paths bypass those unfinished steps, leaving no automatic repair.",
+    "Checkpoint manifests include their previous contents. On the second checkpoint of the same evidence directory, rglob includes manifest-sha256.json, hashes it, then overwrites it (828�832). The resulting manifest contains an incorrect hash for itself.",
+    "Correction history stops after the first correction. reprocess_analysis requires version.analysis_review (755), but correction clears that field and reviewing revision 2 deliberately leaves it null (732, 789). A reviewed revision 2 therefore cannot receive another corrective revision.",
+    "The project deadline gates submission but does not bound SDK execution. The backend receives self.timeout rather than the remaining project duration (627�638), and returned results receive no deadline check. A submitted call can exceed the persisted deadline and still be accepted."
+  ],
+  "rationale": "The supplied passing tests support the exercised paths, but they do not cover these replay, interruption, repeated-correction, manifest-integrity, and deadline cases. Static inspection establishes lifecycle defects independently of the successful product-spec review. The previous schema/parser PASS remains outside this verdict's scope."
+}

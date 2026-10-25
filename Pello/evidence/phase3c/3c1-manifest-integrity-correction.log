@@ -1,0 +1,11 @@
+warning: in the working copy of 'version-1/SPEC.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'manifest-integrity-correction/SPEC.md', LF will be replaced by CRLF the next time Git touches it
+{
+  "project_id": "phase3c-3c1-live-r2",
+  "phase": "analysis-manifest-integrity-correction",
+  "manifest_entries": 3,
+  "manifest_self_included": false,
+  "each_entry_verified": true,
+  "artifact_hash_matches": true,
+  "commit_sha": "9c168b2f7f7e0b7b4fd2aa682c308794e766250a"
+}
