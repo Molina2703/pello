@@ -1,0 +1,18 @@
+test_mismatched_remote_identity_blocks_before_execution_and_checkpoint (test_n8n_pipeline.N8nPipelineTests.test_mismatched_remote_identity_blocks_before_execution_and_checkpoint) ... FAIL
+
+======================================================================
+FAIL: test_mismatched_remote_identity_blocks_before_execution_and_checkpoint (test_n8n_pipeline.N8nPipelineTests.test_mismatched_remote_identity_blocks_before_execution_and_checkpoint)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_n8n_pipeline.py", line 84, in test_mismatched_remote_identity_blocks_before_execution_and_checkpoint
+    self.assertEqual(report['stage'],'BLOCKED');self.assertEqual(report['checkpoints'],[])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'PAUSED' != 'BLOCKED'
+- PAUSED
++ BLOCKED
+
+
+----------------------------------------------------------------------
+Ran 1 test in 4.344s
+
+FAILED (failures=1)

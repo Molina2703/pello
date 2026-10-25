@@ -1,0 +1,17 @@
+{
+  "contract": "3B2 adds a bounded three-node credential-free QA draft through the existing IncrementalPipeline, real Planner contract BEFORE protected tests and Coder, exact SDK conversion and official validation, one journaled create, immediate ID capture, safe readback, two manual executions, deterministic verification, independent Reviewer and checkpoint. Publishing implementation deferred to 3B3; its protected acceptance contract is prepared now. No actual remote mutations yet at this engineering review.",
+  "source_files": [
+    "athis_autopilot/n8n_pipeline.py",
+    "athis_autopilot/n8n_qa.py",
+    "athis_autopilot/n8n_operations.py",
+    "athis_autopilot/n8n_mcp.py",
+    "tests/test_n8n_pipeline.py",
+    "tests/test_n8n_qa.py"
+  ],
+  "verification": {
+    "regression_log": "tale_bytecode) ... ok\ntest_pipeline_failure_has_no_approval_checkpoint_or_dependent_execution (test_verification_source.SourceVerificationTests.test_pipeline_failure_has_no_approval_checkpoint_or_dependent_execution) ... ok\ntest_sourceless_project_bytecode_cannot_supply_acceptance_behavior (test_verification_source.SourceVerificationTests.test_sourceless_project_bytecode_cannot_supply_acceptance_behavior) ... ok\ntest_stale_bytecode_fails_and_original_files_remain_untouched (test_verification_source.SourceVerificationTests.test_stale_bytecode_fails_and_original_files_remain_untouched) ... ok\n\n----------------------------------------------------------------------\nRan 108 tests in 138.723s\n\nOK\n",
+    "targeted_updated_log": "test_async_execution_is_polled_without_reexecuting (test_n8n_pipeline.N8nPipelineTests.test_async_execution_is_polled_without_reexecuting) ... ok\ntest_draft_uses_existing_pipeline_and_persists_actual_resource_evidence (test_n8n_pipeline.N8nPipelineTests.test_draft_uses_existing_pipeline_and_persists_actual_resource_evidence) ... ok\ntest_unexpected_auto_credentials_block_before_execute_or_publish (test_n8n_pipeline.N8nPipelineTests.test_unexpected_auto_credentials_block_before_execute_or_publish) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 10.750s\n\nOK\n",
+    "qa_log": "test_current_contract_expressions_pass_all_cases (test_n8n_qa.QAScopeTests.test_current_contract_expressions_pass_all_cases) ... ok\ntest_remote_definition_matches_source_and_has_no_hidden_effects (test_n8n_qa.QAScopeTests.test_remote_definition_matches_source_and_has_no_hidden_effects) ... ok\ntest_unsafe_nodes_credentials_expressions_and_routes_rejected (test_n8n_qa.QAScopeTests.test_unsafe_nodes_credentials_expressions_and_routes_rejected) ... ok\ntest_wrong_math_is_a_real_deterministic_failure (test_n8n_qa.QAScopeTests.test_wrong_math_is_a_real_deterministic_failure) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.497s\n\nOK\n"
+  },
+  "design": "Native MCP transport has no model inference; Core submits exact operations from a separately sandboxed Coder-produced JSON blueprint. Planner/Reviewer have no MCP. Existing base pipeline controls verification integrity, distinct role sessions, budgets, review and Git. Model/MCP inputs in unit tests are explicitly mocked, never claimed as real integration. Live pilot will be run only after this code review."
+}

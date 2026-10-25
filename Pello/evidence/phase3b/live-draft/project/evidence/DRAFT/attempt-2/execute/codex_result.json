@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a170b5-51ca-7922-a6d7-dc3069e29621",
+  "turn_id": "01a170b6-999f-7170-8948-a5d690000ed6",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 24576,
+      "input_tokens": 24766,
+      "output_tokens": 85,
+      "reasoning_output_tokens": 0,
+      "total_tokens": 24851
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 75776,
+      "input_tokens": 116150,
+      "output_tokens": 1799,
+      "reasoning_output_tokens": 621,
+      "total_tokens": 117949
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3b-qa-first\",\"task_id\":\"DRAFT\",\"execution_summary\":\"Updated workflow.json with explicit body guards in validation and request_id fallback. Empty-string, null, and absent bodies now yield the required invalid response. Independent verification of this revision remains pending.\",\"files_modified\":[\"workflow.json\"],\"errors\":[],\"evidence_paths\":[\"workflow.json\"]}",
+  "error": null
+}

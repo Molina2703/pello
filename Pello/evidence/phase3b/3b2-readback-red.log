@@ -1,0 +1,18 @@
+test_current_contract_expressions_pass_all_cases (test_n8n_qa.QAScopeTests.test_current_contract_expressions_pass_all_cases) ... ok
+test_remote_definition_matches_source_and_has_no_hidden_effects (test_n8n_qa.QAScopeTests.test_remote_definition_matches_source_and_has_no_hidden_effects) ... FAIL
+test_unsafe_nodes_credentials_expressions_and_routes_rejected (test_n8n_qa.QAScopeTests.test_unsafe_nodes_credentials_expressions_and_routes_rejected) ... ok
+test_wrong_math_is_a_real_deterministic_failure (test_n8n_qa.QAScopeTests.test_wrong_math_is_a_real_deterministic_failure) ... ok
+
+======================================================================
+FAIL: test_remote_definition_matches_source_and_has_no_hidden_effects (test_n8n_qa.QAScopeTests.test_remote_definition_matches_source_and_has_no_hidden_effects)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_n8n_qa.py", line 60, in test_remote_definition_matches_source_and_has_no_hidden_effects
+    with self.assertRaises(ValueError): verify_remote(remote,source,contract)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.278s
+
+FAILED (failures=1)

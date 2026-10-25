@@ -1,0 +1,46 @@
+test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation (test_n8n_qa.QAScopeTests.test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation) ... 
+  test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation (test_n8n_qa.QAScopeTests.test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation) (source="({'constructor':body}=Number),body('return process')()") ... FAIL
+  test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation (test_n8n_qa.QAScopeTests.test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation) (source='$json.body.value=42') ... FAIL
+  test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation (test_n8n_qa.QAScopeTests.test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation) (source='($json.body.value++,42)') ... FAIL
+  test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation (test_n8n_qa.QAScopeTests.test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation) (source="({request_id:'x'},$json)") ... FAIL
+
+======================================================================
+FAIL: test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation (test_n8n_qa.QAScopeTests.test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation) (source="({'constructor':body}=Number),body('return process')()")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_n8n_qa.py", line 31, in test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation
+    with self.assertRaises(ValueError): expression('={{ '+source+' }}')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation (test_n8n_qa.QAScopeTests.test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation) (source='$json.body.value=42')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_n8n_qa.py", line 31, in test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation
+    with self.assertRaises(ValueError): expression('={{ '+source+' }}')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation (test_n8n_qa.QAScopeTests.test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation) (source='($json.body.value++,42)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_n8n_qa.py", line 31, in test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation
+    with self.assertRaises(ValueError): expression('={{ '+source+' }}')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation (test_n8n_qa.QAScopeTests.test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation) (source="({request_id:'x'},$json)")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_n8n_qa.py", line 31, in test_constructor_destructuring_assignments_and_comma_escape_are_rejected_before_evaluation
+    with self.assertRaises(ValueError): expression('={{ '+source+' }}')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+FAILED (failures=4)

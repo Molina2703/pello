@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a170a9-c3f1-7110-bf43-4eb4bbcd6fc8",
+  "turn_id": "01a170a9-c574-7d82-9ef2-3a01d0d359b5",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 28505,
+      "output_tokens": 2225,
+      "reasoning_output_tokens": 2070,
+      "total_tokens": 30730
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 28505,
+      "output_tokens": 2225,
+      "reasoning_output_tokens": 2070,
+      "total_tokens": 30730
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3b\",\"task_id\":\"3B2-fixed\",\"attempt\":1,\"verdict\":\"FAIL\",\"diagnosis\":\"implementation\",\"feedback\":\"Blocking: draft readback does not verify that remote['id'] equals the journaled workflow_id. verify_remote checks only a nonempty ID and matching name; the protected acceptance test likewise checks only a nonempty ID. A details response carrying another ID but the expected name and graph can pass, causing evidence and reviewed_version to reference the wrong resource. Require exact ID equality before executions or review, and add a regression proving mismatched readback IDs block without a checkpoint. Supplied tests pass; deferred publication and the pending live pilot are not defects.\"}",
+  "error": null
+}

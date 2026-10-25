@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a170b4-ceb1-7122-82bb-f57bc4d840a6",
+  "turn_id": "01a170b4-d017-72a1-9aa6-0f4fd8ed2caf",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 11920,
+      "output_tokens": 105,
+      "reasoning_output_tokens": 0,
+      "total_tokens": 12025
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 11920,
+      "output_tokens": 105,
+      "reasoning_output_tokens": 0,
+      "total_tokens": 12025
+    }
+  },
+  "final_response": "{\"workflow_name\":\"PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a\",\"webhook_path\":\"pello-3b-bb491b32d40943d5ad8a\",\"request_id_prefix\":\"pello-3b-\",\"operation\":\"double\",\"value_min\":-1000000,\"value_max\":1000000,\"success_http_status\":200,\"invalid_http_status\":400}",
+  "error": null
+}

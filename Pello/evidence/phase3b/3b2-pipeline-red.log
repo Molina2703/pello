@@ -1,0 +1,21 @@
+test_n8n_pipeline (unittest.loader._FailedTest.test_n8n_pipeline) ... ERROR
+
+======================================================================
+ERROR: test_n8n_pipeline (unittest.loader._FailedTest.test_n8n_pipeline)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_n8n_pipeline
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\AppData\Local\Programs\Python\Python312\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_n8n_pipeline.py", line 11, in <module>
+    from athis_autopilot.n8n_pipeline import N8nPipeline
+ModuleNotFoundError: No module named 'athis_autopilot.n8n_pipeline'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

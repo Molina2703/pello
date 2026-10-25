@@ -1,0 +1,8 @@
+test_async_execution_is_polled_without_reexecuting (test_n8n_pipeline.N8nPipelineTests.test_async_execution_is_polled_without_reexecuting) ... ok
+test_draft_uses_existing_pipeline_and_persists_actual_resource_evidence (test_n8n_pipeline.N8nPipelineTests.test_draft_uses_existing_pipeline_and_persists_actual_resource_evidence) ... ok
+test_unexpected_auto_credentials_block_before_execute_or_publish (test_n8n_pipeline.N8nPipelineTests.test_unexpected_auto_credentials_block_before_execute_or_publish) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 10.750s
+
+OK

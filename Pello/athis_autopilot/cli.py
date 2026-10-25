@@ -47,6 +47,16 @@ def main():
     pipeline.add_argument('--project-id')
     pipeline.add_argument('--timeout', type=int, default=180)
     pipeline.add_argument('--stop-after', type=int, help='Pausa después de N checkpoints de este proceso')
+    pilot = sub.add_parser('n8n-pilot', help='QA aislado de Phase 3B por SDK y MCP oficial')
+    pilot_source = pilot.add_mutually_exclusive_group(required=True)
+    pilot_source.add_argument('--new', action='store_true')
+    pilot_source.add_argument('--resume', metavar='PROJECT_ID')
+    pilot_source.add_argument('--status', metavar='PROJECT_ID')
+    pilot_source.add_argument('--stop', metavar='PROJECT_ID')
+    pilot_source.add_argument('--reconcile-create', metavar='PROJECT_ID')
+    pilot.add_argument('--project-id')
+    pilot.add_argument('--timeout', type=int, default=240)
+    pilot.add_argument('--stop-after', type=int)
     args = cli.parse_args()
     if args.root is None:
         config_path = project / 'config' / 'pello.json'
@@ -88,6 +98,31 @@ def main():
             auth_code = 0 if auth.get('authenticated') else 2
         print(json.dumps(checks, indent=2, ensure_ascii=False))
         return auth_code or (0 if checks['git_installed'] and checks['codex_python_sdk_installed'] else 2)
+    if args.command == 'n8n-pilot':
+        from .n8n_pipeline import N8nPipeline
+        from .engines import CodexBlocked
+        try:
+            if args.stop_after is not None and args.stop_after < 1:
+                cli.error('--stop-after debe ser positivo')
+            core = N8nPipeline(args.root, timeout=args.timeout)
+            project_id = core.create_qa_project(project_id=args.project_id) if args.new else (
+                args.resume or args.status or args.stop or args.reconcile_create)
+            print('PROJECT_ID:', project_id, flush=True)
+            if args.stop:
+                (core.folder(project_id)/'STOP').write_text('Emergency STOP requested by operator\n',encoding='utf-8')
+            if args.reconcile_create:
+                core.journal.reconcile_create(project_id,'create')
+                print(json.dumps({'project_id':project_id,'workflow_id':core.journal.resource(project_id)['workflow_id']},indent=2))
+                return 0
+            result = core.pipeline_report(project_id) if args.status else core.run_pipeline(project_id,stop_after=args.stop_after)
+            print(json.dumps({key:result[key] for key in ('project_id','stage','passed','verified_increments',
+                'planned_increments','workflow_id','external_integration','blocker','report_path')},indent=2,ensure_ascii=False))
+            return 0 if result['passed'] or (result['stage']=='PAUSED' and result['integrity']) else 2
+        except (ValueError,CodexBlocked) as exc:
+            print('PELLO N8N ERROR:',exc)
+            return 2
+        finally:
+            if 'core' in locals() and hasattr(core.backend,'close'): core.backend.close()
     if args.command == 'pipeline':
         from .pipeline import IncrementalPipeline
         from .pipeline_contracts import PipelinePolicy

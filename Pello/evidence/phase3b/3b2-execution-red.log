@@ -1,0 +1,17 @@
+test_async_execution_is_polled_without_reexecuting (test_n8n_pipeline.N8nPipelineTests.test_async_execution_is_polled_without_reexecuting) ... ok
+test_draft_uses_existing_pipeline_and_persists_actual_resource_evidence (test_n8n_pipeline.N8nPipelineTests.test_draft_uses_existing_pipeline_and_persists_actual_resource_evidence) ... ok
+test_matching_intermediate_data_cannot_approve_failed_or_running_execution (test_n8n_pipeline.N8nPipelineTests.test_matching_intermediate_data_cannot_approve_failed_or_running_execution) ... ERROR
+test_unexpected_auto_credentials_block_before_execute_or_publish (test_n8n_pipeline.N8nPipelineTests.test_unexpected_auto_credentials_block_before_execute_or_publish) ... ok
+
+======================================================================
+ERROR: test_matching_intermediate_data_cannot_approve_failed_or_running_execution (test_n8n_pipeline.N8nPipelineTests.test_matching_intermediate_data_cannot_approve_failed_or_running_execution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_n8n_pipeline.py", line 91, in test_matching_intermediate_data_cannot_approve_failed_or_running_execution
+    from athis_autopilot.n8n_pipeline import final_execution_output
+ImportError: cannot import name 'final_execution_output' from 'athis_autopilot.n8n_pipeline' (C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\n8n_pipeline.py)
+
+----------------------------------------------------------------------
+Ran 4 tests in 12.606s
+
+FAILED (errors=1)

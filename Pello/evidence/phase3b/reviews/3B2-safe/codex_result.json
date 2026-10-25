@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a170b3-5b69-7ef2-83cb-7ffadb22c146",
+  "turn_id": "01a170b3-5ce7-7c80-85ac-8e531d037aa6",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 30136,
+      "output_tokens": 2328,
+      "reasoning_output_tokens": 2213,
+      "total_tokens": 32464
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 30136,
+      "output_tokens": 2328,
+      "reasoning_output_tokens": 2213,
+      "total_tokens": 32464
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3b\",\"task_id\":\"3B2-safe\",\"attempt\":1,\"verdict\":\"PASS\",\"diagnosis\":\"none\",\"feedback\":\"No blocking defect identified in the supplied bounded 3B2 implementation. The strict expression parser, journaled creation, exact workflow ID readback, and final execution verification address the documented failures. Supplied regression and targeted test logs pass. This approves the engineering increment; live MCP integration remains unverified, and publication is deferred to 3B3.\"}",
+  "error": null
+}

@@ -1,0 +1,17 @@
+{
+  "reason": "Redact internal execution resumeToken metadata, including JSON text duplicates, before delivery. Operational IDs/statuses/outputs preserved.",
+  "files_sanitized": [
+    "evidence\\phase3b\\live-draft\\sqlite-state.json",
+    "evidence\\phase3b\\live-draft\\project\\pipeline-report.json",
+    "evidence\\phase3b\\live-draft\\project\\evidence\\mcp\\draft-1-case-0-result-0\\codex_result.json",
+    "evidence\\phase3b\\live-draft\\project\\evidence\\mcp\\draft-1-case-1-result-0\\codex_result.json",
+    "evidence\\phase3b\\live-draft\\project\\evidence\\mcp\\draft-2-case-0-result-0\\codex_result.json",
+    "evidence\\phase3b\\live-draft\\project\\evidence\\mcp\\draft-2-case-1-result-0\\codex_result.json",
+    "runtime\\phase3b\\supervised\\phase3b-qa-first\\pipeline-report.json",
+    "runtime\\phase3b\\supervised\\phase3b-qa-first\\evidence\\mcp\\draft-1-case-0-result-0\\codex_result.json",
+    "runtime\\phase3b\\supervised\\phase3b-qa-first\\evidence\\mcp\\draft-1-case-1-result-0\\codex_result.json",
+    "runtime\\phase3b\\supervised\\phase3b-qa-first\\evidence\\mcp\\draft-2-case-0-result-0\\codex_result.json",
+    "runtime\\phase3b\\supervised\\phase3b-qa-first\\evidence\\mcp\\draft-2-case-1-result-0\\codex_result.json"
+  ],
+  "sqlite_responses_sanitized": 4
+}

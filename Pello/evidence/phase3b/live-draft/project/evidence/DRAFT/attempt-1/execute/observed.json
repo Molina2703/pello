@@ -1,0 +1,34 @@
+{
+  "project_id": "phase3b-qa-first",
+  "task_id": "DRAFT",
+  "attempt": 1,
+  "files_modified": [
+    "workflow.json"
+  ],
+  "claimed_files_modified": [
+    "workflow.json"
+  ],
+  "execution_summary": "Created the DRAFT workflow artifact with the three required nodes, input validation, exact response bodies, and status codes. Core must create remote-draft.json and supply independent verification evidence.",
+  "errors": [],
+  "thread_id": "01a170b5-51ca-7922-a6d7-dc3069e29621",
+  "turn_id": "01a170b5-532d-7fb2-aa75-28fe04c018bf",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 14080,
+      "input_tokens": 15300,
+      "output_tokens": 222,
+      "reasoning_output_tokens": 136,
+      "total_tokens": 15522
+    },
+    "model_context_window": 258400,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 27776,
+      "input_tokens": 43443,
+      "output_tokens": 1290,
+      "reasoning_output_tokens": 571,
+      "total_tokens": 44733
+    }
+  }
+}
