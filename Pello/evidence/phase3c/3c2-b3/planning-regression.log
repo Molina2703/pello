@@ -1,0 +1,29 @@
+test_blockers_assumptions_and_exclusions_survive (tests.test_planning_input.PlanningInputTests.test_blockers_assumptions_and_exclusions_survive) ... ok
+test_duplicate_ids_and_conflicting_definitions_fail (tests.test_planning_input.PlanningInputTests.test_duplicate_ids_and_conflicting_definitions_fail) ... ok
+test_invalid_source_dependency_issue_and_assumption_references_fail (tests.test_planning_input.PlanningInputTests.test_invalid_source_dependency_issue_and_assumption_references_fail) ... ok
+test_missing_fields_and_malformed_input_fail (tests.test_planning_input.PlanningInputTests.test_missing_fields_and_malformed_input_fail) ... ok
+test_real_analysis_round_trips_without_semantic_changes (tests.test_planning_input.PlanningInputTests.test_real_analysis_round_trips_without_semantic_changes) ... ok
+test_source_segment_tampering_fails (tests.test_planning_input.PlanningInputTests.test_source_segment_tampering_fails) ... ok
+test_blocked_parent_propagates_but_unrelated_intake_survives (tests.test_planning_graph.PlanningGraphTests.test_blocked_parent_propagates_but_unrelated_intake_survives) ... ok
+test_cycle (tests.test_planning_graph.PlanningGraphTests.test_cycle) ... ok
+test_duplicate_task_rejected (tests.test_planning_graph.PlanningGraphTests.test_duplicate_task_rejected) ... ok
+test_missing_and_self_dependency (tests.test_planning_graph.PlanningGraphTests.test_missing_and_self_dependency) ... ok
+test_missing_authorization_and_resources_are_blockers (tests.test_planning_graph.PlanningGraphTests.test_missing_authorization_and_resources_are_blockers) ... ok
+test_order_stable_under_input_reordering (tests.test_planning_graph.PlanningGraphTests.test_order_stable_under_input_reordering) ... ok
+test_orphan_requirement_rejected (tests.test_planning_graph.PlanningGraphTests.test_orphan_requirement_rejected) ... ok
+test_unknown_requirement_and_global_promotion_rejected (tests.test_planning_graph.PlanningGraphTests.test_unknown_requirement_and_global_promotion_rejected) ... ok
+test_untrusted_instruction_cannot_become_task (tests.test_planning_graph.PlanningGraphTests.test_untrusted_instruction_cannot_become_task) ... ok
+test_valid_graph_order_and_independent_branch (tests.test_planning_graph.PlanningGraphTests.test_valid_graph_order_and_independent_branch) ... ok
+test_completed_prerequisite_unlocks_only_independent_work (tests.test_planning_increments.FunctionalIncrementTests.test_completed_prerequisite_unlocks_only_independent_work) ... ok
+test_coverage_references_and_next_action (tests.test_planning_increments.FunctionalIncrementTests.test_coverage_references_and_next_action) ... ok
+test_dependencies_cannot_be_silently_changed (tests.test_planning_increments.FunctionalIncrementTests.test_dependencies_cannot_be_silently_changed) ... ok
+test_external_operation_requires_explicit_effects_and_permissions (tests.test_planning_increments.FunctionalIncrementTests.test_external_operation_requires_explicit_effects_and_permissions) ... ok
+test_local_logic_cannot_claim_external_effects (tests.test_planning_increments.FunctionalIncrementTests.test_local_logic_cannot_claim_external_effects) ... ok
+test_missing_increment (tests.test_planning_increments.FunctionalIncrementTests.test_missing_increment) ... ok
+test_requirement_mapping_cannot_drift (tests.test_planning_increments.FunctionalIncrementTests.test_requirement_mapping_cannot_drift) ... ok
+test_unsafe_component_path_rejected (tests.test_planning_increments.FunctionalIncrementTests.test_unsafe_component_path_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.033s
+
+OK

@@ -1,0 +1,491 @@
+{
+  "proposal": {
+    "increments": [
+      {
+        "task_id": "N01",
+        "objective": "Propose local intake capture, case-reference assignment, persistence, and later review during partner-service outages. Keep this work independent of integration and recovery blockers. Preserve unapproved ASM-c14daf6aefcf for missing-invoice intake. [SRC-a43a2a271870, SRC-f2320189bfc9, SRC-3d1eefac22e5]",
+        "requirement_ids": [
+          "REQ-9ebf6ed4706b",
+          "REQ-663f2a265eb0",
+          "REQ-e8499cef13e3"
+        ],
+        "depends_on": [],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic",
+        "inputs": [
+          "One intake containing partner, item SKU, quantity, invoice reference, return reason, and arrival date.",
+          "An existing partner reference when supplied; no partner lookup is required.",
+          "For later review, the reference of one locally saved case.",
+          "Missing invoice references are permitted only under unapproved ASM-c14daf6aefcf; this does not determine approval eligibility."
+        ],
+        "outputs": [
+          "A locally saved case retaining the supplied intake fields.",
+          "The supplied partner reference, or an internal reference when none is available.",
+          "The saved intake retrieved for staff review."
+        ],
+        "interfaces": [
+          "Proposed internal save_intake operation returning the case and its staff-facing reference.",
+          "Proposed internal get_case operation retrieving one saved intake.",
+          "Proposed local persistence boundary with no live partner-service dependency; storage technology is unspecified."
+        ],
+        "components": [
+          "vendor_return_desk/intake.py",
+          "vendor_return_desk/references.py",
+          "vendor_return_desk/case_repository.py"
+        ],
+        "tools": [
+          "Future-only-tooling-proposal"
+        ],
+        "permissions": [
+          "Planning only: execution_authorized=false. No implementation or data-access operation is authorized by this increment."
+        ],
+        "external_effects": [],
+        "completion_conditions": [
+          "Saving and retrieving a fixture with all six intake fields returns the same supplied values.",
+          "A supplied partner reference is used; its absence produces an internal reference.",
+          "With partner access unavailable, intake saving and subsequent retrieval still succeed.",
+          "A missing-invoice fixture can be retained under ASM-c14daf6aefcf without approving the return; the assumption remains explicitly unapproved.",
+          "No acceptance condition depends on selecting a vendor, obtaining external credentials, or deciding outcome-recovery behavior."
+        ],
+        "verification_evidence": [
+          "Required, not collected: local round-trip results for the six intake fields.",
+          "Required, not collected: fixtures demonstrating both reference-selection branches.",
+          "Required, not collected: outage-isolation results showing no external call during saving or retrieval.",
+          "Required, not collected: missing-invoice result labelled with the unapproved assumption."
+        ],
+        "boundary_rationale": "Intake, reference assignment, and retrieval form one usable local capability. The source explicitly allows saving during partner-service outages, so integration and recovery decisions are outside this boundary. Component paths and interfaces are proposals, not created artifacts. [SRC-a43a2a271870, SRC-f2320189bfc9, SRC-3d1eefac22e5]"
+      },
+      {
+        "task_id": "N02",
+        "objective": "Propose operator-visible status-change history and decision audit recording against local cases, retaining operator and time. Generic recording can proceed under unapproved ASM-9a6355f5b670 without deciding approval policy or final workflow vocabulary. [SRC-893594c23f0b]",
+        "requirement_ids": [
+          "REQ-03c0c5f54c14",
+          "REQ-b859f4e02365"
+        ],
+        "depends_on": [
+          "N01"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic",
+        "inputs": [
+          "One existing local case reference.",
+          "One status-change event or decision record, with responsible operator and time.",
+          "For inspection, the reference of the case whose history is requested.",
+          "Status and decision vocabulary supplied as fixture data under unapproved ASM-9a6355f5b670; no final transition policy is assumed."
+        ],
+        "outputs": [
+          "A locally retained status-change or decision record associated with the case.",
+          "Operator-visible case history showing recorded events, responsible operators, and times."
+        ],
+        "interfaces": [
+          "Proposed internal record_status_change and record_decision operations.",
+          "Proposed internal get_case_history operation.",
+          "Proposed operator-attribution input boundary; no identity provider is selected or assumed available."
+        ],
+        "components": [
+          "vendor_return_desk/history.py",
+          "vendor_return_desk/decision_audit.py",
+          "vendor_return_desk/history_repository.py"
+        ],
+        "tools": [
+          "Future-only-tooling-proposal"
+        ],
+        "permissions": [
+          "Planning only: execution_authorized=false. No recording or inspection operation is authorized.",
+          "Operator attribution is required by the source; the mechanism for establishing operator identity remains unspecified."
+        ],
+        "external_effects": [],
+        "completion_conditions": [
+          "Recording two successive status changes preserves both records with their supplied operator and time.",
+          "Recording a decision preserves its case association, decision, operator, and time.",
+          "Inspecting one case returns its recorded history without mixing in records from another fixture case.",
+          "History recording does not approve a return, issue a refund, or contact a partner.",
+          "Generic recording acceptance remains distinct from agreement on statuses, decision types, and permitted transitions."
+        ],
+        "verification_evidence": [
+          "Required, not collected: local fixtures showing preservation of multiple status-change records.",
+          "Required, not collected: decision-audit round-trip results containing operator and time.",
+          "Required, not collected: case-association checks and an explicit record that ASM-9a6355f5b670 remains unapproved."
+        ],
+        "boundary_rationale": "Status history and decision audit share case association, operator attribution, time, and inspection needs. Recording these facts is independent of deciding whether a particular approval is permitted. Final workflow vocabulary remains a non-blocking gap for generic recording. [SRC-893594c23f0b, SRC-3d1eefac22e5]"
+      },
+      {
+        "task_id": "N03",
+        "objective": "Isolate the unresolved approval-policy branch and its decision recording. Final behavior is blocked by ISS-496d17ef02d0 and ISS-e1a74fc08855. Preserve both contradictory rules; do not assume an invoice-check method or that invoice retrieval constitutes verification. [SRC-3d1eefac22e5, SRC-893594c23f0b]",
+        "requirement_ids": [
+          "REQ-d5405fcf4ac8",
+          "REQ-043524c25e5a"
+        ],
+        "depends_on": [
+          "N01",
+          "N02"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic",
+        "inputs": [
+          "One local case and its invoice-presence information.",
+          "Invoice-check evidence in a format to be defined through ISS-e1a74fc08855; no verification method is assumed.",
+          "A documented resolution of ISS-496d17ef02d0 specifying treatment of invoice-less requests.",
+          "Responsible operator and time for any recorded decision."
+        ],
+        "outputs": [
+          "A proposed approval-evaluation contract retaining both conflicting source statements.",
+          "After issue resolution only, a locally evaluated result under the resolved rules and its decision-audit record.",
+          "Until resolution, an explicit indication that approval-policy acceptance remains blocked."
+        ],
+        "interfaces": [
+          "Proposed internal evaluate_approval operation whose final policy contract remains unresolved.",
+          "Proposed invoice-check evidence input boundary; invoice lookup alone does not satisfy it.",
+          "N02 decision-recording interface for recording resulting decisions."
+        ],
+        "components": [
+          "vendor_return_desk/approval_policy.py",
+          "vendor_return_desk/invoice_check_evidence.py"
+        ],
+        "tools": [
+          "Future-only-tooling-proposal"
+        ],
+        "permissions": [
+          "Planning only: execution_authorized=false. No return approval or policy deployment is authorized.",
+          "Neither the contradictory requirements nor their inclusion in this plan supplies a resolved approval policy."
+        ],
+        "external_effects": [],
+        "completion_conditions": [
+          "Full completion remains blocked until ISS-496d17ef02d0 and ISS-e1a74fc08855 have documented resolutions.",
+          "Before resolution, planning artifacts retain both conflicting rules without selecting precedence.",
+          "After resolution, an acceptance matrix specifies expected behavior for invoice absent, invoice present but unchecked, and invoice checked with each defined result.",
+          "Evaluation and audit results match that resolved matrix.",
+          "Invoice retrieval is not treated as completed verification unless the resolved check criteria explicitly establish that relationship.",
+          "Approval evaluation neither issues refunds nor sends partner messages."
+        ],
+        "verification_evidence": [
+          "Required, not collected: traceable resolutions for the contradiction and invoice-check criteria.",
+          "Required, not collected: an acceptance matrix derived from those resolutions.",
+          "Required, not collected: local evaluation and decision-audit results for each matrix branch.",
+          "No passing approval-policy verification is claimed while either blocking issue remains unresolved."
+        ],
+        "boundary_rationale": "These two requirements govern the same approval decision and directly contradict one another for invoice-less requests. Isolating them preserves the conflict while leaving intake, generic history, and response preparation available. No dependency on a particular invoice-check implementation is added before that method is defined. [SRC-3d1eefac22e5, SRC-893594c23f0b]"
+      },
+      {
+        "task_id": "N04",
+        "objective": "Propose local partner-response preparation independently of approval decisions and live integration. Generic preparation can proceed; one-business-day acceptance remains blocked by ISS-2afa4897bcb8. Preparing a response grants no sending authorization. [SRC-3eca9a83bb88]",
+        "requirement_ids": [
+          "REQ-3a2f2898bf08"
+        ],
+        "depends_on": [
+          "N01"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic",
+        "inputs": [
+          "One saved local case and staff-supplied response content.",
+          "For timing acceptance, a clarified clock trigger, timezone, business calendar, and definition of prepared.",
+          "Local fixture times for evaluating the clarified timing rule; no environment timezone is assumed to be the business timezone."
+        ],
+        "outputs": [
+          "A locally prepared response associated with the case.",
+          "After timing clarification, an observable preparation result that can be compared with the one-business-day target.",
+          "No transmitted message or implied sending authorization."
+        ],
+        "interfaces": [
+          "Proposed internal prepare_response operation.",
+          "Proposed business-time evaluation contract, unresolved under ISS-2afa4897bcb8.",
+          "Proposed response output usable by review and authorization functionality without requiring a delivery transport."
+        ],
+        "components": [
+          "vendor_return_desk/response_preparation.py",
+          "vendor_return_desk/business_time.py"
+        ],
+        "tools": [
+          "Future-only-tooling-proposal"
+        ],
+        "permissions": [
+          "Planning only: execution_authorized=false. No response creation against operational data or transmission is authorized.",
+          "Preparing a response does not satisfy the separate human review and authorization requirement."
+        ],
+        "external_effects": [],
+        "completion_conditions": [
+          "A fixture case can produce a locally prepared response containing the supplied content and correct case association.",
+          "Generic preparation works without approval-policy evaluation or live partner access.",
+          "Full timing acceptance remains blocked until ISS-2afa4897bcb8 is resolved.",
+          "After clarification, boundary fixtures at and beyond the defined one-business-day limit are classified according to the agreed timing rule.",
+          "Response preparation makes no external call and sends no message."
+        ],
+        "verification_evidence": [
+          "Required, not collected: local response-content and case-association results.",
+          "Required, not collected: isolation results with approval evaluation and external access unavailable.",
+          "Required, not collected: timing-definition resolution and corresponding business-day boundary results.",
+          "Generic preparation evidence must not be reported as proof that the unresolved timing target is met."
+        ],
+        "boundary_rationale": "Preparing a response is a local capability separate from deciding a return and authorizing communication. The undefined business-day calculation blocks timing acceptance, while generic preparation remains independently available. No automatic content generation, delivery channel, or calendar service is assumed. [SRC-3eca9a83bb88]"
+      },
+      {
+        "task_id": "N05",
+        "objective": "Propose local review and authorization recording and an authorization gate applicable to any future message-sending path. This work can proceed independently of response-timing clarification and does not implement or perform transmission. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]",
+        "requirement_ids": [
+          "REQ-11a8bbfde1c8"
+        ],
+        "depends_on": [
+          "N01"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic",
+        "inputs": [
+          "One case-associated message supplied for local review.",
+          "Evidence of human review and authorization for that message; the evidence representation is proposed, not customer-approved.",
+          "Fixture combinations with review and authorization present or absent."
+        ],
+        "outputs": [
+          "A proposed local record of review and authorization.",
+          "A local gate result indicating whether the required review and authorization evidence is present.",
+          "No transmission, delivery confirmation, or execution authorization."
+        ],
+        "interfaces": [
+          "Proposed internal record_review and record_authorization operations.",
+          "Proposed internal check_message_authorization operation for any future sending path.",
+          "No external messaging interface is included; transport and recipient-selection behavior remain unspecified."
+        ],
+        "components": [
+          "vendor_return_desk/message_review.py",
+          "vendor_return_desk/message_authorization.py"
+        ],
+        "tools": [
+          "Future-only-tooling-proposal"
+        ],
+        "permissions": [
+          "Planning only: execution_authorized=false. No message sending is authorized.",
+          "Any future transmission requires human review and authorization for that message; a requirement or test fixture is not such authorization.",
+          "The mechanism for establishing a person's authority to authorize messages remains unspecified."
+        ],
+        "external_effects": [],
+        "completion_conditions": [
+          "Across the four present-or-absent combinations of review and authorization evidence, the gate rejects every combination missing either prerequisite.",
+          "A gate result with both prerequisites present remains a local eligibility result and does not transmit a message.",
+          "Review evidence for one fixture message is not accepted as evidence for a different fixture message.",
+          "The gate can be verified without a resolved business-day calendar, approval policy, or external messaging service."
+        ],
+        "verification_evidence": [
+          "Required, not collected: a four-combination gate-result matrix.",
+          "Required, not collected: message-association checks for review and authorization evidence.",
+          "Required, not collected: isolation results demonstrating that gate evaluation produces no external call.",
+          "These local results would not establish end-to-end enforcement in a future, unspecified sending implementation."
+        ],
+        "boundary_rationale": "The source requires a human authorization prerequisite but does not specify a delivery channel. A local review record and gate provide a bounded proposed capability without inventing or performing message transmission. Its acceptance does not depend on response-timing clarification. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]"
+      },
+      {
+        "task_id": "N06",
+        "objective": "Plan the external original-invoice lookup operation. Vendor-specific completion and live acceptance are blocked by ISS-88929f59ad66 and ISS-2a833aba0f4f. Do not perform the lookup during planning or treat a retrieved invoice as a completed approval check. [SRC-b7f34880eb24, SRC-3d1eefac22e5]",
+        "requirement_ids": [
+          "REQ-e2ddda14ac9d"
+        ],
+        "depends_on": [
+          "N01"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [
+          "Unavailable-to-this-plan-and-unselected-by-source-status"
+        ],
+        "operation_kind": "external_operation",
+        "inputs": [
+          "One local case and its invoice reference, with vendor-specific lookup identifiers to be defined.",
+          "A selected partner-system interface and documented invoice mapping; unavailable.",
+          "Authorized read access and explicit execution authorization; not supplied."
+        ],
+        "outputs": [
+          "A proposed vendor-independent invoice-lookup contract.",
+          "If separately authorized and implemented later, the corresponding original-invoice data or an explicit lookup outcome defined by the selected interface.",
+          "No automatic approval or assertion that the invoice has passed verification."
+        ],
+        "interfaces": [
+          "Proposed internal lookup_original_invoice operation.",
+          "Future vendor-specific read interface; protocol, endpoint, authentication mechanism, and mapping remain unspecified.",
+          "A separate invoice-check evidence boundary whose criteria are not established by lookup success."
+        ],
+        "components": [
+          "vendor_return_desk/integrations/invoice_lookup.py",
+          "vendor_return_desk/integrations/invoice_contracts.py"
+        ],
+        "tools": [
+          "Future-only-tooling-proposal",
+          "For-net-new-live-lookup-only"
+        ],
+        "permissions": [
+          "Explicit permission to access the selected partner system and read the relevant invoice data is required; no authorized account has been supplied.",
+          "Explicit execution authorization for a live lookup is required; execution_authorized=false.",
+          "This plan grants no permission to retrieve, expose, or reuse credentials."
+        ],
+        "external_effects": [
+          "If separately authorized and executed later, reads original-invoice information from the partner case system.",
+          "No external operation is performed in this planning result."
+        ],
+        "completion_conditions": [
+          "Full integration completion remains blocked by ISS-88929f59ad66 and ISS-2a833aba0f4f.",
+          "The selected interface defines lookup identifiers, invoice-field mapping, and observable lookup outcomes before vendor-specific acceptance.",
+          "Contract fixtures map one case's invoice reference to its corresponding invoice without marking the invoice verified or approving the return.",
+          "Only after separate authorization, live acceptance demonstrates retrieval through the selected interface using approved read access.",
+          "Local intake saving and retrieval continue to work when lookup is unavailable."
+        ],
+        "verification_evidence": [
+          "Required, not collected: vendor selection, interface documentation, and invoice mapping.",
+          "Required, not collected: evidence of appropriate read permission and separate execution authorization before any live check.",
+          "Required, not collected: local contract-fixture results, clearly distinguished from live integration evidence.",
+          "Required, not collected: an authorized live lookup result and an outage-isolation result.",
+          "No live verification is claimed."
+        ],
+        "boundary_rationale": "Invoice retrieval is an external read with distinct vendor and authorization prerequisites. It is separated from local intake and from the unresolved business meaning of checking an invoice. The required_resources marker is preserved exactly and is not treated as an available resource. [SRC-b7f34880eb24, SRC-3d1eefac22e5, SRC-f2320189bfc9]"
+      },
+      {
+        "task_id": "N07",
+        "objective": "Plan external saving of recorded case outcomes. Vendor-specific completion and live acceptance are blocked by ISS-88929f59ad66 and ISS-2a833aba0f4f; final recovery behavior is blocked by ISS-4cba0e6b0e15. Do not perform writes or select automatic retry behavior. Recording non-approval decisions does not depend on resolving approval policy. [SRC-b7f34880eb24, SRC-893594c23f0b, SRC-f2320189bfc9]",
+        "requirement_ids": [
+          "REQ-8dadd81a1019"
+        ],
+        "depends_on": [
+          "N01",
+          "N02"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [
+          "Unavailable-to-this-plan-and-unselected-by-source-status"
+        ],
+        "operation_kind": "external_operation",
+        "inputs": [
+          "One existing local case and one recorded case outcome.",
+          "The corresponding external-case identifier and vendor outcome mapping, both to be defined.",
+          "A documented recovery policy addressing failed and uncertain writes; unresolved under ISS-4cba0e6b0e15.",
+          "Authorized outcome-write access and explicit execution authorization; not supplied.",
+          "For an approval outcome, a decision consistent with resolved approval rules; this increment does not resolve or bypass those rules."
+        ],
+        "outputs": [
+          "A proposed external outcome-write contract.",
+          "If separately authorized and implemented later, an outcome saved to the corresponding partner case.",
+          "An observable write result using the selected vendor's documented semantics; success is not assumed for an uncertain result."
+        ],
+        "interfaces": [
+          "N01 case-retrieval and N02 decision-record interfaces.",
+          "Proposed internal save_partner_outcome operation.",
+          "Future vendor-specific outcome-write interface; protocol, identifiers, fields, and result mapping remain unspecified.",
+          "Recovery handling boundary whose manual-versus-automatic behavior remains undecided."
+        ],
+        "components": [
+          "vendor_return_desk/integrations/outcome_write.py",
+          "vendor_return_desk/integrations/outcome_mapping.py",
+          "vendor_return_desk/integrations/outcome_recovery.py"
+        ],
+        "tools": [
+          "Future-only-tooling-proposal",
+          "For-live-writes-only"
+        ],
+        "permissions": [
+          "Explicit permission to modify the relevant partner case outcomes is required; no authorized account with write permission has been supplied.",
+          "Explicit execution authorization for external writes and any recovery attempts is required; execution_authorized=false.",
+          "Outcome-write permission does not authorize refunds, partner messages, or unresolved return approvals."
+        ],
+        "external_effects": [
+          "If separately authorized and executed later, modifies the outcome of a corresponding case in the partner system.",
+          "An additional recovery write could repeat an external effect; no retry policy is selected or executed here.",
+          "No external write is performed in this planning result."
+        ],
+        "completion_conditions": [
+          "Full completion remains blocked by ISS-88929f59ad66, ISS-2a833aba0f4f, and ISS-4cba0e6b0e15.",
+          "The selected interface defines external-case association, outcome mapping, write-result interpretation, and recovery behavior.",
+          "Local contract fixtures map a recorded outcome to the intended external case and expected vendor representation.",
+          "After recovery-policy resolution, fixtures for failed and uncertain writes match that policy without silently assuming success or choosing automatic retries.",
+          "Only after separate authorization, live acceptance demonstrates that the intended outcome is saved to the intended external case.",
+          "External unavailability does not prevent local intake saving, later review, or generic decision recording.",
+          "Outcome saving does not issue refunds or send messages."
+        ],
+        "verification_evidence": [
+          "Required, not collected: vendor interface and outcome-mapping documentation.",
+          "Required, not collected: resolution of recovery behavior, including uncertain write results.",
+          "Required, not collected: evidence of appropriate write permission and separate execution authorization.",
+          "Required, not collected: local mapping and recovery-fixture results, distinguished from live evidence.",
+          "Required, not collected: authorized live write confirmation and local outage-isolation results.",
+          "No live write or recovery verification is claimed."
+        ],
+        "boundary_rationale": "Saving an outcome is an external mutation with different permissions and recovery risks from invoice lookup. It consumes recorded decisions without requiring every decision to be an approval. Integration and recovery blockers stay within this boundary and do not block local case handling. The required_resources marker is preserved exactly, without asserting resource availability. [SRC-b7f34880eb24, SRC-893594c23f0b, SRC-f2320189bfc9]"
+      }
+    ]
+  },
+  "validation": {
+    "order": [
+      "N01",
+      "N02",
+      "N04",
+      "N05",
+      "N06",
+      "N03",
+      "N07"
+    ],
+    "blockers": {
+      "N01": [],
+      "N02": [
+        "dependency:N01"
+      ],
+      "N04": [
+        "dependency:N01",
+        "specification:ISS-2afa4897bcb8"
+      ],
+      "N05": [
+        "dependency:N01"
+      ],
+      "N06": [
+        "authorization",
+        "dependency:N01",
+        "resource:Unavailable-to-this-plan-and-unselected-by-source-status",
+        "specification:ISS-2a833aba0f4f",
+        "specification:ISS-88929f59ad66"
+      ],
+      "N03": [
+        "dependency:N01",
+        "dependency:N02",
+        "specification:ISS-496d17ef02d0",
+        "specification:ISS-e1a74fc08855"
+      ],
+      "N07": [
+        "authorization",
+        "dependency:N01",
+        "dependency:N02",
+        "resource:Unavailable-to-this-plan-and-unselected-by-source-status",
+        "specification:ISS-2a833aba0f4f",
+        "specification:ISS-4cba0e6b0e15",
+        "specification:ISS-88929f59ad66"
+      ]
+    },
+    "ready": [
+      "N01"
+    ],
+    "completed": [],
+    "coverage": [
+      "REQ-03c0c5f54c14",
+      "REQ-043524c25e5a",
+      "REQ-11a8bbfde1c8",
+      "REQ-3a2f2898bf08",
+      "REQ-663f2a265eb0",
+      "REQ-8dadd81a1019",
+      "REQ-9c1a215bb727",
+      "REQ-9ebf6ed4706b",
+      "REQ-b859f4e02365",
+      "REQ-d5405fcf4ac8",
+      "REQ-e2ddda14ac9d",
+      "REQ-e8499cef13e3"
+    ],
+    "execution_authorized": false,
+    "states": {
+      "N01": "ready",
+      "N02": "dependency_blocked",
+      "N04": "specification_blocked",
+      "N05": "dependency_blocked",
+      "N06": "specification_blocked",
+      "N03": "specification_blocked",
+      "N07": "specification_blocked"
+    },
+    "first_actionable": "N01",
+    "readiness_meaning": "Ready to prepare protected tests and request execution authorization, not permission to run a Coder."
+  }
+}

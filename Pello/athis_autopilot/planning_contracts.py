@@ -2,6 +2,7 @@
 from typing import Literal
 from pydantic import Field
 from .messages import Message, Identifier, Text
+from .pipeline_contracts import relative_path
 
 
 class WorkNode(Message):
@@ -81,3 +82,46 @@ def validate_architecture(proposal, analysis, *, available_resources=(), complet
         if not causes and task_id not in completed:ready.append(task_id)
     return {'order':order,'blockers':blockers,'ready':ready,'completed':sorted(set(completed)&nodes.keys()),
             'coverage':sorted(coverage),'execution_authorized':False}
+
+
+class FunctionalIncrement(WorkNode):
+    inputs: list[Text] = Field(min_length=1,max_length=12)
+    outputs: list[Text] = Field(min_length=1,max_length=12)
+    interfaces: list[Text] = Field(min_length=1,max_length=12)
+    components: list[Text] = Field(min_length=1,max_length=12)
+    tools: list[Identifier] = Field(min_length=1,max_length=12)
+    permissions: list[Text] = Field(max_length=12)
+    external_effects: list[Text] = Field(max_length=12)
+    completion_conditions: list[Text] = Field(min_length=1,max_length=12)
+    verification_evidence: list[Text] = Field(min_length=1,max_length=12)
+    boundary_rationale: Text
+
+
+class FunctionalIncrements(Message):
+    increments: list[FunctionalIncrement] = Field(min_length=1,max_length=8)
+
+
+def validate_increments(decomposition, architecture, analysis, *, completed=()):
+    graph=validate_architecture(architecture,analysis,completed=completed)
+    expected={n.task_id:n for n in architecture.nodes}
+    actual={n.task_id:n for n in decomposition.increments}
+    if actual.keys()!=expected.keys() or len(actual)!=len(decomposition.increments):
+        raise ValueError('Increment coverage/identity differs from the validated graph')
+    for key,inc in actual.items():
+        if inc.model_dump(include=set(WorkNode.model_fields))!=expected[key].model_dump():
+            raise ValueError('Increment silently changes architecture, references or dependencies')
+        for component in inc.components: relative_path(component)
+        if not set(inc.tools)<={'python','git','external_api','n8n'}:
+            raise ValueError('Unknown tool capability: use the explicit project planning catalog')
+        if inc.operation_kind=='external_operation' and (not inc.permissions or not inc.external_effects):
+            raise ValueError('External operations require explicit effects and permission requirements')
+        if inc.operation_kind=='local_logic' and inc.external_effects:
+            raise ValueError('Local logic cannot declare external operations')
+    states={}
+    for key in graph['order']:
+        causes=graph['blockers'][key]
+        states[key]=('completed' if key in completed else 'specification_blocked' if any(c.startswith('specification:') for c in causes)
+            else 'authorization_blocked' if 'authorization' in causes else 'resource_blocked' if any(c.startswith('resource:') for c in causes)
+            else 'dependency_blocked' if causes else 'ready')
+    return {**graph,'states':states,'first_actionable':next(iter(graph['ready']),None),
+        'readiness_meaning':'Ready to prepare protected tests and request execution authorization, not permission to run a Coder.'}

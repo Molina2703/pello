@@ -1,0 +1,14 @@
+{
+  "failure": "Placeholder tooling declarations accepted by the validator",
+  "category": "planning_contract",
+  "severity": "localized",
+  "progress": "Graph, source references and blockers remain valid",
+  "strategy": "Add catalog validation and ask the same Planner configuration for a corrected append-only revision",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "role": "planner",
+  "escalation": false,
+  "coding_model_escalation": false,
+  "protected_criteria_unchanged": true,
+  "additional_regressions": 3
+}

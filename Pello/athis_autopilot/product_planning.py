@@ -681,6 +681,41 @@ class ProductPlanningCore(Bridge):
         self._ensure_json_artifact(path,result)
         return result
 
+    def planning_stage(self, project_id: str, name: str):
+        if name not in ('architecture','increments','contracts','models'):
+            raise ValueError('Unknown planning stage')
+        self.planner_input(project_id)
+        version=self.version_row(project_id)
+        path=self.folder(project_id)/'evidence'/f'version-{version["version"]}'/'planning'/(name+'.json')
+        pointer=path.with_name(name+'-current.json')
+        if pointer.exists():
+            revision=json.loads(pointer.read_text(encoding='utf-8'))['revision']
+            if type(revision) is not int or not 1<=revision<=3: raise CodexBlocked('Invalid planning revision pointer')
+            path=path.with_name(f'{name}-r{revision}.json')
+        if not path.is_file(): raise CodexBlocked('Required planning stage is missing: '+name)
+        return json.loads(path.read_text(encoding='utf-8'))
+
+    def propose_increments(self, project_id: str, *, revision=1, feedback=None) -> dict:
+        from .planning_contracts import ArchitectureProposal,FunctionalIncrements,validate_increments
+        payload=self.planner_input(project_id)
+        if type(revision) is not int or not 1<=revision<=3 or (revision>1 and not feedback):
+            raise ValueError('A bounded corrective revision requires evidence-based feedback')
+        architecture=self.planning_stage(project_id,'architecture')['proposal']
+        payload['architecture']=architecture
+        payload['planning_objective']='Expand each validated work node into one coherent functional increment. Preserve EXACTLY all WorkNode fields including objective, requirement IDs, dependencies, optional dependencies, resources and operation_kind. Add bounded inputs, outputs, interfaces, safe relative Python component paths, tool requirements, permissions, external effects, measurable completion conditions, verification evidence and rationale for its functional boundary. Local logic must have no external effects. External operations require explicit permission requirements and effects. No operation is authorized or performed; source assumptions remain unapproved.'
+        version=self.version_row(project_id)
+        payload['tool_catalog']={'python':'Proposed local Python implementation/testing capability, including future authorized adapter code',
+            'git':'Local source inspection/checkpoint capability','external_api':'Declared integration interface; unavailable until selected and authorized',
+            'n8n':'Official n8n MCP capability declaration only; unavailable for this planning run'}
+        if feedback:payload['reviewer_feedback']=feedback
+        phase='plan-increments' if revision==1 else f'plan-increments-r{revision}'
+        draft,_=self._invoke(project_id,version['version'],phase,'planner',payload,FunctionalIncrements)
+        result={'proposal':draft.model_dump(mode='json'),'validation':validate_increments(draft,ArchitectureProposal.model_validate(architecture),validate_planning_input(payload['requirements']))}
+        path=self.folder(project_id)/'evidence'/f'version-{version["version"]}'/'planning'/f'increments-r{revision}.json'
+        self._ensure_json_artifact(path,result)
+        self._write_json(path.with_name('increments-current.json'),{'revision':revision})
+        return result
+
     def _invoke(self, project_id, version, phase, role, payload, output_model):
         project = self.project_row(project_id)
         version_row = self.version_row(project_id, version)

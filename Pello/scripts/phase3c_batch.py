@@ -75,7 +75,8 @@ def main():
                 'scope_constraints':['Planning only, no product implementation or external operations.',
                     'Prior accepted batches remain in place. Only this bounded diff is being accepted.',
                     'Protected acceptance transcript:\n'+(out/'protected-tests.log').read_text(encoding='utf-8'),
-                    'Actual integrated result (when available): '+((out/'live-architecture.json').read_text(encoding='utf-8') if (out/'live-architecture.json').exists() else 'Not applicable to this batch'),
+                    'Actual integrated results (when available; latest revision supersedes rejected output): '+json.dumps({p.name:json.loads(p.read_text(encoding='utf-8')) for p in out.glob('live-*.json') if '-r2' in p.stem or not list(out.glob(p.stem+'-r2.json'))},ensure_ascii=False),
+                    'Retained prior findings: '+json.dumps({p.name:json.loads(p.read_text(encoding='utf-8')) for p in out.glob('*-review.json')},ensure_ascii=False),
                     'No Planner reasoning is supplied. Engineering code inspected as data.']}
             (out/'review-input.json').write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8')
             verdict=core.review_engineering_increment(pid,args.review_id or batch,evidence=evidence)

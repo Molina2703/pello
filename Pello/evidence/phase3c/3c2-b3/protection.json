@@ -1,0 +1,9 @@
+{
+  "hashes": {
+    "tests/test_planning_increments.py": "a8c3dc974b1675e137b05106824731f7d4cdf64d6c3aecafac2b89fa029c7aa7",
+    "tests/test_planning_tool_requirements.py": "a4e0479651a9e2cd5d1c065e59735572671b4a0b7a31ef21c8360275b13efd85"
+  },
+  "suite_hash": "9b47bd76ef8c6f8eb242e59b5aa84549c90c199b5e92a7ecb9057a0e3bfb779e",
+  "controlled_revision": 2,
+  "reason": "Add regression for independent Reviewer placeholder-tool defect; existing eight checks unchanged"
+}
