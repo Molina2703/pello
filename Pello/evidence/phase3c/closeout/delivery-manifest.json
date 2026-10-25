@@ -1,0 +1,11 @@
+{
+  "implementation_head": "90ea13053fa31bf12b4031b45e5f5e620bc86331",
+  "files": {
+    "PELLO_PHASE3C2_REPORT.md": "44dbb31d670d1da4b162e659c3bf9781e3ff9d2511280b5aaec2b254241352aa",
+    "PELLO_PHASE3C_FINAL_REPORT.md": "edff60531d0396514cabbf5f84e0ba32c09b54824133620bc4f8c467219f2e9b",
+    "PHASE3C.md": "eac4ca5f40ca9a72811b2893a409b295f5aef73f74ab05537c4eca16a5c018ba",
+    "evidence/phase3c/closeout/state.json": "d3c6b4eea62379e8a1c7ab4645f951d62a9dee2751b38637846e21b8ec648cff",
+    "evidence/phase3c/closeout/planning-state.sqlite3": "dc48459e9343fbc912e5bf73b2fc50b51f26acf55ae53aaa9d57ade86c3ec8a0"
+  },
+  "snapshot_integrity_check": "ok"
+}

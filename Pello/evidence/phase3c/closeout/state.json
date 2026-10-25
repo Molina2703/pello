@@ -1,0 +1,744 @@
+{
+  "captured_at": "2026-10-25T18:14:54.242678+00:00",
+  "initial_head": "8e68f3309221d85fd89260e6059a301b3cc6d61f",
+  "implementation_head": "90ea13053fa31bf12b4031b45e5f5e620bc86331",
+  "branch": "codex/pello-phase3c",
+  "projects": [
+    {
+      "project_id": "phase3c-3c1-live",
+      "max_turns": 12,
+      "used_turns": 3,
+      "deadline": "2026-10-25T08:27:57+00:00",
+      "status": "ANALYSIS_ACCEPTED"
+    },
+    {
+      "project_id": "phase3c-eng-review",
+      "max_turns": 12,
+      "used_turns": 9,
+      "deadline": "2026-10-25T08:41:16+00:00",
+      "status": "NEW"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "max_turns": 12,
+      "used_turns": 8,
+      "deadline": "2026-10-25T21:14:29+00:00",
+      "status": "PLAN_ACCEPTED"
+    },
+    {
+      "project_id": "phase3c-c2-review",
+      "max_turns": 12,
+      "used_turns": 8,
+      "deadline": "2026-10-25T21:11:19+00:00",
+      "status": "NEW"
+    }
+  ],
+  "sdk_turns_consumed": 28,
+  "cumulative_limit": 30,
+  "remaining_turns": 2,
+  "continuation_turns": 14,
+  "sdk_operation_statuses": {
+    "COMPLETED": 28
+  },
+  "actual_profiles": {
+    "gpt-6.1-sol/high": 27,
+    "gpt-6-luna/medium": 1
+  },
+  "operations": [
+    {
+      "project": "phase3c-3c1-live",
+      "phase": "understand",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-25T07:28:09+00:00",
+      "modified": "2026-10-25T07:30:23+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "997c77cc2a8e89589ddf4dda476f204122e8b021a59a84cbcb72362878a7938b",
+      "response_sha256": "e4ea1737b6dae48d7243ea447804aef17b93fce3f7460ac92ad2a6fb08c8f1dc",
+      "thread_id": "01a171f5-be3c-7953-9649-48bad962f3fc",
+      "turn_id": "01a171f5-c080-7782-a382-d10cee5093d5"
+    },
+    {
+      "project": "phase3c-3c1-live",
+      "phase": "review-analysis",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T07:30:42+00:00",
+      "modified": "2026-10-25T07:31:30+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "ea612e77f0b5a3780b7200fc2c29ad310b127b82d0c52223aefeacad964d557e",
+      "response_sha256": "e6d7b84d34cc6b49844534966e3964d7d1d8f3f25d721d56fb2deaeaa0fd1941",
+      "thread_id": "01a171f8-1391-7542-b50a-d75674b18b44",
+      "turn_id": "01a171f8-150a-7ae1-a2ed-f0da19f505c5"
+    },
+    {
+      "project": "phase3c-3c1-live",
+      "phase": "review-analysis-r2",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T07:36:26+00:00",
+      "modified": "2026-10-25T07:36:41+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "4f0e2955d9603f3c3a35ece5184f2490441e010dd479ef061c5a374b69679608",
+      "response_sha256": "3b51bcc109aa02521c8070868bee3192647ff1657093ffa4352f290decb15c67",
+      "thread_id": "01a171f8-1391-7542-b50a-d75674b18b44",
+      "turn_id": "01a171fd-5776-7351-847c-cd366b2499fd"
+    },
+    {
+      "project": "phase3c-eng-review",
+      "phase": "engineering-review-3c1-contract-models",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T07:41:42+00:00",
+      "modified": "2026-10-25T07:42:42+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "778fd7e55074abaae96491d240f93b4def6bcb15ca9aafffa00ef3b6eab07716",
+      "response_sha256": "5370d56cc3c42f63b417577e4b1443dff7d82fb83a160ce0491678cb1b318068",
+      "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+      "turn_id": "01a17202-264a-7933-8f68-f2e2a58c9dad"
+    },
+    {
+      "project": "phase3c-eng-review",
+      "phase": "engineering-review-3c1-corrected-review",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T07:51:10+00:00",
+      "modified": "2026-10-25T07:51:53+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "2749cb7367f52d49954d27abffb712321da864284b2e93d83de2bd14e5f1944c",
+      "response_sha256": "26383192a52d3d2a6bef22959860499848b03c0f71cb2d7da319bc8bb0b8732c",
+      "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+      "turn_id": "01a1720a-d301-7380-ba44-8b6fa9badfc0"
+    },
+    {
+      "project": "phase3c-eng-review",
+      "phase": "engineering-review-3c1-corrected-review-r2",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T07:57:44+00:00",
+      "modified": "2026-10-25T07:59:43+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "2f0ffcb5bf882a839b96d6dafec224869faec90808b36a291533a946264bb1cb",
+      "response_sha256": "46716a7076a7e59a4373a4bfc86eada034602a175ac2520eee9a3db1735c70de",
+      "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+      "turn_id": "01a17210-d541-7ad0-a597-e76327eb9a2c"
+    },
+    {
+      "project": "phase3c-3c1-live-r2",
+      "phase": "understand",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-25T08:00:43+00:00",
+      "modified": "2026-10-25T08:03:07+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "8c11d1b570c9eec9361ea42595d908e5e0b0a4f6298ddbf0e0adcf014619468f",
+      "response_sha256": "57ba10b21b90fe49b5b6acb98516b29688dd4eb672c086b0c4151b47b86b4e6e",
+      "thread_id": "01a17213-8df0-7042-a62a-5326a652d693",
+      "turn_id": "01a17213-8f7f-7842-9396-1ba584624612"
+    },
+    {
+      "project": "phase3c-3c1-live-r2",
+      "phase": "review-analysis",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T08:04:05+00:00",
+      "modified": "2026-10-25T08:04:31+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "f7d2deada15ffd2a3dcd499dc8973f91cf58da65d5fab49fad4073c6becc6e6c",
+      "response_sha256": "ecbe1bf20ea0ef71d2c1c2ebdee590beb94c7d06eb1a87d118a3a00ec78178f4",
+      "thread_id": "01a17216-a3f7-7962-9f54-9d80b31aeac2",
+      "turn_id": "01a17216-a686-79e3-a4cf-ef3d812253ae"
+    },
+    {
+      "project": "phase3c-eng-review",
+      "phase": "engineering-review-3c1-understanding-review-r3",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T08:09:40+00:00",
+      "modified": "2026-10-25T08:11:08+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "6b578ba2c1e39b57e377fc6f9c6a4aba34d9e81246e37cfc30998ffc9547be0e",
+      "response_sha256": "8b391521b922d80f5eba04093ffb048fa98ef758419d8d44c253fe88b1911048",
+      "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+      "turn_id": "01a1721b-c0b0-75b1-885a-d583b3f91884"
+    },
+    {
+      "project": "phase3c-eng-review",
+      "phase": "engineering-review-3c1-understanding-review-r4",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T08:12:00+00:00",
+      "modified": "2026-10-25T08:12:50+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "82d47a38b790aff3c2eef146fb2df0bedd6a00dfb442876c0cc8b94303b60f0c",
+      "response_sha256": "7c828e290217c43fcdced515c0b16ca257cfeb9525215e2926d88a9645188db3",
+      "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+      "turn_id": "01a1721d-e1b5-7300-8835-e1cb140d6875"
+    },
+    {
+      "project": "phase3c-eng-review",
+      "phase": "engineering-review-3c1-lifecycle-safety-review",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T08:13:27+00:00",
+      "modified": "2026-10-25T08:15:07+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "a23f1cc3072738f1e1a221994f3339103a296d9b152678dd15e26134c0f07832",
+      "response_sha256": "70879c7dfd9bd8b465fd89663ecf79407ade9677c4ec8f2615e6615e262a7be6",
+      "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+      "turn_id": "01a1721f-373f-7c12-99eb-983c09029075"
+    },
+    {
+      "project": "phase3c-eng-review",
+      "phase": "engineering-review-3c1-lifecycle-safety-r2",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T08:23:43+00:00",
+      "modified": "2026-10-25T08:25:21+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "e5d91b8bc1007bd51e465301a300afaf5a29bbd92f7ce524620105c589b9e658",
+      "response_sha256": "1721f3c81c99ad252339ff345ac52cb34b46b9cc01f7d904350a70b6867aaabe",
+      "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+      "turn_id": "01a17228-9c93-7091-8a6f-c46fc6858254"
+    },
+    {
+      "project": "phase3c-eng-review",
+      "phase": "engineering-review-3c1-lifecycle-safety-r3",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T08:30:51+00:00",
+      "modified": "2026-10-25T08:31:42+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "00607ad751805be7773e11d5f3ec174b2fc107729a0f56da6da7bec88e02a7f8",
+      "response_sha256": "a6000e1f41627593dcc02e6e8327f686c2bab75c6d4c41d500a0cb97fefcd242",
+      "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+      "turn_id": "01a1722f-24fc-75f2-9060-246958d86232"
+    },
+    {
+      "project": "phase3c-eng-review",
+      "phase": "engineering-review-3c1-cli-integration-review",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T08:32:13+00:00",
+      "modified": "2026-10-25T08:33:31+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "dfb0145b3d59729363a321db9fffed563650031567510331cc0e0222e517cd23",
+      "response_sha256": "3d32c98f0e5bbaa42ee99adab7547e8a3b3f9b4e5ddccfcc1ed36a1ded7c917a",
+      "thread_id": "01a17202-249f-7973-8f16-48d44fcffc2a",
+      "turn_id": "01a17230-6618-7dd1-9383-01ddbba0b063"
+    },
+    {
+      "project": "phase3c-c2-review",
+      "phase": "engineering-review-3c2-b1",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T17:16:48+00:00",
+      "modified": "2026-10-25T17:18:33+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "ad6b78c99f648f953a903f3bc31194f08eacece4588ab6bbfd81a476ef9118b6",
+      "response_sha256": "3a9df0f921d6e94075a9314459ecf909107101c2fb1574013e0b15f56d4735fe",
+      "thread_id": "01a17410-a9c8-7bc2-8045-daa07c27e3de",
+      "turn_id": "01a17410-ac21-7010-8722-dd4c8f8eca5a"
+    },
+    {
+      "project": "phase3c-3c1-live-r2",
+      "phase": "plan-architecture",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-25T17:21:31+00:00",
+      "modified": "2026-10-25T17:23:30+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "2c775ed861fe103a2abb92aa50418677b81e4e9fdc4c38a413bb757765928ef2",
+      "response_sha256": "9f984b3307327c0d61b24c84cf06bf8553e018232b5cabffe20fbd727bf51301",
+      "thread_id": "01a17213-8df0-7042-a62a-5326a652d693",
+      "turn_id": "01a17414-feee-7b40-ac3e-c1a92e5e7307"
+    },
+    {
+      "project": "phase3c-c2-review",
+      "phase": "engineering-review-3c2-b2",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T17:24:17+00:00",
+      "modified": "2026-10-25T17:25:39+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "be5d810638b7822c74c864faabc5d53c099c7efc3c43e4ca11f33c95e040dd05",
+      "response_sha256": "f3d89b591b34d9910f1d15880e73e178d50a21c7a774c3659d8e07521add2212",
+      "thread_id": "01a17410-a9c8-7bc2-8045-daa07c27e3de",
+      "turn_id": "01a17417-880a-7490-9c9f-c3c5d219d3b4"
+    },
+    {
+      "project": "phase3c-3c1-live-r2",
+      "phase": "plan-increments",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-25T17:26:50+00:00",
+      "modified": "2026-10-25T17:29:35+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "9669828fc19fb97730fcf77bed8a87601bffbf8e17edb2d8f6102235cd56490e",
+      "response_sha256": "c4102f3986e6b5d0c3090e15e267bc1f15e8ee01b018e620b5f62be532a5ec13",
+      "thread_id": "01a17213-8df0-7042-a62a-5326a652d693",
+      "turn_id": "01a17419-d904-71b2-82eb-a0b2f70394fd"
+    },
+    {
+      "project": "phase3c-c2-review",
+      "phase": "engineering-review-3c2-b3",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T17:29:51+00:00",
+      "modified": "2026-10-25T17:31:00+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "66313b6b0ccf98ea13c1a684e32fc031cf519717b303e89a9b291784eab5614b",
+      "response_sha256": "776a07232f64f8eec21e5018cc1a27deada280271b0126f86c6488c5001767e5",
+      "thread_id": "01a17410-a9c8-7bc2-8045-daa07c27e3de",
+      "turn_id": "01a1741c-9b5d-7773-b3d5-6f825efc1454"
+    },
+    {
+      "project": "phase3c-3c1-live-r2",
+      "phase": "plan-increments-r2",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-25T17:32:31+00:00",
+      "modified": "2026-10-25T17:34:20+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "f57211143ebacbeb1b0528ad17bd5dc716a4c1a6eb383ba39542b402870e25f4",
+      "response_sha256": "000b97feb91dfec5e8b2b160aa83d67f11c601993c3c6896a67232a353da450f",
+      "thread_id": "01a17213-8df0-7042-a62a-5326a652d693",
+      "turn_id": "01a1741f-0d64-7470-88db-78e3223a5261"
+    },
+    {
+      "project": "phase3c-c2-review",
+      "phase": "engineering-review-3c2-b3-r2",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T17:34:32+00:00",
+      "modified": "2026-10-25T17:35:29+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "0362db56a94af9bf74e0bb7b1b1f64c7db8e825ad354a568840f5635c40c705e",
+      "response_sha256": "2ccb99c92eb51608eec95f64380ba171ae453f0ff9d820c8f0d84ffd7436996b",
+      "thread_id": "01a17410-a9c8-7bc2-8045-daa07c27e3de",
+      "turn_id": "01a17420-e740-77f0-aecc-dc20a399f48e"
+    },
+    {
+      "project": "phase3c-3c1-live-r2",
+      "phase": "plan-contracts",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-25T17:37:28+00:00",
+      "modified": "2026-10-25T17:40:32+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "4c36d79cda16c748659143b51f40cf2c2bb88e4c7202ad995853bc9af544f976",
+      "response_sha256": "5a84eb3abcbf4c20bc536a03e2934cfec642ae34a321aeb5251d781e945253a1",
+      "thread_id": "01a17213-8df0-7042-a62a-5326a652d693",
+      "turn_id": "01a17423-96c3-7603-9115-afe890c43b4b"
+    },
+    {
+      "project": "phase3c-c2-review",
+      "phase": "engineering-review-3c2-b4",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T17:40:44+00:00",
+      "modified": "2026-10-25T17:43:04+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "b57b9f908596722eb12eab028ca021ffcb34f87495b7ff045570b5968834dc7e",
+      "response_sha256": "ef579f897e0586c6db47cdd427c60ba810d24a46bc618d521287c509f2f7756b",
+      "thread_id": "01a17410-a9c8-7bc2-8045-daa07c27e3de",
+      "turn_id": "01a17426-959f-7981-be30-efb251ff1611"
+    },
+    {
+      "project": "phase3c-3c1-live-r2",
+      "phase": "plan-models",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-25T17:45:09+00:00",
+      "modified": "2026-10-25T17:46:02+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "7993aa51ef58eb29e1702bebb9b60efa87e773135fa3f3f96205ca2cd7381695",
+      "response_sha256": "0bf4312cd8bdc61ad4c5f6809aef65eb851d9a59475865ddc3b2be0d7fd39a63",
+      "thread_id": "01a17213-8df0-7042-a62a-5326a652d693",
+      "turn_id": "01a1742a-9f7b-7ad2-8b72-386cecbba27d"
+    },
+    {
+      "project": "phase3c-3c1-live-r2",
+      "phase": "profile-capability-probe",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-25T17:46:02+00:00",
+      "modified": "2026-10-25T17:46:05+00:00",
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "input_sha256": "d29ebf323f13cca231260504b0fb8aa27512e659051d9e731b1ee79b6bb95f1f",
+      "response_sha256": "df169572040b47147a730534d71ffcce6babceb3ad7f67dc8cf5f29bf8583ab0",
+      "thread_id": "01a17213-8df0-7042-a62a-5326a652d693",
+      "turn_id": "01a1742b-63bf-7f31-84d7-aad0a0e127a9"
+    },
+    {
+      "project": "phase3c-c2-review",
+      "phase": "engineering-review-3c2-b5",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T17:46:16+00:00",
+      "modified": "2026-10-25T17:49:57+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "b919416b191d66d8fbd4d4e0543dafa12dd65d61644156b24bfe3fe00b93adbf",
+      "response_sha256": "7d80449bd4586f8ef0a39dbdc4b0af1fd3a59158c30ccddab0aa8c507d8be228",
+      "thread_id": "01a17410-a9c8-7bc2-8045-daa07c27e3de",
+      "turn_id": "01a1742b-a4ed-7e61-906b-e67097ebfa8d"
+    },
+    {
+      "project": "phase3c-c2-review",
+      "phase": "engineering-review-3c2-b5-r2",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T17:52:39+00:00",
+      "modified": "2026-10-25T17:55:02+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "9f2608b4859fc68e982a84ef696dc25472489e334bc525098d4c9fafbd752f13",
+      "response_sha256": "2f32adda8a29221ca79c362c13aff304491b7c2017f7ee9d607e5f4e23c81e18",
+      "thread_id": "01a17410-a9c8-7bc2-8045-daa07c27e3de",
+      "turn_id": "01a17431-7f8c-7003-95bb-7487f64f2e8c"
+    },
+    {
+      "project": "phase3c-c2-review",
+      "phase": "engineering-review-3c2-b6",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-25T18:10:39+00:00",
+      "modified": "2026-10-25T18:13:04+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "input_sha256": "d07e16a9d783b886e9740db074c4ebf472c1f2425ce4e8f517e891a1b5d53569",
+      "response_sha256": "aed74e268fc24709b2983a3affc5a88fd2b858d6d29b05d2fdb5bf3557c3c510",
+      "thread_id": "01a17410-a9c8-7bc2-8045-daa07c27e3de",
+      "turn_id": "01a17441-fa33-7b41-aa42-2bdb8efb6d0a"
+    }
+  ],
+  "usage_latest_cumulative_per_thread": {
+    "01a171f5-be3c-7953-9649-48bad962f3fc": {
+      "last": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 13995,
+        "output_tokens": 5131,
+        "reasoning_output_tokens": 1034,
+        "total_tokens": 19126
+      },
+      "model_context_window": 475000,
+      "total": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 13995,
+        "output_tokens": 5131,
+        "reasoning_output_tokens": 1034,
+        "total_tokens": 19126
+      }
+    },
+    "01a171f8-1391-7542-b50a-d75674b18b44": {
+      "last": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 17536,
+        "input_tokens": 25329,
+        "output_tokens": 491,
+        "reasoning_output_tokens": 185,
+        "total_tokens": 25820
+      },
+      "model_context_window": 475000,
+      "total": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 17536,
+        "input_tokens": 43081,
+        "output_tokens": 2146,
+        "reasoning_output_tokens": 1513,
+        "total_tokens": 45227
+      }
+    },
+    "01a17202-249f-7973-8f16-48d44fcffc2a": {
+      "last": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 105216,
+        "input_tokens": 120536,
+        "output_tokens": 1739,
+        "reasoning_output_tokens": 1464,
+        "total_tokens": 122275
+      },
+      "model_context_window": 475000,
+      "total": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 678656,
+        "input_tokens": 801738,
+        "output_tokens": 16423,
+        "reasoning_output_tokens": 11236,
+        "total_tokens": 818161
+      }
+    },
+    "01a17213-8df0-7042-a62a-5326a652d693": {
+      "last": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 89390,
+        "output_tokens": 16,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 89406
+      },
+      "model_context_window": 258400,
+      "total": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 37888,
+        "input_tokens": 371903,
+        "output_tokens": 32779,
+        "reasoning_output_tokens": 6047,
+        "total_tokens": 404682
+      }
+    },
+    "01a17216-a3f7-7962-9f54-9d80b31aeac2": {
+      "last": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 18873,
+        "output_tokens": 525,
+        "reasoning_output_tokens": 251,
+        "total_tokens": 19398
+      },
+      "model_context_window": 475000,
+      "total": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 18873,
+        "output_tokens": 525,
+        "reasoning_output_tokens": 251,
+        "total_tokens": 19398
+      }
+    },
+    "01a17410-a9c8-7bc2-8045-daa07c27e3de": {
+      "last": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 184320,
+        "input_tokens": 184835,
+        "output_tokens": 409,
+        "reasoning_output_tokens": 283,
+        "total_tokens": 185244
+      },
+      "model_context_window": 475000,
+      "total": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 3395840,
+        "input_tokens": 3687622,
+        "output_tokens": 18459,
+        "reasoning_output_tokens": 8264,
+        "total_tokens": 3706081
+      }
+    }
+  },
+  "checkpoints": [
+    {
+      "project_id": "phase3c-3c1-live",
+      "version": 1,
+      "phase": "analyzed",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "1ffb1fd687a156288dc42c3e5de4da5529a42b73b5a9fa96e6e825af9ac61537",
+      "commit_sha": "6fd63ab36f78427761b9c7223ddd4c268d2f5ce2",
+      "created": "2026-10-25T07:30:23+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live",
+      "version": 1,
+      "phase": "analysis-accepted",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "59e8c1a607d161f53416f949a328a8232bcd67e87047fc0a4251701802ebf6ef",
+      "commit_sha": "a574565805fac4273898005857fd902705b9d996",
+      "created": "2026-10-25T07:31:31+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live",
+      "version": 1,
+      "phase": "analysis-correction-r2",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "84ba024d61fe1a054542e23913f2e9fdb320731026d38cd704c137d736b83697",
+      "commit_sha": "7dcc2f6ab3e9f3baf857e689e9da14efd5c91edf",
+      "created": "2026-10-25T07:36:18+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live",
+      "version": 1,
+      "phase": "analysis-accepted-r2",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "99532b04f05a3c304111620c69b70d302467163a4bb08910b6c0685fda833dbd",
+      "commit_sha": "da061177e631405f1325448b8250c8f7dd9ba3f9",
+      "created": "2026-10-25T07:36:42+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "analyzed",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "3f3faac6f17ef434ad1f0629212293a27e98dbd6f6308680f1090b9178ae29b6",
+      "commit_sha": "dbc97efb1beabc593f8e151aa8e34a27ad94496a",
+      "created": "2026-10-25T08:03:56+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "analysis-accepted",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "713c53c4531f1af39515baea0fbf0ddb27eae841436e5791389fead15bd1d116",
+      "commit_sha": "db0aa72a49db9218d0d310c66d17a8a9618d08ce",
+      "created": "2026-10-25T08:04:32+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "analysis-manifest-integrity-correction",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "095f079d801674c68de24adc9bd040dc703d8e485fd840874be89601892b13c1",
+      "commit_sha": "9c168b2f7f7e0b7b4fd2aa682c308794e766250a",
+      "created": "2026-10-25T08:33:59+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "3c2-b1",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "8dd56144b38f564be27478248b11f39bec6f8c93809d10619dc462f0188d4c3b",
+      "commit_sha": "a5238c13a829a26977e7206539b12e06daaecf9b",
+      "created": "2026-10-25T17:18:50+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "3c2-b2",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "c16c47f881c07a25040f1d1545be375d7b076b7fb19a3f7fe484db900482a120",
+      "commit_sha": "57dbbbef309de34ca034ca85f1ed6558c34c098c",
+      "created": "2026-10-25T17:26:05+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "3c2-b3",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "466319a989fd8f890a9f944c9bf1dc30b099dcbec28fbefcb7826405e87e8cca",
+      "commit_sha": "1b0335c77cc951dfe9172ec70fe409cc0fdec34a",
+      "created": "2026-10-25T17:36:15+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "3c2-b4",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "303544f18f936313bed498c43786bac322dfff948bd95c0ab3ab3d134f25c4e1",
+      "commit_sha": "e41e338c9efe85c6d3cf6fba488271fc4867a827",
+      "created": "2026-10-25T17:43:14+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "3c2-b5",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "a03c9d5832a320f46cdfaea81b6fab7593198cb63a2161e142a1c36fd73c80c0",
+      "commit_sha": "41e0ab60b12fcefcea9e96e7651bb76a32125118",
+      "created": "2026-10-25T17:55:14+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "plan-accepted",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "bdaa414038ba8d5ba2364a6b123596e9365ba670ef322b755ea62c1305e02f26",
+      "commit_sha": "e931fecf1966936dbc53f0f6514d2fb0de834f6a",
+      "created": "2026-10-25T18:13:13+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "3c2-b6",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "991e9f5abceaac59a2eaca7f7853f25bc752f954e3ba63ae413cce394d696c2b",
+      "commit_sha": "5c4c5f908b68f299c3e838f2a8373bbb514e4494",
+      "created": "2026-10-25T18:13:15+00:00"
+    }
+  ],
+  "regression": {
+    "command": [
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "exit_code": 0,
+    "tests_run": 217,
+    "elapsed_seconds": 266.735,
+    "passed": true
+  },
+  "historical_files_total": 1493,
+  "historical_files_matching": 1493,
+  "historical_discrepancies": [],
+  "protected_suites": [
+    {
+      "batch": "3c2-b1",
+      "suite_hash": "47179ffe5948c85bd9cc0a970ba76314732831e269f4a70c71423638bfa49324",
+      "intact": true
+    },
+    {
+      "batch": "3c2-b2",
+      "suite_hash": "91d4bce4950cbb1878592b738349324526b15caa46a1854654c19121f302c413",
+      "intact": true
+    },
+    {
+      "batch": "3c2-b3",
+      "suite_hash": "9b47bd76ef8c6f8eb242e59b5aa84549c90c199b5e92a7ecb9057a0e3bfb779e",
+      "intact": true
+    },
+    {
+      "batch": "3c2-b4",
+      "suite_hash": "6565b96385e26b37bba0702dd00999ac5d795f14c0f8a00e1ae56a82ddd6ea0e",
+      "intact": true
+    },
+    {
+      "batch": "3c2-b5",
+      "suite_hash": "284bdaa6715705c8ed4bd97912483bc2cef4470522f4256b1827bc7d743d9d3f",
+      "intact": true
+    },
+    {
+      "batch": "3c2-b6",
+      "suite_hash": "2161620f14c3ce97145fabbf0b599dc30bf8447f883002d228fd060d68c481cc",
+      "intact": true
+    }
+  ],
+  "external_operations": 0,
+  "n8n_mcp_calls": 0,
+  "production_http_requests": 0,
+  "phase3c2": "ACCEPTED",
+  "phase3c3": "NOT STARTED",
+  "overall_phase3c": "PARTIAL",
+  "phase3c3_gate": "Two remaining turns cannot cover independent fixture preparation, the seven-invocation planning/review path, and a correction reserve.",
+  "sqlite_snapshot_sha256": "dc48459e9343fbc912e5bf73b2fc50b51f26acf55ae53aaa9d57ade86c3ec8a0"
+}
