@@ -32,7 +32,7 @@ oldmatch=hashlib.sha256(json.dumps(old,sort_keys=True).encode()).hexdigest()==in
 new_protection=[]
 for protection_path in [out/'isolation/protection.json',out/'isolation/profile-protection.json',out/'context-correction/protection.json',out/'authorization-correction/protection.json',out/'source-context-correction/protection.json',out/'architecture-contract-correction/protection.json']:
     value=json.loads(protection_path.read_text());new_protection += [{'file':p,'matches':hashlib.sha256(Path(p).read_bytes()).hexdigest()==h} for p,h in value['hashes'].items()]
-objective_registration=json.loads((out/'objective-registration-v2.json').read_text());objective_intact=hashlib.sha256((out/'objective_checks.py').read_bytes()).hexdigest()==objective_registration['objective_script_sha256']
+objective_registration=json.loads((out/'objective-registration-e.json').read_text());objective_intact=hashlib.sha256((out/'objective_checks_e.py').read_bytes()).hexdigest()==objective_registration['objective_script_sha256']
 checkpoint_commits=[]
 for row in c.execute('select project_id,phase,commit_sha from pello_product_checkpoints'):
     workspace=Path('runtime/phase3c/projects')/row['project_id']/'workspace'
@@ -45,5 +45,5 @@ state={'historical_hashes_checked':len(baseline),'historical_hashes_matching':le
     'sdk_turns_consumed':c.execute('select count(*) from pello_product_operations').fetchone()[0],
     'original_projects_preserved':all(dict(c.execute('select * from pello_product_projects where project_id=?',(p['project_id'],)).fetchone())==p for p in initial['old_projects'])}
 (out/'final-integrity.json').write_text(json.dumps(state,indent=2));print(json.dumps({k:v for k,v in state.items() if k!='checkpoint_commits'}),flush=True)
-assert not bad and oldmatch and all(x['matches'] for x in new_protection) and objective_intact and state['sqlite_integrity']=='ok' and all(x['commit_present'] for x in checkpoint_commits) and state['original_projects_preserved']
+assert not bad and oldmatch and all(x['matches'] for x in new_protection) and objective_intact and state['sqlite_integrity']=='ok' and all(x['commit_present'] for x in checkpoint_commits) and state['original_projects_preserved'] and not state['stop_set']
 c.close()

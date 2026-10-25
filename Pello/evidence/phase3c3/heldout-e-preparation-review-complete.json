@@ -1,0 +1,16 @@
+{
+  "verdict": "PASS",
+  "scope": "correct",
+  "correctness": "adequate",
+  "test_evidence": "pass",
+  "safety_and_preservation": "adequate",
+  "findings": [
+    "StackProof presents a realistic, nontrivial compliance problem with domain semantics distinct from the described prior demos.",
+    "The rubric covers mandatory capabilities, exclusions, unresolved NOx policy, independent work, authorization boundaries and durable evidence without prescribing architecture or storage technology.",
+    "All 26 critical criteria must pass; the minor criterion concerns organization only and cannot excuse missing mandatory behavior.",
+    "Independently reconstructed all 27 source anchors and confirmed their line references. The supplied specification independently hashes to the frozen SHA-256; the daily averaging example correctly yields 45.",
+    "Supplied native records show successful public access and denied private-root, exact-rubric and alias reads. Freeze records report matching rubric hashes and zero Planner rows; these private checks were not independently rerun.",
+    "The product brief supplies no architecture, graph, manual increments or execution authorization. Verification remains proposed work."
+  ],
+  "rationale": "The supplied specification and interpretation are sufficiently complete for the pre-Planner evaluation gate. Contradictions and unavailable integration details block only the affected outcomes, while meaningful local capabilities remain actionable. Recorded boundary evidence supports enforced isolation, with no material scope or interpretation defect identified."
+}
