@@ -1,0 +1,44 @@
+{
+  "project_id": "phase3b-qa-first",
+  "task_id": "PUBLISH",
+  "attempt": 1,
+  "passed": true,
+  "suites": [
+    {
+      "task_id": "DRAFT",
+      "passed": true,
+      "counts": {
+        "tests_executed": 5,
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0,
+        "materialized_integrity": true,
+        "successful": true
+      },
+      "expected_tests": 5,
+      "source_integrity": true,
+      "timed_out": false,
+      "reproduction": "\"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe\" -I \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\athis_autopilot\\verification_worker.py\" --workspace \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\supervised\\phase3b-qa-first\\workspace\" --suite \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\supervised\\phase3b-qa-first\\acceptance\\draft\" --result \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\supervised\\phase3b-qa-first\\evidence\\PUBLISH\\attempt-1\\verification\\DRAFT\\tests.json\"",
+      "evidence_directory": "evidence/PUBLISH/attempt-1/verification/DRAFT",
+      "diagnostics": ""
+    },
+    {
+      "task_id": "PUBLISH",
+      "passed": true,
+      "counts": {
+        "tests_executed": 1,
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "materialized_integrity": true,
+        "successful": true
+      },
+      "expected_tests": 1,
+      "source_integrity": true,
+      "timed_out": false,
+      "reproduction": "\"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe\" -I \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\athis_autopilot\\verification_worker.py\" --workspace \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\supervised\\phase3b-qa-first\\workspace\" --suite \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\supervised\\phase3b-qa-first\\acceptance\\published\" --result \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\supervised\\phase3b-qa-first\\evidence\\PUBLISH\\attempt-1\\verification\\PUBLISH\\tests.json\"",
+      "evidence_directory": "evidence/PUBLISH/attempt-1/verification/PUBLISH",
+      "diagnostics": ""
+    }
+  ]
+}

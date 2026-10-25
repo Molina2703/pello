@@ -1,0 +1,250 @@
+{
+  "stage": "COMPLETE",
+  "passed": true,
+  "http_cases": [
+    {
+      "name": "valid",
+      "payload": {
+        "request_id": "pello-3b-valid",
+        "value": 21,
+        "op": "double"
+      },
+      "expected_status": 200,
+      "expected_body": {
+        "request_id": "pello-3b-valid",
+        "status": "ok",
+        "result": 42
+      },
+      "status": 200,
+      "body": {
+        "request_id": "pello-3b-valid",
+        "status": "ok",
+        "result": 42
+      },
+      "passed": true
+    },
+    {
+      "name": "invalid-type",
+      "payload": {
+        "request_id": "pello-3b-invalid",
+        "value": "not-a-number",
+        "op": "double"
+      },
+      "expected_status": 400,
+      "expected_body": {
+        "request_id": "pello-3b-invalid",
+        "status": "invalid",
+        "error": "invalid_input"
+      },
+      "status": 400,
+      "body": {
+        "request_id": "pello-3b-invalid",
+        "status": "invalid",
+        "error": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "negative",
+      "payload": {
+        "request_id": "pello-3b-negative",
+        "value": -3,
+        "op": "double"
+      },
+      "expected_status": 200,
+      "expected_body": {
+        "request_id": "pello-3b-negative",
+        "status": "ok",
+        "result": -6
+      },
+      "status": 200,
+      "body": {
+        "request_id": "pello-3b-negative",
+        "status": "ok",
+        "result": -6
+      },
+      "passed": true
+    },
+    {
+      "name": "repeat-valid",
+      "payload": {
+        "request_id": "pello-3b-valid",
+        "value": 21,
+        "op": "double"
+      },
+      "expected_status": 200,
+      "expected_body": {
+        "request_id": "pello-3b-valid",
+        "status": "ok",
+        "result": 42
+      },
+      "status": 200,
+      "body": {
+        "request_id": "pello-3b-valid",
+        "status": "ok",
+        "result": 42
+      },
+      "passed": true
+    }
+  ],
+  "executions": [
+    {
+      "id": "7",
+      "workflow_id": "Tbuvwcxde8MEMYcJ",
+      "mode": "webhook",
+      "successful": true,
+      "case": "valid",
+      "input": {
+        "op": "double",
+        "request_id": "pello-3b-valid",
+        "value": 21
+      },
+      "output": {
+        "request_id": "pello-3b-valid",
+        "result": 42,
+        "status": "ok"
+      }
+    },
+    {
+      "id": "8",
+      "workflow_id": "Tbuvwcxde8MEMYcJ",
+      "mode": "webhook",
+      "successful": true,
+      "case": "invalid-type",
+      "input": {
+        "op": "double",
+        "request_id": "pello-3b-invalid",
+        "value": "not-a-number"
+      },
+      "output": {
+        "error": "invalid_input",
+        "request_id": "pello-3b-invalid",
+        "status": "invalid"
+      }
+    },
+    {
+      "id": "9",
+      "workflow_id": "Tbuvwcxde8MEMYcJ",
+      "mode": "webhook",
+      "successful": true,
+      "case": "negative",
+      "input": {
+        "op": "double",
+        "request_id": "pello-3b-negative",
+        "value": -3
+      },
+      "output": {
+        "request_id": "pello-3b-negative",
+        "result": -6,
+        "status": "ok"
+      }
+    },
+    {
+      "id": "10",
+      "workflow_id": "Tbuvwcxde8MEMYcJ",
+      "mode": "webhook",
+      "successful": true,
+      "case": "repeat-valid",
+      "input": {
+        "op": "double",
+        "request_id": "pello-3b-valid",
+        "value": 21
+      },
+      "output": {
+        "request_id": "pello-3b-valid",
+        "result": 42,
+        "status": "ok"
+      }
+    }
+  ],
+  "active_version": "851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7",
+  "checkpoints": [
+    {
+      "project_id": "phase3b-qa-first",
+      "task_id": "DRAFT",
+      "attempt": 2,
+      "parent_head": "22bdbd52f31ef00fa8bd0a4275f5b3540f3658cc",
+      "commit_sha": "8df481210e7a2692fdefe58a2851ee7ae51204ff",
+      "snapshot": "{\".gitignore\": \"01d8d0360f02a0c00e236a4eb2a1d8bdf83377acf442eaafad7a136bf14d6bb0\", \"PRODUCT.md\": \"6894ba4b9d9437a8cfce1c3578cc038e78674ed8c5ed5cfe89e988bcb63c3d17\", \"remote-draft.json\": \"f241c844182ebc1d9377c05393a922e6c2303d26b6939741cac76942a29ce116\", \"workflow.json\": \"3c56e2ecc53ce3e8b84a932b0f9594ea261d24f136a546bb839695e5fc6bd07f\"}",
+      "stage": "COMMITTED",
+      "created": "2026-10-25T01:40:26+00:00"
+    },
+    {
+      "project_id": "phase3b-qa-first",
+      "task_id": "PUBLISH",
+      "attempt": 1,
+      "parent_head": "8df481210e7a2692fdefe58a2851ee7ae51204ff",
+      "commit_sha": "83c736d3e74ec24bf2afcd06ecb26d7b2bdb43c2",
+      "snapshot": "{\".gitignore\": \"01d8d0360f02a0c00e236a4eb2a1d8bdf83377acf442eaafad7a136bf14d6bb0\", \"PRODUCT.md\": \"6894ba4b9d9437a8cfce1c3578cc038e78674ed8c5ed5cfe89e988bcb63c3d17\", \"publication.json\": \"5612e905c3d71b28808703c5e544da67a397b7573447b13c26ba912ac72e92c1\", \"remote-draft.json\": \"f241c844182ebc1d9377c05393a922e6c2303d26b6939741cac76942a29ce116\", \"remote-published.json\": \"216bd9ff962883f062d8960181f587ecb44e84a86f43ab82f5361be89a2a221c\", \"workflow.json\": \"3c56e2ecc53ce3e8b84a932b0f9594ea261d24f136a546bb839695e5fc6bd07f\"}",
+      "stage": "COMMITTED",
+      "created": "2026-10-25T05:31:22+00:00"
+    }
+  ],
+  "mcp_count": 30,
+  "mutations": 7,
+  "model_turns": 10,
+  "http_count": 4,
+  "review": [
+    {
+      "seq": 10,
+      "project_id": "phase3b-qa-first",
+      "task_id": "PUBLISH",
+      "attempt": 1,
+      "kind": "review",
+      "origin": "independent_reviewer_ai_read_only",
+      "payload": {
+        "project_id": "phase3b-qa-first",
+        "task_id": "PUBLISH",
+        "attempt": 1,
+        "verdict": "PASS",
+        "diagnosis": "none",
+        "feedback": "publication.json targets the recorded workflow and reviewed version; only that file was modified by Coder. Remote evidence confirms the version is active and all four HTTP cases passed. All 5 DRAFT regression tests and the required PUBLISH test passed with source integrity verified."
+      },
+      "created": "2026-10-25T05:31:22+00:00"
+    }
+  ],
+  "verification": {
+    "project_id": "phase3b-qa-first",
+    "task_id": "PUBLISH",
+    "attempt": 1,
+    "passed": true,
+    "suites": [
+      {
+        "task_id": "DRAFT",
+        "passed": true,
+        "counts": {
+          "tests_executed": 5,
+          "passed": 5,
+          "failed": 0,
+          "skipped": 0,
+          "materialized_integrity": true,
+          "successful": true
+        },
+        "expected_tests": 5,
+        "source_integrity": true,
+        "timed_out": false,
+        "reproduction": "\"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe\" -I \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\athis_autopilot\\verification_worker.py\" --workspace \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\supervised\\phase3b-qa-first\\workspace\" --suite \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\supervised\\phase3b-qa-first\\acceptance\\draft\" --result \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\supervised\\phase3b-qa-first\\evidence\\PUBLISH\\attempt-1\\verification\\DRAFT\\tests.json\"",
+        "evidence_directory": "evidence/PUBLISH/attempt-1/verification/DRAFT",
+        "diagnostics": ""
+      },
+      {
+        "task_id": "PUBLISH",
+        "passed": true,
+        "counts": {
+          "tests_executed": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "materialized_integrity": true,
+          "successful": true
+        },
+        "expected_tests": 1,
+        "source_integrity": true,
+        "timed_out": false,
+        "reproduction": "\"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe\" -I \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\athis_autopilot\\verification_worker.py\" --workspace \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\supervised\\phase3b-qa-first\\workspace\" --suite \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\supervised\\phase3b-qa-first\\acceptance\\published\" --result \"C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\supervised\\phase3b-qa-first\\evidence\\PUBLISH\\attempt-1\\verification\\PUBLISH\\tests.json\"",
+        "evidence_directory": "evidence/PUBLISH/attempt-1/verification/PUBLISH",
+        "diagnostics": ""
+      }
+    ]
+  }
+}

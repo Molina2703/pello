@@ -1,0 +1,35 @@
+{
+  "status": "completed",
+  "thread_id": "01a170b7-0611-7380-a8c1-db730714134c",
+  "server": "n8n",
+  "action": "call",
+  "tool": "search_workflows",
+  "result": {
+    "_meta": null,
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"data\":[{\"id\":\"Tbuvwcxde8MEMYcJ\",\"name\":\"PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a\",\"description\":\"Pello Phase 3B synthetic credential-free integration QA\",\"active\":false,\"createdAt\":\"2026-10-25T01:38:51.213Z\",\"updatedAt\":\"2026-10-25T01:40:01.163Z\",\"triggerCount\":0,\"availableInMCP\":true,\"parentFolderId\":null,\"tags\":[]}],\"count\":1}"
+      }
+    ],
+    "isError": null,
+    "structuredContent": {
+      "data": [
+        {
+          "id": "Tbuvwcxde8MEMYcJ",
+          "name": "PELLO-3B-MCP-INTEGRATION-QA-bb491b32d40943d5ad8a",
+          "description": "Pello Phase 3B synthetic credential-free integration QA",
+          "active": false,
+          "createdAt": "2026-10-25T01:38:51.213Z",
+          "updatedAt": "2026-10-25T01:40:01.163Z",
+          "triggerCount": 0,
+          "availableInMCP": true,
+          "parentFolderId": null,
+          "tags": []
+        }
+      ],
+      "count": 1
+    }
+  },
+  "model_inference": false
+}

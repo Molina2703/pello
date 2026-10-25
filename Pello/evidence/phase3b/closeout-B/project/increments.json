@@ -1,0 +1,55 @@
+{
+  "architecture_constraints": [
+    "One new credential-free QA workflow only; no HMP changes",
+    "Coder writes JSON artifacts only; Core performs authorized native MCP calls"
+  ],
+  "tools": [],
+  "increments": [
+    {
+      "task_id": "DRAFT",
+      "specification": "Write only workflow.json: object {nodes:[...]}. Each node has exactly name,type,version,parameters. Ordered nodes QA Webhook/n8n-nodes-base.webhook/2.2; QA Result/n8n-nodes-base.set/3.5; QA Response/n8n-nodes-base.respondToWebhook/1.5. Set uses mode raw and jsonOutput expression; respondWith json, responseBody expression, options.responseCode expression. All expressions must be pure n8n ={{ ... }} with $json, body fields, Number.isFinite, typeof, startsWith, ternaries and literal bounds. No arrays/computed property access, functions, loops, globals, credentials or network. Implement the contract exactly; no extra response fields. Core writes remote-draft.json; do not manufacture it.",
+      "inputs": [
+        "Approved QA contract and objective evidence"
+      ],
+      "outputs": [
+        "workflow.json",
+        "remote-draft.json"
+      ],
+      "components": [
+        "workflow.json",
+        "remote-draft.json"
+      ],
+      "acceptance_criteria": [
+        "Contract and mandatory independent verification pass"
+      ],
+      "depends_on": [],
+      "suite": "draft",
+      "expected_tests": 5,
+      "risk": "routine"
+    },
+    {
+      "task_id": "PUBLISH",
+      "specification": "Write only publication.json: {action:\"publish\",workflow_id:<recorded own ID>,version_id:<reviewed version>}. Do not change workflow.json or perform external operations. Core publishes and independently verifies the reviewed version.",
+      "inputs": [
+        "Approved QA contract and objective evidence"
+      ],
+      "outputs": [
+        "publication.json",
+        "remote-published.json"
+      ],
+      "components": [
+        "publication.json",
+        "remote-published.json"
+      ],
+      "acceptance_criteria": [
+        "Contract and mandatory independent verification pass"
+      ],
+      "depends_on": [
+        "DRAFT"
+      ],
+      "suite": "published",
+      "expected_tests": 1,
+      "risk": "routine"
+    }
+  ]
+}

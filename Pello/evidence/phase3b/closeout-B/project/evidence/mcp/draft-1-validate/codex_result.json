@@ -1,0 +1,22 @@
+{
+  "status": "completed",
+  "thread_id": "01a170b5-af2a-7032-a7a2-d22f39efa12e",
+  "server": "n8n",
+  "action": "call",
+  "tool": "validate_workflow",
+  "result": {
+    "_meta": null,
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"valid\": true,\n  \"nodeCount\": 3\n}"
+      }
+    ],
+    "isError": null,
+    "structuredContent": {
+      "valid": true,
+      "nodeCount": 3
+    }
+  },
+  "model_inference": false
+}

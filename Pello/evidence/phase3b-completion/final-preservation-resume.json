@@ -1,0 +1,63 @@
+{
+  "completed_resume": {
+    "before": {
+      "mcp": 30,
+      "turns": 10,
+      "http": 4
+    },
+    "after": {
+      "mcp": 30,
+      "turns": 10,
+      "http": 4
+    },
+    "new_effects": false
+  },
+  "older_phases": {
+    "files": 773,
+    "changed": []
+  },
+  "previous_phase3b": {
+    "files": 506,
+    "changed": []
+  },
+  "pello_n8n_operations": {
+    "old_rows": 17,
+    "unchanged": true
+  },
+  "pello_pipeline_operations": {
+    "old_rows": 6,
+    "unchanged": true
+  },
+  "pello_pipeline_checkpoints": {
+    "old_rows": 1,
+    "unchanged": true
+  },
+  "initial_closeout_turns_unchanged": true,
+  "authorization_events": [
+    {
+      "id": "user-phase3b3-completion-20261024",
+      "event": "mutations",
+      "created": "2026-10-25T02:39:23+00:00"
+    },
+    {
+      "id": "user-phase3b3-completion-20261024",
+      "event": "deadline",
+      "created": "2026-10-25T02:39:23+00:00"
+    },
+    {
+      "id": "user-closeout-resume-20m-20261025",
+      "event": "deadline",
+      "created": "2026-10-25T05:28:59+00:00"
+    }
+  ],
+  "secret_redaction_idempotent": true,
+  "configuration": {
+    "n8n": {
+      "server": "n8n",
+      "endpoint": "https://n8n-production-3374.up.railway.app/mcp-server/http",
+      "configured": true
+    },
+    "n8n_section_unchanged": true,
+    "whole_file_unchanged": true
+  }
+}

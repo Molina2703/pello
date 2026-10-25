@@ -1,0 +1,23 @@
+{
+  "status": "completed",
+  "thread_id": "01a170f4-a12d-7071-8ffc-125dc1884d0f",
+  "server": "n8n",
+  "action": "call",
+  "tool": "publish_workflow",
+  "result": {
+    "_meta": null,
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"workflowId\":\"Tbuvwcxde8MEMYcJ\",\"activeVersionId\":\"851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7\"}"
+      }
+    ],
+    "isError": null,
+    "structuredContent": {
+      "success": true,
+      "workflowId": "Tbuvwcxde8MEMYcJ",
+      "activeVersionId": "851d73e4-0eb3-4f54-b51f-6c9a8fc89bf7"
+    }
+  },
+  "model_inference": false
+}

@@ -1,0 +1,1 @@
+{"action": "call", "tool": "get_workflow_details", "arguments": {"workflowId": "Tbuvwcxde8MEMYcJ"}, "operation": {"db": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\jobs.sqlite3", "project_id": "phase3b-qa-first", "key": "publish-preflight-2"}}

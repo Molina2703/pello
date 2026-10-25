@@ -1,0 +1,61 @@
+{
+  "status": "completed",
+  "thread_id": "01a1718a-7171-7cc3-ba54-b54796f55119",
+  "server": "n8n",
+  "action": "call",
+  "tool": "search_workflow_executions",
+  "result": {
+    "_meta": null,
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"data\":[{\"id\":\"10\",\"workflowId\":\"Tbuvwcxde8MEMYcJ\",\"status\":\"success\",\"mode\":\"webhook\",\"startedAt\":\"2026-10-25T05:30:59.844Z\",\"stoppedAt\":\"2026-10-25T05:30:59.863Z\",\"waitTill\":null},{\"id\":\"9\",\"workflowId\":\"Tbuvwcxde8MEMYcJ\",\"status\":\"success\",\"mode\":\"webhook\",\"startedAt\":\"2026-10-25T05:30:59.465Z\",\"stoppedAt\":\"2026-10-25T05:30:59.482Z\",\"waitTill\":null},{\"id\":\"8\",\"workflowId\":\"Tbuvwcxde8MEMYcJ\",\"status\":\"success\",\"mode\":\"webhook\",\"startedAt\":\"2026-10-25T05:30:59.074Z\",\"stoppedAt\":\"2026-10-25T05:30:59.091Z\",\"waitTill\":null},{\"id\":\"7\",\"workflowId\":\"Tbuvwcxde8MEMYcJ\",\"status\":\"success\",\"mode\":\"webhook\",\"startedAt\":\"2026-10-25T05:30:58.498Z\",\"stoppedAt\":\"2026-10-25T05:30:58.536Z\",\"waitTill\":null}],\"count\":4,\"estimated\":false,\"nextCursor\":null}"
+      }
+    ],
+    "isError": null,
+    "structuredContent": {
+      "data": [
+        {
+          "id": "10",
+          "workflowId": "Tbuvwcxde8MEMYcJ",
+          "status": "success",
+          "mode": "webhook",
+          "startedAt": "2026-10-25T05:30:59.844Z",
+          "stoppedAt": "2026-10-25T05:30:59.863Z",
+          "waitTill": null
+        },
+        {
+          "id": "9",
+          "workflowId": "Tbuvwcxde8MEMYcJ",
+          "status": "success",
+          "mode": "webhook",
+          "startedAt": "2026-10-25T05:30:59.465Z",
+          "stoppedAt": "2026-10-25T05:30:59.482Z",
+          "waitTill": null
+        },
+        {
+          "id": "8",
+          "workflowId": "Tbuvwcxde8MEMYcJ",
+          "status": "success",
+          "mode": "webhook",
+          "startedAt": "2026-10-25T05:30:59.074Z",
+          "stoppedAt": "2026-10-25T05:30:59.091Z",
+          "waitTill": null
+        },
+        {
+          "id": "7",
+          "workflowId": "Tbuvwcxde8MEMYcJ",
+          "status": "success",
+          "mode": "webhook",
+          "startedAt": "2026-10-25T05:30:58.498Z",
+          "stoppedAt": "2026-10-25T05:30:58.536Z",
+          "waitTill": null
+        }
+      ],
+      "count": 4,
+      "estimated": false,
+      "nextCursor": null
+    }
+  },
+  "model_inference": false
+}

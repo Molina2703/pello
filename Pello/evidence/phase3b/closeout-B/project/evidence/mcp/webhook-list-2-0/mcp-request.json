@@ -1,0 +1,1 @@
+{"action": "call", "tool": "search_workflow_executions", "arguments": {"workflowId": "Tbuvwcxde8MEMYcJ", "startedAfter": "2026-10-25T05:30:58+00:00", "limit": 20}, "operation": {"db": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3b\\jobs.sqlite3", "project_id": "phase3b-qa-first", "key": "webhook-list-2-0"}}

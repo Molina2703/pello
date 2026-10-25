@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a170b6-2c05-7bc1-a726-4f4943ba5212",
+  "turn_id": "01a1718a-abef-70d0-96af-5b522e4f57bb",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 30208,
+      "input_tokens": 39581,
+      "output_tokens": 155,
+      "reasoning_output_tokens": 57,
+      "total_tokens": 39736
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 73856,
+      "input_tokens": 137275,
+      "output_tokens": 1531,
+      "reasoning_output_tokens": 1046,
+      "total_tokens": 138806
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3b-qa-first\",\"task_id\":\"PUBLISH\",\"attempt\":1,\"verdict\":\"PASS\",\"diagnosis\":\"none\",\"feedback\":\"publication.json targets the recorded workflow and reviewed version; only that file was modified by Coder. Remote evidence confirms the version is active and all four HTTP cases passed. All 5 DRAFT regression tests and the required PUBLISH test passed with source integrity verified.\"}",
+  "error": null
+}
