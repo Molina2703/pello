@@ -14,6 +14,26 @@ from athis_autopilot.product_planning import ProductPlanningCore
 from athis_autopilot.supervisor import files_hash
 
 
+def integrated_results(out):
+    results={}
+    for path in out.glob('live-*.json'):
+        if '-r2' not in path.stem and list(out.glob(path.stem+'-r2.json')):continue
+        data=json.loads(path.read_text(encoding='utf-8'))
+        if 'records' in data and 'proposal' in data:
+            # Lossless factoring of identical catalog snapshots and repeated proposals.
+            shared=data['records'][0]['capability_snapshot']
+            if any(r['capability_snapshot']!=shared for r in data['records']):raise ValueError('Catalog snapshots differ')
+            proposals={p['task_id']:p for p in data['proposal']['decisions']}
+            records=[]
+            for record in data['records']:
+                if record['proposal']!=proposals[record['task_id']]:raise ValueError('Decision proposal differs')
+                records.append({**{k:v for k,v in record.items() if k not in ('capability_snapshot','proposal')},
+                    'capability_snapshot_ref':'shared_capability_snapshot','proposal_ref':record['task_id']})
+            data={**data,'records':records,'shared_capability_snapshot':shared}
+        results[path.name]=data
+    return results
+
+
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('action',choices=['protect','verify','review','checkpoint'])
@@ -75,7 +95,7 @@ def main():
                 'scope_constraints':['Planning only, no product implementation or external operations.',
                     'Prior accepted batches remain in place. Only this bounded diff is being accepted.',
                     'Protected acceptance transcript:\n'+(out/'protected-tests.log').read_text(encoding='utf-8'),
-                    'Actual integrated results (when available; latest revision supersedes rejected output): '+json.dumps({p.name:json.loads(p.read_text(encoding='utf-8')) for p in out.glob('live-*.json') if '-r2' in p.stem or not list(out.glob(p.stem+'-r2.json'))},ensure_ascii=False),
+                    'Actual integrated results (latest revision; shared values factored without information loss): '+json.dumps(integrated_results(out),ensure_ascii=False),
                     'Retained prior findings: '+json.dumps({p.name:json.loads(p.read_text(encoding='utf-8')) for p in out.glob('*-review.json')},ensure_ascii=False),
                     'No Planner reasoning is supplied. Engineering code inspected as data.']}
             (out/'review-input.json').write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8')

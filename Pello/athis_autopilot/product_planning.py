@@ -734,7 +734,72 @@ class ProductPlanningCore(Bridge):
         self._ensure_json_artifact(path,result)
         return result
 
-    def _invoke(self, project_id, version, phase, role, payload, output_model):
+    def propose_models(self, project_id: str) -> dict:
+        from .planning_contracts import TaskModelAssignments,validate_model_decision,model_budget_summary
+        payload=self.planner_input(project_id)
+        increments=self.planning_stage(project_id,'increments')['proposal']['increments']
+        version=self.version_row(project_id)
+        directory=self.folder(project_id)/'evidence'/f'version-{version["version"]}'/'planning'
+        saved_path=directory/'models-r2.json' if (directory/'models-r2.json').exists() else directory/'models.json'
+        if saved_path.exists():
+            saved=json.loads(saved_path.read_text(encoding='utf-8'))
+            proposals=TaskModelAssignments.model_validate(saved['proposal'])
+            if {p.task_id for p in proposals.decisions}!={i['task_id'] for i in increments}:raise CodexBlocked('Saved decisions do not match current tasks')
+            if 'aggregate_budget_assessment' not in saved:
+                saved={**saved,'aggregate_budget_assessment':model_budget_summary(saved['records'])}
+                self._ensure_json_artifact(directory/'models-r2.json',saved)
+                self._write_json(directory/'models-current.json',{'revision':2})
+            return saved
+        # A completed call with no artifact must replay its ORIGINAL bounded input.
+        with self.db() as cx:
+            prior=cx.execute("SELECT request FROM pello_product_operations WHERE project_id=? AND version=? AND phase='plan-models'",(project_id,version['version'])).fetchone()
+        if prior:
+            original=self.folder(project_id)/'evidence'/f'version-{version["version"]}'/'plan-models'/'input.json'
+            if not original.exists():raise CodexBlocked('Original model-planning context is missing; reconcile without resubmission')
+            stored=json.loads(original.read_text(encoding='utf-8'))
+            if any(stored.get(k)!=payload[k] for k in ('project_id','version','source_sha256','requirements')):
+                raise CodexBlocked('Original model-planning context belongs to different accepted input')
+            payload=stored
+        else:
+            payload['capabilities']=self._capabilities_now()
+        payload['tasks']=[{k:i[k] for k in ('task_id','objective','requirement_ids','operation_kind','boundary_rationale','verification_evidence')} for i in increments]
+        with self.db() as cx:
+            grant=cx.execute('SELECT max_turns FROM pello_product_run_authorizations ORDER BY rowid DESC LIMIT 1').fetchone() if cx.execute("SELECT 1 FROM sqlite_master WHERE name='pello_product_run_authorizations'").fetchone() else None
+            used=cx.execute('SELECT coalesce(sum(used_turns),0) FROM pello_product_projects').fetchone()[0]
+        remaining=grant['max_turns']-used if grant else self.project_row(project_id)['max_turns']-self.project_row(project_id)['used_turns']
+        if not prior:payload['development_turns_remaining']=remaining
+        else:remaining=payload['development_turns_remaining']
+        payload['planning_objective']='Select one justified initial Coder model/effort for every task. Luna is preferred; choose Low, Medium or High adaptively by complexity/risk/context/uncertainty and bounded scope. No mandatory starting level, retry ladder, or automatic Sol after errors. Sol initially only for specifically exceptional complex/high risk or critical risk. Use only the supplied actual catalog, no substitutions/prices/Astra. Set selection_kind=initial, previous_configuration=null, failure_evidence=null. expected_turns is an estimate of Coder attempts, not a reservation or product execution authorization; keep it within available measurable development capacity. Cite task/source IDs or contract evidence, consider decomposition, and preserve absent external permissions.'
+        draft,_=self._invoke(project_id,version['version'],'plan-models','planner',payload,TaskModelAssignments)
+        if {d.task_id for d in draft.decisions}!={i['task_id'] for i in increments} or len(draft.decisions)!=len(increments):
+            raise ValueError('Model decisions must cover every increment exactly once')
+        records=[validate_model_decision(d,payload['capabilities'],budget_remaining=remaining-1) for d in draft.decisions]
+        result={'proposal':draft.model_dump(mode='json'),'records':records,'budget_scope':'Planning estimates only; no planned product execution is authorized',
+            'aggregate_budget_assessment':model_budget_summary(records)}
+        path=self.folder(project_id)/'evidence'/f'version-{version["version"]}'/'planning'/'models.json'
+        # Decision timestamps belong to the first saved decision, not repeated cache reads.
+        if path.exists():
+            saved=json.loads(path.read_text(encoding='utf-8'))
+            if saved['proposal']!=result['proposal']:raise CodexBlocked('Saved model decisions differ; controlled revalidation required')
+            return saved
+        self._write_json(path,result)
+        return result
+
+    def verify_planned_profile(self, project_id: str) -> dict:
+        from .planning_contracts import CapabilityProbe
+        from .pipeline_contracts import ModelProfile
+        records=self.planning_stage(project_id,'models')['records']
+        chosen=next((r for r in records if r['selected_model_profile']=='gpt-6-luna'),records[0])
+        profile=ModelProfile(model=chosen['selected_model_profile'],effort=chosen['selected_reasoning_effort'])
+        payload={'purpose':'Read-only inference to verify the exact proposed Coder configuration through the existing adapter; no product implementation.',
+            'configuration':profile.model_dump(),'task_id':chosen['task_id'],'items':['alpha','beta','gamma'],
+            'instruction':'Return item_count=the length of items. Do not use tools or edit files.'}
+        result,raw=self._invoke(project_id,self.version_row(project_id)['version'],'profile-capability-probe','planner',payload,CapabilityProbe,profile_override=profile)
+        if result.item_count!=3:raise ValueError('Actual model capability smoke check failed')
+        return {'task_id':chosen['task_id'],'model':profile.model,'effort':profile.effort,'thread_id':raw['thread_id'],
+            'turn_id':raw['turn_id'],'observed':result.model_dump(),'product_execution':False,'tools_invoked_by_pello':False}
+
+    def _invoke(self, project_id, version, phase, role, payload, output_model, *, profile_override=None):
         project = self.project_row(project_id)
         version_row = self.version_row(project_id, version)
         self._check_source(project, version_row)
@@ -759,6 +824,8 @@ class ProductPlanningCore(Bridge):
                     or stored_request.get('schema_name') != output_model.__name__
                     or stored_request.get('schema_sha256') != schema_sha256):
                 raise CodexBlocked('Stored operation identity differs from the requested input, role, or output schema')
+            if profile_override and stored_request['selection']['model']!=profile_override.model or profile_override and stored_request['selection']['effort']!=profile_override.effort:
+                raise CodexBlocked('Stored operation profile differs from the requested configuration')
             if operation['status'] == 'COMPLETED':
                 raw = json.loads(operation['response'])
             elif result_path.is_file():
@@ -772,7 +839,10 @@ class ProductPlanningCore(Bridge):
         else:
             self._budget_check(project)
             caps = self._capabilities_now()
-            selection = select_model(PipelinePolicy(max_turns=project['max_turns']), caps,
+            policy=PipelinePolicy(max_turns=project['max_turns'])
+            if profile_override:
+                policy.role_profiles[role]=profile_override
+            selection = select_model(policy, caps,
                 phase=phase + '/' + role, responsibility=role)
             request = {'role': role, 'phase': phase, 'selection': selection,
                        'input_sha256': input_sha256,

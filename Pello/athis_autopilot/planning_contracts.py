@@ -3,7 +3,7 @@ from typing import Literal
 from pydantic import Field
 from .messages import Message, Identifier, Text
 from .pipeline_contracts import relative_path
-from .pipeline_contracts import Increment,PipelineManifest,ToolBinding
+from .pipeline_contracts import Increment,PipelineManifest,ToolBinding,ModelProfile,PipelinePolicy
 
 
 class WorkNode(Message):
@@ -197,3 +197,86 @@ def manifest_from_contracts(contracts,decomposition,architecture,analysis):
             resource_ids=[],verification='Proposed capability only; independent protected tests and execution authorization remain required.',
             enabled=tool in ('python','git')))
     return PipelineManifest(architecture_constraints=architecture.operational_constraints,tools=tools,increments=tasks)
+
+
+class FailureEvidence(Message):
+    category: Literal['implementation','contract','integration','infrastructure','reasoning']
+    severity: Literal['minor','major','critical']
+    localized: bool
+    meaningful_progress: bool
+    actionable_diagnosis: bool
+    persistent_capability_gap: bool
+    recommendation: Literal['continue','replan','escalate']
+    evidence_refs: list[Text] = Field(min_length=1,max_length=12)
+
+
+class ModelDecisionProposal(Message):
+    task_id: Identifier
+    responsibility: Literal['coder']
+    profile: ModelProfile
+    complexity: Literal['simple','normal','complex']
+    risk: Literal['low','medium','high','critical']
+    uncertainty: Literal['low','medium','high']
+    context_requirements: Literal['small','medium','large']
+    expected_turns: int = Field(ge=1,le=12)
+    selection_kind: Literal['initial','adaptation']
+    previous_configuration: ModelProfile | None
+    failure_evidence: FailureEvidence | None
+    exceptional_initial_sol: bool
+    decomposition_considered: bool
+    evidence_refs: list[Text] = Field(min_length=1,max_length=12)
+    rationale: Text
+
+
+class TaskModelAssignments(Message):
+    decisions: list[ModelDecisionProposal] = Field(min_length=1,max_length=8)
+
+
+def validate_model_decision(proposal,capabilities,*,budget_remaining):
+    from .engines import CodexBlocked
+    from .model_policy import select_model
+    from .supervisor import now
+    if budget_remaining<proposal.expected_turns:
+        raise CodexBlocked('Insufficient bounded model capacity for the proposed decision')
+    sol=proposal.profile.model!='gpt-6-luna'
+    if proposal.selection_kind=='initial':
+        if proposal.previous_configuration or proposal.failure_evidence:
+            raise ValueError('Initial model choice must not invent a prior attempt')
+        if sol and not (proposal.exceptional_initial_sol and (proposal.risk=='critical' or
+                (proposal.complexity=='complex' and proposal.risk=='high'))):
+            raise ValueError('Initial Sol needs exceptional complexity/risk evidence')
+    else:
+        previous,failure=proposal.previous_configuration,proposal.failure_evidence
+        if previous is None or failure is None:raise ValueError('Adaptation requires previous profile and typed review evidence')
+        if sol and previous.model=='gpt-6-luna':
+            justified=(failure.severity=='critical' or
+                (failure.persistent_capability_gap and not failure.meaningful_progress))
+            if not justified or failure.recommendation!='escalate':
+                raise ValueError('Ordinary localized failures/progress do not justify automatic Sol escalation')
+    # Exact Planner profile: risk and retry counters must not override a justified Luna High choice.
+    policy=PipelinePolicy(role_profiles={'coder':proposal.profile})
+    selected=select_model(policy,capabilities,phase='planned-implementation',responsibility='coder')
+    return {'task_id':proposal.task_id,'logical_responsibility':proposal.responsibility,
+        'decision_timestamp':now(),'selected_model_profile':proposal.profile.model,
+        'selected_reasoning_effort':proposal.profile.effort,'resolved_technical_model_id':selected['model'],
+        'verified_availability':True,'capability_snapshot':capabilities,
+        'complexity':proposal.complexity,'risk':proposal.risk,'context_requirements':proposal.context_requirements,
+        'budget_assessment':{'remaining_development_turns':budget_remaining,'estimated_coder_turns':proposal.expected_turns,
+            'product_execution_budget':'not_authorized_or_reserved'},
+        'selection_kind':proposal.selection_kind,'previous_configuration':proposal.previous_configuration.model_dump() if proposal.previous_configuration else None,
+        'is_escalation':bool(sol and proposal.previous_configuration and proposal.previous_configuration.model=='gpt-6-luna'),
+        'evidence_refs':proposal.evidence_refs,'justification':proposal.rationale,'proposal':proposal.model_dump(mode='json'),
+        'product_execution_authorized':False}
+
+
+class CapabilityProbe(Message):
+    item_count: int = Field(ge=0,le=10)
+
+
+def model_budget_summary(records):
+    estimated=sum(r['budget_assessment']['estimated_coder_turns'] for r in records)
+    capacity=min(r['budget_assessment']['remaining_development_turns'] for r in records)
+    return {'estimated_coder_turns_total':estimated,'development_capacity_at_decision':capacity,
+        'shortfall':max(0,estimated-capacity),'combined_estimate_fits_development_capacity':estimated<=capacity,
+        'product_execution_authorized':False,'product_execution_budget':'not_granted',
+        'scope':'Estimates are proposals, not reservations. Individual eligibility never proves aggregate execution feasibility.'}

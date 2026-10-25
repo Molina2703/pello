@@ -1,0 +1,1031 @@
+{
+  "proposal": {
+    "decisions": [
+      {
+        "task_id": "N01",
+        "responsibility": "coder",
+        "profile": {
+          "model": "gpt-6-luna",
+          "effort": "medium"
+        },
+        "complexity": "normal",
+        "risk": "medium",
+        "uncertainty": "medium",
+        "context_requirements": "medium",
+        "expected_turns": 1,
+        "selection_kind": "initial",
+        "previous_configuration": null,
+        "failure_evidence": null,
+        "exceptional_initial_sol": false,
+        "decomposition_considered": true,
+        "evidence_refs": [
+          "N01",
+          "SRC-a43a2a271870",
+          "SRC-f2320189bfc9"
+        ],
+        "rationale": "Luna Medium fits bounded intake persistence, reference selection, and outage verification. Keep these together as one usable capability, independent of integration blockers. Preserve the unapproved missing-invoice assumption. One attempt is an estimate, not execution authorization."
+      },
+      {
+        "task_id": "N02",
+        "responsibility": "coder",
+        "profile": {
+          "model": "gpt-6-luna",
+          "effort": "medium"
+        },
+        "complexity": "normal",
+        "risk": "medium",
+        "uncertainty": "medium",
+        "context_requirements": "medium",
+        "expected_turns": 1,
+        "selection_kind": "initial",
+        "previous_configuration": null,
+        "failure_evidence": null,
+        "exceptional_initial_sol": false,
+        "decomposition_considered": true,
+        "evidence_refs": [
+          "N02",
+          "SRC-893594c23f0b"
+        ],
+        "rationale": "Luna Medium supports event preservation, operator attribution, timestamps, and case isolation. Status history and decision audit share a coherent boundary; further decomposition is unnecessary. Generic recording must preserve the unapproved vocabulary assumption and must not enact decisions."
+      },
+      {
+        "task_id": "N03",
+        "responsibility": "coder",
+        "profile": {
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        "complexity": "normal",
+        "risk": "high",
+        "uncertainty": "high",
+        "context_requirements": "medium",
+        "expected_turns": 1,
+        "selection_kind": "initial",
+        "previous_configuration": null,
+        "failure_evidence": null,
+        "exceptional_initial_sol": false,
+        "decomposition_considered": true,
+        "evidence_refs": [
+          "N03",
+          "SRC-3d1eefac22e5",
+          "SRC-893594c23f0b"
+        ],
+        "rationale": "Luna High provides additional reasoning for preserving contradictory approval rules and distinguishing retrieval from verification. The bounded unresolved-policy safeguard does not justify exceptional initial Sol. Keep approval policy isolated from independent local work; final business behavior remains blocked pending clarification."
+      },
+      {
+        "task_id": "N04",
+        "responsibility": "coder",
+        "profile": {
+          "model": "gpt-6-luna",
+          "effort": "medium"
+        },
+        "complexity": "normal",
+        "risk": "medium",
+        "uncertainty": "high",
+        "context_requirements": "medium",
+        "expected_turns": 1,
+        "selection_kind": "initial",
+        "previous_configuration": null,
+        "failure_evidence": null,
+        "exceptional_initial_sol": false,
+        "decomposition_considered": true,
+        "evidence_refs": [
+          "N04",
+          "SRC-3eca9a83bb88"
+        ],
+        "rationale": "Luna Medium fits local response preparation with an explicitly unresolved timing contract. Generic preparation can proceed separately from business-day acceptance without inventing a calendar or deadline convention. Keep sending authorization outside this boundary."
+      },
+      {
+        "task_id": "N05",
+        "responsibility": "coder",
+        "profile": {
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        "complexity": "normal",
+        "risk": "high",
+        "uncertainty": "medium",
+        "context_requirements": "medium",
+        "expected_turns": 1,
+        "selection_kind": "initial",
+        "previous_configuration": null,
+        "failure_evidence": null,
+        "exceptional_initial_sol": false,
+        "decomposition_considered": true,
+        "evidence_refs": [
+          "N05",
+          "SRC-3eca9a83bb88",
+          "SRC-4e0a53b447c7"
+        ],
+        "rationale": "Luna High is appropriate for message-specific evidence association and rejection whenever review or authorization is missing. Recording and gate evaluation form one bounded local capability, separate from transmission. No messaging permission or identity infrastructure is supplied."
+      },
+      {
+        "task_id": "N06",
+        "responsibility": "coder",
+        "profile": {
+          "model": "gpt-6-luna",
+          "effort": "medium"
+        },
+        "complexity": "normal",
+        "risk": "high",
+        "uncertainty": "high",
+        "context_requirements": "medium",
+        "expected_turns": 1,
+        "selection_kind": "initial",
+        "previous_configuration": null,
+        "failure_evidence": null,
+        "exceptional_initial_sol": false,
+        "decomposition_considered": true,
+        "evidence_refs": [
+          "N06",
+          "SRC-b7f34880eb24",
+          "SRC-3d1eefac22e5",
+          "SRC-f2320189bfc9"
+        ],
+        "rationale": "Luna Medium fits the bounded read contract, permission checks, and isolated fixtures. Vendor uncertainty and absent access require clarification, not a stronger model. Keep lookup separate from approval checks and outcome writes. Live verification remains blocked and unauthorized."
+      },
+      {
+        "task_id": "N07",
+        "responsibility": "coder",
+        "profile": {
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        "complexity": "normal",
+        "risk": "high",
+        "uncertainty": "high",
+        "context_requirements": "medium",
+        "expected_turns": 1,
+        "selection_kind": "initial",
+        "previous_configuration": null,
+        "failure_evidence": null,
+        "exceptional_initial_sol": false,
+        "decomposition_considered": true,
+        "evidence_refs": [
+          "N07",
+          "SRC-b7f34880eb24",
+          "SRC-893594c23f0b",
+          "SRC-f2320189bfc9"
+        ],
+        "rationale": "Luna High supports careful outcome mapping, permission checks, and uncertain-write handling within the isolated mutation boundary. Do not select recovery policy or perform writes without authorization. The seven task estimates total seven attempts, matching available capacity without reserving turns or guaranteeing completion."
+      }
+    ]
+  },
+  "records": [
+    {
+      "task_id": "N01",
+      "logical_responsibility": "coder",
+      "decision_timestamp": "2026-10-25T17:46:02+00:00",
+      "selected_model_profile": "gpt-6-luna",
+      "selected_reasoning_effort": "medium",
+      "resolved_technical_model_id": "gpt-6-luna",
+      "verified_availability": true,
+      "capability_snapshot": {
+        "authenticated": true,
+        "models": {
+          "gpt-6.1-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-astra": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-luna": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "gpt-5.6-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-5.6-terra": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-5.6-luna": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        "remaining_percent": 60,
+        "usage_windows": [
+          {
+            "used_percent": 40,
+            "resets_at": 1792965282
+          },
+          {
+            "used_percent": 10,
+            "resets_at": 1793514900
+          }
+        ],
+        "at": "2026-10-25T17:45:09+00:00"
+      },
+      "complexity": "normal",
+      "risk": "medium",
+      "context_requirements": "medium",
+      "budget_assessment": {
+        "remaining_development_turns": 6,
+        "estimated_coder_turns": 1,
+        "product_execution_budget": "not_authorized_or_reserved"
+      },
+      "selection_kind": "initial",
+      "previous_configuration": null,
+      "is_escalation": false,
+      "evidence_refs": [
+        "N01",
+        "SRC-a43a2a271870",
+        "SRC-f2320189bfc9"
+      ],
+      "justification": "Luna Medium fits bounded intake persistence, reference selection, and outage verification. Keep these together as one usable capability, independent of integration blockers. Preserve the unapproved missing-invoice assumption. One attempt is an estimate, not execution authorization.",
+      "proposal": {
+        "task_id": "N01",
+        "responsibility": "coder",
+        "profile": {
+          "model": "gpt-6-luna",
+          "effort": "medium"
+        },
+        "complexity": "normal",
+        "risk": "medium",
+        "uncertainty": "medium",
+        "context_requirements": "medium",
+        "expected_turns": 1,
+        "selection_kind": "initial",
+        "previous_configuration": null,
+        "failure_evidence": null,
+        "exceptional_initial_sol": false,
+        "decomposition_considered": true,
+        "evidence_refs": [
+          "N01",
+          "SRC-a43a2a271870",
+          "SRC-f2320189bfc9"
+        ],
+        "rationale": "Luna Medium fits bounded intake persistence, reference selection, and outage verification. Keep these together as one usable capability, independent of integration blockers. Preserve the unapproved missing-invoice assumption. One attempt is an estimate, not execution authorization."
+      },
+      "product_execution_authorized": false
+    },
+    {
+      "task_id": "N02",
+      "logical_responsibility": "coder",
+      "decision_timestamp": "2026-10-25T17:46:02+00:00",
+      "selected_model_profile": "gpt-6-luna",
+      "selected_reasoning_effort": "medium",
+      "resolved_technical_model_id": "gpt-6-luna",
+      "verified_availability": true,
+      "capability_snapshot": {
+        "authenticated": true,
+        "models": {
+          "gpt-6.1-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-astra": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-luna": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "gpt-5.6-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-5.6-terra": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-5.6-luna": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        "remaining_percent": 60,
+        "usage_windows": [
+          {
+            "used_percent": 40,
+            "resets_at": 1792965282
+          },
+          {
+            "used_percent": 10,
+            "resets_at": 1793514900
+          }
+        ],
+        "at": "2026-10-25T17:45:09+00:00"
+      },
+      "complexity": "normal",
+      "risk": "medium",
+      "context_requirements": "medium",
+      "budget_assessment": {
+        "remaining_development_turns": 6,
+        "estimated_coder_turns": 1,
+        "product_execution_budget": "not_authorized_or_reserved"
+      },
+      "selection_kind": "initial",
+      "previous_configuration": null,
+      "is_escalation": false,
+      "evidence_refs": [
+        "N02",
+        "SRC-893594c23f0b"
+      ],
+      "justification": "Luna Medium supports event preservation, operator attribution, timestamps, and case isolation. Status history and decision audit share a coherent boundary; further decomposition is unnecessary. Generic recording must preserve the unapproved vocabulary assumption and must not enact decisions.",
+      "proposal": {
+        "task_id": "N02",
+        "responsibility": "coder",
+        "profile": {
+          "model": "gpt-6-luna",
+          "effort": "medium"
+        },
+        "complexity": "normal",
+        "risk": "medium",
+        "uncertainty": "medium",
+        "context_requirements": "medium",
+        "expected_turns": 1,
+        "selection_kind": "initial",
+        "previous_configuration": null,
+        "failure_evidence": null,
+        "exceptional_initial_sol": false,
+        "decomposition_considered": true,
+        "evidence_refs": [
+          "N02",
+          "SRC-893594c23f0b"
+        ],
+        "rationale": "Luna Medium supports event preservation, operator attribution, timestamps, and case isolation. Status history and decision audit share a coherent boundary; further decomposition is unnecessary. Generic recording must preserve the unapproved vocabulary assumption and must not enact decisions."
+      },
+      "product_execution_authorized": false
+    },
+    {
+      "task_id": "N03",
+      "logical_responsibility": "coder",
+      "decision_timestamp": "2026-10-25T17:46:02+00:00",
+      "selected_model_profile": "gpt-6-luna",
+      "selected_reasoning_effort": "high",
+      "resolved_technical_model_id": "gpt-6-luna",
+      "verified_availability": true,
+      "capability_snapshot": {
+        "authenticated": true,
+        "models": {
+          "gpt-6.1-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-astra": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-luna": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "gpt-5.6-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-5.6-terra": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-5.6-luna": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        "remaining_percent": 60,
+        "usage_windows": [
+          {
+            "used_percent": 40,
+            "resets_at": 1792965282
+          },
+          {
+            "used_percent": 10,
+            "resets_at": 1793514900
+          }
+        ],
+        "at": "2026-10-25T17:45:09+00:00"
+      },
+      "complexity": "normal",
+      "risk": "high",
+      "context_requirements": "medium",
+      "budget_assessment": {
+        "remaining_development_turns": 6,
+        "estimated_coder_turns": 1,
+        "product_execution_budget": "not_authorized_or_reserved"
+      },
+      "selection_kind": "initial",
+      "previous_configuration": null,
+      "is_escalation": false,
+      "evidence_refs": [
+        "N03",
+        "SRC-3d1eefac22e5",
+        "SRC-893594c23f0b"
+      ],
+      "justification": "Luna High provides additional reasoning for preserving contradictory approval rules and distinguishing retrieval from verification. The bounded unresolved-policy safeguard does not justify exceptional initial Sol. Keep approval policy isolated from independent local work; final business behavior remains blocked pending clarification.",
+      "proposal": {
+        "task_id": "N03",
+        "responsibility": "coder",
+        "profile": {
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        "complexity": "normal",
+        "risk": "high",
+        "uncertainty": "high",
+        "context_requirements": "medium",
+        "expected_turns": 1,
+        "selection_kind": "initial",
+        "previous_configuration": null,
+        "failure_evidence": null,
+        "exceptional_initial_sol": false,
+        "decomposition_considered": true,
+        "evidence_refs": [
+          "N03",
+          "SRC-3d1eefac22e5",
+          "SRC-893594c23f0b"
+        ],
+        "rationale": "Luna High provides additional reasoning for preserving contradictory approval rules and distinguishing retrieval from verification. The bounded unresolved-policy safeguard does not justify exceptional initial Sol. Keep approval policy isolated from independent local work; final business behavior remains blocked pending clarification."
+      },
+      "product_execution_authorized": false
+    },
+    {
+      "task_id": "N04",
+      "logical_responsibility": "coder",
+      "decision_timestamp": "2026-10-25T17:46:02+00:00",
+      "selected_model_profile": "gpt-6-luna",
+      "selected_reasoning_effort": "medium",
+      "resolved_technical_model_id": "gpt-6-luna",
+      "verified_availability": true,
+      "capability_snapshot": {
+        "authenticated": true,
+        "models": {
+          "gpt-6.1-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-astra": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-luna": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "gpt-5.6-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-5.6-terra": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-5.6-luna": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        "remaining_percent": 60,
+        "usage_windows": [
+          {
+            "used_percent": 40,
+            "resets_at": 1792965282
+          },
+          {
+            "used_percent": 10,
+            "resets_at": 1793514900
+          }
+        ],
+        "at": "2026-10-25T17:45:09+00:00"
+      },
+      "complexity": "normal",
+      "risk": "medium",
+      "context_requirements": "medium",
+      "budget_assessment": {
+        "remaining_development_turns": 6,
+        "estimated_coder_turns": 1,
+        "product_execution_budget": "not_authorized_or_reserved"
+      },
+      "selection_kind": "initial",
+      "previous_configuration": null,
+      "is_escalation": false,
+      "evidence_refs": [
+        "N04",
+        "SRC-3eca9a83bb88"
+      ],
+      "justification": "Luna Medium fits local response preparation with an explicitly unresolved timing contract. Generic preparation can proceed separately from business-day acceptance without inventing a calendar or deadline convention. Keep sending authorization outside this boundary.",
+      "proposal": {
+        "task_id": "N04",
+        "responsibility": "coder",
+        "profile": {
+          "model": "gpt-6-luna",
+          "effort": "medium"
+        },
+        "complexity": "normal",
+        "risk": "medium",
+        "uncertainty": "high",
+        "context_requirements": "medium",
+        "expected_turns": 1,
+        "selection_kind": "initial",
+        "previous_configuration": null,
+        "failure_evidence": null,
+        "exceptional_initial_sol": false,
+        "decomposition_considered": true,
+        "evidence_refs": [
+          "N04",
+          "SRC-3eca9a83bb88"
+        ],
+        "rationale": "Luna Medium fits local response preparation with an explicitly unresolved timing contract. Generic preparation can proceed separately from business-day acceptance without inventing a calendar or deadline convention. Keep sending authorization outside this boundary."
+      },
+      "product_execution_authorized": false
+    },
+    {
+      "task_id": "N05",
+      "logical_responsibility": "coder",
+      "decision_timestamp": "2026-10-25T17:46:02+00:00",
+      "selected_model_profile": "gpt-6-luna",
+      "selected_reasoning_effort": "high",
+      "resolved_technical_model_id": "gpt-6-luna",
+      "verified_availability": true,
+      "capability_snapshot": {
+        "authenticated": true,
+        "models": {
+          "gpt-6.1-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-astra": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-luna": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "gpt-5.6-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-5.6-terra": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-5.6-luna": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        "remaining_percent": 60,
+        "usage_windows": [
+          {
+            "used_percent": 40,
+            "resets_at": 1792965282
+          },
+          {
+            "used_percent": 10,
+            "resets_at": 1793514900
+          }
+        ],
+        "at": "2026-10-25T17:45:09+00:00"
+      },
+      "complexity": "normal",
+      "risk": "high",
+      "context_requirements": "medium",
+      "budget_assessment": {
+        "remaining_development_turns": 6,
+        "estimated_coder_turns": 1,
+        "product_execution_budget": "not_authorized_or_reserved"
+      },
+      "selection_kind": "initial",
+      "previous_configuration": null,
+      "is_escalation": false,
+      "evidence_refs": [
+        "N05",
+        "SRC-3eca9a83bb88",
+        "SRC-4e0a53b447c7"
+      ],
+      "justification": "Luna High is appropriate for message-specific evidence association and rejection whenever review or authorization is missing. Recording and gate evaluation form one bounded local capability, separate from transmission. No messaging permission or identity infrastructure is supplied.",
+      "proposal": {
+        "task_id": "N05",
+        "responsibility": "coder",
+        "profile": {
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        "complexity": "normal",
+        "risk": "high",
+        "uncertainty": "medium",
+        "context_requirements": "medium",
+        "expected_turns": 1,
+        "selection_kind": "initial",
+        "previous_configuration": null,
+        "failure_evidence": null,
+        "exceptional_initial_sol": false,
+        "decomposition_considered": true,
+        "evidence_refs": [
+          "N05",
+          "SRC-3eca9a83bb88",
+          "SRC-4e0a53b447c7"
+        ],
+        "rationale": "Luna High is appropriate for message-specific evidence association and rejection whenever review or authorization is missing. Recording and gate evaluation form one bounded local capability, separate from transmission. No messaging permission or identity infrastructure is supplied."
+      },
+      "product_execution_authorized": false
+    },
+    {
+      "task_id": "N06",
+      "logical_responsibility": "coder",
+      "decision_timestamp": "2026-10-25T17:46:02+00:00",
+      "selected_model_profile": "gpt-6-luna",
+      "selected_reasoning_effort": "medium",
+      "resolved_technical_model_id": "gpt-6-luna",
+      "verified_availability": true,
+      "capability_snapshot": {
+        "authenticated": true,
+        "models": {
+          "gpt-6.1-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-astra": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-luna": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "gpt-5.6-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-5.6-terra": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-5.6-luna": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        "remaining_percent": 60,
+        "usage_windows": [
+          {
+            "used_percent": 40,
+            "resets_at": 1792965282
+          },
+          {
+            "used_percent": 10,
+            "resets_at": 1793514900
+          }
+        ],
+        "at": "2026-10-25T17:45:09+00:00"
+      },
+      "complexity": "normal",
+      "risk": "high",
+      "context_requirements": "medium",
+      "budget_assessment": {
+        "remaining_development_turns": 6,
+        "estimated_coder_turns": 1,
+        "product_execution_budget": "not_authorized_or_reserved"
+      },
+      "selection_kind": "initial",
+      "previous_configuration": null,
+      "is_escalation": false,
+      "evidence_refs": [
+        "N06",
+        "SRC-b7f34880eb24",
+        "SRC-3d1eefac22e5",
+        "SRC-f2320189bfc9"
+      ],
+      "justification": "Luna Medium fits the bounded read contract, permission checks, and isolated fixtures. Vendor uncertainty and absent access require clarification, not a stronger model. Keep lookup separate from approval checks and outcome writes. Live verification remains blocked and unauthorized.",
+      "proposal": {
+        "task_id": "N06",
+        "responsibility": "coder",
+        "profile": {
+          "model": "gpt-6-luna",
+          "effort": "medium"
+        },
+        "complexity": "normal",
+        "risk": "high",
+        "uncertainty": "high",
+        "context_requirements": "medium",
+        "expected_turns": 1,
+        "selection_kind": "initial",
+        "previous_configuration": null,
+        "failure_evidence": null,
+        "exceptional_initial_sol": false,
+        "decomposition_considered": true,
+        "evidence_refs": [
+          "N06",
+          "SRC-b7f34880eb24",
+          "SRC-3d1eefac22e5",
+          "SRC-f2320189bfc9"
+        ],
+        "rationale": "Luna Medium fits the bounded read contract, permission checks, and isolated fixtures. Vendor uncertainty and absent access require clarification, not a stronger model. Keep lookup separate from approval checks and outcome writes. Live verification remains blocked and unauthorized."
+      },
+      "product_execution_authorized": false
+    },
+    {
+      "task_id": "N07",
+      "logical_responsibility": "coder",
+      "decision_timestamp": "2026-10-25T17:46:02+00:00",
+      "selected_model_profile": "gpt-6-luna",
+      "selected_reasoning_effort": "high",
+      "resolved_technical_model_id": "gpt-6-luna",
+      "verified_availability": true,
+      "capability_snapshot": {
+        "authenticated": true,
+        "models": {
+          "gpt-6.1-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-astra": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-6-luna": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "gpt-5.6-sol": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-5.6-terra": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "gpt-5.6-luna": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        "remaining_percent": 60,
+        "usage_windows": [
+          {
+            "used_percent": 40,
+            "resets_at": 1792965282
+          },
+          {
+            "used_percent": 10,
+            "resets_at": 1793514900
+          }
+        ],
+        "at": "2026-10-25T17:45:09+00:00"
+      },
+      "complexity": "normal",
+      "risk": "high",
+      "context_requirements": "medium",
+      "budget_assessment": {
+        "remaining_development_turns": 6,
+        "estimated_coder_turns": 1,
+        "product_execution_budget": "not_authorized_or_reserved"
+      },
+      "selection_kind": "initial",
+      "previous_configuration": null,
+      "is_escalation": false,
+      "evidence_refs": [
+        "N07",
+        "SRC-b7f34880eb24",
+        "SRC-893594c23f0b",
+        "SRC-f2320189bfc9"
+      ],
+      "justification": "Luna High supports careful outcome mapping, permission checks, and uncertain-write handling within the isolated mutation boundary. Do not select recovery policy or perform writes without authorization. The seven task estimates total seven attempts, matching available capacity without reserving turns or guaranteeing completion.",
+      "proposal": {
+        "task_id": "N07",
+        "responsibility": "coder",
+        "profile": {
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        "complexity": "normal",
+        "risk": "high",
+        "uncertainty": "high",
+        "context_requirements": "medium",
+        "expected_turns": 1,
+        "selection_kind": "initial",
+        "previous_configuration": null,
+        "failure_evidence": null,
+        "exceptional_initial_sol": false,
+        "decomposition_considered": true,
+        "evidence_refs": [
+          "N07",
+          "SRC-b7f34880eb24",
+          "SRC-893594c23f0b",
+          "SRC-f2320189bfc9"
+        ],
+        "rationale": "Luna High supports careful outcome mapping, permission checks, and uncertain-write handling within the isolated mutation boundary. Do not select recovery policy or perform writes without authorization. The seven task estimates total seven attempts, matching available capacity without reserving turns or guaranteeing completion."
+      },
+      "product_execution_authorized": false
+    }
+  ],
+  "budget_scope": "Planning estimates only; no planned product execution is authorized"
+}

@@ -1,0 +1,9 @@
+{
+  "hashes": {
+    "tests/test_planning_models.py": "145fd932fdd6a6db57c303d7abbfff61a914f9fa3d4d00f9db894a6699eff426",
+    "tests/test_planning_model_recovery.py": "49a65264a938050d127307cc9a56bef1e8b32b0fdbeee1508c6f11398f555614"
+  },
+  "suite_hash": "284bdaa6715705c8ed4bd97912483bc2cef4470522f4256b1827bc7d743d9d3f",
+  "controlled_revision": 2,
+  "reason": "Add Reviewer regressions for cache replay and aggregate budget shortfall; original eleven tests unchanged"
+}

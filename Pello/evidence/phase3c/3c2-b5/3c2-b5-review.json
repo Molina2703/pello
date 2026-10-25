@@ -1,0 +1,12 @@
+{
+  "verdict": "FAIL",
+  "scope": "correct",
+  "correctness": "defect",
+  "test_evidence": "pass",
+  "safety_and_preservation": "adequate",
+  "findings": [
+    "propose_models cannot reliably resume: it rebuilds the invocation payload with changed remaining turns and capability timestamps before checking saved decisions. An isolated in-memory replay reproduced rejection with 'Stored operation identity differs'. Preserve the original invocation inputs for replay and reconciliation.",
+    "The integrated proposal claims seven estimated Coder turns match available capacity, while its records report six remaining turns. Per-decision validation misses this aggregate shortfall. Report the shortfall explicitly rather than claiming budget feasibility."
+  ],
+  "rationale": "All eleven frozen tests independently passed. Model availability checks, adaptive effort choices, and execution restrictions are preserved, but replay correctness and the budget assessment contain demonstrated defects. No product execution authorization was granted."
+}

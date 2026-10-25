@@ -1,0 +1,9 @@
+{
+  "verdict": "PASS",
+  "scope": "correct",
+  "correctness": "adequate",
+  "test_evidence": "pass",
+  "safety_and_preservation": "adequate",
+  "findings": [],
+  "rationale": "Protected evidence records 13 passing tests; 11 model tests independently reran successfully. In-memory checks confirmed saved-decision replay and recovery from a missing artifact without additional inference. The aggregate assessment correctly reports seven estimated turns against six available, with a shortfall of one. Prior evidence remains preserved, and product execution remains unauthorized. Approval is limited to this corrected batch."
+}

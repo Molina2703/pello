@@ -1,0 +1,12 @@
+{
+  "task_id": "N01",
+  "model": "gpt-6-luna",
+  "effort": "medium",
+  "thread_id": "01a17213-8df0-7042-a62a-5326a652d693",
+  "turn_id": "01a1742b-63bf-7f31-84d7-aad0a0e127a9",
+  "observed": {
+    "item_count": 3
+  },
+  "product_execution": false,
+  "tools_invoked_by_pello": false
+}
