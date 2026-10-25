@@ -1,0 +1,8 @@
+{
+  "registered_at": "2026-10-25T22:44:54.393686+00:00",
+  "planner_project_rows": 0,
+  "objective_script_sha256": "d39a01641ddd08001c7eb8027e66887225942c16eeef8adb75d791a4dc172855",
+  "criteria_source": "heldout-c-freeze.json; unchanged frozen rubric",
+  "critical_gate": "All ten objective checks and every critical frozen rubric criterion PASS; total >=90%; no Reviewer override",
+  "original_A_and_B_FAIL_preserved": true
+}
