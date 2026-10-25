@@ -1,0 +1,7 @@
+{
+  "registered_at": "2026-10-25T22:03:11.219820+00:00",
+  "planner_exists": false,
+  "objective_script_sha256": "e61b1eda9f9bc37ab5cbb82c96e2cddbb0c71fd0394880bbc04542a916d249fc",
+  "change_from_v1": "Only input freeze identity updated to evaluator revision 2. All ten structural assertions unchanged; archived v1 source and registration retained. No Planner result exists.",
+  "critical_objective_rule": "All objective checks and all hidden critical criteria must pass; total rubric threshold 90%"
+}

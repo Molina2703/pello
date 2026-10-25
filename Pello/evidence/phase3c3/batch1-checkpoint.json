@@ -1,0 +1,16 @@
+{
+  "status": "BATCH_1_ACCEPTED",
+  "at": "2026-10-25T22:08:34.594791+00:00",
+  "evaluation": "phase3c3-heldout-a-v2",
+  "hashes": {
+    "heldout-a-spec.md": "9ade6c83162fcf07f3d959ff59343c5804934c59c2d89c3cdd68268370845b2c",
+    "heldout-a-freeze-v2.json": "3fbd9811efb9ea4fef100d5dc338f4d177dcb5c0fbcbac3c2e5bb619af27cfe3",
+    "heldout-a-preparation-accepted-v2.json": "45e3e80eb99a6df46002ce343076b86651e71a99bc74de37ac4c2848c9457d15",
+    "heldout-a-preparation-review-v2-r3.json": "9128aa3d98893e42e9234029d1995918547bcf8b15eb9a201994d23522d5e051",
+    "objective_checks.py": "e61b1eda9f9bc37ab5cbb82c96e2cddbb0c71fd0394880bbc04542a916d249fc",
+    "objective-registration-v2.json": "9e0530bc8dd04959c51b2b9294caa402c7992ee6d82771dae9ce5d1e986bfecc"
+  },
+  "expected_solution_never_sent_to_Planner": true,
+  "hidden_rubric_not_added_to_Git_before_Planner": true,
+  "scope": "Preparation acceptance only; autonomous planning not yet run"
+}
