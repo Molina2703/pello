@@ -57,6 +57,7 @@ class N8nPreflightTests(unittest.TestCase):
 
     def test_protected_workflows_and_unscoped_search_are_rejected_before_rpc(self):
         for request in ({'action':'call','tool':'get_workflow_details','arguments':{'workflowId':'dFoCUpXVrP9gc9rY'}},
+                        {'action':'call','tool':'get_workflow_details','arguments':{'workflowId':'foreign'}},
                         {'action':'call','tool':'search_workflows','arguments':{}}):
             with self.subTest(request=request), self.assertRaises(ValueError):
                 worker_request(None, role='executor', workspace=Path('.'), request=request)

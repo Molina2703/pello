@@ -1,0 +1,1 @@
+{"action": "call", "tool": "get_node_types", "arguments": {"nodeIds": [{"nodeId": "n8n-nodes-base.webhook"}, {"nodeId": "n8n-nodes-base.set"}, {"nodeId": "n8n-nodes-base.respondToWebhook"}]}}

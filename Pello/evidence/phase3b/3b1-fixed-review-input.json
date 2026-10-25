@@ -1,0 +1,15 @@
+{
+  "contract": "3B1 implements only project-scoped journal, exact authorization, native submission/ID capture, immutable budgets, STOP and conservative recovery. No actual mutations yet. Safe workflow definition validation and publication/execution pipeline integration are deferred to 3B2/3.",
+  "source_files": [
+    "athis_autopilot/n8n_operations.py",
+    "athis_autopilot/n8n_mcp.py"
+  ],
+  "verification": {
+    "targeted_tests_log": "_workflows_and_unscoped_search_are_rejected_before_rpc) ... ok\ntest_wrong_endpoint_and_mutation_are_rejected (test_n8n_preflight.N8nPreflightTests.test_wrong_endpoint_and_mutation_are_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 8.652s\n\nOK\n",
+    "regression_log": "_remain_untouched (test_verification_source.SourceVerificationTests.test_stale_bytecode_fails_and_original_files_remain_untouched) ... ok\n\n----------------------------------------------------------------------\nRan 102 tests in 129.063s\n\nOK\n",
+    "real_n8n_mutations": 0
+  },
+  "design": "Native worker atomically claims IN_FLIGHT -> SUBMITTED and persists returned ID + response before file response; only Python Core uses write-capable transport contexts, with no model inference. Reviewer/Planner remain MCP-disabled. Confirmed response cache, uncertain write blocks, exact unique-name creation reconciliation. Subsequent definition safety gates are required before a real creation.",
+  "review_evidence_note": "Prior engineering review received an incomplete running regression tail; preserved as preliminary and superseded by this complete closeout review.",
+  "corrections": "Removed nonexistent/unscoped read aliases; all resource reads require project proof and owned workflowId; execution reads also require an execution ID observed in an owned execute/list result. Native worker rejects proof-less resource reads. New red ownership regression showed 6 failures before correction; fixed full suite 102/102 PASS, including positive owned execution readback."
+}

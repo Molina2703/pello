@@ -14,6 +14,10 @@ project = Path(__file__).resolve().parents[2]
 out = Path(__file__).resolve().parent / 'reviews' / phase
 out.mkdir(parents=True, exist_ok=False)
 data = json.loads(Path(input_file).read_text(encoding='utf-8'))
+for key in ('regression_log', 'baseline_log_tail'):
+    log = data.get('verification', {}).get(key)
+    if log is not None and not log.rstrip().endswith('OK'):
+        raise ValueError('Independent closeout review requires completed regression evidence')
 selection = select_model(PipelinePolicy(), probe_capabilities(), phase=phase+'/review')
 source = {name:(project / name).read_text(encoding='utf-8') for name in data.pop('source_files')}
 hashes = {name:hashlib.sha256((project / name).read_bytes()).hexdigest() for name in source}

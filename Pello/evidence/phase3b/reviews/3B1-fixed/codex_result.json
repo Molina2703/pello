@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "thread_id": "01a17095-4b30-7d61-94fb-6603a2e61ece",
+  "turn_id": "01a17095-4cc4-7943-b6bf-e05e8a3a27f5",
+  "usage": {
+    "last": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 17256,
+      "output_tokens": 946,
+      "reasoning_output_tokens": 849,
+      "total_tokens": 18202
+    },
+    "model_context_window": 475000,
+    "total": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 17256,
+      "output_tokens": 946,
+      "reasoning_output_tokens": 849,
+      "total_tokens": 18202
+    }
+  },
+  "final_response": "{\"project_id\":\"phase3b\",\"task_id\":\"3B1-fixed\",\"attempt\":1,\"verdict\":\"PASS\",\"diagnosis\":\"none\",\"feedback\":\"No blocking defect found within the supplied 3B1 contract. Evidence reports 14 targeted and 102 regression tests passing, with zero real n8n mutations. Workflow definition safety and publication/execution pipeline integration remain deferred to 3B2/3.\"}",
+  "error": null
+}
