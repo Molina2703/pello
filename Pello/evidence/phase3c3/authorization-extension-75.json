@@ -1,0 +1,23 @@
+{
+  "id": "phase3c3-extension-75-20261025",
+  "authorized_at": "2026-10-25T23:10:38+00:00",
+  "user_authorization": "Autorizo 75 acumulados y ese plazo",
+  "authorization_source": "Explicit reply to 75-turn / 2026-10-26 03:30 UTC question",
+  "cumulative_sdk_limit": 75,
+  "already_reserved": 49,
+  "completed_sdk_calls": 48,
+  "never_submitted_retained_charge": 1,
+  "remaining": 26,
+  "deadline": "2026-10-26T03:30:00+00:00",
+  "external_business_operations": 0,
+  "per_project_limit": 12,
+  "no_counter_reset": true,
+  "scope": "Finish Phase 3C-3 independent held-out planning evaluation, justified small corrections, fresh case when needed, regression/review/checkpoint. No Phase 3D.",
+  "prior_authorization": "phase3c3-authorization-20261025",
+  "renew_existing_author_project_time_only": {
+    "project_id": "phase3c3-author",
+    "old_deadline": "2026-10-26T00:30:03+00:00",
+    "new_deadline": "2026-10-26T03:30:00+00:00",
+    "used_turns_unchanged": 4
+  }
+}

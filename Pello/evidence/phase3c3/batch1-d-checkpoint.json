@@ -1,0 +1,15 @@
+{
+  "status": "ACCEPTED",
+  "at": "2026-10-25T23:20:06.280700+00:00",
+  "evaluation": "phase3c3-heldout-d-v1",
+  "hashes": {
+    "heldout-d-spec.md": "8b5d08d9e415098e0e58800353297ac4f09cb8000f720ff640f1e9d226d441f8",
+    "heldout-d-freeze.json": "866f3e27f69fb8c0b65b89cd5103ca99ccf7ce3fe586322f3b18e0d55966429f",
+    "heldout-d-preparation-accepted.json": "72f3be6cad3f42076b352c9b91e7856f3f318c1707990fd1d00355f55455277c",
+    "heldout-d-preparation-review-complete.json": "0abb0d4c010949cbf96e63a890c45f61ef29394f03bf615668b76e1445e26664",
+    "objective_checks_d.py": "568b85900c91f9c02071782727f62cec0148c901dc33712410396dcb65261feb",
+    "objective-registration-d.json": "4ebccf8f4a72e708728b53619c0de9f2637ed0e62b031a23c83cc2c935d40d99"
+  },
+  "three_prior_FAILs_preserved": true,
+  "new_expected_solution_not_sent_to_Planner_or_added_to_Git": true
+}
