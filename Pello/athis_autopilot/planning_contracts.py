@@ -3,6 +3,7 @@ from typing import Literal
 from pydantic import Field
 from .messages import Message, Identifier, Text
 from .pipeline_contracts import relative_path
+from .pipeline_contracts import Increment,PipelineManifest,ToolBinding
 
 
 class WorkNode(Message):
@@ -125,3 +126,74 @@ def validate_increments(decomposition, architecture, analysis, *, completed=()):
             else 'dependency_blocked' if causes else 'ready')
     return {**graph,'states':states,'first_actionable':next(iter(graph['ready']),None),
         'readiness_meaning':'Ready to prepare protected tests and request execution authorization, not permission to run a Coder.'}
+
+
+class AcceptanceCriterion(Message):
+    criterion_id: Identifier
+    requirement_ids: list[Identifier] = Field(min_length=1,max_length=30)
+    kind: Literal['normal','invalid','boundary','error','permission','regression','external']
+    given: Text
+    action: Text
+    expected: Text
+    verification: Literal['deterministic_local','external_execution','inspection']
+    state: Literal['proposed']
+
+
+class TechnicalContract(Message):
+    task_id: Identifier
+    preconditions: list[Text] = Field(min_length=1,max_length=12)
+    data_structures: list[Text] = Field(min_length=1,max_length=12)
+    business_rules: list[Text] = Field(min_length=1,max_length=12)
+    validation_behavior: list[Text] = Field(min_length=1,max_length=12)
+    error_behavior: list[Text] = Field(min_length=1,max_length=12)
+    criteria: list[AcceptanceCriterion] = Field(min_length=3,max_length=20)
+    unresolved_issue_ids: list[Identifier] = Field(max_length=30)
+
+
+class IncrementContracts(Message):
+    contracts: list[TechnicalContract] = Field(min_length=1,max_length=8)
+
+
+def validate_contracts(contracts,decomposition,architecture,analysis):
+    readiness=validate_increments(decomposition,architecture,analysis)
+    increments={x.task_id:x for x in decomposition.increments}
+    if {c.task_id for c in contracts.contracts}!=increments.keys() or len(contracts.contracts)!=len(increments):
+        raise ValueError('Contracts must cover each increment exactly once')
+    issues={i.issue_id for i in analysis.issues};all_criteria=set();count=0
+    for contract in contracts.contracts:
+        allowed=set(increments[contract.task_id].requirement_ids)|set(architecture.global_requirement_ids)
+        coverage=set();kinds=set()
+        if not set(contract.unresolved_issue_ids)<=issues: raise ValueError('Unknown unresolved issue')
+        for criterion in contract.criteria:
+            if criterion.criterion_id in all_criteria:raise ValueError('Duplicate acceptance criterion ID')
+            all_criteria.add(criterion.criterion_id);count+=1;kinds.add(criterion.kind)
+            if not set(criterion.requirement_ids)<=allowed: raise ValueError('Criterion requirement lies outside its contract')
+            coverage.update(criterion.requirement_ids)
+        if coverage!=allowed: raise ValueError('Missing requirement or global exclusion acceptance coverage')
+        if not {'normal','invalid','boundary'}<=kinds:raise ValueError('Normal/invalid/boundary acceptance coverage required')
+        if increments[contract.task_id].operation_kind=='external_operation' and 'permission' not in kinds:
+            raise ValueError('External operations require permission acceptance criteria')
+    return {'criteria_count':count,'contract_count':len(contracts.contracts),'test_lifecycle':'not_generated',
+        'tests_protected':False,'tests_executed':False,'observed_results':[],
+        'external_verification_required':[i.task_id for i in decomposition.increments if i.operation_kind=='external_operation'],
+        'readiness':readiness}
+
+
+def manifest_from_contracts(contracts,decomposition,architecture,analysis):
+    import json
+    validation=validate_contracts(contracts,decomposition,architecture,analysis)
+    incs={i.task_id:i for i in decomposition.increments};cs={c.task_id:c for c in contracts.contracts}
+    tasks=[]
+    for key in validation['readiness']['order']:
+        i,c=incs[key],cs[key]
+        tasks.append(Increment(task_id=key,specification=i.objective+'\nContract: '+json.dumps(c.model_dump(mode='json',exclude={'criteria'}),ensure_ascii=False),
+            inputs=i.inputs,outputs=i.outputs,components=i.components,
+            acceptance_criteria=[f'{x.criterion_id}: Given {x.given}; when {x.action}; expect {x.expected}' for x in c.criteria],
+            depends_on=i.depends_on,suite='planned/'+key,expected_tests=len(c.criteria),risk='high' if i.operation_kind=='external_operation' else 'routine'))
+    tools=[]
+    for tool in sorted({t for i in incs.values() for t in i.tools}):
+        tools.append(ToolBinding(tool=tool,environment='local' if tool in ('python','git') else 'production',
+            connection_ref='',allowed_operations=['implement','run_tests'] if tool=='python' else ['inspect','checkpoint'] if tool=='git' else [],
+            resource_ids=[],verification='Proposed capability only; independent protected tests and execution authorization remain required.',
+            enabled=tool in ('python','git')))
+    return PipelineManifest(architecture_constraints=architecture.operational_constraints,tools=tools,increments=tasks)

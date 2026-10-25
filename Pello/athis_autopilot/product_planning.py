@@ -716,6 +716,24 @@ class ProductPlanningCore(Bridge):
         self._write_json(path.with_name('increments-current.json'),{'revision':revision})
         return result
 
+    def propose_contracts(self, project_id: str) -> dict:
+        from .planning_contracts import ArchitectureProposal,FunctionalIncrements,IncrementContracts,validate_contracts,manifest_from_contracts
+        payload=self.planner_input(project_id)
+        architecture=ArchitectureProposal.model_validate(self.planning_stage(project_id,'architecture')['proposal'])
+        increments=FunctionalIncrements.model_validate(self.planning_stage(project_id,'increments')['proposal'])
+        # Avoid repeating verbose architecture prose; authoritative IDs/constraints remain.
+        payload['increments']=increments.model_dump(mode='json')
+        payload['global_requirement_ids']=architecture.global_requirement_ids
+        payload['planning_objective']='Create one implementation-independent technical contract per increment with the same task ID. Include source-based business rules, preconditions/data structures/validation/error behavior and objective acceptance criteria. Each contract must cover all its increment requirement IDs AND global requirement IDs. Every contract needs normal, invalid and boundary criteria; external operations also need permission checks and future real external verification. All criteria state=proposed. Each criterion must specify concrete given/action/expected observable results. Preserve source exclusions. Do not invent business-rule precedence or resolve blockers. For blocked business behavior specify safe fail-closed behavior while unresolved and list issue IDs; final behavior remains pending clarification. Existing increment inputs/outputs/interfaces/permissions/effects stay authoritative and apply to the contract. Keep responses concise enough for existing bounded context; no tests have been generated, protected or run for the planned product.'
+        version=self.version_row(project_id)
+        draft,_=self._invoke(project_id,version['version'],'plan-contracts','planner',payload,IncrementContracts)
+        analysis=validate_planning_input(payload['requirements'])
+        result={'proposal':draft.model_dump(mode='json'),'validation':validate_contracts(draft,increments,architecture,analysis),
+            'manifest':manifest_from_contracts(draft,increments,architecture,analysis).model_dump(mode='json')}
+        path=self.folder(project_id)/'evidence'/f'version-{version["version"]}'/'planning'/'contracts.json'
+        self._ensure_json_artifact(path,result)
+        return result
+
     def _invoke(self, project_id, version, phase, role, payload, output_model):
         project = self.project_row(project_id)
         version_row = self.version_row(project_id, version)

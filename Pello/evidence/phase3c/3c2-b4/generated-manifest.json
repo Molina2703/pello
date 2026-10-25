@@ -1,0 +1,261 @@
+{
+  "architecture_constraints": [
+    "This is a planning result. execution_authorized is false; no implementation, external access, message transmission, or outcome write is performed.",
+    "Preserve intake saving and later review during temporary partner-service outages, using an internal reference when no existing partner reference is available. [SRC-f2320189bfc9]",
+    "The one-business-day response target is explicit, but its trigger, business calendar, timezone, and definition of prepared remain unresolved. [SRC-3eca9a83bb88]",
+    "No automatic refunds and no partner messages without human review and authorization. Return approval does not imply refund issuance or message authorization. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]",
+    "Blocking integration issues affect invoice lookup and external outcome saving; recovery uncertainty affects external outcome saving. They do not block independent local intake or review. [SRC-b7f34880eb24, SRC-f2320189bfc9]"
+  ],
+  "tools": [
+    {
+      "tool": "external_api",
+      "environment": "production",
+      "connection_ref": "",
+      "allowed_operations": [],
+      "resource_ids": [],
+      "verification": "Proposed capability only; independent protected tests and execution authorization remain required.",
+      "permission_boundary": "Only the declared project resources and operations",
+      "enabled": false
+    },
+    {
+      "tool": "python",
+      "environment": "local",
+      "connection_ref": "",
+      "allowed_operations": [
+        "implement",
+        "run_tests"
+      ],
+      "resource_ids": [],
+      "verification": "Proposed capability only; independent protected tests and execution authorization remain required.",
+      "permission_boundary": "Only the declared project resources and operations",
+      "enabled": true
+    }
+  ],
+  "increments": [
+    {
+      "task_id": "N01",
+      "specification": "Propose local intake capture, case-reference assignment, persistence, and later review during partner-service outages. Keep this work independent of integration and recovery blockers. Preserve unapproved ASM-c14daf6aefcf for missing-invoice intake. [SRC-a43a2a271870, SRC-f2320189bfc9, SRC-3d1eefac22e5]\nContract: {\"task_id\": \"N01\", \"preconditions\": [\"Planning only: execution_authorized=false; no operations or verification have been performed.\", \"Missing-invoice intake follows unapproved ASM-c14daf6aefcf without resolving approval eligibility.\"], \"data_structures\": [\"Proposed Intake: partner, item SKU, quantity, invoice reference, return reason, arrival date, and optional supplied partner reference.\", \"Proposed SavedCase: retained intake and staff-facing case reference.\"], \"business_rules\": [\"Retain the supplied intake fields. No numeric ranges, field lengths, or additional mandatory-field rules are established. [SRC-a43a2a271870]\", \"Use an existing partner reference when available; otherwise supply an internal reference. Saving and later review remain independent of partner-service availability. [SRC-f2320189bfc9]\", \"Never issue refunds automatically or send partner messages without human review and authorization. This local increment performs neither action. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\"], \"validation_behavior\": [\"Proposed technical validation rejects a structurally invalid intake request without reporting a saved case.\", \"Missing invoice reference is retained under the explicitly unapproved assumption; it is not interpreted as approval permission.\"], \"error_behavior\": [\"A partner-service outage must not itself cause local saving or retrieval to fail.\", \"A failed local save reports failure rather than claiming persistence; recovery and storage implementation remain unspecified.\"], \"criteria\": [{\"criterion_id\": \"N01-C01\", \"requirement_ids\": [\"REQ-9ebf6ed4706b\", \"REQ-663f2a265eb0\"], \"kind\": \"normal\", \"given\": \"A structurally valid intake containing all six fields and an existing partner reference. [SRC-a43a2a271870, SRC-f2320189bfc9]\", \"action\": \"Save the intake locally and retrieve it by its case reference.\", \"expected\": \"All supplied intake values are retained, and the supplied partner reference is used.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N01-C02\", \"requirement_ids\": [\"REQ-9ebf6ed4706b\"], \"kind\": \"invalid\", \"given\": \"An input that is not a structured intake request.\", \"action\": \"Attempt local intake saving through the proposed interface.\", \"expected\": \"A structural validation failure is observable; no saved case is reported.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N01-C03\", \"requirement_ids\": [\"REQ-9ebf6ed4706b\", \"REQ-663f2a265eb0\", \"REQ-e8499cef13e3\"], \"kind\": \"boundary\", \"given\": \"Partner access is unavailable, no partner reference is supplied, and the invoice reference is absent under unapproved ASM-c14daf6aefcf. [SRC-f2320189bfc9, SRC-3d1eefac22e5]\", \"action\": \"Save the intake and retrieve it later.\", \"expected\": \"An internal reference is supplied, the intake remains retrievable with its missing invoice reference, and no external call or return approval occurs. This result does not establish approval of the assumption.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N01-C04\", \"requirement_ids\": [\"REQ-11a8bbfde1c8\", \"REQ-9c1a215bb727\"], \"kind\": \"regression\", \"given\": \"The proposed intake, reference, and retrieval operation paths. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\", \"action\": \"Inspect their reachable operations.\", \"expected\": \"They contain no automatic refund issuance or partner-message transmission.\", \"verification\": \"inspection\", \"state\": \"proposed\"}], \"unresolved_issue_ids\": [\"ISS-d014cbcd7f07\"]}",
+      "inputs": [
+        "One intake: partner, item SKU, quantity, invoice reference, return reason, and arrival date.",
+        "An existing partner reference when supplied, or its absence.",
+        "One saved case reference for subsequent retrieval.",
+        "Missing-invoice intake follows unapproved ASM-c14daf6aefcf without determining approval eligibility."
+      ],
+      "outputs": [
+        "A locally retained intake containing the supplied fields.",
+        "The supplied partner reference or an internal reference when none is available.",
+        "The saved intake retrieved for staff review."
+      ],
+      "components": [
+        "vendor_return_desk/intake.py",
+        "vendor_return_desk/references.py",
+        "vendor_return_desk/case_repository.py"
+      ],
+      "acceptance_criteria": [
+        "N01-C01: Given A structurally valid intake containing all six fields and an existing partner reference. [SRC-a43a2a271870, SRC-f2320189bfc9]; when Save the intake locally and retrieve it by its case reference.; expect All supplied intake values are retained, and the supplied partner reference is used.",
+        "N01-C02: Given An input that is not a structured intake request.; when Attempt local intake saving through the proposed interface.; expect A structural validation failure is observable; no saved case is reported.",
+        "N01-C03: Given Partner access is unavailable, no partner reference is supplied, and the invoice reference is absent under unapproved ASM-c14daf6aefcf. [SRC-f2320189bfc9, SRC-3d1eefac22e5]; when Save the intake and retrieve it later.; expect An internal reference is supplied, the intake remains retrievable with its missing invoice reference, and no external call or return approval occurs. This result does not establish approval of the assumption.",
+        "N01-C04: Given The proposed intake, reference, and retrieval operation paths. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]; when Inspect their reachable operations.; expect They contain no automatic refund issuance or partner-message transmission."
+      ],
+      "depends_on": [],
+      "suite": "planned/N01",
+      "expected_tests": 4,
+      "risk": "routine"
+    },
+    {
+      "task_id": "N02",
+      "specification": "Propose operator-visible status-change history and decision audit recording against local cases, retaining operator and time. Generic recording can proceed under unapproved ASM-9a6355f5b670 without deciding approval policy or final workflow vocabulary. [SRC-893594c23f0b]\nContract: {\"task_id\": \"N02\", \"preconditions\": [\"Planning only: execution_authorized=false; no operations or verification have been performed.\", \"A local case exists through N01. Generic recording follows unapproved ASM-9a6355f5b670; final workflow vocabulary and the operator-identity mechanism remain unspecified.\"], \"data_structures\": [\"Proposed StatusChange: case association, status change, responsible operator, and time.\", \"Proposed DecisionRecord: case association, decision, responsible operator, and time.\", \"Proposed CaseHistory: recorded events associated with one case.\"], \"business_rules\": [\"Preserve inspectable status changes and decisions with responsible operator and time. Recording a decision does not itself authorize or enact it. [SRC-893594c23f0b]\", \"Never issue refunds automatically or send messages without human review and authorization; history recording performs neither action. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\"], \"validation_behavior\": [\"Proposed validation requires case association, operator attribution, and time before an event can be reported as a complete audit record.\", \"Do not invent approved statuses, decision types, or permitted transitions.\"], \"error_behavior\": [\"Incomplete attribution produces a validation result rather than a falsely complete audit record.\", \"Recording failure must not be reported as a successfully retained event.\"], \"criteria\": [{\"criterion_id\": \"N02-C01\", \"requirement_ids\": [\"REQ-03c0c5f54c14\", \"REQ-b859f4e02365\"], \"kind\": \"normal\", \"given\": \"One local case, two fixture status changes, and one fixture decision, each with operator and time. [SRC-893594c23f0b]\", \"action\": \"Record the events and inspect the case history.\", \"expected\": \"Both status changes and the decision remain inspectable with their corresponding operators and times.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N02-C02\", \"requirement_ids\": [\"REQ-03c0c5f54c14\", \"REQ-b859f4e02365\"], \"kind\": \"invalid\", \"given\": \"A status-change or decision input missing its responsible operator or time. [SRC-893594c23f0b]\", \"action\": \"Attempt to record it as a complete audit event.\", \"expected\": \"The missing attribution is reported; no complete audit record is claimed for that input.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N02-C03\", \"requirement_ids\": [\"REQ-03c0c5f54c14\", \"REQ-b859f4e02365\"], \"kind\": \"boundary\", \"given\": \"Two local cases, only one of which has recorded status changes and decisions. [SRC-893594c23f0b]\", \"action\": \"Inspect each case's history separately.\", \"expected\": \"The case with events shows its records; the other shows no recorded events and does not inherit the first case's history.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N02-C04\", \"requirement_ids\": [\"REQ-11a8bbfde1c8\", \"REQ-9c1a215bb727\"], \"kind\": \"regression\", \"given\": \"The proposed history recording and inspection paths. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\", \"action\": \"Inspect their reachable operations.\", \"expected\": \"Recording or inspecting any event neither issues an automatic refund nor transmits a partner message.\", \"verification\": \"inspection\", \"state\": \"proposed\"}], \"unresolved_issue_ids\": [\"ISS-e121bc5f17af\", \"ISS-d014cbcd7f07\"]}",
+      "inputs": [
+        "One existing local case reference.",
+        "One status-change event or decision record with responsible operator and time.",
+        "One case reference for history inspection.",
+        "Fixture status and decision vocabulary under unapproved ASM-9a6355f5b670; final transition rules remain unspecified."
+      ],
+      "outputs": [
+        "A locally retained status-change or decision record associated with its case.",
+        "Inspectable case history displaying recorded changes and decisions with operator and time."
+      ],
+      "components": [
+        "vendor_return_desk/history.py",
+        "vendor_return_desk/decision_audit.py",
+        "vendor_return_desk/history_repository.py"
+      ],
+      "acceptance_criteria": [
+        "N02-C01: Given One local case, two fixture status changes, and one fixture decision, each with operator and time. [SRC-893594c23f0b]; when Record the events and inspect the case history.; expect Both status changes and the decision remain inspectable with their corresponding operators and times.",
+        "N02-C02: Given A status-change or decision input missing its responsible operator or time. [SRC-893594c23f0b]; when Attempt to record it as a complete audit event.; expect The missing attribution is reported; no complete audit record is claimed for that input.",
+        "N02-C03: Given Two local cases, only one of which has recorded status changes and decisions. [SRC-893594c23f0b]; when Inspect each case's history separately.; expect The case with events shows its records; the other shows no recorded events and does not inherit the first case's history.",
+        "N02-C04: Given The proposed history recording and inspection paths. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]; when Inspect their reachable operations.; expect Recording or inspecting any event neither issues an automatic refund nor transmits a partner message."
+      ],
+      "depends_on": [
+        "N01"
+      ],
+      "suite": "planned/N02",
+      "expected_tests": 4,
+      "risk": "routine"
+    },
+    {
+      "task_id": "N04",
+      "specification": "Propose local partner-response preparation independently of approval decisions and live integration. Generic preparation can proceed; one-business-day acceptance remains blocked by ISS-2afa4897bcb8. Preparing a response grants no sending authorization. [SRC-3eca9a83bb88]\nContract: {\"task_id\": \"N04\", \"preconditions\": [\"Planning only: execution_authorized=false; no preparation or verification has been performed.\", \"A local case exists through N01.\", \"Timing trigger, timezone, business calendar, and definition of prepared remain unresolved.\"], \"data_structures\": [\"Proposed ResponseInput: case association and staff-supplied response content.\", \"Proposed PreparedResponse: locally retained case association and content.\", \"Proposed timing assessment: observable preparation information interpreted only under clarified business-time rules.\"], \"business_rules\": [\"Support preparation within one business day; do not invent its timing definitions. Generic local preparation remains independently available. [SRC-3eca9a83bb88]\", \"Preparation does not establish human review or authorization and must not transmit a message or issue a refund. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\"], \"validation_behavior\": [\"Proposed validation requires a usable case association and structurally valid response input.\", \"Do not substitute the environment timezone or an invented calendar for the unresolved business-time rules.\"], \"error_behavior\": [\"Invalid preparation input reports validation failure rather than a prepared response.\", \"Missing timing definitions produce an unresolved timing assessment, not a claim that the target was met.\"], \"criteria\": [{\"criterion_id\": \"N04-C01\", \"requirement_ids\": [\"REQ-3a2f2898bf08\"], \"kind\": \"normal\", \"given\": \"A saved case and staff-supplied response content, with approval evaluation and external access unavailable. [SRC-3eca9a83bb88]\", \"action\": \"Prepare the response locally.\", \"expected\": \"The response retains its content and case association without requiring approval evaluation or external access; timing compliance is not claimed.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N04-C02\", \"requirement_ids\": [\"REQ-3a2f2898bf08\"], \"kind\": \"invalid\", \"given\": \"A preparation request without a usable case association.\", \"action\": \"Attempt response preparation.\", \"expected\": \"A validation failure is observable and no case-associated prepared response is claimed.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N04-C03\", \"requirement_ids\": [\"REQ-3a2f2898bf08\"], \"kind\": \"boundary\", \"given\": \"A candidate preparation time near a purported business-day limit while ISS-2afa4897bcb8 remains unresolved. [SRC-3eca9a83bb88]\", \"action\": \"Request a timing-compliance assessment.\", \"expected\": \"The assessment reports unresolved timing definitions and does not invent a deadline or classify the response as meeting it.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N04-C04\", \"requirement_ids\": [\"REQ-3a2f2898bf08\"], \"kind\": \"boundary\", \"given\": \"Future clarified timing rules and fixtures at and immediately beyond the resulting one-business-day limit. [SRC-3eca9a83bb88]\", \"action\": \"Assess both fixtures using those rules.\", \"expected\": \"Both assessments match the documented timing rule, including its boundary convention. This acceptance remains pending until clarification.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N04-C05\", \"requirement_ids\": [\"REQ-11a8bbfde1c8\", \"REQ-9c1a215bb727\"], \"kind\": \"regression\", \"given\": \"The proposed response-preparation paths. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\", \"action\": \"Inspect their reachable operations.\", \"expected\": \"Preparing or assessing a response neither transmits a message nor automatically issues a refund.\", \"verification\": \"inspection\", \"state\": \"proposed\"}], \"unresolved_issue_ids\": [\"ISS-2afa4897bcb8\", \"ISS-d014cbcd7f07\"]}",
+      "inputs": [
+        "One saved local case and staff-supplied response content.",
+        "For timing acceptance, a clarified trigger, timezone, business calendar, and definition of prepared; unresolved.",
+        "Fixture times interpreted using the clarified business-time rules, without assuming the environment timezone applies."
+      ],
+      "outputs": [
+        "A locally prepared response associated with its case.",
+        "After clarification, an observable preparation result comparable with the one-business-day target.",
+        "No transmitted message or implied sending authorization."
+      ],
+      "components": [
+        "vendor_return_desk/response_preparation.py",
+        "vendor_return_desk/business_time.py"
+      ],
+      "acceptance_criteria": [
+        "N04-C01: Given A saved case and staff-supplied response content, with approval evaluation and external access unavailable. [SRC-3eca9a83bb88]; when Prepare the response locally.; expect The response retains its content and case association without requiring approval evaluation or external access; timing compliance is not claimed.",
+        "N04-C02: Given A preparation request without a usable case association.; when Attempt response preparation.; expect A validation failure is observable and no case-associated prepared response is claimed.",
+        "N04-C03: Given A candidate preparation time near a purported business-day limit while ISS-2afa4897bcb8 remains unresolved. [SRC-3eca9a83bb88]; when Request a timing-compliance assessment.; expect The assessment reports unresolved timing definitions and does not invent a deadline or classify the response as meeting it.",
+        "N04-C04: Given Future clarified timing rules and fixtures at and immediately beyond the resulting one-business-day limit. [SRC-3eca9a83bb88]; when Assess both fixtures using those rules.; expect Both assessments match the documented timing rule, including its boundary convention. This acceptance remains pending until clarification.",
+        "N04-C05: Given The proposed response-preparation paths. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]; when Inspect their reachable operations.; expect Preparing or assessing a response neither transmits a message nor automatically issues a refund."
+      ],
+      "depends_on": [
+        "N01"
+      ],
+      "suite": "planned/N04",
+      "expected_tests": 5,
+      "risk": "routine"
+    },
+    {
+      "task_id": "N05",
+      "specification": "Propose local review and authorization recording and an authorization gate applicable to any future message-sending path. This work can proceed independently of response-timing clarification and does not implement or perform transmission. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\nContract: {\"task_id\": \"N05\", \"preconditions\": [\"Planning only: execution_authorized=false; no review, authorization, transmission, or verification has been performed.\", \"One case-associated message is supplied. Evidence representation and the mechanism establishing human authority remain unspecified.\"], \"data_structures\": [\"Proposed MessageForReview: case association and message identity/content.\", \"Proposed ReviewAuthorizationEvidence: human review and authorization associated with that message.\", \"Proposed GateResult: prerequisites evidenced or not evidenced; never a transmission result.\"], \"business_rules\": [\"Both human review and authorization must precede sending. A local gate result is not execution authorization. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\", \"This local increment sends no messages and issues no refunds. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\"], \"validation_behavior\": [\"Evaluate evidence for the supplied message, not unrelated messages.\", \"Missing or unusable review or authorization evidence cannot satisfy the gate.\", \"The proposed evidence format must not be presented as customer-approved.\"], \"error_behavior\": [\"Unusable or indeterminate evidence leaves the gate unsatisfied.\", \"Recording or evaluation failure must not be reported as successful authorization.\"], \"criteria\": [{\"criterion_id\": \"N05-C01\", \"requirement_ids\": [\"REQ-11a8bbfde1c8\"], \"kind\": \"normal\", \"given\": \"One fixture message with associated human-review and authorization evidence. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\", \"action\": \"Record the evidence and evaluate the local gate.\", \"expected\": \"Both prerequisites are observable for that message; the result remains local and no transmission occurs.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N05-C02\", \"requirement_ids\": [\"REQ-11a8bbfde1c8\"], \"kind\": \"invalid\", \"given\": \"Evidence associated only with a different fixture message. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\", \"action\": \"Evaluate the gate for the current message.\", \"expected\": \"The unrelated evidence does not satisfy the current message's review and authorization prerequisites.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N05-C03\", \"requirement_ids\": [\"REQ-11a8bbfde1c8\"], \"kind\": \"boundary\", \"given\": \"All four combinations of review evidence present or absent and authorization evidence present or absent. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\", \"action\": \"Evaluate each combination for the same fixture message.\", \"expected\": \"Only the combination evidencing both prerequisites satisfies the local gate; all other combinations remain unsatisfied, and none sends a message.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N05-C04\", \"requirement_ids\": [\"REQ-11a8bbfde1c8\", \"REQ-9c1a215bb727\"], \"kind\": \"regression\", \"given\": \"The proposed recording and gate paths. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\", \"action\": \"Inspect their reachable operations.\", \"expected\": \"They contain no message transmission or automatic refund issuance. Local gate verification is not represented as end-to-end enforcement by an unspecified future sender.\", \"verification\": \"inspection\", \"state\": \"proposed\"}], \"unresolved_issue_ids\": [\"ISS-d014cbcd7f07\"]}",
+      "inputs": [
+        "One case-associated message supplied for local review.",
+        "Evidence of human review and authorization for that message; its representation is a proposal.",
+        "Fixture combinations with review and authorization present or absent."
+      ],
+      "outputs": [
+        "A proposed local review-and-authorization record.",
+        "A local gate result indicating whether both prerequisites are evidenced for the message.",
+        "No transmission, delivery confirmation, or execution authorization."
+      ],
+      "components": [
+        "vendor_return_desk/message_review.py",
+        "vendor_return_desk/message_authorization.py"
+      ],
+      "acceptance_criteria": [
+        "N05-C01: Given One fixture message with associated human-review and authorization evidence. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]; when Record the evidence and evaluate the local gate.; expect Both prerequisites are observable for that message; the result remains local and no transmission occurs.",
+        "N05-C02: Given Evidence associated only with a different fixture message. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]; when Evaluate the gate for the current message.; expect The unrelated evidence does not satisfy the current message's review and authorization prerequisites.",
+        "N05-C03: Given All four combinations of review evidence present or absent and authorization evidence present or absent. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]; when Evaluate each combination for the same fixture message.; expect Only the combination evidencing both prerequisites satisfies the local gate; all other combinations remain unsatisfied, and none sends a message.",
+        "N05-C04: Given The proposed recording and gate paths. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]; when Inspect their reachable operations.; expect They contain no message transmission or automatic refund issuance. Local gate verification is not represented as end-to-end enforcement by an unspecified future sender."
+      ],
+      "depends_on": [
+        "N01"
+      ],
+      "suite": "planned/N05",
+      "expected_tests": 4,
+      "risk": "routine"
+    },
+    {
+      "task_id": "N06",
+      "specification": "Plan the external original-invoice lookup operation. Vendor-specific completion and live acceptance are blocked by ISS-88929f59ad66 and ISS-2a833aba0f4f. Do not perform the lookup during planning or treat a retrieved invoice as a completed approval check. [SRC-b7f34880eb24, SRC-3d1eefac22e5]\nContract: {\"task_id\": \"N06\", \"preconditions\": [\"Planning only: execution_authorized=false; external_api is unavailable and no lookup or verification has been performed.\", \"Future live operation requires a selected vendor interface, defined identifiers and mappings, authorized invoice-read access, and separate execution authorization.\", \"Local contract fixtures do not establish live integration completion.\"], \"data_structures\": [\"Proposed LookupRequest: local case association and vendor-defined invoice lookup identifiers.\", \"Proposed LookupResult: corresponding invoice data or an explicit documented lookup outcome.\", \"Vendor mapping and permission evidence remain prerequisites, not available resources.\"], \"business_rules\": [\"Look up the original invoice through the partner case system using authorized access. Vendor and account remain unavailable. [SRC-b7f34880eb24]\", \"Retrieval does not itself establish a passing invoice check or approval permission. [SRC-3d1eefac22e5]\", \"Lookup must not automatically issue refunds or transmit partner messages. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\"], \"validation_behavior\": [\"Validate request structure and, after vendor selection, required lookup identifiers and response mappings.\", \"Check read permission and execution authorization before any live request.\", \"Do not fabricate invoice data when identifiers, mappings, or the service are unavailable.\"], \"error_behavior\": [\"Missing permission or execution authorization prevents external invocation.\", \"Unavailable tools, service failure, or lookup failure produce an explicit non-success outcome rather than a fabricated invoice or completed check.\", \"Lookup unavailability does not block N01 saving or retrieval.\"], \"criteria\": [{\"criterion_id\": \"N06-C01\", \"requirement_ids\": [\"REQ-e2ddda14ac9d\"], \"kind\": \"normal\", \"given\": \"A local fixture defining one case, its invoice identifier, and its corresponding invoice response. [SRC-b7f34880eb24]\", \"action\": \"Exercise the proposed mapping contract without external access.\", \"expected\": \"The mapped invoice corresponds to the supplied case; no verified-invoice or approval result is inferred, and the evidence is labelled local rather than live.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N06-C02\", \"requirement_ids\": [\"REQ-e2ddda14ac9d\"], \"kind\": \"invalid\", \"given\": \"A request lacking an identifier required by a future selected interface.\", \"action\": \"Validate the lookup request against that interface contract.\", \"expected\": \"The missing identifier is reported and external request count is zero; acceptance remains conditional on defining the interface.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N06-C03\", \"requirement_ids\": [\"REQ-e2ddda14ac9d\"], \"kind\": \"boundary\", \"given\": \"A valid fixture request with external_api unavailable. [SRC-b7f34880eb24, SRC-f2320189bfc9]\", \"action\": \"Request lookup, then exercise independent N01 saving and retrieval.\", \"expected\": \"Lookup reports unavailable without fabricating invoice data; N01 saving and retrieval succeed without an external call.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N06-C04\", \"requirement_ids\": [\"REQ-e2ddda14ac9d\"], \"kind\": \"permission\", \"given\": \"Read permission or separate execution authorization is absent. [SRC-b7f34880eb24]\", \"action\": \"Attempt to initiate live invoice lookup through an isolated permission-check fixture.\", \"expected\": \"The missing prerequisite is reported and external request count is zero.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N06-C05\", \"requirement_ids\": [\"REQ-e2ddda14ac9d\"], \"kind\": \"external\", \"given\": \"Future resolved vendor and access issues, available external_api, approved invoice-read access, explicit execution authorization, and a known authorized case-to-invoice association. [SRC-b7f34880eb24]\", \"action\": \"Perform one real lookup through the selected partner interface.\", \"expected\": \"The returned original invoice matches the known association and documented mapping. The result demonstrates retrieval only, without claiming invoice verification or approval.\", \"verification\": \"external_execution\", \"state\": \"proposed\"}, {\"criterion_id\": \"N06-C06\", \"requirement_ids\": [\"REQ-11a8bbfde1c8\", \"REQ-9c1a215bb727\"], \"kind\": \"regression\", \"given\": \"The proposed lookup adapter's operation paths. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\", \"action\": \"Inspect their reachable effects.\", \"expected\": \"The only planned external effect is the authorized invoice read; no path issues an automatic refund or transmits a partner message.\", \"verification\": \"inspection\", \"state\": \"proposed\"}], \"unresolved_issue_ids\": [\"ISS-88929f59ad66\", \"ISS-2a833aba0f4f\", \"ISS-d014cbcd7f07\"]}",
+      "inputs": [
+        "One local case and its invoice reference; vendor-specific identifiers remain undefined.",
+        "A selected partner interface and documented invoice mapping; unavailable.",
+        "Unresolved tool dependency: external_api is declared but unavailable until the integration is selected and authorized.",
+        "Authorized invoice-read access and explicit execution authorization; not supplied."
+      ],
+      "outputs": [
+        "A proposed invoice-lookup contract.",
+        "If separately authorized and executed later, corresponding original-invoice data or a documented lookup outcome.",
+        "No assertion that retrieval completes an invoice check or permits approval."
+      ],
+      "components": [
+        "vendor_return_desk/integrations/invoice_lookup.py",
+        "vendor_return_desk/integrations/invoice_contracts.py"
+      ],
+      "acceptance_criteria": [
+        "N06-C01: Given A local fixture defining one case, its invoice identifier, and its corresponding invoice response. [SRC-b7f34880eb24]; when Exercise the proposed mapping contract without external access.; expect The mapped invoice corresponds to the supplied case; no verified-invoice or approval result is inferred, and the evidence is labelled local rather than live.",
+        "N06-C02: Given A request lacking an identifier required by a future selected interface.; when Validate the lookup request against that interface contract.; expect The missing identifier is reported and external request count is zero; acceptance remains conditional on defining the interface.",
+        "N06-C03: Given A valid fixture request with external_api unavailable. [SRC-b7f34880eb24, SRC-f2320189bfc9]; when Request lookup, then exercise independent N01 saving and retrieval.; expect Lookup reports unavailable without fabricating invoice data; N01 saving and retrieval succeed without an external call.",
+        "N06-C04: Given Read permission or separate execution authorization is absent. [SRC-b7f34880eb24]; when Attempt to initiate live invoice lookup through an isolated permission-check fixture.; expect The missing prerequisite is reported and external request count is zero.",
+        "N06-C05: Given Future resolved vendor and access issues, available external_api, approved invoice-read access, explicit execution authorization, and a known authorized case-to-invoice association. [SRC-b7f34880eb24]; when Perform one real lookup through the selected partner interface.; expect The returned original invoice matches the known association and documented mapping. The result demonstrates retrieval only, without claiming invoice verification or approval.",
+        "N06-C06: Given The proposed lookup adapter's operation paths. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]; when Inspect their reachable effects.; expect The only planned external effect is the authorized invoice read; no path issues an automatic refund or transmits a partner message."
+      ],
+      "depends_on": [
+        "N01"
+      ],
+      "suite": "planned/N06",
+      "expected_tests": 6,
+      "risk": "high"
+    },
+    {
+      "task_id": "N03",
+      "specification": "Isolate the unresolved approval-policy branch and its decision recording. Final behavior is blocked by ISS-496d17ef02d0 and ISS-e1a74fc08855. Preserve both contradictory rules; do not assume an invoice-check method or that invoice retrieval constitutes verification. [SRC-3d1eefac22e5, SRC-893594c23f0b]\nContract: {\"task_id\": \"N03\", \"preconditions\": [\"Planning only: execution_authorized=false; no approvals or verification have been performed.\", \"N01 case information and N02 recording interfaces are prerequisites.\", \"The contradictory approval rules and invoice-check criteria remain unresolved. Full business acceptance is pending clarification.\"], \"data_structures\": [\"Proposed ApprovalInput: case association, invoice-presence information, and supplied invoice-check evidence.\", \"Proposed EvaluationResult: unresolved-policy indication or, after clarification only, a result under documented rules.\", \"Any resulting decision record uses N02 operator and time attribution.\"], \"business_rules\": [\"Preserve both automatic approval of invoice-less requests and the original-invoice check prerequisite without choosing precedence. [SRC-3d1eefac22e5]\", \"Proposed temporary fail-closed behavior: while applicable policy or check criteria are unresolved, report policy unresolved and do not approve. This is a technical safeguard, not a resolution of either source rule. [SRC-3d1eefac22e5]\", \"Invoice retrieval alone is not established as a completed check. [SRC-3d1eefac22e5, SRC-b7f34880eb24]\", \"Approval evaluation must not issue refunds or transmit partner messages. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\"], \"validation_behavior\": [\"Reject structurally invalid evaluation inputs without creating an approval.\", \"Do not interpret missing, unsupported, or undefined check evidence as a passing check.\", \"After clarification, validation and evaluation must follow a traceable acceptance matrix rather than invented precedence.\"], \"error_behavior\": [\"Unresolved policy, unresolved evidence criteria, or evaluation failure produces no approval.\", \"Any recorded evaluation outcome must accurately distinguish unresolved evaluation from a completed approval decision.\"], \"criteria\": [{\"criterion_id\": \"N03-C01\", \"requirement_ids\": [\"REQ-d5405fcf4ac8\", \"REQ-043524c25e5a\"], \"kind\": \"normal\", \"given\": \"A well-formed invoice-less case while ISS-496d17ef02d0 remains unresolved. [SRC-3d1eefac22e5]\", \"action\": \"Request approval evaluation.\", \"expected\": \"The result reports unresolved policy, no approval occurs, and both source rules remain pending rather than being treated as resolved.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N03-C02\", \"requirement_ids\": [\"REQ-d5405fcf4ac8\", \"REQ-043524c25e5a\"], \"kind\": \"invalid\", \"given\": \"An evaluation request without a usable case association or with structurally invalid evidence.\", \"action\": \"Attempt approval evaluation.\", \"expected\": \"A validation failure is observable and no approval or successful approval audit record is produced.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N03-C03\", \"requirement_ids\": [\"REQ-043524c25e5a\"], \"kind\": \"boundary\", \"given\": \"An original invoice has been retrieved, but passing check criteria remain undefined under ISS-e1a74fc08855. [SRC-3d1eefac22e5, SRC-b7f34880eb24]\", \"action\": \"Evaluate whether retrieval permits approval.\", \"expected\": \"Retrieval is not promoted to a completed passing check; unresolved criteria are reported and approval does not occur.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N03-C04\", \"requirement_ids\": [\"REQ-d5405fcf4ac8\", \"REQ-043524c25e5a\"], \"kind\": \"normal\", \"given\": \"Future documented resolutions of both blocking issues and an acceptance matrix covering absent, unchecked, and checked invoices. [SRC-3d1eefac22e5]\", \"action\": \"Evaluate every matrix branch and inspect corresponding decision records.\", \"expected\": \"Results match the resolved matrix with accurate decision attribution. Until those resolutions exist, this criterion remains pending and supplies no final business-rule expectation.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N03-C05\", \"requirement_ids\": [\"REQ-11a8bbfde1c8\", \"REQ-9c1a215bb727\"], \"kind\": \"regression\", \"given\": \"The proposed approval-evaluation and decision-recording paths. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\", \"action\": \"Inspect all result branches.\", \"expected\": \"No branch automatically issues a refund or transmits a partner message.\", \"verification\": \"inspection\", \"state\": \"proposed\"}], \"unresolved_issue_ids\": [\"ISS-496d17ef02d0\", \"ISS-e1a74fc08855\", \"ISS-d014cbcd7f07\"]}",
+      "inputs": [
+        "One local case and its invoice-presence information.",
+        "Documented resolution of ISS-496d17ef02d0 defining treatment of invoice-less requests; unresolved.",
+        "Invoice-check criteria and evidence contract resolving ISS-e1a74fc08855; unresolved.",
+        "Responsible operator and time for any resulting recorded decision."
+      ],
+      "outputs": [
+        "A proposed approval-evaluation contract retaining both conflicting statements.",
+        "Until resolution, an explicit indication that final policy acceptance remains blocked.",
+        "After resolution only, a local evaluation under the resolved policy and its decision-audit record."
+      ],
+      "components": [
+        "vendor_return_desk/approval_policy.py",
+        "vendor_return_desk/invoice_check_evidence.py"
+      ],
+      "acceptance_criteria": [
+        "N03-C01: Given A well-formed invoice-less case while ISS-496d17ef02d0 remains unresolved. [SRC-3d1eefac22e5]; when Request approval evaluation.; expect The result reports unresolved policy, no approval occurs, and both source rules remain pending rather than being treated as resolved.",
+        "N03-C02: Given An evaluation request without a usable case association or with structurally invalid evidence.; when Attempt approval evaluation.; expect A validation failure is observable and no approval or successful approval audit record is produced.",
+        "N03-C03: Given An original invoice has been retrieved, but passing check criteria remain undefined under ISS-e1a74fc08855. [SRC-3d1eefac22e5, SRC-b7f34880eb24]; when Evaluate whether retrieval permits approval.; expect Retrieval is not promoted to a completed passing check; unresolved criteria are reported and approval does not occur.",
+        "N03-C04: Given Future documented resolutions of both blocking issues and an acceptance matrix covering absent, unchecked, and checked invoices. [SRC-3d1eefac22e5]; when Evaluate every matrix branch and inspect corresponding decision records.; expect Results match the resolved matrix with accurate decision attribution. Until those resolutions exist, this criterion remains pending and supplies no final business-rule expectation.",
+        "N03-C05: Given The proposed approval-evaluation and decision-recording paths. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]; when Inspect all result branches.; expect No branch automatically issues a refund or transmits a partner message."
+      ],
+      "depends_on": [
+        "N01",
+        "N02"
+      ],
+      "suite": "planned/N03",
+      "expected_tests": 5,
+      "risk": "routine"
+    },
+    {
+      "task_id": "N07",
+      "specification": "Plan external saving of recorded case outcomes. Vendor-specific completion and live acceptance are blocked by ISS-88929f59ad66 and ISS-2a833aba0f4f; final recovery behavior is blocked by ISS-4cba0e6b0e15. Do not perform writes or select automatic retry behavior. Recording non-approval decisions does not depend on resolving approval policy. [SRC-b7f34880eb24, SRC-893594c23f0b, SRC-f2320189bfc9]\nContract: {\"task_id\": \"N07\", \"preconditions\": [\"Planning only: execution_authorized=false; external_api is unavailable and no write or verification has been performed.\", \"N01 supplies the case and N02 supplies the recorded outcome.\", \"Future live writing requires vendor mappings, outcome-write permission, separate execution authorization, and resolved recovery behavior.\", \"Approval outcomes require consistency with resolved approval rules; non-approval recording does not depend on resolving that branch.\"], \"data_structures\": [\"Proposed OutcomeWriteRequest: local case association, recorded outcome, corresponding external-case identifier, and mapped vendor outcome.\", \"Proposed WriteResult: observable success, failure, or uncertain result as defined by the selected interface.\", \"Proposed recovery contract: handling of failed and uncertain writes; currently unresolved.\"], \"business_rules\": [\"Save the recorded case outcome to the corresponding partner-system case through authorized access. [SRC-b7f34880eb24]\", \"Recovery behavior is unresolved. Proposed temporary fail-closed behavior reports failed or uncertain results without claiming success or automatically retrying while policy is undecided. This does not select the final recovery policy. [SRC-b7f34880eb24, SRC-f2320189bfc9]\", \"External-write problems must not prevent independent local intake and review. [SRC-f2320189bfc9]\", \"Outcome writes must not issue automatic refunds or transmit partner messages. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\"], \"validation_behavior\": [\"Require a usable recorded outcome and corresponding external-case association before constructing a write.\", \"Validate vendor mappings only against a selected, documented interface; do not invent them.\", \"Check outcome-write permission and separate execution authorization before each live write or recovery attempt.\"], \"error_behavior\": [\"Missing mapping, permission, or execution authorization prevents external invocation.\", \"Failed and uncertain results remain distinguishable from confirmed success.\", \"While recovery policy is unresolved, no automatic recovery write is initiated; local records remain independently reviewable.\"], \"criteria\": [{\"criterion_id\": \"N07-C01\", \"requirement_ids\": [\"REQ-8dadd81a1019\"], \"kind\": \"normal\", \"given\": \"A recorded local non-approval outcome and a fixture mapping to one external case and vendor outcome. [SRC-b7f34880eb24, SRC-893594c23f0b]\", \"action\": \"Exercise the proposed write-mapping contract locally.\", \"expected\": \"The constructed request targets the mapped case and outcome exactly; no external write occurs and no live saving is claimed.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N07-C02\", \"requirement_ids\": [\"REQ-8dadd81a1019\"], \"kind\": \"invalid\", \"given\": \"A recorded outcome without a usable corresponding external-case mapping.\", \"action\": \"Attempt to construct an external outcome write.\", \"expected\": \"The missing mapping is reported and external write count is zero.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N07-C03\", \"requirement_ids\": [\"REQ-8dadd81a1019\"], \"kind\": \"boundary\", \"given\": \"An isolated adapter fixture returns an uncertain write result while ISS-4cba0e6b0e15 remains unresolved. [SRC-b7f34880eb24, SRC-f2320189bfc9]\", \"action\": \"Handle the result and inspect attempted recovery operations.\", \"expected\": \"The result remains explicitly uncertain, success is not claimed, and no automatic recovery write is initiated. Independent local intake and review remain available.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N07-C04\", \"requirement_ids\": [\"REQ-8dadd81a1019\"], \"kind\": \"permission\", \"given\": \"Outcome-write permission or separate execution authorization is absent. [SRC-b7f34880eb24]\", \"action\": \"Attempt a write or recovery attempt through an isolated permission-check fixture.\", \"expected\": \"The missing permission prerequisite is reported and external write count is zero.\", \"verification\": \"deterministic_local\", \"state\": \"proposed\"}, {\"criterion_id\": \"N07-C05\", \"requirement_ids\": [\"REQ-8dadd81a1019\"], \"kind\": \"external\", \"given\": \"Future resolved vendor, access, and recovery issues; available external_api; approved write and verification access; explicit execution authorization; and a specified case and recorded outcome. [SRC-b7f34880eb24]\", \"action\": \"Perform one real outcome write and confirm it using the vendor's authorized verification mechanism.\", \"expected\": \"The intended outcome is observably saved on the intended external case under the documented mapping. An uncertain result cannot satisfy this criterion.\", \"verification\": \"external_execution\", \"state\": \"proposed\"}, {\"criterion_id\": \"N07-C06\", \"requirement_ids\": [\"REQ-11a8bbfde1c8\", \"REQ-9c1a215bb727\"], \"kind\": \"regression\", \"given\": \"The proposed outcome-write and recovery operation paths. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]\", \"action\": \"Inspect their reachable effects.\", \"expected\": \"Planned external effects are limited to separately authorized case-outcome writes; no path issues an automatic refund or transmits a partner message.\", \"verification\": \"inspection\", \"state\": \"proposed\"}], \"unresolved_issue_ids\": [\"ISS-88929f59ad66\", \"ISS-2a833aba0f4f\", \"ISS-4cba0e6b0e15\", \"ISS-d014cbcd7f07\"]}",
+      "inputs": [
+        "One local case and one recorded outcome.",
+        "The corresponding external-case identifier and vendor outcome mapping; undefined.",
+        "A documented recovery policy for failed and uncertain writes; unresolved under ISS-4cba0e6b0e15.",
+        "Unresolved tool dependency: external_api is declared but unavailable until the integration is selected and authorized.",
+        "Authorized outcome-write access and explicit execution authorization; not supplied.",
+        "For an approval outcome, a decision consistent with resolved approval rules; this increment does not resolve those rules."
+      ],
+      "outputs": [
+        "A proposed external outcome-write contract.",
+        "If separately authorized and executed later, an outcome saved to the corresponding partner case.",
+        "An observable write result under documented vendor semantics; uncertain results are not assumed successful."
+      ],
+      "components": [
+        "vendor_return_desk/integrations/outcome_write.py",
+        "vendor_return_desk/integrations/outcome_mapping.py",
+        "vendor_return_desk/integrations/outcome_recovery.py"
+      ],
+      "acceptance_criteria": [
+        "N07-C01: Given A recorded local non-approval outcome and a fixture mapping to one external case and vendor outcome. [SRC-b7f34880eb24, SRC-893594c23f0b]; when Exercise the proposed write-mapping contract locally.; expect The constructed request targets the mapped case and outcome exactly; no external write occurs and no live saving is claimed.",
+        "N07-C02: Given A recorded outcome without a usable corresponding external-case mapping.; when Attempt to construct an external outcome write.; expect The missing mapping is reported and external write count is zero.",
+        "N07-C03: Given An isolated adapter fixture returns an uncertain write result while ISS-4cba0e6b0e15 remains unresolved. [SRC-b7f34880eb24, SRC-f2320189bfc9]; when Handle the result and inspect attempted recovery operations.; expect The result remains explicitly uncertain, success is not claimed, and no automatic recovery write is initiated. Independent local intake and review remain available.",
+        "N07-C04: Given Outcome-write permission or separate execution authorization is absent. [SRC-b7f34880eb24]; when Attempt a write or recovery attempt through an isolated permission-check fixture.; expect The missing permission prerequisite is reported and external write count is zero.",
+        "N07-C05: Given Future resolved vendor, access, and recovery issues; available external_api; approved write and verification access; explicit execution authorization; and a specified case and recorded outcome. [SRC-b7f34880eb24]; when Perform one real outcome write and confirm it using the vendor's authorized verification mechanism.; expect The intended outcome is observably saved on the intended external case under the documented mapping. An uncertain result cannot satisfy this criterion.",
+        "N07-C06: Given The proposed outcome-write and recovery operation paths. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]; when Inspect their reachable effects.; expect Planned external effects are limited to separately authorized case-outcome writes; no path issues an automatic refund or transmits a partner message."
+      ],
+      "depends_on": [
+        "N01",
+        "N02"
+      ],
+      "suite": "planned/N07",
+      "expected_tests": 6,
+      "risk": "high"
+    }
+  ]
+}
