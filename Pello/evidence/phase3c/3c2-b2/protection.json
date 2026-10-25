@@ -1,0 +1,7 @@
+{
+  "hashes": {
+    "tests/test_planning_graph.py": "1a733cc44529c4e9e2c69f79267b870d0f28c5f1b8d601141a49b0fc24fb338f"
+  },
+  "suite_hash": "91d4bce4950cbb1878592b738349324526b15caa46a1854654c19121f302c413",
+  "controlled_revision": 2
+}

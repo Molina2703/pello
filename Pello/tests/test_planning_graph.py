@@ -1,0 +1,71 @@
+import copy
+import unittest
+from athis_autopilot.product_planning import MarkdownSource, normalize_analysis, RequirementAnalysis
+from athis_autopilot.planning_contracts import ArchitectureProposal, validate_architecture
+from tests.test_product_planning import complete_analysis
+
+
+def sample():
+    source='# Product\n\nCollect cases.\n\nConnect vendor.\n\nExclude refunds.\n\nAuthorize messages.\n'
+    segments=MarkdownSource.parse(source)
+    return normalize_analysis(RequirementAnalysis.model_validate(complete_analysis({'source_segments':[s.model_dump() for s in segments]})),segments,'a'*64)
+
+
+def proposal(a):
+    ids=[r.requirement_id for r in a.requirements]
+    return {'architecture':['Local intake and audit components with an isolated vendor adapter.'],
+        'data_entities':['Case'], 'interfaces':['Case intake and vendor adapter'],
+        'operational_constraints':['No external execution during planning'],
+        'security_considerations':['Deny external effects without authorization'],
+        'technical_risks':['Missing vendor interface'],
+        'completion_definition':['Original source requirements verified with evidence'],
+        'global_requirement_ids':[ids[2]],
+        'nodes':[
+            {'task_id':'INTAKE','objective':'Record a case','requirement_ids':[ids[0]],'depends_on':[],
+             'optional_dependencies':[],'required_resources':[],'operation_kind':'local_logic'},
+            {'task_id':'INVOICE','objective':'Check invoice evidence','requirement_ids':[ids[5]],'depends_on':['INTAKE'],
+             'optional_dependencies':[],'required_resources':[],'operation_kind':'local_logic'},
+            {'task_id':'VENDOR','objective':'Use vendor case and authorized messaging','requirement_ids':[ids[1],ids[3]],
+             'depends_on':['INTAKE'],'optional_dependencies':[],'required_resources':['vendor-account'],
+             'operation_kind':'external_operation'}]}
+
+
+class PlanningGraphTests(unittest.TestCase):
+    def setUp(self): self.a=sample();self.p=proposal(self.a)
+    def validate(self): return validate_architecture(ArchitectureProposal.model_validate(self.p),self.a)
+    def test_valid_graph_order_and_independent_branch(self):
+        result=self.validate();self.assertEqual(result['order'],['INTAKE','INVOICE','VENDOR'])
+        self.assertEqual(result['ready'],['INTAKE']);self.assertTrue(result['blockers']['VENDOR'])
+        self.assertFalse(result['blockers']['INTAKE'])
+    def test_cycle(self):
+        self.p['nodes'][0]['depends_on']=['INVOICE']
+        with self.assertRaises(ValueError):self.validate()
+    def test_missing_and_self_dependency(self):
+        for ref in ('MISSING','INTAKE'):
+            self.p=proposal(self.a);self.p['nodes'][0]['depends_on']=[ref]
+            with self.assertRaises(ValueError):self.validate()
+    def test_orphan_requirement_rejected(self):
+        self.p['nodes'].pop()
+        with self.assertRaises(ValueError):self.validate()
+    def test_missing_authorization_and_resources_are_blockers(self):
+        blocks=self.validate()['blockers']['VENDOR']
+        self.assertIn('authorization',blocks);self.assertIn('resource:vendor-account',blocks)
+    def test_blocked_parent_propagates_but_unrelated_intake_survives(self):
+        self.p['nodes'][1]['depends_on']=['VENDOR']
+        result=self.validate();self.assertIn('dependency:VENDOR',result['blockers']['INVOICE'])
+        self.assertIn('INTAKE',result['ready'])
+    def test_order_stable_under_input_reordering(self):
+        expected=self.validate()['order'];self.p['nodes'].reverse()
+        self.assertEqual(self.validate()['order'],expected)
+    def test_unknown_requirement_and_global_promotion_rejected(self):
+        self.p['global_requirement_ids']=[self.a.requirements[0].requirement_id]
+        with self.assertRaises(ValueError):self.validate()
+    def test_untrusted_instruction_cannot_become_task(self):
+        self.p['nodes'][0]['requirement_ids'].append(self.a.requirements[4].requirement_id)
+        with self.assertRaises(ValueError):self.validate()
+    def test_duplicate_task_rejected(self):
+        self.p['nodes'].append(copy.deepcopy(self.p['nodes'][0]))
+        with self.assertRaises(ValueError):self.validate()
+
+
+if __name__=='__main__':unittest.main()

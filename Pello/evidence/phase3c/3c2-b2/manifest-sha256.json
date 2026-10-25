@@ -1,0 +1,14 @@
+{
+  "3c2-b2-review.json": "f15be1802548f150dc631d869d0469f27c6a0608eacab6a52aca84dfd0d68ea6",
+  "acceptance-correction.md": "283e46508e1a97c55ec0dba040e3e168c7456045e39cd9ac04e4ad04555e0fb5",
+  "architecture-rejected-r1.json": "16ab37a9ef93fa84d4719df1bd4376c39526746da2cd66164b44bcec402574fc",
+  "architecture-repair.md": "4dd259ba95577e4ff4bcf545538f3d49ea79207d0aa57edb0de8ae982f65ba75",
+  "live-architecture.json": "d30f8cfbcfcbcc6e989ce68e78eb9cf0f00e464e67ac0ed906b2e6f429bec648",
+  "protected-tests-attempt1-FAIL.log": "439b1096447b1cf029e59961351998ab391479a2b4697219c933c36245f3d1cc",
+  "protected-tests.log": "d1bb4c79d990ffc112a8c91857ea18ddb2fdcf21d5e5d34bd41c76e335d4fd32",
+  "protection-revision1.json": "f13bdc176cd1be87eeed8809268c93498dc257c5f97a32c689009389497e638c",
+  "protection.json": "5cdc7c657ff33a750b3a95141e3e4cc0964bf5c321caa2256c6031269a959765",
+  "review-input.json": "789b50cd3744d7c1a1edd002b654846a179ea5ee61caf452d22ebe2cf1a86197",
+  "test-planning-graph-revision1.txt": "8f623a70b57540ba4483a5ee8b7999e8fc3ac223639d4097816581ea12912cec",
+  "tests.json": "eb5032ece5385bb3863f9586f20b31bc950ba1aa791cd57da6b7b4d1d7e3e0e3"
+}

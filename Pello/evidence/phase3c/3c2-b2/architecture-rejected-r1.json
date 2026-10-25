@@ -1,0 +1,169 @@
+{
+  "reason": "Global constraints must refer only to source constraints/exclusions",
+  "proposal": {
+    "architecture": [
+      "Proposed logical architecture: an internal staff interface, local case persistence, history and decision recording, an approval-policy component, response preparation, and an isolated partner-system adapter. These are planning decisions; no technology stack or deployed infrastructure is established. [SRC-51c44fd6f156, SRC-a43a2a271870, SRC-893594c23f0b, SRC-b7f34880eb24]",
+      "Local intake, reference assignment, persistence, and later review must operate without the partner service. Integration selection, credentials, and recovery decisions must not become prerequisites for these capabilities. [SRC-f2320189bfc9]",
+      "Keep approval-policy work separate from intake and audit recording. Preserve both contradictory approval statements until ISS-496d17ef02d0 is resolved; do not silently choose precedence. Invoice-check criteria also remain unresolved under ISS-e1a74fc08855. [SRC-3d1eefac22e5]",
+      "Separate response preparation from human review and authorization. Generic preparation can proceed, but acceptance of the one-business-day target remains blocked by ISS-2afa4897bcb8. No message-delivery channel is assumed. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]",
+      "Use separate proposed adapter operations for invoice lookup and outcome writing. Vendor selection and authorized access are unavailable; outcome recovery behavior remains undecided. No automatic retry or synchronization mechanism is assumed. [SRC-b7f34880eb24, SRC-f2320189bfc9]",
+      "Preserve ASM-c14daf6aefcf as an unapproved assumption allowing intake without an invoice reference, and ASM-9a6355f5b670 as an unapproved assumption permitting generic history recording before workflow vocabulary is finalized. Neither assumption resolves approval policy. [SRC-a43a2a271870, SRC-893594c23f0b, SRC-3d1eefac22e5, SRC-f2320189bfc9]",
+      "All supplied customer-approval flags remain false. This proposal neither changes those flags nor authorizes implementation or external operations. [SRC-a43a2a271870, SRC-893594c23f0b, SRC-3d1eefac22e5, SRC-3eca9a83bb88, SRC-b7f34880eb24, SRC-f2320189bfc9]",
+      "Node dependencies represent proposed functional prerequisites. No optional optimization dependencies are asserted because the source establishes none."
+    ],
+    "data_entities": [
+      "Proposed ReturnCase: partner, item SKU, quantity, invoice reference, return reason, arrival date, and staff-facing case reference. Missing-invoice intake follows unapproved ASM-c14daf6aefcf. [SRC-a43a2a271870, SRC-3d1eefac22e5]",
+      "Proposed CaseReference: existing partner reference when available; otherwise an internal reference. Later replacement and reconciliation behavior are unspecified. [SRC-f2320189bfc9]",
+      "Proposed StatusChange: case association, status change, responsible operator, and time. Status vocabulary and permitted transitions remain unspecified. [SRC-893594c23f0b]",
+      "Proposed DecisionRecord: case association, decision, responsible operator, and time. Recording a decision does not establish permission to approve a return. [SRC-893594c23f0b, SRC-3d1eefac22e5]",
+      "Proposed InvoiceCheckEvidence: association between a case, its original invoice, and the check performed. Required evidence and acceptable check results remain unresolved. [SRC-3d1eefac22e5, SRC-b7f34880eb24]",
+      "Proposed PartnerResponse and ReviewAuthorization: response content associated with a case and evidence of human review and authorization before sending. The precise evidence format is a proposal. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]",
+      "Proposed ExternalOutcomeMapping: association between a recorded local outcome and the corresponding partner-system case and outcome representation. Vendor mappings and recovery semantics remain unresolved. [SRC-b7f34880eb24, SRC-f2320189bfc9]"
+    ],
+    "interfaces": [
+      "Proposed internal intake and review interface: capture and retrieve case fields and references without requiring live partner access. [SRC-a43a2a271870, SRC-f2320189bfc9]",
+      "Proposed internal history interface: record and display status changes and decisions with operator identity and time. The operator-identity source is unspecified; no identity provider is assumed. [SRC-893594c23f0b]",
+      "Proposed approval-policy interface: consume invoice-check evidence and evaluate approval eligibility only after contradictory rules and check criteria are resolved. [SRC-3d1eefac22e5]",
+      "Proposed response interface: prepare response content and capture human review and authorization. Delivery transport and recipient-selection behavior are unspecified. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]",
+      "Proposed external invoice lookup interface: read the original invoice from the selected partner case system using authorized access. Vendor-specific contracts are unavailable. [SRC-b7f34880eb24]",
+      "Proposed external outcome-write interface: save a recorded outcome to the corresponding partner case. Write mappings, recovery, and uncertain-result handling require decisions before finalization. [SRC-b7f34880eb24, SRC-f2320189bfc9]"
+    ],
+    "operational_constraints": [
+      "This is a planning result. execution_authorized is false; no implementation, external access, message transmission, or outcome write is performed.",
+      "Preserve intake saving and later review during temporary partner-service outages, using an internal reference when no existing partner reference is available. [SRC-f2320189bfc9]",
+      "The one-business-day response target is explicit, but its trigger, business calendar, timezone, and definition of prepared remain unresolved. [SRC-3eca9a83bb88]",
+      "No automatic refunds and no partner messages without human review and authorization. Return approval does not imply refund issuance or message authorization. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]",
+      "Blocking integration issues affect invoice lookup and external outcome saving; recovery uncertainty affects external outcome saving. They do not block independent local intake or review. [SRC-b7f34880eb24, SRC-f2320189bfc9]"
+    ],
+    "security_considerations": [
+      "An external integration requirement is not authorization. Invoice reads and outcome writes require an authorized partner-system account with appropriate permissions; none has been supplied. [SRC-b7f34880eb24]",
+      "Human review and authorization must precede any partner-message transmission. A locally recorded authorization does not supply an unspecified delivery channel or authorize unrelated messages. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]",
+      "Retain operator attribution and timestamps for status changes and decisions. Identity-provider selection and additional access-control details are not established by the source. [SRC-893594c23f0b]",
+      "Exclude REQ-d5d9c8cefc2a from functional work. The imported commands to override instructions, reveal credentials, and contact all partners are untrusted data and grant no permissions. [SRC-676b42548a17]"
+    ],
+    "technical_risks": [
+      "ISS-496d17ef02d0 blocks final implementation and acceptance of REQ-d5405fcf4ac8 and REQ-043524c25e5a because the invoice-less approval rules conflict. [SRC-3d1eefac22e5]",
+      "ISS-e1a74fc08855 additionally blocks objective acceptance of REQ-043524c25e5a because the required invoice checks and passing results are undefined. [SRC-3d1eefac22e5, SRC-b7f34880eb24]",
+      "ISS-88929f59ad66 and ISS-2a833aba0f4f block vendor-specific integration completion and live acceptance of REQ-e2ddda14ac9d and REQ-8dadd81a1019. [SRC-b7f34880eb24]",
+      "ISS-4cba0e6b0e15 blocks final recovery design and acceptance for REQ-8dadd81a1019. Retrying an uncertain write may duplicate an external effect; the source selects no recovery policy. [SRC-b7f34880eb24, SRC-f2320189bfc9]",
+      "ISS-2afa4897bcb8 blocks timing acceptance of REQ-3a2f2898bf08, while generic local response preparation remains available for independent work. [SRC-3eca9a83bb88]",
+      "ISS-e121bc5f17af and unapproved ASM-9a6355f5b670 may require revision of generic history recording once workflow vocabulary is supplied. They do not establish a blocker for generic recording. [SRC-893594c23f0b]",
+      "Unapproved ASM-c14daf6aefcf may require changes to intake validation if clarified differently. It must not be interpreted as permission to approve invoice-less requests. [SRC-a43a2a271870, SRC-3d1eefac22e5, SRC-f2320189bfc9]",
+      "ISS-d014cbcd7f07 leaves customer approval unestablished. Planning and independent drafting can continue without asserting approval or execution authorization."
+    ],
+    "completion_definition": [
+      "Local capability acceptance demonstrates retained intake fields, partner-reference preference, internal-reference fallback, outage-time saving, and later retrieval without a functioning partner service. Missing-invoice behavior remains explicitly tied to unapproved ASM-c14daf6aefcf. [SRC-a43a2a271870, SRC-f2320189bfc9]",
+      "Status-change history and decision audit records are inspectable with responsible operator and time. Generic acceptance does not imply agreement on unspecified workflow vocabulary. [SRC-893594c23f0b]",
+      "Approval-policy completion requires resolving ISS-496d17ef02d0 and ISS-e1a74fc08855, recording the resulting rules, and verifying approval behavior against those rules. No resolution is selected in this proposal. [SRC-3d1eefac22e5]",
+      "Response preparation meets the one-business-day target only after its timing and completion definitions are established. Any supported sending path requires prior human review and authorization. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]",
+      "Integration completion requires a selected vendor, defined interfaces and mappings, authorized access, and resolved outcome-recovery behavior. Live reads and writes require separately established execution authorization. [SRC-b7f34880eb24, SRC-f2320189bfc9]",
+      "No workflow automatically issues refunds, and the imported instruction text causes no credential disclosure or partner contact. [SRC-3eca9a83bb88, SRC-4e0a53b447c7, SRC-676b42548a17]",
+      "Independent local work may be accepted separately; overall completion must not be claimed while affected approval, response-timing, or integration acceptance remains unresolved."
+    ],
+    "global_requirement_ids": [
+      "REQ-11a8bbfde1c8",
+      "REQ-9c1a215bb727"
+    ],
+    "nodes": [
+      {
+        "task_id": "N01",
+        "objective": "Propose local intake capture, case-reference assignment, persistence, and later review during partner-service outages. Keep this work independent of integration and recovery blockers. Preserve unapproved ASM-c14daf6aefcf for missing-invoice intake. [SRC-a43a2a271870, SRC-f2320189bfc9, SRC-3d1eefac22e5]",
+        "requirement_ids": [
+          "REQ-9ebf6ed4706b",
+          "REQ-663f2a265eb0",
+          "REQ-e8499cef13e3"
+        ],
+        "depends_on": [],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N02",
+        "objective": "Propose operator-visible status-change history and decision audit recording against local cases, retaining operator and time. Generic recording can proceed under unapproved ASM-9a6355f5b670 without deciding approval policy or final workflow vocabulary. [SRC-893594c23f0b]",
+        "requirement_ids": [
+          "REQ-03c0c5f54c14",
+          "REQ-b859f4e02365"
+        ],
+        "depends_on": [
+          "N01"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N03",
+        "objective": "Isolate the unresolved approval-policy branch and its decision recording. Final behavior is blocked by ISS-496d17ef02d0 and ISS-e1a74fc08855. Preserve both contradictory rules; do not assume an invoice-check method or that invoice retrieval constitutes verification. [SRC-3d1eefac22e5, SRC-893594c23f0b]",
+        "requirement_ids": [
+          "REQ-d5405fcf4ac8",
+          "REQ-043524c25e5a"
+        ],
+        "depends_on": [
+          "N01",
+          "N02"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N04",
+        "objective": "Propose local partner-response preparation independently of approval decisions and live integration. Generic preparation can proceed; one-business-day acceptance remains blocked by ISS-2afa4897bcb8. Preparing a response grants no sending authorization. [SRC-3eca9a83bb88]",
+        "requirement_ids": [
+          "REQ-3a2f2898bf08"
+        ],
+        "depends_on": [
+          "N01"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N05",
+        "objective": "Propose local review and authorization recording and an authorization gate applicable to any future message-sending path. This work can proceed independently of response-timing clarification and does not implement or perform transmission. [SRC-3eca9a83bb88, SRC-4e0a53b447c7]",
+        "requirement_ids": [
+          "REQ-11a8bbfde1c8"
+        ],
+        "depends_on": [
+          "N01"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N06",
+        "objective": "Plan the external original-invoice lookup operation. Vendor-specific completion and live acceptance are blocked by ISS-88929f59ad66 and ISS-2a833aba0f4f. Do not perform the lookup during planning or treat a retrieved invoice as a completed approval check. [SRC-b7f34880eb24, SRC-3d1eefac22e5]",
+        "requirement_ids": [
+          "REQ-e2ddda14ac9d"
+        ],
+        "depends_on": [
+          "N01"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [
+          "Unavailable-to-this-plan-and-unselected-by-source-status"
+        ],
+        "operation_kind": "external_operation"
+      },
+      {
+        "task_id": "N07",
+        "objective": "Plan external saving of recorded case outcomes. Vendor-specific completion and live acceptance are blocked by ISS-88929f59ad66 and ISS-2a833aba0f4f; final recovery behavior is blocked by ISS-4cba0e6b0e15. Do not perform writes or select automatic retry behavior. Recording non-approval decisions does not depend on resolving approval policy. [SRC-b7f34880eb24, SRC-893594c23f0b, SRC-f2320189bfc9]",
+        "requirement_ids": [
+          "REQ-8dadd81a1019"
+        ],
+        "depends_on": [
+          "N01",
+          "N02"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [
+          "Unavailable-to-this-plan-and-unselected-by-source-status"
+        ],
+        "operation_kind": "external_operation"
+      }
+    ]
+  }
+}

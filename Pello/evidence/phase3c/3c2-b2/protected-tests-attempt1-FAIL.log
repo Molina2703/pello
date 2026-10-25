@@ -1,0 +1,165 @@
+test_blocked_parent_propagates_but_unrelated_intake_survives (test_planning_graph.PlanningGraphTests.test_blocked_parent_propagates_but_unrelated_intake_survives) ... ERROR
+test_cycle (test_planning_graph.PlanningGraphTests.test_cycle) ... ERROR
+test_duplicate_task_rejected (test_planning_graph.PlanningGraphTests.test_duplicate_task_rejected) ... ERROR
+test_missing_and_self_dependency (test_planning_graph.PlanningGraphTests.test_missing_and_self_dependency) ... ERROR
+test_missing_authorization_and_resources_are_blockers (test_planning_graph.PlanningGraphTests.test_missing_authorization_and_resources_are_blockers) ... ERROR
+test_order_stable_under_input_reordering (test_planning_graph.PlanningGraphTests.test_order_stable_under_input_reordering) ... ERROR
+test_orphan_requirement_rejected (test_planning_graph.PlanningGraphTests.test_orphan_requirement_rejected) ... ERROR
+test_unknown_requirement_and_global_promotion_rejected (test_planning_graph.PlanningGraphTests.test_unknown_requirement_and_global_promotion_rejected) ... ERROR
+test_untrusted_instruction_cannot_become_task (test_planning_graph.PlanningGraphTests.test_untrusted_instruction_cannot_become_task) ... ERROR
+test_valid_graph_order_and_independent_branch (test_planning_graph.PlanningGraphTests.test_valid_graph_order_and_independent_branch) ... ERROR
+
+======================================================================
+ERROR: test_blocked_parent_propagates_but_unrelated_intake_survives (test_planning_graph.PlanningGraphTests.test_blocked_parent_propagates_but_unrelated_intake_survives)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 34, in setUp
+    def setUp(self): self.a=sample();self.p=proposal(self.a)
+                            ^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 11, in sample
+    return normalize_analysis(complete_analysis({'source_segments':[s.model_dump() for s in segments]}),segments,'a'*64)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 309, in normalize_analysis
+    draft_ids = {item.draft_id for item in draft.requirements}
+                                           ^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'requirements'
+
+======================================================================
+ERROR: test_cycle (test_planning_graph.PlanningGraphTests.test_cycle)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 34, in setUp
+    def setUp(self): self.a=sample();self.p=proposal(self.a)
+                            ^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 11, in sample
+    return normalize_analysis(complete_analysis({'source_segments':[s.model_dump() for s in segments]}),segments,'a'*64)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 309, in normalize_analysis
+    draft_ids = {item.draft_id for item in draft.requirements}
+                                           ^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'requirements'
+
+======================================================================
+ERROR: test_duplicate_task_rejected (test_planning_graph.PlanningGraphTests.test_duplicate_task_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 34, in setUp
+    def setUp(self): self.a=sample();self.p=proposal(self.a)
+                            ^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 11, in sample
+    return normalize_analysis(complete_analysis({'source_segments':[s.model_dump() for s in segments]}),segments,'a'*64)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 309, in normalize_analysis
+    draft_ids = {item.draft_id for item in draft.requirements}
+                                           ^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'requirements'
+
+======================================================================
+ERROR: test_missing_and_self_dependency (test_planning_graph.PlanningGraphTests.test_missing_and_self_dependency)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 34, in setUp
+    def setUp(self): self.a=sample();self.p=proposal(self.a)
+                            ^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 11, in sample
+    return normalize_analysis(complete_analysis({'source_segments':[s.model_dump() for s in segments]}),segments,'a'*64)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 309, in normalize_analysis
+    draft_ids = {item.draft_id for item in draft.requirements}
+                                           ^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'requirements'
+
+======================================================================
+ERROR: test_missing_authorization_and_resources_are_blockers (test_planning_graph.PlanningGraphTests.test_missing_authorization_and_resources_are_blockers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 34, in setUp
+    def setUp(self): self.a=sample();self.p=proposal(self.a)
+                            ^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 11, in sample
+    return normalize_analysis(complete_analysis({'source_segments':[s.model_dump() for s in segments]}),segments,'a'*64)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 309, in normalize_analysis
+    draft_ids = {item.draft_id for item in draft.requirements}
+                                           ^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'requirements'
+
+======================================================================
+ERROR: test_order_stable_under_input_reordering (test_planning_graph.PlanningGraphTests.test_order_stable_under_input_reordering)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 34, in setUp
+    def setUp(self): self.a=sample();self.p=proposal(self.a)
+                            ^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 11, in sample
+    return normalize_analysis(complete_analysis({'source_segments':[s.model_dump() for s in segments]}),segments,'a'*64)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 309, in normalize_analysis
+    draft_ids = {item.draft_id for item in draft.requirements}
+                                           ^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'requirements'
+
+======================================================================
+ERROR: test_orphan_requirement_rejected (test_planning_graph.PlanningGraphTests.test_orphan_requirement_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 34, in setUp
+    def setUp(self): self.a=sample();self.p=proposal(self.a)
+                            ^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 11, in sample
+    return normalize_analysis(complete_analysis({'source_segments':[s.model_dump() for s in segments]}),segments,'a'*64)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 309, in normalize_analysis
+    draft_ids = {item.draft_id for item in draft.requirements}
+                                           ^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'requirements'
+
+======================================================================
+ERROR: test_unknown_requirement_and_global_promotion_rejected (test_planning_graph.PlanningGraphTests.test_unknown_requirement_and_global_promotion_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 34, in setUp
+    def setUp(self): self.a=sample();self.p=proposal(self.a)
+                            ^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 11, in sample
+    return normalize_analysis(complete_analysis({'source_segments':[s.model_dump() for s in segments]}),segments,'a'*64)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 309, in normalize_analysis
+    draft_ids = {item.draft_id for item in draft.requirements}
+                                           ^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'requirements'
+
+======================================================================
+ERROR: test_untrusted_instruction_cannot_become_task (test_planning_graph.PlanningGraphTests.test_untrusted_instruction_cannot_become_task)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 34, in setUp
+    def setUp(self): self.a=sample();self.p=proposal(self.a)
+                            ^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 11, in sample
+    return normalize_analysis(complete_analysis({'source_segments':[s.model_dump() for s in segments]}),segments,'a'*64)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 309, in normalize_analysis
+    draft_ids = {item.draft_id for item in draft.requirements}
+                                           ^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'requirements'
+
+======================================================================
+ERROR: test_valid_graph_order_and_independent_branch (test_planning_graph.PlanningGraphTests.test_valid_graph_order_and_independent_branch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 34, in setUp
+    def setUp(self): self.a=sample();self.p=proposal(self.a)
+                            ^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\runtime\phase3c\protected\3c2-b2\test_planning_graph.py", line 11, in sample
+    return normalize_analysis(complete_analysis({'source_segments':[s.model_dump() for s in segments]}),segments,'a'*64)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 309, in normalize_analysis
+    draft_ids = {item.draft_id for item in draft.requirements}
+                                           ^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'requirements'
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.021s
+
+FAILED (errors=10)
