@@ -11,6 +11,9 @@ assert not any(k not in {'COMPLETED','NOT_SUBMITTED_CONTEXT_REJECTED','FAILED_PR
 authorizations=[dict(x) for x in c.execute('select * from pello_product_run_authorizations order by rowid')]
 assert len(operations)<=75 and datetime.now(timezone.utc)<datetime.fromisoformat(authorizations[-1]['deadline'])
 checkpoints=[dict(x) for x in c.execute('select * from pello_product_checkpoints order by rowid')]
+for checkpoint in checkpoints:
+ workspace=Path('runtime/phase3c/projects')/checkpoint['project_id']/'workspace'
+ assert subprocess.run(['git','-C',str(workspace),'cat-file','-e',checkpoint['commit_sha']+'^{commit}'],capture_output=True).returncode==0
 projects=[dict(x) for x in c.execute('select * from pello_product_projects order by rowid')]
 dest=out/'closure-jobs.sqlite3';backup=sqlite3.connect(dest);c.backup(backup);backup.close()
 summary={'at':datetime.now(timezone.utc).isoformat(),'HEAD':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
@@ -19,7 +22,7 @@ summary={'at':datetime.now(timezone.utc).isoformat(),'HEAD':subprocess.check_out
  'sdk_charged_reservations':len(operations),'actual_completed_sdk_calls':statuses.get('COMPLETED',0),
  'never_submitted_retained_charge':statuses.get('NOT_SUBMITTED_CONTEXT_REJECTED',0),'provider_failed_retained_charge':statuses.get('FAILED_PROVIDER_QUOTA_RECONCILED',0),'remaining_authorized_slots':75-len(operations),
  'authorization_rows':authorizations,'deadline':authorizations[-1]['deadline'],'cumulative_limit':75,
- 'statuses':statuses,'projects':projects,'checkpoints':checkpoints,'external_business_operations':0,'Phase3D_started':False,
+ 'statuses':statuses,'projects':projects,'checkpoints':checkpoints,'all_checkpoint_git_objects_verified_after_acceptance':True,'external_business_operations':0,'Phase3D_started':False,
  'snapshot_sha256':hashlib.sha256(dest.read_bytes()).hexdigest()}
 (out/'closure-state.json').write_text(json.dumps(summary,indent=2),encoding='utf-8');print(json.dumps({k:v for k,v in summary.items() if k not in {'projects','checkpoints','authorization_rows'}},indent=2))
 c.close()

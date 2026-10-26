@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-26T04:15:08.291092+00:00",
+  "status": "PARTIAL",
+  "gate": "INSUFFICIENT_PRACTICAL_CAPACITY_FOR_FRESH_EVALUATION_AND_RESERVE",
+  "HEAD": "8b53b3a95c64cf16c37235036361296bb355c6f7",
+  "charged_reservations": 62,
+  "cumulative_limit": 75,
+  "remaining_slots": 13,
+  "deadline": "2026-10-26T06:30:00+00:00",
+  "statuses": [
+    {
+      "status": "COMPLETED",
+      "count": 60
+    },
+    {
+      "status": "FAILED_PROVIDER_QUOTA_RECONCILED",
+      "count": 1
+    },
+    {
+      "status": "NOT_SUBMITTED_CONTEXT_REJECTED",
+      "count": 1
+    }
+  ],
+  "STOP": false,
+  "sqlite_integrity": "ok",
+  "five_original_blind_FAILs_preserved": true,
+  "correction_review": "PASS",
+  "full_tests": 240,
+  "protected_tests": 63,
+  "historical_hashes": 1493,
+  "fresh_F_started": false,
+  "SDK_during_budget_request": false,
+  "proposed_cumulative_limit": 85,
+  "proposed_available_slots": 23,
+  "proposed_allocation": {
+    "new_specification_planning_and_bounded_reviews": 14,
+    "failure_reserve": 9
+  },
+  "snapshot_sha256": "fbc197b1ff8c029288005cec236832bd4649e19d6a69835a6eeb43441d631356",
+  "external_business_operations": 0,
+  "Phase3D_started": false
+}
