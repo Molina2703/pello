@@ -1,0 +1,24 @@
+{
+  "status": "DRAFT_TOOLING_ONLY_NOT_EXECUTED",
+  "new_business_source_created": false,
+  "new_rubric_created": false,
+  "new_project_created": false,
+  "SDK_calls": 0,
+  "user_decision": "Conservar el checkpoint sin ampliar",
+  "accepted_as_planning_evidence": false,
+  "files": {
+    "evidence\\phase3c3\\build_success_reports_g.py": "2380f394acb363142074f4be8119f3da357c50e04a807f6760067a0fd77fe7a8",
+    "evidence\\phase3c3\\checkpoint_preparation_g.py": "0f7f04c580feccb694733783ac615e98dfeed1d6745f2e0dc8ad76ee90f39972",
+    "evidence\\phase3c3\\create_g_harnesses.py": "9445b54e61fc0d166eb60ed1c027e2ca22c259bc88132901ef64e36016db90e4",
+    "evidence\\phase3c3\\final_review_g.py": "5c973a4174fbe23ae4de404f74be204ed4f4fe14a9faf2cc63fe2668571001d9",
+    "evidence\\phase3c3\\objective_checks_g.py": "31d57da27c7b32ebf9a9f5b5013a98e3b9957eab87554bb0a2e176e6e0d6b162",
+    "evidence\\phase3c3\\prepare_fresh_g.py": "c347ec40bd419951159a7ffb43afc1d36dcf2ee82ce9e77793c746f32a5e50db",
+    "evidence\\phase3c3\\review_final_code_g.py": "da3e0245d5a4d523f7c0e458d3fb05a3e2217b9eb2bc055f6fceb96878cc1987",
+    "evidence\\phase3c3\\review_preparation_g.py": "77ad3162047c050ef99cd5096d2766728a215229aded7cf9e6ec721cfcd5b4cb",
+    "evidence\\phase3c3\\review_semantics_g.py": "6732810878dc3c5627c05848d765137ed8a655542432615d8e9eda4909226c15",
+    "evidence\\phase3c3\\run_planning_g.py": "d4df1fbcb0ef8da744b863f9e019ad27887ceb88ae3d172aff61007ced037a8a",
+    "evidence\\phase3c3\\run_regression_g.py": "af19bb7adb1cc8bcd8cbcaa4a43b5906cd271a8e5fb7cf022b0e4ec5db447552",
+    "evidence\\phase3c3\\verify_full_boundary_g.py": "60ddd738d6b8afd07cf1c00f89576cd08703c2a591ff7c5c97dccdd058f8a4f3",
+    "evidence\\phase3c3\\verify_rubric_g_paths.py": "116d2a51e2fbcf069555b499699615dc59db4daf694d7800d3541bf87e12c33b"
+  }
+}

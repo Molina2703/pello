@@ -1,0 +1,231 @@
+{
+  "evaluation_id": "phase3c3-heldout-e-v1",
+  "independent_capabilities": [
+    "Effective-dated instrument assignments, operating evidence and calibration-interval validation using local examples.",
+    "Measurement delivery validation, replay handling and approved correction history using synthetic files.",
+    "Particulate hourly sufficiency and daily classification using synthetic evidence without resolving NOx policy or connecting to the regulator."
+  ],
+  "minimum_critical_pass_fraction": 1.0,
+  "minimum_total_pass_fraction": 0.9,
+  "novelty_rationale": "StackProof evaluates environmental evidence quality and regulatory classification rather than capacity, stock or financial settlement. Its distinguishing semantics include calibration-based invalidation, sufficient-hour thresholds, precedence between confirmed breaches and incomplete evidence, exact-versus-displayed calculations and immutable filing amendments. Missing NOx limits and contradictory startup treatment block only official NOx outcomes, preserving instrument administration, measurement intake and particulate assessment.",
+  "product_name": "StackProof",
+  "rubric": [
+    {
+      "area": "requirements",
+      "criterion_id": "C01",
+      "expected_planning_outcome": "The plan preserves pilot boundaries, pollutant identities, UTC periods, supplied concentration units and precision validation without introducing normalization calculations.",
+      "failure_condition": "A stated boundary is omitted, local-time days replace UTC, excess precision is silently accepted or normalization conversion enters scope.",
+      "severity": "critical",
+      "source_quote": "The pilot covers one plant, three stacks and two pollutants: particulate matter and nitrogen oxides (NOx). Permit days and hour boundaries use UTC. Concentrations arrive already normalized in mg/Nm³, with at most three decimal places; do not perform normalization conversions."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C02",
+      "expected_planning_outcome": "All five exclusions remain explicit scope boundaries.",
+      "failure_condition": "An exclusion is omitted or an excluded operation becomes a committed capability.",
+      "severity": "critical",
+      "source_quote": "The service does not control combustion equipment, tune instruments, predict dispersion, calculate carbon credits or replace emergency alarms."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C03",
+      "expected_planning_outcome": "The plan represents instrument identity and effective assignment history, enforces nonoverlap per stack/pollutant and uses the applicable assignment in evidence assessment.",
+      "failure_condition": "Assignments are only current-state labels, overlapping assignments are accepted or historical measurements cannot be attributed to an applicable instrument.",
+      "severity": "critical",
+      "source_quote": "An environmental technician maintains effective-dated assignments of instruments to stack and pollutant. Assignments for the same stack and pollutant cannot overlap. Preserve instrument identity and assignment history."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C04",
+      "expected_planning_outcome": "The plan represents sourced hourly status, preserves unknown status explicitly, records attributable corrections and excludes OFF hours from averages without discarding their evidence.",
+      "failure_condition": "Missing status becomes OFF, operating evidence lacks references or history, OFF measurements enter averages or are deleted.",
+      "severity": "critical",
+      "source_quote": "Each stack-hour requires an operating status of OFF, NORMAL or STARTUP, supported by a source reference. A missing status is unknown, not OFF. Corrections to assignments or operating status retain actor, time, reason and previous values. OFF hours do not enter emissions averages, but their measurements remain in the evidence history."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C05",
+      "expected_planning_outcome": "The plan includes validated half-open calibration intervals, any-overlap invalidation of entire measurements and attributable calibration revision history. Proposed checks include partial overlap and endpoint adjacency.",
+      "failure_condition": "Calibration is treated only as an advisory flag, overlap is evaluated only at measurement start, intervals accept invalid endpoints or calibration history is overwritten.",
+      "severity": "critical",
+      "source_quote": "Technicians can record instrument calibration intervals with start, end and reason. Intervals include their start and exclude their end; end must be later than start. Any overlap between a calibration interval and a measurement's five-minute interval invalidates that whole measurement for compliance, even if its source quality flag says valid. Calibration records and their corrections retain attribution and history."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C06",
+      "expected_planning_outcome": "The plan specifies preview, all intake fields, five-minute grid validation, nonnegative concentrations and the two allowed quality flags.",
+      "failure_condition": "Preview or a field is absent, arbitrary measurement durations or off-grid starts are accepted or concentration and quality validation is missing.",
+      "severity": "critical",
+      "source_quote": "A technician can preview a CSV containing delivery_id, measurement_id, instrument_id, interval_start_utc, concentration and source_quality. Each row represents exactly five minutes, beginning at a multiple of five minutes. Concentration must be nonnegative and source_quality must be VALID or INVALID."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C07",
+      "expected_planning_outcome": "The plan preserves atomic rejection for every named error, row diagnostics, delivery replay semantics, measurement identity and instrument/interval uniqueness across deliveries.",
+      "failure_condition": "Invalid rows partially commit, a named validation is omitted, replay duplicates data, conflicting deliveries overwrite content or later deliveries silently replace measurements.",
+      "severity": "critical",
+      "source_quote": "Reject the entire delivery, with row-level reasons and no changes, for malformed rows, unknown instruments, off-grid times, duplicate measurement identifiers or two measurements for the same instrument and interval. An identical delivery identifier and content is a no-op; changed content under that identifier is rejected. A later delivery cannot silently replace an existing measurement."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C08",
+      "expected_planning_outcome": "The plan represents approved corrections with original linkage, required justification, retained raw and revision history and latest-approved selection. Corrections cannot bypass calibration or assignment rules.",
+      "failure_condition": "Corrections overwrite raw evidence, unapproved corrections become effective, required references are absent or corrected measurements escape calibration or assignment checks.",
+      "severity": "critical",
+      "source_quote": "A quality reviewer can approve a correction naming the original measurement, replacement concentration or quality flag, reason and supporting reference. Preserve the raw value and every correction; only the latest approved correction is effective. Corrected data still obey calibration invalidation and instrument assignments."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C09",
+      "expected_planning_outcome": "The plan evaluates the assigned instrument's 12 expected intervals, applies all validity layers and requires at least nine valid measurements. Missing assignment produces insufficiency rather than a fabricated result.",
+      "failure_condition": "Another instrument's measurements fill gaps, validity layers are omitted, the nine-measurement threshold changes or missing assignment yields a compliant or zero result.",
+      "severity": "critical",
+      "source_quote": "For each operating particulate stack-hour, expect 12 five-minute measurements from its assigned instrument. At least nine must be valid after source-quality, correction and calibration checks. Otherwise the hour is insufficient. An hour lacking an applicable instrument assignment is also insufficient."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C10",
+      "expected_planning_outcome": "The plan excludes invalid measurements from the mean and distinguishes authoritative exact comparisons from three-decimal presentation rounding.",
+      "failure_condition": "Invalid or missing values are averaged as zero, rounded display values drive compliance comparisons or display rounding uses a different rule.",
+      "severity": "critical",
+      "source_quote": "The hourly mean is the arithmetic mean of its valid concentrations. Compare exact calculated values with limits; round only displayed means to three decimal places, with exact halves rounded upward."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C11",
+      "expected_planning_outcome": "The plan explicitly preserves the precedence of a confirmed hourly breach over incomplete evidence, followed by indeterminate classification for unresolved status or insufficient operating hours.",
+      "failure_condition": "Incomplete evidence suppresses a known hourly breach, an unknown status is ignored or an incomplete day without a confirmed hourly breach is classified compliant.",
+      "severity": "critical",
+      "source_quote": "A particulate day is BREACH if any sufficient operating hour has a mean above 100 mg/Nm³, even when other hours are insufficient or have unknown status. Otherwise, if any stack-hour has unknown operating status or any operating hour is insufficient, the day is INDETERMINATE."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C12",
+      "expected_planning_outcome": "The plan uses equal weighting of operating hourly means, the exact inclusive daily threshold, a distinct all-OFF result, separate stack assessments and inclusion of particulate STARTUP hours.",
+      "failure_condition": "Daily weighting uses sample counts or OFF hours, equality is classified as breach, all-OFF becomes zero/compliant, stacks are pooled or particulate startup hours are excluded.",
+      "severity": "critical",
+      "source_quote": "Otherwise average all operating hourly means equally: a result above 50 mg/Nm³ is BREACH, and a result at or below 50 is COMPLIANT. A fully documented day with every hour OFF is NO OPERATION, not COMPLIANT and not a zero concentration. Assess each stack separately; do not average stacks together. STARTUP counts as operating for particulate assessment."
+    },
+    {
+      "area": "issues",
+      "criterion_id": "C13",
+      "expected_planning_outcome": "The plan records both contradictory requirements and sources, assigns resolution to the environmental compliance manager and leaves precedence unresolved.",
+      "failure_condition": "The plan chooses inclusion or exclusion, assumes regulatory precedence without a ruling or reduces the contradiction to an optional preference.",
+      "severity": "critical",
+      "source_quote": "The plant's signed NOx permit states “exclude STARTUP hours from the daily compliance assessment.” The regulator's current written direction states “include STARTUP hours in the daily compliance assessment.” Both are mandatory, with no precedence ruling supplied. The environmental compliance manager must resolve this contradiction."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C14",
+      "expected_planning_outcome": "The plan records missing NOx limits separately from the startup contradiction, blocks official NOx classification and submission on both and preserves the named evidence and particulate branches. It does not copy particulate limits into NOx rules.",
+      "failure_condition": "NOx classifications or submissions proceed prematurely, limits are invented or unrelated evidence and particulate work are blocked.",
+      "severity": "critical",
+      "source_quote": "Do not issue an official NOx daily classification or submit NOx results before resolution and confirmation of the applicable NOx limits. Those limits have not been supplied. NOx intake, calibration checks and hourly evidence preparation can proceed; particulate assessment and particulate-only submission preparation must remain usable."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C15",
+      "expected_planning_outcome": "The plan treats grouping as a nonblocking presentation choice with classification invariance under either option.",
+      "failure_condition": "Grouping blocks mandatory work, changes classification semantics or is represented as confirmed customer approval without evidence.",
+      "severity": "critical",
+      "source_quote": "Users also disagree whether the overview should initially group results by stack or date. Either grouping is acceptable and must not change classifications."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C16",
+      "expected_planning_outcome": "The plan includes versioned report preparation, all six named evidence/output categories and a clear separation between report creation and filing authority.",
+      "failure_condition": "A required report category or source linkage is missing, versions are absent or report preparation authorizes external filing.",
+      "severity": "critical",
+      "source_quote": "A reviewer can prepare a versioned daily report showing operating evidence, valid-measurement counts, hourly means, daily classification, exceptions and links to source records. Preparation does not authorize filing."
+    },
+    {
+      "area": "persistence",
+      "criterion_id": "C17",
+      "expected_planning_outcome": "The plan tracks report dependencies across all four input classes, invalidates affected prepared reports, creates new versions on recalculation and preserves submitted versions with separately reviewed linked amendments.",
+      "failure_condition": "A named input change fails to invalidate reports, recalculation overwrites a submitted version or amendments lack review or original-submission linkage.",
+      "severity": "critical",
+      "source_quote": "Changes to relevant measurements, assignments, calibration or operating status mark an affected prepared report stale. Recalculation creates a new report version. A previously submitted version remains immutable and visible; corrections require a separately reviewed amendment linked to that submission."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C18",
+      "expected_planning_outcome": "The plan exposes all five operational categories and distinguishes absent or indeterminate information from measured zero.",
+      "failure_condition": "A named category is omitted, unresolved evidence is hidden or missing results are rendered or calculated as zero.",
+      "severity": "critical",
+      "source_quote": "The overview must expose stale reports, insufficient hours, unknown statuses, breaches and filing outcomes rather than displaying missing results as zero."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C19",
+      "expected_planning_outcome": "The plan identifies report and amendment submission plus returned outcomes, all seven missing contract/access details and resolution before live filing. It distinguishes locally prepared particulate-only reports from unconfirmed portal support.",
+      "failure_condition": "A critical unknown is omitted, portal details or access are invented, particulate-only portal acceptance is assumed or local calculation is blocked on live access.",
+      "severity": "critical",
+      "source_quote": "The regulator portal is expected to accept daily reports and amendments and return filing outcomes. Its endpoint, authentication, plant permissions, payload schema, particulate-only filing support, acknowledgement meanings and duplicate-filing behavior are unknown. These block live filing, not local evidence preparation or particulate calculation."
+    },
+    {
+      "area": "authorization",
+      "criterion_id": "C20",
+      "expected_planning_outcome": "The plan binds separate human authorization to all four scope elements, invalidates it on relevant changes and rechecks currency and authorization at submission. It recognizes that no present execution permission exists.",
+      "failure_condition": "Authorization is generic or implicit, relevant changes retain permission, stale versions can be filed or automatic recalculation substitutes an unauthorized report.",
+      "severity": "critical",
+      "source_quote": "Before any attempt, the environmental compliance manager must separately authorize the exact report version, stack set, pollutant set and permit date. This brief grants no execution permission. Relevant evidence changes invalidate that authorization. Immediately before filing, reject stale or unauthorized versions rather than silently recalculating and sending a different report."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C21",
+      "expected_planning_outcome": "The plan retains all four outcomes, links them to exact attempts and authorizations and requires documented resolution before another attempt after uncertainty.",
+      "failure_condition": "Receipt is treated as legal acceptance, timeout becomes definitive success/failure, automatic retries follow unknown outcomes or outcome provenance is absent.",
+      "severity": "critical",
+      "source_quote": "Preserve distinct filing outcomes of rejected, received for review, legally accepted and unknown. Receipt is not legal acceptance. A timeout is unknown; another attempt requires documented outcome resolution, with no automatic retry. Link every outcome to the attempted version and authorization."
+    },
+    {
+      "area": "authorization",
+      "criterion_id": "C22",
+      "expected_planning_outcome": "The plan maps every role to its named operations and enforces permissions at the operation boundary, with proposed denied-operation checks and no prescribed deployment architecture.",
+      "failure_condition": "A named role boundary is missing, technicians approve their own restricted corrections, unauthorized roles resolve policy or authorize filing or enforcement relies only on hidden controls.",
+      "severity": "critical",
+      "source_quote": "Viewers can read; technicians maintain registers, operating evidence, calibrations and intake; quality reviewers approve measurement corrections and prepare reports; only the environmental compliance manager resolves NOx policy and authorizes filings. Enforce permissions beyond screen visibility."
+    },
+    {
+      "area": "test_claims",
+      "criterion_id": "C23",
+      "expected_planning_outcome": "Proposed acceptance checks preserve every stated sufficiency, averaging, precedence, threshold, overlap and operating-status result. No numerical NOx compliance oracle is invented.",
+      "failure_condition": "An example is omitted or changed, arithmetic or classification is wrong or unresolved NOx policy is assigned a numerical acceptance result.",
+      "severity": "critical",
+      "source_quote": "Nine valid particulate measurements of 40 and three invalid measurements produce a sufficient hourly mean of 40; eight valid measurements produce an insufficient hour. Ten operating hours averaging 40 and two averaging 70 give a daily mean of 45 and COMPLIANT when all other hours are documented OFF. A sufficient hour averaging 101 makes the day BREACH even with another hour insufficient. Twelve operating hours averaging exactly 50 give COMPLIANT. Calibration from 09:02 to 09:03 invalidates the 09:00–09:05 measurement. A day with all 24 statuses OFF yields NO OPERATION; one missing status prevents that result. No numerical NOx compliance outcome is asserted."
+    },
+    {
+      "area": "persistence",
+      "criterion_id": "C24",
+      "expected_planning_outcome": "The plan identifies durable records and relationships sufficient for assignments, operating evidence, calibrations, raw measurements, corrections, report dependencies and versions, amendments, authorizations and filing outcomes. It explains consistent recovery and proposes restart verification. Any sound durable local or service-based design is acceptable.",
+      "failure_condition": "Mandatory evidence or relationships are transient, restart loses history or changes classifications or the proposed durable representation cannot support required report and authorization lifecycles. No particular backend is required.",
+      "severity": "critical",
+      "source_quote": "Evidence, corrections, report versions, authorizations and consistent classifications must survive restart."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C25",
+      "expected_planning_outcome": "The plan identifies register/calibration work as actionable without live integration and preserves coherent dependencies from assignments and calibration through measurement validity, classification, report review and authorized filing.",
+      "failure_condition": "Register/calibration work depends on unavailable portal access or the plan omits the business dependencies needed to derive defensible classifications and reports.",
+      "severity": "critical",
+      "source_quote": "Register maintenance and calibration validation can be planned using local examples before a regulator connection exists."
+    },
+    {
+      "area": "test_claims",
+      "criterion_id": "C26",
+      "expected_planning_outcome": "The plan provides an independently actionable intake/correction branch using synthetic data, distinct from register/calibration work. It labels local storage, preview and grouping choices as reversible assumptions rather than approvals, and all verification as proposed, without unsupported implementation or live-integration claims.",
+      "failure_condition": "Intake/correction work is blocked by NOx policy or unavailable integration, reversible choices are presented as customer approvals or the plan claims implementation, executed tests or live verification without supplied evidence.",
+      "severity": "critical",
+      "source_quote": "Measurement intake and correction review are independently plannable with synthetic files, without deciding disputed NOx policy."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C27",
+      "expected_planning_outcome": "The plan groups report-output requirements in an easily located passage or supplies clear cross-references. This assesses organization only; C16 independently requires complete and correct report behavior.",
+      "failure_condition": "All required report content is present and correct but scattered without grouping or navigation references. Missing or incorrect mandatory behavior must also fail its critical criterion and cannot be classified solely as this minor presentation defect.",
+      "severity": "minor",
+      "source_quote": "A reviewer can prepare a versioned daily report showing operating evidence, valid-measurement counts, hourly means, daily classification, exceptions and links to source records."
+    }
+  ],
+  "specification_markdown": "# StackProof: industrial air-permit evidence and daily compliance\n\n## Purpose and operating boundary\nA ceramics manufacturer needs defensible daily emissions assessments and reviewed regulatory submissions. The pilot covers one plant, three stacks and two pollutants: particulate matter and nitrogen oxides (NOx). Permit days and hour boundaries use UTC. Concentrations arrive already normalized in mg/Nm³, with at most three decimal places; do not perform normalization conversions. The service does not control combustion equipment, tune instruments, predict dispersion, calculate carbon credits or replace emergency alarms. Synthetic measurements, operating logs and calibration records are available. External credentials, accounts and submission authorizations are absent.\n\n## Monitoring register and operating evidence\nAn environmental technician maintains effective-dated assignments of instruments to stack and pollutant. Assignments for the same stack and pollutant cannot overlap. Preserve instrument identity and assignment history. Each stack-hour requires an operating status of OFF, NORMAL or STARTUP, supported by a source reference. A missing status is unknown, not OFF. Corrections to assignments or operating status retain actor, time, reason and previous values. OFF hours do not enter emissions averages, but their measurements remain in the evidence history.\n\nTechnicians can record instrument calibration intervals with start, end and reason. Intervals include their start and exclude their end; end must be later than start. Any overlap between a calibration interval and a measurement's five-minute interval invalidates that whole measurement for compliance, even if its source quality flag says valid. Calibration records and their corrections retain attribution and history. Register maintenance and calibration validation can be planned using local examples before a regulator connection exists.\n\n## Measurement intake and corrections\nA technician can preview a CSV containing delivery_id, measurement_id, instrument_id, interval_start_utc, concentration and source_quality. Each row represents exactly five minutes, beginning at a multiple of five minutes. Concentration must be nonnegative and source_quality must be VALID or INVALID. Reject the entire delivery, with row-level reasons and no changes, for malformed rows, unknown instruments, off-grid times, duplicate measurement identifiers or two measurements for the same instrument and interval. An identical delivery identifier and content is a no-op; changed content under that identifier is rejected. A later delivery cannot silently replace an existing measurement.\n\nA quality reviewer can approve a correction naming the original measurement, replacement concentration or quality flag, reason and supporting reference. Preserve the raw value and every correction; only the latest approved correction is effective. Corrected data still obey calibration invalidation and instrument assignments. Measurement intake and correction review are independently plannable with synthetic files, without deciding disputed NOx policy.\n\n## Particulate assessment\nFor each operating particulate stack-hour, expect 12 five-minute measurements from its assigned instrument. At least nine must be valid after source-quality, correction and calibration checks. Otherwise the hour is insufficient. An hour lacking an applicable instrument assignment is also insufficient. The hourly mean is the arithmetic mean of its valid concentrations. Compare exact calculated values with limits; round only displayed means to three decimal places, with exact halves rounded upward.\n\nA particulate day is BREACH if any sufficient operating hour has a mean above 100 mg/Nm³, even when other hours are insufficient or have unknown status. Otherwise, if any stack-hour has unknown operating status or any operating hour is insufficient, the day is INDETERMINATE. Otherwise average all operating hourly means equally: a result above 50 mg/Nm³ is BREACH, and a result at or below 50 is COMPLIANT. A fully documented day with every hour OFF is NO OPERATION, not COMPLIANT and not a zero concentration. Assess each stack separately; do not average stacks together. STARTUP counts as operating for particulate assessment.\n\n## NOx contradiction and review scope\nThe plant's signed NOx permit states “exclude STARTUP hours from the daily compliance assessment.” The regulator's current written direction states “include STARTUP hours in the daily compliance assessment.” Both are mandatory, with no precedence ruling supplied. The environmental compliance manager must resolve this contradiction. Do not issue an official NOx daily classification or submit NOx results before resolution and confirmation of the applicable NOx limits. Those limits have not been supplied. NOx intake, calibration checks and hourly evidence preparation can proceed; particulate assessment and particulate-only submission preparation must remain usable. Users also disagree whether the overview should initially group results by stack or date. Either grouping is acceptable and must not change classifications.\n\n## Review, revisions and external filing\nA reviewer can prepare a versioned daily report showing operating evidence, valid-measurement counts, hourly means, daily classification, exceptions and links to source records. Preparation does not authorize filing. Changes to relevant measurements, assignments, calibration or operating status mark an affected prepared report stale. Recalculation creates a new report version. A previously submitted version remains immutable and visible; corrections require a separately reviewed amendment linked to that submission. The overview must expose stale reports, insufficient hours, unknown statuses, breaches and filing outcomes rather than displaying missing results as zero.\n\nThe regulator portal is expected to accept daily reports and amendments and return filing outcomes. Its endpoint, authentication, plant permissions, payload schema, particulate-only filing support, acknowledgement meanings and duplicate-filing behavior are unknown. These block live filing, not local evidence preparation or particulate calculation. Before any attempt, the environmental compliance manager must separately authorize the exact report version, stack set, pollutant set and permit date. This brief grants no execution permission. Relevant evidence changes invalidate that authorization. Immediately before filing, reject stale or unauthorized versions rather than silently recalculating and sending a different report.\n\nPreserve distinct filing outcomes of rejected, received for review, legally accepted and unknown. Receipt is not legal acceptance. A timeout is unknown; another attempt requires documented outcome resolution, with no automatic retry. Link every outcome to the attempted version and authorization. Viewers can read; technicians maintain registers, operating evidence, calibrations and intake; quality reviewers approve measurement corrections and prepare reports; only the environmental compliance manager resolves NOx policy and authorizes filings. Enforce permissions beyond screen visibility.\n\n## Acceptance and delivery expectations\nNine valid particulate measurements of 40 and three invalid measurements produce a sufficient hourly mean of 40; eight valid measurements produce an insufficient hour. Ten operating hours averaging 40 and two averaging 70 give a daily mean of 45 and COMPLIANT when all other hours are documented OFF. A sufficient hour averaging 101 makes the day BREACH even with another hour insufficient. Twelve operating hours averaging exactly 50 give COMPLIANT. Calibration from 09:02 to 09:03 invalidates the 09:00–09:05 measurement. A day with all 24 statuses OFF yields NO OPERATION; one missing status prevents that result. No numerical NOx compliance outcome is asserted.\n\nEvidence, corrections, report versions, authorizations and consistent classifications must survive restart. Local storage, CSV preview layout and initial grouping may use explicitly labeled reversible assumptions; these are not customer approvals. Describe verification as proposed work: no implementation, executed tests or live portal evidence is supplied."
+}

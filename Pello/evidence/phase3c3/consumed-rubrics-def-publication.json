@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-26T05:20:06.295011+00:00",
+  "rubrics": [
+    {
+      "evaluation_id": "phase3c3-heldout-d-v1",
+      "path": "evidence\\phase3c3\\consumed-rubrics\\heldout-d-frozen.json",
+      "sha256": "1b9f01aa1f6fcfb25f4a25ef227858f9a16d4150cf1c2988bd1986f90ee0258d",
+      "published_only_after_consumed_FAIL": true
+    },
+    {
+      "evaluation_id": "phase3c3-heldout-e-v1",
+      "path": "evidence\\phase3c3\\consumed-rubrics\\heldout-e-frozen.json",
+      "sha256": "b6004bc5092b09af69e76943b91cbdf48a61a5ad8830efcc3a086100b00b845d",
+      "published_only_after_consumed_FAIL": true
+    },
+    {
+      "evaluation_id": "phase3c3-heldout-f-v1",
+      "path": "evidence\\phase3c3\\consumed-rubrics\\heldout-f-frozen.json",
+      "sha256": "dab880053302bf505bcf9e89af37e7b79147728362c93934543e33cb56398e18",
+      "published_only_after_consumed_FAIL": true
+    }
+  ],
+  "frozen_expectations_modified": false
+}

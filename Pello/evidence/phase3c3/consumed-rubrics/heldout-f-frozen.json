@@ -1,0 +1,231 @@
+{
+  "evaluation_id": "phase3c3-heldout-f-v1",
+  "independent_capabilities": [
+    "Membership-roll validation, version freezing and time-bounded proxy credential checks using synthetic records.",
+    "Ballot-file validation, evidence retention and direct-versus-proxy selection using synthetic files.",
+    "Ordinary-motion quorum and outcome calculation without resolving director-election proxy policy or connecting to the voting provider."
+  ],
+  "minimum_critical_pass_fraction": 1.0,
+  "minimum_total_pass_fraction": 0.9,
+  "novelty_rationale": "AssemblyCount addresses democratic credentials, ballot precedence, quorum and confidential election evidence. It tests distinctions between memberships and attendees, direct and proxy authority, evidentiary validity and selected votes, certification and publication. A contradictory director-proxy policy blocks only the director result, while roll validation, proxy credentials, ballot processing and ordinary-motion counting remain independently actionable.",
+  "product_name": "AssemblyCount",
+  "rubric": [
+    {
+      "area": "requirements",
+      "criterion_id": "C01",
+      "expected_planning_outcome": "The plan preserves pilot limits, one-vote-per-membership semantics and eligibility supplied by the approved roll.",
+      "failure_condition": "A scope limit is omitted, votes are assigned per person or eligibility is inferred from financial or ownership evidence.",
+      "severity": "critical",
+      "source_quote": "The pilot covers one meeting, up to 2,000 memberships, 20 ordinary motions and one single-seat director election. Each eligible membership has one vote per contest, regardless of how many people own it. The approved membership roll explicitly states eligibility; the service does not infer it from arrears or ownership documents."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C02",
+      "expected_planning_outcome": "All five exclusions remain explicit scope boundaries.",
+      "failure_condition": "An exclusion is omitted or an excluded activity enters committed scope.",
+      "severity": "critical",
+      "source_quote": "The service does not collect dues, resolve ownership disputes, conduct campaigning, send member messages or change bylaws."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C03",
+      "expected_planning_outcome": "The plan specifies roll preview, all required fields, named validation rules and atomic rejection with row-level diagnostics.",
+      "failure_condition": "Preview or a required field is absent, invalid entries are silently skipped or a rejected roll partially changes eligibility.",
+      "severity": "critical",
+      "source_quote": "A secretary can preview and accept a membership roll containing meeting_id, membership_id, eligible and source_reference. Missing fields, repeated membership identifiers or invalid eligibility values reject the entire roll with row-level reasons and no changes."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C04",
+      "expected_planning_outcome": "The plan represents retained roll versions, chair-controlled freezing, a stable counting denominator and amendment/refreeze-driven invalidation without rewriting certified history.",
+      "failure_condition": "Counting uses an unfrozen or silently mutable roll, replacement erases previous versions or changed eligibility leaves affected drafts current.",
+      "severity": "critical",
+      "source_quote": "Accepting a replacement creates a new roll version and retains the previous one. The meeting chair must freeze a roll version before counting; that version fixes the eligible-membership denominator. Later corrections require a reasoned amendment and a new freeze, making affected draft results stale without overwriting certified history."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C05",
+      "expected_planning_outcome": "The plan specifies every proxy field, eligibility and self-proxy validation, UTC timing and half-open interval checks.",
+      "failure_condition": "Required grant evidence is absent, an ineligible or self-representing grant is accepted or time-bound validity uses different endpoint semantics.",
+      "severity": "critical",
+      "source_quote": "A proxy grant names the represented membership, its holder membership, valid_from, valid_until and evidence reference. Both memberships must be eligible on the frozen roll and must differ. Use UTC timestamps and half-open validity intervals; end must be later than start."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C06",
+      "expected_planning_outcome": "The plan validates overlapping representation and the holder's concurrent two-membership limit, excludes its own membership from that limit and prevents onward delegation.",
+      "failure_condition": "Grant limits are checked only by total meeting count rather than overlapping time, conflicting holders are accepted, the holder's own vote consumes a proxy slot or proxy chains are permitted.",
+      "severity": "critical",
+      "source_quote": "A membership cannot have overlapping grants to different holders. A holder may represent at most two other memberships at any instant; its own vote does not consume that limit. Proxy authority cannot be delegated onward."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C07",
+      "expected_planning_outcome": "The plan records attributable revocation and evaluates proxy authority at ballot cast time without retroactively invalidating earlier valid ballots.",
+      "failure_condition": "Revocation erases grant history, lacks required attribution or automatically invalidates earlier valid proxy votes.",
+      "severity": "critical",
+      "source_quote": "A revocation shortens the grant's validity and preserves actor, time and reason; it does not invalidate a ballot validly cast before the revocation took effect."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C08",
+      "expected_planning_outcome": "The plan specifies the configured-date voting window, exact endpoints, ballot preview, all fields and contest-specific choice validation.",
+      "failure_condition": "The window or endpoints change, a required field is missing, preview is absent or undeclared choices are allowed.",
+      "severity": "critical",
+      "source_quote": "Voting opens at 14:00 UTC and closes at 16:00 UTC on the configured meeting date. Opening is inclusive and closing exclusive. A secretary can preview a local ballot file containing ballot_id, contest_id, represented_membership_id, casting_membership_id, cast_at and choice. Ordinary choices are YES, NO or ABSTAIN; director choices are one declared candidate identifier or ABSTAIN."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C09",
+      "expected_planning_outcome": "The plan distinguishes whole-file structural rejection from retained ballot-validity findings, preserves replay semantics and retains accepted-file ballot evidence with explanations.",
+      "failure_condition": "Malformed files partially commit, identical replays duplicate votes, changed content overwrites a ballot or retained ballots lack validation explanations.",
+      "severity": "critical",
+      "source_quote": "Reject a whole file for malformed rows, unknown contests or undeclared choices, with row-level reasons and no changes. An identical ballot identifier and content is a no-op; changed content under that identifier is rejected. Preserve every imported ballot and its validation explanation."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C10",
+      "expected_planning_outcome": "The plan retains but excludes time-invalid and ineligible ballots, distinguishes direct from proxy voting and checks proxy authority at cast time.",
+      "failure_condition": "Invalid evidence is discarded or counted, direct identity is misclassified or proxy validity is checked at import time instead of cast time.",
+      "severity": "critical",
+      "source_quote": "Ballots outside the voting window or from ineligible memberships are retained as invalid evidence and never counted. A direct ballot has matching represented and casting identifiers. A proxy ballot requires the holder's grant to cover cast_at."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C11",
+      "expected_planning_outcome": "The plan selects at most one effective vote per membership/contest, prioritizing valid direct ballots before applying latest-time selection within the relevant ballot category.",
+      "failure_condition": "A later proxy overrides a valid direct ballot, invalid ballots participate in selection or multiple ballots for one membership are counted.",
+      "severity": "critical",
+      "source_quote": "For each membership and contest, the latest valid direct ballot takes precedence over every proxy ballot, even a later proxy ballot. If there is no valid direct ballot, use the latest valid proxy ballot."
+    },
+    {
+      "area": "issues",
+      "criterion_id": "C12",
+      "expected_planning_outcome": "The plan represents unresolved latest-timestamp conflicts and blocks the affected contest's certification without inventing a tie-breaker.",
+      "failure_condition": "Import order or identifiers choose a vote, a conflict is silently discarded or a contest with unresolved selected votes can be certified.",
+      "severity": "critical",
+      "source_quote": "Conflicting choices with the same latest timestamp leave that membership's contest vote unresolved; do not break the tie by import order or ballot identifier. An unresolved selected vote blocks certification of that contest."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C13",
+      "expected_planning_outcome": "The plan calculates ceiling-rounded per-motion quorum from frozen eligibility and distinct represented memberships, including abstentions for quorum only.",
+      "failure_condition": "Quorum uses attendees, proxy-holder headcount or a changing denominator, rounds downward or excludes abstentions from represented count.",
+      "severity": "critical",
+      "source_quote": "For each motion, quorum requires selected valid ballots from at least 60% of eligible memberships on the frozen roll, rounded upward to a whole membership. Count represented memberships, not people attending or proxy holders. ABSTAIN counts toward quorum but not the decision denominator."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C14",
+      "expected_planning_outcome": "The plan preserves strict-majority decision semantics, distinct no-quorum reporting, nonvoter inclusion in eligibility and all required result fields.",
+      "failure_condition": "Ties or all-abstain votes pass, no-quorum becomes ordinary failure, nonvoters shrink eligibility or a required result field is absent.",
+      "severity": "critical",
+      "source_quote": "With quorum, a motion passes only when YES is strictly greater than NO; a tie or zero YES and zero NO does not pass. Without quorum, report NO QUORUM rather than a failed motion. A nonvoting eligible membership remains in the quorum denominator. Results must show the frozen-roll version, eligible count, quorum requirement, represented count and YES, NO and ABSTAIN totals."
+    },
+    {
+      "area": "issues",
+      "criterion_id": "C15",
+      "expected_planning_outcome": "The plan records both contradictory requirements and sources, assigns resolution to the election officer and leaves policy precedence unresolved.",
+      "failure_condition": "The plan chooses inclusion or exclusion, assumes precedence from document recency or fails to identify the contradiction and resolution owner.",
+      "severity": "critical",
+      "source_quote": "The signed election rules state “proxy votes are permitted in the director election.” The current adopted meeting resolution states “proxy votes are prohibited in the director election.” Both are mandatory and no precedence ruling exists. The cooperative's election officer must resolve this contradiction."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C16",
+      "expected_planning_outcome": "The plan retains disputed director evidence, blocks director certification and preserves actionable ordinary-motion credentials, selection and counting.",
+      "failure_condition": "Director proxy ballots are silently included or discarded, certification proceeds before resolution or the dispute blocks ordinary-motion work.",
+      "severity": "critical",
+      "source_quote": "Retain structurally valid director proxy ballots as unresolved evidence; do not silently count or discard them. Director certification is blocked until resolution. Ordinary-motion credentials, selection and counting must proceed meanwhile."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C17",
+      "expected_planning_outcome": "The plan preserves conditional plurality counting, abstention exclusion and the specified no-winner outcome for tied leaders or no candidate votes.",
+      "failure_condition": "A different electoral method is substituted, abstentions become candidate votes, ties are broken automatically or a winner is declared with no candidate votes.",
+      "severity": "critical",
+      "source_quote": "Once proxy policy is resolved, the director winner is the candidate with the most selected valid votes, excluding ABSTAIN; equal highest totals or no candidate votes produce NO WINNER and require a separately convened election, not an automatic draw."
+    },
+    {
+      "area": "persistence",
+      "criterion_id": "C18",
+      "expected_planning_outcome": "The plan represents package versions and certification dependencies, checks current inputs at certification and preserves certified history through separately reviewed linked amendments.",
+      "failure_condition": "Stale or blocked contests can be certified, an input class is omitted from currency checks or certified packages are overwritten.",
+      "severity": "critical",
+      "source_quote": "An election officer can prepare a versioned result package and certify an unblocked contest only against the current frozen roll, credentials and ballot evidence. Certification must reject stale calculations. Changes affecting a certified result require a separately reviewed amendment linked to the original; never overwrite the certified package."
+    },
+    {
+      "area": "authorization",
+      "criterion_id": "C19",
+      "expected_planning_outcome": "The plan includes all six overview categories and evidence references, role-specific operation and individual-choice access controls, aggregate-only public output and retained evidence for authorized audit. Enforcement extends beyond interface controls.",
+      "failure_condition": "A required overview category is absent, restricted operations or individual choices are available to unauthorized roles, public output reveals individual choices or audit evidence is discarded to achieve privacy.",
+      "severity": "critical",
+      "source_quote": "The review overview must show credential violations, invalid ballots, unresolved selections, quorum outcomes, stale calculations and publication status with supporting references. Public results contain aggregate totals only. Viewers can read aggregates; secretaries maintain rolls, credentials and ballot intake; election officers inspect individual evidence, resolve director policy and certify results; only the meeting chair freezes rolls and authorizes publication. Enforce permissions beyond screen visibility, including restrictions on access to individual choices. Retained audit evidence must support authorized review without exposing individual choices publicly."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C20",
+      "expected_planning_outcome": "The plan identifies both integration directions and all seven unknowns, including authenticity and authoritative timestamps, with resolution before trusted live exchange. Local contracts remain explicitly provisional.",
+      "failure_condition": "A critical unknown is omitted, confirmed provider behavior or access is invented, synthetic ballots are presented as authenticated live evidence or local counting is blocked on provider access.",
+      "severity": "critical",
+      "source_quote": "The external voting provider is expected to supply ballot exports and publish certified results to the member portal. Its endpoint, authentication, meeting permissions, ballot authenticity evidence, authoritative timestamp semantics, publication schema and duplicate-publication behavior are unknown. These block trusted live exchange, not local synthetic validation or ordinary counting."
+    },
+    {
+      "area": "authorization",
+      "criterion_id": "C21",
+      "expected_planning_outcome": "The plan requires separate chair authorization scoped to exact package, meeting and contests, invalidates it after changed results and rechecks it immediately before sending. It recognizes the absence of current execution permission.",
+      "failure_condition": "Certification or the brief authorizes publication, authorization is generic, changed results retain authority or sending lacks a current authorization check.",
+      "severity": "critical",
+      "source_quote": "Before a publication attempt, the meeting chair must separately authorize the exact certified package version, meeting and contest set. This brief grants no execution permission. Changed results invalidate that authorization; certification alone is not publication permission. Recheck currency and authorization immediately before sending."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C22",
+      "expected_planning_outcome": "The plan preserves all four outcomes, distinguishes acceptance from publication and requires documented resolution before retrying uncertainty, with exact package/authorization provenance.",
+      "failure_condition": "Acceptance is labeled published, timeout becomes definitive failure or success, unknown attempts retry automatically or outcome provenance is missing.",
+      "severity": "critical",
+      "source_quote": "Preserve rejected, accepted for processing, published and unknown outcomes; acceptance is not publication. A timeout is unknown and requires documented outcome resolution before another attempt, without automatic retry. Link outcomes to the attempted package and authorization."
+    },
+    {
+      "area": "test_claims",
+      "criterion_id": "C23",
+      "expected_planning_outcome": "Proposed acceptance verification includes every exact quorum, motion, representation, precedence, endpoint and unresolved-conflict outcome, without asserting a director winner under unresolved policy.",
+      "failure_condition": "An example is omitted or changed, arithmetic or vote selection is incorrect or an unresolved director outcome is invented.",
+      "severity": "critical",
+      "source_quote": "With 101 eligible memberships, quorum is 61. Totals YES=30, NO=30 and ABSTAIN=1 meet quorum but do not pass; YES=31, NO=29 and ABSTAIN=1 pass. Sixty represented memberships produce NO QUORUM. One holder voting for itself and two represented memberships contributes three membership votes, not one. A valid direct YES at 14:10 defeats a valid proxy NO at 15:00 for the same membership and motion. A ballot at 16:00 is invalid. Two different latest direct choices both timestamped 15:30 remain unresolved. No director winner is asserted before proxy-policy resolution."
+    },
+    {
+      "area": "persistence",
+      "criterion_id": "C24",
+      "expected_planning_outcome": "The plan identifies durable records and relationships sufficient for versioned eligibility, grants and revocations, ballot evidence and validation, selected-vote provenance, certifications and amendments, authorizations and publication outcomes. It explains deterministic recovery and proposes restart verification. Any sound durable design is acceptable.",
+      "failure_condition": "Mandatory evidence or history is transient, restart changes selected votes or totals or durable relationships cannot support required audit and certification behavior. No particular backend or architecture is required.",
+      "severity": "critical",
+      "source_quote": "Rolls, grants, ballots, explanations, certified versions and authorization history must survive restart with identical selected votes and totals."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C25",
+      "expected_planning_outcome": "The plan identifies local credential validation as actionable independently of provider access and disputed director policy. Dependencies correctly connect frozen eligibility to proxy validation and selected votes to quorum and certification.",
+      "failure_condition": "Credential work is blocked on external access or director policy, or the plan omits the eligibility and credential dependencies required for valid counting.",
+      "severity": "critical",
+      "source_quote": "Credential validation can be planned locally before a voting-provider connection exists."
+    },
+    {
+      "area": "test_claims",
+      "criterion_id": "C26",
+      "expected_planning_outcome": "The plan identifies synthetic ballot parsing, validation and selection as a second independently actionable capability. It treats local storage, preview layout and permitted ordering as reversible assumptions rather than approvals, preserves outcome invariance under ordering and labels verification as proposed without unsupported execution or live-provider claims.",
+      "failure_condition": "The ballot branch is blocked on provider access, assumptions are represented as customer approvals, display ordering changes outcomes or the plan claims implemented behavior, passed tests or verified live exchange without evidence.",
+      "severity": "critical",
+      "source_quote": "Ballot parsing, validation and selection can be planned with synthetic files independently of external access."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C27",
+      "expected_planning_outcome": "The plan groups ordinary-motion result fields in an easily located passage or provides clear cross-references. This assesses organization only; C14 independently assesses mandatory completeness and semantics.",
+      "failure_condition": "All required result fields are present and correct but scattered without grouping or navigation references. Missing or incorrect mandatory content must also fail its critical criterion and cannot be classified solely as this minor presentation defect.",
+      "severity": "minor",
+      "source_quote": "Results must show the frozen-roll version, eligible count, quorum requirement, represented count and YES, NO and ABSTAIN totals."
+    }
+  ],
+  "specification_markdown": "# AssemblyCount: cooperative meeting credentials and voting\n\n## Purpose and boundaries\nA housing cooperative needs an auditable record of meeting eligibility, proxy authority and voting outcomes. The pilot covers one meeting, up to 2,000 memberships, 20 ordinary motions and one single-seat director election. Each eligible membership has one vote per contest, regardless of how many people own it. The approved membership roll explicitly states eligibility; the service does not infer it from arrears or ownership documents. The service does not collect dues, resolve ownership disputes, conduct campaigning, send member messages or change bylaws. Synthetic rolls, proxy grants and ballots are available; external credentials, accounts and operation authorizations are absent.\n\n## Eligibility and proxy credentials\nA secretary can preview and accept a membership roll containing meeting_id, membership_id, eligible and source_reference. Missing fields, repeated membership identifiers or invalid eligibility values reject the entire roll with row-level reasons and no changes. Accepting a replacement creates a new roll version and retains the previous one. The meeting chair must freeze a roll version before counting; that version fixes the eligible-membership denominator. Later corrections require a reasoned amendment and a new freeze, making affected draft results stale without overwriting certified history.\n\nA proxy grant names the represented membership, its holder membership, valid_from, valid_until and evidence reference. Both memberships must be eligible on the frozen roll and must differ. Use UTC timestamps and half-open validity intervals; end must be later than start. A membership cannot have overlapping grants to different holders. A holder may represent at most two other memberships at any instant; its own vote does not consume that limit. Proxy authority cannot be delegated onward. A revocation shortens the grant's validity and preserves actor, time and reason; it does not invalidate a ballot validly cast before the revocation took effect. Credential validation can be planned locally before a voting-provider connection exists.\n\n## Ballot evidence and selection\nVoting opens at 14:00 UTC and closes at 16:00 UTC on the configured meeting date. Opening is inclusive and closing exclusive. A secretary can preview a local ballot file containing ballot_id, contest_id, represented_membership_id, casting_membership_id, cast_at and choice. Ordinary choices are YES, NO or ABSTAIN; director choices are one declared candidate identifier or ABSTAIN. Reject a whole file for malformed rows, unknown contests or undeclared choices, with row-level reasons and no changes. An identical ballot identifier and content is a no-op; changed content under that identifier is rejected. Preserve every imported ballot and its validation explanation.\n\nBallots outside the voting window or from ineligible memberships are retained as invalid evidence and never counted. A direct ballot has matching represented and casting identifiers. A proxy ballot requires the holder's grant to cover cast_at. For each membership and contest, the latest valid direct ballot takes precedence over every proxy ballot, even a later proxy ballot. If there is no valid direct ballot, use the latest valid proxy ballot. Conflicting choices with the same latest timestamp leave that membership's contest vote unresolved; do not break the tie by import order or ballot identifier. An unresolved selected vote blocks certification of that contest. Ballot parsing, validation and selection can be planned with synthetic files independently of external access.\n\n## Ordinary motions\nFor each motion, quorum requires selected valid ballots from at least 60% of eligible memberships on the frozen roll, rounded upward to a whole membership. Count represented memberships, not people attending or proxy holders. ABSTAIN counts toward quorum but not the decision denominator. With quorum, a motion passes only when YES is strictly greater than NO; a tie or zero YES and zero NO does not pass. Without quorum, report NO QUORUM rather than a failed motion. A nonvoting eligible membership remains in the quorum denominator. Results must show the frozen-roll version, eligible count, quorum requirement, represented count and YES, NO and ABSTAIN totals.\n\n## Director-election contradiction\nThe signed election rules state “proxy votes are permitted in the director election.” The current adopted meeting resolution states “proxy votes are prohibited in the director election.” Both are mandatory and no precedence ruling exists. The cooperative's election officer must resolve this contradiction. Retain structurally valid director proxy ballots as unresolved evidence; do not silently count or discard them. Director certification is blocked until resolution. Ordinary-motion credentials, selection and counting must proceed meanwhile. Once proxy policy is resolved, the director winner is the candidate with the most selected valid votes, excluding ABSTAIN; equal highest totals or no candidate votes produce NO WINNER and require a separately convened election, not an automatic draw. Users disagree whether results should initially list motions by agenda order or title; either presentation is acceptable and must not change outcomes.\n\n## Review, privacy and publication\nAn election officer can prepare a versioned result package and certify an unblocked contest only against the current frozen roll, credentials and ballot evidence. Certification must reject stale calculations. Changes affecting a certified result require a separately reviewed amendment linked to the original; never overwrite the certified package. The review overview must show credential violations, invalid ballots, unresolved selections, quorum outcomes, stale calculations and publication status with supporting references. Public results contain aggregate totals only. Viewers can read aggregates; secretaries maintain rolls, credentials and ballot intake; election officers inspect individual evidence, resolve director policy and certify results; only the meeting chair freezes rolls and authorizes publication. Enforce permissions beyond screen visibility, including restrictions on access to individual choices. Retained audit evidence must support authorized review without exposing individual choices publicly.\n\nThe external voting provider is expected to supply ballot exports and publish certified results to the member portal. Its endpoint, authentication, meeting permissions, ballot authenticity evidence, authoritative timestamp semantics, publication schema and duplicate-publication behavior are unknown. These block trusted live exchange, not local synthetic validation or ordinary counting. Before a publication attempt, the meeting chair must separately authorize the exact certified package version, meeting and contest set. This brief grants no execution permission. Changed results invalidate that authorization; certification alone is not publication permission. Recheck currency and authorization immediately before sending. Preserve rejected, accepted for processing, published and unknown outcomes; acceptance is not publication. A timeout is unknown and requires documented outcome resolution before another attempt, without automatic retry. Link outcomes to the attempted package and authorization.\n\n## Acceptance and delivery expectations\nWith 101 eligible memberships, quorum is 61. Totals YES=30, NO=30 and ABSTAIN=1 meet quorum but do not pass; YES=31, NO=29 and ABSTAIN=1 pass. Sixty represented memberships produce NO QUORUM. One holder voting for itself and two represented memberships contributes three membership votes, not one. A valid direct YES at 14:10 defeats a valid proxy NO at 15:00 for the same membership and motion. A ballot at 16:00 is invalid. Two different latest direct choices both timestamped 15:30 remain unresolved. No director winner is asserted before proxy-policy resolution.\n\nRolls, grants, ballots, explanations, certified versions and authorization history must survive restart with identical selected votes and totals. Local storage, preview layout and initial result ordering may use explicitly labeled reversible assumptions; none is customer approval. Describe verification as proposed work; no implementation, executed tests or live-provider evidence is supplied."
+}

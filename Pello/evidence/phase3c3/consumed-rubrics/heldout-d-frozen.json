@@ -1,0 +1,231 @@
+{
+  "evaluation_id": "phase3c3-heldout-d-v1",
+  "independent_capabilities": [
+    "Contract-version registration, basis-point validation and sale-date coverage checks using synthetic contracts.",
+    "Receipt and bank-evidence import, exact cash matching and exception identification using local synthetic data.",
+    "Domestic royalty calculation, carryforward clearance and ordered advance recoupment using locally cash-confirmed examples."
+  ],
+  "minimum_critical_pass_fraction": 1.0,
+  "minimum_total_pass_fraction": 0.9,
+  "novelty_rationale": "FolioPay concerns contractual financial entitlements rather than physical capacity or inventory. Its distinguishing rules connect sale-date contract selection to booking-month settlement, signed rounding and residual allocation, sequential advance recoupment, debit carryforward and immutable approved financial history. A foreign-withholding contradiction blocks only affected payment amounts, while contract validation, cash reconciliation and domestic settlement remain actionable.",
+  "product_name": "FolioPay",
+  "rubric": [
+    {
+      "area": "requirements",
+      "criterion_id": "C01",
+      "expected_planning_outcome": "The plan preserves entity, currency and pilot limits, exact cent arithmetic and UTC accounting boundaries.",
+      "failure_condition": "A stated limit is omitted, additional currencies enter scope, authoritative money calculations use imprecise floating-point amounts or accounting periods use another time convention.",
+      "severity": "critical",
+      "source_quote": "The pilot covers one legal entity, USD only, 300 works and 800 contributors. Money is stored and calculated in integer cents; accounting months and event timestamps use UTC."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C02",
+      "expected_planning_outcome": "All six exclusions are explicit scope boundaries, including the distinction between recording reversals and processing customer refunds.",
+      "failure_condition": "An exclusion is omitted or an excluded operation enters committed scope.",
+      "severity": "critical",
+      "source_quote": "The service does not sell books, process customer refunds, negotiate contracts, convert currencies, submit tax returns or debit contributors' bank accounts."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C03",
+      "expected_planning_outcome": "The plan represents versioned work contracts, effective coverage, contributor membership and lead designation, with exact share-total and nonoverlap validation.",
+      "failure_condition": "Required contract attributes are missing, invalid share totals or nonmember leads are permitted or effective periods may overlap.",
+      "severity": "critical",
+      "source_quote": "A rights clerk records each work's contract versions, effective dates, contributors, designated lead contributor and each contributor's share in basis points. Shares must be positive integers totaling exactly 10,000; the lead must be one of the contributors. Versions for a work cannot have overlapping effective dates."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C04",
+      "expected_planning_outcome": "The plan selects contracts by sale date, scopes missing-coverage blockers to affected work events and represents contributor tax status.",
+      "failure_condition": "Contract selection uses import or booking date, uncovered events settle, unrelated works are blocked or tax status is absent.",
+      "severity": "critical",
+      "source_quote": "A sale uses the version effective on its sale date, not its import or payment date. Missing coverage blocks settlement of that work's affected events, without blocking other works. Each contributor has domestic or foreign tax status."
+    },
+    {
+      "area": "persistence",
+      "criterion_id": "C05",
+      "expected_planning_outcome": "The plan retains attributable contract and tax-status changes and connects changes affecting approved statements to explicit settlement revision history without silent historical mutation.",
+      "failure_condition": "Changes lack required attribution or previous values, or amendments overwrite approved results without a new recorded revision.",
+      "severity": "critical",
+      "source_quote": "Changes retain actor, time, reason and previous values; amendments affecting an approved statement require a new settlement revision rather than silently rewriting it."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C06",
+      "expected_planning_outcome": "The plan specifies preview, all statement fields, gross and fee validation, the net-receipts formula and atomic rejection with row-level diagnostics.",
+      "failure_condition": "Preview or a field is missing, invalid amounts are accepted, net receipts use another formula or an invalid import partially commits.",
+      "severity": "critical",
+      "source_quote": "A finance clerk can preview a local statement containing event_id, work_id, sale_timestamp, gross_cents, platform_fee_cents and bank_reference. Gross must be positive and the fee must be between zero and gross inclusive. Net receipts equal gross minus the fee. Reject an entire import, with row-level reasons and no changes, for malformed rows, unknown works or duplicate event identifiers."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C07",
+      "expected_planning_outcome": "The plan distinguishes identical replay from conflicting replay, preserves immutable sale evidence and supports one linked full reversal with exact gross and fee negation.",
+      "failure_condition": "Reimport duplicates earnings, conflicting content overwrites an event, partial or repeated reversals are supported in committed scope or reversal erases the original sale.",
+      "severity": "critical",
+      "source_quote": "Reimporting an event with identical content is a no-op; changed content under its identifier is rejected. A later reversal is a separate event naming the original sale and reversing its full gross and fee exactly once. Partial reversals are outside the pilot. Preserve the sale and reversal as separate evidence; never erase the original."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C08",
+      "expected_planning_outcome": "The plan defines bank evidence fields, exact reference/amount/sign matching, exclusive transaction attribution and the zero-net exception.",
+      "failure_condition": "Partial, approximate or reused matches confirm events, reversal signs are ignored, evidence fields are absent or zero-net events require artificial bank transactions or generate royalties.",
+      "severity": "critical",
+      "source_quote": "Bank evidence contains a unique transaction identifier, bank reference, signed amount and booking timestamp. A sale becomes cash-confirmed only when linked to one positive bank transaction matching its reference and net amount exactly. A reversal requires a matching negative transaction. A bank transaction may support only one event. Zero-net events require no bank transaction and contribute zero royalties."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C09",
+      "expected_planning_outcome": "The plan includes visible exceptions for both sides of unmatched reconciliation and actionable local bank-evidence import and matching.",
+      "failure_condition": "Unmatched events or bank transactions disappear, one exception category is absent or live connectivity is required before local reconciliation can be planned.",
+      "severity": "critical",
+      "source_quote": "Unmatched events and unexplained bank transactions remain visible exceptions. Bank evidence import and matching can be planned using local data before any live bank connection exists."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C10",
+      "expected_planning_outcome": "The plan separates contract selection time from settlement recognition time, gates nonzero earnings on cash confirmation and assigns reversals to their own booking month under the original contract.",
+      "failure_condition": "Unconfirmed sales earn royalties, settlement uses sale/import month or reversals use the current contract or rewrite the original settlement month.",
+      "severity": "critical",
+      "source_quote": "Only cash-confirmed events enter settlement, using their bank booking month; the original sale date still selects the contract. A reversal uses the original sale's contract and produces a negative royalty in its own cash-confirmed month."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C11",
+      "expected_planning_outcome": "The plan preserves event-level pool calculation, signed rounding, non-lead truncation, residual assignment to the lead and monthly aggregation before recoupment.",
+      "failure_condition": "Rounding occurs at another level, negative rounding differs, residual cents are lost or assigned differently or recoupment occurs separately per event.",
+      "severity": "critical",
+      "source_quote": "For each event, the work's royalty pool is 20% of net receipts, rounded to the nearest cent with exact halves away from zero. Split the pool using the applicable basis-point shares: calculate each non-lead share by truncating toward zero, and give the lead the remaining cents so the shares sum exactly to the pool. This rule also applies to negative pools. Sum event shares by contributor for the month before recoupment."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C12",
+      "expected_planning_outcome": "The plan represents each advance obligation and remaining balance, applies deterministic oldest-first recoupment and caps applications by available positive earnings and outstanding debt.",
+      "failure_condition": "Advances are collapsed into a total that cannot support ordering/history, tie-breaking is absent or recoupment creates a negative balance or exceeds available royalties.",
+      "severity": "critical",
+      "source_quote": "Finance clerks record advance obligations by contributor, issue date, original amount and remaining balance. Positive monthly royalties repay outstanding advances oldest first, with obligation identifier breaking same-date ties. Recoupment cannot exceed either the month's positive royalties or the outstanding advances."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C13",
+      "expected_planning_outcome": "The plan keeps carryforward separate from advances, clears it first, preserves prior advance recoupment on reversal and computes only a positive cash remainder.",
+      "failure_condition": "Negative royalties create bank debits, advances are repaid before carryforward, reversals reopen recouped obligations or cash due ignores either deduction.",
+      "severity": "critical",
+      "source_quote": "A negative monthly royalty creates a carryforward debit, never a bank debit; future positive royalties clear that debit before repaying advances. A reversal does not reopen a previously recouped advance. Cash due equals the positive remainder after carryforward clearance and advance recoupment."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C14",
+      "expected_planning_outcome": "The plan includes every named statement component with traceability to earnings, obligations and balance movements.",
+      "failure_condition": "A named statement component is missing or statement values cannot be reconciled with the calculation rules.",
+      "severity": "critical",
+      "source_quote": "Statements must expose event earnings, opening and closing carryforward, advance applications, remaining advances and cash due."
+    },
+    {
+      "area": "persistence",
+      "criterion_id": "C15",
+      "expected_planning_outcome": "The plan defines nonmutating drafts, sequential monthly approval with opening-balance checks, versioned atomic posting, idempotent approval, stale-draft rejection and protection against concurrent duplicate earnings or recoupment. It identifies initialization of the first tracked month's opening balances as a detail to establish rather than inventing prior approvals.",
+      "failure_condition": "Drafts alter balances, month order or opening agreement is ignored, approval can partially post, repeated or concurrent approval duplicates movements or changed inputs remain approvable.",
+      "severity": "critical",
+      "source_quote": "Draft calculations do not change balances. A finance manager can approve a versioned monthly settlement only after the previous month is approved and its opening balances agree. Approval atomically records earnings, carryforward and advance movements; repeated approval has no additional effect. Competing approvals cannot apply the same earnings or recoup an advance twice. Changed inputs invalidate an unapproved draft."
+    },
+    {
+      "area": "persistence",
+      "criterion_id": "C16",
+      "expected_planning_outcome": "The plan posts linked correction adjustments in the next open month, retaining approved versions and paid history without automatic recovery.",
+      "failure_condition": "Corrections silently mutate approved postings, lack original references, are posted to a closed month or automatically reclaim paid money.",
+      "severity": "critical",
+      "source_quote": "Corrections discovered after approval become explicit adjustments in the next open month, referencing the original event and approved statement; do not rewrite approved history or automatically recover money already paid."
+    },
+    {
+      "area": "issues",
+      "criterion_id": "C17",
+      "expected_planning_outcome": "The plan records both exact rates and sources as an unresolved contradiction owned by the head of tax, without selecting a rate or document precedence.",
+      "failure_condition": "The plan chooses a rate, assumes the higher rate is safe, averages them or fails to identify the contradiction and resolution owner.",
+      "severity": "critical",
+      "source_quote": "The signed contributor terms require “withhold 10% of cash due for foreign contributors,” while the current finance policy requires “withhold 15% of cash due for foreign contributors.” Both are mandatory and no precedence decision exists. The head of tax must resolve the conflict."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C18",
+      "expected_planning_outcome": "The plan blocks only unresolved foreign withholding and payable instructions, preserves foreign pre-withholding calculations and domestic settlement/payment preparation, and applies zero domestic withholding.",
+      "failure_condition": "Foreign payable instructions are produced before resolution, pre-withholding work is unnecessarily blocked, domestic work depends on the foreign policy decision or domestic withholding is invented.",
+      "severity": "critical",
+      "source_quote": "Foreign earnings, carryforward and advance calculations can proceed, but foreign withholding amounts and payable payment instructions must remain blocked. Domestic withholding is zero. Domestic settlement and payment preparation must remain available."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C19",
+      "expected_planning_outcome": "The plan identifies both exchange directions and all seven unknown contract/access details, with resolution before live submission. Local provisional representations remain labeled assumptions and do not block the three named capabilities.",
+      "failure_condition": "A critical unknown is omitted, confirmed access or schema is invented, simulation is treated as live verification or local work is blocked by bank-service details.",
+      "severity": "critical",
+      "source_quote": "The bank payment service is expected to accept payment files and return transaction outcomes. Its endpoint, authentication, account permissions, beneficiary requirements, file schema, status meanings and duplicate-submission behavior are unknown. These block live submission, not local reconciliation, contract validation or domestic calculation."
+    },
+    {
+      "area": "authorization",
+      "criterion_id": "C20",
+      "expected_planning_outcome": "The plan requires a separate treasury authorization bound to exact approved revision, beneficiaries and amounts, invalidates it after payment-detail changes and excludes nonpositive instructions. It recognizes that current execution permission is absent.",
+      "failure_condition": "Settlement approval or the brief authorizes payment, authorization is generic or survives changed details, or zero/negative instructions can be created.",
+      "severity": "critical",
+      "source_quote": "Before a payment attempt, a treasury officer must separately authorize the exact approved settlement revision, beneficiary list and cent amounts. This brief grants no execution permission. Changed payment details invalidate that authorization. Settlement approval is not payment authorization. Never create a negative or zero payment instruction."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C21",
+      "expected_planning_outcome": "The plan retains all four outcomes, requires definitive evidence for paid status, gates further attempts after uncertainty on documented resolution and prevents resubmission of paid instructions while preserving authorization linkage.",
+      "failure_condition": "Acceptance or timeout is treated as payment, unknown attempts retry automatically, paid status lacks definitive evidence or a paid instruction can be resubmitted.",
+      "severity": "critical",
+      "source_quote": "Preserve payment outcomes of rejected, accepted for processing, paid and unknown. Acceptance is not proof of payment. A timeout is unknown and requires documented outcome resolution before another attempt, with no automatic retry. Marking a payment paid requires the bank's definitive transaction evidence under the eventual agreed contract. A paid amount remains linked to its authorized instruction and must not be submitted again."
+    },
+    {
+      "area": "authorization",
+      "criterion_id": "C22",
+      "expected_planning_outcome": "The plan maps all roles to their named operations and enforces permissions at the operation boundary, with proposed denied-operation checks and no required deployment architecture.",
+      "failure_condition": "A role boundary is omitted, restricted powers are assigned to unauthorized roles or permissions rely only on interface visibility.",
+      "severity": "critical",
+      "source_quote": "Viewers can read; rights clerks maintain contracts; finance clerks import evidence, match cash and record advances; finance managers approve settlements; only treasury officers authorize payments and only the head of tax resolves withholding policy. Enforce permissions beyond screen visibility."
+    },
+    {
+      "area": "test_claims",
+      "criterion_id": "C23",
+      "expected_planning_outcome": "Proposed acceptance verification includes every exact pool, signed split, carryforward, recoupment, remaining-balance, cash-due and unmatched-sale result, while leaving foreign withholding numerical expectations unresolved.",
+      "failure_condition": "An example is omitted or altered, arithmetic or signed allocation is wrong or a foreign withholding oracle is invented.",
+      "severity": "critical",
+      "source_quote": "For net receipts of 10,005 cents, the pool is 2,001 cents. With lead A at 6,000 basis points and B at 4,000, B receives 800 and A receives 1,201. The full reversal produces B=-800 and A=-1,201. With monthly earnings of 1,201, an opening carryforward debit of 100 and advances of 700 then 600, clear 100, recoup 700 and 401, leave the second advance at 199 and pay zero. With no debit and advances totaling 1,300, earnings of 1,500 produce domestic cash due of 200. An unmatched sale produces no settlement earnings. No numerical foreign withholding result is asserted before policy resolution."
+    },
+    {
+      "area": "persistence",
+      "criterion_id": "C24",
+      "expected_planning_outcome": "The plan identifies durable records and relationships sufficient for contract versions, tax status, sales/reversals, bank evidence and matching, advances, carryforward, settlement versions and adjustments, authorizations and payment outcomes. It explains consistent restart behavior and proposes restart verification. Any sound durable local or service-based design is acceptable.",
+      "failure_condition": "Mandatory records or evidence relationships are transient, restart changes balances or approval/payment history or the durable representation cannot support a mandatory financial transition. No particular backend or storage technology is required.",
+      "severity": "critical",
+      "source_quote": "Records, evidence links, approved history and consistent balances must survive restart."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C25",
+      "expected_planning_outcome": "The plan labels reversible choices as assumptions, identifies contract validation and cash reconciliation as independently actionable local capabilities and preserves coherent downstream dependencies from eligible matched events through calculation, approval and separately authorized payment. Verification remains proposed without unsupported implementation, execution or integration claims.",
+      "failure_condition": "The plan invents customer approvals, blocks either independent capability on external access or disputed withholding, omits necessary downstream dependencies or claims supplied implementation or successful execution.",
+      "severity": "critical",
+      "source_quote": "Local storage, preview layout and statement grouping may use explicitly labeled reversible assumptions; these are not customer approvals. Contract validation and cash reconciliation are independently plannable before bank access or tax-policy resolution. Describe verification as proposed work; no implementation, executed tests or live integration evidence is supplied."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C26",
+      "expected_planning_outcome": "The plan treats grouping as a nonblocking presentation choice with invariant totals. If retailer grouping is chosen, missing retailer attribution is identified as a reversible local presentation/data detail rather than fabricated confirmed source data.",
+      "failure_condition": "Grouping blocks settlement, changes calculations, is asserted to have customer approval without evidence or depends on fabricated confirmed retailer fields.",
+      "severity": "critical",
+      "source_quote": "Users disagree whether statements should initially group event details by work or retailer; either presentation is acceptable and must not change totals."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C27",
+      "expected_planning_outcome": "The plan groups statement-output requirements in one easily located passage or provides clear cross-references. This assesses organization only; C14 independently requires complete and correct statement behavior.",
+      "failure_condition": "All mandatory statement content is present and correct but scattered without grouping or navigation references. Missing or incorrect behavior must also fail its critical criterion and cannot be classified solely as this minor presentation defect.",
+      "severity": "minor",
+      "source_quote": "Statements must expose event earnings, opening and closing carryforward, advance applications, remaining advances and cash due."
+    }
+  ],
+  "specification_markdown": "# FolioPay: translation-rights royalty settlement\n\n## Business purpose and boundary\nA small publisher needs monthly royalty statements for translators and illustrators, with advance recoupment and controlled payment submission. The pilot covers one legal entity, USD only, 300 works and 800 contributors. Money is stored and calculated in integer cents; accounting months and event timestamps use UTC. The service does not sell books, process customer refunds, negotiate contracts, convert currencies, submit tax returns or debit contributors' bank accounts. Synthetic contracts, sales statements and bank transactions are available. External credentials, accounts and payment authorizations are absent.\n\n## Contract register\nA rights clerk records each work's contract versions, effective dates, contributors, designated lead contributor and each contributor's share in basis points. Shares must be positive integers totaling exactly 10,000; the lead must be one of the contributors. Versions for a work cannot have overlapping effective dates. A sale uses the version effective on its sale date, not its import or payment date. Missing coverage blocks settlement of that work's affected events, without blocking other works. Each contributor has domestic or foreign tax status. Changes retain actor, time, reason and previous values; amendments affecting an approved statement require a new settlement revision rather than silently rewriting it.\n\n## Receipt evidence and cash reconciliation\nA finance clerk can preview a local statement containing event_id, work_id, sale_timestamp, gross_cents, platform_fee_cents and bank_reference. Gross must be positive and the fee must be between zero and gross inclusive. Net receipts equal gross minus the fee. Reject an entire import, with row-level reasons and no changes, for malformed rows, unknown works or duplicate event identifiers. Reimporting an event with identical content is a no-op; changed content under its identifier is rejected. A later reversal is a separate event naming the original sale and reversing its full gross and fee exactly once. Partial reversals are outside the pilot. Preserve the sale and reversal as separate evidence; never erase the original.\n\nBank evidence contains a unique transaction identifier, bank reference, signed amount and booking timestamp. A sale becomes cash-confirmed only when linked to one positive bank transaction matching its reference and net amount exactly. A reversal requires a matching negative transaction. A bank transaction may support only one event. Zero-net events require no bank transaction and contribute zero royalties. Unmatched events and unexplained bank transactions remain visible exceptions. Bank evidence import and matching can be planned using local data before any live bank connection exists. Only cash-confirmed events enter settlement, using their bank booking month; the original sale date still selects the contract. A reversal uses the original sale's contract and produces a negative royalty in its own cash-confirmed month.\n\n## Monthly calculation and advances\nFor each event, the work's royalty pool is 20% of net receipts, rounded to the nearest cent with exact halves away from zero. Split the pool using the applicable basis-point shares: calculate each non-lead share by truncating toward zero, and give the lead the remaining cents so the shares sum exactly to the pool. This rule also applies to negative pools. Sum event shares by contributor for the month before recoupment.\n\nFinance clerks record advance obligations by contributor, issue date, original amount and remaining balance. Positive monthly royalties repay outstanding advances oldest first, with obligation identifier breaking same-date ties. Recoupment cannot exceed either the month's positive royalties or the outstanding advances. A negative monthly royalty creates a carryforward debit, never a bank debit; future positive royalties clear that debit before repaying advances. A reversal does not reopen a previously recouped advance. Cash due equals the positive remainder after carryforward clearance and advance recoupment. Statements must expose event earnings, opening and closing carryforward, advance applications, remaining advances and cash due.\n\nDraft calculations do not change balances. A finance manager can approve a versioned monthly settlement only after the previous month is approved and its opening balances agree. Approval atomically records earnings, carryforward and advance movements; repeated approval has no additional effect. Competing approvals cannot apply the same earnings or recoup an advance twice. Changed inputs invalidate an unapproved draft. Corrections discovered after approval become explicit adjustments in the next open month, referencing the original event and approved statement; do not rewrite approved history or automatically recover money already paid.\n\n## Foreign withholding contradiction\nThe signed contributor terms require “withhold 10% of cash due for foreign contributors,” while the current finance policy requires “withhold 15% of cash due for foreign contributors.” Both are mandatory and no precedence decision exists. The head of tax must resolve the conflict. Foreign earnings, carryforward and advance calculations can proceed, but foreign withholding amounts and payable payment instructions must remain blocked. Domestic withholding is zero. Domestic settlement and payment preparation must remain available. Users disagree whether statements should initially group event details by work or retailer; either presentation is acceptable and must not change totals.\n\n## Payment submission and authority\nThe bank payment service is expected to accept payment files and return transaction outcomes. Its endpoint, authentication, account permissions, beneficiary requirements, file schema, status meanings and duplicate-submission behavior are unknown. These block live submission, not local reconciliation, contract validation or domestic calculation. Before a payment attempt, a treasury officer must separately authorize the exact approved settlement revision, beneficiary list and cent amounts. This brief grants no execution permission. Changed payment details invalidate that authorization. Settlement approval is not payment authorization. Never create a negative or zero payment instruction.\n\nPreserve payment outcomes of rejected, accepted for processing, paid and unknown. Acceptance is not proof of payment. A timeout is unknown and requires documented outcome resolution before another attempt, with no automatic retry. Marking a payment paid requires the bank's definitive transaction evidence under the eventual agreed contract. A paid amount remains linked to its authorized instruction and must not be submitted again. Viewers can read; rights clerks maintain contracts; finance clerks import evidence, match cash and record advances; finance managers approve settlements; only treasury officers authorize payments and only the head of tax resolves withholding policy. Enforce permissions beyond screen visibility.\n\n## Acceptance and delivery expectations\nFor net receipts of 10,005 cents, the pool is 2,001 cents. With lead A at 6,000 basis points and B at 4,000, B receives 800 and A receives 1,201. The full reversal produces B=-800 and A=-1,201. With monthly earnings of 1,201, an opening carryforward debit of 100 and advances of 700 then 600, clear 100, recoup 700 and 401, leave the second advance at 199 and pay zero. With no debit and advances totaling 1,300, earnings of 1,500 produce domestic cash due of 200. An unmatched sale produces no settlement earnings. No numerical foreign withholding result is asserted before policy resolution.\n\nRecords, evidence links, approved history and consistent balances must survive restart. Local storage, preview layout and statement grouping may use explicitly labeled reversible assumptions; these are not customer approvals. Contract validation and cash reconciliation are independently plannable before bank access or tax-policy resolution. Describe verification as proposed work; no implementation, executed tests or live integration evidence is supplied."
+}
