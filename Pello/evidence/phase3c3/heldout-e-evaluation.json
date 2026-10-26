@@ -1,0 +1,19 @@
+{
+  "evaluation_id": "phase3c3-heldout-e-v1",
+  "verdict": "FAIL",
+  "objective_verdict": "FAIL",
+  "interpretation_review": "PASS",
+  "architecture_validation": "PASS",
+  "mandatory_manifest_missing": true,
+  "critical_failures": [
+    "Increment planning context exceeded55000 before SDK reservation; no complete plan/contracts/models/manifest"
+  ],
+  "requirements": 40,
+  "architecture_nodes": 8,
+  "specification_sha256": "af17a121b305c02f88f3179d16770a6827e76db4f7a4b647f4d20098b1bcfc5e",
+  "rubric_sha256": "b6004bc5092b09af69e76943b91cbdf48a61a5ad8830efcc3a086100b00b845d",
+  "original_FAIL_preserved": true,
+  "fresh_case_required_after_correction": true,
+  "no_additional_turn_for_context_rejection": true,
+  "evidence": "resumed-planning-e.log; original-increments-input.json"
+}

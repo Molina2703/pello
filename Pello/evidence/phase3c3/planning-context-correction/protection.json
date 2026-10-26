@@ -1,0 +1,7 @@
+{
+  "hashes": {
+    "tests\\test_planning_context_transport.py": "03974ebb36f6dcf048047b351f049ec4fe319ee84cb04291ac88663be10a4ba9"
+  },
+  "frozen_before_implementation": true,
+  "objective": "Preserve source requirements and exact node/global contracts; compact repeated field labels losslessly under unchanged55k cap, fail closed on marker collisions"
+}

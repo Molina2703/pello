@@ -1,0 +1,15 @@
+{
+  "original_json_characters": 76177,
+  "corrected_prompt_characters": 49387,
+  "round_trip_equal": true,
+  "all_source_requirements_unchanged": true,
+  "all_node_fields_and_globals_unchanged": true,
+  "full_architecture_preserved_sha256": "80c056bd6fcd845574bcf9e731bd91f53c022b97bdd4d7ba06c8542427924694",
+  "C2_plan_digest": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+  "SDK_charges_before_after": [
+    61,
+    61
+  ],
+  "E_blind_result": "FAIL",
+  "fresh_case_required": true
+}

@@ -1,0 +1,1609 @@
+{
+  "project_id": "phase3c3-heldout-e",
+  "version": 1,
+  "source_sha256": "af17a121b305c02f88f3179d16770a6827e76db4f7a4b647f4d20098b1bcfc5e",
+  "requirements": {
+    "source_hash": "af17a121b305c02f88f3179d16770a6827e76db4f7a4b647f4d20098b1bcfc5e",
+    "product_name": "StackProof",
+    "objective": "Provide defensible daily emissions assessments and reviewed regulatory submissions for a ceramics manufacturer's pilot covering one plant, three stacks, particulate matter and NOx.",
+    "objective_source_ids": [
+      "SRC-96ef114d4418"
+    ],
+    "requirements": [
+      {
+        "requirement_id": "REQ-49e085927998",
+        "source_ids": [
+          "SRC-96ef114d4418"
+        ],
+        "normalized": "Limit the pilot to one plant, three stacks and two pollutants: particulate matter and NOx.",
+        "category": "constraint",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: demonstrate the stated pilot coverage without introducing additional pollutants or plants."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-47074ca73e54",
+        "source_ids": [
+          "SRC-96ef114d4418"
+        ],
+        "normalized": "Use UTC for permit days and hour boundaries. Accept concentrations already normalized in mg/Nm³ with at most three decimal places, without performing normalization conversions.",
+        "category": "constraint",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: check UTC day boundaries, concentration precision validation and preservation of supplied normalized values."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-dc800aeb8480",
+        "source_ids": [
+          "SRC-96ef114d4418"
+        ],
+        "normalized": "Exclude combustion equipment control, instrument tuning, dispersion prediction, carbon-credit calculation and replacement of emergency alarms.",
+        "category": "exclusion",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: review the planned capability inventory against these exclusions."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-386b9cf311e4",
+        "source_ids": [
+          "SRC-b2dbaea5dbc0"
+        ],
+        "normalized": "Allow environmental technicians to maintain effective-dated instrument assignments to stack and pollutant, prevent overlapping assignments for the same stack and pollutant, and preserve instrument identity and assignment history.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: reject overlapping assignments and retain historical instrument identities and assignments after changes."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-6fa5975b111c",
+        "source_ids": [
+          "SRC-b2dbaea5dbc0"
+        ],
+        "normalized": "Maintain an OFF, NORMAL or STARTUP operating status with a source reference for each stack-hour. Treat a missing status as unknown rather than OFF.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-47074ca73e54"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: distinguish an explicitly documented OFF hour from an hour without operating evidence."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-57e64e0bd44a",
+        "source_ids": [
+          "SRC-b2dbaea5dbc0"
+        ],
+        "normalized": "Retain actor, time, reason and previous values for corrections to assignments and operating status.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-386b9cf311e4",
+          "REQ-6fa5975b111c"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: inspect correction history for attribution, timing, reason and recoverable prior values."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-02505516c30c",
+        "source_ids": [
+          "SRC-b2dbaea5dbc0"
+        ],
+        "normalized": "Exclude OFF hours from emissions averages while retaining their measurements in evidence history.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-6fa5975b111c"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: confirm that OFF-hour measurements remain accessible without contributing to emissions averages."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-a7030d6134a1",
+        "source_ids": [
+          "SRC-631976f7c30b"
+        ],
+        "normalized": "Allow technicians to record instrument calibration intervals with start, end and reason. Include the start and exclude the end, require end later than start, and preserve attribution and history for records and corrections.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: reject zero-length or reversed intervals and retain attributed calibration correction history."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-279be574d758",
+        "source_ids": [
+          "SRC-631976f7c30b",
+          "SRC-92c1c2579f47"
+        ],
+        "normalized": "Invalidate an entire five-minute measurement for compliance when any part overlaps a calibration interval for its instrument, regardless of a VALID source-quality flag.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-a7030d6134a1"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: calibration from 09:02 to 09:03 invalidates the 09:00–09:05 measurement.",
+          "Proposed verification: intervals that only touch at an excluded endpoint do not overlap."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-719b470c1aa0",
+        "source_ids": [
+          "SRC-2de81dd61ace"
+        ],
+        "normalized": "Allow a technician to preview a CSV containing delivery_id, measurement_id, instrument_id, interval_start_utc, concentration and source_quality.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: preview synthetic files containing all required columns."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-f14cc2bc55ed",
+        "source_ids": [
+          "SRC-2de81dd61ace",
+          "SRC-96ef114d4418"
+        ],
+        "normalized": "Require five-minute measurements starting on a five-minute grid, nonnegative concentrations with at most three decimal places, and source_quality of VALID or INVALID. Reject an entire delivery with row-level reasons and no changes for malformed rows, unknown instruments, off-grid times, duplicate measurement identifiers or duplicate instrument-and-interval measurements.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-47074ca73e54",
+          "REQ-719b470c1aa0"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: exercise each rejection condition and confirm that a delivery containing any invalid row makes no changes.",
+          "Proposed verification: retain row-level rejection reasons."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-ea2f515d6120",
+        "source_ids": [
+          "SRC-2de81dd61ace"
+        ],
+        "normalized": "Treat an identical delivery identifier and content as a no-op, reject changed content under an existing delivery identifier, and prevent later deliveries from silently replacing existing measurements.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-f14cc2bc55ed"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: repeat an identical delivery without changing stored evidence, then reject altered content using the same identifier.",
+          "Proposed verification: reject attempts to overwrite an existing measurement through a later delivery."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-4a1b388ac195",
+        "source_ids": [
+          "SRC-770c7c5bd347"
+        ],
+        "normalized": "Allow quality reviewers to approve measurement corrections naming the original measurement, replacement concentration or quality flag, reason and supporting reference. Preserve raw values and every correction; only the latest approved correction is effective.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-ea2f515d6120"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: retain raw values and correction history while using only the latest approved correction as effective data."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-43e12ea612c4",
+        "source_ids": [
+          "SRC-770c7c5bd347"
+        ],
+        "normalized": "Apply instrument assignments and calibration invalidation to corrected measurements.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-386b9cf311e4",
+          "REQ-279be574d758",
+          "REQ-4a1b388ac195"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: an approved quality correction cannot override calibration invalidation or instrument applicability."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-84d036011660",
+        "source_ids": [
+          "SRC-6144446ca070",
+          "SRC-92c1c2579f47"
+        ],
+        "normalized": "Expect 12 five-minute measurements from the assigned instrument for each operating particulate stack-hour. Require at least nine valid measurements after source-quality, correction and calibration checks; otherwise mark the hour insufficient. Also mark an hour insufficient when it lacks an applicable assignment.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-386b9cf311e4",
+          "REQ-6fa5975b111c",
+          "REQ-279be574d758",
+          "REQ-43e12ea612c4",
+          "REQ-e2dd11eed667"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: nine valid measurements of 40 and three invalid measurements produce a sufficient hour; eight valid measurements produce an insufficient hour.",
+          "Proposed verification: an operating hour without an applicable assignment is insufficient."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-3c423798363c",
+        "source_ids": [
+          "SRC-6144446ca070",
+          "SRC-92c1c2579f47"
+        ],
+        "normalized": "Calculate particulate hourly means as arithmetic means of valid concentrations. Compare exact calculated values with limits and round only displayed means to three decimal places, with exact halves rounded upward.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-84d036011660"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: nine valid concentrations of 40 produce an hourly mean of 40.",
+          "Proposed verification: displayed rounding does not change classification near a limit, and exact display-rounding halves round upward."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-0ae7b3f6682b",
+        "source_ids": [
+          "SRC-13e79ecfd92b",
+          "SRC-92c1c2579f47"
+        ],
+        "normalized": "Classify a particulate stack-day as BREACH when any sufficient operating hour has an exact mean above 100 mg/Nm³, even if other hours are insufficient or have unknown operating status.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-3c423798363c",
+          "REQ-e2dd11eed667"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: a sufficient hourly mean of 101 makes the day BREACH despite another insufficient hour.",
+          "Proposed verification: unknown status elsewhere does not suppress an established hourly breach."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-a4afc91739d1",
+        "source_ids": [
+          "SRC-13e79ecfd92b"
+        ],
+        "normalized": "When no sufficient operating hour exceeds 100 mg/Nm³, classify a particulate stack-day as INDETERMINATE if any stack-hour has unknown operating status or any operating hour is insufficient.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-6fa5975b111c",
+          "REQ-84d036011660",
+          "REQ-0ae7b3f6682b"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: missing status or an insufficient operating hour yields INDETERMINATE when the hourly breach rule does not apply."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-47652ecbb8bd",
+        "source_ids": [
+          "SRC-13e79ecfd92b",
+          "SRC-92c1c2579f47"
+        ],
+        "normalized": "After applying hourly-breach and indeterminate rules, average operating particulate hourly means equally. Classify a daily mean above 50 mg/Nm³ as BREACH and at or below 50 as COMPLIANT. A fully documented day with all hours OFF is NO OPERATION, without a zero concentration or COMPLIANT classification.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-02505516c30c",
+          "REQ-3c423798363c",
+          "REQ-0ae7b3f6682b",
+          "REQ-a4afc91739d1"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: ten operating hours averaging 40 and two averaging 70 produce a daily mean of 45 and COMPLIANT when all remaining hours are documented OFF.",
+          "Proposed verification: twelve operating hours averaging exactly 50 produce COMPLIANT when remaining hours are documented OFF.",
+          "Proposed verification: all 24 statuses OFF produce NO OPERATION; one missing status prevents that result."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-e2dd11eed667",
+        "source_ids": [
+          "SRC-13e79ecfd92b"
+        ],
+        "normalized": "Assess particulate compliance separately for each stack without averaging stacks together, and count STARTUP as operating for particulate assessment.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-6fa5975b111c"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: STARTUP participates in particulate assessment and one stack's concentrations cannot dilute another stack's result."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-f2e9a35f8c82",
+        "source_ids": [
+          "SRC-c0c68252514b"
+        ],
+        "normalized": "The signed NOx permit requires exclusion of STARTUP hours from daily compliance assessment. This mandatory statement conflicts with the regulator's direction and is not an established implementation choice.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: retain this conflicting policy statement for manager resolution without treating it as the selected NOx rule."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Environmental compliance manager resolution of NOx policy precedence."
+        ],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-9367c721b90b",
+        "source_ids": [
+          "SRC-c0c68252514b"
+        ],
+        "normalized": "The regulator's current written direction requires inclusion of STARTUP hours in daily NOx compliance assessment. This mandatory statement conflicts with the signed permit and is not an established implementation choice.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: retain this conflicting policy statement for manager resolution without treating it as the selected NOx rule."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Environmental compliance manager resolution of NOx policy precedence."
+        ],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-686297393f37",
+        "source_ids": [
+          "SRC-c0c68252514b",
+          "SRC-92c1c2579f47"
+        ],
+        "normalized": "Withhold official NOx daily classifications until the environmental compliance manager resolves the STARTUP contradiction and applicable NOx limits are supplied and confirmed. Do not infer numerical NOx outcomes from the particulate examples.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: the unresolved state prevents official NOx daily classification.",
+          "Proposed verification: define numerical NOx acceptance cases only after policy resolution and limit confirmation."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [
+          "Manager resolution of NOx STARTUP policy.",
+          "Supplied and confirmed applicable NOx limits."
+        ],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-7bbf030b996a",
+        "source_ids": [
+          "SRC-c0c68252514b"
+        ],
+        "normalized": "Support NOx measurement intake, calibration checks and hourly evidence preparation while official daily NOx classification remains unresolved.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-386b9cf311e4",
+          "REQ-6fa5975b111c",
+          "REQ-279be574d758",
+          "REQ-f14cc2bc55ed",
+          "REQ-43e12ea612c4"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: prepare synthetic NOx hourly evidence without selecting a disputed daily policy or asserting a numerical compliance outcome."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-ffa300a75e95",
+        "source_ids": [
+          "SRC-631976f7c30b",
+          "SRC-770c7c5bd347",
+          "SRC-c0c68252514b",
+          "SRC-5a5274724381"
+        ],
+        "normalized": "Keep local register maintenance, calibration validation, measurement intake, correction review, evidence preparation and particulate calculation independently plannable without a regulator connection or NOx policy decision. Keep particulate-only submission preparation usable.",
+        "category": "constraint",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: exercise local capabilities with synthetic files and records while portal configuration and NOx decisions remain absent.",
+          "Proposed verification: prepare particulate-only reports without requiring live particulate-only portal support."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-9bf169342b95",
+        "source_ids": [
+          "SRC-c0c68252514b",
+          "SRC-07177b753682"
+        ],
+        "normalized": "Allow an initial overview grouping by stack or date using an explicitly labeled reversible assumption. Either grouping is acceptable and must preserve classifications.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: changing presentation grouping leaves compliance classifications unchanged."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-abaabd52ac81",
+        "source_ids": [
+          "SRC-0106ee922148",
+          "SRC-c0c68252514b"
+        ],
+        "normalized": "Allow reviewers to prepare versioned daily reports containing operating evidence, valid-measurement counts, hourly means, permitted daily classifications, exceptions and source-record links. Report preparation does not authorize filing.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-6fa5975b111c",
+          "REQ-84d036011660",
+          "REQ-3c423798363c",
+          "REQ-0ae7b3f6682b",
+          "REQ-a4afc91739d1",
+          "REQ-47652ecbb8bd"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: inspect particulate report contents and source links using local evidence.",
+          "Proposed verification: report preparation does not create filing authorization or issue an unresolved official NOx classification."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-67ab8372af43",
+        "source_ids": [
+          "SRC-0106ee922148"
+        ],
+        "normalized": "Mark affected prepared reports stale when relevant measurements, assignments, calibration or operating status change. Recalculation creates a new report version.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-abaabd52ac81"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: each relevant evidence change marks affected reports stale, and recalculation creates a distinct version."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-33f624c0dfc7",
+        "source_ids": [
+          "SRC-0106ee922148"
+        ],
+        "normalized": "Keep previously submitted report versions immutable and visible. Corrections require separately reviewed amendments linked to the original submission.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-abaabd52ac81",
+          "REQ-67ab8372af43"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: use a synthetic submitted-version fixture to confirm immutability, visibility and separately reviewed amendment linkage."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-8861687e639b",
+        "source_ids": [
+          "SRC-0106ee922148"
+        ],
+        "normalized": "Expose stale reports, insufficient hours, unknown operating statuses, breaches and filing outcomes in the overview. Do not represent missing results as zero.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-6fa5975b111c",
+          "REQ-84d036011660",
+          "REQ-0ae7b3f6682b",
+          "REQ-a4afc91739d1",
+          "REQ-67ab8372af43",
+          "REQ-933bfcf9a5f9"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: display synthetic examples of each required state and distinguish absent concentrations from numerical zero."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-56ac260ca475",
+        "source_ids": [
+          "SRC-5a5274724381"
+        ],
+        "normalized": "Integrate authorized particulate-only daily report and amendment filing with the regulator portal and capture filing outcomes, subject to confirmation of the portal contract and particulate-only support.",
+        "category": "integration",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-abaabd52ac81",
+          "REQ-33f624c0dfc7",
+          "REQ-4d2d3c8f38b9",
+          "REQ-d7a26e68cbd8",
+          "REQ-933bfcf9a5f9",
+          "REQ-bd9fb0564ab6"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: after integration details and access are supplied, check an authorized exact particulate report version against the confirmed portal contract.",
+          "Live verification cannot be claimed from the supplied brief."
+        ],
+        "confidence": "medium",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Regulator endpoint, authentication, credentials and account.",
+          "Plant permissions and confirmed particulate-only filing support.",
+          "Report and amendment payload schemas.",
+          "Acknowledgement meanings and duplicate-filing behavior.",
+          "Exact-attempt manager authorization."
+        ],
+        "external_effects": [
+          "Transmission of particulate reports or amendments to the regulator portal.",
+          "Creation or update of an external regulatory filing record."
+        ],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-9dcd91fd7fd4",
+        "source_ids": [
+          "SRC-c0c68252514b",
+          "SRC-5a5274724381"
+        ],
+        "normalized": "Prevent submission of NOx results until the NOx policy contradiction is resolved and applicable limits are confirmed. Any subsequent NOx report or amendment filing also requires a confirmed portal integration and exact-attempt authorization.",
+        "category": "integration",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-686297393f37",
+          "REQ-abaabd52ac81",
+          "REQ-33f624c0dfc7",
+          "REQ-4d2d3c8f38b9",
+          "REQ-d7a26e68cbd8",
+          "REQ-933bfcf9a5f9",
+          "REQ-bd9fb0564ab6"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: unresolved NOx policy or missing limits prevent any NOx submission attempt.",
+          "Proposed verification: resolution of NOx policy alone does not bypass portal-access or authorization requirements."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [
+          "Manager resolution of NOx STARTUP policy.",
+          "Supplied and confirmed applicable NOx limits.",
+          "Regulator endpoint, authentication, credentials, account and plant permissions.",
+          "Payload schemas, acknowledgement meanings and duplicate-filing behavior.",
+          "Exact-attempt manager authorization."
+        ],
+        "external_effects": [
+          "When all prerequisites are met, transmission of NOx reports or amendments and creation or update of external regulatory filing records."
+        ],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-4d2d3c8f38b9",
+        "source_ids": [
+          "SRC-5a5274724381",
+          "SRC-96ef114d4418"
+        ],
+        "normalized": "Before every filing attempt, require separate environmental compliance manager authorization specifying the exact report version, stack set, pollutant set and permit date. The brief supplies no execution permission, accounts, credentials or submission authorizations.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-abaabd52ac81"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: reject attempts with absent authorization or a mismatch in any required scope field.",
+          "Proposed verification: preparing a report does not satisfy the authorization requirement."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-d7a26e68cbd8",
+        "source_ids": [
+          "SRC-5a5274724381"
+        ],
+        "normalized": "Invalidate filing authorization when relevant evidence changes. Immediately before filing, reject stale or unauthorized versions rather than silently recalculating and transmitting another version.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-67ab8372af43",
+          "REQ-4d2d3c8f38b9"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: evidence changes invalidate the associated authorization.",
+          "Proposed verification: an immediate pre-filing check rejects stale or unauthorized versions without substituting a recalculated report."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-933bfcf9a5f9",
+        "source_ids": [
+          "SRC-07515e150f32"
+        ],
+        "normalized": "Preserve distinct filing outcomes of rejected, received for review, legally accepted and unknown. Receipt is not legal acceptance. Link every outcome to the attempted report version and authorization.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-abaabd52ac81",
+          "REQ-4d2d3c8f38b9"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: preserve all four outcome states and their version-and-authorization links using synthetic outcomes.",
+          "Proposed verification: received-for-review status never implies legal acceptance."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-bd9fb0564ab6",
+        "source_ids": [
+          "SRC-07515e150f32"
+        ],
+        "normalized": "Record a filing timeout as unknown and perform no automatic retry.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-933bfcf9a5f9"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: a simulated timeout records unknown and schedules no automatic subsequent attempt."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-863b8f0bbdea",
+        "source_ids": [
+          "SRC-07515e150f32",
+          "SRC-5a5274724381"
+        ],
+        "normalized": "Require documented resolution of an unknown filing outcome before another attempt, together with the authorization required for every attempt.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-4d2d3c8f38b9",
+          "REQ-d7a26e68cbd8",
+          "REQ-bd9fb0564ab6"
+        ],
+        "acceptance_implications": [
+          "Proposed verification: prevent another attempt while the prior outcome is unresolved or undocumented.",
+          "Proposed verification: define resolution-evidence acceptance cases once the resolution procedure is established."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Documented outcome-resolution procedure and acceptable evidence.",
+          "Confirmed regulator acknowledgement and duplicate-filing behavior."
+        ],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-20caffc01a14",
+        "source_ids": [
+          "SRC-07515e150f32"
+        ],
+        "normalized": "Enforce role permissions beyond screen visibility: viewers read; technicians maintain registers, operating evidence, calibrations and intake; quality reviewers approve measurement corrections and prepare reports; only the environmental compliance manager resolves NOx policy and authorizes filings.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: exercise allowed and forbidden operations for each role through the underlying operation interface, including attempts bypassing screen visibility.",
+          "Proposed verification: only the manager role can resolve NOx policy or authorize filing."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-7c07a210cfcf",
+        "source_ids": [
+          "SRC-07177b753682"
+        ],
+        "normalized": "Preserve evidence, corrections, report versions, authorizations and consistent classifications across restart.",
+        "category": "non_functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: restart with representative evidence and report history, then compare persisted records, authorization states and classifications."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-5690152e916e",
+        "source_ids": [
+          "SRC-07177b753682"
+        ],
+        "normalized": "Label reversible local-storage, CSV-preview-layout and initial-grouping assumptions as unapproved. Describe verification as proposed work because no implementation, executed tests or live portal evidence is supplied.",
+        "category": "constraint",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification: review planning artifacts for explicit assumption labels and absence of unsupported implementation, test-execution or live-filing claims."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      }
+    ],
+    "issues": [
+      {
+        "issue_id": "ISS-2ce4a2c7482a",
+        "kind": "contradiction",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-c0c68252514b"
+        ],
+        "affected_requirement_ids": [
+          "REQ-f2e9a35f8c82",
+          "REQ-9367c721b90b",
+          "REQ-686297393f37",
+          "REQ-9dcd91fd7fd4"
+        ],
+        "description": "The signed permit excludes STARTUP from daily NOx assessment while the regulator's current written direction includes it. Both are mandatory and no precedence ruling is supplied.",
+        "question": "What documented resolution will the environmental compliance manager establish for STARTUP treatment and the precedence of these NOx requirements?",
+        "rationale": "The conflict changes official NOx classification and submission eligibility. It does not block NOx intake, calibration checks, hourly evidence, particulate assessment or particulate-only preparation.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-f1006048e1cf",
+        "kind": "missing_information",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-c0c68252514b",
+          "SRC-92c1c2579f47"
+        ],
+        "affected_requirement_ids": [
+          "REQ-686297393f37",
+          "REQ-9dcd91fd7fd4"
+        ],
+        "description": "Applicable NOx limits have not been supplied or confirmed, and no numerical NOx compliance outcome is asserted.",
+        "question": "What applicable NOx limits and associated comparison criteria must be confirmed before official classification or submission?",
+        "rationale": "Official NOx compliance cannot be objectively calculated or accepted without its limits. Particulate limits and local NOx evidence work remain independently specified.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-b25ca0558642",
+        "kind": "integration_gap",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-5a5274724381"
+        ],
+        "affected_requirement_ids": [
+          "REQ-56ac260ca475",
+          "REQ-9dcd91fd7fd4"
+        ],
+        "description": "The portal endpoint, authentication contract, payload schemas, particulate-only support, acknowledgement meanings and duplicate-filing behavior are unknown.",
+        "question": "What confirmed portal contract covers daily reports, amendments, particulate-only filings, acknowledgements and duplicate attempts?",
+        "rationale": "These details determine live transmission and interpretation of external outcomes. They do not prevent local reports, calculations, authorization controls or synthetic outcome-state verification.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-104b13f9409c",
+        "kind": "authorization_question",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-96ef114d4418",
+          "SRC-5a5274724381"
+        ],
+        "affected_requirement_ids": [
+          "REQ-56ac260ca475",
+          "REQ-9dcd91fd7fd4"
+        ],
+        "description": "External accounts, credentials, confirmed plant permissions and exact-attempt submission authorizations are absent. The brief explicitly grants no execution permission.",
+        "question": "Before a live attempt, what approved account and plant access will be provisioned, and where will the manager's authorization of the exact version, stacks, pollutants and permit date be recorded?",
+        "rationale": "Missing access and authorization block live filing only. The local authorization model and enforcement can be planned and verified with synthetic records.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-97457635d9fe",
+        "kind": "missing_information",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-07515e150f32",
+          "SRC-5a5274724381"
+        ],
+        "affected_requirement_ids": [
+          "REQ-863b8f0bbdea"
+        ],
+        "description": "Another attempt after an unknown outcome requires documented outcome resolution, but acceptable resolution evidence, the responsible confirmer and the resolution procedure are unspecified.",
+        "question": "What evidence and confirmation procedure establish that an unknown filing outcome is resolved before another authorized attempt?",
+        "rationale": "This determines whether a subsequent attempt is eligible and could create a duplicate filing. Recording unknown, prohibiting automatic retries and all independent local work remain implementable.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-e2096b3e8509",
+        "kind": "ambiguity",
+        "severity": "non_blocking",
+        "source_ids": [
+          "SRC-c0c68252514b",
+          "SRC-07177b753682"
+        ],
+        "affected_requirement_ids": [
+          "REQ-9bf169342b95"
+        ],
+        "description": "Users disagree whether the initial overview groups by stack or date, but the source accepts either grouping.",
+        "question": "Is stack-first or date-first grouping preferred for the initial overview?",
+        "rationale": "A labeled reversible default resolves presentation planning without changing classifications or requiring customer approval of the assumed choice.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-e270198c3cf8",
+        "kind": "ambiguity",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-b2dbaea5dbc0",
+          "SRC-6144446ca070"
+        ],
+        "affected_requirement_ids": [
+          "REQ-84d036011660",
+          "REQ-3c423798363c"
+        ],
+        "description": "Assignments are effective-dated, but the source does not specify whether an instrument assignment may change within a stack-hour or measurement interval, or how such transitions affect the expected measurements and hourly mean.",
+        "question": "Must assignment changes align to hour or five-minute boundaries, and how should an hour spanning an assignment change select and count applicable measurements?",
+        "rationale": "The transition rule changes measurement eligibility and objective acceptance of affected hourly calculations. This uncertainty is limited to assignment-transition cases; fixed-assignment examples and other local work remain available.",
+        "blocked_increment_ids": []
+      }
+    ],
+    "assumptions": [
+      {
+        "assumption_id": "ASM-e3ab0087d502",
+        "source_ids": [
+          "SRC-07177b753682",
+          "SRC-2de81dd61ace"
+        ],
+        "related_requirement_ids": [
+          "REQ-f14cc2bc55ed",
+          "REQ-ea2f515d6120",
+          "REQ-7c07a210cfcf",
+          "REQ-5690152e916e"
+        ],
+        "statement": "For planning, assume a replaceable local transactional store that can persist evidence and commit or reject a delivery atomically; no storage product is selected.",
+        "rationale": "The source permits reversible local-storage assumptions and requires both restart persistence and delivery rejection without changes.",
+        "impact_if_wrong": "The storage design would need revision while preserving atomic intake, history and restart behavior.",
+        "approval_status": "not_customer_approved"
+      },
+      {
+        "assumption_id": "ASM-548a5717ab8f",
+        "source_ids": [
+          "SRC-2de81dd61ace",
+          "SRC-07177b753682"
+        ],
+        "related_requirement_ids": [
+          "REQ-719b470c1aa0",
+          "REQ-f14cc2bc55ed",
+          "REQ-5690152e916e"
+        ],
+        "statement": "For planning, present CSV preview as a table of supplied fields with row-level validation reasons.",
+        "rationale": "A tabular preview is a reversible layout choice consistent with CSV fields and required row-level rejection reasons.",
+        "impact_if_wrong": "The preview layout would change without altering intake validation or delivery atomicity.",
+        "approval_status": "not_customer_approved"
+      },
+      {
+        "assumption_id": "ASM-bb99fc051f1d",
+        "source_ids": [
+          "SRC-c0c68252514b",
+          "SRC-07177b753682"
+        ],
+        "related_requirement_ids": [
+          "REQ-9bf169342b95",
+          "REQ-5690152e916e"
+        ],
+        "statement": "Use stack-first initial overview grouping as an explicitly labeled reversible planning default.",
+        "rationale": "Either stack-first or date-first grouping is acceptable in the source.",
+        "impact_if_wrong": "Change the initial grouping to date-first while preserving calculations, classifications and report identities.",
+        "approval_status": "not_customer_approved"
+      }
+    ],
+    "out_of_scope_instructions": [],
+    "source_segments": [
+      {
+        "source_id": "SRC-d67dcd839162",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance"
+        ],
+        "start_line": 1,
+        "end_line": 1,
+        "text": "# StackProof: industrial air-permit evidence and daily compliance",
+        "sha256": "f679ec6c9f7b3605b9b1e38626bd046253b62ec57d1aad2549be08dd9a8f6dad"
+      },
+      {
+        "source_id": "SRC-f79c1008a320",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Purpose and operating boundary"
+        ],
+        "start_line": 3,
+        "end_line": 3,
+        "text": "## Purpose and operating boundary",
+        "sha256": "034948183bc2fc1caba284e144a02b232d411248d5e6b70b8eb8a9392ba70e7e"
+      },
+      {
+        "source_id": "SRC-96ef114d4418",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Purpose and operating boundary"
+        ],
+        "start_line": 4,
+        "end_line": 4,
+        "text": "A ceramics manufacturer needs defensible daily emissions assessments and reviewed regulatory submissions. The pilot covers one plant, three stacks and two pollutants: particulate matter and nitrogen oxides (NOx). Permit days and hour boundaries use UTC. Concentrations arrive already normalized in mg/Nm³, with at most three decimal places; do not perform normalization conversions. The service does not control combustion equipment, tune instruments, predict dispersion, calculate carbon credits or replace emergency alarms. Synthetic measurements, operating logs and calibration records are available. External credentials, accounts and submission authorizations are absent.",
+        "sha256": "a95ca0b2ee60a8cf01b91176d60151555cfffbe2b0804bb874ffa7ec7d117afc"
+      },
+      {
+        "source_id": "SRC-7b24938ddc43",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Monitoring register and operating evidence"
+        ],
+        "start_line": 6,
+        "end_line": 6,
+        "text": "## Monitoring register and operating evidence",
+        "sha256": "f4e9c5745337cc6ccd2016493052f81fb81e634d683bc356191b08c8407196e4"
+      },
+      {
+        "source_id": "SRC-b2dbaea5dbc0",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Monitoring register and operating evidence"
+        ],
+        "start_line": 7,
+        "end_line": 7,
+        "text": "An environmental technician maintains effective-dated assignments of instruments to stack and pollutant. Assignments for the same stack and pollutant cannot overlap. Preserve instrument identity and assignment history. Each stack-hour requires an operating status of OFF, NORMAL or STARTUP, supported by a source reference. A missing status is unknown, not OFF. Corrections to assignments or operating status retain actor, time, reason and previous values. OFF hours do not enter emissions averages, but their measurements remain in the evidence history.",
+        "sha256": "53f91ff838cc0bd12ffd5aca6f0d3b12747f0fc4a221858eb225178c51ef98b2"
+      },
+      {
+        "source_id": "SRC-631976f7c30b",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Monitoring register and operating evidence"
+        ],
+        "start_line": 9,
+        "end_line": 9,
+        "text": "Technicians can record instrument calibration intervals with start, end and reason. Intervals include their start and exclude their end; end must be later than start. Any overlap between a calibration interval and a measurement's five-minute interval invalidates that whole measurement for compliance, even if its source quality flag says valid. Calibration records and their corrections retain attribution and history. Register maintenance and calibration validation can be planned using local examples before a regulator connection exists.",
+        "sha256": "aea0ece7913ab6a440293769f69bd301c93fd5c29e00464d53655f766a1accbe"
+      },
+      {
+        "source_id": "SRC-48e371e1e00d",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Measurement intake and corrections"
+        ],
+        "start_line": 11,
+        "end_line": 11,
+        "text": "## Measurement intake and corrections",
+        "sha256": "fa48052bb26ca57305efcccb4d0fa1c4bd1e5004181901808bf429333b87f455"
+      },
+      {
+        "source_id": "SRC-2de81dd61ace",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Measurement intake and corrections"
+        ],
+        "start_line": 12,
+        "end_line": 12,
+        "text": "A technician can preview a CSV containing delivery_id, measurement_id, instrument_id, interval_start_utc, concentration and source_quality. Each row represents exactly five minutes, beginning at a multiple of five minutes. Concentration must be nonnegative and source_quality must be VALID or INVALID. Reject the entire delivery, with row-level reasons and no changes, for malformed rows, unknown instruments, off-grid times, duplicate measurement identifiers or two measurements for the same instrument and interval. An identical delivery identifier and content is a no-op; changed content under that identifier is rejected. A later delivery cannot silently replace an existing measurement.",
+        "sha256": "739309ad0f67801fdc5df3a0101bf37e15cf4f238ae953d39627dcf6719ddfa3"
+      },
+      {
+        "source_id": "SRC-770c7c5bd347",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Measurement intake and corrections"
+        ],
+        "start_line": 14,
+        "end_line": 14,
+        "text": "A quality reviewer can approve a correction naming the original measurement, replacement concentration or quality flag, reason and supporting reference. Preserve the raw value and every correction; only the latest approved correction is effective. Corrected data still obey calibration invalidation and instrument assignments. Measurement intake and correction review are independently plannable with synthetic files, without deciding disputed NOx policy.",
+        "sha256": "87a411261f6fc46b59cde573e4adc96a80475845faa3cd4c5c9e36ff9866be0a"
+      },
+      {
+        "source_id": "SRC-76aac46f7f07",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Particulate assessment"
+        ],
+        "start_line": 16,
+        "end_line": 16,
+        "text": "## Particulate assessment",
+        "sha256": "ec2772150743e90c0ebf306976fcf4e2bcae487ded4570c8731627803c6755f9"
+      },
+      {
+        "source_id": "SRC-6144446ca070",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Particulate assessment"
+        ],
+        "start_line": 17,
+        "end_line": 17,
+        "text": "For each operating particulate stack-hour, expect 12 five-minute measurements from its assigned instrument. At least nine must be valid after source-quality, correction and calibration checks. Otherwise the hour is insufficient. An hour lacking an applicable instrument assignment is also insufficient. The hourly mean is the arithmetic mean of its valid concentrations. Compare exact calculated values with limits; round only displayed means to three decimal places, with exact halves rounded upward.",
+        "sha256": "9ba25a7549740a2fad0b2f8184db60b2fc7cee7b612a3e3009907c9eb804e1a7"
+      },
+      {
+        "source_id": "SRC-13e79ecfd92b",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Particulate assessment"
+        ],
+        "start_line": 19,
+        "end_line": 19,
+        "text": "A particulate day is BREACH if any sufficient operating hour has a mean above 100 mg/Nm³, even when other hours are insufficient or have unknown status. Otherwise, if any stack-hour has unknown operating status or any operating hour is insufficient, the day is INDETERMINATE. Otherwise average all operating hourly means equally: a result above 50 mg/Nm³ is BREACH, and a result at or below 50 is COMPLIANT. A fully documented day with every hour OFF is NO OPERATION, not COMPLIANT and not a zero concentration. Assess each stack separately; do not average stacks together. STARTUP counts as operating for particulate assessment.",
+        "sha256": "a67d6f49f78ca832e67a865635b22ff084a99cef16f99a67e1adb61d652f421e"
+      },
+      {
+        "source_id": "SRC-7cde6aee73ca",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "NOx contradiction and review scope"
+        ],
+        "start_line": 21,
+        "end_line": 21,
+        "text": "## NOx contradiction and review scope",
+        "sha256": "cd4dc004cc76a7baef45e2808148891495a0acb76b18a3c515c6c58b3382a5a4"
+      },
+      {
+        "source_id": "SRC-c0c68252514b",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "NOx contradiction and review scope"
+        ],
+        "start_line": 22,
+        "end_line": 22,
+        "text": "The plant's signed NOx permit states “exclude STARTUP hours from the daily compliance assessment.” The regulator's current written direction states “include STARTUP hours in the daily compliance assessment.” Both are mandatory, with no precedence ruling supplied. The environmental compliance manager must resolve this contradiction. Do not issue an official NOx daily classification or submit NOx results before resolution and confirmation of the applicable NOx limits. Those limits have not been supplied. NOx intake, calibration checks and hourly evidence preparation can proceed; particulate assessment and particulate-only submission preparation must remain usable. Users also disagree whether the overview should initially group results by stack or date. Either grouping is acceptable and must not change classifications.",
+        "sha256": "f23aed46d6bacfc03d4fa5b63328680c995b08be30ef5e25e5baef967c738721"
+      },
+      {
+        "source_id": "SRC-09c8d54a6200",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Review, revisions and external filing"
+        ],
+        "start_line": 24,
+        "end_line": 24,
+        "text": "## Review, revisions and external filing",
+        "sha256": "0302d05d4ead0fe0a33078aa269a448caf9a5396a73440350a264767411c0203"
+      },
+      {
+        "source_id": "SRC-0106ee922148",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Review, revisions and external filing"
+        ],
+        "start_line": 25,
+        "end_line": 25,
+        "text": "A reviewer can prepare a versioned daily report showing operating evidence, valid-measurement counts, hourly means, daily classification, exceptions and links to source records. Preparation does not authorize filing. Changes to relevant measurements, assignments, calibration or operating status mark an affected prepared report stale. Recalculation creates a new report version. A previously submitted version remains immutable and visible; corrections require a separately reviewed amendment linked to that submission. The overview must expose stale reports, insufficient hours, unknown statuses, breaches and filing outcomes rather than displaying missing results as zero.",
+        "sha256": "bba008f459beac45443fc2486d3cef68bdd0e5f4cf9449c641404bbc92211257"
+      },
+      {
+        "source_id": "SRC-5a5274724381",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Review, revisions and external filing"
+        ],
+        "start_line": 27,
+        "end_line": 27,
+        "text": "The regulator portal is expected to accept daily reports and amendments and return filing outcomes. Its endpoint, authentication, plant permissions, payload schema, particulate-only filing support, acknowledgement meanings and duplicate-filing behavior are unknown. These block live filing, not local evidence preparation or particulate calculation. Before any attempt, the environmental compliance manager must separately authorize the exact report version, stack set, pollutant set and permit date. This brief grants no execution permission. Relevant evidence changes invalidate that authorization. Immediately before filing, reject stale or unauthorized versions rather than silently recalculating and sending a different report.",
+        "sha256": "003cf39b4e13d98a1f7eaf4d03b8de83807cb0290f7a5415c745addd86b41916"
+      },
+      {
+        "source_id": "SRC-07515e150f32",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Review, revisions and external filing"
+        ],
+        "start_line": 29,
+        "end_line": 29,
+        "text": "Preserve distinct filing outcomes of rejected, received for review, legally accepted and unknown. Receipt is not legal acceptance. A timeout is unknown; another attempt requires documented outcome resolution, with no automatic retry. Link every outcome to the attempted version and authorization. Viewers can read; technicians maintain registers, operating evidence, calibrations and intake; quality reviewers approve measurement corrections and prepare reports; only the environmental compliance manager resolves NOx policy and authorizes filings. Enforce permissions beyond screen visibility.",
+        "sha256": "d56ac6bef6925d146a362be40a0beb7a1e984700542a4c725b7a513be9f8bad7"
+      },
+      {
+        "source_id": "SRC-32f794e1c31a",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Acceptance and delivery expectations"
+        ],
+        "start_line": 31,
+        "end_line": 31,
+        "text": "## Acceptance and delivery expectations",
+        "sha256": "ba7c1cc07df2123f3766b759cb496608ccc66466a72b83257eb32ca76d0240b2"
+      },
+      {
+        "source_id": "SRC-92c1c2579f47",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Acceptance and delivery expectations"
+        ],
+        "start_line": 32,
+        "end_line": 32,
+        "text": "Nine valid particulate measurements of 40 and three invalid measurements produce a sufficient hourly mean of 40; eight valid measurements produce an insufficient hour. Ten operating hours averaging 40 and two averaging 70 give a daily mean of 45 and COMPLIANT when all other hours are documented OFF. A sufficient hour averaging 101 makes the day BREACH even with another hour insufficient. Twelve operating hours averaging exactly 50 give COMPLIANT. Calibration from 09:02 to 09:03 invalidates the 09:00–09:05 measurement. A day with all 24 statuses OFF yields NO OPERATION; one missing status prevents that result. No numerical NOx compliance outcome is asserted.",
+        "sha256": "b137790565ec0dee085ffffe621a419a0bdb6299acacb347cc85cec0ea7bb383"
+      },
+      {
+        "source_id": "SRC-07177b753682",
+        "heading_path": [
+          "StackProof: industrial air-permit evidence and daily compliance",
+          "Acceptance and delivery expectations"
+        ],
+        "start_line": 34,
+        "end_line": 34,
+        "text": "Evidence, corrections, report versions, authorizations and consistent classifications must survive restart. Local storage, CSV preview layout and initial grouping may use explicitly labeled reversible assumptions; these are not customer approvals. Describe verification as proposed work: no implementation, executed tests or live portal evidence is supplied.",
+        "sha256": "3e40e2069321521b19181316c3735814e165e957b897ad30600090af68b9524a"
+      }
+    ]
+  },
+  "execution_authorized": false,
+  "architecture": {
+    "architecture": [
+      "Proposed modular local application with separate register, intake, assessment, reporting, authorization and filing components. Local evidence preparation and particulate calculations have no dependency on portal availability, NOx policy resolution or filing recovery decisions. [SRC-631976f7c30b, SRC-770c7c5bd347, SRC-c0c68252514b, SRC-5a5274724381]",
+      "Preserve ASM-e3ab0087d502 as an unapproved, reversible assumption: use a replaceable local transactional store for evidence, history, report versions, authorizations and filing records. No storage product or external database service is selected. [SRC-2de81dd61ace, SRC-07177b753682]",
+      "Separate immutable raw measurements and correction history from effective measurement views. Determine compliance validity using approved corrections, applicable assignments and calibration overlap; retain OFF-hour measurements. [SRC-b2dbaea5dbc0, SRC-631976f7c30b, SRC-770c7c5bd347]",
+      "Proposed particulate assessment component uses exact arithmetic for means and limit comparisons, with rounding confined to display. Keep the unresolved assignment-transition case explicit rather than selecting an undocumented rule. [SRC-6144446ca070, SRC-13e79ecfd92b]",
+      "Isolate the unresolved NOx daily-assessment branch. Preserve both mandatory STARTUP statements without choosing precedence; withhold official classifications until manager resolution and confirmed limits. NOx intake, calibration checks and hourly evidence remain available. [SRC-c0c68252514b]",
+      "Proposed report snapshots identify their evidence inputs. Relevant changes mark affected reports stale and invalidate associated filing authorization; recalculation produces a new version. Submitted versions remain immutable, with separately reviewed amendments linked to them. [SRC-0106ee922148, SRC-5a5274724381]",
+      "Keep filing outcomes, timeout handling and negative authorization checks locally verifiable using synthetic records. Place both portal integrations in external_operation nodes; neither is authorized or available for execution. [SRC-96ef114d4418, SRC-5a5274724381, SRC-07515e150f32]",
+      "First-attempt filing prerequisites are represented by unconditional node dependencies. A subsequent attempt additionally requires N6's documented-outcome-resolution check; this is a conditional functional prerequisite, not an optional optimization. Until that procedure is established, subsequent attempts remain disabled. [SRC-07515e150f32]",
+      "Preserve ASM-548a5717ab8f and ASM-bb99fc051f1d as unapproved, reversible presentation assumptions: tabular CSV preview with row reasons and stack-first initial grouping. No optional optimization dependencies are proposed. [SRC-2de81dd61ace, SRC-c0c68252514b, SRC-07177b753682]"
+    ],
+    "data_entities": [
+      "Plant, Stack and Pollutant: pilot identifiers covering one plant, three stacks, particulate matter and NOx. [SRC-96ef114d4418]",
+      "Instrument and AssignmentHistory: preserved instrument identity, effective-dated stack/pollutant assignments and non-overlap validation. Assignment corrections retain actor, time, reason and previous values. [SRC-b2dbaea5dbc0]",
+      "StackHourOperatingEvidence: UTC hour, OFF/NORMAL/STARTUP status and source reference; absence remains unknown. Preserve attributed correction history. [SRC-b2dbaea5dbc0]",
+      "CalibrationInterval and CalibrationHistory: instrument, start, end, reason and attributed revisions; intervals include start and exclude end. [SRC-631976f7c30b]",
+      "Delivery and ValidationResult: delivery identifier, content used for identity checking, preview rows and row-level reasons; valid deliveries commit atomically and rejected deliveries make no changes. [SRC-2de81dd61ace]",
+      "RawMeasurement: measurement identifier, instrument, UTC interval start, original concentration and original source quality, retained independently of effective corrections. [SRC-2de81dd61ace, SRC-770c7c5bd347]",
+      "MeasurementCorrection: original measurement link, replacement concentration or quality, reason, supporting reference and approval history; latest approved correction determines effective values. [SRC-770c7c5bd347]",
+      "HourlyEvidence and ParticulateHourlyAssessment: measurement references, assignment applicability, validity reasons, valid count, sufficiency and exact hourly mean where calculable. NOx hourly evidence does not imply a daily compliance classification. [SRC-6144446ca070, SRC-c0c68252514b]",
+      "ParticulateDailyAssessment: stack, UTC permit date, operating-hour evidence, exact daily mean where applicable and BREACH/INDETERMINATE/COMPLIANT/NO OPERATION classification. [SRC-13e79ecfd92b]",
+      "NOxPolicyRecord: both conflicting source statements, manager resolution when supplied and confirmed applicable limits; no selected policy or numerical limits are currently available. [SRC-c0c68252514b]",
+      "ReportVersion and Amendment: evidence links, counts, means, permitted classifications, exceptions, staleness, submission linkage and separately reviewed amendment linkage. [SRC-0106ee922148]",
+      "FilingAuthorization: manager attribution, exact report version, stack set, pollutant set, permit date and validity following relevant evidence changes. [SRC-5a5274724381]",
+      "FilingAttempt and FilingOutcome: attempted version, authorization and distinct rejected/received-for-review/legally-accepted/unknown outcomes; timeout yields unknown. [SRC-07515e150f32]",
+      "OutcomeResolutionRecord: documented resolution linked to an unknown attempt; acceptable evidence and confirmation procedure remain unresolved. [SRC-07515e150f32]",
+      "ActorRoleContext: actor attribution and viewer, technician, quality-reviewer or environmental-compliance-manager role used by operation-level permission checks. [SRC-b2dbaea5dbc0, SRC-07515e150f32]"
+    ],
+    "interfaces": [
+      "Proposed local register interface: maintain assignments, stack-hour operating evidence and calibration intervals with validation and attributed correction history. [SRC-b2dbaea5dbc0, SRC-631976f7c30b]",
+      "CSV preview and delivery interface: accept the six supplied columns, return row-level reasons, reject invalid deliveries atomically and enforce delivery identity and measurement uniqueness. [SRC-2de81dd61ace]",
+      "Measurement-correction interface: quality-reviewer approval with original measurement, replacement, reason and supporting reference; expose raw and effective evidence separately. [SRC-770c7c5bd347]",
+      "Local evidence interface: expose measurements, calibration invalidation and assignment applicability for particulate and NOx without requiring portal access or resolved NOx daily policy. [SRC-770c7c5bd347, SRC-c0c68252514b]",
+      "Particulate assessment interface: accept stack, UTC date and relevant evidence; return exact hourly/daily results, sufficiency and classification reasons. Assignment-transition behavior remains an unresolved contract case. [SRC-6144446ca070, SRC-13e79ecfd92b]",
+      "Report and overview interface: prepare versions, expose evidence links and exceptions, show staleness and filing outcomes, and preserve classifications across stack/date grouping. Report preparation grants no filing permission. [SRC-c0c68252514b, SRC-0106ee922148]",
+      "Authorization and preflight interface: bind authorization to the exact filing scope, invalidate it on relevant evidence changes and reject stale, unauthorized or mismatched versions without recalculating a substitute. [SRC-5a5274724381]",
+      "Outcome interface: record the four distinct filing outcomes, link them to attempt/version/authorization and record timeouts as unknown without automatic retries. The subsequent-attempt interface requires documented resolution under the still-unresolved procedure. [SRC-07515e150f32]",
+      "Regulator adapter boundary: daily-report and amendment transmission with separate particulate-only and NOx eligibility checks. Endpoint, authentication, schemas, acknowledgement mappings, duplicate behavior and particulate-only support remain unspecified; no concrete API contract is invented. [SRC-c0c68252514b, SRC-5a5274724381]"
+    ],
+    "operational_constraints": [
+      "Pilot scope is one plant, three stacks and two pollutants. Excluded equipment control, instrument tuning, dispersion prediction, carbon-credit calculation and emergency-alarm replacement remain outside the architecture. [SRC-96ef114d4418]",
+      "Use UTC permit days and hours. Concentrations arrive normalized in mg/Nm³ with at most three decimal places; perform no normalization conversion. [SRC-96ef114d4418]",
+      "Synthetic measurements, operating logs and calibration records support proposed local verification. They are not prerequisites requiring external resource provisioning. [SRC-96ef114d4418]",
+      "All external resource identifiers listed on N7 and N8 denote unavailable prerequisites requiring separate availability and permission checks. Listing them does not provision access or authorize filing. [SRC-96ef114d4418, SRC-5a5274724381]",
+      "Evidence, corrections, report versions, authorizations and consistent classifications must survive restart. Local transactional storage is an unapproved planning assumption rather than a customer-selected technology. [SRC-07177b753682]",
+      "Preserve both NOx policy statements and the absence of limits. Do not apply particulate thresholds or particulate STARTUP treatment to NOx daily compliance by assumption. [SRC-c0c68252514b, SRC-92c1c2579f47]",
+      "No implementation, executed tests or live portal evidence is supplied. All architecture choices and verification activities here are proposals; execution_authorized is false. [SRC-5a5274724381, SRC-07177b753682]"
+    ],
+    "security_considerations": [
+      "N1 provides shared operation-level role enforcement: viewers read; technicians maintain evidence and intake; quality reviewers approve corrections and prepare reports; only the manager resolves NOx policy and authorizes filing. Screen visibility alone is insufficient. [SRC-07515e150f32]",
+      "N4 locally enforces exact-version, stack-set, pollutant-set and permit-date authorization. A report's preparation or review cannot substitute for separate filing authorization. [SRC-0106ee922148, SRC-5a5274724381]",
+      "Proposed transaction boundaries couple relevant evidence changes with report staleness and authorization invalidation. Preflight must bind the attempted payload to the authorized immutable version; concurrency behavior requires proposed verification. [SRC-0106ee922148, SRC-5a5274724381]",
+      "Preserve raw evidence, attributed corrections and submitted versions so amendments do not overwrite the history supporting an earlier filing. [SRC-b2dbaea5dbc0, SRC-631976f7c30b, SRC-770c7c5bd347, SRC-0106ee922148]",
+      "Fail closed for unresolved NOx submission eligibility and unresolved repeat-attempt eligibility. Local evidence preparation remains available. [SRC-c0c68252514b, SRC-07515e150f32]",
+      "Portal credentials, accounts and plant permissions are absent. The authorization requirements describe controls to implement; they are not current grants to execute external operations. [SRC-96ef114d4418, SRC-5a5274724381]"
+    ],
+    "technical_risks": [
+      "ISS-2ce4a2c7482a: contradictory mandatory NOx STARTUP treatment directly blocks selection of the rules represented by REQ-f2e9a35f8c82 and REQ-9367c721b90b, official classification under REQ-686297393f37 and NOx filing under REQ-9dcd91fd7fd4. N5 and N8 preserve this unresolved branch. [SRC-c0c68252514b]",
+      "ISS-f1006048e1cf: missing applicable NOx limits prevent numerical acceptance of official classification and NOx submission eligibility. No numerical NOx outcome is inferred. [SRC-c0c68252514b, SRC-92c1c2579f47]",
+      "ISS-b25ca0558642 and ISS-104b13f9409c: unknown portal contract, unavailable access and absent exact-attempt authorization block N7 and N8 live filing. Internal report, authorization and outcome models remain locally verifiable. [SRC-96ef114d4418, SRC-5a5274724381]",
+      "ISS-97457635d9fe: acceptable resolution evidence and confirmation procedure are unspecified for REQ-863b8f0bbdea. N6 cannot establish positive repeat-attempt acceptance until clarified; timeout recording, no automatic retry and independent local work remain available. [SRC-07515e150f32]",
+      "ISS-e270198c3cf8: assignment changes within an hour or measurement interval lack a selection/counting rule. This directly affects transition cases in REQ-84d036011660 and REQ-3c423798363c within N3. Fixed-assignment examples and other local capabilities remain available; transition-case acceptance cannot be claimed. [SRC-b2dbaea5dbc0, SRC-6144446ca070]",
+      "ISS-e2096b3e8509 is non-blocking: either initial grouping is accepted. ASM-bb99fc051f1d remains an unapproved stack-first default, and grouping must not affect classifications. [SRC-c0c68252514b, SRC-07177b753682]",
+      "Premature rounding, treating missing evidence as zero, equating receipt with legal acceptance or retrying a timeout could produce incorrect assessments or duplicate filings. Proposed checks must distinguish these cases. [SRC-6144446ca070, SRC-0106ee922148, SRC-07515e150f32]"
+    ],
+    "completion_definition": [
+      "Planning coverage requires all 40 supplied requirements to appear on work nodes or, for the six cross-cutting constraints/exclusions/non-functional requirements, in global_requirement_ids. Both integration requirements are assigned to external_operation nodes.",
+      "Proposed local verification covers assignment non-overlap, attributed history, documented operating statuses, calibration interval validation and the 09:02–09:03 overlap invalidating the 09:00–09:05 measurement. [SRC-b2dbaea5dbc0, SRC-631976f7c30b, SRC-92c1c2579f47]",
+      "Proposed intake verification covers all row rejection conditions, delivery-wide rollback, identical-delivery no-op behavior, changed-content rejection, prevention of measurement replacement and latest-approved-correction behavior. [SRC-2de81dd61ace, SRC-770c7c5bd347]",
+      "Proposed particulate verification covers nine valid measurements of 40 versus eight valid measurements; daily mean 45 from ten hours at 40 and two at 70; hourly mean 101 taking breach precedence; daily mean exactly 50; all-OFF NO OPERATION; and a missing status preventing NO OPERATION. Full assignment-transition acceptance awaits clarification. [SRC-6144446ca070, SRC-13e79ecfd92b, SRC-92c1c2579f47]",
+      "Proposed report verification covers required evidence links and contents, stale detection, new versions on recalculation, immutable submitted versions, separately reviewed amendments and grouping-independent classifications. [SRC-c0c68252514b, SRC-0106ee922148]",
+      "Proposed security and filing-state verification uses synthetic records to check roles beyond screen visibility, exact-scope authorization, invalidation, immediate preflight rejection, all four outcomes and timeout-to-unknown with no automatic retry. Positive repeat-attempt acceptance awaits the N6 resolution procedure. [SRC-5a5274724381, SRC-07515e150f32]",
+      "Proposed restart verification compares evidence, corrections, report versions, authorizations and classifications before and after restart. Local verification must remain possible without portal access or resolved NOx policy. [SRC-07177b753682, SRC-c0c68252514b, SRC-5a5274724381]",
+      "Official NOx completion additionally requires manager resolution of the contradiction, confirmed applicable limits and subsequently defined numerical acceptance cases. Live filing completion additionally requires the confirmed portal contract, available authorized access and manager authorization of each exact attempt. None is claimed complete or executed here. [SRC-c0c68252514b, SRC-5a5274724381, SRC-07177b753682]"
+    ],
+    "global_requirement_ids": [
+      "REQ-49e085927998",
+      "REQ-47074ca73e54",
+      "REQ-dc800aeb8480",
+      "REQ-ffa300a75e95",
+      "REQ-7c07a210cfcf",
+      "REQ-5690152e916e"
+    ],
+    "nodes": [
+      {
+        "task_id": "N1",
+        "objective": "Plan local instrument assignments, operating evidence, calibration records and attributed correction histories, together with shared operation-level role enforcement. Prevent assignment overlap, preserve unknown operating status and enforce calibration interval bounds. These capabilities need no regulator connection or NOx policy decision. [SRC-b2dbaea5dbc0, SRC-631976f7c30b, SRC-07515e150f32]",
+        "requirement_ids": [
+          "REQ-386b9cf311e4",
+          "REQ-6fa5975b111c",
+          "REQ-57e64e0bd44a",
+          "REQ-a7030d6134a1",
+          "REQ-20caffc01a14"
+        ],
+        "depends_on": [],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N2",
+        "objective": "Plan CSV preview, atomic validated intake, delivery idempotency, measurement uniqueness and reviewer-approved correction history. Apply calibration overlap and assignment applicability to effective evidence. Prepare NOx hourly evidence without selecting daily NOx policy or asserting a compliance classification; assignment-transition semantics remain unresolved rather than assumed. [SRC-2de81dd61ace, SRC-631976f7c30b, SRC-770c7c5bd347, SRC-c0c68252514b]",
+        "requirement_ids": [
+          "REQ-279be574d758",
+          "REQ-719b470c1aa0",
+          "REQ-f14cc2bc55ed",
+          "REQ-ea2f515d6120",
+          "REQ-4a1b388ac195",
+          "REQ-43e12ea612c4",
+          "REQ-7bbf030b996a"
+        ],
+        "depends_on": [
+          "N1"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N3",
+        "objective": "Plan separate particulate stack assessments: exclude OFF hours while retaining evidence; count STARTUP as operating; require nine valid measurements out of twelve expected; calculate exact means; apply hourly breach precedence, indeterminate handling, daily thresholds and NO OPERATION. Preserve ISS-e270198c3cf8 for assignment-transition cases affecting hourly sufficiency and means; proceed with fixed-assignment examples without claiming full transition-case acceptance. No portal, NOx resolution or recovery prerequisite applies. [SRC-b2dbaea5dbc0, SRC-6144446ca070, SRC-13e79ecfd92b, SRC-92c1c2579f47]",
+        "requirement_ids": [
+          "REQ-02505516c30c",
+          "REQ-84d036011660",
+          "REQ-3c423798363c",
+          "REQ-0ae7b3f6682b",
+          "REQ-a4afc91739d1",
+          "REQ-47652ecbb8bd",
+          "REQ-e2dd11eed667"
+        ],
+        "depends_on": [
+          "N1",
+          "N2"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N4",
+        "objective": "Plan local report versions, stale detection, immutable submitted-version fixtures, reviewed amendments and an overview exposing missing evidence and filing states. Enforce exact-scope manager authorization, evidence-change invalidation and immediate preflight rejection without substituting recalculated versions. Preserve four filing outcomes and timeout-to-unknown with no automatic retry. Keep particulate-only preparation usable; withhold unresolved official NOx classifications and deny repeat attempts pending N6 resolution checks. Apply the unapproved reversible preview/grouping assumptions without treating them as customer choices. [SRC-0106ee922148, SRC-5a5274724381, SRC-07515e150f32, SRC-c0c68252514b, SRC-07177b753682]",
+        "requirement_ids": [
+          "REQ-9bf169342b95",
+          "REQ-abaabd52ac81",
+          "REQ-67ab8372af43",
+          "REQ-33f624c0dfc7",
+          "REQ-8861687e639b",
+          "REQ-4d2d3c8f38b9",
+          "REQ-d7a26e68cbd8",
+          "REQ-933bfcf9a5f9",
+          "REQ-bd9fb0564ab6"
+        ],
+        "depends_on": [
+          "N1",
+          "N2",
+          "N3"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N5",
+        "objective": "Isolate the NOx daily-policy branch. Preserve the permit's exclusion and regulator's inclusion of STARTUP as conflicting mandatory statements. Plan the manager-only resolution record and fail-closed classification gate. Official numerical classification remains blocked by ISS-2ce4a2c7482a and ISS-f1006048e1cf until documented manager resolution and confirmed applicable limits become functional inputs. Gate verification and evidence work can proceed without those decisions; no precedence or limit is invented. [SRC-c0c68252514b, SRC-92c1c2579f47, SRC-07515e150f32]",
+        "requirement_ids": [
+          "REQ-f2e9a35f8c82",
+          "REQ-9367c721b90b",
+          "REQ-686297393f37"
+        ],
+        "depends_on": [
+          "N1",
+          "N2"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N6",
+        "objective": "Isolate subsequent-attempt eligibility after an unknown outcome. Plan a deny-by-default check requiring documented outcome resolution plus current exact-attempt authorization. Positive eligibility acceptance remains blocked by ISS-97457635d9fe until acceptable evidence and its confirmation procedure are established as functional inputs. This branch does not block local capabilities or first-attempt preparation, and it performs no external retry. [SRC-07515e150f32, SRC-5a5274724381]",
+        "requirement_ids": [
+          "REQ-863b8f0bbdea"
+        ],
+        "depends_on": [
+          "N4"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N7",
+        "objective": "Plan, without performing, particulate-only portal filing of exact authorized report versions and reviewed amendments, including acknowledgement mapping and attempt linkage. Live operation remains blocked by ISS-b25ca0558642 and ISS-104b13f9409c: the portal contract, particulate-only support, access and exact-attempt authorization are absent. Contract confirmation is an unresolved input; report and authorization records are N4 outputs, not external resources. First attempts do not require NOx resolution or recovery-policy completion. Subsequent attempts additionally require N6's documented-resolution check. [SRC-5a5274724381, SRC-07515e150f32]",
+        "requirement_ids": [
+          "REQ-56ac260ca475"
+        ],
+        "depends_on": [
+          "N4"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [
+          "regulator_portal_service",
+          "regulator_portal_account_and_credentials",
+          "regulator_plant_filing_permissions"
+        ],
+        "operation_kind": "external_operation"
+      },
+      {
+        "task_id": "N8",
+        "objective": "Plan, without performing, NOx report and amendment filing. Require N5's documented policy resolution and confirmed limits, N4's exact authorized immutable version and a confirmed portal contract. Remain blocked by ISS-2ce4a2c7482a, ISS-f1006048e1cf, ISS-b25ca0558642 and ISS-104b13f9409c. Do not depend on completion of particulate live filing. Subsequent attempts additionally require N6's documented-resolution check. [SRC-c0c68252514b, SRC-5a5274724381, SRC-07515e150f32]",
+        "requirement_ids": [
+          "REQ-9dcd91fd7fd4"
+        ],
+        "depends_on": [
+          "N4",
+          "N5"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [
+          "regulator_portal_service",
+          "regulator_portal_account_and_credentials",
+          "regulator_plant_filing_permissions"
+        ],
+        "operation_kind": "external_operation"
+      }
+    ]
+  },
+  "planning_objective": "Expand each validated work node into one coherent functional increment. Preserve EXACTLY all WorkNode fields including objective, requirement IDs, dependencies, optional dependencies, resources and operation_kind. Add bounded inputs, outputs, interfaces, safe relative Python component paths, tool requirements, permissions, external effects, measurable completion conditions, verification evidence and rationale for its functional boundary. Local logic must have no external effects. External operations require explicit permission requirements and effects. No operation is authorized or performed; source assumptions remain unapproved.",
+  "tool_catalog": {
+    "python": "Proposed local Python implementation/testing capability, including future authorized adapter code",
+    "git": "Local source inspection/checkpoint capability",
+    "external_api": "Declared integration interface; unavailable until selected and authorized",
+    "n8n": "Official n8n MCP capability declaration only; unavailable for this planning run"
+  }
+}

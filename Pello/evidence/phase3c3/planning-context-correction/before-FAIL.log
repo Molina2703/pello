@@ -1,0 +1,54 @@
+test_increment_context_keeps_exact_nodes_globals_and_all_source_semantics (tests.test_planning_context_transport.PlanningContextTransportTests.test_increment_context_keeps_exact_nodes_globals_and_all_source_semantics) ... FAIL
+test_large_planning_payload_preserves_every_field_without_mutating_input (tests.test_planning_context_transport.PlanningContextTransportTests.test_large_planning_payload_preserves_every_field_without_mutating_input) ... 
+  test_large_planning_payload_preserves_every_field_without_mutating_input (tests.test_planning_context_transport.PlanningContextTransportTests.test_large_planning_payload_preserves_every_field_without_mutating_input) (phase='plan-increments') ... ERROR
+  test_large_planning_payload_preserves_every_field_without_mutating_input (tests.test_planning_context_transport.PlanningContextTransportTests.test_large_planning_payload_preserves_every_field_without_mutating_input) (phase='plan-contracts') ... ERROR
+  test_large_planning_payload_preserves_every_field_without_mutating_input (tests.test_planning_context_transport.PlanningContextTransportTests.test_large_planning_payload_preserves_every_field_without_mutating_input) (phase='plan-models') ... ERROR
+test_small_context_stays_unchanged (tests.test_planning_context_transport.PlanningContextTransportTests.test_small_context_stays_unchanged) ... ok
+test_unreducible_or_conflicting_transport_markers_fail_closed (tests.test_planning_context_transport.PlanningContextTransportTests.test_unreducible_or_conflicting_transport_markers_fail_closed) ... ok
+
+======================================================================
+ERROR: test_large_planning_payload_preserves_every_field_without_mutating_input (tests.test_planning_context_transport.PlanningContextTransportTests.test_large_planning_payload_preserves_every_field_without_mutating_input) (phase='plan-increments')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_planning_context_transport.py", line 27, in test_large_planning_payload_preserves_every_field_without_mutating_input
+    prompt=ProductPlanningCore._prompt(phase,value);self.assertLessEqual(len(prompt),55000)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 1163, in _prompt
+    raise ValueError('Planning context exceeds 55,000 characters; no silent truncation')
+ValueError: Planning context exceeds 55,000 characters; no silent truncation
+
+======================================================================
+ERROR: test_large_planning_payload_preserves_every_field_without_mutating_input (tests.test_planning_context_transport.PlanningContextTransportTests.test_large_planning_payload_preserves_every_field_without_mutating_input) (phase='plan-contracts')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_planning_context_transport.py", line 27, in test_large_planning_payload_preserves_every_field_without_mutating_input
+    prompt=ProductPlanningCore._prompt(phase,value);self.assertLessEqual(len(prompt),55000)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 1163, in _prompt
+    raise ValueError('Planning context exceeds 55,000 characters; no silent truncation')
+ValueError: Planning context exceeds 55,000 characters; no silent truncation
+
+======================================================================
+ERROR: test_large_planning_payload_preserves_every_field_without_mutating_input (tests.test_planning_context_transport.PlanningContextTransportTests.test_large_planning_payload_preserves_every_field_without_mutating_input) (phase='plan-models')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_planning_context_transport.py", line 27, in test_large_planning_payload_preserves_every_field_without_mutating_input
+    prompt=ProductPlanningCore._prompt(phase,value);self.assertLessEqual(len(prompt),55000)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 1163, in _prompt
+    raise ValueError('Planning context exceeds 55,000 characters; no silent truncation')
+ValueError: Planning context exceeds 55,000 characters; no silent truncation
+
+======================================================================
+FAIL: test_increment_context_keeps_exact_nodes_globals_and_all_source_semantics (tests.test_planning_context_transport.PlanningContextTransportTests.test_increment_context_keeps_exact_nodes_globals_and_all_source_semantics)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_planning_context_transport.py", line 47, in test_increment_context_keeps_exact_nodes_globals_and_all_source_semantics
+    self.assertEqual(captured['architecture'],{'nodes':original['nodes'],'global_requirement_ids':original['global_requirement_ids']})
+AssertionError: {'architecture': ['Local intake and audit c[1149 chars]n'}]} != {'nodes': [{'task_id': 'INTAKE', 'objective[707 chars]97']}
+Diff is 1731 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.026s
+
+FAILED (failures=1, errors=3)

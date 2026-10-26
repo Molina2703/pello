@@ -706,7 +706,10 @@ class ProductPlanningCore(Bridge):
         if type(revision) is not int or not 1<=revision<=3 or (revision>1 and not feedback):
             raise ValueError('A bounded corrective revision requires evidence-based feedback')
         architecture=self.planning_stage(project_id,'architecture')['proposal']
-        payload['architecture']=architecture
+        # The increment contract needs exact work-node fields and global IDs.
+        # Full narrative architecture remains in its immutable stage artifact;
+        # all original source requirements/issues/assumptions remain supplied.
+        payload['architecture']={k:architecture[k] for k in ('nodes','global_requirement_ids')}
         payload['planning_objective']='Expand each validated work node into one coherent functional increment. Preserve EXACTLY all WorkNode fields including objective, requirement IDs, dependencies, optional dependencies, resources and operation_kind. Add bounded inputs, outputs, interfaces, safe relative Python component paths, tool requirements, permissions, external effects, measurable completion conditions, verification evidence and rationale for its functional boundary. Local logic must have no external effects. External operations require explicit permission requirements and effects. No operation is authorized or performed; source assumptions remain unapproved.'
         version=self.version_row(project_id)
         payload['tool_catalog']={'python':'Proposed local Python implementation/testing capability, including future authorized adapter code',
@@ -1159,6 +1162,27 @@ class ProductPlanningCore(Bridge):
                             segment['source_text_lines_ref'] = [segment['start_line'], segment['end_line']]
                         packed['context_encoding'] += " Segment source_text_lines_ref is a 1-based inclusive line range in original_product_specification_markdown; reconstruct text by joining those splitlines() with '\\n' then strip(). The complete original source is supplied once; no requirement or source content is omitted."
                         prompt = prompt[:prompt.index('\nDATA JSON:\n')+len('\nDATA JSON:\n')] + json.dumps(packed, ensure_ascii=False, separators=(',', ':'))
+        if len(prompt) > 55_000 and phase.startswith('plan-'):
+            # Lossless row transport removes repeated field labels, not facts.
+            # Reserved-marker collisions refuse packing rather than reinterpret
+            # arbitrary business dictionaries as transport objects.
+            markers={'pello_table_columns','pello_table_rows','pello_context_encoding'}
+            def conflict(value):
+                if isinstance(value,dict):return bool(markers.intersection(value)) or any(conflict(v) for v in value.values())
+                return isinstance(value,list) and any(conflict(v) for v in value)
+            def table(value):
+                if isinstance(value,list):
+                    if (len(value)>1 and all(isinstance(v,dict) for v in value)
+                            and all(list(v)==list(value[0]) for v in value)):
+                        columns=list(value[0])
+                        return {'pello_table_columns':columns,'pello_table_rows':[[table(v[k]) for k in columns] for v in value]}
+                    return [table(v) for v in value]
+                if isinstance(value,dict):return {k:table(v) for k,v in value.items()}
+                return value
+            if not conflict(payload):
+                packed=table(payload)
+                packed['pello_context_encoding']='Object lists use pello_table_columns and pello_table_rows: each row is an object with those ordered keys; recursively reconstruct every value unchanged. All source text, IDs, requirements, blockers, assumptions and constraints remain present. This is transport only; use canonical field names in your output.'
+                prompt=prompt[:prompt.index('\nDATA JSON:\n')+len('\nDATA JSON:\n')]+json.dumps(packed,ensure_ascii=False,separators=(',',':'))
         if len(prompt) > 55_000:
             raise ValueError('Planning context exceeds 55,000 characters; no silent truncation')
         return prompt
