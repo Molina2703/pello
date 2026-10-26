@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-26T03:35:41.896723+00:00",
+  "prior_charges": 60,
+  "limit": 75,
+  "deadline": "2026-10-26T03:30:00+00:00",
+  "explicit_grant": "authorization-extension-75.json",
+  "new_attempts_allowed_by_this_harness": 1,
+  "same_payload_and_schema": true,
+  "same_model_policy": true,
+  "no_counter_reset": true,
+  "terminal_failure_proven": {
+    "reconciliation": "TERMINAL_PROVIDER_QUOTA_FAILURE",
+    "failed_thread_turn": {
+      "id": "01a17575-4169-7222-9aa0-c49d98f12ad4",
+      "status": "failed",
+      "error": {
+        "additional_details": null,
+        "codex_error_info": "usageLimitExceeded",
+        "message": "You\u2019ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/settings/usage to purchase more credits or try again at 9:59 PM.",
+        "misalignment": null
+      }
+    },
+    "thread_id": "01a17571-221a-7023-b271-b4f512fae9eb",
+    "no_assistant_output": true,
+    "retained_charge": true,
+    "proof": "sdk-provider-failed-thread.json"
+  },
+  "provider_read_reports_available": true
+}

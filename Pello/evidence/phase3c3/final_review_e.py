@@ -28,6 +28,9 @@ try:
         sessions=[dict(r) for r in c.execute('select project_id,role,thread_id from pello_sessions where project_id in (?,?)',(pid,rid))]
     assert charges<75 and datetime.now(timezone.utc)<datetime.fromisoformat('2026-10-26T03:30:00+00:00')
     diff=subprocess.run(['git','diff','c1bb076e7059100f0c4b5abf623625d2843f0be2','--','athis_autopilot','tests'],capture_output=True,text=True,encoding='utf-8',check=True).stdout
+    code_review=read('final-code-review.json')
+    assert code_review['review']['verdict']=='PASS' and code_review['diff_sha256']==hashlib.sha256(diff.encode()).hexdigest()
+    assert code_review['input_sha256']==hashlib.sha256((out/'final-code-review-input.json').read_bytes()).hexdigest()
     grading={p:(out/p).read_text(encoding='utf-8') for p in ['objective_checks_e.py','review_semantics_e.py','pack_review.py']}
     checkpoints={k:v for k,v in integrity.items() if k!='checkpoint_commits'}
     checkpoints['checkpoint_git_objects_verified']=len(integrity['checkpoint_commits'])
@@ -37,7 +40,7 @@ try:
       'prior_acceptance':{'C1':'ACCEPTED historical: 13 interpretation items, 16 source segments, 6 blockers, 2 nonblocking issues, 2 assumptions; 28 targeted/154 full at that milestone','C2':'ACCEPTED historical: six batches, 217 full/63 protected, 1493 integrity, accepted plan digest 7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87; original final report retained in Git','C2_current_reconstruction':read('architecture-contract-correction/accepted-checkpoint.json')},
       'frozen_evaluation':f,'preparation':read('heldout-e-preparation-accepted.json'),
       'objective':read('heldout-e-objective.json'),'semantic_verdict':read('heldout-e-semantic-review.json'),'deterministic_semantic_gate':evaluation,
-      'production_and_test_git_diff':diff,'evaluation_grading_source':grading,
+      'complete_production_and_test_diff_previous_turn':{'receipt':code_review,'context':'You reviewed the complete relevant production and six-test-source Git diff in your immediately prior final-code review turn in this same independent session. Its byte identity is rechecked unchanged here. Combine that code review with all closure evidence below.'},'evaluation_grading_source':grading,
       'regression':reg,'protected':protected,'integrity':checkpoints,
       'correction_reviews':{p:read(p+'/review.json') for p in ['context-correction','authorization-correction','source-context-correction','architecture-contract-correction']},
       'isolation_review':read('isolation/profile-review.json'),

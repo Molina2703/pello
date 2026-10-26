@@ -1,0 +1,7 @@
+{
+  "status": "FAIL_OR_BLOCKED",
+  "error_type": "CodexBlocked",
+  "error": "Authentication, limits or permission blocker: RuntimeError: You\u2019ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/settings/usage to purchase more credits or try again at 9:59 PM.",
+  "project_id": "phase3c3-heldout-e",
+  "at": "2026-10-25T23:46:22.025832+00:00"
+}

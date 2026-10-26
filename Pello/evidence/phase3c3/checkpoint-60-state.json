@@ -1,0 +1,90 @@
+{
+  "at": "2026-10-26T03:44:15.364330+00:00",
+  "HEAD": "cdf71668c2a97971652227bd9ba149dde5e85a94",
+  "branch": "codex/pello-phase3c",
+  "status": "PARTIAL",
+  "current_execution_gate": "AUTHORIZATION_DEADLINE_EXPIRED",
+  "charged_reservations": 60,
+  "statuses": {
+    "COMPLETED": 58,
+    "NOT_SUBMITTED_CONTEXT_REJECTED": 1,
+    "FAILED_PROVIDER_QUOTA_RECONCILED": 1
+  },
+  "cumulative_limit": 75,
+  "deadline": "2026-10-26T03:30:00+00:00",
+  "authorization_expired": true,
+  "available_unused_slots": 15,
+  "authorization_rows": [
+    {
+      "id": "phase3c-continuation-20261025",
+      "grant_json": "{\"id\": \"phase3c-continuation-20261025\", \"authorized_at\": \"2026-10-25T17:14:29+00:00\", \"deadline\": \"2026-10-25T21:14:29+00:00\", \"user_authorization\": \"Doy autorizaci\\u00f3n ahora, hazlo\", \"scope\": \"Six Phase 3C-2 batches; Phase 3C-3 only after accepted C2 and enough remaining bounded capacity. No Phase 3D.\", \"cumulative_sdk_limit\": 30, \"already_consumed\": 14, \"additional_turns_available\": 16, \"external_operations\": 0, \"per_project_limit\": 12, \"coder_attempts_per_batch\": 3, \"supersedes_expired_window\": \"phase3c-development-20261025\", \"no_counter_reset\": true}",
+      "deadline": "2026-10-25T21:14:29+00:00",
+      "max_turns": 30
+    },
+    {
+      "id": "phase3c3-authorization-20261025",
+      "grant_json": "{\"id\": \"phase3c3-authorization-20261025\", \"authorized_at\": \"2026-10-25T18:43:28+00:00\", \"user_authorization\": \"Autorizo 60 turnos acumulados y ese plazo\", \"source\": \"User reply to explicit limit/deadline question in current task\", \"deadline\": \"2026-10-26T00:45:00+00:00\", \"cumulative_sdk_limit\": 60, \"already_consumed\": 28, \"remaining_at_grant\": 32, \"per_project_limit\": 12, \"external_operations\": 0, \"no_counter_reset\": true, \"scope\": \"Phase 3C-3 local independent blind planning evaluation, localized correction if justified, fresh evaluation and final independent review; no Phase 3D\", \"allocation\": {\"initial_evaluation_and_reviews\": 10, \"localized_correction_and_review\": 4, \"fresh_evaluation\": 9, \"failure_reserve\": 9}}",
+      "deadline": "2026-10-26T00:45:00+00:00",
+      "max_turns": 60
+    },
+    {
+      "id": "phase3c3-extension-75-20261025",
+      "grant_json": "{\"id\": \"phase3c3-extension-75-20261025\", \"authorized_at\": \"2026-10-25T23:10:38+00:00\", \"user_authorization\": \"Autorizo 75 acumulados y ese plazo\", \"authorization_source\": \"Explicit reply to 75-turn / 2026-10-26 03:30 UTC question\", \"cumulative_sdk_limit\": 75, \"already_reserved\": 49, \"completed_sdk_calls\": 48, \"never_submitted_retained_charge\": 1, \"remaining\": 26, \"deadline\": \"2026-10-26T03:30:00+00:00\", \"external_business_operations\": 0, \"per_project_limit\": 12, \"no_counter_reset\": true, \"scope\": \"Finish Phase 3C-3 independent held-out planning evaluation, justified small corrections, fresh case when needed, regression/review/checkpoint. No Phase 3D.\", \"prior_authorization\": \"phase3c3-authorization-20261025\", \"renew_existing_author_project_time_only\": {\"project_id\": \"phase3c3-author\", \"old_deadline\": \"2026-10-26T00:30:03+00:00\", \"new_deadline\": \"2026-10-26T03:30:00+00:00\", \"used_turns_unchanged\": 4}}",
+      "deadline": "2026-10-26T03:30:00+00:00",
+      "max_turns": 75
+    }
+  ],
+  "STOP": false,
+  "heldout_e": {
+    "requirements": 40,
+    "issues": 7,
+    "assumptions": 3,
+    "segments": 21,
+    "interpretation_review": {
+      "verdict": "PASS",
+      "findings": [
+        "Coverage preserves intake atomicity, correction history, calibration overlap rules, UTC boundaries and restart persistence (source lines 4\u201317, 34).",
+        "Particulate rules preserve breach precedence, insufficient and unknown states, equal hourly weighting, exact comparisons, separate stacks and NO OPERATION. Proposed examples match the source (lines 17\u201319, 32).",
+        "Both conflicting NOx STARTUP rules remain unresolved; official classification and submission require manager resolution and confirmed limits. Independent local work remains available (line 22).",
+        "Filing controls preserve exact-version authorization, staleness rejection, immutable submissions, reviewed amendments, distinct outcomes and documented resolution before another attempt after an unknown outcome (lines 25\u201329).",
+        "Additional blockers are narrowly scoped to assignment-transition calculations and subsequent filing attempts. Reversible assumptions are explicitly unapproved, and verification remains proposed.",
+        "Requirement and issue citations resolve to the supplied source map. Explicit exclusions are retained; no embedded instruction requests or unsupported execution permissions were adopted."
+      ],
+      "coverage": "adequate",
+      "contradictions": "adequate",
+      "blocking_classification": "adequate",
+      "source_traceability": "adequate",
+      "exclusions_and_untrusted_text": "preserved",
+      "rationale": "Direct comparison with the supplied original specification reveals no material omission, contradiction, fabricated priority or authorization. Blockers preserve the independently usable scope, and assumptions remain distinguishable from customer requirements."
+    },
+    "complete_plan": false,
+    "project": {
+      "project_id": "phase3c3-heldout-e",
+      "source_path": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\evidence\\phase3c3\\heldout-e-spec.md",
+      "source_hash": "af17a121b305c02f88f3179d16770a6827e76db4f7a4b647f4d20098b1bcfc5e",
+      "current_version": 1,
+      "max_turns": 12,
+      "used_turns": 3,
+      "deadline": "2026-10-26T03:29:42+00:00",
+      "status": "ANALYSIS_ACCEPTED",
+      "blocker": "",
+      "created": "2026-10-25T23:41:42+00:00",
+      "modified": "2026-10-25T23:46:21+00:00"
+    }
+  },
+  "sdk_after_deadline": false,
+  "new_retry_reservation": false,
+  "counters_reset": false,
+  "external_business_operations": 0,
+  "phase3D_started": false,
+  "sqlite_integrity": "ok",
+  "snapshot_sha256": "306e924a5ed99168aed047cb41cab0157d654f3203ab5a48c2318877e8175c4a",
+  "private_evaluation_key_still_not_published": true,
+  "budget_needed_to_finish_current_case": {
+    "pipeline_stages": 4,
+    "semantic_review": 1,
+    "code_and_final_reviews": 2,
+    "failure_reserve": 8,
+    "total": 15
+  }
+}

@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\evidence\phase3c3\recover_provider_architecture_e.py", line 37, in <module>
+    draft,raw=core._invoke(pid,1,'plan-architecture-provider-recovery-1','planner',payload,ArchitectureProposal)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 993, in _invoke
+    self._budget_check(project)
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 618, in _budget_check
+    self._run_limit_check(reserving=True)
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 652, in _run_limit_check
+    raise CodexBlocked('Authorized development run deadline exhausted')
+athis_autopilot.engines.CodexBlocked: Authorized development run deadline exhausted

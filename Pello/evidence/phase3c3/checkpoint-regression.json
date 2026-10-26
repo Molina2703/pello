@@ -1,0 +1,16 @@
+{
+  "command": [
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "exit_code": 0,
+  "tests_run": 236,
+  "tests_passed": 236,
+  "seconds": 346.015
+}
