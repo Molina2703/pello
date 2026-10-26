@@ -26,12 +26,12 @@ try:
         statuses=[dict(r) for r in c.execute('select status,count(*) as count from pello_product_operations group by status')]
         charges=c.execute('select count(*) from pello_product_operations').fetchone()[0]
         sessions=[dict(r) for r in c.execute('select project_id,role,thread_id from pello_sessions where project_id in (?,?)',(pid,rid))]
-    assert charges<75 and datetime.now(timezone.utc)<datetime.fromisoformat('2026-10-26T03:30:00+00:00')
+    assert charges<75 and datetime.now(timezone.utc)<datetime.fromisoformat(auth[-1]['deadline'])
     diff=subprocess.run(['git','diff','c1bb076e7059100f0c4b5abf623625d2843f0be2','--','athis_autopilot','tests'],capture_output=True,text=True,encoding='utf-8',check=True).stdout
     code_review=read('final-code-review.json')
     assert code_review['review']['verdict']=='PASS' and code_review['diff_sha256']==hashlib.sha256(diff.encode()).hexdigest()
     assert code_review['input_sha256']==hashlib.sha256((out/'final-code-review-input.json').read_bytes()).hexdigest()
-    grading={p:(out/p).read_text(encoding='utf-8') for p in ['objective_checks_e.py','review_semantics_e.py','pack_review.py']}
+    grading={p:(out/p).read_text(encoding='utf-8') for p in ['objective_checks_e.py','review_semantics_e.py','pack_review.py','resume_reconciled_e.py']}
     checkpoints={k:v for k,v in integrity.items() if k!='checkpoint_commits'}
     checkpoints['checkpoint_git_objects_verified']=len(integrity['checkpoint_commits'])
     packet={
@@ -45,7 +45,8 @@ try:
       'correction_reviews':{p:read(p+'/review.json') for p in ['context-correction','authorization-correction','source-context-correction','architecture-contract-correction']},
       'isolation_review':read('isolation/profile-review.json'),
       'original_failures_preserved':{p:read(p) for p in ['heldout-a-evaluation.json','heldout-b-evaluation.json','heldout-c-evaluation.json','heldout-d-evaluation.json']},
-      'authorization':{'records':auth,'latest_explicit_user_grant':read('authorization-extension-75.json'),'charged_before_this_review':charges,'statuses':statuses,'session_independence':sessions,'STOP':False,'external_business_operations':0,'business_Coder_calls':0,'historical_charge_never_submitted':1,'no_counter_reset':True},
+      'authorization':{'records':auth,'latest_explicit_user_grant':read('authorization-deadline-0630.json'),'charged_before_this_review':charges,'statuses':statuses,'session_independence':sessions,'STOP':False,'external_business_operations':0,'business_Coder_calls':0,'historical_charge_never_submitted':1,'no_counter_reset':True},
+      'provider_failure_recovery':{'read_only_reconciliation':read('sdk-provider-block-reconciliation.json'),'expired_retry_was_blocked_before_new_reservation':True,'renewed_authorization':read('provider-recovery-renewed-authorization.json'),'unchanged_source_rubric_schema_and_same_input':True,'same_guarded_SDK_pathway':True,'failed_operation_and_charge_retained':True,'no_manual_technical_plan':True},
       'scope_limitations':['One successful new held-out case can support scoped planning generalization, not universal reliability','Four initial blind FAILs remain FAIL; localized corrections were engineering changes, not autonomous self-repair','Criteria are proposed: no business tests generated, protected or executed','No external integrations, production mutations, customer data or n8n operations','No full enterprise product delivery; no V1-20 completion; no Phase 3D'],
       'checkpoint_before_planner':read('batch1-e-checkpoint.json')}
     evidence={'objective':'Final independent Phase 3C closure review against original objectives and untouched held-out evidence. PASS only if all mandatory objective gates pass and no critical semantic or independence defect remains.',

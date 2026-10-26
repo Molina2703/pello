@@ -1,0 +1,32 @@
+{
+  "id": "phase3c3-deadline-0630-20261026",
+  "authorized_at": "2026-10-26T03:48:11.521346+00:00",
+  "user_authorization": "Autorizo ese plazo y mantengo 75 acumulados",
+  "authorization_source": "Explicit reply to deadline-only extension question: 2026-10-26 06:30 UTC / 01:30 Colombia; maximum remains75",
+  "deadline": "2026-10-26T06:30:00+00:00",
+  "cumulative_sdk_limit": 75,
+  "already_reserved": 60,
+  "completed_calls": 58,
+  "terminal_provider_failures_retained": 1,
+  "never_submitted_charge_retained": 1,
+  "remaining_slots": 15,
+  "external_business_operations": 0,
+  "per_project_limit": 12,
+  "no_counter_reset": true,
+  "scope": "Complete current Phase 3C-3 independent planning evaluation, objective/semantic review, regression and independent final review if justified; no Phase 3D",
+  "prior_authorization": "phase3c3-extension-75-20261025",
+  "renew_existing_project_deadlines_only": [
+    {
+      "project_id": "phase3c3-heldout-e",
+      "old_deadline": "2026-10-26T03:29:42+00:00",
+      "new_deadline": "2026-10-26T06:30:00+00:00",
+      "used_turns_unchanged": 3
+    },
+    {
+      "project_id": "phase3c3-review-e",
+      "old_deadline": "2026-10-26T03:29:36+00:00",
+      "new_deadline": "2026-10-26T06:30:00+00:00",
+      "used_turns_unchanged": 1
+    }
+  ]
+}

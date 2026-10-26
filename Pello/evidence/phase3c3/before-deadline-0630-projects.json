@@ -1,0 +1,28 @@
+[
+  {
+    "project_id": "phase3c3-heldout-e",
+    "source_path": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\evidence\\phase3c3\\heldout-e-spec.md",
+    "source_hash": "af17a121b305c02f88f3179d16770a6827e76db4f7a4b647f4d20098b1bcfc5e",
+    "current_version": 1,
+    "max_turns": 12,
+    "used_turns": 3,
+    "deadline": "2026-10-26T03:29:42+00:00",
+    "status": "ANALYSIS_ACCEPTED",
+    "blocker": "",
+    "created": "2026-10-25T23:41:42+00:00",
+    "modified": "2026-10-25T23:46:21+00:00"
+  },
+  {
+    "project_id": "phase3c3-review-e",
+    "source_path": "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\evidence\\phase3c3\\REVIEW_SCOPE.md",
+    "source_hash": "d8d24e5a860e5dd76279a4f36fec6a3e0c1f45ee02651922d7e29bdefa8b2df6",
+    "current_version": 1,
+    "max_turns": 12,
+    "used_turns": 1,
+    "deadline": "2026-10-26T03:29:36+00:00",
+    "status": "NEW",
+    "blocker": "",
+    "created": "2026-10-25T23:39:36+00:00",
+    "modified": "2026-10-25T23:39:42+00:00"
+  }
+]

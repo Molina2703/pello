@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-26T03:48:12.968657+00:00",
+  "grant_id": "phase3c3-deadline-0630-20261026",
+  "same_input_sha256": "019bc1bd1369461d2df492f2a3548bbfd04a7d9e0297057c5b7b839e1fb65eae",
+  "same_schema_sha256": "bb4ea946994424990b621c9051600337dca9c4e8d4176d295b7218b7100032b9",
+  "original_terminal_failure_preserved": true,
+  "original_charge_retained": true,
+  "new_attempts": 1,
+  "deadline": "2026-10-26T06:30:00+00:00",
+  "maximum": 75
+}

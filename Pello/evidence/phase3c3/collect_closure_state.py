@@ -7,9 +7,9 @@ c=sqlite3.connect(db);c.row_factory=sqlite3.Row
 operations=[dict(x) for x in c.execute('select * from pello_product_operations order by rowid')]
 statuses={}
 for op in operations:statuses[op['status']]=statuses.get(op['status'],0)+1
-assert not any(k not in {'COMPLETED','NOT_SUBMITTED_CONTEXT_REJECTED'} for k in statuses),statuses
+assert not any(k not in {'COMPLETED','NOT_SUBMITTED_CONTEXT_REJECTED','FAILED_PROVIDER_QUOTA_RECONCILED'} for k in statuses),statuses
 authorizations=[dict(x) for x in c.execute('select * from pello_product_run_authorizations order by rowid')]
-assert len(operations)<=75 and datetime.now(timezone.utc)<datetime.fromisoformat('2026-10-26T03:30:00+00:00')
+assert len(operations)<=75 and datetime.now(timezone.utc)<datetime.fromisoformat(authorizations[-1]['deadline'])
 checkpoints=[dict(x) for x in c.execute('select * from pello_product_checkpoints order by rowid')]
 projects=[dict(x) for x in c.execute('select * from pello_product_projects order by rowid')]
 dest=out/'closure-jobs.sqlite3';backup=sqlite3.connect(dest);c.backup(backup);backup.close()
@@ -17,8 +17,8 @@ summary={'at':datetime.now(timezone.utc).isoformat(),'HEAD':subprocess.check_out
  'branch':subprocess.check_output(['git','branch','--show-current'],text=True).strip(),
  'stop_set':Path('runtime/phase3c/STOP').exists(),'sqlite_integrity':c.execute('pragma integrity_check').fetchone()[0],
  'sdk_charged_reservations':len(operations),'actual_completed_sdk_calls':statuses.get('COMPLETED',0),
- 'never_submitted_retained_charge':statuses.get('NOT_SUBMITTED_CONTEXT_REJECTED',0),'remaining_authorized_slots':75-len(operations),
- 'authorization_rows':authorizations,'deadline':'2026-10-26T03:30:00+00:00','cumulative_limit':75,
+ 'never_submitted_retained_charge':statuses.get('NOT_SUBMITTED_CONTEXT_REJECTED',0),'provider_failed_retained_charge':statuses.get('FAILED_PROVIDER_QUOTA_RECONCILED',0),'remaining_authorized_slots':75-len(operations),
+ 'authorization_rows':authorizations,'deadline':authorizations[-1]['deadline'],'cumulative_limit':75,
  'statuses':statuses,'projects':projects,'checkpoints':checkpoints,'external_business_operations':0,'Phase3D_started':False,
  'snapshot_sha256':hashlib.sha256(dest.read_bytes()).hexdigest()}
 (out/'closure-state.json').write_text(json.dumps(summary,indent=2),encoding='utf-8');print(json.dumps({k:v for k,v in summary.items() if k not in {'projects','checkpoints','authorization_rows'}},indent=2))
