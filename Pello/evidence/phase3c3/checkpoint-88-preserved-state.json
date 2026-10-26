@@ -81,12 +81,13 @@
     "counters_not_reset": true,
     "no_new_SDK_execution": true,
     "new_I_not_started": true,
-    "STOP_unchanged": false,
     "sqlite_integrity": "ok",
     "phase3c3": "PARTIAL",
     "overall_phase3c": "PARTIAL",
     "eight_original_FAILs_preserved": true,
     "external_business_operations": 0,
-    "Phase3D_started": false
+    "Phase3D_started": false,
+    "unchanged_STOP_state": false,
+    "STOP_state_unchanged": true
   }
 }
