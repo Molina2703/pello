@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-26T21:54:25.201929+00:00",
+  "HEAD": "20e31951ae926555cff167541da97127967371f4",
+  "branch": "codex/pello-phase3c",
+  "sqlite_integrity": "ok",
+  "initial_charged": 69,
+  "initial_completed_calls": 67,
+  "first_28_operation_rows_unchanged": true,
+  "four_original_project_rows_unchanged": true,
+  "accepted_correction": "8a6b3b2467284ef34475b13cf9e64f4685f22a10",
+  "current_scope_grant": "authorization-extension-95.json",
+  "STOP": false,
+  "no_production_operations": true,
+  "Phase3D_started": false,
+  "historical_test_results_only": {
+    "full": 245,
+    "protected_C2": 63,
+    "new_C3_protected": 28
+  },
+  "fresh_read_only_integrity_results": {
+    "historical_hashes": 1493,
+    "checkpoint_objects": 22,
+    "logical_database_equal_to_checkpoint69_before_new_grant": true
+  },
+  "contract_readiness": "continuation95-contract-readiness.json",
+  "accepted_C2_plan_digest": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87"
+}

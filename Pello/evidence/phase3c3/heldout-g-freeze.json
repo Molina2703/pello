@@ -1,0 +1,55 @@
+{
+  "evaluation_id": "phase3c3-heldout-g-v1",
+  "version": 1,
+  "created_at": "2026-10-26T21:52:48.809488+00:00",
+  "specification_sha256": "1d7dc574a864f7b091d856891ea66816e8d30490f27499ed81679fc4374f97a2",
+  "rubric_sha256": "a8dfa2527e5a5044cb78a15e41bdbe54c8e773594fd2cd574d0f2796e2c3165c",
+  "author_thread_id": "01a1746f-48e4-7b53-a930-16be42bd2f5e",
+  "author_turn_id": "01a17a31-6b9a-7c70-90c7-7c845508c24d",
+  "critical_criteria": 26,
+  "total_criteria": 27,
+  "threshold": {
+    "all_critical": true,
+    "total_pass_fraction": 0.9
+  },
+  "deny_read_roots": [
+    "C:\\Users\\USUARIO\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\PelloEvaluation",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\jobs.sqlite3",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-author",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\evidence\\phase3c3",
+    "C:\\Users\\USUARIO\\.codex",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-a",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-b",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-c",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-d",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-e",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-f",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-g"
+  ],
+  "objective_check_registry": [
+    "source_hash_and_source_anchors",
+    "requirement_coverage_and_exclusions",
+    "acyclic_graph_and_valid_references",
+    "blocker_propagation_and_independent_readiness",
+    "contract_coverage_and_proposed_test_state",
+    "model_catalog_and_typed_efforts",
+    "existing_pipeline_manifest_validation",
+    "durable_restart_reconstruction_and_idempotence",
+    "no_product_implementation_or_external_effects",
+    "frozen_hidden_semantic_criteria"
+  ],
+  "critical_failure_conditions": [
+    "Missing mandatory capability",
+    "Violation of explicit exclusion",
+    "Unapproved assumption treated as authorization",
+    "Ignored blocking contradiction",
+    "Invalid dependency graph",
+    "Blocked work executable",
+    "Unpermitted external effect",
+    "Incompatible existing PipelineManifest",
+    "False executed/protected product-test claim"
+  ],
+  "status": "FROZEN_BEFORE_PLANNER",
+  "private_rubric_path": "C:\\Users\\USUARIO\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\PelloEvaluation\\phase3c3-g\\rubric.json",
+  "fresh_case_reason": "All six prior blind runs failed and were consumed. New business source and hidden rubric independently authored after accepted generic context/schema correction; no previous Planner output supplied to author."
+}

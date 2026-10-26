@@ -1,0 +1,11 @@
+{
+  "verdict": "FAIL",
+  "scope": "defect",
+  "correctness": "defect",
+  "test_evidence": "pass",
+  "safety_and_preservation": "adequate",
+  "findings": [
+    "C18 adds actionable links as a critical expected outcome. The specification requires review screens to expose four categories, without requiring navigation links. A sound consolidated screen could satisfy the specification but miss this expectation. C18's failure condition does not resolve that grading ambiguity."
+  ],
+  "rationale": "StageMark presents a realistic, substantive problem distinct from the named demos. The rubric otherwise preserves exclusions, scoped blockers, independent work, authorization boundaries and design flexibility. Supplied native boundary results support isolation. However, the unsupported critical expectation in C18 should be resolved before freezing evaluation criteria and exposing the specification to Planner."
+}

@@ -6,7 +6,7 @@ from athis_autopilot.product_planning import ProductPlanningCore
 from athis_autopilot.ai_supervisor import SDKBackend
 from evaluation_models import HeldOutFixture
 
-out=Path('evidence/phase3c3');revision=''
+out=Path('evidence/phase3c3');revision='-v2'
 evidence_revision='-complete'
 boundary=None
 if evidence_revision:
@@ -54,7 +54,7 @@ try:
         if folder.exists():
             assert not list(folder.iterdir());folder.rmdir()  # Empty native deny-root placeholder, no project row.
         scope=out/'REVIEW_SCOPE.md';scope.write_text('# Independent Phase 3C-3 review\n\nReview frozen evaluation preparation, later original business source against actual autonomous plan, and final regression. Read-only; no implementation, no external effects.\n')
-        remaining=int((datetime.fromisoformat('2026-10-26T06:30:00+00:00')-datetime.now(timezone.utc)).total_seconds()//60)
+        remaining=int((datetime.fromisoformat('2026-10-27T06:30:00+00:00')-datetime.now(timezone.utc)).total_seconds()//60)
         core.create_project(scope,project_id=pid,duration_minutes=min(330,remaining))
     evidence={'objective':'Batch 1: independently assess novelty, relevance, completeness, frozen rubric and enforced isolation BEFORE Pello Planner is evaluated. Confirm realistic business problem with required features; rubric must permit alternative sound designs and distinguish critical from minor. No architecture, graph or manual increments may be supplied to Planner. Original development fixture was Vendor Return Desk; other known demos are appointment/clinic booking, chatbot/HMP, ADSA and numeric webhook QA. This new author session has received none of their plans. Planner gets only the specification; key stays in denied private directory, author artifacts, ledger and .codex transcripts. All those paths are denied. No Planner project exists yet. Reject incomplete or trivial evaluation.',
         'changed_files':['heldout-g-spec.md','private frozen rubric','heldout-g-freeze.json'],

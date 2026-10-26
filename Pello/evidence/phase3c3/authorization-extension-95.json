@@ -1,0 +1,28 @@
+{
+  "id": "phase3c3-extension-95-20261026",
+  "authorized_at": "2026-10-26T21:49:46.918987+00:00",
+  "user_authorization": "Autorizo 95 acumulados y ese plazo",
+  "authorization_source": "Explicit user reply to cumulative95 / October27 06:30 UTC request in this chat",
+  "cumulative_sdk_limit": 95,
+  "deadline": "2026-10-27T06:30:00+00:00",
+  "already_reserved": 69,
+  "completed_calls": 67,
+  "terminal_provider_failure_retained": 1,
+  "never_submitted_charge_retained": 1,
+  "remaining_slots": 26,
+  "no_counter_reset": true,
+  "external_business_operations": 0,
+  "per_project_limit": 12,
+  "scope": "One fresh Phase3C-3 blind evaluation, bounded actual planning and independent semantic/final reviews; justified localized correction and regression if needed; no Phase3D.",
+  "allocation": {
+    "complete_fresh_evaluation_and_reviews": 20,
+    "failure_reserve": 6
+  },
+  "prior_authorization": "phase3c3-extension-85-20261026",
+  "supersedes_preservation_decision_for_new_authorized_scope_only": true,
+  "renew_author_deadline_only": {
+    "old_deadline": "2026-10-26T06:30:00+00:00",
+    "new_deadline": "2026-10-27T06:30:00+00:00",
+    "used_turns_unchanged": 7
+  }
+}

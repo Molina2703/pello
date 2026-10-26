@@ -6,8 +6,8 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
 from athis_autopilot.product_planning import ProductPlanningCore
 from athis_autopilot.ai_supervisor import SDKBackend
 
-out=Path('evidence/phase3c3');freeze=json.loads((out/'heldout-g-freeze.json').read_text())
-assert json.loads((out/'heldout-g-preparation-accepted.json').read_text())['status']=='ACCEPTED'
+out=Path('evidence/phase3c3');freeze=json.loads((out/'heldout-g-freeze-v2.json').read_text())
+assert json.loads((out/'heldout-g-preparation-accepted-v2.json').read_text())['status']=='ACCEPTED'
 assert hashlib.sha256((out/'heldout-g-spec.md').read_bytes()).hexdigest()==freeze['specification_sha256']
 assert hashlib.sha256(Path(freeze['private_rubric_path']).read_bytes()).hexdigest()==freeze['rubric_sha256']
 core=ProductPlanningCore(Path('runtime/phase3c'),backend=SDKBackend(denied_read_roots=freeze['deny_read_roots']),timeout=600)
@@ -15,7 +15,7 @@ pid='phase3c3-heldout-g'
 try:
     try:core.project_row(pid)
     except ValueError:
-        remaining=int((datetime.fromisoformat('2026-10-26T06:30:00+00:00')-datetime.now(timezone.utc)).total_seconds()//60)
+        remaining=int((datetime.fromisoformat('2026-10-27T06:30:00+00:00')-datetime.now(timezone.utc)).total_seconds()//60)
         core.create_project(out/'heldout-g-spec.md',project_id=pid,duration_minutes=min(330,remaining))
     result=core.plan_product(pid)
     (out/'heldout-g-plan.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))

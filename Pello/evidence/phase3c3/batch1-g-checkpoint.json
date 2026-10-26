@@ -1,0 +1,18 @@
+{
+  "status": "ACCEPTED",
+  "at": "2026-10-26T21:57:21.439649+00:00",
+  "evaluation": "phase3c3-heldout-g-v1",
+  "hashes": {
+    "heldout-g-spec.md": "1d7dc574a864f7b091d856891ea66816e8d30490f27499ed81679fc4374f97a2",
+    "heldout-g-freeze-v2.json": "8891a092eee4d98adac8a0231d3b83f7456e431522c1af426ae729991911d26d",
+    "heldout-g-preparation-accepted-v2.json": "2280863c1072012bf2611f02b147b9b9eda2dcc053feb7968fb566cbcc169c0f",
+    "heldout-g-preparation-review-v2-complete.json": "6a3a3c63f1f65cd06260509d3d76e8bf5c5e8051bf74c02c7b19ea68d15cbbf4",
+    "objective_checks_g.py": "ffc3c28f18ed58a4c0a65fd81a37a95688223b014174707cf2c6e40d92aa7adc",
+    "objective-registration-g.json": "f8c41eb2d698b7febb3e2342c9d15ff4cb3ad329f027f47b4f43e41220a110db",
+    "review_semantics_g.py": "ea513708aec3e27452ffbfefc9696d8fe4f6ef8816afb1e6767814fa2304d2c8",
+    "pack_review.py": "643046fb1edd4f37f6a51272a20aaff88b989fda6e9c6bf01d9e706dab97aafa",
+    "evaluation_models.py": "d80644da32703c41ed31a9327e73be987095b68359b8b076d44648985de8c38c"
+  },
+  "six_prior_FAILs_preserved": true,
+  "new_expected_solution_not_sent_to_Planner_or_added_to_Git": true
+}

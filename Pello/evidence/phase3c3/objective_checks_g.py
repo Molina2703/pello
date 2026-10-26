@@ -7,7 +7,7 @@ from athis_autopilot.pipeline import IncrementalPipeline
 from athis_autopilot.pipeline_contracts import PipelineManifest
 
 def evaluate():
-    out=Path('evidence/phase3c3');f=json.loads((out/'heldout-g-freeze.json').read_text())
+    out=Path('evidence/phase3c3');f=json.loads((out/'heldout-g-freeze-v2.json').read_text())
     core=ProductPlanningCore(Path('runtime/phase3c'));pid='phase3c3-heldout-g';checks=[]
     def check(name,condition,evidence):
         checks.append({'check':name,'verdict':'PASS' if condition else 'FAIL','evidence':evidence})

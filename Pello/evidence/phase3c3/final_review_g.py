@@ -17,7 +17,7 @@ assert integrity['first_28_sdk_operation_rows_unchanged'] and integrity['origina
 assert integrity['sqlite_integrity']=='ok' and not integrity['stop_set']
 assert integrity['frozen_objective_script_intact'] and all(p['matches'] for p in integrity['new_protected_test_sources'])
 assert all(p['commit_present'] for p in integrity['checkpoint_commits'])
-f=read('heldout-g-freeze.json');pid='phase3c3-heldout-g';rid='phase3c3-review-g'
+f=read('heldout-g-freeze-v2.json');pid='phase3c3-heldout-g';rid='phase3c3-review-g'
 core=ProductPlanningCore(Path('runtime/phase3c'),backend=SDKBackend(denied_read_roots=f['deny_read_roots']),timeout=600)
 try:
     recovered=core.reconstruct_plan(pid);assert recovered['plan_sha256']==evaluation['plan_sha256']
@@ -27,7 +27,7 @@ try:
         charges=c.execute('select count(*) from pello_product_operations').fetchone()[0]
         sessions=[dict(r) for r in c.execute('select project_id,role,thread_id from pello_sessions where project_id in (?,?)',(pid,rid))]
     assert charges<95 and datetime.now(timezone.utc)<datetime.fromisoformat(auth[-1]['deadline'])
-    diff=subprocess.run(['git','diff','c1bb076e7059100f0c4b5abf623625d2843f0be2','--','athis_autopilot','tests'],capture_output=True,text=True,encoding='utf-8',check=True).stdout
+    diff=subprocess.run(['git','diff','--unified=1','c1bb076e7059100f0c4b5abf623625d2843f0be2','--','athis_autopilot','tests'],capture_output=True,text=True,encoding='utf-8',check=True).stdout
     code_review=read('final-code-review.json')
     assert code_review['review']['verdict']=='PASS' and code_review['diff_sha256']==hashlib.sha256(diff.encode()).hexdigest()
     assert code_review['input_sha256']==hashlib.sha256((out/'final-code-review-input.json').read_bytes()).hexdigest()
@@ -38,7 +38,7 @@ try:
       'mission':'Final independent Phase 3C review. You previously received the ORIGINAL held-out business source and exact frozen rubric in this same independent Reviewer session, and independently scored every criterion. No private Planner reasoning is supplied. Evaluate the original Phase 3C objectives, untouched held-out evidence, objective gates, relevant production/test diff, corrections and preservation. Do not modify implementation. Objective FAIL cannot be overridden. Acceptance is planning-level only; no business product or its tests were implemented. V1-20 is not complete. Phase 3D must not start.',
       'original_phase_3c_objectives':['Interpret structured business specifications with traceable requirements, exclusions, contradictions, missing critical information and unapproved assumptions','Generate architecture, coherent dependency graph, functional increments, technical contracts and proposed acceptance criteria without manual technical translation','Select typed models/efforts adaptively using actual backend availability and task risk/context/budget, without rigid escalation','Persist and reconstruct through existing SQLite and PipelineManifest; identify actionable independent work and keep blocked/unauthorized work ineligible','Demonstrate genuine generalization on an independent frozen unseen scenario using actual SDK, with enforced rubric isolation','Preserve C1 and C2 acceptance, STOP/budget enforcement, protected suites and historical FAILs; independent final review required'],
       'prior_acceptance':{'C1':'ACCEPTED historical: 13 interpretation items, 16 source segments, 6 blockers, 2 nonblocking issues, 2 assumptions; 28 targeted/154 full at that milestone','C2':'ACCEPTED historical: six batches, 217 full/63 protected, 1493 integrity, accepted plan digest 7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87; original final report retained in Git','C2_current_reconstruction':read('architecture-contract-correction/accepted-checkpoint.json')},
-      'frozen_evaluation':f,'preparation':read('heldout-g-preparation-accepted.json'),
+      'frozen_evaluation':f,'preparation':read('heldout-g-preparation-accepted-v2.json'),
       'objective':read('heldout-g-objective.json'),'semantic_verdict_previous_turns':{'verdict':read('heldout-g-semantic-review.json')['verdict'],'critical_failures':read('heldout-g-semantic-review.json')['critical_failures'],'minor_findings':read('heldout-g-semantic-review.json')['minor_findings'],'criteria_count':len(read('heldout-g-semantic-review.json')['criteria']),'complete_output_sha256':hashlib.sha256((out/'heldout-g-semantic-review.json').read_bytes()).hexdigest(),'context':'You independently emitted the complete per-criterion semantic verdict in this same Reviewer session after all original evidence was received. Its identity and every critical grade were deterministically checked; no criterion is regraded or omitted here.'},'deterministic_semantic_gate':evaluation,
       'complete_production_and_test_diff_previous_turn':{'receipt':code_review,'context':'You reviewed the complete relevant production and eight-test-source Git diff in your immediately prior final-code review turn in this same independent session. Its byte identity is rechecked unchanged here. Combine that code review with all closure evidence below.'},'evaluation_grading_source':grading,
       'regression':reg,'protected':protected,'integrity':checkpoints,

@@ -1,7 +1,7 @@
 """Prove exact frozen key denial, including Windows app-container redirection."""
 import hashlib,json,os,subprocess,sys
 from pathlib import Path
-out=Path('evidence/phase3c3');f=json.loads((out/'heldout-g-freeze.json').read_text())
+out=Path('evidence/phase3c3');f=json.loads((out/'heldout-g-freeze-v2.json').read_text())
 declared=Path(f['private_rubric_path']);canonical=declared.resolve(strict=True)
 alias=Path.home()/'AppData/Local/PelloEvaluation'/declared.parent.name/declared.name
 roots=[Path(p) for p in f['deny_read_roots']]

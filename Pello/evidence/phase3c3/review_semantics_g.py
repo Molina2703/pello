@@ -17,7 +17,7 @@ class EvidenceChunkReceipt(BaseModel):
     status:Literal['RECEIVED_NOT_A_VERDICT']
     notes:str=Field(max_length=400)
 
-out=Path('evidence/phase3c3');f=json.loads((out/'heldout-g-freeze.json').read_text())
+out=Path('evidence/phase3c3');f=json.loads((out/'heldout-g-freeze-v2.json').read_text())
 rubric=Path(f['private_rubric_path']).read_bytes();assert hashlib.sha256(rubric).hexdigest()==f['rubric_sha256']
 fixture=HeldOutFixture.model_validate_json(rubric);obj=json.loads((out/'heldout-g-objective.json').read_text())
 p=json.loads((out/'heldout-g-plan.json').read_text())['plan'];a=p['requirements'];st=p['stages']

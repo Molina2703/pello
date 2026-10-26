@@ -1,7 +1,7 @@
 """Reproduce every frozen deny root; no model inference or rubric changes."""
 import json,sqlite3,subprocess,sys
 from pathlib import Path
-out=Path('evidence/phase3c3');f=json.loads((out/'heldout-g-freeze.json').read_text())
+out=Path('evidence/phase3c3');f=json.loads((out/'heldout-g-freeze-v2.json').read_text())
 roots=[Path(p) for p in f['deny_read_roots']]
 profile='{extends=":read-only",filesystem={'+','.join(json.dumps(p.as_posix())+'="deny"' for p in roots)+'},network={enabled=false}}'
 cli=Path('.venv/Lib/site-packages/codex_cli_bin/bin/codex.exe').resolve()
