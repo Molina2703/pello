@@ -8,7 +8,7 @@ assert state['charged_reservations']==75 and accepted['status']=='ACCEPTED_CORRE
 assert accepted['regression']['tests_run']==249 and accepted['review']['verdict']=='PASS'
 assert all(read(f'heldout-{letter}-evaluation.json')['verdict']=='FAIL' for letter in 'abcdefg')
 f1=read('heldout-g-freeze.json');f=read('heldout-g-freeze-v2.json');diag=read('analysis-transport-correction/diagnosis.json')
-head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+head=subprocess.check_output(['git','log','-1','--format=%H','--','athis_autopilot/product_planning.py'],text=True).strip()
 mapping=[
 ('01','Specification understanding','Partial planning evidence','C1 and familiar C2 remain accepted. G extracts42 typed requirements; interpretation review and complete fresh plan did not run. Blind generalization UNVERIFIED.'),
 ('02','Autonomous decomposition','Historical C2 evidence','Accepted familiar-fixture architecture/increments/contracts preserved. No G architecture, DAG or increments generated.'),
@@ -132,4 +132,4 @@ Scoped evidence only; test counts do not imply completion percentages or full en
 '''
 Path('PELLO_PHASE3C3_EVALUATION_REPORT.md').write_text(report,encoding='utf-8')
 (out/'interim-reports/checkpoint-75-reservations-PARTIAL.md').write_text(report,encoding='utf-8')
-print(json.dumps({'status':'PARTIAL','report_sha256':hashlib.sha256(report.encode()).hexdigest(),'source_checkpoint':head,'V1_criteria_assessed':len(mapping),'no_success_report_generated':True},indent=2))
+print(json.dumps({'status':'PARTIAL','report_sha256':hashlib.sha256(Path('PELLO_PHASE3C3_EVALUATION_REPORT.md').read_bytes()).hexdigest(),'source_checkpoint':head,'V1_criteria_assessed':len(mapping),'no_success_report_generated':True},indent=2))
