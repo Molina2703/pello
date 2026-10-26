@@ -1,0 +1,18 @@
+{
+  "status": "ACCEPTED",
+  "at": "2026-10-26T04:43:40.776698+00:00",
+  "evaluation": "phase3c3-heldout-f-v1",
+  "hashes": {
+    "heldout-f-spec.md": "7bbb93f73283a3b54262c1cd4da52b8fee5ee628854e66036adce9e0467c4cec",
+    "heldout-f-freeze.json": "0df1b11df80bde940aa1217b40e3350dd48d16b4c94bb10cfeab2686feea3e98",
+    "heldout-f-preparation-accepted.json": "d8ccec8fd0af430d542cca81a4ce183eee4aeba0e38948893e91a48e0115ca29",
+    "heldout-f-preparation-review-complete.json": "af10b0ec304656ad754a663e7522f654336b90ca019208e8b6147ef5116d5ecb",
+    "objective_checks_f.py": "da190fa2276f767204a83e865ce68c9af34be12b459367a44390a52010b63a5d",
+    "objective-registration-f.json": "a5934eb71ef81866bb09450a749e4ef6c08010ffe9ce79c68bf35e4f8799413d",
+    "review_semantics_f.py": "b0ebaeb6eb15419c1504a79293f29d743342e79ce131833bd5ff2f274e66ca5c",
+    "pack_review.py": "643046fb1edd4f37f6a51272a20aaff88b989fda6e9c6bf01d9e706dab97aafa",
+    "evaluation_models.py": "d80644da32703c41ed31a9327e73be987095b68359b8b076d44648985de8c38c"
+  },
+  "five_prior_FAILs_preserved": true,
+  "new_expected_solution_not_sent_to_Planner_or_added_to_Git": true
+}

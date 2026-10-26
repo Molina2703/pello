@@ -1,0 +1,15 @@
+{
+  "verdict": "PASS",
+  "scope": "correct",
+  "correctness": "adequate",
+  "test_evidence": "pass",
+  "safety_and_preservation": "adequate",
+  "findings": [
+    "AssemblyCount presents a realistic, nontrivial business problem distinct from the named prior demo domains.",
+    "The rubric covers mandatory behavior, exclusions, contradictions, independent work, privacy, persistence and publication authorization while permitting alternative sound designs.",
+    "Critical semantic failures are distinguished from minor presentation issues; the director-policy contradiction does not block ordinary-motion work.",
+    "Supplied native boundary records include successful public access and denied private and rubric-alias reads. Freeze verification and the zero-row Planner query support pre-evaluation readiness.",
+    "No Planner architecture, graph, manual increments, execution permission or unsupported product-test claims are supplied."
+  ],
+  "rationale": "The specification and structured interpretation are substantively aligned and source-traceable. Supplied verification records support the frozen evaluation and enforced isolation; verification of product behavior remains proposed work."
+}

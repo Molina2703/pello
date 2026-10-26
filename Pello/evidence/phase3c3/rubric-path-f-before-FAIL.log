@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\evidence\phase3c3\verify_rubric_f_paths.py", line 21, in <module>
+    assert proof['parent_process_same_file'] and proof['normal_alias_same_file'] and proof['declared_sha256']==proof['canonical_sha256']==proof['frozen_expected_sha256']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

@@ -1,0 +1,27 @@
+{
+  "id": "phase3c3-extension-85-20261026",
+  "authorized_at": "2026-10-26T04:36:48.929417+00:00",
+  "user_authorization": "Autorizo 85 acumulados y mantengo ese plazo",
+  "authorization_source": "Explicit reply to85 cumulative / same2026-10-26 06:30 UTC question",
+  "cumulative_sdk_limit": 85,
+  "deadline": "2026-10-26T06:30:00+00:00",
+  "already_reserved": 62,
+  "completed_calls": 60,
+  "terminal_provider_failure_retained": 1,
+  "never_submitted_charge_retained": 1,
+  "remaining_slots": 23,
+  "no_counter_reset": true,
+  "external_business_operations": 0,
+  "per_project_limit": 12,
+  "scope": "Phase3C-3 fresh independent held-out evaluation, justified localized correction if needed, bounded independent semantic and final reviews, regression/checkpoint. No Phase3D.",
+  "allocation": {
+    "fresh_specification_planning_bounded_reviews": 14,
+    "failure_reserve": 9
+  },
+  "prior_authorization": "phase3c3-deadline-0630-20261026",
+  "renew_author_deadline_only": {
+    "old_deadline": "2026-10-26T03:30:00+00:00",
+    "new_deadline": "2026-10-26T06:30:00+00:00",
+    "used_turns_unchanged": 6
+  }
+}

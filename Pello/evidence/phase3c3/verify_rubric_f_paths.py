@@ -3,7 +3,7 @@ import hashlib,json,os,subprocess,sys
 from pathlib import Path
 out=Path('evidence/phase3c3');f=json.loads((out/'heldout-f-freeze.json').read_text())
 declared=Path(f['private_rubric_path']);canonical=declared.resolve(strict=True)
-alias=Path.home()/'AppData/Local/PelloEvaluation/phase3c3-e/rubric.json'
+alias=Path.home()/'AppData/Local/PelloEvaluation'/declared.parent.name/declared.name
 roots=[Path(p) for p in f['deny_read_roots']]
 profile='{extends=":read-only",filesystem={'+','.join(json.dumps(p.as_posix())+'="deny"' for p in roots)+'},network={enabled=false}}'
 prefix=[str(Path('.venv/Lib/site-packages/codex_cli_bin/bin/codex.exe').resolve()),'-c','permissions.pello_supplied_context='+profile,'sandbox','-P','pello_supplied_context']
