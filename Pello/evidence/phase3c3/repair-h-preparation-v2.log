@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\evidence\phase3c3\repair_h_preparation_v2.py", line 22, in <module>
+    repair,raw=core._invoke('phase3c3-author',1,'author-heldout-h-preparation-v2','tester',
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 1065, in _invoke
+    raw = self.backend.run(workspace=folder / 'workspace', thread_file=thread_file,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\ai_supervisor.py", line 74, in run
+    return run_codex(workspace, prompt, thread_file, out_dir, timeout, role=role,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\engines.py", line 202, in run_codex
+    raise EngineError(f'Codex worker exited {returncode}: {detail}')
+athis_autopilot.engines.EngineError: Codex worker exited 1: InvalidRequestError: JSON-RPC error -32600: thread 01a1746f-48e4-7b53-a930-16be42bd2f5e already has an active writer

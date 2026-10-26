@@ -1,0 +1,13 @@
+{
+  "verdict": "FAIL",
+  "scope": "defect",
+  "correctness": "defect",
+  "test_evidence": "incomplete",
+  "safety_and_preservation": "uncertain",
+  "findings": [
+    "The specification is visibly incomplete: it ends with \u201c## Acceptance and delivery expectations\\nRetaining\u201d. Its missing acceptance content cannot be assessed for coverage, contradictions or rubric alignment.",
+    "The asserted successful hashes and quote reconstruction do not establish that the supplied truncated specification matches the complete frozen source. Source completeness and freeze traceability remain unverified.",
+    "C26 adds an unsupported planning-document organization preference. Its source requires observable overview categories, not grouping or cross-references within the plan; a sound alternative document could receive an unjustified penalty."
+  ],
+  "rationale": "CueConform presents a realistic, nontrivial problem distinct from the listed demos, and most criteria preserve behavioral requirements while allowing alternative implementations. However, the incomplete source prevents acceptance of this evaluation. Reported isolation checks do not resolve source completeness or unsupported scoring requirements."
+}

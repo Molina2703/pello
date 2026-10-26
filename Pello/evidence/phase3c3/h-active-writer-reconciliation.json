@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-26T22:27:09.996022+00:00",
+  "status": "NOT_SUBMITTED_ACTIVE_WRITER_RECONCILED",
+  "failure_boundary": "thread/resume rejected before persist_session, submission receipt and thread.run",
+  "worker_error": "InvalidRequestError: JSON-RPC error -32600: thread 01a1746f-48e4-7b53-a930-16be42bd2f5e already has an active writer",
+  "native_thread_turns": 11,
+  "all_existing_turns_completed": true,
+  "repair_user_message_absent": true,
+  "no_submission_receipt_or_model_result": true,
+  "charge_retained": true,
+  "global_and_author_counters_unchanged": true,
+  "private_thread_read_sha256": "8a5f79a844932174f4151d133ae900f9484cf3c83aaf685af78c43f7ffef0170",
+  "no_automatic_retry": true
+}

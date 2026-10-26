@@ -1,0 +1,6 @@
+{
+  "status": "PREPARATION_FAIL_AND_BLOCKED_BEFORE_PLANNER",
+  "reason": "Independent preparation FAIL; repair was rejected before SDK inference and retained author reservation exhausted project limit12. Explicit per-project exception required, global budget remains101.",
+  "H_not_yet_a_Planner_evaluation": true,
+  "checkpoint": "checkpoint-79-state.json"
+}

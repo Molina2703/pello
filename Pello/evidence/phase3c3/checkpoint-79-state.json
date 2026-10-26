@@ -1,0 +1,66 @@
+{
+  "at": "2026-10-26T22:28:54.082449+00:00",
+  "phase3c3": "PARTIAL",
+  "overall_phase3c": "PARTIAL",
+  "execution": "BLOCKED_BY_AUTHOR_PROJECT_LIMIT_PENDING_EXPLICIT_EXCEPTION",
+  "latest_authorization": "authorization-extension-101.json",
+  "cumulative_limit": 101,
+  "charged_reservations": 79,
+  "completed_SDK_calls": 76,
+  "remaining_global_slots": 22,
+  "deadline": "2026-10-27T06:30:00+00:00",
+  "statuses": [
+    {
+      "status": "COMPLETED",
+      "count": 76
+    },
+    {
+      "status": "FAILED_PROVIDER_QUOTA_RECONCILED",
+      "count": 1
+    },
+    {
+      "status": "NOT_SUBMITTED_ACTIVE_WRITER_RECONCILED",
+      "count": 1
+    },
+    {
+      "status": "NOT_SUBMITTED_CONTEXT_REJECTED",
+      "count": 1
+    }
+  ],
+  "author": {
+    "project_id": "phase3c3-author",
+    "used_turns": 12,
+    "max_turns": 12,
+    "deadline": "2026-10-27T06:30:00+00:00"
+  },
+  "seven_original_blind_FAILs_preserved": true,
+  "H_status": "PREPARATION_FAIL_AND_BLOCKED_BEFORE_PLANNER",
+  "H_Planner_project_created": false,
+  "H_Planner_SDK_calls": 0,
+  "H_no_complete_fresh_plan": true,
+  "no_implementation_changes_since_accepted_07c0494": true,
+  "last_executed_regression": {
+    "full": 249,
+    "protected_C2": 63,
+    "protected_C3": 32,
+    "checkpoint": "checkpoint-75-state.json"
+  },
+  "fresh_integrity": {
+    "historical_hashes": 1493,
+    "matching": 1493,
+    "first_28_rows_unchanged": true,
+    "four_initial_projects_unchanged": true,
+    "git_checkpoint_objects": 23,
+    "all_present": true
+  },
+  "sqlite_integrity": "ok",
+  "STOP": false,
+  "proposed_author_limit": 14,
+  "author_limit14_authorized": false,
+  "global_limit_unchanged_if_approved": 101,
+  "no_replacement_project_or_counter_reset": true,
+  "external_business_operations": 0,
+  "Phase3D_started": false,
+  "snapshot_sha256": "b853ee9434dcb4bdab9c7c1143648ff2e3629dfbf3b69cca52d197f75925ae2e",
+  "HEAD_before_report": "34fbed9293d85ebfaee4da3f03f6af051011859a"
+}

@@ -1,94 +1,77 @@
-# Pello V1.3 — Phase 3C-3 Evaluation Report
+# Pello V1.3 — Phase3C-3 Evaluation Report
 
-Reference date: October25,2026. Current checkpoint: 2026-10-26T22:12:08.616133+00:00.
+Current checkpoint: 2026-10-26T22:28:54.082449+00:00. Reference date: October25,2026.
 
-**Phase3C-3 PARTIAL. Overall Phase3C PARTIAL. Blind generalization UNVERIFIED.** Seven original held-out evaluations remain FAIL. The latest engineering correction is independently reviewed and passes regression; no complete genuinely blind planning PASS exists. C1/C2 remain ACCEPTED. No business product was implemented or delivered. Phase3D was not started.
+**Phase3C-3 PARTIAL; overall Phase3C PARTIAL. Execution BLOCKED by the existing evaluation-author project limit. Blind generalization UNVERIFIED.** Seven original held-out planning FAILs remain unchanged. CueConform is blocked in independent preparation, before any Pello Planner exposure; it is not an eighth executed blind planning evaluation. C1/C2 and the accepted engineering corrections remain preserved. No business product was implemented or delivered; no Phase3D work began.
 
 ## A. Starting state and authorization
 
-Continuation branch `codex/pello-phase3c`; starting HEAD `20e31951ae926555cff167541da97127967371f4`, following accepted contract correction `8a6b3b2467284ef34475b13cf9e64f4685f22a10`. Actual history and working tree were inspected without reset. Unrelated untracked context artifacts and older logs were preserved. Master specification v1.3 remains unchanged, SHA256 `6bca1e0b8d871201601e83b6cdbeadb0554fa52be18a8d624a29ca46ca44674d`.
+Branch `codex/pello-phase3c`; continuation started at `34fbed9293d85ebfaee4da3f03f6af051011859a`, after accepted localized review-transport implementation `07c0494dd23309b3913a37b0593e9c8afe5f9329`. Working tree/history were checked without reset. Last accepted correction: `analysis-transport-correction/accepted-regression-checkpoint.json`. Unrelated untracked artifacts and historical FAIL/BLOCKED/recovery evidence remain intact.
 
-Read-only reconciliation found SQLite integrity `ok`,22 valid checkpoint Git objects, STOP absent,69 charged reservations (67 completed,1 reconciled terminal provider-quota failure,1 conservatively retained never-submitted charge), and1493/1493 freshly recomputed historical hashes. Database logical contents matched checkpoint69. Historical local results were245/245 full and63/63 C2 protected; those counts were not presented as newly executed tests. The earlier deadline had expired and the user had preserved checkpoint69 without granting95.
+The user explicitly replied **“Autorizo 101 acumulados y ese plazo”**. `authorization-extension-101.json` and an append-only SQLite authorization row preserve75 previous charges, authorize101 cumulative reservations until **October27,2026 06:30 UTC /01:30 Colombia**, and retain the existing per-project limit12. The author project already had9 charged reservations at this grant. Its prior turns and counters were not reset. The earlier95 grant and the preservation decision at69 remain historical records.
 
-No inference resumed until the user's new explicit reply **“Autorizo 95 acumulados y ese plazo”** was recorded in `authorization-extension-95.json` and an appended authoritative SQLite row. This new grant authorizes95 cumulative reservations until **October27,2026 06:30 UTC /01:30 Colombia**, preserving all69 charges. Only the author project's deadline was renewed; its7 previously used turns and per-project cap12 remained unchanged. Historical grants and the earlier refusal remain intact. No limit101 is granted by this report.
+Current authoritative usage: **79/101 charged**, including76 completed SDK calls,1 reconciled provider-quota failure,1 retained never-submitted historical context rejection and1 new retained never-submitted writer rejection. There are22 unspent global slots and no uncertain/in-flight inference. Deadline remains valid and STOP is absent. An author-project limit14 has **not** been granted.
 
-Before new inference, five focused contract-batching checks passed. The exact consumed AssemblyCount input still preflights to52190,50253,52700,53767 characters, with full source and exact increment fields preserved. C2 reconstructs plan digest `7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87` without inference. These are deterministic readiness results, not live contract-generation success.
+## B. New case and independent preparation
 
-Evidence: `continuation95-starting-state.json`, `continuation95-contract-readiness.json`, authoritative ledger, `checkpoint-69-state.json` and prior accepted reports.
+**CueConform**, `phase3c3-heldout-h-v1`, addresses subtitle adaptation after revised video edits. Its independent author output covers retained-frame intervals, editorial review instead of silent cue removal, translation/glossary approvals, exact character/speed checks, a contradictory children's acceptance ceiling, versioned packages, role permissions and future media-platform delivery. It is a different operational problem from the seven consumed fixtures. The Planner has received none of it.
 
-## B. Independent new evaluation and freeze
+The initial author output failed an objective exact-source-quote check for C24. The separate author corrected only that quote; source and expected outcomes stayed unchanged. That preparation FAIL and raw output remain preserved. The subsequent v1 freeze was created at `2026-10-26T22:19:24.263296+00:00`:
 
-**StageMark**, identity `phase3c3-heldout-g-v1`, is an independently authored synthetic mountain-bike stage-race classification service. It covers roster/observation imports, timing exceptions and corrections, union-based neutralization, scoped penalties, competition ranks, appeals, immutable published versions and future federation publication. Its fourth-stage cutoff instructions conflict; local independent branches remain plannable. It explicitly excludes bookings, fees, hardware control and medical decisions. The business source is8334 characters and was prepared in the independent SDK author context without Planner outputs or manual technical planning.
+| Frozen record | SHA256 |
+|---|---|
+| Source,6500 characters | `d47fb32b1ceccb9f84a9b5f6656019431da8168a62af28f5baeec25d74c2c380` |
+| Private rubric,26 criteria:25 critical/1 minor | `9815d782a1ca64e59f4604fd6c48500234d4693d4aa26d80eba4a1d7cc2ee367` |
 
-The independent private rubric contains27 criteria,26 critical and1 minor. Every critical criterion and at least90% overall must pass. Missing mandatory behavior, exclusions violations, unauthorized effects/assumptions, ignored contradictions, invalid dependencies, executable blocked work, invalid manifest or false product-test claims are critical failures.
+Thresholds remain every critical criterion PASS and at least90% overall. Private expected outcomes, original author output and full preparation packet remain outside Planner access and have not been added to Git. Existing native supplied-context isolation passed **14 boundary checks** plus exact private-key/normal Windows alias denial. Actual SDK receipts retain the native profile; no claim of blindness relies solely on instructions.
 
-| Record | Frozen at UTC | SHA256 |
-|---|---|---|
-| Business source | 2026-10-26T21:52:48.809488+00:00 | `1d7dc574a864f7b091d856891ea66816e8d30490f27499ed81679fc4374f97a2` |
-| Original rubric v1 | 2026-10-26T21:52:48.809488+00:00 | `a8dfa2527e5a5044cb78a15e41bdbe54c8e773594fd2cd574d0f2796e2c3165c` |
-| Operative rubric v2 | 2026-10-26T21:55:58.692873+00:00 | `253bd8784bb6b872e43748bf241c3603cec4277bf1c6dc0cfb969c414b4b58c7` |
+The independent preparation Reviewer issued **FAIL**: source ends with the incomplete `Acceptance and delivery expectations / Retaining` fragment, and minor C26 imposes an unsupported organization preference. Successful hashes do not establish source completeness. No Planner project exists, no preparation acceptance checkpoint was saved, and the frozen v1 has not been silently replaced or accepted.
 
-Preparation v1 received independent FAIL: critical C18 demanded actionable navigation links not required by the source. Before any Planner project existed, the independent author corrected C18 only. Original source, other26 criteria, severity and thresholds stayed unchanged. Original rubric/freeze/review remain preserved. Preparation v2 obtained independent PASS before Planner creation. This evaluator correction did not use any Planner result.
+A repair request was prepared for the same independent author: preserve the existing source body and all25 critical criteria, complete only the dangling acceptance section with examples derived from existing rules, and correct the unsupported minor criterion. Its input/schema are durably saved. No hand-written architecture, graph or increments were supplied.
 
-Thirteen native boundary checks passed (public positive control and denied private roots). Exact revised rubric and normal Windows alias reads were denied, with same-file/hash proof. Existing supplied-context configuration disables tool/host/app/plugin/browser/memory/project-document reading and network access, denies key/author/evidence/ledger/Reviewer/transcript surfaces, and verifies the native active profile before inference. The actual SDK submission receipts identify `pello_supplied_context`; no blindness claim relies solely on instructions. No private key was added to Git before Planner access. No private Planner reasoning was supplied to Reviewers.
+## C. Actual SDK path and blocking event
 
-Objective checks and semantic grading protocol were registered and frozen in `batch1-g-checkpoint.json`; pre-Planner Git checkpoint **`b5800db`**. G's original and revised private keys are published for audit only after its consumed FAIL. Earlier six held-outs are unchanged.
+This continuation completed three SDK calls: independent H author, exact-quote correction and preparation Reviewer. The next attempted author request failed during `thread/resume` with **`already has an active writer`**, before the worker persisted a turn-submission receipt or called `thread.run`. There is no model result for that request.
 
-## C. Actual planning run
+Read-only `thread/read` reconciliation found all11 earlier author turns completed, no repair message/turn and thread status `notLoaded` on the diagnostic connection. Original request, stderr and row are preserved. The row now records `NOT_SUBMITTED_ACTIVE_WRITER_RECONCILED`; its charge is retained in both global79 and author12 counters. It was not blindly retried, decremented or erased. The official lifecycle separates thread resume from beginning a turn; the local failure boundary and receipt absence support the recorded non-submission. [Official app-server lifecycle](https://learn.chatgpt.com/docs/app-server).
 
-The real existing `ProductPlanningCore.plan_product` was called with frozen source, existing available-resource inventory and planning-only constraints. No hand-written architecture, graph, increments or manifest was supplied. Actual `understand` SDK call completed, producing **42 typed requirements,9 issues,3 assumptions** with source references. These have not received independent semantic acceptance.
+The author project has reached **12/12 charged reservations**, including this retained failure. Existing guards prohibit reserving another author call despite22 global slots remaining. No replacement project, alternate backend or guard bypass was used. No speculative SDK/production-code modification was made for the transient writer rejection.
 
-The next existing interpretation-review request had78267 canonical JSON characters. Accepted source-map factoring reduced its final prompt to **57430**, exceeding the unchanged55000 cap. Core rejected it before reservation. No review SDK call, architecture, dependency graph, increments, contracts, Coder model assignments, PipelineManifest or first actionable increment was produced for G. Durable analysis and rejected input remain inspectable; no complete plan can be reconstructed or accepted from this partial run.
+## D. Objective and independent verdicts
 
-The accepted bounded contract-generation path was never reached. A real complete contract-generation demonstration remains missing; deterministic batch sizing and mocks do not substitute for it. No business-product Coder increment, integration, test generation/protection/execution or automatic implementation occurred.
+CueConform preparation: **FAIL; continuation BLOCKED by author capacity**. Source completeness and a justified minor rubric criterion must be repaired and independently re-reviewed before Pello can run. No H requirements interpretation, architecture, DAG, increments, contracts, model assignments, PipelineManifest, persistence reconstruction or first actionable increment exists. Full objective/semantic evaluation and score are unavailable.
 
-Evidence: `heldout-g-planning.log`, `heldout-g-run-status.json`, `heldout-g-evaluation.json`, runtime `understand/` SDK input/output/submission receipt, and `analysis-transport-correction/original-review-input.json`.
+Seven original Planner evaluations remain FAIL: CanalShare, ArchiveLedger, KilnBook, FolioPay, StackProof, AssemblyCount and StageMark. They are not relabeled by preparation results. G's original failure and accepted engineering correction remain documented in the exact checkpoint75 report. No complete genuinely blind planning PASS or final Phase3C closure Reviewer PASS exists.
 
-## D. Independent and objective evaluation
+Evidence: `heldout-h-author-quote-FAIL.json`, `heldout-h-freeze.json`, `heldout-h-preparation-review-complete.json`, `heldout-h-preparation-BLOCKED-79.json`, native boundary/alias records, `repair-h-preparation-v2.log`, `h-author-preparation-v2-original-operation.json`, `h-writer-readonly-reconciliation.json` and `h-active-writer-reconciliation.json`. Full author thread read remains private so future Planner/Reviewer material does not inherit private reasoning.
 
-**Original G verdict FAIL.** Critical condition unmet: real pipeline cannot complete the independent interpretation review within context constraints, so no complete plan/manifest or semantic verdict exists. The deterministic structural/comprehensive semantic evaluation could not run on a nonexistent complete plan. Overall semantic score: **not available**. Preparation Reviewer PASS and engineering Reviewer PASS do not override this FAIL.
+## E. Corrections and preserved implementation
 
-Diagnosis: a deterministic context-transport integration defect, not demonstrated model reasoning failure. Existing reversible table encoding was limited to `plan-*` phases. Review-only source factoring could still leave too much repeated field-label overhead. The raw failing57430-character context and original78267 canonical input are reproducible from the captured payload and pre-correction Git checkpoint.
+No Pello implementation or protected test was changed in this continuation. Accepted contract batching and review-context transport remain as verified at checkpoint75. Last correction still reduces StageMark's factored57430-character review context to45441 using reversible transport, with exact round-trip checks and unchanged55000 cap. The four defect tests were protected before implementation;83 focused checks, independent engineering PASS and249 complete regression PASS remain authoritative at that checkpoint. StageMark was not rerun as blind.
 
-All seven original held-out results remain FAIL: CanalShare review-context overflow; ArchiveLedger authorization-category invariant; KilnBook review-context overflow; FolioPay architecture/resource classification; StackProof increment-context overflow after preserved quota/recovery history; AssemblyCount contract-context overflow; StageMark interpretation-review context overflow. No result was relabeled or retried as a new blind case.
+The intended H evaluator repair has not executed. Original source, rubric and preparation FAIL are preserved. Future recovery tooling requires an explicit author14 authorization record, checks the terminal reconciled failure and exact original input/schema hashes, and uses existing guarded `_invoke` under a distinct recovery phase. This is prepared, unexecuted tooling; it is not a successful repair or acceptance result. No private expected solution or manual technical plan was sent to Planner.
 
-## E. Localized correction and independent review
+## F. Regression, integrity, checkpoints and usage
 
-Four new defect checks were hashed and protected before implementation. The original real G payload fails the untouched code in `before-FAIL.log`. The correction changes only the existing `_prompt` transport condition and its input: allow existing table encoding for oversized `review-analysis*`, using the **current factored JSON** so earlier source compression remains effective. No new context system, schema, validation rule, model ladder, limit increase, orchestrator or external service was introduced.
+Last executed regression, with implementation unchanged: **249/249 full**, **63/63 C2 protected** (overlapping full249) and32 protected C3 defect checks across9 sources. Tests were not redundantly rerun for evaluator-only artifacts; no new business-product test generation/protection/execution is claimed.
 
-The corrected deterministic prompt is **45441 characters**. Tests independently reconstruct every original source segment, all requirement/issue/assumption fields and values, and verify canonical input immutability. They cover initial and revision review phases, reserved-marker collisions, irreducible inputs and unchanged small-review shapes. Existing pre-reservation checks remain intact. Architecture/increment/contract validators and PipelineManifest converter ASTs remain identical to accepted C2.
+Fresh read-only integrity at checkpoint79: **1493/1493 historical hashes**, first28 operation rows unchanged, four initial project rows unchanged, all23 recorded checkpoint Git objects present, SQLite `ok`, STOP absent. Snapshot SHA256 `b853ee9434dcb4bdab9c7c1143648ff2e3629dfbf3b69cca52d197f75925ae2e` (`checkpoint-79-jobs.sqlite3`, ignored by Git). Accepted C2 digest remains `7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87`; no accepted plan history was rewritten. Author counts were preserved at12 and global count at79. See `checkpoint-79-state.json`.
 
-**83 focused tests PASS; independent Reviewer PASS.** The Reviewer explicitly limits acceptance to engineering transport correctness; G stays FAIL. An initial targeted command had a nonexistent module alias and missing test import path; its setup FAIL log is preserved, followed by the corrected83-test PASS. No protected test was weakened.
+External business effects **zero**: no n8n operations, workflow changes, webhook execution, messages, customer changes, Railway provisioning, new infrastructure or configuration/MCP modification. Only local synthetic evaluation work, authorized SDK calls, read-only reconciliation and official documentation were used.
 
-No corrected G SDK run was executed. This correction is engineering work, not autonomous Pello self-repair. A new independently authored/frozen case is mandatory for a blind claim. No H fixture/project/SDK call was started.
+## G. Final verdict and pending authorization
 
-Evidence: `tests/test_analysis_review_transport.py`, `analysis-transport-correction/` protection, before/setup FAIL logs, targeted PASS, diagnosis, exact-input proof, independent review and `accepted-regression-checkpoint.json`.
+**Phase3C-3 PARTIAL; overall Phase3C PARTIAL; blind generalization UNVERIFIED.** Latest accepted implementation remains `07c0494`; current report/evidence snapshot follows the prior `34fbed9` checkpoint. The exact delivery HEAD is recorded in the final response and delivery receipt. No new accepted H preparation or planning checkpoint exists. `PELLO_PHASE3C_FINAL_REPORT.md` remains the historical PARTIAL C2 report; it has not been replaced with an ACCEPTED consolidation.
 
-## F. Regression, integrity, accounting and checkpoints
+Required next decision: authorize a narrowly scoped exception raising only `phase3c3-author` from12 to14 charged reservations, preserving all12 and global79/101, the same deadline and zero external effects. This would permit one exact-input repair recovery plus one author failure-reserve slot. The overall global cap remains101 and ordinary project creation remains capped at12. No exception is inferred here. No new SDK execution starts until it is explicitly recorded.
 
-Actual new complete regression: **249/249 PASS**. C2 protected suites: **63/63 PASS**, overlapping249. C3 protected defect checks: **32** across9 sources, included in249. All new source hashes, original protected source/copy hashes and frozen G objective script match. Historical integrity freshly recomputed: **1493/1493**. First28 SDK rows and all four initial project rows unchanged. SQLite integrity `ok`; **23** recorded checkpoint Git objects verified. C2 accepted plan digest/history reconstruct without another inference.
+After successful author repair, independently review the revised source/rubric, freeze hashes/protocol and checkpoint before the first H Planner call. Then run the real existing pipeline, semantic evaluation, complete regression and final independent review. Retain the untouched-source status relative to Planner; do not count the current preparation FAIL as an executed generalization trial.
 
-Current ledger: **75/95 charged reservations** = **73 completed actual SDK calls**,1 retained terminal provider-quota failure and1 retained never-submitted charge. No in-flight operation remains. Current continuation used6 completed calls: author, preparation review, C18 author correction, preparation re-review, G understanding, engineering correction review. STOP remains absent. No consumption was reset or hidden. Author and per-project counts remain cumulative.
-
-Unspent slots: **20**; valid deadline `2026-10-27T06:30:00+00:00`. A practical next full fresh evaluation plus independent reviews is estimated at20 calls plus6 reserve, requiring26 available. Proposed cumulative cap101 preserves75 and adds no counters reset; it is **not authorized**. No new case starts merely because some slots remain.
-
-Latest engineering acceptance is `analysis-transport-correction/accepted-regression-checkpoint.json`. Source/evidence checkpoint commit: `07c0494dd23309b3913a37b0593e9c8afe5f9329`. Local SQLite snapshot SHA256 `6604c49ab53ddf4fdc20db8989709b201b9396abf80ce179a0494096179311f5` (`checkpoint-75-jobs.sqlite3`, ignored by Git). Current state is in `checkpoint-75-state.json`. The subsequent report-only delivery commit is identified in the final response/delivery receipt.
-
-External business operations **zero**: no n8n reads/mutations, workflow publication, production webhook, message, customer data, Railway provisioning, server, configuration or MCP change. Only local synthetic data and authorized Codex backend execution were used. Protected workflows were not operated. Historical provider quota and expired-authorization records remain intact.
-
-## G. Final verdict and next decision
-
-**Phase3C-3 PARTIAL; overall Phase3C PARTIAL; genuine planning generalization UNVERIFIED.** C1/C2 and the localized corrections remain accepted. Seven blind FAILs, preparation failures and historical rejected/recovered operations are preserved. No final Phase3C closure PASS or accepted unfamiliar execution manifest exists. Pello V1 and V1-20 are not complete.
-
-`PELLO_PHASE3C_FINAL_REPORT.md` remains the historical C2 PARTIAL report; no newly ACCEPTED consolidated final report was generated. Prior checkpoint69 and earlier reports remain archived without rewrite. The unused success-report tooling remains a draft, not acceptance evidence.
-
-Pending decision: explicitly authorize cap101 with the unchanged October27 06:30 UTC deadline to provide26 slots for one fresh case and reserve, or preserve this checkpoint. This report grants neither additional capacity nor permission to begin Phase3D.
-
-Recommendation only after successful planning closure: implement a small realistic local business product over several dependent increments through the existing protected Tester, Coder, Tester execution, independent Reviewer, localized correction and integration pipeline. Use synthetic data and local effects first, verify behavior without human prompt transfers, and report actual integrated results. No Phase3D files or work were started.
+Only after valid planning closure, recommend a small realistic multi-increment local business implementation through protected tests, Coder, Tester, independent Reviewer, localized repair and integration. Recommendation only: no Phase3D files or work have been created.
 
 ## H. Evidence assessment of all23 V1.3 criteria
 
-Scoped evidence only; test counts do not imply completion percentages or full enterprise delivery.
+These remain scoped mappings; no completion percentage is inferred from test counts. V1-20 remains NOT COMPLETE.
 
 | ID | Capability | Current evidence scope | Verified support or limitation |
 |---|---|---|---|
@@ -108,10 +91,11 @@ Scoped evidence only; test counts do not imply completion percentages or full en
 | V1-14 | Long-running execution | Incomplete | Actual SDK stages guarded by ledger; no complete multi-increment unfamiliar business implementation. |
 | V1-15 | Automated reporting | Not established here | Local evidence reports only; no daily email sent. |
 | V1-16 | MCP permissions | Preserved; no new live proof | No MCP operations or alternate customer access; blind case uses reviewed native deny profile. |
-| V1-17 | Budgets | Scoped evidence | Append-only95 authorization,75 retained charges, deadline/STOP enforcement and preflight rejection before a new reservation; no reset. |
+| V1-17 | Budgets | Scoped evidence | Append-only101 authorization,79 retained charges, deadline/STOP enforcement and preflight rejection before a new reservation; no reset. |
 | V1-18 | Requirement validation | Partial | C1/C2 acceptance preserved. G records9 issues/3 assumptions, but no independent interpretation/semantic validation completed. |
-| V1-19 | Independent review | Scoped evidence | Separate author/Reviewer/Planner contexts and native rubric isolation. Preparation v1 FAIL/v2 PASS and engineering PASS; no full G semantic or closure PASS. |
+| V1-19 | Independent review | Scoped evidence | Separate author/Reviewer/Planner contexts and native rubric isolation. G preparation/correction history preserved; H preparation FAIL and author-cap BLOCKED before any Planner run; no full fresh semantic or closure PASS. |
 | V1-20 | Complete delivery | NOT COMPLETE | No enterprise business product implemented, integrated, tested or delivered in Phase3C. |
 | V1-21 | STOP and recovery | Supporting local evidence | Regression covers STOP/deadline behavior; STOP absent. No delivered workflow disabled and no new live STOP incident claimed. |
 | V1-22 | Production test-data management | No new C3 proof | Local synthetic data only; no production test resources created. |
 | V1-23 | MCP access lifecycle | No new C3 proof | No workflow creation or access handoff in this continuation; historical evidence unchanged. |
+

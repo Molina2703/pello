@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-26T22:18:37.370527+00:00",
+  "status": "FAIL_PREPARATION_BEFORE_FREEZE_AND_PLANNER",
+  "reason": "Author rubric source_quote is not an exact substring of original specification",
+  "criterion_ids": [
+    "C24"
+  ],
+  "raw_completed_sdk_result_sha256": "106275a8e5d753419b9f446c6f7ad82f5795175b00780f04f34f781e51a663b1",
+  "no_Planner_project_or_inference": true,
+  "original_source_and_expected_outcomes_to_be_preserved": true
+}

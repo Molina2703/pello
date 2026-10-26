@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-26T22:31:53.424692+00:00",
+  "status": "PREPARATION_BLOCKED_NO_PLANNER_OR_ACCEPTANCE",
+  "preparation_v1": "FAIL",
+  "repair_recovery": "UNEXECUTED_REQUIRES_EXPLICIT_AUTHOR14_EXCEPTION",
+  "future_v2_source_and_rubric_not_created": true,
+  "future_preparation_and_planning_scripts_target_v2_and_fail_closed_when_missing": true,
+  "semantic_objective_final_review_and_report_tooling": "DRAFT_NOT_EXECUTED_NOT_ACCEPTANCE_EVIDENCE",
+  "private_full_preparation_input_not_added_to_Git": true,
+  "private_author_thread_read_not_added_to_Git": true,
+  "files": {
+    "prepare_fresh_h.py": "93e9cb3ca2e14b16adbb150263bbc2fc80583bf351c02ecc9816e2fcda196104",
+    "fix_h_author_quote.py": "16c27dcff638e747d828082ce9b65c381b046872d589f900ed446c32111c07c7",
+    "repair_h_preparation_v2.py": "6c661094f187cb774d63bd4b8ddf99271a7339f0334d933d362d9c5ed2609fd6",
+    "verify_full_boundary_h.py": "808e670bbc721a679074de6d82545226490eada077ee908aa13331a2c1dbf2df",
+    "verify_rubric_h_paths.py": "9fd83239947755543f7bdda8ec72f75e755d647298a9e6989acd7250b422e613",
+    "review_preparation_h.py": "42dc60d83dcfda6faba68893a4c4e9f5b56149465467377ce5e10d113c1cbd56",
+    "checkpoint_preparation_h.py": "84223280a45dae98f40d0c440676c1aef895ee00735a480c523db2348f5c2134",
+    "run_planning_h.py": "a41a1157114ed1a57ac62b1d27a9047454d6eb06bb04a6aa24248dfd9180b9f8",
+    "objective_checks_h.py": "526cffbe7a0c3a4aa1ab7cb75c8b3b4cdadbbf7ea743d4d7bbbb354da57cb283",
+    "review_semantics_h.py": "958a2ec17615bfd457c14d46b9c8a4fe540265a6ae1500bb44f40d23d19db306",
+    "run_regression_h.py": "263e1cf49fbe214dfdb6f58576cac3fad236a9ccae0804d945a24cf1581ba4c7",
+    "review_final_code_h.py": "dfad4b98d9b8e9d421b45f7874bc3843c246756cc4740bfa5baf29d955082e73",
+    "final_review_h.py": "d71c322ee9bc2bb1eb20ddaeb6a832337e00cc8c17e188e0e32e8123be7e980c",
+    "build_success_reports_h.py": "af9bb25d481e7d3428fe41234135fb2d1ff199ed977e4ec3bcc45d6fceced4ab"
+  }
+}
