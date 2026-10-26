@@ -13,7 +13,7 @@ packet={'objective':'Independent final code review, first part of final Phase 3C
  'baseline':'c1bb076e7059100f0c4b5abf623625d2843f0be2','complete_production_and_new_tests_diff':diff,
  'diff_sha256':hashlib.sha256(diff.encode()).hexdigest(),'regression':reg,
  'protected':read('final-protected.json'),'C2_preservation':read('architecture-contract-correction/accepted-checkpoint.json'),
- 'correction_reviews':{p:read(p+'/review.json') for p in ['context-correction','authorization-correction','source-context-correction','architecture-contract-correction','planning-context-correction']},
+ 'correction_review_receipts':{p:{'verdict':read(p+'/review.json')['verdict'],'sha256':hashlib.sha256((out/(p+'/review.json')).read_bytes()).hexdigest()} for p in ['context-correction','authorization-correction','source-context-correction','architecture-contract-correction','planning-context-correction']},
  'isolation_review':read('isolation/profile-review.json'),
  'scope':'No validator weakening, accepted history edits, new orchestrator, product implementation or external effects. Five original held-out FAILs remain unchanged. Engineering fixes are not Pello autonomous repair.'}
 evidence={'objective':packet['objective'],'changed_files':['five production modules','seven protected defect-test sources'],'diff':json.dumps(packet,ensure_ascii=False,separators=(',',':')),
