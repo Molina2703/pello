@@ -1,0 +1,43 @@
+{
+  "canonical_input_characters": 92298,
+  "batches": {
+    "source_sha256": "7bbb93f73283a3b54262c1cd4da52b8fee5ee628854e66036adce9e0467c4cec",
+    "task_ids": [
+      [
+        "W01",
+        "W02"
+      ],
+      [
+        "W03",
+        "W04"
+      ],
+      [
+        "W05",
+        "W06"
+      ],
+      [
+        "W07",
+        "W08"
+      ]
+    ],
+    "prompt_characters": [
+      52190,
+      50253,
+      52700,
+      53767
+    ],
+    "complete_requirements_preserved": true,
+    "complete_increment_fields_preserved": true
+  },
+  "all_source_requirement_fields_equal": true,
+  "all_increment_fields_equal_in_original_order": true,
+  "no_model_or_historical_artifact_write": true,
+  "SDK_charges_before_after": [
+    68,
+    68
+  ],
+  "C2_plan_digest": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+  "validators_unchanged": true,
+  "F_result": "FAIL",
+  "fresh_case_required": true
+}

@@ -734,7 +734,40 @@ class ProductPlanningCore(Bridge):
         payload['global_requirement_ids']=architecture.global_requirement_ids
         payload['planning_objective']='Create one implementation-independent technical contract per increment with the same task ID. Include source-based business rules, preconditions/data structures/validation/error behavior and objective acceptance criteria. Each contract must cover all its increment requirement IDs AND global requirement IDs. Every contract needs normal, invalid and boundary criteria; external operations also need permission checks and future real external verification. All criteria state=proposed. Each criterion must specify concrete given/action/expected observable results. Preserve source exclusions. Do not invent business-rule precedence or resolve blockers. For blocked business behavior specify safe fail-closed behavior while unresolved and list issue IDs; final behavior remains pending clarification. Existing increment inputs/outputs/interfaces/permissions/effects stay authoritative and apply to the contract. Keep responses concise enough for existing bounded context; no tests have been generated, protected or run for the planned product.'
         version=self.version_row(project_id)
-        draft,_=self._invoke(project_id,version['version'],'plan-contracts','planner',payload,IncrementContracts)
+        try:
+            self._prompt('plan-contracts',payload)
+        except ValueError as exc:
+            if 'Planning context exceeds 55,000' not in str(exc):raise
+            # Bound real functional contract batches without dropping source,
+            # requirements, safety constraints or any increment fields. Preflight
+            # every batch before the first reservation; replay uses stable phases.
+            def batch_payload(items):
+                return {**payload,'increments':{**payload['increments'],'increments':items},
+                    'planning_objective':payload['planning_objective']+' Context-bounded contract batch: return contracts ONLY for the supplied increments. Prefix each criterion ID with its task ID so IDs remain unique across batches. No other increment is authorized or omitted from the complete persisted plan.'}
+            batches=[];current=[]
+            for item in payload['increments']['increments']:
+                try:self._prompt('plan-contracts-batch',batch_payload(current+[item]))
+                except ValueError:
+                    if not current:raise
+                    batches.append(current);current=[item]
+                    self._prompt('plan-contracts-batch',batch_payload(current))
+                else:current.append(item)
+            if current:batches.append(current)
+            bounded=[batch_payload(items) for items in batches]
+            self._ensure_json_artifact(self.folder(project_id)/'evidence'/f'version-{version["version"]}'/'planning'/'contracts-context-batches.json',
+                {'source_sha256':payload.get('source_sha256'),'task_ids':[[i['task_id'] for i in items] for items in batches],
+                 'prompt_characters':[len(self._prompt('plan-contracts-batch',p)) for p in bounded],
+                 'complete_requirements_preserved':True,'complete_increment_fields_preserved':True})
+            combined=[]
+            for index,part in enumerate(bounded,1):
+                response,_=self._invoke(project_id,version['version'],f'plan-contracts-b{index}','planner',part,IncrementContracts)
+                expected={i['task_id'] for i in part['increments']['increments']}
+                if len(response.contracts)!=len(expected) or {c.task_id for c in response.contracts}!=expected:
+                    raise ValueError('Contract batch must cover exactly its supplied increments')
+                combined.extend(response.contracts)
+            draft=IncrementContracts(contracts=combined)
+        else:
+            draft,_=self._invoke(project_id,version['version'],'plan-contracts','planner',payload,IncrementContracts)
         analysis=validate_planning_input(payload['requirements'])
         result={'proposal':draft.model_dump(mode='json'),'validation':validate_contracts(draft,increments,architecture,analysis),
             'manifest':manifest_from_contracts(draft,increments,architecture,analysis).model_dump(mode='json')}

@@ -1,0 +1,10 @@
+{
+  "at": "2026-10-26T05:15:11.370076+00:00",
+  "user_reply": "Conservar el checkpoint sin ampliar",
+  "question_proposed_limit": 95,
+  "question_proposed_deadline": "2026-10-26T06:30:00+00:00",
+  "decision": "PRESERVE_CHECKPOINT_NO_BUDGET_INCREASE_NO_FURTHER_SDK",
+  "cumulative_limit_unchanged": 85,
+  "counters_not_reset": true,
+  "new_heldout_G_not_started": true
+}

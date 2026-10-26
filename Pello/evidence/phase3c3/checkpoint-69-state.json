@@ -1,0 +1,83 @@
+{
+  "at": "2026-10-26T05:15:13.483096+00:00",
+  "status": "PARTIAL",
+  "execution_decision": "PRESERVE_CHECKPOINT_NO_BUDGET_INCREASE_NO_FURTHER_SDK",
+  "cumulative_limit": 85,
+  "deadline": "2026-10-26T06:30:00+00:00",
+  "charged_reservations": 69,
+  "remaining_unspent_slots": 16,
+  "statuses": [
+    {
+      "status": "COMPLETED",
+      "count": 67
+    },
+    {
+      "status": "FAILED_PROVIDER_QUOTA_RECONCILED",
+      "count": 1
+    },
+    {
+      "status": "NOT_SUBMITTED_CONTEXT_REJECTED",
+      "count": 1
+    }
+  ],
+  "STOP": false,
+  "sqlite_integrity": "ok",
+  "checkpoint_count": 22,
+  "all_checkpoint_git_objects_verified": true,
+  "regression_tests": 245,
+  "protected_tests": 63,
+  "historical_hashes": 1493,
+  "source_and_validator_proof": {
+    "status": "ACCEPTED_CORRECTION_ONLY",
+    "regression": {
+      "command": [
+        "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tests_run": 245,
+      "tests_passed": 245,
+      "seconds": 263.75
+    },
+    "protected_tests": 63,
+    "historical_hashes": 1493,
+    "review": {
+      "verdict": "PASS",
+      "scope": "correct",
+      "correctness": "adequate",
+      "test_evidence": "pass",
+      "safety_and_preservation": "adequate",
+      "findings": [
+        "Batch construction preserves the complete surrounding payload and exact increment fields in original order. All batches are preflighted before model invocation.",
+        "Stable batch phases use the existing _invoke guard. Exact per-batch task coverage is checked before merged contracts undergo unchanged validation and manifest conversion.",
+        "Small inputs retain the original phase. The supplied diff introduces no manual technical planning, validator relaxation, budget bypass or historical-result rewrite.",
+        "Supplied logs show 58 passing engineering checks. Mocked invocations and real-input preflight support the correction but do not establish successful end-to-end Planner execution.",
+        "Held-out F remains FAIL. A fresh case is required; these checks establish no product-test or generalization PASS."
+      ],
+      "rationale": "The localized correction addresses contract-context overflow while preserving source content, existing guards and final validation. The supplied evidence supports engineering acceptance within the stated limits."
+    },
+    "validators_ast_identical_to_accepted_C2": {
+      "validate_architecture": true,
+      "validate_increments": true,
+      "validate_contracts": true,
+      "manifest_from_contracts": true
+    },
+    "source_identity_verified": true,
+    "six_original_blind_FAILs_preserved": true,
+    "blind_generalization": "UNVERIFIED",
+    "fresh_case_required": true,
+    "user_decision": "Conservar el checkpoint sin ampliar",
+    "no_further_SDK_authorized_by_this_checkpoint": true
+  },
+  "six_original_blind_FAILs_preserved": true,
+  "new_G_fixture_and_Planner_not_created": true,
+  "external_business_operations": 0,
+  "Phase3D_started": false,
+  "snapshot_sha256": "5841d98f92a053febef2f425144c11913d5a083651a3a0ba24a003d3900e309c"
+}

@@ -1,0 +1,1843 @@
+{
+  "project_id": "phase3c3-heldout-f",
+  "version": 1,
+  "source_sha256": "7bbb93f73283a3b54262c1cd4da52b8fee5ee628854e66036adce9e0467c4cec",
+  "requirements": {
+    "source_hash": "7bbb93f73283a3b54262c1cd4da52b8fee5ee628854e66036adce9e0467c4cec",
+    "product_name": "AssemblyCount",
+    "objective": "Provide an auditable record of meeting eligibility, proxy authority and voting outcomes for a housing cooperative pilot covering one meeting, up to 2,000 memberships, 20 ordinary motions and one single-seat director election.",
+    "objective_source_ids": [
+      "SRC-b73a563db996",
+      "SRC-fb47d85557f7"
+    ],
+    "requirements": [
+      {
+        "requirement_id": "REQ-0dde232706ea",
+        "source_ids": [
+          "SRC-fb47d85557f7"
+        ],
+        "normalized": "Limit the pilot to one meeting, up to 2,000 memberships, 20 ordinary motions and one single-seat director election.",
+        "category": "constraint",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification should cover the stated pilot capacity and contest types."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-9a7296792310",
+        "source_ids": [
+          "SRC-fb47d85557f7"
+        ],
+        "normalized": "Give each eligible membership one vote per contest regardless of its number of owners, and take eligibility explicitly from the approved membership roll without inferring it from arrears or ownership documents.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Multiple owners must not multiply a membership's votes.",
+          "Eligibility must follow the roll's explicit eligibility value."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-cee197119216",
+        "source_ids": [
+          "SRC-fb47d85557f7"
+        ],
+        "normalized": "Exclude dues collection, ownership-dispute resolution, campaigning, member messaging and bylaw changes.",
+        "category": "exclusion",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "The pilot scope must not include these activities."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-9ff98c01554b",
+        "source_ids": [
+          "SRC-07e4b5c2f992"
+        ],
+        "normalized": "Allow a secretary to preview and accept a membership roll containing meeting_id, membership_id, eligible and source_reference. Reject the entire roll for missing fields, repeated membership identifiers or invalid eligibility values, with row-level reasons and no changes.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification should exercise preview, valid acceptance and atomic rejection for each stated error.",
+          "A rejected roll must leave existing data unchanged."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-4e0ec73eb5f7",
+        "source_ids": [
+          "SRC-07e4b5c2f992"
+        ],
+        "normalized": "Accepting a replacement roll must create a new version and retain the previous version.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-9ff98c01554b"
+        ],
+        "acceptance_implications": [
+          "Proposed verification should confirm that replacing a roll preserves the previous version."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-8408f44a8f2a",
+        "source_ids": [
+          "SRC-07e4b5c2f992"
+        ],
+        "normalized": "Require the meeting chair to freeze a roll version before counting, fixing the eligible-membership denominator. Later corrections require a reasoned amendment and a new freeze, making affected draft results stale without overwriting certified history.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-4e0ec73eb5f7"
+        ],
+        "acceptance_implications": [
+          "Counting must require a frozen roll version.",
+          "Proposed verification should confirm that a correction requires a reason and new freeze, invalidates affected drafts and preserves certified history."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-549fb44499ad",
+        "source_ids": [
+          "SRC-9bfdd2f25ba5"
+        ],
+        "normalized": "A proxy grant must identify the represented membership, holder membership, valid_from, valid_until and evidence reference. Both memberships must be distinct and eligible on the frozen roll. Use UTC timestamps and half-open validity intervals with the end later than the start.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-8408f44a8f2a"
+        ],
+        "acceptance_implications": [
+          "Proposed verification should reject self-proxies, ineligible parties and nonpositive intervals.",
+          "A grant covers its start timestamp and excludes its end timestamp."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-e102e9ccbc2f",
+        "source_ids": [
+          "SRC-9bfdd2f25ba5",
+          "SRC-99dd0111a146"
+        ],
+        "normalized": "Disallow overlapping grants from a represented membership to different holders, limit a holder to two other represented memberships at any instant, exclude the holder's own vote from that limit and prohibit onward delegation of proxy authority.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-549fb44499ad"
+        ],
+        "acceptance_implications": [
+          "Proposed verification should evaluate overlapping intervals and simultaneous holder capacity.",
+          "A holder voting for itself and two represented memberships contributes three membership votes.",
+          "Proxy authority must not support an onward delegation chain."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-1aa5b9ffe116",
+        "source_ids": [
+          "SRC-9bfdd2f25ba5"
+        ],
+        "normalized": "A revocation must shorten a grant's validity and preserve actor, time and reason without invalidating a ballot validly cast before the revocation took effect.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-549fb44499ad"
+        ],
+        "acceptance_implications": [
+          "Proposed verification should compare ballots cast before and at or after the effective revocation boundary.",
+          "The revocation audit record must retain actor, time and reason."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-8202062dc728",
+        "source_ids": [
+          "SRC-9bfdd2f25ba5",
+          "SRC-4a9b6a6264ba",
+          "SRC-ed7994667b48",
+          "SRC-9f5cdcf75bf3"
+        ],
+        "normalized": "Keep local credential validation and synthetic ballot parsing, validation and selection independent of external-provider access. Ordinary-motion credentials, selection and counting must proceed while director proxy policy remains unresolved.",
+        "category": "constraint",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed local verification must be possible without provider credentials or a connection.",
+          "Director-policy and live-exchange blockers must not disable ordinary-motion processing."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-504508a029d0",
+        "source_ids": [
+          "SRC-b80a96a02163",
+          "SRC-99dd0111a146"
+        ],
+        "normalized": "Use the voting window from 14:00 UTC inclusive to 16:00 UTC exclusive on the configured meeting date.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification should include ballots at opening, immediately before closing and exactly at closing.",
+          "A ballot at 16:00 UTC is invalid."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-843935edc1aa",
+        "source_ids": [
+          "SRC-b80a96a02163"
+        ],
+        "normalized": "Allow a secretary to preview local ballot files containing ballot_id, contest_id, represented_membership_id, casting_membership_id, cast_at and choice. Ordinary choices are YES, NO or ABSTAIN; director choices are a declared candidate identifier or ABSTAIN. Reject an entire file containing malformed rows, unknown contests or undeclared choices, with row-level reasons and no changes.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification should cover both contest types and every stated file-rejection condition.",
+          "Rejected files must make no changes."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-86ea4ab5eece",
+        "source_ids": [
+          "SRC-b80a96a02163"
+        ],
+        "normalized": "Treat an identical ballot identifier and content as a no-op and reject changed content under an existing ballot identifier.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-843935edc1aa"
+        ],
+        "acceptance_implications": [
+          "Proposed verification should confirm that identical reimports do not create additional ballot evidence or votes.",
+          "Changed content must not overwrite the original ballot.",
+          "The transaction scope for a changed-content collision in a mixed file requires clarification."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-c4ed6bc04bfa",
+        "source_ids": [
+          "SRC-b80a96a02163",
+          "SRC-4a9b6a6264ba"
+        ],
+        "normalized": "Preserve every imported ballot and its validation explanation. Retain ballots outside the voting window or from ineligible memberships as invalid evidence and never count them.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-9a7296792310",
+          "REQ-504508a029d0",
+          "REQ-843935edc1aa"
+        ],
+        "acceptance_implications": [
+          "Proposed verification should distinguish structurally rejected files from imported ballots retained as invalid evidence.",
+          "Invalid retained ballots must have explanations and contribute no counted votes."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-9c576d0b32b0",
+        "source_ids": [
+          "SRC-4a9b6a6264ba",
+          "SRC-9bfdd2f25ba5"
+        ],
+        "normalized": "Classify a ballot as direct when represented and casting membership identifiers match. A proxy ballot requires the casting holder's grant for the represented membership to cover cast_at.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-549fb44499ad",
+          "REQ-e102e9ccbc2f",
+          "REQ-1aa5b9ffe116"
+        ],
+        "acceptance_implications": [
+          "Proposed verification should check the holder, represented membership and grant interval against cast_at.",
+          "A missing or noncovering grant must not produce a valid proxy vote."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-5eb72e2621b3",
+        "source_ids": [
+          "SRC-4a9b6a6264ba",
+          "SRC-99dd0111a146"
+        ],
+        "normalized": "For each membership and contest, select the latest valid direct ballot ahead of every proxy ballot. Only when no valid direct ballot exists, select the latest valid proxy ballot.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-c4ed6bc04bfa",
+          "REQ-9c576d0b32b0"
+        ],
+        "acceptance_implications": [
+          "A valid direct YES at 14:10 must defeat a valid proxy NO at 15:00 for the same membership and motion.",
+          "Proposed verification should confirm that an invalid direct ballot does not displace a valid proxy ballot."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-fe4459170ec3",
+        "source_ids": [
+          "SRC-4a9b6a6264ba",
+          "SRC-99dd0111a146"
+        ],
+        "normalized": "Conflicting choices at the latest timestamp within the selected ballot class leave the membership's contest vote unresolved. Do not resolve the conflict by import order or ballot identifier, and block certification of that contest.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-5eb72e2621b3"
+        ],
+        "acceptance_implications": [
+          "Two different latest direct choices at 15:30 must remain unresolved.",
+          "Proposed verification should permute import order and ballot identifiers without resolving the conflict.",
+          "An affected contest must not certify while an unresolved selected vote remains."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-b3a3b2913565",
+        "source_ids": [
+          "SRC-687b8db4b201",
+          "SRC-99dd0111a146"
+        ],
+        "normalized": "For each ordinary motion, require quorum of ceiling(0.60 × frozen-roll eligible memberships), counting represented memberships with selected valid ballots. ABSTAIN counts toward quorum; eligible nonvoters remain in the denominator.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-8408f44a8f2a",
+          "REQ-5eb72e2621b3"
+        ],
+        "acceptance_implications": [
+          "With 101 eligible memberships, quorum must be 61.",
+          "Sixty represented memberships must produce NO QUORUM.",
+          "A holder casting its own vote and two valid represented votes contributes three memberships toward quorum."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-663a29c382a7",
+        "source_ids": [
+          "SRC-687b8db4b201",
+          "SRC-99dd0111a146"
+        ],
+        "normalized": "With quorum, an ordinary motion passes only when YES exceeds NO. Exclude ABSTAIN from the decision denominator. A tie or zero YES and zero NO does not pass. Without quorum, report NO QUORUM rather than a failed motion.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-b3a3b2913565"
+        ],
+        "acceptance_implications": [
+          "With 101 eligible memberships, YES=30, NO=30 and ABSTAIN=1 meet quorum but do not pass.",
+          "YES=31, NO=29 and ABSTAIN=1 pass.",
+          "Proposed verification should include an all-abstention quorum and a below-quorum majority."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-b29c1e3764fb",
+        "source_ids": [
+          "SRC-687b8db4b201"
+        ],
+        "normalized": "Ordinary-motion results must show the frozen-roll version, eligible count, quorum requirement, represented count and YES, NO and ABSTAIN totals.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-b3a3b2913565",
+          "REQ-663a29c382a7"
+        ],
+        "acceptance_implications": [
+          "Proposed verification should compare every displayed result field with the referenced roll and selected votes."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-4026ba7c62ff",
+        "source_ids": [
+          "SRC-ed7994667b48"
+        ],
+        "normalized": "The signed election rules require proxy votes to be permitted in the director election; this mandatory statement conflicts with the adopted meeting resolution and cannot be adopted as the operative policy without resolution.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "No acceptance expectation may assume that this statement takes precedence over the conflicting resolution."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Election-officer resolution of the director proxy-policy contradiction."
+        ],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-333f861ae206",
+        "source_ids": [
+          "SRC-ed7994667b48"
+        ],
+        "normalized": "The current adopted meeting resolution requires proxy votes to be prohibited in the director election; this mandatory statement conflicts with the signed election rules and cannot be adopted as the operative policy without resolution.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "No acceptance expectation may assume that this resolution takes precedence over the conflicting election rules."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Election-officer resolution of the director proxy-policy contradiction."
+        ],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-6fc9f5956357",
+        "source_ids": [
+          "SRC-ed7994667b48",
+          "SRC-99dd0111a146"
+        ],
+        "normalized": "Require election-officer resolution of the director proxy-policy contradiction. Until resolution, retain structurally valid director proxy ballots as unresolved evidence without silently counting or discarding them, block director certification and assert no director winner.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification should confirm evidence retention, the director certification hold and absence of an asserted director winner.",
+          "The unresolved-policy safeguards can be implemented before a policy ruling exists.",
+          "Ordinary-motion processing must remain available."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [
+          "Election-officer ruling is needed to release the director-policy hold."
+        ],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-d043b08b2111",
+        "source_ids": [
+          "SRC-ed7994667b48"
+        ],
+        "normalized": "After director proxy policy is resolved, determine the single-seat winner by the highest number of selected valid candidate votes, excluding ABSTAIN. Equal highest totals or no candidate votes produce NO WINNER and require a separately convened election instead of an automatic draw.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-5eb72e2621b3",
+          "REQ-fe4459170ec3",
+          "REQ-6fc9f5956357"
+        ],
+        "acceptance_implications": [
+          "Proposed verification should cover a unique highest total, tied highest totals and no candidate votes.",
+          "Actual director winner acceptance remains conditional on the proxy-policy ruling.",
+          "A NO WINNER outcome must not trigger an automatic draw."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [
+          "Resolved director proxy policy."
+        ],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-ebfb54d3433e",
+        "source_ids": [
+          "SRC-ed7994667b48",
+          "SRC-981e606779bf"
+        ],
+        "normalized": "Initial motion results may be ordered by agenda order or title; presentation order must not change outcomes. Any initial ordering choice must be labeled as a reversible assumption rather than customer approval of that choice.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification should confirm identical selected votes and outcomes under either ordering.",
+          "The chosen default must be identified as an unapproved reversible assumption."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-e419df0d817b",
+        "source_ids": [
+          "SRC-e44d3a903e12"
+        ],
+        "normalized": "Allow an election officer to prepare a versioned result package and certify an unblocked contest only against the current frozen roll, credentials and ballot evidence. Reject certification of stale calculations.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-8408f44a8f2a",
+          "REQ-fe4459170ec3"
+        ],
+        "acceptance_implications": [
+          "Proposed verification should change each calculation input and confirm rejection of stale certification.",
+          "Blocked contests must not certify.",
+          "An independently unblocked ordinary motion may certify while director policy remains unresolved."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-77d9ad5624cb",
+        "source_ids": [
+          "SRC-e44d3a903e12",
+          "SRC-07e4b5c2f992"
+        ],
+        "normalized": "Changes affecting a certified result require a separately reviewed amendment linked to the original certified package. Never overwrite the certified package or certified history.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-e419df0d817b"
+        ],
+        "acceptance_implications": [
+          "Proposed verification should confirm that amended results retain the original package, review evidence and linkage."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-29236666fc1d",
+        "source_ids": [
+          "SRC-e44d3a903e12"
+        ],
+        "normalized": "Provide a review overview showing credential violations, invalid ballots, unresolved selections, quorum outcomes, stale calculations and publication status with supporting references.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification should confirm that each required review category appears with references supporting its status."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-e112cb2f3c5f",
+        "source_ids": [
+          "SRC-e44d3a903e12"
+        ],
+        "normalized": "Public results must contain aggregate totals only. Retained audit evidence must support authorized review without exposing individual choices publicly.",
+        "category": "non_functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification should inspect public result representations for individual choices or individual ballot evidence.",
+          "Authorized evidence review must remain available."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-818d96c67445",
+        "source_ids": [
+          "SRC-e44d3a903e12"
+        ],
+        "normalized": "Enforce role permissions beyond screen visibility: viewers read aggregates; secretaries maintain rolls, credentials and ballot intake; election officers inspect individual evidence, resolve director policy and certify results; only the meeting chair freezes rolls and authorizes publication. Restrict access to individual choices.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification should exercise direct access attempts as well as visible controls.",
+          "Unauthorized roles must be denied privileged operations and individual-choice access.",
+          "These permission requirements do not grant any present operational authorization."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-6a0096158d97",
+        "source_ids": [
+          "SRC-9f5cdcf75bf3",
+          "SRC-fb47d85557f7"
+        ],
+        "normalized": "Support trusted live ballot-export intake from the external voting provider once its connection, authentication, meeting permissions, ballot authenticity evidence and authoritative timestamp semantics are established.",
+        "category": "integration",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-843935edc1aa",
+          "REQ-c4ed6bc04bfa",
+          "REQ-9c576d0b32b0"
+        ],
+        "acceptance_implications": [
+          "Trusted live intake cannot be accepted using synthetic files alone.",
+          "Provider contract details, credentials and authorized access must be established before live exchange.",
+          "Local synthetic intake remains independently available."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Provider endpoint and authentication.",
+          "Provider meeting permissions and operational credentials.",
+          "Ballot authenticity evidence and authoritative timestamp semantics."
+        ],
+        "external_effects": [
+          "Authenticated requests to the external voting provider for ballot exports."
+        ],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-3d58d3e4e36b",
+        "source_ids": [
+          "SRC-9f5cdcf75bf3",
+          "SRC-fb47d85557f7"
+        ],
+        "normalized": "Support publication of certified aggregate results through the external voting provider to the member portal only after the provider publication contract and required operation authorizations are established.",
+        "category": "integration",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-e419df0d817b",
+          "REQ-e112cb2f3c5f",
+          "REQ-32d024c3f81a",
+          "REQ-a503843d7ecf",
+          "REQ-c07f0e758889"
+        ],
+        "acceptance_implications": [
+          "Live publication requires established endpoint, authentication, meeting permissions, publication schema and duplicate-publication behavior.",
+          "No supplied source constitutes permission to execute a publication.",
+          "Provider gaps must not block local calculation, review or preparation of certified packages."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Provider endpoint, authentication and meeting permissions.",
+          "Provider publication schema and duplicate-publication behavior.",
+          "Operational credentials and exact-package publication authorization."
+        ],
+        "external_effects": [
+          "Publication of certified aggregate results to the member portal through the provider."
+        ],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-32d024c3f81a",
+        "source_ids": [
+          "SRC-9f5cdcf75bf3"
+        ],
+        "normalized": "Before each publication attempt, require separate meeting-chair authorization identifying the exact certified package version, meeting and contest set. Changed results invalidate that authorization. Certification alone is insufficient. Recheck currency and authorization immediately before sending.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-e419df0d817b",
+          "REQ-818d96c67445"
+        ],
+        "acceptance_implications": [
+          "Proposed verification should reject missing, mismatched or invalidated authorization.",
+          "Proposed verification should change results after authorization and confirm that sending is blocked.",
+          "The brief itself grants no execution permission."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [
+          "Meeting-chair authorization is required for an actual publication attempt."
+        ],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-a503843d7ecf",
+        "source_ids": [
+          "SRC-9f5cdcf75bf3"
+        ],
+        "normalized": "Preserve publication outcomes as rejected, accepted for processing, published or unknown, linking each outcome to the attempted package and authorization. Do not treat acceptance for processing as publication.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed local verification should exercise all four outcomes and their package and authorization links.",
+          "An accepted-for-processing response must not display or record a published outcome."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-c07f0e758889",
+        "source_ids": [
+          "SRC-9f5cdcf75bf3"
+        ],
+        "normalized": "Treat a publication timeout as an unknown outcome, prohibit automatic retry and require documented outcome resolution before another attempt.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [
+          "REQ-a503843d7ecf"
+        ],
+        "acceptance_implications": [
+          "Proposed local verification should simulate a timeout and confirm an unknown outcome with no automatic resend.",
+          "Another attempt must remain blocked until outcome resolution is documented and publication authorization is rechecked.",
+          "The local hold and documentation rule can be verified independently of a live provider."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-2c64c88852c8",
+        "source_ids": [
+          "SRC-981e606779bf"
+        ],
+        "normalized": "Persist rolls, grants, ballots, explanations, certified versions and authorization history across restart, preserving identical selected votes and totals.",
+        "category": "non_functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification should compare retained records, selected votes and totals before and after restart.",
+          "Restart must preserve certified versions and authorization history."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-311e9985c8a3",
+        "source_ids": [
+          "SRC-981e606779bf"
+        ],
+        "normalized": "Describe verification as proposed work. No implementation, executed tests or live-provider evidence is supplied. Any local-storage, preview-layout or initial-ordering assumption must be explicitly labeled reversible and not customer-approved.",
+        "category": "constraint",
+        "origin": "customer_requirement",
+        "approved_by_customer": true,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Analysis and delivery descriptions must not claim executed tests, implemented behavior or verified live exchange.",
+          "Proposed technical choices must remain distinguishable from customer requirements."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      }
+    ],
+    "issues": [
+      {
+        "issue_id": "ISS-f31ff8214058",
+        "kind": "contradiction",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-ed7994667b48",
+          "SRC-99dd0111a146"
+        ],
+        "affected_requirement_ids": [
+          "REQ-4026ba7c62ff",
+          "REQ-333f861ae206",
+          "REQ-d043b08b2111"
+        ],
+        "description": "Two mandatory sources respectively permit and prohibit director-election proxy votes, and no precedence ruling exists. The operative director policy, winner determination and release of director certification remain blocked.",
+        "question": "What director proxy policy does the cooperative's election officer formally resolve as operative?",
+        "rationale": "The ruling changes which director votes may count and therefore the winner. Evidence retention and certification safeguards can proceed, as can all ordinary-motion credentials, selection and counting.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-c8b962b9265a",
+        "kind": "integration_gap",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-9f5cdcf75bf3",
+          "SRC-fb47d85557f7"
+        ],
+        "affected_requirement_ids": [
+          "REQ-6a0096158d97"
+        ],
+        "description": "Trusted live ballot intake lacks the provider endpoint, authentication, meeting permissions, credentials, ballot authenticity evidence and authoritative timestamp semantics.",
+        "question": "What provider contract, access credentials, meeting permissions, authenticity evidence and timestamp semantics govern live ballot exports?",
+        "rationale": "These determine whether live ballots can be acquired and trusted. They do not block local synthetic parsing, credential validation, selection or ordinary counting.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-58537587a470",
+        "kind": "integration_gap",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-9f5cdcf75bf3"
+        ],
+        "affected_requirement_ids": [
+          "REQ-3d58d3e4e36b"
+        ],
+        "description": "Live publication lacks the provider endpoint, authentication, meeting permissions, publication schema and duplicate-publication behavior. The provider-specific means of determining an unknown attempt's outcome is also unspecified.",
+        "question": "What publication contract and documented outcome-resolution procedure establish whether an attempt published results and whether a subsequent attempt is safe?",
+        "rationale": "These details affect live publication and resolution of uncertain external effects. Local package preparation, authorization enforcement, outcome recording and timeout holds remain implementable.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-e929db3a217c",
+        "kind": "authorization_question",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-fb47d85557f7",
+          "SRC-9f5cdcf75bf3"
+        ],
+        "affected_requirement_ids": [
+          "REQ-6a0096158d97",
+          "REQ-3d58d3e4e36b"
+        ],
+        "description": "External accounts, credentials and operation authorizations are absent. No meeting-chair authorization identifies an exact certified package version, meeting and contest set for publication.",
+        "question": "Before any live operation, what authorized provider access applies, and, before publication, where is the meeting chair's authorization for the exact certified package version, meeting and contest set?",
+        "rationale": "An integration requirement or certification does not authorize external execution. Missing authorization blocks actual live operations, without blocking local implementation or synthetic verification of permission checks.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-ed7f3ec2c636",
+        "kind": "ambiguity",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-b80a96a02163"
+        ],
+        "affected_requirement_ids": [
+          "REQ-86ea4ab5eece"
+        ],
+        "description": "Changed content under an existing ballot identifier must be rejected, but the source does not explicitly state whether that collision rejects an otherwise valid mixed file atomically or only the conflicting ballot.",
+        "question": "If a file contains both new valid ballots and changed content under an existing ballot identifier, must the entire file be rejected with no changes?",
+        "rationale": "The answer changes import transaction boundaries and persisted evidence. Only mixed-file collision handling is blocked; the stated malformed-file rejection rules, identical reimport behavior and other local validation remain clear.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-862bfe0452a7",
+        "kind": "ambiguity",
+        "severity": "non_blocking",
+        "source_ids": [
+          "SRC-ed7994667b48",
+          "SRC-981e606779bf"
+        ],
+        "affected_requirement_ids": [
+          "REQ-ebfb54d3433e"
+        ],
+        "description": "Users disagree about agenda order versus title order for initial motion results, but either is explicitly acceptable.",
+        "question": "Should the reversible initial presentation default use agenda order or title order?",
+        "rationale": "The choice affects presentation only and must not affect outcomes. A labeled reversible assumption permits continued work.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-e2fbba0f4e62",
+        "kind": "missing_information",
+        "severity": "non_blocking",
+        "source_ids": [
+          "SRC-b80a96a02163",
+          "SRC-fb47d85557f7"
+        ],
+        "affected_requirement_ids": [
+          "REQ-504508a029d0",
+          "REQ-843935edc1aa",
+          "REQ-d043b08b2111"
+        ],
+        "description": "The actual meeting date, contest identifiers and declared candidate identifiers are not supplied.",
+        "question": "What meeting date, contest catalog and declared candidate identifiers will configure the pilot meeting?",
+        "rationale": "These are required configuration values for actual meeting processing. Explicitly synthetic values can support proposed local verification without selecting real meeting facts or blocking configurable implementation.",
+        "blocked_increment_ids": []
+      }
+    ],
+    "assumptions": [
+      {
+        "assumption_id": "ASM-2cb9c5016b05",
+        "source_ids": [
+          "SRC-981e606779bf"
+        ],
+        "related_requirement_ids": [
+          "REQ-2c64c88852c8"
+        ],
+        "statement": "For local planning, use a replaceable local persistent store; no particular storage engine is selected or customer-approved.",
+        "rationale": "The source explicitly permits reversible local-storage assumptions while requiring restart durability.",
+        "impact_if_wrong": "The storage adapter and persistence verification may change; retained evidence and deterministic restart behavior must still satisfy REQ-2c64c88852c8.",
+        "approval_status": "not_customer_approved"
+      },
+      {
+        "assumption_id": "ASM-95031509511b",
+        "source_ids": [
+          "SRC-981e606779bf",
+          "SRC-07e4b5c2f992",
+          "SRC-b80a96a02163"
+        ],
+        "related_requirement_ids": [
+          "REQ-9ff98c01554b",
+          "REQ-843935edc1aa"
+        ],
+        "statement": "Use a reversible tabular preview showing submitted rows and their validation reasons for local planning.",
+        "rationale": "The source requires preview and row-level reasons while explicitly allowing a reversible preview-layout assumption.",
+        "impact_if_wrong": "The preview presentation may need revision without changing validation or atomic rejection rules.",
+        "approval_status": "not_customer_approved"
+      },
+      {
+        "assumption_id": "ASM-9b14c03cb840",
+        "source_ids": [
+          "SRC-ed7994667b48",
+          "SRC-981e606779bf"
+        ],
+        "related_requirement_ids": [
+          "REQ-ebfb54d3433e"
+        ],
+        "statement": "Use title order as the reversible initial motion-results presentation default.",
+        "rationale": "Either title order or agenda order is explicitly acceptable, and the source permits a labeled reversible ordering assumption.",
+        "impact_if_wrong": "Change the presentation default to agenda order without changing selected votes, totals or outcomes.",
+        "approval_status": "not_customer_approved"
+      }
+    ],
+    "out_of_scope_instructions": [],
+    "source_segments": [
+      {
+        "source_id": "SRC-b73a563db996",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting"
+        ],
+        "start_line": 1,
+        "end_line": 1,
+        "text": "# AssemblyCount: cooperative meeting credentials and voting",
+        "sha256": "70d56c1029bff3b60319670921107ca49bffedb3780da575e3bd4277b85975f4"
+      },
+      {
+        "source_id": "SRC-cbf100f86bbd",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Purpose and boundaries"
+        ],
+        "start_line": 3,
+        "end_line": 3,
+        "text": "## Purpose and boundaries",
+        "sha256": "02c9e049c9d4f61f168845aeeee0d34a4cdeb0f6b6087f6dc255da531fe6aaa0"
+      },
+      {
+        "source_id": "SRC-fb47d85557f7",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Purpose and boundaries"
+        ],
+        "start_line": 4,
+        "end_line": 4,
+        "text": "A housing cooperative needs an auditable record of meeting eligibility, proxy authority and voting outcomes. The pilot covers one meeting, up to 2,000 memberships, 20 ordinary motions and one single-seat director election. Each eligible membership has one vote per contest, regardless of how many people own it. The approved membership roll explicitly states eligibility; the service does not infer it from arrears or ownership documents. The service does not collect dues, resolve ownership disputes, conduct campaigning, send member messages or change bylaws. Synthetic rolls, proxy grants and ballots are available; external credentials, accounts and operation authorizations are absent.",
+        "sha256": "777588245d14ce665bffb075139f51d02fd709882a3c84fc7e03fb1f5553c709"
+      },
+      {
+        "source_id": "SRC-58f58ada3615",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Eligibility and proxy credentials"
+        ],
+        "start_line": 6,
+        "end_line": 6,
+        "text": "## Eligibility and proxy credentials",
+        "sha256": "7eafd561af973ce7df4e16a79cf9ff434fea1ce149079cbd7a615f934716c71a"
+      },
+      {
+        "source_id": "SRC-07e4b5c2f992",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Eligibility and proxy credentials"
+        ],
+        "start_line": 7,
+        "end_line": 7,
+        "text": "A secretary can preview and accept a membership roll containing meeting_id, membership_id, eligible and source_reference. Missing fields, repeated membership identifiers or invalid eligibility values reject the entire roll with row-level reasons and no changes. Accepting a replacement creates a new roll version and retains the previous one. The meeting chair must freeze a roll version before counting; that version fixes the eligible-membership denominator. Later corrections require a reasoned amendment and a new freeze, making affected draft results stale without overwriting certified history.",
+        "sha256": "f23228a550f72a3dd289bee86c2896fc97fd20f07cde32027ef62f26191bd734"
+      },
+      {
+        "source_id": "SRC-9bfdd2f25ba5",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Eligibility and proxy credentials"
+        ],
+        "start_line": 9,
+        "end_line": 9,
+        "text": "A proxy grant names the represented membership, its holder membership, valid_from, valid_until and evidence reference. Both memberships must be eligible on the frozen roll and must differ. Use UTC timestamps and half-open validity intervals; end must be later than start. A membership cannot have overlapping grants to different holders. A holder may represent at most two other memberships at any instant; its own vote does not consume that limit. Proxy authority cannot be delegated onward. A revocation shortens the grant's validity and preserves actor, time and reason; it does not invalidate a ballot validly cast before the revocation took effect. Credential validation can be planned locally before a voting-provider connection exists.",
+        "sha256": "4547bf369cb26460501911f451fb57d808f1238ffcc6842ee7c37578f188f428"
+      },
+      {
+        "source_id": "SRC-5b37a207ba20",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Ballot evidence and selection"
+        ],
+        "start_line": 11,
+        "end_line": 11,
+        "text": "## Ballot evidence and selection",
+        "sha256": "964a1c43b544cb4fe4a5eef607cd25debb6d636158603389ef0f3fe6708282ec"
+      },
+      {
+        "source_id": "SRC-b80a96a02163",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Ballot evidence and selection"
+        ],
+        "start_line": 12,
+        "end_line": 12,
+        "text": "Voting opens at 14:00 UTC and closes at 16:00 UTC on the configured meeting date. Opening is inclusive and closing exclusive. A secretary can preview a local ballot file containing ballot_id, contest_id, represented_membership_id, casting_membership_id, cast_at and choice. Ordinary choices are YES, NO or ABSTAIN; director choices are one declared candidate identifier or ABSTAIN. Reject a whole file for malformed rows, unknown contests or undeclared choices, with row-level reasons and no changes. An identical ballot identifier and content is a no-op; changed content under that identifier is rejected. Preserve every imported ballot and its validation explanation.",
+        "sha256": "aa1b176297f66014ea377f4011016dc623745a63bc0aeba2333f3a8e3f2641c3"
+      },
+      {
+        "source_id": "SRC-4a9b6a6264ba",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Ballot evidence and selection"
+        ],
+        "start_line": 14,
+        "end_line": 14,
+        "text": "Ballots outside the voting window or from ineligible memberships are retained as invalid evidence and never counted. A direct ballot has matching represented and casting identifiers. A proxy ballot requires the holder's grant to cover cast_at. For each membership and contest, the latest valid direct ballot takes precedence over every proxy ballot, even a later proxy ballot. If there is no valid direct ballot, use the latest valid proxy ballot. Conflicting choices with the same latest timestamp leave that membership's contest vote unresolved; do not break the tie by import order or ballot identifier. An unresolved selected vote blocks certification of that contest. Ballot parsing, validation and selection can be planned with synthetic files independently of external access.",
+        "sha256": "fc564887fa36db12eb4179cedbe5f680bad4368f00c05a254c37d4a3a99eb43b"
+      },
+      {
+        "source_id": "SRC-55197b3a9017",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Ordinary motions"
+        ],
+        "start_line": 16,
+        "end_line": 16,
+        "text": "## Ordinary motions",
+        "sha256": "4ae064f9b0d50860bbec16f535136107210fdb4148d39cf46606e9e9d61c8126"
+      },
+      {
+        "source_id": "SRC-687b8db4b201",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Ordinary motions"
+        ],
+        "start_line": 17,
+        "end_line": 17,
+        "text": "For each motion, quorum requires selected valid ballots from at least 60% of eligible memberships on the frozen roll, rounded upward to a whole membership. Count represented memberships, not people attending or proxy holders. ABSTAIN counts toward quorum but not the decision denominator. With quorum, a motion passes only when YES is strictly greater than NO; a tie or zero YES and zero NO does not pass. Without quorum, report NO QUORUM rather than a failed motion. A nonvoting eligible membership remains in the quorum denominator. Results must show the frozen-roll version, eligible count, quorum requirement, represented count and YES, NO and ABSTAIN totals.",
+        "sha256": "1cb0e091c2cc68132a3f297309f1f5332c0c7acf20d7da2e70a6c7e92cc1db35"
+      },
+      {
+        "source_id": "SRC-090c0ca4fd66",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Director-election contradiction"
+        ],
+        "start_line": 19,
+        "end_line": 19,
+        "text": "## Director-election contradiction",
+        "sha256": "fa65130cf7827aeb35b11a39f090de14eb2dfa99b117ce0c04237e24612c4534"
+      },
+      {
+        "source_id": "SRC-ed7994667b48",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Director-election contradiction"
+        ],
+        "start_line": 20,
+        "end_line": 20,
+        "text": "The signed election rules state “proxy votes are permitted in the director election.” The current adopted meeting resolution states “proxy votes are prohibited in the director election.” Both are mandatory and no precedence ruling exists. The cooperative's election officer must resolve this contradiction. Retain structurally valid director proxy ballots as unresolved evidence; do not silently count or discard them. Director certification is blocked until resolution. Ordinary-motion credentials, selection and counting must proceed meanwhile. Once proxy policy is resolved, the director winner is the candidate with the most selected valid votes, excluding ABSTAIN; equal highest totals or no candidate votes produce NO WINNER and require a separately convened election, not an automatic draw. Users disagree whether results should initially list motions by agenda order or title; either presentation is acceptable and must not change outcomes.",
+        "sha256": "103b26429d5c926743c9780a0a42c47f6d7e178e337f94cfd79454ee81182bf7"
+      },
+      {
+        "source_id": "SRC-032b61ccab1a",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Review, privacy and publication"
+        ],
+        "start_line": 22,
+        "end_line": 22,
+        "text": "## Review, privacy and publication",
+        "sha256": "a56a2646e4fe30ec8c1a26c0b30c7606f1d0f8ca791d9233874639d482474ec9"
+      },
+      {
+        "source_id": "SRC-e44d3a903e12",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Review, privacy and publication"
+        ],
+        "start_line": 23,
+        "end_line": 23,
+        "text": "An election officer can prepare a versioned result package and certify an unblocked contest only against the current frozen roll, credentials and ballot evidence. Certification must reject stale calculations. Changes affecting a certified result require a separately reviewed amendment linked to the original; never overwrite the certified package. The review overview must show credential violations, invalid ballots, unresolved selections, quorum outcomes, stale calculations and publication status with supporting references. Public results contain aggregate totals only. Viewers can read aggregates; secretaries maintain rolls, credentials and ballot intake; election officers inspect individual evidence, resolve director policy and certify results; only the meeting chair freezes rolls and authorizes publication. Enforce permissions beyond screen visibility, including restrictions on access to individual choices. Retained audit evidence must support authorized review without exposing individual choices publicly.",
+        "sha256": "2c7b0a395ba0074cb9251e2c217eedb3f256ea2d306956b25aad812bf2491478"
+      },
+      {
+        "source_id": "SRC-9f5cdcf75bf3",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Review, privacy and publication"
+        ],
+        "start_line": 25,
+        "end_line": 25,
+        "text": "The external voting provider is expected to supply ballot exports and publish certified results to the member portal. Its endpoint, authentication, meeting permissions, ballot authenticity evidence, authoritative timestamp semantics, publication schema and duplicate-publication behavior are unknown. These block trusted live exchange, not local synthetic validation or ordinary counting. Before a publication attempt, the meeting chair must separately authorize the exact certified package version, meeting and contest set. This brief grants no execution permission. Changed results invalidate that authorization; certification alone is not publication permission. Recheck currency and authorization immediately before sending. Preserve rejected, accepted for processing, published and unknown outcomes; acceptance is not publication. A timeout is unknown and requires documented outcome resolution before another attempt, without automatic retry. Link outcomes to the attempted package and authorization.",
+        "sha256": "c8f8bab93a9508aab9fff181af81c8bda1e339b2eec84cf2829c599d4f2500a7"
+      },
+      {
+        "source_id": "SRC-aed0a79856ce",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Acceptance and delivery expectations"
+        ],
+        "start_line": 27,
+        "end_line": 27,
+        "text": "## Acceptance and delivery expectations",
+        "sha256": "ba7c1cc07df2123f3766b759cb496608ccc66466a72b83257eb32ca76d0240b2"
+      },
+      {
+        "source_id": "SRC-99dd0111a146",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Acceptance and delivery expectations"
+        ],
+        "start_line": 28,
+        "end_line": 28,
+        "text": "With 101 eligible memberships, quorum is 61. Totals YES=30, NO=30 and ABSTAIN=1 meet quorum but do not pass; YES=31, NO=29 and ABSTAIN=1 pass. Sixty represented memberships produce NO QUORUM. One holder voting for itself and two represented memberships contributes three membership votes, not one. A valid direct YES at 14:10 defeats a valid proxy NO at 15:00 for the same membership and motion. A ballot at 16:00 is invalid. Two different latest direct choices both timestamped 15:30 remain unresolved. No director winner is asserted before proxy-policy resolution.",
+        "sha256": "2e33dce559fa46fdbb944da7d0b8274d5eeabb1d2c5584884ee76efea53d08f8"
+      },
+      {
+        "source_id": "SRC-981e606779bf",
+        "heading_path": [
+          "AssemblyCount: cooperative meeting credentials and voting",
+          "Acceptance and delivery expectations"
+        ],
+        "start_line": 30,
+        "end_line": 30,
+        "text": "Rolls, grants, ballots, explanations, certified versions and authorization history must survive restart with identical selected votes and totals. Local storage, preview layout and initial result ordering may use explicitly labeled reversible assumptions; none is customer approval. Describe verification as proposed work; no implementation, executed tests or live-provider evidence is supplied.",
+        "sha256": "707d46493b3d37a57f3cd6f306cdac1b8497b022b5a4dd30ea5ef342588989c1"
+      }
+    ]
+  },
+  "execution_authorized": false,
+  "increments": {
+    "increments": [
+      {
+        "task_id": "W01",
+        "objective": "Propose the local role-enforcement and persistence foundation, roll preview/atomic acceptance/versioning, chair-only freezing and amendments, explicit membership eligibility, and proxy maintenance/validation/revocation. Enforce the stated role restrictions across local interfaces and retain audit history. Use the reversible storage assumption without requiring an external identity service or provider connection. [SRC-fb47d85557f7, SRC-07e4b5c2f992, SRC-9bfdd2f25ba5, SRC-e44d3a903e12, SRC-981e606779bf]",
+        "requirement_ids": [
+          "REQ-9a7296792310",
+          "REQ-9ff98c01554b",
+          "REQ-4e0ec73eb5f7",
+          "REQ-8408f44a8f2a",
+          "REQ-549fb44499ad",
+          "REQ-e102e9ccbc2f",
+          "REQ-1aa5b9ffe116",
+          "REQ-818d96c67445",
+          "REQ-e112cb2f3c5f",
+          "REQ-2c64c88852c8"
+        ],
+        "depends_on": [],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic",
+        "inputs": [
+          "Supplied synthetic rolls and proxy grants within the one-meeting, 2,000-membership pilot scope. Eligibility comes only from the roll. [SRC-fb47d85557f7]",
+          "Roll fields meeting_id, membership_id, eligible and source_reference; proposed replacement, freeze and reasoned amendment requests. [SRC-07e4b5c2f992]",
+          "Grant parties, valid_from, valid_until and evidence reference; revocation actor, time and reason. [SRC-9bfdd2f25ba5]",
+          "Explicit synthetic role contexts for local verification; no real identity, account or operational authority is inferred. [SRC-e44d3a903e12]",
+          "ASM-2cb9c5016b05 and ASM-95031509511b: replaceable local persistence and tabular previews remain reversible and not customer-approved. Global scope, exclusions and proposed-verification constraints apply. [SRC-fb47d85557f7, SRC-981e606779bf]"
+        ],
+        "outputs": [
+          "Proposed roll previews with row-level reasons, atomic acceptance results and retained roll versions.",
+          "Proposed frozen-roll reference, fixed eligible denominator and reasoned amendment history.",
+          "Proposed credential validation explanations, valid grant intervals and revocation history.",
+          "Proposed reusable role-enforcement and persistence interfaces for downstream local modules.",
+          "Proposed input-revision records enabling downstream staleness checks; no certified history is overwritten."
+        ],
+        "interfaces": [
+          "Proposed preview_roll and accept_roll operations returning validation reasons and version references.",
+          "Proposed freeze_roll and amend_roll operations requiring the stated role and amendment reason.",
+          "Proposed validate_grants, maintain_grant and revoke_grant operations using UTC half-open intervals.",
+          "Proposed authorize_operation and read_evidence boundaries enforcing roles beyond visible controls.",
+          "Proposed replaceable local repository interface supporting atomic roll changes, retained history and restart recovery."
+        ],
+        "components": [
+          "assemblycount/rolls.py",
+          "assemblycount/credentials.py",
+          "assemblycount/access.py",
+          "assemblycount/repository.py",
+          "assemblycount/revisions.py"
+        ],
+        "tools": [
+          "python"
+        ],
+        "permissions": [
+          "Planning only: no implementation, file change, test execution or operational action is authorized.",
+          "Future roll and credential maintenance requires a secretary role; only the meeting chair may freeze a roll. [SRC-e44d3a903e12]",
+          "Future evidence access must enforce the stated role restrictions; a membership identifier alone is not application-role authority. [SRC-e44d3a903e12]",
+          "Local verification may propose synthetic role contexts without granting real accounts or permissions."
+        ],
+        "external_effects": [],
+        "completion_conditions": [
+          "Proposed verification rejects each stated invalid-roll case atomically, reports affected rows and confirms unchanged stored state.",
+          "A replacement creates a distinct version while the prior version remains retrievable.",
+          "A secretary cannot freeze a roll; a chair freeze fixes the denominator; later corrections require a reason and new freeze.",
+          "Grant validation rejects self-proxies, ineligible parties, nonpositive intervals, prohibited overlaps, excess simultaneous representation and onward delegation.",
+          "Grant start is inclusive and end exclusive; a holder's own vote does not consume its two-other-membership allowance.",
+          "Revocation retains actor, time and reason and preserves authority for ballots validly cast before its effective boundary.",
+          "Direct operation and evidence-access attempts enforce role restrictions independently of screen visibility.",
+          "Proposed restart verification preserves rolls, grants, explanations and revisions without changing credential determinations.",
+          "Storage and preview choices remain labeled reversible and unapproved; no execution evidence is claimed."
+        ],
+        "verification_evidence": [
+          "Proposed roll fixture matrix and before/after repository comparisons for atomic rejection, replacement and freeze/amendment behavior. Not executed. [SRC-07e4b5c2f992]",
+          "Proposed temporal credential cases covering interval endpoints, overlapping grants, holder capacity, delegation and revocation. Not executed. [SRC-9bfdd2f25ba5]",
+          "Proposed direct-access permission matrix and persistence restart comparison. No implementation or executed results supplied. [SRC-e44d3a903e12, SRC-981e606779bf]"
+        ],
+        "boundary_rationale": "This increment supplies the local eligibility, credential, permission and persistence contracts required by downstream processing. It requires neither provider access nor a director-policy ruling. Component and interface names are proposals; the permitted storage and preview assumptions remain unapproved. [SRC-9bfdd2f25ba5, SRC-ed7994667b48, SRC-981e606779bf]"
+      },
+      {
+        "task_id": "W02",
+        "objective": "Propose local ballot preview, structural whole-file rejection, voting-window checks, eligibility and grant-at-cast validation, and retained ballot explanations. Accept collision-free synthetic evidence independently of provider access; route changed-ID mixed-file cases to W03 without choosing their transaction policy. Retain structurally valid director proxy evidence for the policy hold rather than applying either contradictory rule. [SRC-b80a96a02163, SRC-4a9b6a6264ba, SRC-ed7994667b48]",
+        "requirement_ids": [
+          "REQ-504508a029d0",
+          "REQ-843935edc1aa",
+          "REQ-c4ed6bc04bfa",
+          "REQ-9c576d0b32b0"
+        ],
+        "depends_on": [
+          "W01"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic",
+        "inputs": [
+          "Synthetic local ballot files containing ballot_id, contest_id, represented_membership_id, casting_membership_id, cast_at and choice. [SRC-b80a96a02163]",
+          "Configured meeting date, contest catalog and declared candidate identifiers; actual values remain unspecified, so proposed verification uses explicitly synthetic values. [SRC-b80a96a02163]",
+          "W01 frozen-roll eligibility, grant intervals, revocation history, role checks and local repository contracts.",
+          "Ordinary choices YES, NO and ABSTAIN; director choices declared candidate identifiers or ABSTAIN. [SRC-b80a96a02163]",
+          "Reversible, unapproved tabular-preview assumption ASM-95031509511b. [SRC-981e606779bf]"
+        ],
+        "outputs": [
+          "Proposed previews and row-level structural rejection reasons.",
+          "Proposed accepted collision-free ballot evidence with direct/proxy classification and validation explanations.",
+          "Proposed retained invalid evidence for out-of-window or ineligible ballots.",
+          "Proposed director-proxy evidence references marked as awaiting policy resolution.",
+          "Proposed identity-collision descriptors for W03, without a decision on mixed-file commit scope."
+        ],
+        "interfaces": [
+          "Proposed preview_ballot_file and validate_ballot_structure operations returning file-level disposition and row reasons.",
+          "Proposed validate_ballot operation using frozen eligibility, cast_at and grant coverage.",
+          "Proposed append_ballot_evidence operation for accepted collision-free intake.",
+          "Proposed identity-collision handoff contract consumed by W03.",
+          "Proposed evidence-query interface enforcing W01 access restrictions."
+        ],
+        "components": [
+          "assemblycount/ballot_intake.py",
+          "assemblycount/ballot_validation.py",
+          "assemblycount/ballot_evidence.py"
+        ],
+        "tools": [
+          "python"
+        ],
+        "permissions": [
+          "Planning only; no ballot import or test execution is authorized.",
+          "Future local ballot preview and intake require the secretary role. Individual-evidence access must follow W01 role enforcement. [SRC-e44d3a903e12]",
+          "Synthetic files do not establish provider authenticity, timestamp authority or live access permission. [SRC-9f5cdcf75bf3]"
+        ],
+        "external_effects": [],
+        "completion_conditions": [
+          "Malformed rows, unknown contests and undeclared choices reject the whole file with row reasons and unchanged accepted evidence.",
+          "A ballot at 14:00 UTC on the configured date is within the window; a ballot at 16:00 UTC is outside it.",
+          "Out-of-window and ineligible ballots are retained as invalid evidence and excluded from countable inputs.",
+          "Direct classification requires equal represented and casting identifiers; proxy validity requires the matching holder grant to cover cast_at.",
+          "Every imported ballot has retained content and a validation explanation.",
+          "Structurally valid director proxy evidence remains retained with its unresolved policy status.",
+          "Mixed-file changed-ID cases are identified for W03 without asserting whole-file versus row-only transaction behavior.",
+          "Collision-free local intake remains verifiable without W03 resolution or external access."
+        ],
+        "verification_evidence": [
+          "Proposed structural rejection matrix with repository comparisons for malformed rows, unknown contests and undeclared choices. Not executed. [SRC-b80a96a02163]",
+          "Proposed UTC window, eligibility and grant-coverage cases with retained explanations. Not executed. [SRC-4a9b6a6264ba, SRC-99dd0111a146]",
+          "Proposed evidence-retention and collision-handoff inspection, including unresolved director proxies. No implementation or executed tests supplied. [SRC-ed7994667b48, SRC-981e606779bf]"
+        ],
+        "boundary_rationale": "Parsing, structural rejection and ballot validity form an independently useful local intake capability. Mixed-file collision transaction scope belongs to W03; provider trust belongs to W07; final director-policy application belongs to W06. These branches do not prevent collision-free synthetic processing. [SRC-b80a96a02163, SRC-4a9b6a6264ba, SRC-ed7994667b48, SRC-9f5cdcf75bf3]"
+      },
+      {
+        "task_id": "W03",
+        "objective": "Propose ballot identity handling: identical identifier/content is a no-op and changed content cannot overwrite existing evidence. Keep final mixed-file collision transaction behavior blocked by ISS-ed7f3ec2c636 until whole-file versus conflicting-row rejection is clarified. This narrow branch must not gate collision-free intake or ordinary counting. [SRC-b80a96a02163]",
+        "requirement_ids": [
+          "REQ-86ea4ab5eece"
+        ],
+        "depends_on": [
+          "W02"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic",
+        "inputs": [
+          "W02 parsed ballot records, existing accepted ballot content and identity-collision descriptors.",
+          "Synthetic identical-ID/content reimports and changed-content collisions. [SRC-b80a96a02163]",
+          "A clarification resolving ISS-ed7f3ec2c636 before final mixed-file transaction behavior can be accepted; no decision is currently supplied."
+        ],
+        "outputs": [
+          "Proposed identity dispositions distinguishing new content, identical no-op and rejected changed content.",
+          "Proposed retained original evidence with no overwrite under an existing ballot identifier.",
+          "Proposed mixed-file transaction specification and verification cases, pending clarification.",
+          "Proposed accepted-evidence revision updates only for changes actually accepted under the resolved policy."
+        ],
+        "interfaces": [
+          "Proposed compare_ballot_identity operation over an incoming record and stored original.",
+          "Proposed apply_identity_disposition operation for unambiguous no-op and changed-content protection.",
+          "Proposed mixed-file transaction boundary, intentionally unresolved until ISS-ed7f3ec2c636 is answered."
+        ],
+        "components": [
+          "assemblycount/ballot_identity.py",
+          "assemblycount/ballot_import_transactions.py"
+        ],
+        "tools": [
+          "python"
+        ],
+        "permissions": [
+          "Planning only; no import, mutation or verification execution is authorized.",
+          "Future intake uses the secretary permission enforced by W01 and W02. [SRC-e44d3a903e12]",
+          "Clarifying transaction behavior does not itself authorize an import or overwrite."
+        ],
+        "external_effects": [],
+        "completion_conditions": [
+          "Identical identifier/content reimports add no ballot evidence or votes.",
+          "Changed content under an existing identifier cannot replace the original ballot.",
+          "The unambiguous identity cases have proposed deterministic outcomes independent of import order.",
+          "Full mixed-file completion remains blocked until clarification specifies the transaction scope and expected persisted state.",
+          "After clarification, a mixed fixture containing new ballots and a changed-content collision has an exact, verifiable acceptance/rejection and persistence outcome.",
+          "W02 collision-free intake and W04 counting remain independently available."
+        ],
+        "verification_evidence": [
+          "Proposed before/after evidence counts and content comparisons for identical reimports and changed-ID attempts. Not executed. [SRC-b80a96a02163]",
+          "Proposed mixed-file acceptance matrix referencing the eventual clarification; presently pending ISS-ed7f3ec2c636.",
+          "No implementation, executed tests or customer-approved transaction choice is asserted. [SRC-981e606779bf]"
+        ],
+        "boundary_rationale": "The identity requirement contains clear no-op and immutability rules plus a narrow unresolved transaction decision. Isolating that decision avoids spreading its blocker to collision-free local validation and ordinary counting. The clarification is a missing functional input, not an infrastructure resource. [SRC-b80a96a02163, SRC-4a9b6a6264ba]"
+      },
+      {
+        "task_id": "W04",
+        "objective": "Propose deterministic selection and ordinary-motion counting over accepted collision-free local evidence: latest valid direct before any proxy, latest valid proxy only without a valid direct, unresolved equal-latest conflicting choices, ceiling-60-percent quorum, abstention treatment, YES-greater-than-NO decisions and complete result fields. Preserve title ordering as a reversible unapproved default. No dependency on director resolution, mixed-file collision policy or live exchange is required for this path. [SRC-4a9b6a6264ba, SRC-687b8db4b201, SRC-ed7994667b48, SRC-99dd0111a146]",
+        "requirement_ids": [
+          "REQ-5eb72e2621b3",
+          "REQ-fe4459170ec3",
+          "REQ-b3a3b2913565",
+          "REQ-663a29c382a7",
+          "REQ-b29c1e3764fb",
+          "REQ-ebfb54d3433e"
+        ],
+        "depends_on": [
+          "W01",
+          "W02"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic",
+        "inputs": [
+          "W01 frozen-roll reference, eligible denominator and credential revisions.",
+          "W02 accepted collision-free ballot evidence and validation explanations for each membership and contest.",
+          "Ordinary-motion catalog within the pilot limit of 20 motions and 2,000 memberships. [SRC-fb47d85557f7]",
+          "ASM-9b14c03cb840: title ordering remains reversible and not customer-approved. [SRC-ed7994667b48, SRC-981e606779bf]"
+        ],
+        "outputs": [
+          "Proposed selected-vote records with supporting ballot references, selected class and unresolved conflicts.",
+          "Proposed ordinary-motion totals, quorum status and pass/nonpass outcome.",
+          "Proposed result fields identifying the frozen-roll version, eligible count, quorum requirement, represented count and YES/NO/ABSTAIN totals.",
+          "Proposed calculation input revisions and contest-specific unresolved-selection blockers for W05."
+        ],
+        "interfaces": [
+          "Proposed select_membership_vote operation using latest valid direct precedence and proxy fallback.",
+          "Proposed calculate_motion operation using ceiling-60-percent quorum and YES greater than NO.",
+          "Proposed result projection with title/agenda presentation ordering independent of calculation.",
+          "Proposed calculation snapshot interface exposing supporting evidence references and unresolved status."
+        ],
+        "components": [
+          "assemblycount/selection.py",
+          "assemblycount/motion_counting.py",
+          "assemblycount/result_projection.py"
+        ],
+        "tools": [
+          "python"
+        ],
+        "permissions": [
+          "Planning only; no calculation or test execution is performed.",
+          "Future selection explanations and individual evidence require the stated evidence-access permissions; viewers receive aggregate projections only. [SRC-e44d3a903e12]",
+          "Calculation does not grant certification or publication authority. [SRC-e44d3a903e12, SRC-9f5cdcf75bf3]"
+        ],
+        "external_effects": [],
+        "completion_conditions": [
+          "A valid direct YES at 14:10 defeats a valid proxy NO at 15:00 for the same membership and motion.",
+          "Without a valid direct ballot, the latest valid proxy ballot is selected.",
+          "Conflicting choices at the latest timestamp in the selected class remain unresolved under permutations of import order and ballot identifiers.",
+          "For 101 eligible memberships, quorum is 61; 60 represented memberships yield NO QUORUM.",
+          "YES=30, NO=30, ABSTAIN=1 meets quorum without passing; YES=31, NO=29, ABSTAIN=1 passes.",
+          "ABSTAIN counts toward quorum but not the decision denominator; zero YES and zero NO does not pass.",
+          "A holder voting for itself and two represented memberships contributes three membership votes; eligible nonvoters remain in the denominator.",
+          "Every result exposes all required fields and its input revisions.",
+          "Changing title versus agenda ordering changes no selected votes, totals or outcomes.",
+          "Proposed verification covers the stated pilot scale without inventing a latency guarantee and remains independent of provider and director-policy blockers."
+        ],
+        "verification_evidence": [
+          "Proposed deterministic selection and permutation cases, including direct precedence and equal-timestamp conflicts. Not executed. [SRC-4a9b6a6264ba, SRC-99dd0111a146]",
+          "Proposed arithmetic fixtures for the exact supplied quorum and voting examples, abstention-only quorum and eligible nonvoters. Not executed. [SRC-687b8db4b201, SRC-99dd0111a146]",
+          "Proposed result-field, ordering-invariance and restart comparisons of selected votes and totals. No implementation or executed evidence supplied. [SRC-ed7994667b48, SRC-981e606779bf]"
+        ],
+        "boundary_rationale": "Selection and ordinary counting form a complete local outcome capability over already accepted evidence. Their functional inputs come from W01 and W02; they require neither the mixed-file collision decision nor the director ruling or live provider. Unresolved selections are exposed per contest for W05 certification enforcement. [SRC-4a9b6a6264ba, SRC-ed7994667b48, SRC-9f5cdcf75bf3]"
+      },
+      {
+        "task_id": "W05",
+        "objective": "Propose local review, versioned packages, contest-scoped certification guards, currency checks and separately reviewed linked amendments. Record election-officer policy resolution while retaining unresolved director proxy evidence and blocking director certification/winner assertions until resolution; ordinary certification remains independent. Implement exact-package chair authorization, invalidation and pre-send checks, four linked publication outcomes and timeout holds with documented resolution and no automatic retry. Simulated outcomes support proposed local verification without external execution. [SRC-ed7994667b48, SRC-e44d3a903e12, SRC-9f5cdcf75bf3]",
+        "requirement_ids": [
+          "REQ-6fc9f5956357",
+          "REQ-e419df0d817b",
+          "REQ-77d9ad5624cb",
+          "REQ-29236666fc1d",
+          "REQ-32d024c3f81a",
+          "REQ-a503843d7ecf",
+          "REQ-c07f0e758889"
+        ],
+        "depends_on": [
+          "W01",
+          "W02",
+          "W04"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic",
+        "inputs": [
+          "W01 current frozen roll, credential revisions, audit history and role enforcement.",
+          "W02 ballot evidence, invalidity explanations and retained unresolved director proxies.",
+          "W04 ordinary results, selected-vote explanations, unresolved contest blockers and calculation revisions.",
+          "Election-officer director-policy ruling when supplied; its absence keeps director safeguards active. [SRC-ed7994667b48]",
+          "Proposed chair authorization identifying exact certified package version, meeting and contest set; synthetic values are for verification only. [SRC-9f5cdcf75bf3]",
+          "Simulated publication outcomes and documented outcome-resolution evidence for local verification; provider-specific recovery remains unresolved. [SRC-9f5cdcf75bf3]"
+        ],
+        "outputs": [
+          "Proposed review overview with supporting credential, ballot, selection, quorum, staleness and publication references.",
+          "Proposed versioned result packages, certification decisions and separately reviewed amendments linked to originals.",
+          "Proposed recorded director-policy resolution and active hold when no ruling exists.",
+          "Proposed exact-package publication authorization history and invalidation state.",
+          "Proposed pre-send eligibility decision over current package, contest blockers, authorization and prior unknown outcomes.",
+          "Proposed attempt/outcome records linking package and authorization, plus documented timeout-resolution records."
+        ],
+        "interfaces": [
+          "Proposed review_overview, prepare_package and certify_contest operations.",
+          "Proposed amend_certified_package operation preserving the original and separate review linkage.",
+          "Proposed record_director_policy operation restricted to the election officer.",
+          "Proposed authorize_publication and check_publication_currency operations bound to exact package, meeting and contest set.",
+          "Proposed record_publication_outcome and record_outcome_resolution operations; these record local evidence and do not contact a provider.",
+          "Proposed aggregate-only package projection for public results and future W08 publication."
+        ],
+        "components": [
+          "assemblycount/review.py",
+          "assemblycount/certification.py",
+          "assemblycount/amendments.py",
+          "assemblycount/director_policy.py",
+          "assemblycount/publication_control.py",
+          "assemblycount/publication_history.py"
+        ],
+        "tools": [
+          "python"
+        ],
+        "permissions": [
+          "Planning only; no certification, ruling, authorization, publication or test execution is performed.",
+          "Future evidence inspection, policy resolution and certification require election-officer permissions. [SRC-e44d3a903e12]",
+          "Only the meeting chair may authorize publication; certification alone grants no publication permission. [SRC-e44d3a903e12, SRC-9f5cdcf75bf3]",
+          "No supplied actor is granted authority to resolve a real provider outcome merely by this planning model; operational resolution must have documented evidence and applicable permission.",
+          "Viewers receive aggregates; local history and individual evidence retain W01 access restrictions. [SRC-e44d3a903e12]"
+        ],
+        "external_effects": [],
+        "completion_conditions": [
+          "The overview exposes every required review category with supporting references.",
+          "Certification rejects stale roll, credential or ballot calculations and any unresolved selected vote affecting the contest.",
+          "Director certification and winner assertions remain blocked before policy resolution while an otherwise unblocked ordinary contest can certify.",
+          "Changes to certified results create a separately reviewed linked amendment and preserve the original package.",
+          "Publication authorization matches the exact certified version, meeting and contest set; changed results invalidate it.",
+          "A simulated pre-send check rejects missing, mismatched or invalidated authorization and stale or blocked packages.",
+          "Rejected, accepted for processing, published and unknown outcomes remain distinct and linked to the attempted package and authorization.",
+          "A simulated timeout records unknown, triggers no automatic retry and blocks another attempt until documented outcome resolution.",
+          "Resolution of an unknown outcome does not bypass renewed currency and authorization checks.",
+          "Restart preserves certified versions, amendments, authorization history and publication-control state.",
+          "All checks are proposed local verification; they do not depend on live provider access or claim executed evidence."
+        ],
+        "verification_evidence": [
+          "Proposed role and contest-blocker matrix including ordinary certification while director policy remains unresolved. Not executed. [SRC-ed7994667b48, SRC-e44d3a903e12]",
+          "Proposed input-mutation and amendment-history comparisons proving stale rejection and preservation of originals. Not executed. [SRC-e44d3a903e12]",
+          "Proposed simulated authorization, four-outcome and timeout/resolution scenarios with package/authorization links and restart comparisons. No live-provider or executed evidence supplied. [SRC-9f5cdcf75bf3, SRC-981e606779bf]"
+        ],
+        "boundary_rationale": "Review, certification and publication controls share versioned evidence and contest-specific authorization decisions. They can be modeled and verified locally without sending anything. The director ruling and provider recovery mechanism remain unresolved inputs, while local holds, ordinary certification and simulated outcome recording remain available. [SRC-ed7994667b48, SRC-e44d3a903e12, SRC-9f5cdcf75bf3]"
+      },
+      {
+        "task_id": "W06",
+        "objective": "Preserve both mandatory director proxy statements without selecting precedence. Keep application of the operative policy and director winner acceptance blocked by ISS-f31ff8214058. After an election-officer ruling is recorded through W05, apply that policy to retained evidence and determine plurality excluding ABSTAIN; tied highest totals or no candidate votes yield NO WINNER and require a separately convened election. The ruling is a missing business input, not an infrastructure resource or an assumed authorization. [SRC-ed7994667b48]",
+        "requirement_ids": [
+          "REQ-4026ba7c62ff",
+          "REQ-333f861ae206",
+          "REQ-d043b08b2111"
+        ],
+        "depends_on": [
+          "W01",
+          "W02",
+          "W04",
+          "W05"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic",
+        "inputs": [
+          "Both mandatory, contradictory director proxy statements and blocking issue ISS-f31ff8214058. [SRC-ed7994667b48]",
+          "W05 recorded election-officer ruling before operative director-policy application.",
+          "W01 frozen eligibility and credentials, W02 retained director ballot evidence and W04 reusable deterministic selection rules.",
+          "Configured declared candidate identifiers; synthetic identifiers support proposed conditional verification only. [SRC-b80a96a02163]"
+        ],
+        "outputs": [
+          "Proposed director-policy application explanation referencing the officer's ruling.",
+          "Proposed selected director votes and candidate totals excluding ABSTAIN after resolution.",
+          "Proposed unique winner or NO WINNER outcome with supporting evidence and input revisions.",
+          "Proposed NO WINNER explanation requiring a separately convened election, without convening one.",
+          "Proposed director result supplied to W05's generic certification checks once the policy gate is satisfied."
+        ],
+        "interfaces": [
+          "Proposed apply_resolved_director_policy operation requiring a recorded ruling.",
+          "Proposed calculate_director_result operation reusing validity and selection contracts.",
+          "Proposed director result/hold projection consumed by review and certification.",
+          "Conditional verification interfaces may use explicitly hypothetical policy fixtures without declaring either policy operative."
+        ],
+        "components": [
+          "assemblycount/director_counting.py",
+          "assemblycount/director_result.py"
+        ],
+        "tools": [
+          "python"
+        ],
+        "permissions": [
+          "Planning only; no policy ruling, winner assertion, certification or election-convening action is authorized.",
+          "Only the election officer may resolve the contradiction; implementation must not select precedence. [SRC-ed7994667b48, SRC-e44d3a903e12]",
+          "A recorded ruling is a required business input, not publication permission. [SRC-9f5cdcf75bf3]"
+        ],
+        "external_effects": [],
+        "completion_conditions": [
+          "Both contradictory statements remain represented with no assumed precedence or operative default.",
+          "Without a recorded ruling, no director winner is asserted and W05's director certification hold remains active.",
+          "Full operative-policy and winner acceptance remains blocked by ISS-f31ff8214058 until the election officer resolves it.",
+          "After resolution, selected director votes follow that policy and the shared direct/proxy and conflict rules.",
+          "A unique highest candidate total wins; ABSTAIN contributes no candidate votes.",
+          "Equal highest totals or no candidate votes yield NO WINNER and the requirement for a separately convened election, with no automatic draw.",
+          "The director branch introduces no dependency that blocks ordinary-motion processing."
+        ],
+        "verification_evidence": [
+          "Proposed absent-ruling cases showing retained evidence, no winner assertion and director certification refusal. Not executed. [SRC-ed7994667b48, SRC-99dd0111a146]",
+          "Proposed conditional cases for unique highest total, tied highest totals, all abstentions and no candidate votes after a supplied ruling. Not executed. [SRC-ed7994667b48]",
+          "Proposed trace from ruling and evidence revisions to result and W05 certification decision. Operative-policy acceptance remains pending; no implementation or executed tests supplied. [SRC-e44d3a903e12, SRC-981e606779bf]"
+        ],
+        "boundary_rationale": "This is the unresolved business-rule branch. Its final behavior depends on an election-officer decision that changes countable director votes and the winner. Evidence retention and protective holds remain in the independent local nodes, preserving ordinary work while this branch is blocked. [SRC-ed7994667b48]"
+      },
+      {
+        "task_id": "W07",
+        "objective": "Plan, without performing, trusted live ballot-export intake through an isolated provider adapter feeding the local validation pipeline. Block execution and live acceptance on ISS-c8b962b9265a and ISS-e929db3a217c until endpoint, authentication, meeting permissions, authenticity evidence, authoritative timestamps and authorized access are established. This node is not a prerequisite for local intake or ordinary counting. [SRC-fb47d85557f7, SRC-9f5cdcf75bf3]",
+        "requirement_ids": [
+          "REQ-6a0096158d97"
+        ],
+        "depends_on": [
+          "W01",
+          "W02",
+          "W03"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [
+          "external_voting_provider",
+          "provider_account_and_credentials",
+          "authorized_provider_meeting_access"
+        ],
+        "operation_kind": "external_operation",
+        "inputs": [
+          "Provider endpoint, authentication method, meeting access contract, ballot-export representation, authenticity evidence and authoritative timestamp semantics once established. These are currently unknown. [SRC-9f5cdcf75bf3]",
+          "Separately verified availability and authorization for every listed external resource; none is supplied. [SRC-fb47d85557f7]",
+          "W01 permission/credential contracts, W02 ballot intake and evidence interfaces, and W03 identity/transaction behavior.",
+          "An authorized meeting scope and provider response evidence for any future live acceptance exercise; no such exercise is authorized now."
+        ],
+        "outputs": [
+          "Proposed provider-export adapter contract and mapping to local ballot fields.",
+          "Proposed trust-validation result distinguishing authentic, interpretable evidence from evidence that cannot be trusted.",
+          "Proposed retained provider provenance and timestamp interpretation linked to local ballot evidence.",
+          "Future authorized live-export intake results, expressly unavailable as current evidence."
+        ],
+        "interfaces": [
+          "Proposed external ballot-export request interface; concrete endpoint and authentication remain unresolved.",
+          "Proposed authenticity and authoritative-timestamp interpretation boundary.",
+          "Proposed export-to-local-ballot mapping feeding W02 validation and W03 identity handling.",
+          "Proposed evidence-reference interface preserving export provenance for authorized review."
+        ],
+        "components": [
+          "assemblycount/adapters/provider_ballot_export.py",
+          "assemblycount/adapters/provider_ballot_mapping.py",
+          "assemblycount/adapters/provider_ballot_trust.py"
+        ],
+        "tools": [
+          "python",
+          "external_api"
+        ],
+        "permissions": [
+          "execution_authorized is false; do not contact the provider or use credentials.",
+          "Future provider requests require available authorized credentials, meeting-specific access and explicit permission for the live operation. [SRC-fb47d85557f7, SRC-9f5cdcf75bf3]",
+          "The external_api declaration establishes neither availability nor authorization.",
+          "Imported individual evidence remains subject to the local secretary-intake and election-officer evidence-access restrictions. [SRC-e44d3a903e12]"
+        ],
+        "external_effects": [
+          "A future authorized execution would make authenticated ballot-export requests to the external voting provider and transfer meeting ballot evidence into local intake. No request or transfer is performed by this plan. [SRC-9f5cdcf75bf3]"
+        ],
+        "completion_conditions": [
+          "ISS-c8b962b9265a and ISS-e929db3a217c are resolved for the intended meeting before any live execution or trusted-live acceptance.",
+          "Every listed resource has a separate successful availability and permission check.",
+          "The documented provider contract determines field mapping, authenticity checks and authoritative cast_at interpretation without invented semantics.",
+          "Exported records enter the same structural, eligibility, temporal, proxy and identity checks as local evidence.",
+          "Unestablished authenticity or timestamp authority prevents evidence from being accepted as trusted live input.",
+          "Final mixed-file identity behavior follows the clarification required by W03.",
+          "Any eventual live acceptance evidence identifies the authorized meeting scope and actual provider response; synthetic cases alone cannot satisfy it.",
+          "Local validation and ordinary counting remain usable while this node is blocked."
+        ],
+        "verification_evidence": [
+          "Proposed provider-contract review and access/permission records; currently missing. [SRC-fb47d85557f7, SRC-9f5cdcf75bf3]",
+          "Proposed offline mapping and trust-boundary cases using explicitly synthetic provider representations. Not executed and not live-provider evidence.",
+          "Proposed future authorized export trace linking provider authenticity/timestamp evidence to local validation and identity dispositions. No live execution or evidence is supplied. [SRC-9f5cdcf75bf3, SRC-981e606779bf]"
+        ],
+        "boundary_rationale": "Trusted live acquisition has distinct external resource, permission and evidence requirements. Isolating the adapter prevents its unresolved contract and access blockers from disabling the local application. Required resources are preserved exactly and remain unavailable; interface and component choices are proposals. [SRC-fb47d85557f7, SRC-9f5cdcf75bf3]"
+      },
+      {
+        "task_id": "W08",
+        "objective": "Plan, without performing, provider publication of aggregate-only certified results. Block execution on ISS-58537587a470 and ISS-e929db3a217c until provider contracts and authorized access exist. Consume W05's exact certified package, chair authorization and timeout-resolution controls; immediately recheck currency and contest-specific eligibility before any future authorized send. A package containing the director contest also requires its resolved-policy result from W06; ordinary-only publication does not depend on that branch or on live intake. [SRC-e44d3a903e12, SRC-9f5cdcf75bf3]",
+        "requirement_ids": [
+          "REQ-3d58d3e4e36b"
+        ],
+        "depends_on": [
+          "W01",
+          "W05"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [
+          "external_voting_provider",
+          "provider_account_and_credentials",
+          "authorized_provider_meeting_access"
+        ],
+        "operation_kind": "external_operation",
+        "inputs": [
+          "Provider endpoint, authentication, meeting permissions, publication schema, duplicate-publication behavior and documented unknown-outcome resolution procedure once established. These remain unknown. [SRC-9f5cdcf75bf3]",
+          "W05 current exact certified package version, aggregate-only projection, meeting, contest set and separate chair authorization.",
+          "W05 current staleness, contest-blocker and prior-attempt outcome state, including documented resolution of any prior unknown attempt.",
+          "For a contest set containing the director election, the resolved-policy result from W06 accepted through W05; ordinary-only sets require no director branch.",
+          "Separate availability and permission checks for the listed resources and authorization for the intended external operation. None is presently supplied. [SRC-fb47d85557f7, SRC-9f5cdcf75bf3]"
+        ],
+        "outputs": [
+          "Proposed provider-schema mapping of the exact certified aggregate package.",
+          "Proposed pre-send decision bound to the current package, authorization, meeting, contest set and prior-attempt state.",
+          "Proposed attempt evidence and provider outcome mapped to rejected, accepted for processing, published or unknown.",
+          "Proposed package/authorization-linked outcome and resolution records supplied to W05.",
+          "Future authorized member-portal publication evidence, expressly absent from this planning result."
+        ],
+        "interfaces": [
+          "Proposed provider publication request/response interface; concrete schema and duplicate behavior remain unresolved.",
+          "W05 pre-send currency, contest-blocker, authorization and timeout-hold interface, checked immediately before sending.",
+          "Proposed provider-outcome mapping that distinguishes acceptance from publication and treats timeout as unknown.",
+          "Proposed provider-specific outcome-resolution evidence interface; its mechanism requires contract clarification.",
+          "Aggregate-only package serialization boundary excluding individual ballot choices and evidence."
+        ],
+        "components": [
+          "assemblycount/adapters/provider_publication.py",
+          "assemblycount/adapters/provider_publication_schema.py",
+          "assemblycount/adapters/provider_publication_outcomes.py"
+        ],
+        "tools": [
+          "python",
+          "external_api"
+        ],
+        "permissions": [
+          "execution_authorized is false; no provider request, publication or retry is authorized or performed.",
+          "Future execution requires available authorized provider credentials and meeting access plus explicit permission for the external operation. [SRC-fb47d85557f7, SRC-9f5cdcf75bf3]",
+          "The meeting chair must separately authorize the exact certified package version, meeting and contest set; certification is insufficient. [SRC-9f5cdcf75bf3]",
+          "Changed results invalidate authorization; currency and authorization must be rechecked immediately before sending. [SRC-9f5cdcf75bf3]",
+          "A prior timeout requires documented outcome resolution before another attempt; resolution does not grant fresh publication permission. [SRC-9f5cdcf75bf3]",
+          "The external_api declaration and resource names establish neither availability nor authority."
+        ],
+        "external_effects": [
+          "A future authorized execution would submit certified aggregate results to the voting provider for publication to the member portal, potentially making those aggregates visible to members. No submission or publication occurs in this plan. [SRC-9f5cdcf75bf3]",
+          "Any provider interaction used to resolve an unknown publication outcome is also an external operation requiring its established contract and applicable authorization; no recovery request or resend is performed."
+        ],
+        "completion_conditions": [
+          "ISS-58537587a470 and ISS-e929db3a217c are resolved and all external resources pass separate availability and permission checks before live execution.",
+          "The provider publication schema and duplicate-publication/outcome-resolution behavior are documented without assumed idempotency or automatic retry.",
+          "Only aggregates from the exact current certified package and authorized contest set appear in the outgoing representation.",
+          "Missing or mismatched chair authorization, changed results, stale calculations, blocked contests or unresolved prior unknown outcomes prevent sending.",
+          "Currency and authorization are rechecked immediately before any future authorized send.",
+          "A director-containing package requires resolved director policy and its accepted result; an ordinary-only package has no W06 or W07 prerequisite.",
+          "Provider outcomes preserve rejected, accepted for processing, published and unknown distinctions and link to the attempted package and authorization.",
+          "Timeout records unknown and produces no automatic resend; another attempt requires documented resolution and renewed pre-send checks.",
+          "Live publication acceptance requires future authorized provider evidence; local simulation does not establish publication success."
+        ],
+        "verification_evidence": [
+          "Proposed offline schema, aggregate-privacy and pre-send gate cases using synthetic responses. Not executed. [SRC-e44d3a903e12, SRC-9f5cdcf75bf3]",
+          "Proposed outcome mapping and timeout scenarios proving acceptance is distinct from publication and no automatic retry occurs. Not executed. [SRC-9f5cdcf75bf3]",
+          "Proposed future provider-contract, access-permission, exact chair-authorization and publication-outcome records linked to the attempted package. All live evidence is currently absent. [SRC-fb47d85557f7, SRC-9f5cdcf75bf3, SRC-981e606779bf]"
+        ],
+        "boundary_rationale": "Publication creates an external effect and therefore remains separate from local certification and authorization enforcement. Its blocker applies to live exchange, while W05 can prepare and verify controls locally. Director results are a conditional input determined by the authorized contest set, preserving ordinary-only publication independence. No external operation is authorized by this plan. [SRC-ed7994667b48, SRC-e44d3a903e12, SRC-9f5cdcf75bf3]"
+      }
+    ]
+  },
+  "global_requirement_ids": [
+    "REQ-0dde232706ea",
+    "REQ-cee197119216",
+    "REQ-8202062dc728",
+    "REQ-e112cb2f3c5f",
+    "REQ-2c64c88852c8",
+    "REQ-311e9985c8a3"
+  ],
+  "planning_objective": "Create one implementation-independent technical contract per increment with the same task ID. Include source-based business rules, preconditions/data structures/validation/error behavior and objective acceptance criteria. Each contract must cover all its increment requirement IDs AND global requirement IDs. Every contract needs normal, invalid and boundary criteria; external operations also need permission checks and future real external verification. All criteria state=proposed. Each criterion must specify concrete given/action/expected observable results. Preserve source exclusions. Do not invent business-rule precedence or resolve blockers. For blocked business behavior specify safe fail-closed behavior while unresolved and list issue IDs; final behavior remains pending clarification. Existing increment inputs/outputs/interfaces/permissions/effects stay authoritative and apply to the contract. Keep responses concise enough for existing bounded context; no tests have been generated, protected or run for the planned product."
+}

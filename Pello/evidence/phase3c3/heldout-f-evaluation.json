@@ -1,0 +1,19 @@
+{
+  "evaluation_id": "phase3c3-heldout-f-v1",
+  "verdict": "FAIL",
+  "objective_verdict": "FAIL",
+  "interpretation_review": "PASS",
+  "architecture_validation": "PASS",
+  "increments_validation": "PASS",
+  "requirements": 37,
+  "functional_increments": 8,
+  "critical_failures": [
+    "Contract planning context exceeds55000 before reservation; no complete contracts/model decisions/PipelineManifest"
+  ],
+  "no_contract_turn_reserved": true,
+  "original_FAIL_preserved": true,
+  "fresh_case_required_after_correction": true,
+  "specification_sha256": "7bbb93f73283a3b54262c1cd4da52b8fee5ee628854e66036adce9e0467c4cec",
+  "rubric_sha256": "dab880053302bf505bcf9e89af37e7b79147728362c93934543e33cb56398e18",
+  "evidence": "heldout-f-planning.log; contract-context-correction/original-contracts-input.json"
+}

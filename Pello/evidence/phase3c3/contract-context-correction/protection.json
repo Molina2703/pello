@@ -1,0 +1,7 @@
+{
+  "hashes": {
+    "tests\\test_contract_context_batches.py": "11222aa0079e16d71144a8ff37a37f10a0b4ba13fa016c45427736e0dc47c414"
+  },
+  "frozen_before_implementation": true,
+  "contract": "Every batch retains complete requirements/source and exact supplied increment fields; all model calls use existing guarded invoke; complete merged proposal validates through unchanged guards; no omission/truncation or fake tests"
+}

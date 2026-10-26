@@ -1,0 +1,44 @@
+test_dense_context_is_batched_with_complete_source_and_exact_increment_fields (tests.test_contract_context_batches.ContractContextBatchTests.test_dense_context_is_batched_with_complete_source_and_exact_increment_fields) ... ERROR
+test_interrupted_batches_replay_completed_response_without_duplicate_call (tests.test_contract_context_batches.ContractContextBatchTests.test_interrupted_batches_replay_completed_response_without_duplicate_call) ... ERROR
+test_irreducible_single_increment_rejected_before_any_model_call (tests.test_contract_context_batches.ContractContextBatchTests.test_irreducible_single_increment_rejected_before_any_model_call) ... ok
+test_missing_batch_contract_cannot_produce_a_manifest (tests.test_contract_context_batches.ContractContextBatchTests.test_missing_batch_contract_cannot_produce_a_manifest) ... ok
+test_small_legacy_input_keeps_one_original_phase (tests.test_contract_context_batches.ContractContextBatchTests.test_small_legacy_input_keeps_one_original_phase) ... ok
+
+======================================================================
+ERROR: test_dense_context_is_batched_with_complete_source_and_exact_increment_fields (tests.test_contract_context_batches.ContractContextBatchTests.test_dense_context_is_batched_with_complete_source_and_exact_increment_fields)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_contract_context_batches.py", line 48, in test_dense_context_is_batched_with_complete_source_and_exact_increment_fields
+    self.dense();result=self.core.propose_contracts('unit');self.assertGreater(len(self.calls),1)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 737, in propose_contracts
+    draft,_=self._invoke(project_id,version['version'],'plan-contracts','planner',payload,IncrementContracts)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_contract_context_batches.py", line 22, in invoke
+    self.assertLessEqual(len(self.core._prompt(phase,payload)),55000)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 1187, in _prompt
+    raise ValueError('Planning context exceeds 55,000 characters; no silent truncation')
+ValueError: Planning context exceeds 55,000 characters; no silent truncation
+
+======================================================================
+ERROR: test_interrupted_batches_replay_completed_response_without_duplicate_call (tests.test_contract_context_batches.ContractContextBatchTests.test_interrupted_batches_replay_completed_response_without_duplicate_call)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_contract_context_batches.py", line 60, in test_interrupted_batches_replay_completed_response_without_duplicate_call
+    with self.assertRaises(RuntimeError):self.core.propose_contracts('unit')
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 737, in propose_contracts
+    draft,_=self._invoke(project_id,version['version'],'plan-contracts','planner',payload,IncrementContracts)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_contract_context_batches.py", line 22, in invoke
+    self.assertLessEqual(len(self.core._prompt(phase,payload)),55000)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 1187, in _prompt
+    raise ValueError('Planning context exceeds 55,000 characters; no silent truncation')
+ValueError: Planning context exceeds 55,000 characters; no silent truncation
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.208s
+
+FAILED (errors=2)
