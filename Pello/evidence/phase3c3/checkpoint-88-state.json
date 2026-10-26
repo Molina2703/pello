@@ -1,0 +1,62 @@
+{
+  "at": "2026-10-26T23:17:59.989286+00:00",
+  "phase3c3": "PARTIAL",
+  "overall_phase3c": "PARTIAL",
+  "execution": "NO_NEW_FRESH_CASE_BEFORE_AUTHORIZATION",
+  "cumulative_limit": 101,
+  "charged_reservations": 88,
+  "completed_SDK_calls": 84,
+  "statuses": [
+    {
+      "status": "COMPLETED",
+      "count": 84
+    },
+    {
+      "status": "FAILED_PROVIDER_QUOTA_RECONCILED",
+      "count": 1
+    },
+    {
+      "status": "NOT_SUBMITTED_ACTIVE_WRITER_RECONCILED",
+      "count": 2
+    },
+    {
+      "status": "NOT_SUBMITTED_CONTEXT_REJECTED",
+      "count": 1
+    }
+  ],
+  "remaining_global_slots": 13,
+  "author_used_max": [
+    14,
+    14
+  ],
+  "deadline": "2026-10-27T06:30:00+00:00",
+  "STOP": false,
+  "sqlite_integrity": "ok",
+  "regression_tests": 257,
+  "protected_C2": 63,
+  "protected_C3_checks": 40,
+  "protected_C3_sources": 11,
+  "historical_hashes": 1493,
+  "checkpoint_objects": 25,
+  "all_checkpoint_git_objects_present": true,
+  "eight_original_blind_FAILs_preserved": true,
+  "H_interpretation_review": "PASS",
+  "H_architecture": "FAIL_missing_requirement_prerequisite",
+  "H_not_rerun_after_capability_change": true,
+  "new_I_not_started": true,
+  "next_capacity_proposal": {
+    "global_cap": 114,
+    "available_after_approval": 26,
+    "complete_fresh_evaluation_estimate": 20,
+    "failure_reserve": 6,
+    "author_project_cap": 18,
+    "author_available_after_approval": 4,
+    "deadline_unchanged": "2026-10-27T06:30:00+00:00",
+    "authorized": false
+  },
+  "latest_engineering_checkpoint": "architecture-recovery/accepted-regression-checkpoint.json",
+  "external_business_operations": 0,
+  "Phase3D_started": false,
+  "snapshot_sha256": "6c5a853f74d2e2a5a84b3a9d24f6b164410c4b4a08548930ad4092c532a50fdb",
+  "HEAD_before_checkpoint_commit": "ba62a7a744380b8dfaa5d7b70b123a7acad4806b"
+}

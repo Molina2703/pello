@@ -681,7 +681,21 @@ class ProductPlanningCore(Bridge):
         version=self.version_row(project_id)
         draft,_=self._invoke(project_id,version['version'],'plan-architecture','planner',payload,ArchitectureProposal)
         analysis=validate_planning_input(payload['requirements'])
-        result={'proposal':draft.model_dump(mode='json'),'validation':validate_architecture(draft,analysis)}
+        try:
+            validation=validate_architecture(draft,analysis)
+        except ValueError as exc:
+            # Preserve invalid model output and allow one bounded regeneration.
+            # Existing _invoke still enforces source, STOP, context and budgets;
+            # the same unchanged validator decides whether correction succeeds.
+            rejected={'source_sha256':payload['source_sha256'],'validation_error':str(exc),
+                'proposal':draft.model_dump(mode='json')}
+            self._ensure_json_artifact(self.folder(project_id)/'evidence'/f'version-{version["version"]}'/'planning'/'architecture-initial-rejection.json',rejected)
+            correction={**payload,'architecture_validation_feedback':{
+                'validation_error':str(exc),'rejected_proposal':rejected['proposal'],
+                'instruction':'Correct this invalid architecture using the complete original requirements and their prerequisites. Regroup work if necessary; do not drop requirements or dependencies, introduce cycles, resolve blockers, or grant authorization. Return the same architecture schema. This is the single permitted validation correction; validation remains mandatory.'}}
+            draft,_=self._invoke(project_id,version['version'],'plan-architecture-correction-1','planner',correction,ArchitectureProposal)
+            validation=validate_architecture(draft,analysis)
+        result={'proposal':draft.model_dump(mode='json'),'validation':validation}
         path=self.folder(project_id)/'evidence'/f'version-{version["version"]}'/'planning'/'architecture.json'
         self._ensure_json_artifact(path,result)
         return result

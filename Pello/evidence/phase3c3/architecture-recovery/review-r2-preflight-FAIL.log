@@ -1,0 +1,6 @@
+warning: in the working copy of 'Pello/athis_autopilot/product_planning.py', LF will be replaced by CRLF the next time Git touches it
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\evidence\phase3c3\review_architecture_recovery.py", line 34, in <module>
+    assert len(json.dumps(evidence,ensure_ascii=False))<=50000
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

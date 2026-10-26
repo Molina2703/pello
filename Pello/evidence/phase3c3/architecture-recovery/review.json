@@ -1,0 +1,14 @@
+{
+  "verdict": "PASS",
+  "scope": "correct",
+  "correctness": "adequate",
+  "test_evidence": "pass",
+  "safety_and_preservation": "adequate",
+  "findings": [
+    "The correction remains bounded to one additional guarded invocation, preserves the initial rejection and requires unchanged validation before acceptance.",
+    "The added integration tests exercise production _invoke, SQLite accounting, STOP and budget rejection, and durable replay after restart with a controlled engine.",
+    "Supplied results show 83 focused checks and the complete 257-test regression passing, resolving the prior evidence blockers.",
+    "The changed_files inventory omits the supplied tests/test_architecture_recovery_ledger.py; this is a minor reporting omission."
+  ],
+  "rationale": "The implementation and added evidence support acceptance of this bounded recovery capability. No validator weakening, authorization expansion or concrete correctness defect is demonstrated. H remains FAIL; real SDK recovery efficacy and generalization still require a fresh held-out evaluation."
+}

@@ -1,0 +1,862 @@
+{
+  "objective": "Independent diagnosis of a preserved genuine held-out planning FAIL, against original source. This is NOT full-plan semantic acceptance and must not override objective FAIL. Determine whether the rejected graph loses a legitimate accepted requirement dependency, whether the interpretation imposed an unjustified prerequisite, or whether validator is incorrect. Assess ordering/grouping of pre-send authorization enforcement versus external delivery and ordinary local approval. Generic remediation only: no replacement architecture, graph or manually assigned nodes. Do not modify implementation. If this is model output violating an already enforced invariant, distinguish that from a demonstrated deterministic code defect; do not propose speculative changes just to obtain PASS. No private Planner reasoning is provided.",
+  "original_specification": "# CueConform: subtitle adaptation for revised video edits\n\n## Purpose and boundaries\nA small localization studio needs to adapt translated subtitles when clients shorten instructional videos. The pilot covers 12 episodes, two target languages per episode and at most 10,000 source cues per episode. All video uses exactly 25 frames per second; times are integer frame positions and intervals include their start and exclude their end. The service does not edit video, recognize speech, generate translations, change playback speed or support variable-frame-rate media. Synthetic cue files, edit lists and glossary entries are available. External credentials, accounts and delivery authorizations are absent.\n\n## Source material and edit versions\nAn editor can preview and accept source cues containing cue_id, episode_id, start_frame, end_frame, original_text and required_term_ids. Cues must have unique identifiers within an episode, nonempty text and bounds satisfying 0 ≤ start < end ≤ source runtime. Reject an invalid import entirely, with row-level reasons and no changes. An identical source version and content is a no-op; changed content under that version is rejected. Corrections create a new source version and preserve previous values, actor, time and reason.\n\nEach approved edit list names its source version and ordered retained source intervals. Intervals must be nonempty, nonoverlapping, in source order and within runtime. They concatenate without gaps to form the revised video. A cue entirely within one retained interval shifts by that interval's source-to-output offset, preserving its duration. A cue intersecting a removed region, including one removed entirely, requires editorial review; do not silently delete, split or shorten it. An editor can explicitly remove it or create reviewed replacement cues with lineage to the original. Revised cues must lie within the resulting video runtime. Edit validation and cue conforming can be planned locally before any delivery connection exists.\n\n## Translation and terminology\nA translator records target text per cue and language, retaining revisions and attribution. An empty target remains untranslated. Glossary entries have an identifier, target language, preferred phrase and version. For every required_term_id on a cue, its language-specific preferred phrase must appear as an exact case-sensitive substring in the target, or a language reviewer must record a reasoned exception. Missing glossary coverage blocks that cue's language approval, not other languages. Do not automatically substitute words. Changing target text, a required glossary entry or its exception invalidates the affected language approval. Translation and glossary validation can be planned independently using synthetic cues without resolving children's delivery policy.\n\n## Ordinary subtitle checks\nFor ordinary videos, every target cue must last 25–175 frames inclusive, contain at most two lines and have at most 42 characters per line. Count Unicode code points, including spaces and punctuation but excluding line-break characters. Reading speed is that character count divided by duration in seconds and must not exceed 17 characters per second. Compare exact values rather than rounded display values. Consecutive cues in a language track must have at least two frames between the earlier end and later start; overlap fails. Untranslated text, unresolved editorial review or a failed check prevents approval of the affected track. A language reviewer may approve a track only against its current source, edit, translation and glossary versions. Review copies may be prepared while failures remain, clearly marked unapproved.\n\n## Children's-video contradiction\nThe signed client specification says “children's subtitles must not exceed 12 characters per second.” The studio's binding accessibility agreement says “children's subtitles must not exceed 15 characters per second.” Both are described as the exact acceptance ceiling, and no precedence ruling exists. The client accessibility owner must resolve the contradiction. Do not choose either ceiling or approve or deliver a children's track until resolved. Source intake, conforming, translation and terminology review remain actionable, and ordinary-video approval remains available. Users disagree whether the review overview should initially group issues by episode or language; either grouping is acceptable and must not alter checks.\n\n## Review history and delivery\nThe overview must expose untranslated cues, editorial-review items, terminology exceptions, failed checks, stale approvals and delivery outcomes. An approved track is a versioned package tied to the exact episode edit and target language. Relevant changes make its approval stale; a previously delivered package remains immutable. A correction requires a newly reviewed package linked to the previous delivery. Preserve cue lineage and the reasons for editorial removals and terminology exceptions.\n\nThe client's media platform is expected to accept a subtitle track for an existing video asset. Its endpoint, authentication, asset permissions, asset-to-edit identification, accepted subtitle format and encoding, replacement behavior and acknowledgement meaning are unknown. These block live delivery, not local review copies or ordinary checks. Before an attempt, the studio producer must separately authorize the exact approved package version, client asset, edit version and language. This brief grants no execution permission. Track approval is not delivery authorization; changed package or destination details invalidate authorization. Recheck current approval and authorization before sending, and never silently replace a different asset's track.\n\nDistinguish awaiting acknowledgement, delivered, rejected and unknown outcomes. A timeout is unknown, not delivered; another attempt requires documented outcome resolution rather than automatic retry. Delivered status requires the positive evidence defined by the eventual platform contract. Link each outcome to its package, destination and authorization. Editors maintain sources, edit lists and editorial decisions; translators maintain target text; language reviewers approve terminology exceptions and tracks; only the studio producer authorizes delivery. Viewers can read review copies. Enforce permissions beyond screen visibility; only the client accessibility owner resolves the children's ceiling.\n\n## Acceptance and delivery expectations\n\n## Acceptance and delivery expectations\n\nRetaining source intervals [0,250) and [500,1000) produces a 750-frame video. A cue at [550,600) becomes [300,350), preserving its 50-frame duration. A cue at [240,510) requires editorial review rather than automatic shortening.\n\nFor an ordinary track, 34 counted characters over 50 frames give exactly 17 characters per second and pass the reading-speed check; 35 give 17.5 and fail. If one cue ends at frame 100, the next may start at 102; starting at 101 fails the gap check. Passing these individual checks does not establish track approval.\n\nChanging an approved track's target text makes its approval stale. A delivery timeout remains unknown and does not establish delivery. No children's acceptance ceiling is selected while the contradiction remains unresolved.\n\nThese examples define expected outcomes for proposed verification. This brief supplies no implementation, executed tests or live-platform evidence and grants no delivery execution permission.\n",
+  "analysis_requirements": [
+    {
+      "requirement_id": "REQ-509883415145",
+      "source_ids": [
+        "SRC-5aca7f8fb45b"
+      ],
+      "normalized": "Support a pilot of 12 episodes, two target languages per episode, and at most 10,000 source cues per episode.",
+      "category": "constraint",
+      "depends_on": [],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-eecafd275877",
+      "source_ids": [
+        "SRC-5aca7f8fb45b"
+      ],
+      "normalized": "Represent time as integer frame positions at exactly 25 frames per second, using start-inclusive, end-exclusive intervals.",
+      "category": "business_rule",
+      "depends_on": [],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-b8f2b17da43b",
+      "source_ids": [
+        "SRC-5aca7f8fb45b"
+      ],
+      "normalized": "Exclude video editing, speech recognition, translation generation, playback-speed changes, and variable-frame-rate media.",
+      "category": "exclusion",
+      "depends_on": [],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-7dd1463d5bf2",
+      "source_ids": [
+        "SRC-28e845e111c3"
+      ],
+      "normalized": "Allow editors to preview and accept source cues containing cue_id, episode_id, start_frame, end_frame, original_text, and required_term_ids. Require identifiers unique within an episode, nonempty text, and 0 ≤ start < end ≤ source runtime. Reject an invalid import entirely with row-level reasons and no changes.",
+      "category": "functional",
+      "depends_on": [
+        "REQ-eecafd275877"
+      ],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-c878737b1de3",
+      "source_ids": [
+        "SRC-28e845e111c3"
+      ],
+      "normalized": "Treat identical source version and content as a no-op, reject changed content under an existing version, and record corrections in a new source version preserving previous values, actor, time, and reason.",
+      "category": "business_rule",
+      "depends_on": [
+        "REQ-7dd1463d5bf2"
+      ],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-6cf137cf629c",
+      "source_ids": [
+        "SRC-8cadb4bd8960",
+        "SRC-0a22340c1394"
+      ],
+      "normalized": "Associate each approved edit list with its source version and ordered retained source intervals. Validate that intervals are nonempty, nonoverlapping, in source order, and within source runtime; concatenate them without output gaps.",
+      "category": "business_rule",
+      "depends_on": [
+        "REQ-eecafd275877"
+      ],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-dfce560716ca",
+      "source_ids": [
+        "SRC-8cadb4bd8960",
+        "SRC-0a22340c1394"
+      ],
+      "normalized": "Shift a cue wholly contained in one retained interval by that interval's source-to-output offset, preserving its duration.",
+      "category": "functional",
+      "depends_on": [
+        "REQ-6cf137cf629c"
+      ],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-087c74099592",
+      "source_ids": [
+        "SRC-8cadb4bd8960",
+        "SRC-0a22340c1394",
+        "SRC-bf19f5b23b9b"
+      ],
+      "normalized": "Require editorial review for cues intersecting any removed region, including cues removed entirely. Permit explicit editorial removal or reviewed replacement cues with lineage to the original; preserve removal reasons and never silently delete, split, or shorten affected cues.",
+      "category": "functional",
+      "depends_on": [
+        "REQ-6cf137cf629c"
+      ],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-60c258cc38d0",
+      "source_ids": [
+        "SRC-8cadb4bd8960"
+      ],
+      "normalized": "Require revised cues to lie within the resulting video runtime.",
+      "category": "business_rule",
+      "depends_on": [
+        "REQ-6cf137cf629c"
+      ],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-a647e89da9eb",
+      "source_ids": [
+        "SRC-29b6634203bb"
+      ],
+      "normalized": "Allow translators to record target text per cue and language, retaining revisions and attribution. Treat an empty target as untranslated.",
+      "category": "functional",
+      "depends_on": [],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-7bd8121977cd",
+      "source_ids": [
+        "SRC-29b6634203bb"
+      ],
+      "normalized": "Represent glossary entries with an identifier, target language, preferred phrase, and version.",
+      "category": "functional",
+      "depends_on": [],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-c5b6ed9931ac",
+      "source_ids": [
+        "SRC-29b6634203bb",
+        "SRC-bf19f5b23b9b"
+      ],
+      "normalized": "For every required_term_id, require the language-specific preferred phrase as an exact case-sensitive substring in target text, unless a language reviewer records a reasoned exception. Preserve exception reasons and do not automatically substitute words.",
+      "category": "business_rule",
+      "depends_on": [
+        "REQ-a647e89da9eb",
+        "REQ-7bd8121977cd"
+      ],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-9e738a73eb5e",
+      "source_ids": [
+        "SRC-29b6634203bb"
+      ],
+      "normalized": "Block a cue's language approval when required glossary coverage is missing, without blocking other languages.",
+      "category": "business_rule",
+      "depends_on": [
+        "REQ-7bd8121977cd",
+        "REQ-c5b6ed9931ac"
+      ],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-3bb541b82d63",
+      "source_ids": [
+        "SRC-29b6634203bb",
+        "SRC-cdf17acb93b7"
+      ],
+      "normalized": "Invalidate affected language approval when target text, a required glossary entry, or its terminology exception changes.",
+      "category": "business_rule",
+      "depends_on": [],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-4cea70f0858b",
+      "source_ids": [
+        "SRC-ce02372829ee"
+      ],
+      "normalized": "For ordinary videos, require every target cue to last 25–175 frames inclusive, contain at most two lines, and contain at most 42 Unicode code points per line, including spaces and punctuation but excluding line-break characters.",
+      "category": "business_rule",
+      "depends_on": [
+        "REQ-eecafd275877"
+      ],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-a89b7e4f2360",
+      "source_ids": [
+        "SRC-ce02372829ee",
+        "SRC-b655e256b949"
+      ],
+      "normalized": "For ordinary videos, require reading speed not to exceed 17 characters per second. Divide counted Unicode code points, including spaces and punctuation and excluding line breaks, by duration in seconds; compare exact values rather than rounded display values.",
+      "category": "business_rule",
+      "depends_on": [
+        "REQ-eecafd275877"
+      ],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-aad15da067ad",
+      "source_ids": [
+        "SRC-ce02372829ee",
+        "SRC-b655e256b949"
+      ],
+      "normalized": "For ordinary language tracks, require consecutive cues to have at least two frames between the earlier end and later start; overlaps fail.",
+      "category": "business_rule",
+      "depends_on": [
+        "REQ-eecafd275877"
+      ],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-b1bff2dc0df8",
+      "source_ids": [
+        "SRC-ce02372829ee",
+        "SRC-29b6634203bb",
+        "SRC-b655e256b949"
+      ],
+      "normalized": "Permit language-reviewer approval of an ordinary track only against its current source, edit, translation, and glossary versions, with no untranslated text, unresolved editorial review, failed checks, or unresolved terminology approval blockers.",
+      "category": "authorization",
+      "depends_on": [
+        "REQ-c5b6ed9931ac",
+        "REQ-9e738a73eb5e",
+        "REQ-3bb541b82d63",
+        "REQ-4cea70f0858b",
+        "REQ-a89b7e4f2360",
+        "REQ-aad15da067ad"
+      ],
+      "uncertainty": "clear",
+      "authorization_required": true
+    },
+    {
+      "requirement_id": "REQ-4173bfc01c1d",
+      "source_ids": [
+        "SRC-ce02372829ee",
+        "SRC-c7eb4cffb22d"
+      ],
+      "normalized": "Allow local review copies while failures remain, clearly marking such copies unapproved, independently of a delivery connection.",
+      "category": "functional",
+      "depends_on": [],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-09b22b797112",
+      "source_ids": [
+        "SRC-1e52c7fbb8a7"
+      ],
+      "normalized": "The signed client specification states an exact children's subtitle acceptance ceiling of 12 characters per second; retain this as a conflicting requirement without selecting it for enforcement.",
+      "category": "business_rule",
+      "depends_on": [],
+      "uncertainty": "ambiguous",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-48baf7d5cbf2",
+      "source_ids": [
+        "SRC-1e52c7fbb8a7"
+      ],
+      "normalized": "The studio's binding accessibility agreement states an exact children's subtitle acceptance ceiling of 15 characters per second; retain this as a conflicting requirement without selecting it for enforcement.",
+      "category": "business_rule",
+      "depends_on": [],
+      "uncertainty": "ambiguous",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-743c948a04ab",
+      "source_ids": [
+        "SRC-1e52c7fbb8a7",
+        "SRC-cdf17acb93b7",
+        "SRC-e223a23ca33c"
+      ],
+      "normalized": "Do not select a children's acceptance ceiling or approve or deliver a children's track until the client accessibility owner resolves the contradiction.",
+      "category": "business_rule",
+      "depends_on": [],
+      "uncertainty": "clear",
+      "authorization_required": true
+    },
+    {
+      "requirement_id": "REQ-361b58010303",
+      "source_ids": [
+        "SRC-5aca7f8fb45b",
+        "SRC-8cadb4bd8960",
+        "SRC-29b6634203bb",
+        "SRC-1e52c7fbb8a7",
+        "SRC-c7eb4cffb22d"
+      ],
+      "normalized": "Keep source intake, edit validation, conforming, translation, and terminology review actionable using available synthetic material despite unresolved children's policy or delivery integration. Keep ordinary checks and ordinary-video approval available independently.",
+      "category": "constraint",
+      "depends_on": [],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-f64446cc5cdb",
+      "source_ids": [
+        "SRC-bf19f5b23b9b",
+        "SRC-1e52c7fbb8a7"
+      ],
+      "normalized": "Expose untranslated cues, editorial-review items, terminology exceptions, failed checks, stale approvals, and delivery outcomes in the review overview. Initial grouping may be by episode or language and must not alter checks.",
+      "category": "functional",
+      "depends_on": [],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-875af2bda29b",
+      "source_ids": [
+        "SRC-bf19f5b23b9b",
+        "SRC-ce02372829ee",
+        "SRC-cdf17acb93b7"
+      ],
+      "normalized": "Represent an approved track as a versioned package tied to its exact episode edit and target language. Relevant changes make approval stale. Keep delivered packages immutable and require a newly reviewed correction package linked to the previous delivery.",
+      "category": "business_rule",
+      "depends_on": [],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-9ef64b340a28",
+      "source_ids": [
+        "SRC-c7eb4cffb22d",
+        "SRC-5aca7f8fb45b"
+      ],
+      "normalized": "Provide live delivery of an approved subtitle track to an existing client video asset only after resolving the platform endpoint, authentication, asset permissions, asset-to-edit identification, accepted subtitle format and encoding, replacement behavior, and acknowledgement contract.",
+      "category": "integration",
+      "depends_on": [
+        "REQ-875af2bda29b"
+      ],
+      "uncertainty": "ambiguous",
+      "authorization_required": true
+    },
+    {
+      "requirement_id": "REQ-84ee858edbf7",
+      "source_ids": [
+        "SRC-c7eb4cffb22d",
+        "SRC-e223a23ca33c",
+        "SRC-2ff4a809039c"
+      ],
+      "normalized": "Require separate studio-producer authorization before a delivery attempt, bound to the exact approved package version, client asset, edit version, and language. Track approval is not delivery authorization, and package or destination changes invalidate authorization. The brief grants no execution permission.",
+      "category": "authorization",
+      "depends_on": [],
+      "uncertainty": "clear",
+      "authorization_required": true
+    },
+    {
+      "requirement_id": "REQ-62c8b340f20b",
+      "source_ids": [
+        "SRC-c7eb4cffb22d"
+      ],
+      "normalized": "Immediately before sending, recheck current package approval and matching delivery authorization, and never silently replace a different asset's track.",
+      "category": "authorization",
+      "depends_on": [
+        "REQ-875af2bda29b",
+        "REQ-9ef64b340a28",
+        "REQ-84ee858edbf7"
+      ],
+      "uncertainty": "clear",
+      "authorization_required": true
+    },
+    {
+      "requirement_id": "REQ-23d1199022b2",
+      "source_ids": [
+        "SRC-e223a23ca33c",
+        "SRC-cdf17acb93b7"
+      ],
+      "normalized": "Distinguish awaiting acknowledgement, delivered, rejected, and unknown delivery outcomes. Classify a timeout as unknown rather than delivered.",
+      "category": "business_rule",
+      "depends_on": [],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-5cdd99cb284d",
+      "source_ids": [
+        "SRC-e223a23ca33c"
+      ],
+      "normalized": "After a timeout or unknown delivery outcome, require documented outcome resolution before another attempt and do not automatically retry.",
+      "category": "business_rule",
+      "depends_on": [
+        "REQ-23d1199022b2"
+      ],
+      "uncertainty": "ambiguous",
+      "authorization_required": true
+    },
+    {
+      "requirement_id": "REQ-b6e8b83f4a45",
+      "source_ids": [
+        "SRC-e223a23ca33c",
+        "SRC-cdf17acb93b7"
+      ],
+      "normalized": "Set delivered status only when the positive evidence required by the eventual platform contract has been obtained.",
+      "category": "integration",
+      "depends_on": [
+        "REQ-23d1199022b2"
+      ],
+      "uncertainty": "ambiguous",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-4da0ce732101",
+      "source_ids": [
+        "SRC-e223a23ca33c"
+      ],
+      "normalized": "Link every delivery outcome to its package, destination, and authorization.",
+      "category": "functional",
+      "depends_on": [],
+      "uncertainty": "clear",
+      "authorization_required": false
+    },
+    {
+      "requirement_id": "REQ-af2fd334cb18",
+      "source_ids": [
+        "SRC-e223a23ca33c",
+        "SRC-1e52c7fbb8a7"
+      ],
+      "normalized": "Enforce permissions beyond screen visibility: editors maintain sources, edit lists, and editorial decisions; translators maintain target text; language reviewers approve terminology exceptions and tracks; only the studio producer authorizes delivery; viewers may read review copies; only the client accessibility owner resolves the children's ceiling.",
+      "category": "authorization",
+      "depends_on": [],
+      "uncertainty": "clear",
+      "authorization_required": true
+    },
+    {
+      "requirement_id": "REQ-981516140dd6",
+      "source_ids": [
+        "SRC-0a22340c1394",
+        "SRC-b655e256b949",
+        "SRC-cdf17acb93b7",
+        "SRC-2ff4a809039c"
+      ],
+      "normalized": "Use the supplied examples as expected outcomes for proposed verification. Do not treat the brief as evidence of an implementation, executed tests, successful live delivery, or delivery execution permission.",
+      "category": "constraint",
+      "depends_on": [],
+      "uncertainty": "clear",
+      "authorization_required": false
+    }
+  ],
+  "analysis_issues": [
+    {
+      "issue_id": "ISS-455421000352",
+      "kind": "contradiction",
+      "severity": "blocking",
+      "source_ids": [
+        "SRC-1e52c7fbb8a7",
+        "SRC-cdf17acb93b7"
+      ],
+      "affected_requirement_ids": [
+        "REQ-09b22b797112",
+        "REQ-48baf7d5cbf2",
+        "REQ-743c948a04ab"
+      ],
+      "description": "The signed client specification requires an exact children's acceptance ceiling of 12 characters per second, while the binding accessibility agreement requires an exact ceiling of 15. No precedence ruling exists.",
+      "question": "Which exact children's acceptance ceiling does the client accessibility owner authorize, and what precedence ruling resolves the conflicting documents?",
+      "rationale": "The contradiction prevents objective children's acceptance and release of children's tracks. Neither ceiling may be selected implicitly. Source intake, conforming, translation, terminology review, and ordinary-video approval remain available.",
+      "blocked_increment_ids": []
+    },
+    {
+      "issue_id": "ISS-634459dde797",
+      "kind": "integration_gap",
+      "severity": "blocking",
+      "source_ids": [
+        "SRC-c7eb4cffb22d",
+        "SRC-e223a23ca33c",
+        "SRC-5aca7f8fb45b"
+      ],
+      "affected_requirement_ids": [
+        "REQ-9ef64b340a28",
+        "REQ-62c8b340f20b",
+        "REQ-b6e8b83f4a45"
+      ],
+      "description": "The live platform endpoint, authentication, account access, asset permissions, asset-to-edit mapping, accepted subtitle format and encoding, replacement behavior, and acknowledgement meaning are unspecified or unavailable.",
+      "question": "What is the platform contract for these details, including the positive evidence that establishes delivery, and how will required access be supplied?",
+      "rationale": "These details determine the live integration, correct destination, transmitted representation, replacement effects, and objective delivery evidence. Local review copies, ordinary checks, and local outcome-state logic do not depend on resolving them.",
+      "blocked_increment_ids": []
+    },
+    {
+      "issue_id": "ISS-f8c0ef06586d",
+      "kind": "authorization_question",
+      "severity": "blocking",
+      "source_ids": [
+        "SRC-5aca7f8fb45b",
+        "SRC-c7eb4cffb22d",
+        "SRC-2ff4a809039c"
+      ],
+      "affected_requirement_ids": [
+        "REQ-62c8b340f20b"
+      ],
+      "description": "No delivery execution permission or package-specific producer authorization is supplied. A requirement to implement authorization checks does not grant permission to send.",
+      "question": "Before an actual attempt, has the studio producer separately authorized the exact approved package version, client asset, edit version, and language?",
+      "rationale": "The absence of authorization blocks an actual send. It does not block implementing authorization controls, preparing local copies, or conducting local verification.",
+      "blocked_increment_ids": []
+    },
+    {
+      "issue_id": "ISS-83746741071e",
+      "kind": "integration_gap",
+      "severity": "blocking",
+      "source_ids": [
+        "SRC-e223a23ca33c",
+        "SRC-c7eb4cffb22d"
+      ],
+      "affected_requirement_ids": [
+        "REQ-5cdd99cb284d"
+      ],
+      "description": "A subsequent attempt requires documented outcome resolution, but the process and evidence for resolving an unknown platform outcome are not defined.",
+      "question": "What platform-supported evidence and documented procedure resolve an unknown outcome sufficiently to permit another attempt?",
+      "rationale": "The missing recovery contract blocks a subsequent live attempt after an unknown outcome. The system can still implement timeout classification, prohibit automatic retry, retain outcome records, and support independent local work.",
+      "blocked_increment_ids": []
+    },
+    {
+      "issue_id": "ISS-1f810c27522d",
+      "kind": "ambiguity",
+      "severity": "non_blocking",
+      "source_ids": [
+        "SRC-1e52c7fbb8a7"
+      ],
+      "affected_requirement_ids": [
+        "REQ-f64446cc5cdb"
+      ],
+      "description": "Users prefer different initial overview groupings, but the source explicitly accepts either episode or language grouping.",
+      "question": "Should the initial overview group issues by episode or by language?",
+      "rationale": "Either choice satisfies the stated scope and must leave validation unchanged, so this preference does not block implementation or acceptance.",
+      "blocked_increment_ids": []
+    }
+  ],
+  "rejected_architecture": {
+    "architecture": [
+      "Proposed architecture: a local modular application with transactional persistence for versioned sources, edits, translations, terminology, approvals, packages, and delivery records. Storage technology and hosting remain implementation choices. [SRC-28e845e111c3, SRC-29b6634203bb, SRC-bf19f5b23b9b]",
+      "Keep source/conforming and translation/terminology modules independently usable with supplied synthetic material. Ordinary validation and local review must not depend on children's policy resolution or platform access. [SRC-8cadb4bd8960, SRC-29b6634203bb, SRC-1e52c7fbb8a7, SRC-c7eb4cffb22d]",
+      "Separate ordinary-track approval from the unresolved children's approval branch. Preserve both conflicting ceilings without choosing either; implement the unresolved-state prohibition locally. [SRC-1e52c7fbb8a7]",
+      "Separate local authorization, outcome recording, and retry prevention from external transmission and platform reconciliation. A platform adapter remains unspecified until its contract is supplied. [SRC-c7eb4cffb22d, SRC-e223a23ca33c]",
+      "Use immutable delivered-package snapshots and explicit links for corrections. Review views read current validation and approval status without modifying historical packages. [SRC-bf19f5b23b9b]",
+      "These are architecture proposals, not customer-approved implementation decisions. The supplied approval metadata and unapproved assumptions remain unchanged."
+    ],
+    "data_entities": [
+      "Episode and source version: episode identifier, source runtime, version, and original cue values; source corrections retain actor, time, and reason. [SRC-28e845e111c3]",
+      "Source cue: cue_id, episode_id, start_frame, end_frame, original_text, and required_term_ids, unique within its episode. [SRC-28e845e111c3]",
+      "Edit version: referenced source version, ordered retained intervals, cumulative output offsets, and resulting runtime. [SRC-8cadb4bd8960]",
+      "Revised cue and editorial decision: revised bounds, original-cue lineage, review status, reviewed replacements, explicit removals, and removal reasons. [SRC-8cadb4bd8960, SRC-bf19f5b23b9b]",
+      "Translation revision: cue, language, target text, revision, and attribution. Glossary entry: identifier, language, preferred phrase, and version. Terminology exception: affected requirement, reviewer, and reason. [SRC-29b6634203bb]",
+      "Validation result: affected cue or track, check, exact measured value, applicable rule, and relevant versions. [SRC-ce02372829ee]",
+      "Track approval and package: exact episode edit, language, source/edit/translation/glossary versions, reviewer approval, stale status, immutable delivered content, and correction-to-previous-delivery link. [SRC-ce02372829ee, SRC-bf19f5b23b9b]",
+      "Children's ceiling conflict: both stated exact ceilings and unresolved status; any resolution must come from the client accessibility owner. [SRC-1e52c7fbb8a7, SRC-e223a23ca33c]",
+      "Delivery authorization: producer authorization bound to package version, client asset, edit version, and language. Delivery attempt/outcome: package, destination, authorization, outcome state, positive evidence, and documented outcome resolution. [SRC-c7eb4cffb22d, SRC-e223a23ca33c]",
+      "Actor and role context for operation-level permission checks; no external identity provider or account availability is assumed. [SRC-e223a23ca33c]"
+    ],
+    "interfaces": [
+      "Local editor operations: preview/accept imports, obtain row-level rejection reasons, create source corrections, validate edit lists, conform cues, and record editorial removals or reviewed replacements. [SRC-28e845e111c3, SRC-8cadb4bd8960]",
+      "Local translation and terminology operations: record attributed revisions, evaluate exact case-sensitive glossary substrings, and record reviewer-approved exceptions without substituting text. Synthetic inputs are supported independently of source-import implementation. [SRC-29b6634203bb]",
+      "Local validation/approval operations: report ordinary checks, approve only current eligible tracks, expose stale approvals, and create versioned package snapshots. [SRC-ce02372829ee, SRC-bf19f5b23b9b]",
+      "Review interface: expose all specified issue classes and delivery outcomes; prepare clearly unapproved copies despite failures. Proposed initial episode grouping follows ASM-9caef545d8ca and remains reversible. [SRC-ce02372829ee, SRC-1e52c7fbb8a7, SRC-bf19f5b23b9b]",
+      "Local delivery-control interface: record scoped producer authorization, invalidate changed scopes, recheck approval and authorization, retain outcomes, and refuse another attempt while an unknown outcome lacks documented resolution. [SRC-c7eb4cffb22d, SRC-e223a23ca33c]",
+      "External platform boundary: transmit only a currently approved, separately authorized package to its exact asset/edit/language; interpret acknowledgements and reconcile unknown outcomes only under the eventual platform contract. Endpoint, protocol, format, encoding, and evidence semantics remain unspecified. [SRC-c7eb4cffb22d, SRC-e223a23ca33c]"
+    ],
+    "operational_constraints": [
+      "Planning only: execution_authorized is false. No tools, tests, platform calls, or delivery attempts are performed by this proposal. The examples describe expected outcomes, not execution evidence. [SRC-2ff4a809039c]",
+      "Pilot scope is 12 episodes, two target languages per episode, and at most 10,000 source cues per episode. No latency or throughput guarantee is supplied. [SRC-5aca7f8fb45b]",
+      "Use integer frames at exactly 25 fps and half-open intervals throughout. Ordinary reading-speed comparisons must use exact values. [SRC-5aca7f8fb45b, SRC-ce02372829ee]",
+      "ISS-455421000352 blocks selecting a children's ceiling and completing children's approval/delivery acceptance in N04. Implementing the prohibition itself can proceed; N01, N02, N03, and N05 remain available. [SRC-1e52c7fbb8a7]",
+      "ISS-634459dde797 blocks N07's live integration and delivery-evidence acceptance. ISS-f8c0ef06586d separately blocks an actual send without exact producer authorization. Neither blocks N06's local controls. [SRC-c7eb4cffb22d]",
+      "ISS-83746741071e blocks N08's live recovery path. N06 can still classify timeouts as unknown, retain records, and prohibit automatic retries. [SRC-e223a23ca33c]",
+      "All listed external resource identifiers are unavailable prerequisites requiring separate verification; listing them grants neither access nor permission.",
+      "Preserve ASM-03ee40cda4ae as an unapproved parsing assumption: CRLF and LF each represent one logical line break, with line-break code points excluded from counts. [SRC-ce02372829ee]",
+      "Exclude video editing, speech recognition, generated translations, playback-speed changes, and variable-frame-rate media. [SRC-5aca7f8fb45b]"
+    ],
+    "security_considerations": [
+      "N01 supplies operation-level role enforcement shared by local modules; hiding controls in the interface is insufficient. Editors, translators, language reviewers, producers, viewers, and the client accessibility owner retain their specified permissions. [SRC-e223a23ca33c]",
+      "Only the producer can authorize delivery, and only the client accessibility owner can resolve the children's ceiling. Approval requirements do not confer authorization to execute delivery. [SRC-c7eb4cffb22d, SRC-e223a23ca33c]",
+      "Bind authorization to the exact package, asset, edit, and language; recheck before transmission and invalidate authorization when package or destination details change. [SRC-c7eb4cffb22d]",
+      "Validate destination identity before any platform mutation and never silently replace another asset's track. [SRC-c7eb4cffb22d]",
+      "Preserve source history, translation attribution, editorial lineage, exception reasons, immutable delivered packages, and package/destination/authorization links for all outcomes. [SRC-28e845e111c3, SRC-29b6634203bb, SRC-bf19f5b23b9b, SRC-e223a23ca33c]"
+    ],
+    "technical_risks": [
+      "The children's 12-versus-15 contradiction cannot be resolved by selecting a stricter value; objective children's acceptance remains blocked pending the designated owner's ruling. [SRC-1e52c7fbb8a7]",
+      "Unknown platform format, encoding, asset mapping, replacement behavior, and acknowledgement semantics can change adapter design and live acceptance criteria. [SRC-c7eb4cffb22d]",
+      "A timeout may leave an external effect unresolved. Retrying before documented resolution risks an unjustified additional operation; no automatic retry policy may be invented. [SRC-e223a23ca33c]",
+      "Version changes can leave apparently valid but stale approvals or authorizations. Package snapshot and current-version checks must cover the specified source, edit, translation, glossary, exception, and destination changes. [SRC-29b6634203bb, SRC-ce02372829ee, SRC-bf19f5b23b9b, SRC-c7eb4cffb22d]",
+      "Unicode code-point counting, newline parsing, rounded arithmetic, and interval boundaries can produce incorrect validation results. The newline assumption remains unapproved. [SRC-5aca7f8fb45b, SRC-ce02372829ee]",
+      "The permission model is specified, but deployment identity integration is not. Local role enforcement can be planned and verified with actor fixtures without assuming external accounts. [SRC-5aca7f8fb45b, SRC-e223a23ca33c]"
+    ],
+    "completion_definition": [
+      "Local implementation is complete only after proposed verification demonstrates atomic import rejection, version no-ops and conflict rejection, retained correction history, correct edit validation/conforming, reviewed handling of removed-region cues, and revised-runtime bounds. [SRC-28e845e111c3, SRC-8cadb4bd8960]",
+      "Translation and terminology verification demonstrates attributed revisions, untranslated empty targets, exact case-sensitive matching, reasoned reviewer exceptions, language-specific missing-coverage blocking, and affected approval invalidation. [SRC-29b6634203bb]",
+      "Ordinary verification covers duration, line count, Unicode counts, exact reading speed, two-frame gaps, approval prerequisites, stale approvals, and current-version package binding. The supplied 34/35-character and 102/101-frame examples produce their specified outcomes. [SRC-ce02372829ee, SRC-b655e256b949, SRC-cdf17acb93b7]",
+      "Review copies remain available and clearly unapproved during failures; the overview exposes every specified issue class. Verify role enforcement through operation calls as well as visible interfaces. [SRC-ce02372829ee, SRC-bf19f5b23b9b, SRC-e223a23ca33c]",
+      "Local delivery controls demonstrate exact authorization binding, invalidation and pre-send checks, distinct outcome states, timeout-as-unknown behavior, complete outcome links, and refusal of automatic retry. These checks require no live platform operation. [SRC-c7eb4cffb22d, SRC-e223a23ca33c]",
+      "Children's acceptance remains incomplete until the client accessibility owner resolves the contradiction and the resulting rule is verified; neither ceiling is selected by this plan. [SRC-1e52c7fbb8a7]",
+      "Live delivery and recovery remain incomplete until their contracts, access, asset permissions, documented resolution procedure, and attempt-specific authorizations exist, followed by separately authorized verification against positive platform evidence. [SRC-c7eb4cffb22d, SRC-e223a23ca33c]",
+      "No implementation, executed-test, customer-approval, or live-delivery success is claimed by this planning result. [SRC-2ff4a809039c]"
+    ],
+    "global_requirement_ids": [
+      "REQ-509883415145",
+      "REQ-b8f2b17da43b",
+      "REQ-361b58010303",
+      "REQ-981516140dd6"
+    ],
+    "nodes": [
+      {
+        "task_id": "N01",
+        "objective": "Implement shared operation-level role enforcement and local source/edit/conforming capabilities: atomic preview/accept, version idempotency and correction history, integer-frame interval validation, duration-preserving conforming, explicit editorial decisions with lineage, and revised-runtime bounds. Consume source/runtime metadata and supplied synthetic fixtures; require no external connection. [SRC-28e845e111c3, SRC-8cadb4bd8960, SRC-e223a23ca33c]",
+        "requirement_ids": [
+          "REQ-eecafd275877",
+          "REQ-7dd1463d5bf2",
+          "REQ-c878737b1de3",
+          "REQ-6cf137cf629c",
+          "REQ-dfce560716ca",
+          "REQ-087c74099592",
+          "REQ-60c258cc38d0",
+          "REQ-af2fd334cb18"
+        ],
+        "depends_on": [],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N02",
+        "objective": "Implement independently usable translation and glossary logic with synthetic cue inputs: attributed revisions, untranslated empty targets, versioned language-specific glossary entries, exact substring checks, reviewer exceptions, and language-isolated coverage blockers. Integrate the shared role policy when assembled; do not require source ingestion, children's resolution, or delivery access to develop and verify this module. [SRC-29b6634203bb]",
+        "requirement_ids": [
+          "REQ-a647e89da9eb",
+          "REQ-7bd8121977cd",
+          "REQ-c5b6ed9931ac",
+          "REQ-9e738a73eb5e"
+        ],
+        "depends_on": [],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N03",
+        "objective": "Assemble ordinary-track checks and language-reviewer approval against current source/edit/translation/glossary versions. Implement affected approval invalidation, versioned package snapshots, immutable delivered packages, and newly reviewed corrections linked to previous deliveries. Depend on local source/conforming and terminology outputs, with no dependency on the children's branch or platform. [SRC-ce02372829ee, SRC-29b6634203bb, SRC-bf19f5b23b9b]",
+        "requirement_ids": [
+          "REQ-3bb541b82d63",
+          "REQ-4cea70f0858b",
+          "REQ-a89b7e4f2360",
+          "REQ-aad15da067ad",
+          "REQ-b1bff2dc0df8",
+          "REQ-875af2bda29b"
+        ],
+        "depends_on": [
+          "N01",
+          "N02"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N04",
+        "objective": "Preserve both conflicting children's ceilings and implement the unresolved-state prohibition on ceiling selection, approval, and delivery. Defer selected-ceiling validation and children's approval acceptance under ISS-455421000352 until an authenticated client accessibility owner supplies a resolution. This decision is missing business input, not infrastructure; it must not block other local nodes. [SRC-1e52c7fbb8a7, SRC-e223a23ca33c]",
+        "requirement_ids": [
+          "REQ-09b22b797112",
+          "REQ-48baf7d5cbf2",
+          "REQ-743c948a04ab"
+        ],
+        "depends_on": [
+          "N01",
+          "N02"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N05",
+        "objective": "Provide the review overview and local review copies from local cue, terminology, validation, approval, and outcome records. Expose all required issue classes and mark copies unapproved while failures remain. Initially group by episode under unapproved ASM-9caef545d8ca; grouping must not change checks. Successful approval or live delivery is not a prerequisite to generating a review copy. [SRC-ce02372829ee, SRC-bf19f5b23b9b, SRC-1e52c7fbb8a7]",
+        "requirement_ids": [
+          "REQ-4173bfc01c1d",
+          "REQ-f64446cc5cdb"
+        ],
+        "depends_on": [
+          "N01",
+          "N02",
+          "N03",
+          "N06"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N06",
+        "objective": "Implement local delivery controls without sending: producer-only scoped authorization, change invalidation, pre-send eligibility checks, destination-mismatch prevention, four distinct outcome states, outcome links, timeout-as-unknown classification, and refusal of automatic or unresolved retries. Use package snapshots and synthetic attempt evidence. The unresolved recovery contract blocks live reattempts, not these local controls. [SRC-c7eb4cffb22d, SRC-e223a23ca33c]",
+        "requirement_ids": [
+          "REQ-84ee858edbf7",
+          "REQ-62c8b340f20b",
+          "REQ-23d1199022b2",
+          "REQ-5cdd99cb284d",
+          "REQ-4da0ce732101"
+        ],
+        "depends_on": [
+          "N03"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [],
+        "operation_kind": "local_logic"
+      },
+      {
+        "task_id": "N07",
+        "objective": "Deferred external operation: implement and verify platform transmission and positive delivery-evidence interpretation after ISS-634459dde797 is resolved. Consume an exact approved package and N06's current authorization checks. Ordinary delivery must not depend on resolving children's approval; children's delivery remains prohibited while that conflict persists. An actual send additionally requires separate producer authorization under ISS-f8c0ef06586d. This plan performs no operation. [SRC-c7eb4cffb22d, SRC-e223a23ca33c, SRC-1e52c7fbb8a7]",
+        "requirement_ids": [
+          "REQ-9ef64b340a28",
+          "REQ-62c8b340f20b",
+          "REQ-b6e8b83f4a45"
+        ],
+        "depends_on": [
+          "N03",
+          "N06"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [
+          "client_media_platform",
+          "client_platform_account",
+          "client_platform_credentials",
+          "client_asset_permissions",
+          "exact_package_delivery_authorization"
+        ],
+        "operation_kind": "external_operation"
+      },
+      {
+        "task_id": "N08",
+        "objective": "Deferred external recovery operation: using a prior attempt record and the eventual platform contract, obtain and document evidence resolving an unknown outcome. Establish delivered status only from contract-defined positive evidence; permit a subsequent attempt only after documented resolution and renewed current approval/authorization checks through the send path. Block live recovery acceptance under ISS-83746741071e; do not introduce automatic retries. [SRC-e223a23ca33c]",
+        "requirement_ids": [
+          "REQ-5cdd99cb284d",
+          "REQ-b6e8b83f4a45"
+        ],
+        "depends_on": [
+          "N06",
+          "N07"
+        ],
+        "optional_dependencies": [],
+        "required_resources": [
+          "client_media_platform",
+          "client_platform_account",
+          "client_platform_credentials",
+          "client_asset_permissions",
+          "exact_package_delivery_authorization"
+        ],
+        "operation_kind": "external_operation"
+      }
+    ]
+  },
+  "objective_missing_prerequisites": {
+    "node_dependencies": {
+      "N01": [],
+      "N02": [],
+      "N03": [
+        "N01",
+        "N02"
+      ],
+      "N04": [
+        "N01",
+        "N02"
+      ],
+      "N05": [
+        "N01",
+        "N02",
+        "N03",
+        "N06"
+      ],
+      "N06": [
+        "N03"
+      ],
+      "N07": [
+        "N03",
+        "N06"
+      ],
+      "N08": [
+        "N06",
+        "N07"
+      ]
+    },
+    "missing_prerequisites": [
+      {
+        "task_id": "N06",
+        "requirement": {
+          "requirement_id": "REQ-62c8b340f20b",
+          "source_ids": [
+            "SRC-c7eb4cffb22d"
+          ],
+          "normalized": "Immediately before sending, recheck current package approval and matching delivery authorization, and never silently replace a different asset's track.",
+          "category": "authorization",
+          "origin": "customer_requirement",
+          "approved_by_customer": false,
+          "priority": null,
+          "depends_on": [
+            "REQ-875af2bda29b",
+            "REQ-9ef64b340a28",
+            "REQ-84ee858edbf7"
+          ],
+          "acceptance_implications": [
+            "Prevent sending after approval becomes stale or authorization becomes invalid.",
+            "A mismatch between intended and actual asset cannot cause silent replacement."
+          ],
+          "confidence": "high",
+          "uncertainty": "clear",
+          "external_dependencies": [
+            "Resolved platform contract and access",
+            "Current matching producer authorization"
+          ],
+          "external_effects": [
+            "Send an authorized subtitle package to its specified client asset"
+          ],
+          "authorization_required": true
+        },
+        "missing_requirement": {
+          "requirement_id": "REQ-9ef64b340a28",
+          "source_ids": [
+            "SRC-c7eb4cffb22d",
+            "SRC-5aca7f8fb45b"
+          ],
+          "normalized": "Provide live delivery of an approved subtitle track to an existing client video asset only after resolving the platform endpoint, authentication, asset permissions, asset-to-edit identification, accepted subtitle format and encoding, replacement behavior, and acknowledgement contract.",
+          "category": "integration",
+          "origin": "customer_requirement",
+          "approved_by_customer": false,
+          "priority": null,
+          "depends_on": [
+            "REQ-875af2bda29b"
+          ],
+          "acceptance_implications": [
+            "Do not assume a platform API, subtitle format, encoding, replacement operation, or acknowledgement meaning.",
+            "Live integration verification requires the missing platform contract and access."
+          ],
+          "confidence": "medium",
+          "uncertainty": "ambiguous",
+          "external_dependencies": [
+            "Client media-platform contract",
+            "External account and credentials",
+            "Asset permissions",
+            "Reliable mapping between client assets and edit versions"
+          ],
+          "external_effects": [
+            "Submit a subtitle track to an existing client video asset"
+          ],
+          "authorization_required": true
+        },
+        "missing_owner_tasks": [
+          "N07"
+        ],
+        "current_ancestors": [
+          "N01",
+          "N02",
+          "N03"
+        ]
+      }
+    ]
+  },
+  "validator_contract": "A node requirement prerequisite must be covered by its own node, an ancestor node or a permitted global constraint. Transitive node ancestors count. All integration requirements need external-operation nodes; global authorization constraints also need local enforcement. No cycles, dropped requirements, invented resources or authorization are permitted.",
+  "scope": "H remains original FAIL. No increments/contracts/manifest generated; no business implementation or tests executed. All frozen expectations remain unchanged."
+}

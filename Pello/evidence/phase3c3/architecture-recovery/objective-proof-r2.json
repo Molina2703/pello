@@ -1,0 +1,14 @@
+{
+  "unchanged_validator_and_converter_ASTs": {
+    "validate_architecture": true,
+    "validate_increments": true,
+    "validate_contracts": true,
+    "manifest_from_contracts": true
+  },
+  "C2_plan_digest": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+  "eight_original_FAILs_preserved": true,
+  "H_not_rerun_after_change": true,
+  "targeted_tests": 83,
+  "new_capability_not_deterministic_validator_bugfix": true,
+  "actual_unfamiliar_SDK_recovery_not_demonstrated": true
+}

@@ -1,0 +1,6 @@
+{
+  "hashes": {
+    "tests\\test_architecture_recovery_ledger.py": "71936d7a3ef883d01bcd512f8270fabdb39d9dcc675a49d780c9b4fa4f6c107e"
+  },
+  "reason": "Independent BLOCKED review requested production _invoke/SQLite/restart coverage; added after review with no production changes"
+}

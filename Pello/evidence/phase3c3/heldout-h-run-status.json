@@ -1,0 +1,7 @@
+{
+  "status": "FAIL_OR_BLOCKED",
+  "error_type": "ValueError",
+  "error": "Task graph loses source requirement prerequisites",
+  "project_id": "phase3c3-heldout-h",
+  "at": "2026-10-26T22:51:15.403968+00:00"
+}

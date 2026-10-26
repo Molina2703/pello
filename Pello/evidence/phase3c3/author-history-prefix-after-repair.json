@@ -1,0 +1,7 @@
+{
+  "old_bytes_preserved": 1326348,
+  "old_prefix_sha256": "bbd8234594d163ff97c8e374d2546849a3b519d2bc9d0c0a818b4928f14e05ae",
+  "prefix_verified_after_new_author_turn": true,
+  "metadata_cycle_did_not_rewrite_history": true,
+  "no_inference_from_this_check": true
+}

@@ -1,0 +1,227 @@
+{
+  "historical_hashes_checked": 1493,
+  "historical_hashes_matching": 1493,
+  "mismatches": [],
+  "first_28_sdk_operation_rows_unchanged": true,
+  "new_protected_test_sources": [
+    {
+      "file": "tests\\test_planning_isolation.py",
+      "matches": true
+    },
+    {
+      "file": "tests\\test_blind_permissions.py",
+      "matches": true
+    },
+    {
+      "file": "tests\\test_planning_context_budget.py",
+      "matches": true
+    },
+    {
+      "file": "tests\\test_authorization_schema_contract.py",
+      "matches": true
+    },
+    {
+      "file": "tests\\test_review_source_references.py",
+      "matches": true
+    },
+    {
+      "file": "tests\\test_architecture_schema_contract.py",
+      "matches": true
+    },
+    {
+      "file": "tests\\test_planning_context_transport.py",
+      "matches": true
+    },
+    {
+      "file": "tests\\test_contract_context_batches.py",
+      "matches": true
+    },
+    {
+      "file": "tests\\test_analysis_review_transport.py",
+      "matches": true
+    },
+    {
+      "file": "tests\\test_architecture_validation_recovery.py",
+      "matches": true
+    },
+    {
+      "file": "tests\\test_architecture_recovery_ledger.py",
+      "matches": true
+    }
+  ],
+  "frozen_objective_script_intact": true,
+  "sqlite_integrity": "ok",
+  "checkpoint_commits": [
+    {
+      "project_id": "phase3c-3c1-live",
+      "phase": "analyzed",
+      "commit_sha": "6fd63ab36f78427761b9c7223ddd4c268d2f5ce2",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c-3c1-live",
+      "phase": "analysis-accepted",
+      "commit_sha": "a574565805fac4273898005857fd902705b9d996",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c-3c1-live",
+      "phase": "analysis-correction-r2",
+      "commit_sha": "7dcc2f6ab3e9f3baf857e689e9da14efd5c91edf",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c-3c1-live",
+      "phase": "analysis-accepted-r2",
+      "commit_sha": "da061177e631405f1325448b8250c8f7dd9ba3f9",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "phase": "analyzed",
+      "commit_sha": "dbc97efb1beabc593f8e151aa8e34a27ad94496a",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "phase": "analysis-accepted",
+      "commit_sha": "db0aa72a49db9218d0d310c66d17a8a9618d08ce",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "phase": "analysis-manifest-integrity-correction",
+      "commit_sha": "9c168b2f7f7e0b7b4fd2aa682c308794e766250a",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "phase": "3c2-b1",
+      "commit_sha": "a5238c13a829a26977e7206539b12e06daaecf9b",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "phase": "3c2-b2",
+      "commit_sha": "57dbbbef309de34ca034ca85f1ed6558c34c098c",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "phase": "3c2-b3",
+      "commit_sha": "1b0335c77cc951dfe9172ec70fe409cc0fdec34a",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "phase": "3c2-b4",
+      "commit_sha": "e41e338c9efe85c6d3cf6fba488271fc4867a827",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "phase": "3c2-b5",
+      "commit_sha": "41e0ab60b12fcefcea9e96e7651bb76a32125118",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "phase": "plan-accepted",
+      "commit_sha": "e931fecf1966936dbc53f0f6514d2fb0de834f6a",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "phase": "3c2-b6",
+      "commit_sha": "5c4c5f908b68f299c3e838f2a8373bbb514e4494",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c3-heldout-a",
+      "phase": "analyzed",
+      "commit_sha": "ebe1fe744594fb0fbb2c7fccb8fd3231684f821b",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c3-heldout-c",
+      "phase": "analyzed",
+      "commit_sha": "21ff9a6eaee96c385e65d36feb2a9ae24445c1bc",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c3-heldout-d",
+      "phase": "analyzed",
+      "commit_sha": "7f39f75fb87b0fbe557231a0dc7816747f1cf355",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c3-heldout-d",
+      "phase": "analysis-accepted",
+      "commit_sha": "55f88b0e11b942bb14a39e8977402d618daffefd",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c3-heldout-e",
+      "phase": "analyzed",
+      "commit_sha": "87420c5884af060e9fbc0f867de63f2715808531",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c3-heldout-e",
+      "phase": "analysis-accepted",
+      "commit_sha": "910fcfcdcfead7c541d3c52f6098bcfe3e3607aa",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c3-heldout-f",
+      "phase": "analyzed",
+      "commit_sha": "ae3110871a3be37163f9b761d663c9cba1ee4028",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c3-heldout-f",
+      "phase": "analysis-accepted",
+      "commit_sha": "d0788eeb545ffa469b995e46ee4be82193f80f9e",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c3-heldout-g",
+      "phase": "analyzed",
+      "commit_sha": "c16d84d029fa9655950d7102c4344d2c0ac7d70c",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c3-heldout-h",
+      "phase": "analyzed",
+      "commit_sha": "d3a546414e52d3e6a8a372fcb1da321bd9b4dbc2",
+      "commit_present": true
+    },
+    {
+      "project_id": "phase3c3-heldout-h",
+      "phase": "analysis-accepted",
+      "commit_sha": "4dd5f1b18dde12cb50f82d4580f591f2aa78369e",
+      "commit_present": true
+    }
+  ],
+  "stop_set": false,
+  "sdk_statuses": [
+    {
+      "status": "COMPLETED",
+      "operations": 83
+    },
+    {
+      "status": "FAILED_PROVIDER_QUOTA_RECONCILED",
+      "operations": 1
+    },
+    {
+      "status": "NOT_SUBMITTED_ACTIVE_WRITER_RECONCILED",
+      "operations": 2
+    },
+    {
+      "status": "NOT_SUBMITTED_CONTEXT_REJECTED",
+      "operations": 1
+    }
+  ],
+  "sdk_turns_consumed": 87,
+  "original_projects_preserved": true
+}

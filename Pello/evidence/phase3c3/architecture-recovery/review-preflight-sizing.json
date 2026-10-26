@@ -1,0 +1,26 @@
+{
+  "total_characters": 52396,
+  "section_characters": {
+    "diff": 2308,
+    "complete_changed_method": 2839,
+    "complete_protected_tests": 4246,
+    "before_FAIL": 6115,
+    "targeted_log": 14888,
+    "complete_production_invoke_integration_tests": 5556,
+    "production_invoke_test_log": 1824
+  },
+  "metadata_characters": {
+    "protection": 330,
+    "proof": 463,
+    "original_H_evaluation": 847,
+    "your_prior_independent_diagnosis": 2347,
+    "full_regression": 250,
+    "integrity": 5010,
+    "protected_C2": 676,
+    "integration_protection": 267,
+    "prior_BLOCKED_review": 1144,
+    "production_unchanged_since_initial_review": 4,
+    "clarification": 225
+  },
+  "SDK_not_reserved": true
+}

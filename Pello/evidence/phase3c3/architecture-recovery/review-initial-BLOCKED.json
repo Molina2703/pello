@@ -1,0 +1,13 @@
+{
+  "verdict": "BLOCKED",
+  "scope": "correct",
+  "correctness": "uncertain",
+  "test_evidence": "incomplete",
+  "safety_and_preservation": "uncertain",
+  "findings": [
+    "The diff preserves initial validation rejection before one correction call, reuses the original payload, and applies the unchanged validator again. A second invalid proposal propagates failure. No concrete logic defect is demonstrated.",
+    "All new tests replace _invoke with an in-memory stub. Their guard and replay assertions do not establish correction-phase behavior through the production guards, operation ledger or durable cache across restart.",
+    "The supplied 80 focused checks pass, but the required full regression before an accepted engineering checkpoint is not evidenced."
+  ],
+  "rationale": "The increment is appropriately scoped as bounded recovery, and the original H FAIL remains preserved. Acceptance needs full regression and a focused test exercising the correction path through production _invoke with a controlled engine, including guard rejection and restart replay. Live SDK efficacy and generalization remain separate fresh-case evaluations; neither is claimed here."
+}

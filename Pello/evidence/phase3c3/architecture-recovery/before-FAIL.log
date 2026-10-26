@@ -1,0 +1,60 @@
+test_existing_guard_can_block_correction_without_accepting_original (tests.test_architecture_validation_recovery.ArchitectureValidationRecoveryTests.test_existing_guard_can_block_correction_without_accepting_original) ... ERROR
+test_initial_valid_graph_keeps_original_single_call_and_result (tests.test_architecture_validation_recovery.ArchitectureValidationRecoveryTests.test_initial_valid_graph_keeps_original_single_call_and_result) ... ok
+test_invalid_graph_gets_one_planner_correction_with_exact_source (tests.test_architecture_validation_recovery.ArchitectureValidationRecoveryTests.test_invalid_graph_gets_one_planner_correction_with_exact_source) ... ERROR
+test_replay_uses_same_phases_and_saved_results_without_extra_model_call (tests.test_architecture_validation_recovery.ArchitectureValidationRecoveryTests.test_replay_uses_same_phases_and_saved_results_without_extra_model_call) ... ERROR
+test_second_invalid_graph_remains_failure_and_cannot_be_persisted_as_valid (tests.test_architecture_validation_recovery.ArchitectureValidationRecoveryTests.test_second_invalid_graph_remains_failure_and_cannot_be_persisted_as_valid) ... FAIL
+
+======================================================================
+ERROR: test_existing_guard_can_block_correction_without_accepting_original (tests.test_architecture_validation_recovery.ArchitectureValidationRecoveryTests.test_existing_guard_can_block_correction_without_accepting_original)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_architecture_validation_recovery.py", line 59, in test_existing_guard_can_block_correction_without_accepting_original
+    with self.assertRaises(CodexBlocked):self.core.propose_architecture('unit')
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 684, in propose_architecture
+    result={'proposal':draft.model_dump(mode='json'),'validation':validate_architecture(draft,analysis)}
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\planning_contracts.py", line 73, in validate_architecture
+    raise ValueError('Task graph loses source requirement prerequisites')
+ValueError: Task graph loses source requirement prerequisites
+
+======================================================================
+ERROR: test_invalid_graph_gets_one_planner_correction_with_exact_source (tests.test_architecture_validation_recovery.ArchitectureValidationRecoveryTests.test_invalid_graph_gets_one_planner_correction_with_exact_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_architecture_validation_recovery.py", line 34, in test_invalid_graph_gets_one_planner_correction_with_exact_source
+    result=self.core.propose_architecture('unit')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 684, in propose_architecture
+    result={'proposal':draft.model_dump(mode='json'),'validation':validate_architecture(draft,analysis)}
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\planning_contracts.py", line 73, in validate_architecture
+    raise ValueError('Task graph loses source requirement prerequisites')
+ValueError: Task graph loses source requirement prerequisites
+
+======================================================================
+ERROR: test_replay_uses_same_phases_and_saved_results_without_extra_model_call (tests.test_architecture_validation_recovery.ArchitectureValidationRecoveryTests.test_replay_uses_same_phases_and_saved_results_without_extra_model_call)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_architecture_validation_recovery.py", line 64, in test_replay_uses_same_phases_and_saved_results_without_extra_model_call
+    result=self.core.propose_architecture('unit');again=self.core.propose_architecture('unit')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 684, in propose_architecture
+    result={'proposal':draft.model_dump(mode='json'),'validation':validate_architecture(draft,analysis)}
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\planning_contracts.py", line 73, in validate_architecture
+    raise ValueError('Task graph loses source requirement prerequisites')
+ValueError: Task graph loses source requirement prerequisites
+
+======================================================================
+FAIL: test_second_invalid_graph_remains_failure_and_cannot_be_persisted_as_valid (tests.test_architecture_validation_recovery.ArchitectureValidationRecoveryTests.test_second_invalid_graph_remains_failure_and_cannot_be_persisted_as_valid)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_architecture_validation_recovery.py", line 54, in test_second_invalid_graph_remains_failure_and_cannot_be_persisted_as_valid
+    self.assertEqual(len(self.model_calls),2)
+AssertionError: 1 != 2
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.048s
+
+FAILED (failures=1, errors=3)

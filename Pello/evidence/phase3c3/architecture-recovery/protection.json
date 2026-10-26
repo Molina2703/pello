@@ -1,0 +1,8 @@
+{
+  "hashes": {
+    "tests\\test_architecture_validation_recovery.py": "25cb833539bc3752686505c8cce4c7deb347732179e860ce2d08f7e73ff35ee7"
+  },
+  "protected_before_implementation": true,
+  "original_H_FAIL_preserved": true,
+  "purpose": "New bounded planning-recovery capability for invalid model output; no deterministic validator defect claimed"
+}

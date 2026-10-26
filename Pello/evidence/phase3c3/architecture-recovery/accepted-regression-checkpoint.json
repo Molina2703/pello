@@ -1,0 +1,61 @@
+{
+  "status": "ACCEPTED_ENGINEERING_CAPABILITY_ONLY",
+  "at": "2026-10-26T23:17:59.929399+00:00",
+  "regression": {
+    "command": [
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "exit_code": 0,
+    "tests_run": 257,
+    "tests_passed": 257,
+    "seconds": 325.735
+  },
+  "protected_C2": 63,
+  "protected_C3_checks": 40,
+  "protected_C3_sources": 11,
+  "historical_hashes": 1493,
+  "independent_review": {
+    "verdict": "PASS",
+    "scope": "correct",
+    "correctness": "adequate",
+    "test_evidence": "pass",
+    "safety_and_preservation": "adequate",
+    "findings": [
+      "The correction remains bounded to one additional guarded invocation, preserves the initial rejection and requires unchanged validation before acceptance.",
+      "The added integration tests exercise production _invoke, SQLite accounting, STOP and budget rejection, and durable replay after restart with a controlled engine.",
+      "Supplied results show 83 focused checks and the complete 257-test regression passing, resolving the prior evidence blockers.",
+      "The changed_files inventory omits the supplied tests/test_architecture_recovery_ledger.py; this is a minor reporting omission."
+    ],
+    "rationale": "The implementation and added evidence support acceptance of this bounded recovery capability. No validator weakening, authorization expansion or concrete correctness defect is demonstrated. H remains FAIL; real SDK recovery efficacy and generalization still require a fresh held-out evaluation."
+  },
+  "prior_BLOCKED_review_preserved": "review-initial-BLOCKED.json",
+  "proof": {
+    "unchanged_validator_and_converter_ASTs": {
+      "validate_architecture": true,
+      "validate_increments": true,
+      "validate_contracts": true,
+      "manifest_from_contracts": true
+    },
+    "C2_plan_digest": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+    "eight_original_FAILs_preserved": true,
+    "H_not_rerun_after_change": true,
+    "targeted_tests": 83,
+    "new_capability_not_deterministic_validator_bugfix": true,
+    "actual_unfamiliar_SDK_recovery_not_demonstrated": true
+  },
+  "source_sha256": "cf7994ce18d5c67f10db17ba67fde28fe36de5fe2fe013e479719134d6ee1cfc",
+  "eight_original_blind_FAILs_preserved": true,
+  "H_not_rerun_after_change": true,
+  "fresh_case_required": true,
+  "real_SDK_recovery_efficacy": "UNVERIFIED",
+  "blind_generalization": "UNVERIFIED",
+  "model_output_failure_not_validator_bug": true,
+  "Phase3D_started": false
+}

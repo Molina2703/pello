@@ -1,0 +1,25 @@
+{
+  "evaluation_id": "phase3c3-heldout-h-v1",
+  "verdict": "FAIL",
+  "objective_verdict": "FAIL",
+  "interpretation_review": "PASS",
+  "requirements": 34,
+  "issues": 5,
+  "assumptions": 2,
+  "architecture_nodes": 8,
+  "architecture_validation": "FAIL",
+  "critical_failures": [
+    "Task graph loses source requirement prerequisites; no complete autonomous plan, contracts, model decisions or existing PipelineManifest"
+  ],
+  "missing_prerequisite_count": 1,
+  "original_FAIL_preserved": true,
+  "fresh_case_required_after_any_implementation_correction": true,
+  "specification_sha256": "cbabae826e30f8166a18d1d7f495ee83e3e092c4e7081ca8e7fdc1ac3f915d64",
+  "rubric_sha256": "8923f5c429cd974b2292e7473e57a933c1b87798a7ee6ad360520accfde09554",
+  "evidence": [
+    "heldout-h-planning.log",
+    "heldout-h-run-status.json",
+    "heldout-h-graph-diagnosis.json",
+    "heldout-h-rejected-architecture.json"
+  ]
+}

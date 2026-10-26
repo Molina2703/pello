@@ -1,0 +1,218 @@
+{
+  "architecture": [
+    "Proposed architecture: a local modular application with transactional persistence for versioned sources, edits, translations, terminology, approvals, packages, and delivery records. Storage technology and hosting remain implementation choices. [SRC-28e845e111c3, SRC-29b6634203bb, SRC-bf19f5b23b9b]",
+    "Keep source/conforming and translation/terminology modules independently usable with supplied synthetic material. Ordinary validation and local review must not depend on children's policy resolution or platform access. [SRC-8cadb4bd8960, SRC-29b6634203bb, SRC-1e52c7fbb8a7, SRC-c7eb4cffb22d]",
+    "Separate ordinary-track approval from the unresolved children's approval branch. Preserve both conflicting ceilings without choosing either; implement the unresolved-state prohibition locally. [SRC-1e52c7fbb8a7]",
+    "Separate local authorization, outcome recording, and retry prevention from external transmission and platform reconciliation. A platform adapter remains unspecified until its contract is supplied. [SRC-c7eb4cffb22d, SRC-e223a23ca33c]",
+    "Use immutable delivered-package snapshots and explicit links for corrections. Review views read current validation and approval status without modifying historical packages. [SRC-bf19f5b23b9b]",
+    "These are architecture proposals, not customer-approved implementation decisions. The supplied approval metadata and unapproved assumptions remain unchanged."
+  ],
+  "data_entities": [
+    "Episode and source version: episode identifier, source runtime, version, and original cue values; source corrections retain actor, time, and reason. [SRC-28e845e111c3]",
+    "Source cue: cue_id, episode_id, start_frame, end_frame, original_text, and required_term_ids, unique within its episode. [SRC-28e845e111c3]",
+    "Edit version: referenced source version, ordered retained intervals, cumulative output offsets, and resulting runtime. [SRC-8cadb4bd8960]",
+    "Revised cue and editorial decision: revised bounds, original-cue lineage, review status, reviewed replacements, explicit removals, and removal reasons. [SRC-8cadb4bd8960, SRC-bf19f5b23b9b]",
+    "Translation revision: cue, language, target text, revision, and attribution. Glossary entry: identifier, language, preferred phrase, and version. Terminology exception: affected requirement, reviewer, and reason. [SRC-29b6634203bb]",
+    "Validation result: affected cue or track, check, exact measured value, applicable rule, and relevant versions. [SRC-ce02372829ee]",
+    "Track approval and package: exact episode edit, language, source/edit/translation/glossary versions, reviewer approval, stale status, immutable delivered content, and correction-to-previous-delivery link. [SRC-ce02372829ee, SRC-bf19f5b23b9b]",
+    "Children's ceiling conflict: both stated exact ceilings and unresolved status; any resolution must come from the client accessibility owner. [SRC-1e52c7fbb8a7, SRC-e223a23ca33c]",
+    "Delivery authorization: producer authorization bound to package version, client asset, edit version, and language. Delivery attempt/outcome: package, destination, authorization, outcome state, positive evidence, and documented outcome resolution. [SRC-c7eb4cffb22d, SRC-e223a23ca33c]",
+    "Actor and role context for operation-level permission checks; no external identity provider or account availability is assumed. [SRC-e223a23ca33c]"
+  ],
+  "interfaces": [
+    "Local editor operations: preview/accept imports, obtain row-level rejection reasons, create source corrections, validate edit lists, conform cues, and record editorial removals or reviewed replacements. [SRC-28e845e111c3, SRC-8cadb4bd8960]",
+    "Local translation and terminology operations: record attributed revisions, evaluate exact case-sensitive glossary substrings, and record reviewer-approved exceptions without substituting text. Synthetic inputs are supported independently of source-import implementation. [SRC-29b6634203bb]",
+    "Local validation/approval operations: report ordinary checks, approve only current eligible tracks, expose stale approvals, and create versioned package snapshots. [SRC-ce02372829ee, SRC-bf19f5b23b9b]",
+    "Review interface: expose all specified issue classes and delivery outcomes; prepare clearly unapproved copies despite failures. Proposed initial episode grouping follows ASM-9caef545d8ca and remains reversible. [SRC-ce02372829ee, SRC-1e52c7fbb8a7, SRC-bf19f5b23b9b]",
+    "Local delivery-control interface: record scoped producer authorization, invalidate changed scopes, recheck approval and authorization, retain outcomes, and refuse another attempt while an unknown outcome lacks documented resolution. [SRC-c7eb4cffb22d, SRC-e223a23ca33c]",
+    "External platform boundary: transmit only a currently approved, separately authorized package to its exact asset/edit/language; interpret acknowledgements and reconcile unknown outcomes only under the eventual platform contract. Endpoint, protocol, format, encoding, and evidence semantics remain unspecified. [SRC-c7eb4cffb22d, SRC-e223a23ca33c]"
+  ],
+  "operational_constraints": [
+    "Planning only: execution_authorized is false. No tools, tests, platform calls, or delivery attempts are performed by this proposal. The examples describe expected outcomes, not execution evidence. [SRC-2ff4a809039c]",
+    "Pilot scope is 12 episodes, two target languages per episode, and at most 10,000 source cues per episode. No latency or throughput guarantee is supplied. [SRC-5aca7f8fb45b]",
+    "Use integer frames at exactly 25 fps and half-open intervals throughout. Ordinary reading-speed comparisons must use exact values. [SRC-5aca7f8fb45b, SRC-ce02372829ee]",
+    "ISS-455421000352 blocks selecting a children's ceiling and completing children's approval/delivery acceptance in N04. Implementing the prohibition itself can proceed; N01, N02, N03, and N05 remain available. [SRC-1e52c7fbb8a7]",
+    "ISS-634459dde797 blocks N07's live integration and delivery-evidence acceptance. ISS-f8c0ef06586d separately blocks an actual send without exact producer authorization. Neither blocks N06's local controls. [SRC-c7eb4cffb22d]",
+    "ISS-83746741071e blocks N08's live recovery path. N06 can still classify timeouts as unknown, retain records, and prohibit automatic retries. [SRC-e223a23ca33c]",
+    "All listed external resource identifiers are unavailable prerequisites requiring separate verification; listing them grants neither access nor permission.",
+    "Preserve ASM-03ee40cda4ae as an unapproved parsing assumption: CRLF and LF each represent one logical line break, with line-break code points excluded from counts. [SRC-ce02372829ee]",
+    "Exclude video editing, speech recognition, generated translations, playback-speed changes, and variable-frame-rate media. [SRC-5aca7f8fb45b]"
+  ],
+  "security_considerations": [
+    "N01 supplies operation-level role enforcement shared by local modules; hiding controls in the interface is insufficient. Editors, translators, language reviewers, producers, viewers, and the client accessibility owner retain their specified permissions. [SRC-e223a23ca33c]",
+    "Only the producer can authorize delivery, and only the client accessibility owner can resolve the children's ceiling. Approval requirements do not confer authorization to execute delivery. [SRC-c7eb4cffb22d, SRC-e223a23ca33c]",
+    "Bind authorization to the exact package, asset, edit, and language; recheck before transmission and invalidate authorization when package or destination details change. [SRC-c7eb4cffb22d]",
+    "Validate destination identity before any platform mutation and never silently replace another asset's track. [SRC-c7eb4cffb22d]",
+    "Preserve source history, translation attribution, editorial lineage, exception reasons, immutable delivered packages, and package/destination/authorization links for all outcomes. [SRC-28e845e111c3, SRC-29b6634203bb, SRC-bf19f5b23b9b, SRC-e223a23ca33c]"
+  ],
+  "technical_risks": [
+    "The children's 12-versus-15 contradiction cannot be resolved by selecting a stricter value; objective children's acceptance remains blocked pending the designated owner's ruling. [SRC-1e52c7fbb8a7]",
+    "Unknown platform format, encoding, asset mapping, replacement behavior, and acknowledgement semantics can change adapter design and live acceptance criteria. [SRC-c7eb4cffb22d]",
+    "A timeout may leave an external effect unresolved. Retrying before documented resolution risks an unjustified additional operation; no automatic retry policy may be invented. [SRC-e223a23ca33c]",
+    "Version changes can leave apparently valid but stale approvals or authorizations. Package snapshot and current-version checks must cover the specified source, edit, translation, glossary, exception, and destination changes. [SRC-29b6634203bb, SRC-ce02372829ee, SRC-bf19f5b23b9b, SRC-c7eb4cffb22d]",
+    "Unicode code-point counting, newline parsing, rounded arithmetic, and interval boundaries can produce incorrect validation results. The newline assumption remains unapproved. [SRC-5aca7f8fb45b, SRC-ce02372829ee]",
+    "The permission model is specified, but deployment identity integration is not. Local role enforcement can be planned and verified with actor fixtures without assuming external accounts. [SRC-5aca7f8fb45b, SRC-e223a23ca33c]"
+  ],
+  "completion_definition": [
+    "Local implementation is complete only after proposed verification demonstrates atomic import rejection, version no-ops and conflict rejection, retained correction history, correct edit validation/conforming, reviewed handling of removed-region cues, and revised-runtime bounds. [SRC-28e845e111c3, SRC-8cadb4bd8960]",
+    "Translation and terminology verification demonstrates attributed revisions, untranslated empty targets, exact case-sensitive matching, reasoned reviewer exceptions, language-specific missing-coverage blocking, and affected approval invalidation. [SRC-29b6634203bb]",
+    "Ordinary verification covers duration, line count, Unicode counts, exact reading speed, two-frame gaps, approval prerequisites, stale approvals, and current-version package binding. The supplied 34/35-character and 102/101-frame examples produce their specified outcomes. [SRC-ce02372829ee, SRC-b655e256b949, SRC-cdf17acb93b7]",
+    "Review copies remain available and clearly unapproved during failures; the overview exposes every specified issue class. Verify role enforcement through operation calls as well as visible interfaces. [SRC-ce02372829ee, SRC-bf19f5b23b9b, SRC-e223a23ca33c]",
+    "Local delivery controls demonstrate exact authorization binding, invalidation and pre-send checks, distinct outcome states, timeout-as-unknown behavior, complete outcome links, and refusal of automatic retry. These checks require no live platform operation. [SRC-c7eb4cffb22d, SRC-e223a23ca33c]",
+    "Children's acceptance remains incomplete until the client accessibility owner resolves the contradiction and the resulting rule is verified; neither ceiling is selected by this plan. [SRC-1e52c7fbb8a7]",
+    "Live delivery and recovery remain incomplete until their contracts, access, asset permissions, documented resolution procedure, and attempt-specific authorizations exist, followed by separately authorized verification against positive platform evidence. [SRC-c7eb4cffb22d, SRC-e223a23ca33c]",
+    "No implementation, executed-test, customer-approval, or live-delivery success is claimed by this planning result. [SRC-2ff4a809039c]"
+  ],
+  "global_requirement_ids": [
+    "REQ-509883415145",
+    "REQ-b8f2b17da43b",
+    "REQ-361b58010303",
+    "REQ-981516140dd6"
+  ],
+  "nodes": [
+    {
+      "task_id": "N01",
+      "objective": "Implement shared operation-level role enforcement and local source/edit/conforming capabilities: atomic preview/accept, version idempotency and correction history, integer-frame interval validation, duration-preserving conforming, explicit editorial decisions with lineage, and revised-runtime bounds. Consume source/runtime metadata and supplied synthetic fixtures; require no external connection. [SRC-28e845e111c3, SRC-8cadb4bd8960, SRC-e223a23ca33c]",
+      "requirement_ids": [
+        "REQ-eecafd275877",
+        "REQ-7dd1463d5bf2",
+        "REQ-c878737b1de3",
+        "REQ-6cf137cf629c",
+        "REQ-dfce560716ca",
+        "REQ-087c74099592",
+        "REQ-60c258cc38d0",
+        "REQ-af2fd334cb18"
+      ],
+      "depends_on": [],
+      "optional_dependencies": [],
+      "required_resources": [],
+      "operation_kind": "local_logic"
+    },
+    {
+      "task_id": "N02",
+      "objective": "Implement independently usable translation and glossary logic with synthetic cue inputs: attributed revisions, untranslated empty targets, versioned language-specific glossary entries, exact substring checks, reviewer exceptions, and language-isolated coverage blockers. Integrate the shared role policy when assembled; do not require source ingestion, children's resolution, or delivery access to develop and verify this module. [SRC-29b6634203bb]",
+      "requirement_ids": [
+        "REQ-a647e89da9eb",
+        "REQ-7bd8121977cd",
+        "REQ-c5b6ed9931ac",
+        "REQ-9e738a73eb5e"
+      ],
+      "depends_on": [],
+      "optional_dependencies": [],
+      "required_resources": [],
+      "operation_kind": "local_logic"
+    },
+    {
+      "task_id": "N03",
+      "objective": "Assemble ordinary-track checks and language-reviewer approval against current source/edit/translation/glossary versions. Implement affected approval invalidation, versioned package snapshots, immutable delivered packages, and newly reviewed corrections linked to previous deliveries. Depend on local source/conforming and terminology outputs, with no dependency on the children's branch or platform. [SRC-ce02372829ee, SRC-29b6634203bb, SRC-bf19f5b23b9b]",
+      "requirement_ids": [
+        "REQ-3bb541b82d63",
+        "REQ-4cea70f0858b",
+        "REQ-a89b7e4f2360",
+        "REQ-aad15da067ad",
+        "REQ-b1bff2dc0df8",
+        "REQ-875af2bda29b"
+      ],
+      "depends_on": [
+        "N01",
+        "N02"
+      ],
+      "optional_dependencies": [],
+      "required_resources": [],
+      "operation_kind": "local_logic"
+    },
+    {
+      "task_id": "N04",
+      "objective": "Preserve both conflicting children's ceilings and implement the unresolved-state prohibition on ceiling selection, approval, and delivery. Defer selected-ceiling validation and children's approval acceptance under ISS-455421000352 until an authenticated client accessibility owner supplies a resolution. This decision is missing business input, not infrastructure; it must not block other local nodes. [SRC-1e52c7fbb8a7, SRC-e223a23ca33c]",
+      "requirement_ids": [
+        "REQ-09b22b797112",
+        "REQ-48baf7d5cbf2",
+        "REQ-743c948a04ab"
+      ],
+      "depends_on": [
+        "N01",
+        "N02"
+      ],
+      "optional_dependencies": [],
+      "required_resources": [],
+      "operation_kind": "local_logic"
+    },
+    {
+      "task_id": "N05",
+      "objective": "Provide the review overview and local review copies from local cue, terminology, validation, approval, and outcome records. Expose all required issue classes and mark copies unapproved while failures remain. Initially group by episode under unapproved ASM-9caef545d8ca; grouping must not change checks. Successful approval or live delivery is not a prerequisite to generating a review copy. [SRC-ce02372829ee, SRC-bf19f5b23b9b, SRC-1e52c7fbb8a7]",
+      "requirement_ids": [
+        "REQ-4173bfc01c1d",
+        "REQ-f64446cc5cdb"
+      ],
+      "depends_on": [
+        "N01",
+        "N02",
+        "N03",
+        "N06"
+      ],
+      "optional_dependencies": [],
+      "required_resources": [],
+      "operation_kind": "local_logic"
+    },
+    {
+      "task_id": "N06",
+      "objective": "Implement local delivery controls without sending: producer-only scoped authorization, change invalidation, pre-send eligibility checks, destination-mismatch prevention, four distinct outcome states, outcome links, timeout-as-unknown classification, and refusal of automatic or unresolved retries. Use package snapshots and synthetic attempt evidence. The unresolved recovery contract blocks live reattempts, not these local controls. [SRC-c7eb4cffb22d, SRC-e223a23ca33c]",
+      "requirement_ids": [
+        "REQ-84ee858edbf7",
+        "REQ-62c8b340f20b",
+        "REQ-23d1199022b2",
+        "REQ-5cdd99cb284d",
+        "REQ-4da0ce732101"
+      ],
+      "depends_on": [
+        "N03"
+      ],
+      "optional_dependencies": [],
+      "required_resources": [],
+      "operation_kind": "local_logic"
+    },
+    {
+      "task_id": "N07",
+      "objective": "Deferred external operation: implement and verify platform transmission and positive delivery-evidence interpretation after ISS-634459dde797 is resolved. Consume an exact approved package and N06's current authorization checks. Ordinary delivery must not depend on resolving children's approval; children's delivery remains prohibited while that conflict persists. An actual send additionally requires separate producer authorization under ISS-f8c0ef06586d. This plan performs no operation. [SRC-c7eb4cffb22d, SRC-e223a23ca33c, SRC-1e52c7fbb8a7]",
+      "requirement_ids": [
+        "REQ-9ef64b340a28",
+        "REQ-62c8b340f20b",
+        "REQ-b6e8b83f4a45"
+      ],
+      "depends_on": [
+        "N03",
+        "N06"
+      ],
+      "optional_dependencies": [],
+      "required_resources": [
+        "client_media_platform",
+        "client_platform_account",
+        "client_platform_credentials",
+        "client_asset_permissions",
+        "exact_package_delivery_authorization"
+      ],
+      "operation_kind": "external_operation"
+    },
+    {
+      "task_id": "N08",
+      "objective": "Deferred external recovery operation: using a prior attempt record and the eventual platform contract, obtain and document evidence resolving an unknown outcome. Establish delivered status only from contract-defined positive evidence; permit a subsequent attempt only after documented resolution and renewed current approval/authorization checks through the send path. Block live recovery acceptance under ISS-83746741071e; do not introduce automatic retries. [SRC-e223a23ca33c]",
+      "requirement_ids": [
+        "REQ-5cdd99cb284d",
+        "REQ-b6e8b83f4a45"
+      ],
+      "depends_on": [
+        "N06",
+        "N07"
+      ],
+      "optional_dependencies": [],
+      "required_resources": [
+        "client_media_platform",
+        "client_platform_account",
+        "client_platform_credentials",
+        "client_asset_permissions",
+        "exact_package_delivery_authorization"
+      ],
+      "operation_kind": "external_operation"
+    }
+  ]
+}

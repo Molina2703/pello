@@ -1,0 +1,10 @@
+{
+  "actual_changed_files": [
+    "athis_autopilot/product_planning.py",
+    "tests/test_architecture_validation_recovery.py",
+    "tests/test_architecture_recovery_ledger.py"
+  ],
+  "minor_reporting_omission_preserved_in_review": true,
+  "complete_integration_test_source_was_supplied_in_r2_diff": true,
+  "original_review_input_and_verdict_unmodified": true
+}

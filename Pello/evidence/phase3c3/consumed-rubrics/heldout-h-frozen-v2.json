@@ -1,0 +1,223 @@
+{
+  "evaluation_id": "phase3c3-heldout-h-v1",
+  "independent_capabilities": [
+    "Source-cue and edit-list validation with exact frame-based conforming and explicit editorial exceptions using synthetic data.",
+    "Language-specific translation revisions, required terminology checks and reviewer exceptions using synthetic cues.",
+    "Ordinary-track duration, line, reading-speed and inter-cue-gap checks without children's-policy resolution or platform access."
+  ],
+  "minimum_critical_pass_fraction": 1.0,
+  "minimum_total_pass_fraction": 0.9,
+  "novelty_rationale": "CueConform concerns editorial time mapping, translation lineage and subtitle readability. It distinguishes source time from revised-video time, automated conforming from explicit editorial decisions, terminology exceptions from text substitution, and track approval from destination-specific delivery authority. The children's reading-speed contradiction blocks only affected approval and delivery, preserving source validation, conforming, translation and ordinary-track checks.",
+  "product_name": "CueConform",
+  "rubric": [
+    {
+      "area": "requirements",
+      "criterion_id": "C01",
+      "expected_planning_outcome": "The plan preserves pilot limits, exact 25-fps frame arithmetic and half-open interval semantics.",
+      "failure_condition": "A stated limit is omitted, timing relies on another frame rate or authoritative frame positions are replaced by rounded seconds.",
+      "severity": "critical",
+      "source_quote": "The pilot covers 12 episodes, two target languages per episode and at most 10,000 source cues per episode. All video uses exactly 25 frames per second; times are integer frame positions and intervals include their start and exclude their end."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C02",
+      "expected_planning_outcome": "All five exclusions remain explicit scope boundaries.",
+      "failure_condition": "An exclusion is omitted or an excluded operation enters committed scope.",
+      "severity": "critical",
+      "source_quote": "The service does not edit video, recognize speech, generate translations, change playback speed or support variable-frame-rate media."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C03",
+      "expected_planning_outcome": "The plan specifies source preview, every field, episode-scoped identity, text and temporal validation, and atomic rejection with row-level explanations.",
+      "failure_condition": "Preview or a field is absent, invalid bounds or duplicate identifiers are accepted or an invalid import partially commits.",
+      "severity": "critical",
+      "source_quote": "An editor can preview and accept source cues containing cue_id, episode_id, start_frame, end_frame, original_text and required_term_ids. Cues must have unique identifiers within an episode, nonempty text and bounds satisfying 0 ≤ start < end ≤ source runtime. Reject an invalid import entirely, with row-level reasons and no changes."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C04",
+      "expected_planning_outcome": "The plan distinguishes identical replay from conflicting reuse and preserves attributable source correction versions.",
+      "failure_condition": "Replay duplicates source cues, conflicting content overwrites a version or corrections erase required history.",
+      "severity": "critical",
+      "source_quote": "An identical source version and content is a no-op; changed content under that version is rejected. Corrections create a new source version and preserve previous values, actor, time and reason."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C05",
+      "expected_planning_outcome": "The plan represents source-bound approved edit lists, validates all interval constraints and derives the revised timeline by contiguous concatenation.",
+      "failure_condition": "Edit intervals may overlap, reorder source material or exceed runtime, source-version linkage is missing or unintended output gaps are introduced.",
+      "severity": "critical",
+      "source_quote": "Each approved edit list names its source version and ordered retained source intervals. Intervals must be nonempty, nonoverlapping, in source order and within runtime. They concatenate without gaps to form the revised video."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C06",
+      "expected_planning_outcome": "The plan defines offset-based conforming for wholly retained cues, preserving exact frame duration.",
+      "failure_condition": "Conforming changes cue duration, retains source timestamps after preceding cuts or uses approximate timing.",
+      "severity": "critical",
+      "source_quote": "A cue entirely within one retained interval shifts by that interval's source-to-output offset, preserving its duration."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C07",
+      "expected_planning_outcome": "The plan routes all removal-intersecting cues to explicit editorial decisions, preserves replacement lineage and validates revised runtime bounds.",
+      "failure_condition": "Affected cues are silently deleted or modified, wholly removed cues escape review, replacements lose lineage or revised cues exceed output runtime.",
+      "severity": "critical",
+      "source_quote": "A cue intersecting a removed region, including one removed entirely, requires editorial review; do not silently delete, split or shorten it. An editor can explicitly remove it or create reviewed replacement cues with lineage to the original. Revised cues must lie within the resulting video runtime."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C08",
+      "expected_planning_outcome": "The plan represents language-specific attributed translation revisions, untranslated status and all glossary attributes.",
+      "failure_condition": "Translations overwrite prior history, languages are conflated, empty targets appear complete or glossary version/language identity is absent.",
+      "severity": "critical",
+      "source_quote": "A translator records target text per cue and language, retaining revisions and attribution. An empty target remains untranslated. Glossary entries have an identifier, target language, preferred phrase and version."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C09",
+      "expected_planning_outcome": "The plan implements the stated exact phrase check or reasoned reviewer exception, scopes missing-coverage blockers by language and preserves human-authored wording.",
+      "failure_condition": "Matching is case-insensitive or approximate, exceptions lack reviewer authority or reasons, missing coverage blocks unrelated languages or terms are automatically substituted.",
+      "severity": "critical",
+      "source_quote": "For every required_term_id on a cue, its language-specific preferred phrase must appear as an exact case-sensitive substring in the target, or a language reviewer must record a reasoned exception. Missing glossary coverage blocks that cue's language approval, not other languages. Do not automatically substitute words."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C10",
+      "expected_planning_outcome": "The plan tracks all three change classes and invalidates affected approvals without invalidating unrelated language work unnecessarily.",
+      "failure_condition": "A named change can leave its dependent approval current or approval validity is detached from translation and glossary versions.",
+      "severity": "critical",
+      "source_quote": "Changing target text, a required glossary entry or its exception invalidates the affected language approval."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C11",
+      "expected_planning_outcome": "The plan preserves inclusive duration limits, line-count and line-length limits and exact character-count semantics.",
+      "failure_condition": "A limit changes or is omitted, endpoint durations fail incorrectly or character counting uses bytes, excludes spaces or includes line breaks.",
+      "severity": "critical",
+      "source_quote": "For ordinary videos, every target cue must last 25–175 frames inclusive, contain at most two lines and have at most 42 characters per line. Count Unicode code points, including spaces and punctuation but excluding line-break characters."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C12",
+      "expected_planning_outcome": "The plan derives duration from 25-fps frame counts, applies the inclusive exact reading-speed ceiling and validates the two-frame minimum gap and overlap prohibition per track.",
+      "failure_condition": "Rounded speed drives acceptance, equality fails, gap validation is absent or overlapping cues pass.",
+      "severity": "critical",
+      "source_quote": "Reading speed is that character count divided by duration in seconds and must not exceed 17 characters per second. Compare exact values rather than rounded display values. Consecutive cues in a language track must have at least two frames between the earlier end and later start; overlap fails."
+    },
+    {
+      "area": "authorization",
+      "criterion_id": "C13",
+      "expected_planning_outcome": "The plan gates track approval on all named checks and current input versions while allowing explicitly unapproved review copies.",
+      "failure_condition": "Incomplete or failing tracks can be approved, an input version is omitted from currency checks or review copies with failures appear approved.",
+      "severity": "critical",
+      "source_quote": "Untranslated text, unresolved editorial review or a failed check prevents approval of the affected track. A language reviewer may approve a track only against its current source, edit, translation and glossary versions. Review copies may be prepared while failures remain, clearly marked unapproved."
+    },
+    {
+      "area": "issues",
+      "criterion_id": "C14",
+      "expected_planning_outcome": "The plan records both exact conflicting ceilings and sources, assigns resolution to the client accessibility owner and leaves precedence unresolved.",
+      "failure_condition": "The plan chooses a ceiling, assumes the stricter ceiling resolves the exact-policy conflict or omits the contradiction or owner.",
+      "severity": "critical",
+      "source_quote": "The signed client specification says “children's subtitles must not exceed 12 characters per second.” The studio's binding accessibility agreement says “children's subtitles must not exceed 15 characters per second.” Both are described as the exact acceptance ceiling, and no precedence ruling exists. The client accessibility owner must resolve the contradiction."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C15",
+      "expected_planning_outcome": "The plan blocks children's approval and delivery while preserving all named local capabilities and ordinary approval.",
+      "failure_condition": "Children's approval or delivery proceeds under an assumed ceiling or the dispute blocks unrelated local or ordinary-video work.",
+      "severity": "critical",
+      "source_quote": "Do not choose either ceiling or approve or deliver a children's track until resolved. Source intake, conforming, translation and terminology review remain actionable, and ordinary-video approval remains available."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C16",
+      "expected_planning_outcome": "The plan explicitly provides observable overview exposure of all six categories without prescribing a layout or navigation mechanism.",
+      "failure_condition": "A named category is missing from the planned overview or unresolved work is presented as complete.",
+      "severity": "critical",
+      "source_quote": "The overview must expose untranslated cues, editorial-review items, terminology exceptions, failed checks, stale approvals and delivery outcomes."
+    },
+    {
+      "area": "persistence",
+      "criterion_id": "C17",
+      "expected_planning_outcome": "The plan represents exact package/edit/language identity, stale approval detection, immutable delivered versions, reviewed linked corrections and retained lineage and decision reasons.",
+      "failure_condition": "Packages lack edit/language identity, relevant changes retain approval, delivered packages are overwritten or correction/decision history is lost.",
+      "severity": "critical",
+      "source_quote": "An approved track is a versioned package tied to the exact episode edit and target language. Relevant changes make its approval stale; a previously delivered package remains immutable. A correction requires a newly reviewed package linked to the previous delivery. Preserve cue lineage and the reasons for editorial removals and terminology exceptions."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C18",
+      "expected_planning_outcome": "The plan identifies the delivery integration and every named unknown, with resolution before live exchange. It preserves local review/checking work and labels provisional formats and mappings as assumptions.",
+      "failure_condition": "A critical unknown is omitted, confirmed format/access/replacement semantics are invented or live platform access blocks local checks.",
+      "severity": "critical",
+      "source_quote": "The client's media platform is expected to accept a subtitle track for an existing video asset. Its endpoint, authentication, asset permissions, asset-to-edit identification, accepted subtitle format and encoding, replacement behavior and acknowledgement meaning are unknown. These block live delivery, not local review copies or ordinary checks."
+    },
+    {
+      "area": "authorization",
+      "criterion_id": "C19",
+      "expected_planning_outcome": "The plan requires separate producer authorization bound to every stated scope element, invalidates it after package/destination changes and rechecks current approval and authorization at delivery. It recognizes that no execution permission is presently granted.",
+      "failure_condition": "Approval or the brief authorizes delivery, authorization is generic or stale, destination checks are omitted or another asset's track may be silently replaced.",
+      "severity": "critical",
+      "source_quote": "Before an attempt, the studio producer must separately authorize the exact approved package version, client asset, edit version and language. This brief grants no execution permission. Track approval is not delivery authorization; changed package or destination details invalidate authorization. Recheck current approval and authorization before sending, and never silently replace a different asset's track."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C20",
+      "expected_planning_outcome": "The plan preserves all four outcomes, requires contract-defined positive delivery evidence, gates uncertain retries on documented resolution and retains package/destination/authorization provenance.",
+      "failure_condition": "Timeout or mere sending becomes delivered, automatic retries follow uncertainty, delivery evidence is invented as confirmed or outcome linkage is absent.",
+      "severity": "critical",
+      "source_quote": "Distinguish awaiting acknowledgement, delivered, rejected and unknown outcomes. A timeout is unknown, not delivered; another attempt requires documented outcome resolution rather than automatic retry. Delivered status requires the positive evidence defined by the eventual platform contract. Link each outcome to its package, destination and authorization."
+    },
+    {
+      "area": "authorization",
+      "criterion_id": "C21",
+      "expected_planning_outcome": "The plan maps every named role to its stated operations and enforces permissions beyond interface visibility, including exclusive delivery authorization and children's-policy resolution.",
+      "failure_condition": "A named boundary is missing, restricted authority is assigned to another role or access control relies only on hidden interface controls.",
+      "severity": "critical",
+      "source_quote": "Editors maintain sources, edit lists and editorial decisions; translators maintain target text; language reviewers approve terminology exceptions and tracks; only the studio producer authorizes delivery. Viewers can read review copies. Enforce permissions beyond screen visibility; only the client accessibility owner resolves the children's ceiling."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C22",
+      "expected_planning_outcome": "The plan includes independently actionable edit-validation and conforming work using local source examples and preserves the required source-version and approved-edit dependencies.",
+      "failure_condition": "Conforming work is blocked on external delivery access or the plan cannot connect conformed cues to validated source and edit versions.",
+      "severity": "critical",
+      "source_quote": "Edit validation and cue conforming can be planned locally before any delivery connection exists."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C23",
+      "expected_planning_outcome": "The plan includes a separately actionable translation/glossary-validation branch using synthetic cues, with downstream approval dependencies that do not require premature children's-policy resolution.",
+      "failure_condition": "The branch is omitted or blocked on disputed policy or platform access, or terminology validation is treated as already approved delivery.",
+      "severity": "critical",
+      "source_quote": "Translation and glossary validation can be planned independently using synthetic cues without resolving children's delivery policy."
+    },
+    {
+      "area": "persistence",
+      "criterion_id": "C24",
+      "expected_planning_outcome": "The plan preserves delivered package content and its identity durably, allowing later reviewed packages to reference it without altering it. Any sound durable design is acceptable.",
+      "failure_condition": "A delivery record refers only to mutable current content or later corrections overwrite the delivered package. No particular persistence backend or deployment architecture is required.",
+      "severity": "critical",
+      "source_quote": "Relevant changes make its approval stale; a previously delivered package remains immutable. A correction requires a newly reviewed package linked to the previous delivery."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C25",
+      "expected_planning_outcome": "The plan treats initial grouping as a nonblocking reversible presentation choice and preserves identical check semantics under either grouping.",
+      "failure_condition": "Grouping blocks mandatory work, changes checks or is presented as a resolved customer decision without evidence.",
+      "severity": "critical",
+      "source_quote": "Users disagree whether the review overview should initially group issues by episode or language; either grouping is acceptable and must not alter checks."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C26",
+      "expected_planning_outcome": "The plan describes the overview behavior intelligibly. Any document organization or sound technical design is acceptable. This criterion assesses only minor wording or presentation imperfections; C16 independently requires every mandatory overview category.",
+      "failure_condition": "An identifiable wording or presentation defect makes an otherwise complete and correct overview description harder to understand while its intended meaning remains recoverable. Organization alone is not a failure. Missing, ambiguous or incorrect mandatory behavior must be assessed under the applicable critical criterion and cannot be treated solely as a minor defect.",
+      "severity": "minor",
+      "source_quote": "The overview must expose untranslated cues, editorial-review items, terminology exceptions, failed checks, stale approvals and delivery outcomes."
+    }
+  ],
+  "specification_markdown": "# CueConform: subtitle adaptation for revised video edits\n\n## Purpose and boundaries\nA small localization studio needs to adapt translated subtitles when clients shorten instructional videos. The pilot covers 12 episodes, two target languages per episode and at most 10,000 source cues per episode. All video uses exactly 25 frames per second; times are integer frame positions and intervals include their start and exclude their end. The service does not edit video, recognize speech, generate translations, change playback speed or support variable-frame-rate media. Synthetic cue files, edit lists and glossary entries are available. External credentials, accounts and delivery authorizations are absent.\n\n## Source material and edit versions\nAn editor can preview and accept source cues containing cue_id, episode_id, start_frame, end_frame, original_text and required_term_ids. Cues must have unique identifiers within an episode, nonempty text and bounds satisfying 0 ≤ start < end ≤ source runtime. Reject an invalid import entirely, with row-level reasons and no changes. An identical source version and content is a no-op; changed content under that version is rejected. Corrections create a new source version and preserve previous values, actor, time and reason.\n\nEach approved edit list names its source version and ordered retained source intervals. Intervals must be nonempty, nonoverlapping, in source order and within runtime. They concatenate without gaps to form the revised video. A cue entirely within one retained interval shifts by that interval's source-to-output offset, preserving its duration. A cue intersecting a removed region, including one removed entirely, requires editorial review; do not silently delete, split or shorten it. An editor can explicitly remove it or create reviewed replacement cues with lineage to the original. Revised cues must lie within the resulting video runtime. Edit validation and cue conforming can be planned locally before any delivery connection exists.\n\n## Translation and terminology\nA translator records target text per cue and language, retaining revisions and attribution. An empty target remains untranslated. Glossary entries have an identifier, target language, preferred phrase and version. For every required_term_id on a cue, its language-specific preferred phrase must appear as an exact case-sensitive substring in the target, or a language reviewer must record a reasoned exception. Missing glossary coverage blocks that cue's language approval, not other languages. Do not automatically substitute words. Changing target text, a required glossary entry or its exception invalidates the affected language approval. Translation and glossary validation can be planned independently using synthetic cues without resolving children's delivery policy.\n\n## Ordinary subtitle checks\nFor ordinary videos, every target cue must last 25–175 frames inclusive, contain at most two lines and have at most 42 characters per line. Count Unicode code points, including spaces and punctuation but excluding line-break characters. Reading speed is that character count divided by duration in seconds and must not exceed 17 characters per second. Compare exact values rather than rounded display values. Consecutive cues in a language track must have at least two frames between the earlier end and later start; overlap fails. Untranslated text, unresolved editorial review or a failed check prevents approval of the affected track. A language reviewer may approve a track only against its current source, edit, translation and glossary versions. Review copies may be prepared while failures remain, clearly marked unapproved.\n\n## Children's-video contradiction\nThe signed client specification says “children's subtitles must not exceed 12 characters per second.” The studio's binding accessibility agreement says “children's subtitles must not exceed 15 characters per second.” Both are described as the exact acceptance ceiling, and no precedence ruling exists. The client accessibility owner must resolve the contradiction. Do not choose either ceiling or approve or deliver a children's track until resolved. Source intake, conforming, translation and terminology review remain actionable, and ordinary-video approval remains available. Users disagree whether the review overview should initially group issues by episode or language; either grouping is acceptable and must not alter checks.\n\n## Review history and delivery\nThe overview must expose untranslated cues, editorial-review items, terminology exceptions, failed checks, stale approvals and delivery outcomes. An approved track is a versioned package tied to the exact episode edit and target language. Relevant changes make its approval stale; a previously delivered package remains immutable. A correction requires a newly reviewed package linked to the previous delivery. Preserve cue lineage and the reasons for editorial removals and terminology exceptions.\n\nThe client's media platform is expected to accept a subtitle track for an existing video asset. Its endpoint, authentication, asset permissions, asset-to-edit identification, accepted subtitle format and encoding, replacement behavior and acknowledgement meaning are unknown. These block live delivery, not local review copies or ordinary checks. Before an attempt, the studio producer must separately authorize the exact approved package version, client asset, edit version and language. This brief grants no execution permission. Track approval is not delivery authorization; changed package or destination details invalidate authorization. Recheck current approval and authorization before sending, and never silently replace a different asset's track.\n\nDistinguish awaiting acknowledgement, delivered, rejected and unknown outcomes. A timeout is unknown, not delivered; another attempt requires documented outcome resolution rather than automatic retry. Delivered status requires the positive evidence defined by the eventual platform contract. Link each outcome to its package, destination and authorization. Editors maintain sources, edit lists and editorial decisions; translators maintain target text; language reviewers approve terminology exceptions and tracks; only the studio producer authorizes delivery. Viewers can read review copies. Enforce permissions beyond screen visibility; only the client accessibility owner resolves the children's ceiling.\n\n## Acceptance and delivery expectations\n\n## Acceptance and delivery expectations\n\nRetaining source intervals [0,250) and [500,1000) produces a 750-frame video. A cue at [550,600) becomes [300,350), preserving its 50-frame duration. A cue at [240,510) requires editorial review rather than automatic shortening.\n\nFor an ordinary track, 34 counted characters over 50 frames give exactly 17 characters per second and pass the reading-speed check; 35 give 17.5 and fail. If one cue ends at frame 100, the next may start at 102; starting at 101 fails the gap check. Passing these individual checks does not establish track approval.\n\nChanging an approved track's target text makes its approval stale. A delivery timeout remains unknown and does not establish delivery. No children's acceptance ceiling is selected while the contradiction remains unresolved.\n\nThese examples define expected outcomes for proposed verification. This brief supplies no implementation, executed tests or live-platform evidence and grants no delivery execution permission.\n"
+}

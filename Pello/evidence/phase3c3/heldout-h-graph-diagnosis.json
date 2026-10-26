@@ -1,0 +1,105 @@
+{
+  "node_dependencies": {
+    "N01": [],
+    "N02": [],
+    "N03": [
+      "N01",
+      "N02"
+    ],
+    "N04": [
+      "N01",
+      "N02"
+    ],
+    "N05": [
+      "N01",
+      "N02",
+      "N03",
+      "N06"
+    ],
+    "N06": [
+      "N03"
+    ],
+    "N07": [
+      "N03",
+      "N06"
+    ],
+    "N08": [
+      "N06",
+      "N07"
+    ]
+  },
+  "missing_prerequisites": [
+    {
+      "task_id": "N06",
+      "requirement": {
+        "requirement_id": "REQ-62c8b340f20b",
+        "source_ids": [
+          "SRC-c7eb4cffb22d"
+        ],
+        "normalized": "Immediately before sending, recheck current package approval and matching delivery authorization, and never silently replace a different asset's track.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-875af2bda29b",
+          "REQ-9ef64b340a28",
+          "REQ-84ee858edbf7"
+        ],
+        "acceptance_implications": [
+          "Prevent sending after approval becomes stale or authorization becomes invalid.",
+          "A mismatch between intended and actual asset cannot cause silent replacement."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [
+          "Resolved platform contract and access",
+          "Current matching producer authorization"
+        ],
+        "external_effects": [
+          "Send an authorized subtitle package to its specified client asset"
+        ],
+        "authorization_required": true
+      },
+      "missing_requirement": {
+        "requirement_id": "REQ-9ef64b340a28",
+        "source_ids": [
+          "SRC-c7eb4cffb22d",
+          "SRC-5aca7f8fb45b"
+        ],
+        "normalized": "Provide live delivery of an approved subtitle track to an existing client video asset only after resolving the platform endpoint, authentication, asset permissions, asset-to-edit identification, accepted subtitle format and encoding, replacement behavior, and acknowledgement contract.",
+        "category": "integration",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-875af2bda29b"
+        ],
+        "acceptance_implications": [
+          "Do not assume a platform API, subtitle format, encoding, replacement operation, or acknowledgement meaning.",
+          "Live integration verification requires the missing platform contract and access."
+        ],
+        "confidence": "medium",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Client media-platform contract",
+          "External account and credentials",
+          "Asset permissions",
+          "Reliable mapping between client assets and edit versions"
+        ],
+        "external_effects": [
+          "Submit a subtitle track to an existing client video asset"
+        ],
+        "authorization_required": true
+      },
+      "missing_owner_tasks": [
+        "N07"
+      ],
+      "current_ancestors": [
+        "N01",
+        "N02",
+        "N03"
+      ]
+    }
+  ]
+}

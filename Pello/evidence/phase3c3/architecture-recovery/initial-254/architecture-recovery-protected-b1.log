@@ -1,0 +1,11 @@
+test_blockers_assumptions_and_exclusions_survive (test_planning_input.PlanningInputTests.test_blockers_assumptions_and_exclusions_survive) ... ok
+test_duplicate_ids_and_conflicting_definitions_fail (test_planning_input.PlanningInputTests.test_duplicate_ids_and_conflicting_definitions_fail) ... ok
+test_invalid_source_dependency_issue_and_assumption_references_fail (test_planning_input.PlanningInputTests.test_invalid_source_dependency_issue_and_assumption_references_fail) ... ok
+test_missing_fields_and_malformed_input_fail (test_planning_input.PlanningInputTests.test_missing_fields_and_malformed_input_fail) ... ok
+test_real_analysis_round_trips_without_semantic_changes (test_planning_input.PlanningInputTests.test_real_analysis_round_trips_without_semantic_changes) ... ok
+test_source_segment_tampering_fails (test_planning_input.PlanningInputTests.test_source_segment_tampering_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.038s
+
+OK

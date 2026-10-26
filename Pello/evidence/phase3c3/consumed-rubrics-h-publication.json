@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-26T23:18:28.749017+00:00",
+  "published_only_after_H_original_FAIL": true,
+  "records": [
+    {
+      "version": 1,
+      "file": "evidence\\phase3c3\\consumed-rubrics\\heldout-h-frozen-v1.json",
+      "sha256": "9815d782a1ca64e59f4604fd6c48500234d4693d4aa26d80eba4a1d7cc2ee367",
+      "operative_for_first_Planner": false
+    },
+    {
+      "version": 2,
+      "file": "evidence\\phase3c3\\consumed-rubrics\\heldout-h-frozen-v2.json",
+      "sha256": "8923f5c429cd974b2292e7473e57a933c1b87798a7ee6ad360520accfde09554",
+      "operative_for_first_Planner": true
+    }
+  ],
+  "private_author_reasoning_not_exported": true
+}
