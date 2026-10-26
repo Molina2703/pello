@@ -112,3 +112,9 @@ Engineering counts do not imply completion percentages or full product delivery.
 | V1-21 | STOP and recovery | Supporting local evidence | Actual production guard tests block a correction before reservation. STOP absent; no delivered workflow disabled. |
 | V1-22 | Production test-data management | No new C3 proof | Local synthetic data only; no production test resources created. |
 | V1-23 | MCP access lifecycle | No new C3 proof | No workflow creation/access handoff in this continuation; historical evidence unchanged. |
+
+## User preservation decision
+
+2026-10-26T23:23:55.229748+00:00: the user explicitly selected **“Conservar el checkpoint”**. The proposed114 global/18 author limits were declined. Maximums remain101 globally and14 for the author, preserving88 global charges and14 author charges. No authorization row, counter or deadline was changed. No additional SDK execution, new I evaluation, external business operation or Phase3D work starts from this checkpoint. The capacity proposal in G is historical and is not a pending approval.
+
+The accepted engineering source remains `94c2bb9b8f7174bf06afe8758df5b11926421b88`; preserved delivery checkpoint `6020a3d0640f5d115200aee19dc85ab9a2046be5`. Phase3C-3 and overall Phase3C remain PARTIAL, with eight original blind FAILs and generalization UNVERIFIED. Evidence: `user-decision-preserve-checkpoint-88.json`, `checkpoint-88-preserved-state.json`.

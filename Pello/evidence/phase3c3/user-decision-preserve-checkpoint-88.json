@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-26T23:23:55.229748+00:00",
+  "user_reply": "Conservar el checkpoint",
+  "decision": "PRESERVE_CHECKPOINT_NO_EXPANSION_NO_FURTHER_SDK",
+  "preserved_delivery_HEAD": "6020a3d0640f5d115200aee19dc85ab9a2046be5",
+  "accepted_engineering_HEAD": "94c2bb9b8f7174bf06afe8758df5b11926421b88",
+  "declined_proposal": {
+    "cumulative_limit": 114,
+    "author_limit": 18
+  },
+  "cumulative_limit_unchanged": 101,
+  "charged_reservations_unchanged": 88,
+  "author_used_limit_unchanged": [
+    14,
+    14
+  ],
+  "deadline_unchanged": "2026-10-27T06:30:00+00:00",
+  "authorization_rows_unchanged": true,
+  "counters_not_reset": true,
+  "no_new_SDK_execution": true,
+  "new_I_not_started": true,
+  "STOP_unchanged": false,
+  "sqlite_integrity": "ok",
+  "phase3c3": "PARTIAL",
+  "overall_phase3c": "PARTIAL",
+  "eight_original_FAILs_preserved": true,
+  "external_business_operations": 0,
+  "Phase3D_started": false
+}
