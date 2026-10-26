@@ -1,0 +1,10 @@
+{
+  "original_canonical_characters": 78267,
+  "after_existing_factoring_characters": 57430,
+  "after_existing_table_transport_applied_to_factored_review": 45441,
+  "requirements": 42,
+  "issues": 9,
+  "assumptions": 3,
+  "no_model_call": true,
+  "unmodified_limit": 55000
+}

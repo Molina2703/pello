@@ -1,0 +1,24 @@
+warning: in the working copy of 'version-1/SPEC.md', LF will be replaced by CRLF the next time Git touches it
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\evidence\phase3c3\run_planning_g.py", line 20, in <module>
+    result=core.plan_product(pid)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 959, in plan_product
+    if self.review_analysis(project_id)['verdict']!='PASS':raise CodexBlocked('Analysis review did not accept planning input')
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 1278, in review_analysis
+    review, _ = self._invoke(project_id, version['version'], review_phase, 'reviewer', payload, AnalysisReview)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 1032, in _invoke
+    prompt = self._prompt(phase, payload)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 1220, in _prompt
+    raise ValueError('Planning context exceeds 55,000 characters; no silent truncation')
+ValueError: Planning context exceeds 55,000 characters; no silent truncation
+{
+  "status": "FAIL_OR_BLOCKED",
+  "error_type": "ValueError",
+  "error": "Planning context exceeds 55,000 characters; no silent truncation",
+  "project_id": "phase3c3-heldout-g",
+  "at": "2026-10-26T22:02:20.041176+00:00"
+}

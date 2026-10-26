@@ -1,0 +1,7 @@
+{
+  "status": "FAIL_OR_BLOCKED",
+  "error_type": "ValueError",
+  "error": "Planning context exceeds 55,000 characters; no silent truncation",
+  "project_id": "phase3c3-heldout-g",
+  "at": "2026-10-26T22:02:20.041176+00:00"
+}

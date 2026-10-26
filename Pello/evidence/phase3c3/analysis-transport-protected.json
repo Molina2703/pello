@@ -1,0 +1,44 @@
+[
+  {
+    "batch": 1,
+    "exit_code": 0,
+    "tests_run": 6,
+    "source_hashes_intact": true,
+    "protected_copy_hash_intact": true
+  },
+  {
+    "batch": 2,
+    "exit_code": 0,
+    "tests_run": 10,
+    "source_hashes_intact": true,
+    "protected_copy_hash_intact": true
+  },
+  {
+    "batch": 3,
+    "exit_code": 0,
+    "tests_run": 11,
+    "source_hashes_intact": true,
+    "protected_copy_hash_intact": true
+  },
+  {
+    "batch": 4,
+    "exit_code": 0,
+    "tests_run": 8,
+    "source_hashes_intact": true,
+    "protected_copy_hash_intact": true
+  },
+  {
+    "batch": 5,
+    "exit_code": 0,
+    "tests_run": 13,
+    "source_hashes_intact": true,
+    "protected_copy_hash_intact": true
+  },
+  {
+    "batch": 6,
+    "exit_code": 0,
+    "tests_run": 15,
+    "source_hashes_intact": true,
+    "protected_copy_hash_intact": true
+  }
+]

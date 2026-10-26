@@ -1195,7 +1195,7 @@ class ProductPlanningCore(Bridge):
                             segment['source_text_lines_ref'] = [segment['start_line'], segment['end_line']]
                         packed['context_encoding'] += " Segment source_text_lines_ref is a 1-based inclusive line range in original_product_specification_markdown; reconstruct text by joining those splitlines() with '\\n' then strip(). The complete original source is supplied once; no requirement or source content is omitted."
                         prompt = prompt[:prompt.index('\nDATA JSON:\n')+len('\nDATA JSON:\n')] + json.dumps(packed, ensure_ascii=False, separators=(',', ':'))
-        if len(prompt) > 55_000 and phase.startswith('plan-'):
+        if len(prompt) > 55_000 and phase.startswith(('plan-','review-analysis')):
             # Lossless row transport removes repeated field labels, not facts.
             # Reserved-marker collisions refuse packing rather than reinterpret
             # arbitrary business dictionaries as transport objects.
@@ -1212,8 +1212,9 @@ class ProductPlanningCore(Bridge):
                     return [table(v) for v in value]
                 if isinstance(value,dict):return {k:table(v) for k,v in value.items()}
                 return value
-            if not conflict(payload):
-                packed=table(payload)
+            packing_payload=json.loads(prompt.split('DATA JSON:\n',1)[1])
+            if not conflict(packing_payload):
+                packed=table(packing_payload)
                 packed['pello_context_encoding']='Object lists use pello_table_columns and pello_table_rows: each row is an object with those ordered keys; recursively reconstruct every value unchanged. All source text, IDs, requirements, blockers, assumptions and constraints remain present. This is transport only; use canonical field names in your output.'
                 prompt=prompt[:prompt.index('\nDATA JSON:\n')+len('\nDATA JSON:\n')]+json.dumps(packed,ensure_ascii=False,separators=(',',':'))
         if len(prompt) > 55_000:

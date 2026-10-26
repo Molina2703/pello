@@ -1,0 +1,1761 @@
+{
+  "source_sha256": "1d7dc574a864f7b091d856891ea66816e8d30490f27499ed81679fc4374f97a2",
+  "original_product_specification_markdown": "# StageMark: mountain-bike stage-race classification\n\n## Purpose and limits\nA race organizer needs defensible stage results and an overall classification for a four-stage mountain-bike event with up to 800 riders in two divisions. Riders compete individually; each has one immutable rider identifier, one unique bib and one division. Times use UTC and integer milliseconds. The service does not reserve starts, manage accommodation, collect fees, control timing hardware, provide emergency tracking or decide medical fitness. Synthetic entries, timing observations and jury decisions are available. External credentials, accounts and publication authorizations are absent.\n\n## Entries and course evidence\nAn entries clerk can preview and accept a roster containing rider_id, bib, division and name. Missing fields, duplicate identifiers or bibs and unknown divisions reject the entire import with row-level reasons and no changes. Reimporting identical roster content is a no-op. Amendments retain actor, time, reason and previous values; changing a rider's division invalidates affected draft classifications. Preserve previous published results rather than rewriting them.\n\nEach stage has an approved course version listing its start, ordered mandatory checkpoints, finish and common start timestamp. A timing clerk imports observations containing observation_id, rider_id, stage_id, control_id and observed_at. Unknown riders or controls and malformed timestamps reject the whole delivery. An identical observation identifier and content is a no-op; changed content under that identifier is rejected. Retain raw observations. The earliest observation at each control at or after the stage start is selected; later duplicates remain visible but do not add elapsed time. Pre-start observations are retained and ignored. A missing control or selected controls out of course order creates an unresolved timing exception, not an invented crossing or automatic disqualification.\n\nA timing supervisor may approve a replacement selected crossing with reason and supporting evidence, preserving raw observations and correction history. A finish before the start is invalid. Entry validation and course/observation validation can be planned separately using synthetic data before external access or the disputed fourth-stage policy is resolved.\n\n## Riding time and neutralization\nFor stages 1–3, gross time is selected finish minus common start. The jury can approve rider-specific neutralization intervals with evidence and reason. Intervals include their start and exclude their end, must end after they start and must lie within that rider's start-to-finish interval. Deduct the duration of their union, so overlapping intervals are never deducted twice. Net riding time is gross time minus that deduction. Invalid neutralization records change nothing. Net riding time at or below six hours meets the stage cutoff; time above six hours is OVER TIME LIMIT. Penalties do not affect the cutoff test.\n\nA stage time penalty is a nonnegative integer number of milliseconds added to net riding time for stage ranking and overall totals. An overall-only penalty affects only the overall total and must not be applied once per stage. Every penalty names its rider, scope, jury decision reference and reason. Withdrawn penalties remain in history and cease contributing. A jury decision may explicitly disqualify a rider from a stage; timing exceptions alone cannot do so.\n\n## Classification and a disputed stage\nRank eligible stage finishers within their division by net riding time plus stage penalties, lowest first. Exact ties share competition ranks, such as 1,1,3; never use bib order to break them. A rider qualifies for overall classification only after all four stages are resolved, within cutoff and without stage disqualification. Overall time sums the four ranked stage times and adds overall-only penalties once. Break an overall-time tie by lower fourth-stage ranked time; if still equal, share the rank.\n\nThe signed fourth-stage weather bulletin says “neutralized time is deducted when testing the six-hour cutoff.” The chief commissaire's signed direction says “neutralized time is not deducted when testing the six-hour cutoff.” Both are mandatory and no precedence ruling exists. The chief commissaire must resolve the contradiction. Deduction for fourth-stage scoring is agreed; only its cutoff treatment is disputed. Fourth-stage cutoff decisions and overall classification remain blocked. Entry work, timing reconciliation, penalties and final classifications for stages 1–3 must proceed. Do not infer cutoff policy from the more generous or more restrictive document. Users disagree whether review screens should initially group exceptions by rider or control; either is acceptable and must not change results.\n\n## Jury review and result versions\nA jury secretary records appeals against a crossing, neutralization, penalty or disqualification, with rider, stage or overall scope, reason and evidence reference. An open appeal blocks publication only of the classifications it could affect. The jury chair records an upheld or rejected decision with reasons; upholding an appeal requires an explicit linked correction or decision, not a silent change to a total. An appeal about an overall-only penalty does not block an unaffected stage classification.\n\nA results officer can prepare versioned classifications exposing selected crossings, exceptions, neutralized duration, penalties, cutoff status, ranks and source references. Relevant entry, course, timing or jury changes make affected drafts stale. Approval rejects stale or unresolved classifications. Published versions remain immutable; changes require a newly approved amendment linked to the prior publication. Review screens must expose unresolved timing, open appeals, stale drafts and publication outcomes.\n\n## External publication and authority\nThe federation service is expected to receive official classifications and amendments and return publication outcomes. Its endpoint, authentication, event permissions, division codes, payload schema, acknowledgement meanings and duplicate-publication behavior are unknown. These block live publication, not local calculation. Before any attempt, the race director must separately authorize the exact approved result version, event, stage or overall scope and divisions. This brief grants no execution permission. Changed results invalidate that authorization; results approval is not publication permission. Recheck currency, unresolved appeals and authorization immediately before sending.\n\nPreserve rejected, received for processing, published and unknown outcomes. Receipt is not publication. A timeout is unknown; another attempt requires documented outcome resolution rather than automatic retry. Link outcomes to the attempted version and authorization. Entries clerks maintain entries; timing clerks import observations; timing supervisors approve crossing corrections; jury secretaries record appeals; jury chairs approve neutralizations, penalties, disqualifications and appeal decisions; results officers prepare and approve classifications; only the race director authorizes publication. Viewers can read approved classifications. Enforce permissions beyond screen visibility. The chief commissaire alone resolves the disputed cutoff policy.\n\n## Acceptance and delivery expectations\nA gross time of 5h50m with neutralizations 02:00–02:20 and 02:10–02:30 after the start has a 30-minute union and net time 5h20m. Adding a ten-minute stage penalty gives ranked time 5h30m. A net time of exactly six hours meets the cutoff even with a penalty; six hours plus one millisecond does not. Stage times totaling 20 hours plus an overall-only five-minute penalty produce 20h05m. Equal ranked times followed by a slower rider receive ranks 1,1,3. A missing checkpoint remains unresolved. No fourth-stage cutoff or overall winner is asserted before policy resolution.\n\nEvidence, jury history, result versions and authorizations must survive restart with identical times and ranks. Local storage, preview layout and exception grouping may use explicitly labeled reversible assumptions; none is customer approval. Verification is proposed work: no implementation, executed tests or live federation evidence is supplied.",
+  "source_segments": [
+    {
+      "source_id": "SRC-c8791e9d9dbd",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification"
+      ],
+      "start_line": 1,
+      "end_line": 1,
+      "text": "# StageMark: mountain-bike stage-race classification",
+      "sha256": "fb4b71bf21d0528314048b3079f95a407f74b3c891d3a4b032836913a9edb4bf"
+    },
+    {
+      "source_id": "SRC-87d88e74a11e",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Purpose and limits"
+      ],
+      "start_line": 3,
+      "end_line": 3,
+      "text": "## Purpose and limits",
+      "sha256": "b0e581ef44d5cae8c93bef3b00b44e3b8d90c9935f49e3f18adb8be46b8d31b5"
+    },
+    {
+      "source_id": "SRC-51394782c45b",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Purpose and limits"
+      ],
+      "start_line": 4,
+      "end_line": 4,
+      "text": "A race organizer needs defensible stage results and an overall classification for a four-stage mountain-bike event with up to 800 riders in two divisions. Riders compete individually; each has one immutable rider identifier, one unique bib and one division. Times use UTC and integer milliseconds. The service does not reserve starts, manage accommodation, collect fees, control timing hardware, provide emergency tracking or decide medical fitness. Synthetic entries, timing observations and jury decisions are available. External credentials, accounts and publication authorizations are absent.",
+      "sha256": "abefdc484c235fe0c3e0d9ef5fe6976c297985e4c047525ddc4dcf71641fffbd"
+    },
+    {
+      "source_id": "SRC-f4c0850c84cc",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Entries and course evidence"
+      ],
+      "start_line": 6,
+      "end_line": 6,
+      "text": "## Entries and course evidence",
+      "sha256": "6fe69de0c73599ef1a6682aca955ebf5039d256d5df6d8c2ad8ab593c24cc44a"
+    },
+    {
+      "source_id": "SRC-de773b4a9a02",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Entries and course evidence"
+      ],
+      "start_line": 7,
+      "end_line": 7,
+      "text": "An entries clerk can preview and accept a roster containing rider_id, bib, division and name. Missing fields, duplicate identifiers or bibs and unknown divisions reject the entire import with row-level reasons and no changes. Reimporting identical roster content is a no-op. Amendments retain actor, time, reason and previous values; changing a rider's division invalidates affected draft classifications. Preserve previous published results rather than rewriting them.",
+      "sha256": "a91716b51ba93651771b4853403db7be9e8d664962386aa3fe1591e2f67345b4"
+    },
+    {
+      "source_id": "SRC-373ef513d1cf",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Entries and course evidence"
+      ],
+      "start_line": 9,
+      "end_line": 9,
+      "text": "Each stage has an approved course version listing its start, ordered mandatory checkpoints, finish and common start timestamp. A timing clerk imports observations containing observation_id, rider_id, stage_id, control_id and observed_at. Unknown riders or controls and malformed timestamps reject the whole delivery. An identical observation identifier and content is a no-op; changed content under that identifier is rejected. Retain raw observations. The earliest observation at each control at or after the stage start is selected; later duplicates remain visible but do not add elapsed time. Pre-start observations are retained and ignored. A missing control or selected controls out of course order creates an unresolved timing exception, not an invented crossing or automatic disqualification.",
+      "sha256": "82918575810b7b32abcbadac0f30453377dda09e55b22b12336cffb69ac63368"
+    },
+    {
+      "source_id": "SRC-7e9368b22842",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Entries and course evidence"
+      ],
+      "start_line": 11,
+      "end_line": 11,
+      "text": "A timing supervisor may approve a replacement selected crossing with reason and supporting evidence, preserving raw observations and correction history. A finish before the start is invalid. Entry validation and course/observation validation can be planned separately using synthetic data before external access or the disputed fourth-stage policy is resolved.",
+      "sha256": "6d6af9f5ccb1681aa82869ac9457fa47c2814a148db2b412b0db0e7d1bfbd9d5"
+    },
+    {
+      "source_id": "SRC-f3e02a359b83",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Riding time and neutralization"
+      ],
+      "start_line": 13,
+      "end_line": 13,
+      "text": "## Riding time and neutralization",
+      "sha256": "0f31c150096c3d2242750b7e8d7ee32524dc34160be026c64d2f417f3ab0bac8"
+    },
+    {
+      "source_id": "SRC-1e8dedc2a44b",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Riding time and neutralization"
+      ],
+      "start_line": 14,
+      "end_line": 14,
+      "text": "For stages 1–3, gross time is selected finish minus common start. The jury can approve rider-specific neutralization intervals with evidence and reason. Intervals include their start and exclude their end, must end after they start and must lie within that rider's start-to-finish interval. Deduct the duration of their union, so overlapping intervals are never deducted twice. Net riding time is gross time minus that deduction. Invalid neutralization records change nothing. Net riding time at or below six hours meets the stage cutoff; time above six hours is OVER TIME LIMIT. Penalties do not affect the cutoff test.",
+      "sha256": "020a1d16e7325998e1342558dae2cb41df7f7a1f623b48c773844b84d00bf566"
+    },
+    {
+      "source_id": "SRC-1358d5ac7f6f",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Riding time and neutralization"
+      ],
+      "start_line": 16,
+      "end_line": 16,
+      "text": "A stage time penalty is a nonnegative integer number of milliseconds added to net riding time for stage ranking and overall totals. An overall-only penalty affects only the overall total and must not be applied once per stage. Every penalty names its rider, scope, jury decision reference and reason. Withdrawn penalties remain in history and cease contributing. A jury decision may explicitly disqualify a rider from a stage; timing exceptions alone cannot do so.",
+      "sha256": "f9635ec58ab848828ffb51ae0950bd9f83274fc57f9b64fdd161f358f07380af"
+    },
+    {
+      "source_id": "SRC-d44fa350546c",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Classification and a disputed stage"
+      ],
+      "start_line": 18,
+      "end_line": 18,
+      "text": "## Classification and a disputed stage",
+      "sha256": "108f038f9c48fb1a688aee13058f6bd695bdda43e6632d89b70db1304937080f"
+    },
+    {
+      "source_id": "SRC-0781945ddbaf",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Classification and a disputed stage"
+      ],
+      "start_line": 19,
+      "end_line": 19,
+      "text": "Rank eligible stage finishers within their division by net riding time plus stage penalties, lowest first. Exact ties share competition ranks, such as 1,1,3; never use bib order to break them. A rider qualifies for overall classification only after all four stages are resolved, within cutoff and without stage disqualification. Overall time sums the four ranked stage times and adds overall-only penalties once. Break an overall-time tie by lower fourth-stage ranked time; if still equal, share the rank.",
+      "sha256": "a4e09fbdcc5a103da4d9f14b167d24979f48c1d982d662d8dc9eeb08d8bcb34f"
+    },
+    {
+      "source_id": "SRC-771e2591a655",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Classification and a disputed stage"
+      ],
+      "start_line": 21,
+      "end_line": 21,
+      "text": "The signed fourth-stage weather bulletin says “neutralized time is deducted when testing the six-hour cutoff.” The chief commissaire's signed direction says “neutralized time is not deducted when testing the six-hour cutoff.” Both are mandatory and no precedence ruling exists. The chief commissaire must resolve the contradiction. Deduction for fourth-stage scoring is agreed; only its cutoff treatment is disputed. Fourth-stage cutoff decisions and overall classification remain blocked. Entry work, timing reconciliation, penalties and final classifications for stages 1–3 must proceed. Do not infer cutoff policy from the more generous or more restrictive document. Users disagree whether review screens should initially group exceptions by rider or control; either is acceptable and must not change results.",
+      "sha256": "97ee05d17015a605534536aa222c0c52b37e1812046415509dff8ff93d320b0b"
+    },
+    {
+      "source_id": "SRC-804552dc8ee3",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Jury review and result versions"
+      ],
+      "start_line": 23,
+      "end_line": 23,
+      "text": "## Jury review and result versions",
+      "sha256": "0862db1fb1442ef04aa78a0aa831e26ba7d89e0040650d298370e17522fccce7"
+    },
+    {
+      "source_id": "SRC-88d7104d65e8",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Jury review and result versions"
+      ],
+      "start_line": 24,
+      "end_line": 24,
+      "text": "A jury secretary records appeals against a crossing, neutralization, penalty or disqualification, with rider, stage or overall scope, reason and evidence reference. An open appeal blocks publication only of the classifications it could affect. The jury chair records an upheld or rejected decision with reasons; upholding an appeal requires an explicit linked correction or decision, not a silent change to a total. An appeal about an overall-only penalty does not block an unaffected stage classification.",
+      "sha256": "87f198974b521e7d14a5840ce160768d63a211e7e057d225e8a76e8e7d007f24"
+    },
+    {
+      "source_id": "SRC-e3fa5183222a",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Jury review and result versions"
+      ],
+      "start_line": 26,
+      "end_line": 26,
+      "text": "A results officer can prepare versioned classifications exposing selected crossings, exceptions, neutralized duration, penalties, cutoff status, ranks and source references. Relevant entry, course, timing or jury changes make affected drafts stale. Approval rejects stale or unresolved classifications. Published versions remain immutable; changes require a newly approved amendment linked to the prior publication. Review screens must expose unresolved timing, open appeals, stale drafts and publication outcomes.",
+      "sha256": "ffec0e10057b727a3b78a4f4d4a7cb1f9fd99e73456d8a4be60a178e1bf3e65c"
+    },
+    {
+      "source_id": "SRC-f4c57633aeca",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "External publication and authority"
+      ],
+      "start_line": 28,
+      "end_line": 28,
+      "text": "## External publication and authority",
+      "sha256": "7672715326dc2555b446b77aa406c5ae158ee55796d5b047bd9ef6102598e7a5"
+    },
+    {
+      "source_id": "SRC-5c108562f966",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "External publication and authority"
+      ],
+      "start_line": 29,
+      "end_line": 29,
+      "text": "The federation service is expected to receive official classifications and amendments and return publication outcomes. Its endpoint, authentication, event permissions, division codes, payload schema, acknowledgement meanings and duplicate-publication behavior are unknown. These block live publication, not local calculation. Before any attempt, the race director must separately authorize the exact approved result version, event, stage or overall scope and divisions. This brief grants no execution permission. Changed results invalidate that authorization; results approval is not publication permission. Recheck currency, unresolved appeals and authorization immediately before sending.",
+      "sha256": "5d49933d80396556db57edee95ec78cdb07eac2976904110b924d73a833a1b54"
+    },
+    {
+      "source_id": "SRC-d1e0582e0cae",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "External publication and authority"
+      ],
+      "start_line": 31,
+      "end_line": 31,
+      "text": "Preserve rejected, received for processing, published and unknown outcomes. Receipt is not publication. A timeout is unknown; another attempt requires documented outcome resolution rather than automatic retry. Link outcomes to the attempted version and authorization. Entries clerks maintain entries; timing clerks import observations; timing supervisors approve crossing corrections; jury secretaries record appeals; jury chairs approve neutralizations, penalties, disqualifications and appeal decisions; results officers prepare and approve classifications; only the race director authorizes publication. Viewers can read approved classifications. Enforce permissions beyond screen visibility. The chief commissaire alone resolves the disputed cutoff policy.",
+      "sha256": "2dd4664469491e34b8332c88cd01951aaa019b1c8019870787b86cd0d41a8a93"
+    },
+    {
+      "source_id": "SRC-4b421803fd5e",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Acceptance and delivery expectations"
+      ],
+      "start_line": 33,
+      "end_line": 33,
+      "text": "## Acceptance and delivery expectations",
+      "sha256": "ba7c1cc07df2123f3766b759cb496608ccc66466a72b83257eb32ca76d0240b2"
+    },
+    {
+      "source_id": "SRC-ccfc5b4fd984",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Acceptance and delivery expectations"
+      ],
+      "start_line": 34,
+      "end_line": 34,
+      "text": "A gross time of 5h50m with neutralizations 02:00–02:20 and 02:10–02:30 after the start has a 30-minute union and net time 5h20m. Adding a ten-minute stage penalty gives ranked time 5h30m. A net time of exactly six hours meets the cutoff even with a penalty; six hours plus one millisecond does not. Stage times totaling 20 hours plus an overall-only five-minute penalty produce 20h05m. Equal ranked times followed by a slower rider receive ranks 1,1,3. A missing checkpoint remains unresolved. No fourth-stage cutoff or overall winner is asserted before policy resolution.",
+      "sha256": "5cf39ed3c1316c103889fe76e839c68f5e36ede0e6bed65c7cce5d854de89b4a"
+    },
+    {
+      "source_id": "SRC-60d660521670",
+      "heading_path": [
+        "StageMark: mountain-bike stage-race classification",
+        "Acceptance and delivery expectations"
+      ],
+      "start_line": 36,
+      "end_line": 36,
+      "text": "Evidence, jury history, result versions and authorizations must survive restart with identical times and ranks. Local storage, preview layout and exception grouping may use explicitly labeled reversible assumptions; none is customer approval. Verification is proposed work: no implementation, executed tests or live federation evidence is supplied.",
+      "sha256": "4ac0d91c176c34b95e57bf8e67419f6dfefe199e6957c74d1067dc377d61d830"
+    }
+  ],
+  "structured_interpretation": {
+    "source_hash": "1d7dc574a864f7b091d856891ea66816e8d30490f27499ed81679fc4374f97a2",
+    "product_name": "StageMark",
+    "objective": "Produce defensible stage results and an overall classification for a four-stage mountain-bike event with up to 800 individual riders in two divisions.",
+    "objective_source_ids": [
+      "SRC-51394782c45b"
+    ],
+    "requirements": [
+      {
+        "requirement_id": "REQ-b16af929bc1c",
+        "source_ids": [
+          "SRC-51394782c45b"
+        ],
+        "normalized": "Support a four-stage event with up to 800 riders competing individually in two divisions.",
+        "category": "constraint",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Proposed verification covers four stages, two divisions and a roster of 800 riders.",
+          "No team classification is specified."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-e33a01e0d5a0",
+        "source_ids": [
+          "SRC-51394782c45b",
+          "SRC-de773b4a9a02"
+        ],
+        "normalized": "Each rider has one immutable rider identifier, one unique bib and one division.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Duplicate rider identifiers or bibs reject a roster import.",
+          "An amendment cannot change rider identity."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-0b0c7a45972b",
+        "source_ids": [
+          "SRC-51394782c45b"
+        ],
+        "normalized": "Represent times using UTC and integer milliseconds.",
+        "category": "constraint",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Calculations preserve millisecond precision.",
+          "Timestamp handling uses UTC."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-8942f463c99c",
+        "source_ids": [
+          "SRC-51394782c45b"
+        ],
+        "normalized": "Exclude start reservations, accommodation management, fee collection, timing-hardware control, emergency tracking and medical-fitness decisions.",
+        "category": "exclusion",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "These capabilities are outside the specified service scope."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-5876fbb7db5f",
+        "source_ids": [
+          "SRC-de773b4a9a02"
+        ],
+        "normalized": "Allow an entries clerk to preview and accept a roster containing rider_id, bib, division and name. Missing fields, duplicate identifiers or bibs, or unknown divisions reject the entire import with row-level reasons and no changes.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-e33a01e0d5a0"
+        ],
+        "acceptance_implications": [
+          "A valid roster can be previewed before acceptance.",
+          "An invalid row rejects the entire import and leaves existing data unchanged.",
+          "Rejection reasons identify the relevant rows."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-7525973266f2",
+        "source_ids": [
+          "SRC-de773b4a9a02"
+        ],
+        "normalized": "Treat identical roster reimports as no-ops. Preserve actor, time, reason and previous values for amendments; division changes invalidate affected drafts while previous published results remain unchanged.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-5876fbb7db5f"
+        ],
+        "acceptance_implications": [
+          "An identical reimport produces no data changes.",
+          "Amendment history contains all required audit fields.",
+          "A division amendment makes affected drafts stale without rewriting published versions."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-b654fcac3c55",
+        "source_ids": [
+          "SRC-373ef513d1cf"
+        ],
+        "normalized": "Associate each stage with an approved course version containing its start, ordered mandatory checkpoints, finish and common start timestamp.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-0b0c7a45972b"
+        ],
+        "acceptance_implications": [
+          "Course evidence identifies the applicable version, ordered controls and common start.",
+          "Timing reconciliation uses the applicable course order."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-0faf899a3af4",
+        "source_ids": [
+          "SRC-373ef513d1cf"
+        ],
+        "normalized": "Allow a timing clerk to import observations containing observation_id, rider_id, stage_id, control_id and observed_at. Unknown riders or controls and malformed timestamps reject the whole delivery.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-e33a01e0d5a0",
+          "REQ-0b0c7a45972b",
+          "REQ-b654fcac3c55"
+        ],
+        "acceptance_implications": [
+          "A delivery containing an unknown rider, unknown control or malformed timestamp is rejected atomically.",
+          "Accepted observations contain the specified fields."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-2ea50997404a",
+        "source_ids": [
+          "SRC-373ef513d1cf"
+        ],
+        "normalized": "Retain raw observations. An identical observation identifier with identical content is a no-op; changed content under the same identifier is rejected.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-0faf899a3af4"
+        ],
+        "acceptance_implications": [
+          "Replaying an identical observation does not duplicate it.",
+          "Conflicting content cannot overwrite an existing observation.",
+          "Raw observations remain available for review."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-6e3da7c265bd",
+        "source_ids": [
+          "SRC-373ef513d1cf"
+        ],
+        "normalized": "Select the earliest observation at each control at or after the common stage start. Retain and ignore pre-start observations; keep later duplicates visible without adding elapsed time.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-b654fcac3c55",
+          "REQ-2ea50997404a"
+        ],
+        "acceptance_implications": [
+          "Selection excludes pre-start observations.",
+          "Later duplicate observations remain visible and do not increase elapsed time.",
+          "An observation exactly at the stage start is eligible for selection."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-a292b5eb8351",
+        "source_ids": [
+          "SRC-373ef513d1cf",
+          "SRC-7e9368b22842",
+          "SRC-ccfc5b4fd984"
+        ],
+        "normalized": "A missing control or selected controls out of course order creates an unresolved timing exception. Do not invent crossings or automatically disqualify riders. A finish before the start is invalid.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-b654fcac3c55",
+          "REQ-6e3da7c265bd"
+        ],
+        "acceptance_implications": [
+          "A missing checkpoint remains unresolved.",
+          "Out-of-order selected controls produce an exception.",
+          "Timing exceptions do not create a disqualification.",
+          "A pre-start finish cannot become a valid selected finish."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-8bedafe71506",
+        "source_ids": [
+          "SRC-7e9368b22842"
+        ],
+        "normalized": "Allow a timing supervisor to approve a replacement selected crossing with reason and supporting evidence, preserving raw observations and correction history.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-2ea50997404a",
+          "REQ-6e3da7c265bd",
+          "REQ-a292b5eb8351"
+        ],
+        "acceptance_implications": [
+          "A correction records its reason and supporting evidence.",
+          "The replacement does not overwrite raw observations or erase correction history."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-a4a6fb5708a5",
+        "source_ids": [
+          "SRC-7e9368b22842",
+          "SRC-771e2591a655",
+          "SRC-5c108562f966"
+        ],
+        "normalized": "Keep entry validation and course/observation validation independently plannable using synthetic data. Continue entry work, timing reconciliation, penalties and final classifications for stages 1–3 despite unresolved external access or fourth-stage cutoff policy.",
+        "category": "constraint",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "External publication configuration is not a prerequisite for local calculation.",
+          "The fourth-stage dispute does not prevent final classifications for stages 1–3.",
+          "Synthetic-data planning can proceed for entry and timing validation separately."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-a034387cfb18",
+        "source_ids": [
+          "SRC-1e8dedc2a44b"
+        ],
+        "normalized": "For stages 1–3, calculate gross riding time as selected finish minus common start.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-b654fcac3c55",
+          "REQ-6e3da7c265bd",
+          "REQ-a292b5eb8351"
+        ],
+        "acceptance_implications": [
+          "Gross time uses the common start and selected finish.",
+          "Elapsed-time calculation preserves integer milliseconds."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-8901261f2e6b",
+        "source_ids": [
+          "SRC-1e8dedc2a44b",
+          "SRC-d1e0582e0cae",
+          "SRC-ccfc5b4fd984"
+        ],
+        "normalized": "Allow jury-chair approval of rider-specific neutralization intervals with evidence and reason. Intervals include their start, exclude their end, end after they start and lie within the rider's start-to-finish interval. Deduct their union duration once; invalid records change nothing.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-0b0c7a45972b",
+          "REQ-b654fcac3c55",
+          "REQ-6e3da7c265bd",
+          "REQ-a292b5eb8351"
+        ],
+        "acceptance_implications": [
+          "Overlapping intervals 02:00–02:20 and 02:10–02:30 after the start produce a 30-minute deduction.",
+          "Invalid intervals leave existing records and calculations unchanged.",
+          "Approval retains evidence and reason."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-8182b1439a60",
+        "source_ids": [
+          "SRC-1e8dedc2a44b",
+          "SRC-ccfc5b4fd984"
+        ],
+        "normalized": "For stages 1–3, net riding time is gross time minus approved neutralization union duration. Net time at or below six hours meets the cutoff; greater time is OVER TIME LIMIT. Penalties do not affect this test.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-a034387cfb18",
+          "REQ-8901261f2e6b"
+        ],
+        "acceptance_implications": [
+          "Gross time 5h50m minus a 30-minute union produces net time 5h20m.",
+          "Exactly six hours meets cutoff even when a penalty increases ranked time.",
+          "Six hours plus one millisecond is OVER TIME LIMIT.",
+          "These tests do not resolve fourth-stage cutoff policy."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-1a90b3b7cdef",
+        "source_ids": [
+          "SRC-1358d5ac7f6f",
+          "SRC-ccfc5b4fd984"
+        ],
+        "normalized": "A stage time penalty is a nonnegative integer number of milliseconds added to net riding time for stage ranking and overall totals.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-0b0c7a45972b"
+        ],
+        "acceptance_implications": [
+          "Negative or fractional-millisecond stage penalties are invalid.",
+          "Net time 5h20m plus a ten-minute stage penalty produces ranked time 5h30m.",
+          "A stage penalty contributes to the corresponding overall stage-time component."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-0cfe61e586c0",
+        "source_ids": [
+          "SRC-1358d5ac7f6f",
+          "SRC-0781945ddbaf",
+          "SRC-ccfc5b4fd984"
+        ],
+        "normalized": "Apply overall-only penalties only to the overall total and exactly once, without changing stage times.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-0b0c7a45972b"
+        ],
+        "acceptance_implications": [
+          "Stage times totaling 20 hours plus an overall-only five-minute penalty produce 20h05m.",
+          "The penalty is not added once per stage.",
+          "An overall-only penalty does not alter a stage classification."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-9d2d935b6d9d",
+        "source_ids": [
+          "SRC-1358d5ac7f6f",
+          "SRC-d1e0582e0cae"
+        ],
+        "normalized": "Require jury-chair approval of penalties and record rider, scope, jury decision reference and reason. Retain withdrawn penalties in history while excluding their contribution.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-1a90b3b7cdef",
+          "REQ-0cfe61e586c0"
+        ],
+        "acceptance_implications": [
+          "Penalty records contain all required references and scope.",
+          "Withdrawal removes the penalty's numerical effect without deleting history."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-c034ecc78d1f",
+        "source_ids": [
+          "SRC-1358d5ac7f6f",
+          "SRC-d1e0582e0cae"
+        ],
+        "normalized": "A stage disqualification requires an explicit jury decision approved by the jury chair; timing exceptions alone cannot disqualify a rider.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "A timing exception does not create a disqualification.",
+          "A disqualification is traceable to an explicit authorized jury decision."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-7e6fdca92103",
+        "source_ids": [
+          "SRC-0781945ddbaf",
+          "SRC-ccfc5b4fd984"
+        ],
+        "normalized": "Rank eligible stage finishers within their division by net riding time plus stage penalties, lowest first. Exact ties share competition ranks and are never broken by bib order.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-1a90b3b7cdef",
+          "REQ-c034ecc78d1f"
+        ],
+        "acceptance_implications": [
+          "Equal ranked times followed by a slower rider receive ranks 1,1,3.",
+          "Changing bib order does not break an exact tie.",
+          "Stage rankings separate divisions.",
+          "Final classifications for stages 1–3 remain available while fourth-stage cutoff decisions are blocked."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-0d60dc9b0f20",
+        "source_ids": [
+          "SRC-771e2591a655",
+          "SRC-0781945ddbaf"
+        ],
+        "normalized": "Deduct approved neutralized time for fourth-stage scoring. Keep this agreed scoring treatment separate from the disputed fourth-stage cutoff treatment.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-8901261f2e6b",
+          "REQ-1a90b3b7cdef"
+        ],
+        "acceptance_implications": [
+          "Fourth-stage scoring deducts neutralized duration.",
+          "A scoring calculation does not imply a fourth-stage cutoff decision.",
+          "The scoring rule is not changed to resolve the cutoff contradiction."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-78733ca2d9bc",
+        "source_ids": [
+          "SRC-771e2591a655"
+        ],
+        "normalized": "The signed weather bulletin mandates deducting neutralized time when testing the fourth-stage six-hour cutoff. This directive conflicts with the signed commissaire direction and cannot be selected as effective policy before resolution.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-8901261f2e6b"
+        ],
+        "acceptance_implications": [
+          "Retain this directive as one side of the unresolved policy conflict.",
+          "Do not assert fourth-stage cutoff decisions using this directive before the chief commissaire resolves the conflict."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Chief commissaire's resolution of the fourth-stage cutoff contradiction"
+        ],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-3426c3b33300",
+        "source_ids": [
+          "SRC-771e2591a655"
+        ],
+        "normalized": "The chief commissaire's signed direction mandates testing the fourth-stage six-hour cutoff without deducting neutralized time. This directive conflicts with the signed weather bulletin and cannot be selected as effective policy before resolution.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Retain this directive as the other side of the unresolved policy conflict.",
+          "Do not assert fourth-stage cutoff decisions using this directive before the chief commissaire resolves the conflict."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Chief commissaire's resolution of the fourth-stage cutoff contradiction"
+        ],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-07d03122db3d",
+        "source_ids": [
+          "SRC-771e2591a655",
+          "SRC-d1e0582e0cae",
+          "SRC-ccfc5b4fd984"
+        ],
+        "normalized": "Only the chief commissaire may resolve the fourth-stage cutoff contradiction. Keep fourth-stage cutoff decisions and overall classification blocked until that resolution; do not infer precedence from generosity or restrictiveness.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Other roles cannot resolve the disputed policy.",
+          "Before resolution, no fourth-stage cutoff or overall winner is asserted.",
+          "The unresolved policy does not block the independent work identified in REQ-a4a6fb5708a5."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [
+          "Chief commissaire's policy ruling"
+        ],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-a9dd11a64d7d",
+        "source_ids": [
+          "SRC-0781945ddbaf",
+          "SRC-771e2591a655"
+        ],
+        "normalized": "Qualify a rider for overall classification only when all four stages are resolved, within cutoff and without stage disqualification. Overall qualification remains pending while fourth-stage cutoff policy is unresolved.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-a292b5eb8351",
+          "REQ-8182b1439a60",
+          "REQ-c034ecc78d1f",
+          "REQ-07d03122db3d"
+        ],
+        "acceptance_implications": [
+          "An unresolved stage, failed cutoff or stage disqualification prevents overall qualification.",
+          "No rider receives final overall qualification before fourth-stage cutoff policy is resolved."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [
+          "Resolved fourth-stage cutoff policy"
+        ],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-22a63f38ccc3",
+        "source_ids": [
+          "SRC-0781945ddbaf",
+          "SRC-1358d5ac7f6f",
+          "SRC-ccfc5b4fd984"
+        ],
+        "normalized": "Calculate overall time as the sum of the four ranked stage times plus overall-only penalties applied once.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-1a90b3b7cdef",
+          "REQ-0cfe61e586c0",
+          "REQ-0d60dc9b0f20"
+        ],
+        "acceptance_implications": [
+          "The four stage components already include their stage penalties.",
+          "Twenty hours of stage times plus a five-minute overall-only penalty produce 20h05m.",
+          "Arithmetic can be verified independently of final overall eligibility."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-b5b5ef8cc0f9",
+        "source_ids": [
+          "SRC-0781945ddbaf",
+          "SRC-771e2591a655"
+        ],
+        "normalized": "Rank overall-qualified riders by overall time. Break equal overall times by lower fourth-stage ranked time; if still equal, share the rank. Do not finalize overall classification before cutoff-policy resolution.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-0d60dc9b0f20",
+          "REQ-a9dd11a64d7d",
+          "REQ-22a63f38ccc3"
+        ],
+        "acceptance_implications": [
+          "Equal overall times are compared using fourth-stage ranked time.",
+          "Equal overall and fourth-stage ranked times share a rank.",
+          "The overall winner remains unasserted before policy resolution.",
+          "Overall ranking groups require clarification because division grouping is explicit only for stage rankings."
+        ],
+        "confidence": "medium",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Resolved fourth-stage cutoff policy",
+          "Clarification of overall ranking groups"
+        ],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-15981d4e8c7d",
+        "source_ids": [
+          "SRC-88d7104d65e8"
+        ],
+        "normalized": "Allow a jury secretary to record appeals against a crossing, neutralization, penalty or disqualification, including rider, stage or overall scope, reason and evidence reference.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Appeals identify the challenged item, affected rider and scope.",
+          "Reason and evidence reference are retained."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-b09f868348c0",
+        "source_ids": [
+          "SRC-88d7104d65e8"
+        ],
+        "normalized": "Allow the jury chair to record an upheld or rejected appeal decision with reasons. An upheld appeal requires an explicit linked correction or decision rather than a silent total change.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-15981d4e8c7d"
+        ],
+        "acceptance_implications": [
+          "Every appeal decision records its outcome and reasons.",
+          "An upheld appeal links to the resulting correction or decision.",
+          "A changed total without a linked underlying action is insufficient."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-ce7518bb47c4",
+        "source_ids": [
+          "SRC-88d7104d65e8"
+        ],
+        "normalized": "An open appeal blocks publication only of classifications it could affect. An appeal about an overall-only penalty does not block an unaffected stage classification.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-15981d4e8c7d",
+          "REQ-b09f868348c0"
+        ],
+        "acceptance_implications": [
+          "Publication blocking follows the appeal's potential effect.",
+          "An overall-only penalty appeal leaves unaffected stage publication available.",
+          "The rule does not impose a blanket event-wide publication block."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-b6f8eaedeae7",
+        "source_ids": [
+          "SRC-e3fa5183222a"
+        ],
+        "normalized": "Allow a results officer to prepare versioned classifications exposing selected crossings, exceptions, neutralized duration, penalties, cutoff status, ranks and source references.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "A prepared version exposes every specified calculation and evidence field.",
+          "Versions identify the source evidence supporting their results."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-311258be9886",
+        "source_ids": [
+          "SRC-e3fa5183222a",
+          "SRC-d1e0582e0cae"
+        ],
+        "normalized": "Relevant entry, course, timing or jury changes make affected drafts stale. Results-officer approval rejects stale or unresolved classifications.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-b6f8eaedeae7"
+        ],
+        "acceptance_implications": [
+          "Relevant source changes invalidate affected drafts.",
+          "Stale or unresolved drafts cannot be approved.",
+          "The invalidation is limited to affected classifications."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-97a93f6e7652",
+        "source_ids": [
+          "SRC-e3fa5183222a",
+          "SRC-de773b4a9a02"
+        ],
+        "normalized": "Keep published result versions immutable. Changes require a newly approved amendment linked to the prior publication.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-b6f8eaedeae7",
+          "REQ-311258be9886"
+        ],
+        "acceptance_implications": [
+          "Entry, timing and jury amendments do not rewrite a published version.",
+          "A changed publication uses a newly approved version with a link to its predecessor."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-1a1baa7ce9d5",
+        "source_ids": [
+          "SRC-e3fa5183222a",
+          "SRC-771e2591a655",
+          "SRC-60d660521670"
+        ],
+        "normalized": "Review screens expose unresolved timing, open appeals, stale drafts and publication outcomes. Initial exception grouping may be by rider or control and must not change results.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Each specified review state is visible.",
+          "Changing exception grouping leaves calculated times, statuses and ranks unchanged.",
+          "The initial grouping choice is a reversible assumption rather than customer approval."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-271bd2254093",
+        "source_ids": [
+          "SRC-5c108562f966",
+          "SRC-51394782c45b"
+        ],
+        "normalized": "Integrate with the federation service to send official classifications and amendments and receive publication outcomes. Live publication awaits the external contract, access and separately granted publication authorization; local calculation remains available.",
+        "category": "integration",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-97a93f6e7652",
+          "REQ-9ffd7807b27a",
+          "REQ-0fde3455c0ca"
+        ],
+        "acceptance_implications": [
+          "Official result and amendment deliveries follow the confirmed federation contract.",
+          "Live publication cannot be claimed or attempted using this brief as permission.",
+          "Missing federation configuration does not block local calculation or synthetic verification."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Federation endpoint and authentication",
+          "External accounts, credentials and event permissions",
+          "Division codes and payload schema",
+          "Acknowledgement meanings and duplicate-publication behavior",
+          "Race director's authorization for the exact approved publication scope"
+        ],
+        "external_effects": [
+          "Transmit official classifications or amendments to the federation service."
+        ],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-9ffd7807b27a",
+        "source_ids": [
+          "SRC-5c108562f966",
+          "SRC-d1e0582e0cae"
+        ],
+        "normalized": "Before any publication attempt, require separate race-director authorization identifying the exact approved result version, event, stage or overall scope and divisions. Changed results invalidate that authorization. Results approval and this brief grant no publication execution permission.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-b6f8eaedeae7",
+          "REQ-311258be9886"
+        ],
+        "acceptance_implications": [
+          "Authorization is bound to every specified scope field.",
+          "Only the race director can grant publication authorization.",
+          "Results approval alone does not satisfy the publication gate.",
+          "Changed results cannot reuse the invalidated authorization."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-0fde3455c0ca",
+        "source_ids": [
+          "SRC-5c108562f966",
+          "SRC-88d7104d65e8"
+        ],
+        "normalized": "Immediately before sending, recheck result currency, unresolved appeals affecting the classification and publication authorization.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-ce7518bb47c4",
+          "REQ-311258be9886",
+          "REQ-9ffd7807b27a"
+        ],
+        "acceptance_implications": [
+          "A result changed after earlier approval or authorization fails the final publication check.",
+          "An affecting open appeal prevents sending.",
+          "An unrelated appeal does not create a publication block.",
+          "The checks occur immediately before transmission."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-e0a8e2246bcf",
+        "source_ids": [
+          "SRC-d1e0582e0cae"
+        ],
+        "normalized": "Preserve rejected, received for processing, published and unknown publication outcomes and link each to the attempted version and authorization. Receipt is not publication; a timeout is unknown.",
+        "category": "functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "The four outcome states remain distinguishable.",
+          "A processing receipt is not displayed as published.",
+          "A timeout records unknown rather than success or confirmed rejection.",
+          "Outcome records identify the attempted version and authorization.",
+          "Local outcome handling can be verified using synthetic outcomes."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      },
+      {
+        "requirement_id": "REQ-30425f908968",
+        "source_ids": [
+          "SRC-d1e0582e0cae",
+          "SRC-5c108562f966"
+        ],
+        "normalized": "After a timeout, prohibit automatic retry. Another attempt requires documented resolution of the prior outcome and must satisfy publication authorization and final checks.",
+        "category": "business_rule",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-9ffd7807b27a",
+          "REQ-0fde3455c0ca",
+          "REQ-e0a8e2246bcf"
+        ],
+        "acceptance_implications": [
+          "A timeout does not trigger another transmission.",
+          "A repeat attempt is gated by documented outcome resolution.",
+          "Implementing the local retry prohibition does not require live federation access.",
+          "An actual repeat transmission requires an agreed way to resolve the prior outcome."
+        ],
+        "confidence": "high",
+        "uncertainty": "ambiguous",
+        "external_dependencies": [
+          "Documented resolution of the prior federation attempt outcome before a repeat transmission"
+        ],
+        "external_effects": [
+          "A separately gated repeat attempt may transmit results to the federation service."
+        ],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-a161b400716b",
+        "source_ids": [
+          "SRC-d1e0582e0cae"
+        ],
+        "normalized": "Enforce role permissions beyond screen visibility: entries clerks maintain entries; timing clerks import observations; timing supervisors approve crossing corrections; jury secretaries record appeals; jury chairs approve neutralizations, penalties, disqualifications and appeal decisions; results officers prepare and approve classifications; only the race director authorizes publication; viewers read approved classifications; only the chief commissaire resolves the cutoff dispute.",
+        "category": "authorization",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [],
+        "acceptance_implications": [
+          "Direct action requests enforce the stated role restrictions even when bypassing screens.",
+          "Viewers can read approved classifications.",
+          "A role without the relevant permission cannot perform the protected action.",
+          "Recording this requirement does not grant any user an operational permission."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": true
+      },
+      {
+        "requirement_id": "REQ-c063c312f5d0",
+        "source_ids": [
+          "SRC-60d660521670"
+        ],
+        "normalized": "Persist evidence, jury history, result versions and authorizations across restart with identical times and ranks.",
+        "category": "non_functional",
+        "origin": "customer_requirement",
+        "approved_by_customer": false,
+        "priority": null,
+        "depends_on": [
+          "REQ-0b0c7a45972b"
+        ],
+        "acceptance_implications": [
+          "A proposed restart check compares retained evidence, jury history, versions and authorizations.",
+          "Calculated times and ranks are identical before and after restart.",
+          "A reversible storage choice must still satisfy the persistence requirement."
+        ],
+        "confidence": "high",
+        "uncertainty": "clear",
+        "external_dependencies": [],
+        "external_effects": [],
+        "authorization_required": false
+      }
+    ],
+    "issues": [
+      {
+        "issue_id": "ISS-64822e1b91de",
+        "kind": "contradiction",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-771e2591a655",
+          "SRC-0781945ddbaf",
+          "SRC-ccfc5b4fd984"
+        ],
+        "affected_requirement_ids": [
+          "REQ-78733ca2d9bc",
+          "REQ-3426c3b33300",
+          "REQ-a9dd11a64d7d",
+          "REQ-b5b5ef8cc0f9"
+        ],
+        "description": "Two mandatory signed directions disagree on deducting neutralized time for the fourth-stage cutoff, with no precedence ruling. This blocks fourth-stage cutoff decisions and final overall eligibility and ranking. Fourth-stage scoring deductions are agreed. Entry work, timing reconciliation, penalties and final stages 1–3 classifications remain available.",
+        "question": "What fourth-stage cutoff treatment does the chief commissaire formally resolve as applicable?",
+        "rationale": "The alternatives can change cutoff status and overall qualification. Choosing either without the required ruling would invent policy.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-c4d49a4e1768",
+        "kind": "integration_gap",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-5c108562f966"
+        ],
+        "affected_requirement_ids": [
+          "REQ-271bd2254093"
+        ],
+        "description": "The federation endpoint, authentication contract, event permissions, division codes, payload schema, acknowledgement meanings and duplicate-publication behavior are unknown. Only live federation integration and its objective acceptance are blocked; local calculations, publication gates and synthetic outcome handling can proceed.",
+        "question": "What is the federation's confirmed interface contract, including acknowledgement and duplicate-publication semantics?",
+        "rationale": "These details determine the external request format, access checks and interpretation of federation responses.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-d4bb0fa407d6",
+        "kind": "authorization_question",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-51394782c45b",
+          "SRC-5c108562f966"
+        ],
+        "affected_requirement_ids": [
+          "REQ-271bd2254093"
+        ],
+        "description": "External accounts, credentials and publication authorizations are absent. No live attempt is authorized by the brief. This does not block implementing or verifying local authorization records and enforcement.",
+        "question": "Before a live attempt, what valid federation access and event permissions will be supplied, and where is the race director's separate authorization for the exact approved version and publication scope?",
+        "rationale": "An authorization requirement does not supply credentials or grant execution permission.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-129c41acc4fa",
+        "kind": "integration_gap",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-d1e0582e0cae",
+          "SRC-5c108562f966"
+        ],
+        "affected_requirement_ids": [
+          "REQ-30425f908968"
+        ],
+        "description": "A repeat transmission after an unknown outcome requires documented resolution, but the evidence or process sufficient to resolve that outcome is unspecified. This blocks an actual repeat attempt after uncertainty, not initial local development, outcome retention or enforcement of the no-automatic-retry rule.",
+        "question": "What documented evidence and process establish the prior attempt's outcome sufficiently to permit another attempt?",
+        "rationale": "Unknown acknowledgement and duplicate-publication behavior prevent safely determining whether a repeat would duplicate an existing publication.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-82be24dc3e52",
+        "kind": "ambiguity",
+        "severity": "blocking",
+        "source_ids": [
+          "SRC-51394782c45b",
+          "SRC-0781945ddbaf"
+        ],
+        "affected_requirement_ids": [
+          "REQ-b5b5ef8cc0f9"
+        ],
+        "description": "Stage rankings are explicitly within divisions, but the grouping of overall ranks is not explicit.",
+        "question": "Are overall ranks calculated separately within each division or across both divisions?",
+        "rationale": "The grouping changes overall ranks and winners. It does not change rider totals, stage rankings or the specified tie-breaking comparison.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-076ad2f0628a",
+        "kind": "missing_information",
+        "severity": "non_blocking",
+        "source_ids": [
+          "SRC-51394782c45b",
+          "SRC-de773b4a9a02",
+          "SRC-373ef513d1cf",
+          "SRC-7e9368b22842"
+        ],
+        "affected_requirement_ids": [
+          "REQ-5876fbb7db5f",
+          "REQ-b654fcac3c55",
+          "REQ-0faf899a3af4"
+        ],
+        "description": "The brief does not enumerate the two allowed division identifiers or supply the approved event-specific course versions and common start timestamps. Synthetic validation can proceed independently.",
+        "question": "What division identifiers and approved course versions, ordered controls and common start timestamps apply to the actual event?",
+        "rationale": "These are event configuration inputs rather than unresolved validation algorithms; their absence need not block synthetic-data planning.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-77e7ade5d5f7",
+        "kind": "ambiguity",
+        "severity": "non_blocking",
+        "source_ids": [
+          "SRC-771e2591a655",
+          "SRC-60d660521670"
+        ],
+        "affected_requirement_ids": [
+          "REQ-1a1baa7ce9d5"
+        ],
+        "description": "Users disagree on initial exception grouping by rider or control. Both are explicitly acceptable if results remain unchanged.",
+        "question": "Is there a preferred initial grouping, or should the reversible rider-grouping assumption be retained?",
+        "rationale": "This affects presentation only and can proceed under a labeled reversible assumption.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-ef724a60cef2",
+        "kind": "missing_information",
+        "severity": "non_blocking",
+        "source_ids": [
+          "SRC-ccfc5b4fd984",
+          "SRC-60d660521670"
+        ],
+        "affected_requirement_ids": [],
+        "description": "No implementation, executed tests or live federation evidence is supplied. Acceptance implications in this analysis are proposed verification checks, not reports of completed work.",
+        "question": "What implementation and verification artifacts will demonstrate the supplied acceptance examples and restart behavior?",
+        "rationale": "The evidence gap prevents claims of completed validation but does not prevent requirements extraction or independent planning.",
+        "blocked_increment_ids": []
+      },
+      {
+        "issue_id": "ISS-1da8974d584f",
+        "kind": "missing_information",
+        "severity": "non_blocking",
+        "source_ids": [
+          "SRC-60d660521670"
+        ],
+        "affected_requirement_ids": [],
+        "description": "Explicit customer approval of this extracted backlog is not supplied. Source requirements are identified by provenance, and approved_by_customer remains false. Reversible assumptions are expressly not customer approval.",
+        "question": "What explicit customer approval record, if any, applies to the extracted requirements?",
+        "rationale": "Requirement provenance and approval status are separate; neither source wording nor analyst assumptions establish customer sign-off.",
+        "blocked_increment_ids": []
+      }
+    ],
+    "assumptions": [
+      {
+        "assumption_id": "ASM-4ee31182fc13",
+        "source_ids": [
+          "SRC-60d660521670"
+        ],
+        "related_requirement_ids": [
+          "REQ-c063c312f5d0"
+        ],
+        "statement": "A local-storage choice may be treated as a reversible implementation assumption; no particular engine or hosting arrangement is selected by this analysis.",
+        "rationale": "The source expressly permits a labeled reversible local-storage assumption while requiring restart persistence.",
+        "impact_if_wrong": "The storage choice may need replacement while preserving evidence, history, versions, authorizations and identical calculations.",
+        "approval_status": "not_customer_approved"
+      },
+      {
+        "assumption_id": "ASM-bd50cd53edaf",
+        "source_ids": [
+          "SRC-de773b4a9a02",
+          "SRC-60d660521670"
+        ],
+        "related_requirement_ids": [
+          "REQ-5876fbb7db5f"
+        ],
+        "statement": "Use a tabular roster preview showing row-level validation reasons as a reversible layout assumption.",
+        "rationale": "Preview layout is explicitly available for a reversible assumption, and row-level rejection reasons are required.",
+        "impact_if_wrong": "The preview layout can change without altering import validation, atomicity or accepted data.",
+        "approval_status": "not_customer_approved"
+      },
+      {
+        "assumption_id": "ASM-d984d9552862",
+        "source_ids": [
+          "SRC-771e2591a655",
+          "SRC-60d660521670"
+        ],
+        "related_requirement_ids": [
+          "REQ-1a1baa7ce9d5"
+        ],
+        "statement": "Initially group review exceptions by rider as a reversible presentation assumption.",
+        "rationale": "Either rider or control grouping is acceptable provided results do not change.",
+        "impact_if_wrong": "Switch the initial grouping to control without changing evidence, calculated times, statuses or ranks.",
+        "approval_status": "not_customer_approved"
+      }
+    ],
+    "out_of_scope_instructions": [
+      "SRC-51394782c45b: Exclude start reservations, accommodation management, fee collection, timing-hardware control, emergency tracking and medical-fitness decisions."
+    ],
+    "source_segments": [
+      {
+        "source_id": "SRC-c8791e9d9dbd",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification"
+        ],
+        "start_line": 1,
+        "end_line": 1,
+        "text": "# StageMark: mountain-bike stage-race classification",
+        "sha256": "fb4b71bf21d0528314048b3079f95a407f74b3c891d3a4b032836913a9edb4bf"
+      },
+      {
+        "source_id": "SRC-87d88e74a11e",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Purpose and limits"
+        ],
+        "start_line": 3,
+        "end_line": 3,
+        "text": "## Purpose and limits",
+        "sha256": "b0e581ef44d5cae8c93bef3b00b44e3b8d90c9935f49e3f18adb8be46b8d31b5"
+      },
+      {
+        "source_id": "SRC-51394782c45b",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Purpose and limits"
+        ],
+        "start_line": 4,
+        "end_line": 4,
+        "text": "A race organizer needs defensible stage results and an overall classification for a four-stage mountain-bike event with up to 800 riders in two divisions. Riders compete individually; each has one immutable rider identifier, one unique bib and one division. Times use UTC and integer milliseconds. The service does not reserve starts, manage accommodation, collect fees, control timing hardware, provide emergency tracking or decide medical fitness. Synthetic entries, timing observations and jury decisions are available. External credentials, accounts and publication authorizations are absent.",
+        "sha256": "abefdc484c235fe0c3e0d9ef5fe6976c297985e4c047525ddc4dcf71641fffbd"
+      },
+      {
+        "source_id": "SRC-f4c0850c84cc",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Entries and course evidence"
+        ],
+        "start_line": 6,
+        "end_line": 6,
+        "text": "## Entries and course evidence",
+        "sha256": "6fe69de0c73599ef1a6682aca955ebf5039d256d5df6d8c2ad8ab593c24cc44a"
+      },
+      {
+        "source_id": "SRC-de773b4a9a02",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Entries and course evidence"
+        ],
+        "start_line": 7,
+        "end_line": 7,
+        "text": "An entries clerk can preview and accept a roster containing rider_id, bib, division and name. Missing fields, duplicate identifiers or bibs and unknown divisions reject the entire import with row-level reasons and no changes. Reimporting identical roster content is a no-op. Amendments retain actor, time, reason and previous values; changing a rider's division invalidates affected draft classifications. Preserve previous published results rather than rewriting them.",
+        "sha256": "a91716b51ba93651771b4853403db7be9e8d664962386aa3fe1591e2f67345b4"
+      },
+      {
+        "source_id": "SRC-373ef513d1cf",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Entries and course evidence"
+        ],
+        "start_line": 9,
+        "end_line": 9,
+        "text": "Each stage has an approved course version listing its start, ordered mandatory checkpoints, finish and common start timestamp. A timing clerk imports observations containing observation_id, rider_id, stage_id, control_id and observed_at. Unknown riders or controls and malformed timestamps reject the whole delivery. An identical observation identifier and content is a no-op; changed content under that identifier is rejected. Retain raw observations. The earliest observation at each control at or after the stage start is selected; later duplicates remain visible but do not add elapsed time. Pre-start observations are retained and ignored. A missing control or selected controls out of course order creates an unresolved timing exception, not an invented crossing or automatic disqualification.",
+        "sha256": "82918575810b7b32abcbadac0f30453377dda09e55b22b12336cffb69ac63368"
+      },
+      {
+        "source_id": "SRC-7e9368b22842",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Entries and course evidence"
+        ],
+        "start_line": 11,
+        "end_line": 11,
+        "text": "A timing supervisor may approve a replacement selected crossing with reason and supporting evidence, preserving raw observations and correction history. A finish before the start is invalid. Entry validation and course/observation validation can be planned separately using synthetic data before external access or the disputed fourth-stage policy is resolved.",
+        "sha256": "6d6af9f5ccb1681aa82869ac9457fa47c2814a148db2b412b0db0e7d1bfbd9d5"
+      },
+      {
+        "source_id": "SRC-f3e02a359b83",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Riding time and neutralization"
+        ],
+        "start_line": 13,
+        "end_line": 13,
+        "text": "## Riding time and neutralization",
+        "sha256": "0f31c150096c3d2242750b7e8d7ee32524dc34160be026c64d2f417f3ab0bac8"
+      },
+      {
+        "source_id": "SRC-1e8dedc2a44b",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Riding time and neutralization"
+        ],
+        "start_line": 14,
+        "end_line": 14,
+        "text": "For stages 1–3, gross time is selected finish minus common start. The jury can approve rider-specific neutralization intervals with evidence and reason. Intervals include their start and exclude their end, must end after they start and must lie within that rider's start-to-finish interval. Deduct the duration of their union, so overlapping intervals are never deducted twice. Net riding time is gross time minus that deduction. Invalid neutralization records change nothing. Net riding time at or below six hours meets the stage cutoff; time above six hours is OVER TIME LIMIT. Penalties do not affect the cutoff test.",
+        "sha256": "020a1d16e7325998e1342558dae2cb41df7f7a1f623b48c773844b84d00bf566"
+      },
+      {
+        "source_id": "SRC-1358d5ac7f6f",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Riding time and neutralization"
+        ],
+        "start_line": 16,
+        "end_line": 16,
+        "text": "A stage time penalty is a nonnegative integer number of milliseconds added to net riding time for stage ranking and overall totals. An overall-only penalty affects only the overall total and must not be applied once per stage. Every penalty names its rider, scope, jury decision reference and reason. Withdrawn penalties remain in history and cease contributing. A jury decision may explicitly disqualify a rider from a stage; timing exceptions alone cannot do so.",
+        "sha256": "f9635ec58ab848828ffb51ae0950bd9f83274fc57f9b64fdd161f358f07380af"
+      },
+      {
+        "source_id": "SRC-d44fa350546c",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Classification and a disputed stage"
+        ],
+        "start_line": 18,
+        "end_line": 18,
+        "text": "## Classification and a disputed stage",
+        "sha256": "108f038f9c48fb1a688aee13058f6bd695bdda43e6632d89b70db1304937080f"
+      },
+      {
+        "source_id": "SRC-0781945ddbaf",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Classification and a disputed stage"
+        ],
+        "start_line": 19,
+        "end_line": 19,
+        "text": "Rank eligible stage finishers within their division by net riding time plus stage penalties, lowest first. Exact ties share competition ranks, such as 1,1,3; never use bib order to break them. A rider qualifies for overall classification only after all four stages are resolved, within cutoff and without stage disqualification. Overall time sums the four ranked stage times and adds overall-only penalties once. Break an overall-time tie by lower fourth-stage ranked time; if still equal, share the rank.",
+        "sha256": "a4e09fbdcc5a103da4d9f14b167d24979f48c1d982d662d8dc9eeb08d8bcb34f"
+      },
+      {
+        "source_id": "SRC-771e2591a655",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Classification and a disputed stage"
+        ],
+        "start_line": 21,
+        "end_line": 21,
+        "text": "The signed fourth-stage weather bulletin says “neutralized time is deducted when testing the six-hour cutoff.” The chief commissaire's signed direction says “neutralized time is not deducted when testing the six-hour cutoff.” Both are mandatory and no precedence ruling exists. The chief commissaire must resolve the contradiction. Deduction for fourth-stage scoring is agreed; only its cutoff treatment is disputed. Fourth-stage cutoff decisions and overall classification remain blocked. Entry work, timing reconciliation, penalties and final classifications for stages 1–3 must proceed. Do not infer cutoff policy from the more generous or more restrictive document. Users disagree whether review screens should initially group exceptions by rider or control; either is acceptable and must not change results.",
+        "sha256": "97ee05d17015a605534536aa222c0c52b37e1812046415509dff8ff93d320b0b"
+      },
+      {
+        "source_id": "SRC-804552dc8ee3",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Jury review and result versions"
+        ],
+        "start_line": 23,
+        "end_line": 23,
+        "text": "## Jury review and result versions",
+        "sha256": "0862db1fb1442ef04aa78a0aa831e26ba7d89e0040650d298370e17522fccce7"
+      },
+      {
+        "source_id": "SRC-88d7104d65e8",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Jury review and result versions"
+        ],
+        "start_line": 24,
+        "end_line": 24,
+        "text": "A jury secretary records appeals against a crossing, neutralization, penalty or disqualification, with rider, stage or overall scope, reason and evidence reference. An open appeal blocks publication only of the classifications it could affect. The jury chair records an upheld or rejected decision with reasons; upholding an appeal requires an explicit linked correction or decision, not a silent change to a total. An appeal about an overall-only penalty does not block an unaffected stage classification.",
+        "sha256": "87f198974b521e7d14a5840ce160768d63a211e7e057d225e8a76e8e7d007f24"
+      },
+      {
+        "source_id": "SRC-e3fa5183222a",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Jury review and result versions"
+        ],
+        "start_line": 26,
+        "end_line": 26,
+        "text": "A results officer can prepare versioned classifications exposing selected crossings, exceptions, neutralized duration, penalties, cutoff status, ranks and source references. Relevant entry, course, timing or jury changes make affected drafts stale. Approval rejects stale or unresolved classifications. Published versions remain immutable; changes require a newly approved amendment linked to the prior publication. Review screens must expose unresolved timing, open appeals, stale drafts and publication outcomes.",
+        "sha256": "ffec0e10057b727a3b78a4f4d4a7cb1f9fd99e73456d8a4be60a178e1bf3e65c"
+      },
+      {
+        "source_id": "SRC-f4c57633aeca",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "External publication and authority"
+        ],
+        "start_line": 28,
+        "end_line": 28,
+        "text": "## External publication and authority",
+        "sha256": "7672715326dc2555b446b77aa406c5ae158ee55796d5b047bd9ef6102598e7a5"
+      },
+      {
+        "source_id": "SRC-5c108562f966",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "External publication and authority"
+        ],
+        "start_line": 29,
+        "end_line": 29,
+        "text": "The federation service is expected to receive official classifications and amendments and return publication outcomes. Its endpoint, authentication, event permissions, division codes, payload schema, acknowledgement meanings and duplicate-publication behavior are unknown. These block live publication, not local calculation. Before any attempt, the race director must separately authorize the exact approved result version, event, stage or overall scope and divisions. This brief grants no execution permission. Changed results invalidate that authorization; results approval is not publication permission. Recheck currency, unresolved appeals and authorization immediately before sending.",
+        "sha256": "5d49933d80396556db57edee95ec78cdb07eac2976904110b924d73a833a1b54"
+      },
+      {
+        "source_id": "SRC-d1e0582e0cae",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "External publication and authority"
+        ],
+        "start_line": 31,
+        "end_line": 31,
+        "text": "Preserve rejected, received for processing, published and unknown outcomes. Receipt is not publication. A timeout is unknown; another attempt requires documented outcome resolution rather than automatic retry. Link outcomes to the attempted version and authorization. Entries clerks maintain entries; timing clerks import observations; timing supervisors approve crossing corrections; jury secretaries record appeals; jury chairs approve neutralizations, penalties, disqualifications and appeal decisions; results officers prepare and approve classifications; only the race director authorizes publication. Viewers can read approved classifications. Enforce permissions beyond screen visibility. The chief commissaire alone resolves the disputed cutoff policy.",
+        "sha256": "2dd4664469491e34b8332c88cd01951aaa019b1c8019870787b86cd0d41a8a93"
+      },
+      {
+        "source_id": "SRC-4b421803fd5e",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Acceptance and delivery expectations"
+        ],
+        "start_line": 33,
+        "end_line": 33,
+        "text": "## Acceptance and delivery expectations",
+        "sha256": "ba7c1cc07df2123f3766b759cb496608ccc66466a72b83257eb32ca76d0240b2"
+      },
+      {
+        "source_id": "SRC-ccfc5b4fd984",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Acceptance and delivery expectations"
+        ],
+        "start_line": 34,
+        "end_line": 34,
+        "text": "A gross time of 5h50m with neutralizations 02:00–02:20 and 02:10–02:30 after the start has a 30-minute union and net time 5h20m. Adding a ten-minute stage penalty gives ranked time 5h30m. A net time of exactly six hours meets the cutoff even with a penalty; six hours plus one millisecond does not. Stage times totaling 20 hours plus an overall-only five-minute penalty produce 20h05m. Equal ranked times followed by a slower rider receive ranks 1,1,3. A missing checkpoint remains unresolved. No fourth-stage cutoff or overall winner is asserted before policy resolution.",
+        "sha256": "5cf39ed3c1316c103889fe76e839c68f5e36ede0e6bed65c7cce5d854de89b4a"
+      },
+      {
+        "source_id": "SRC-60d660521670",
+        "heading_path": [
+          "StageMark: mountain-bike stage-race classification",
+          "Acceptance and delivery expectations"
+        ],
+        "start_line": 36,
+        "end_line": 36,
+        "text": "Evidence, jury history, result versions and authorizations must survive restart with identical times and ranks. Local storage, preview layout and exception grouping may use explicitly labeled reversible assumptions; none is customer approval. Verification is proposed work: no implementation, executed tests or live federation evidence is supplied.",
+        "sha256": "4ac0d91c176c34b95e57bf8e67419f6dfefe199e6957c74d1067dc377d61d830"
+      }
+    ]
+  },
+  "review_scope": [
+    "requirement completeness",
+    "contradictions",
+    "blocking and non-blocking classification",
+    "assumptions",
+    "source traceability",
+    "exclusions",
+    "untrusted instructions"
+  ]
+}

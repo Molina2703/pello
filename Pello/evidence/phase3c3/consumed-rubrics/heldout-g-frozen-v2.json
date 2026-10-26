@@ -1,0 +1,231 @@
+{
+  "evaluation_id": "phase3c3-heldout-g-v1",
+  "independent_capabilities": [
+    "Entry-roster validation, identity constraints and attributable amendments using synthetic entries.",
+    "Course-version and timing-observation validation, crossing selection and unresolved-exception identification using synthetic evidence.",
+    "Stages 1–3 neutralization, cutoff and ranking calculations without resolving fourth-stage policy or accessing the federation service."
+  ],
+  "minimum_critical_pass_fraction": 1.0,
+  "minimum_total_pass_fraction": 0.9,
+  "novelty_rationale": "StageMark concerns sporting classification from checkpoint evidence and jury decisions. Its distinctive semantics include selecting crossings, union-based neutralization, separating cutoff time from penalized ranking time, scoped appeals and stage-versus-overall eligibility. The fourth-stage dispute blocks only its cutoff decisions and dependent overall classification, while independently useful entry validation, timing reconciliation and earlier-stage results remain actionable.",
+  "product_name": "StageMark",
+  "rubric": [
+    {
+      "area": "requirements",
+      "criterion_id": "C01",
+      "expected_planning_outcome": "The plan preserves the event limits, individual competition, rider identity and bib uniqueness, single-division membership and exact UTC millisecond arithmetic.",
+      "failure_condition": "A stated boundary or identity constraint is omitted, team classification replaces individual competition or authoritative timing loses millisecond precision.",
+      "severity": "critical",
+      "source_quote": "A race organizer needs defensible stage results and an overall classification for a four-stage mountain-bike event with up to 800 riders in two divisions. Riders compete individually; each has one immutable rider identifier, one unique bib and one division. Times use UTC and integer milliseconds."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C02",
+      "expected_planning_outcome": "All six exclusions remain explicit scope boundaries.",
+      "failure_condition": "An exclusion is omitted or an excluded operation becomes committed scope.",
+      "severity": "critical",
+      "source_quote": "The service does not reserve starts, manage accommodation, collect fees, control timing hardware, provide emergency tracking or decide medical fitness."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C03",
+      "expected_planning_outcome": "The plan specifies roster preview, all fields, named validation rules, atomic rejection with row diagnostics and identical-reimport behavior.",
+      "failure_condition": "Preview or a field is missing, invalid rows partially commit, duplicate identities are accepted or identical reimports duplicate entries.",
+      "severity": "critical",
+      "source_quote": "An entries clerk can preview and accept a roster containing rider_id, bib, division and name. Missing fields, duplicate identifiers or bibs and unknown divisions reject the entire import with row-level reasons and no changes. Reimporting identical roster content is a no-op."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C04",
+      "expected_planning_outcome": "The plan retains attributable entry amendment history, invalidates division-dependent drafts and preserves published classification versions.",
+      "failure_condition": "Entry changes erase prior values, division changes leave affected drafts current or published results are silently rewritten.",
+      "severity": "critical",
+      "source_quote": "Amendments retain actor, time, reason and previous values; changing a rider's division invalidates affected draft classifications. Preserve previous published results rather than rewriting them."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C05",
+      "expected_planning_outcome": "The plan represents approved course versions and ordered controls, specifies every observation field and atomically rejects the named delivery errors.",
+      "failure_condition": "Course order or common start is absent, a required observation field is missing or invalid observations partially commit.",
+      "severity": "critical",
+      "source_quote": "Each stage has an approved course version listing its start, ordered mandatory checkpoints, finish and common start timestamp. A timing clerk imports observations containing observation_id, rider_id, stage_id, control_id and observed_at. Unknown riders or controls and malformed timestamps reject the whole delivery."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C06",
+      "expected_planning_outcome": "The plan preserves immutable raw evidence, observation replay semantics and earliest-post-start selection without counting repeated crossings or discarding pre-start evidence.",
+      "failure_condition": "Conflicting content overwrites observations, reimports alter results, later crossings are selected by default, duplicate crossings add time or raw evidence is discarded.",
+      "severity": "critical",
+      "source_quote": "An identical observation identifier and content is a no-op; changed content under that identifier is rejected. Retain raw observations. The earliest observation at each control at or after the stage start is selected; later duplicates remain visible but do not add elapsed time. Pre-start observations are retained and ignored."
+    },
+    {
+      "area": "issues",
+      "criterion_id": "C07",
+      "expected_planning_outcome": "The plan explicitly detects missing and out-of-order selected controls, retains unresolved status and prevents unsupported inferred crossings or automatic disqualification.",
+      "failure_condition": "Missing crossings are fabricated, course-order checks are omitted or timing exceptions automatically become disqualifications or final classified results.",
+      "severity": "critical",
+      "source_quote": "A missing control or selected controls out of course order creates an unresolved timing exception, not an invented crossing or automatic disqualification."
+    },
+    {
+      "area": "authorization",
+      "criterion_id": "C08",
+      "expected_planning_outcome": "The plan supports supervisor-approved selected-crossing corrections with justification and retained originals, and rejects finish-before-start evidence.",
+      "failure_condition": "Corrections overwrite raw observations, lack approval or supporting evidence or permit negative elapsed time.",
+      "severity": "critical",
+      "source_quote": "A timing supervisor may approve a replacement selected crossing with reason and supporting evidence, preserving raw observations and correction history. A finish before the start is invalid."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C09",
+      "expected_planning_outcome": "The plan calculates gross and net time as specified, validates attributable rider-specific neutralizations, uses their interval union and rejects invalid records without changes.",
+      "failure_condition": "Chip-start timing replaces common start, overlapping intervals are double-deducted, invalid interval bounds are accepted or invalid records partially change times.",
+      "severity": "critical",
+      "source_quote": "For stages 1–3, gross time is selected finish minus common start. The jury can approve rider-specific neutralization intervals with evidence and reason. Intervals include their start and exclude their end, must end after they start and must lie within that rider's start-to-finish interval. Deduct the duration of their union, so overlapping intervals are never deducted twice. Net riding time is gross time minus that deduction. Invalid neutralization records change nothing."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C10",
+      "expected_planning_outcome": "The plan applies the inclusive six-hour cutoff to unpenalized net riding time for stages governed by the clear rule.",
+      "failure_condition": "Exactly six hours fails, millisecond overages pass or penalties influence cutoff eligibility.",
+      "severity": "critical",
+      "source_quote": "Net riding time at or below six hours meets the stage cutoff; time above six hours is OVER TIME LIMIT. Penalties do not affect the cutoff test."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C11",
+      "expected_planning_outcome": "The plan represents validated, scoped and attributable jury penalties and disqualifications, preserves withdrawals and distinguishes stage-time effects from one-time overall effects.",
+      "failure_condition": "Penalty scope is lost, overall-only penalties affect stage ranks or repeat per stage, withdrawn penalties still contribute, required references are missing or timing exceptions substitute for jury disqualification.",
+      "severity": "critical",
+      "source_quote": "A stage time penalty is a nonnegative integer number of milliseconds added to net riding time for stage ranking and overall totals. An overall-only penalty affects only the overall total and must not be applied once per stage. Every penalty names its rider, scope, jury decision reference and reason. Withdrawn penalties remain in history and cease contributing. A jury decision may explicitly disqualify a rider from a stage; timing exceptions alone cannot do so."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C12",
+      "expected_planning_outcome": "The plan ranks eligible finishers separately by division using penalized stage time and competition ranking for exact ties.",
+      "failure_condition": "Divisions are pooled, ineligible riders receive ordinary classified ranks, raw time drives ranking or ties use dense ranks or bib order.",
+      "severity": "critical",
+      "source_quote": "Rank eligible stage finishers within their division by net riding time plus stage penalties, lowest first. Exact ties share competition ranks, such as 1,1,3; never use bib order to break them."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C13",
+      "expected_planning_outcome": "The plan makes overall eligibility depend on all four valid stage outcomes, sums penalized stage times correctly and applies the stated final-stage tie-break followed by shared ranking.",
+      "failure_condition": "Incomplete, overtime or disqualified stage participation permits overall classification, penalties are double-counted or a different overall tie-break is introduced.",
+      "severity": "critical",
+      "source_quote": "A rider qualifies for overall classification only after all four stages are resolved, within cutoff and without stage disqualification. Overall time sums the four ranked stage times and adds overall-only penalties once. Break an overall-time tie by lower fourth-stage ranked time; if still equal, share the rank."
+    },
+    {
+      "area": "issues",
+      "criterion_id": "C14",
+      "expected_planning_outcome": "The plan records both exact conflicting cutoff instructions and sources, assigns resolution to the chief commissaire and leaves precedence unresolved.",
+      "failure_condition": "The plan chooses a document, assumes stricter or more generous treatment is authoritative or omits the contradiction or resolution owner.",
+      "severity": "critical",
+      "source_quote": "The signed fourth-stage weather bulletin says “neutralized time is deducted when testing the six-hour cutoff.” The chief commissaire's signed direction says “neutralized time is not deducted when testing the six-hour cutoff.” Both are mandatory and no precedence ruling exists. The chief commissaire must resolve the contradiction."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C15",
+      "expected_planning_outcome": "The plan separates agreed fourth-stage scoring deduction from disputed cutoff eligibility, blocks dependent fourth-stage cutoff and overall decisions and preserves all named actionable work.",
+      "failure_condition": "Fourth-stage cutoff or overall classification proceeds before resolution, the scoring deduction is treated as disputed or unrelated earlier-stage and evidence work is blocked.",
+      "severity": "critical",
+      "source_quote": "Deduction for fourth-stage scoring is agreed; only its cutoff treatment is disputed. Fourth-stage cutoff decisions and overall classification remain blocked. Entry work, timing reconciliation, penalties and final classifications for stages 1–3 must proceed."
+    },
+    {
+      "area": "models",
+      "criterion_id": "C16",
+      "expected_planning_outcome": "The plan represents all appeal targets, scope, supporting evidence and reasoned decisions, links upheld appeals to explicit corrective acts and scopes publication blocks to affected classifications.",
+      "failure_condition": "Appeals lack scope or evidence, open affected appeals permit publication, unrelated stages are blocked or upheld appeals silently edit totals.",
+      "severity": "critical",
+      "source_quote": "A jury secretary records appeals against a crossing, neutralization, penalty or disqualification, with rider, stage or overall scope, reason and evidence reference. An open appeal blocks publication only of the classifications it could affect. The jury chair records an upheld or rejected decision with reasons; upholding an appeal requires an explicit linked correction or decision, not a silent change to a total. An appeal about an overall-only penalty does not block an unaffected stage classification."
+    },
+    {
+      "area": "persistence",
+      "criterion_id": "C17",
+      "expected_planning_outcome": "The plan includes every named classification output, dependency-driven stale detection across all four input groups, guarded approval and immutable publication history with approved linked amendments.",
+      "failure_condition": "Required evidence output is absent, a relevant input change leaves drafts current, stale or unresolved results can be approved or published versions are overwritten.",
+      "severity": "critical",
+      "source_quote": "A results officer can prepare versioned classifications exposing selected crossings, exceptions, neutralized duration, penalties, cutoff status, ranks and source references. Relevant entry, course, timing or jury changes make affected drafts stale. Approval rejects stale or unresolved classifications. Published versions remain immutable; changes require a newly approved amendment linked to the prior publication."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C18",
+      "expected_planning_outcome": "The plan explicitly provides review-screen visibility of unresolved timing, open appeals, stale drafts and publication outcomes, without requiring a particular layout or navigation mechanism.",
+      "failure_condition": "A named category is missing from planned review-screen exposure or unresolved work is hidden behind an apparently final result.",
+      "severity": "critical",
+      "source_quote": "Review screens must expose unresolved timing, open appeals, stale drafts and publication outcomes."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C19",
+      "expected_planning_outcome": "The plan identifies both submission types and returned outcomes, all seven missing contract/access details and their resolution before live exchange. Local calculations and provisional representations remain independently actionable.",
+      "failure_condition": "A critical unknown is omitted, a confirmed service contract or credentials are invented, local simulation is treated as live proof or federation access blocks local calculation.",
+      "severity": "critical",
+      "source_quote": "The federation service is expected to receive official classifications and amendments and return publication outcomes. Its endpoint, authentication, event permissions, division codes, payload schema, acknowledgement meanings and duplicate-publication behavior are unknown. These block live publication, not local calculation."
+    },
+    {
+      "area": "authorization",
+      "criterion_id": "C20",
+      "expected_planning_outcome": "The plan requires separate director authorization bound to all stated scope elements, invalidates it after changed results and checks currency, appeals and authorization at sending. It recognizes that no current execution permission exists.",
+      "failure_condition": "Approval or the brief authorizes publication, authorization is generic or survives changed results or sending omits a required current-state check.",
+      "severity": "critical",
+      "source_quote": "Before any attempt, the race director must separately authorize the exact approved result version, event, stage or overall scope and divisions. This brief grants no execution permission. Changed results invalidate that authorization; results approval is not publication permission. Recheck currency, unresolved appeals and authorization immediately before sending."
+    },
+    {
+      "area": "contracts",
+      "criterion_id": "C21",
+      "expected_planning_outcome": "The plan preserves all four outcomes, distinguishes receipt from publication, requires documented resolution before another uncertain attempt and retains exact result/authorization linkage.",
+      "failure_condition": "Receipt is reported as publication, timeout becomes definitive success or failure, unknown attempts automatically retry or provenance is missing.",
+      "severity": "critical",
+      "source_quote": "Preserve rejected, received for processing, published and unknown outcomes. Receipt is not publication. A timeout is unknown; another attempt requires documented outcome resolution rather than automatic retry. Link outcomes to the attempted version and authorization."
+    },
+    {
+      "area": "authorization",
+      "criterion_id": "C22",
+      "expected_planning_outcome": "The plan maps all named roles to their stated operations and enforces permissions at operation boundaries, including the exclusive policy-resolution and publication powers. Proposed checks cover unauthorized mutations.",
+      "failure_condition": "A role boundary is omitted, restricted authority is granted to another role or enforcement relies only on hiding controls.",
+      "severity": "critical",
+      "source_quote": "Entries clerks maintain entries; timing clerks import observations; timing supervisors approve crossing corrections; jury secretaries record appeals; jury chairs approve neutralizations, penalties, disqualifications and appeal decisions; results officers prepare and approve classifications; only the race director authorizes publication. Viewers can read approved classifications. Enforce permissions beyond screen visibility. The chief commissaire alone resolves the disputed cutoff policy."
+    },
+    {
+      "area": "test_claims",
+      "criterion_id": "C23",
+      "expected_planning_outcome": "Proposed acceptance checks preserve every exact neutralization, ranked-time, cutoff, overall-penalty, tie and unresolved-checkpoint result, without supplying disputed fourth-stage or overall outcomes.",
+      "failure_condition": "An example is omitted or altered, arithmetic or ranking is wrong or an unresolved policy outcome is invented.",
+      "severity": "critical",
+      "source_quote": "A gross time of 5h50m with neutralizations 02:00–02:20 and 02:10–02:30 after the start has a 30-minute union and net time 5h20m. Adding a ten-minute stage penalty gives ranked time 5h30m. A net time of exactly six hours meets the cutoff even with a penalty; six hours plus one millisecond does not. Stage times totaling 20 hours plus an overall-only five-minute penalty produce 20h05m. Equal ranked times followed by a slower rider receive ranks 1,1,3. A missing checkpoint remains unresolved. No fourth-stage cutoff or overall winner is asserted before policy resolution."
+    },
+    {
+      "area": "persistence",
+      "criterion_id": "C24",
+      "expected_planning_outcome": "The plan identifies durable records and relationships sufficient for entries and amendments, course versions, raw and corrected crossings, neutralizations, scoped penalties, disqualifications, appeals, classifications, authorizations and publication outcomes. It explains consistent recovery and proposes restart verification. Any sound durable design is acceptable.",
+      "failure_condition": "Required evidence or history is transient, restart changes times or ranks or durable relationships cannot support a required jury, approval or publication transition. No particular backend or architecture is required.",
+      "severity": "critical",
+      "source_quote": "Evidence, jury history, result versions and authorizations must survive restart with identical times and ranks."
+    },
+    {
+      "area": "dependencies",
+      "criterion_id": "C25",
+      "expected_planning_outcome": "The plan identifies entry validation and course/observation validation as separately actionable capabilities, allowing synthetic rider references where needed. Downstream dependencies correctly connect evidence and jury decisions to cutoff, ranking, approval and authorized publication.",
+      "failure_condition": "Either branch is blocked on federation access or disputed policy, separate actionable work is absent or necessary business dependencies are omitted.",
+      "severity": "critical",
+      "source_quote": "Entry validation and course/observation validation can be planned separately using synthetic data before external access or the disputed fourth-stage policy is resolved."
+    },
+    {
+      "area": "test_claims",
+      "criterion_id": "C26",
+      "expected_planning_outcome": "The plan labels reversible technical and presentation choices as assumptions rather than approvals, permits rider or control grouping without changed results and consistently describes verification as proposed.",
+      "failure_condition": "Assumptions are represented as customer approvals, presentation grouping changes results or the plan claims implementation, passed tests or verified live federation behavior without supplied evidence.",
+      "severity": "critical",
+      "source_quote": "Local storage, preview layout and exception grouping may use explicitly labeled reversible assumptions; none is customer approval. Verification is proposed work: no implementation, executed tests or live federation evidence is supplied."
+    },
+    {
+      "area": "requirements",
+      "criterion_id": "C27",
+      "expected_planning_outcome": "The plan groups classification-output requirements in an easily located passage or provides clear cross-references. This assesses organization only; C17 independently requires complete and correct outputs.",
+      "failure_condition": "All mandatory classification outputs are present and correct but scattered without grouping or navigation references. Missing or incorrect behavior must also fail its critical criterion and cannot be counted solely as this minor presentation defect.",
+      "severity": "minor",
+      "source_quote": "A results officer can prepare versioned classifications exposing selected crossings, exceptions, neutralized duration, penalties, cutoff status, ranks and source references."
+    }
+  ],
+  "specification_markdown": "# StageMark: mountain-bike stage-race classification\n\n## Purpose and limits\nA race organizer needs defensible stage results and an overall classification for a four-stage mountain-bike event with up to 800 riders in two divisions. Riders compete individually; each has one immutable rider identifier, one unique bib and one division. Times use UTC and integer milliseconds. The service does not reserve starts, manage accommodation, collect fees, control timing hardware, provide emergency tracking or decide medical fitness. Synthetic entries, timing observations and jury decisions are available. External credentials, accounts and publication authorizations are absent.\n\n## Entries and course evidence\nAn entries clerk can preview and accept a roster containing rider_id, bib, division and name. Missing fields, duplicate identifiers or bibs and unknown divisions reject the entire import with row-level reasons and no changes. Reimporting identical roster content is a no-op. Amendments retain actor, time, reason and previous values; changing a rider's division invalidates affected draft classifications. Preserve previous published results rather than rewriting them.\n\nEach stage has an approved course version listing its start, ordered mandatory checkpoints, finish and common start timestamp. A timing clerk imports observations containing observation_id, rider_id, stage_id, control_id and observed_at. Unknown riders or controls and malformed timestamps reject the whole delivery. An identical observation identifier and content is a no-op; changed content under that identifier is rejected. Retain raw observations. The earliest observation at each control at or after the stage start is selected; later duplicates remain visible but do not add elapsed time. Pre-start observations are retained and ignored. A missing control or selected controls out of course order creates an unresolved timing exception, not an invented crossing or automatic disqualification.\n\nA timing supervisor may approve a replacement selected crossing with reason and supporting evidence, preserving raw observations and correction history. A finish before the start is invalid. Entry validation and course/observation validation can be planned separately using synthetic data before external access or the disputed fourth-stage policy is resolved.\n\n## Riding time and neutralization\nFor stages 1–3, gross time is selected finish minus common start. The jury can approve rider-specific neutralization intervals with evidence and reason. Intervals include their start and exclude their end, must end after they start and must lie within that rider's start-to-finish interval. Deduct the duration of their union, so overlapping intervals are never deducted twice. Net riding time is gross time minus that deduction. Invalid neutralization records change nothing. Net riding time at or below six hours meets the stage cutoff; time above six hours is OVER TIME LIMIT. Penalties do not affect the cutoff test.\n\nA stage time penalty is a nonnegative integer number of milliseconds added to net riding time for stage ranking and overall totals. An overall-only penalty affects only the overall total and must not be applied once per stage. Every penalty names its rider, scope, jury decision reference and reason. Withdrawn penalties remain in history and cease contributing. A jury decision may explicitly disqualify a rider from a stage; timing exceptions alone cannot do so.\n\n## Classification and a disputed stage\nRank eligible stage finishers within their division by net riding time plus stage penalties, lowest first. Exact ties share competition ranks, such as 1,1,3; never use bib order to break them. A rider qualifies for overall classification only after all four stages are resolved, within cutoff and without stage disqualification. Overall time sums the four ranked stage times and adds overall-only penalties once. Break an overall-time tie by lower fourth-stage ranked time; if still equal, share the rank.\n\nThe signed fourth-stage weather bulletin says “neutralized time is deducted when testing the six-hour cutoff.” The chief commissaire's signed direction says “neutralized time is not deducted when testing the six-hour cutoff.” Both are mandatory and no precedence ruling exists. The chief commissaire must resolve the contradiction. Deduction for fourth-stage scoring is agreed; only its cutoff treatment is disputed. Fourth-stage cutoff decisions and overall classification remain blocked. Entry work, timing reconciliation, penalties and final classifications for stages 1–3 must proceed. Do not infer cutoff policy from the more generous or more restrictive document. Users disagree whether review screens should initially group exceptions by rider or control; either is acceptable and must not change results.\n\n## Jury review and result versions\nA jury secretary records appeals against a crossing, neutralization, penalty or disqualification, with rider, stage or overall scope, reason and evidence reference. An open appeal blocks publication only of the classifications it could affect. The jury chair records an upheld or rejected decision with reasons; upholding an appeal requires an explicit linked correction or decision, not a silent change to a total. An appeal about an overall-only penalty does not block an unaffected stage classification.\n\nA results officer can prepare versioned classifications exposing selected crossings, exceptions, neutralized duration, penalties, cutoff status, ranks and source references. Relevant entry, course, timing or jury changes make affected drafts stale. Approval rejects stale or unresolved classifications. Published versions remain immutable; changes require a newly approved amendment linked to the prior publication. Review screens must expose unresolved timing, open appeals, stale drafts and publication outcomes.\n\n## External publication and authority\nThe federation service is expected to receive official classifications and amendments and return publication outcomes. Its endpoint, authentication, event permissions, division codes, payload schema, acknowledgement meanings and duplicate-publication behavior are unknown. These block live publication, not local calculation. Before any attempt, the race director must separately authorize the exact approved result version, event, stage or overall scope and divisions. This brief grants no execution permission. Changed results invalidate that authorization; results approval is not publication permission. Recheck currency, unresolved appeals and authorization immediately before sending.\n\nPreserve rejected, received for processing, published and unknown outcomes. Receipt is not publication. A timeout is unknown; another attempt requires documented outcome resolution rather than automatic retry. Link outcomes to the attempted version and authorization. Entries clerks maintain entries; timing clerks import observations; timing supervisors approve crossing corrections; jury secretaries record appeals; jury chairs approve neutralizations, penalties, disqualifications and appeal decisions; results officers prepare and approve classifications; only the race director authorizes publication. Viewers can read approved classifications. Enforce permissions beyond screen visibility. The chief commissaire alone resolves the disputed cutoff policy.\n\n## Acceptance and delivery expectations\nA gross time of 5h50m with neutralizations 02:00–02:20 and 02:10–02:30 after the start has a 30-minute union and net time 5h20m. Adding a ten-minute stage penalty gives ranked time 5h30m. A net time of exactly six hours meets the cutoff even with a penalty; six hours plus one millisecond does not. Stage times totaling 20 hours plus an overall-only five-minute penalty produce 20h05m. Equal ranked times followed by a slower rider receive ranks 1,1,3. A missing checkpoint remains unresolved. No fourth-stage cutoff or overall winner is asserted before policy resolution.\n\nEvidence, jury history, result versions and authorizations must survive restart with identical times and ranks. Local storage, preview layout and exception grouping may use explicitly labeled reversible assumptions; none is customer approval. Verification is proposed work: no implementation, executed tests or live federation evidence is supplied."
+}

@@ -1,0 +1,9 @@
+{
+  "hashes": {
+    "tests\\test_analysis_review_transport.py": "879a4c282592524f1b7e1f2ca929439a37add78f385e2feb284c6fe13de96938"
+  },
+  "fixture_sha256": "b98fbff2222fb76b9ec0b4c0c7d3894aee10f053cbbb3ac5b8d62e6565163f5b",
+  "protected_before_implementation": true,
+  "before_result": "FAIL: preserved review context rejected above55000",
+  "original_G_blind_evaluation": "FAIL"
+}

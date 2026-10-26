@@ -1,0 +1,48 @@
+{
+  "at": "2026-10-26T22:12:08.616133+00:00",
+  "status": "PARTIAL",
+  "overall_phase3c": "PARTIAL",
+  "cumulative_limit": 95,
+  "charged_reservations": 75,
+  "remaining_unspent_slots": 20,
+  "statuses": [
+    {
+      "status": "COMPLETED",
+      "count": 73
+    },
+    {
+      "status": "FAILED_PROVIDER_QUOTA_RECONCILED",
+      "count": 1
+    },
+    {
+      "status": "NOT_SUBMITTED_CONTEXT_REJECTED",
+      "count": 1
+    }
+  ],
+  "deadline": "2026-10-27T06:30:00+00:00",
+  "latest_authorization_id": "phase3c3-extension-95-20261026",
+  "STOP": false,
+  "sqlite_integrity": "ok",
+  "checkpoint_count": 23,
+  "all_checkpoint_git_objects_verified": true,
+  "regression_tests": 249,
+  "protected_C2_tests": 63,
+  "protected_C3_tests": 32,
+  "historical_hashes": 1493,
+  "seven_original_blind_FAILs_preserved": true,
+  "new_H_not_started": true,
+  "no_further_SDK_after_correction_review": true,
+  "minimum_next_route": {
+    "complete_fresh_case_and_reviews_estimate": 20,
+    "failure_reserve": 6,
+    "required_available": 26,
+    "current_available": 20,
+    "proposed_cumulative_cap": 101,
+    "proposed_deadline_unchanged": "2026-10-27T06:30:00+00:00",
+    "authorization_status": "NOT_GRANTED"
+  },
+  "external_business_operations": 0,
+  "Phase3D_started": false,
+  "snapshot_sha256": "6604c49ab53ddf4fdc20db8989709b201b9396abf80ce179a0494096179311f5",
+  "git_parent_HEAD": "b5800db1b3fd0a271dc9b5a9420af911f82ae1f8"
+}

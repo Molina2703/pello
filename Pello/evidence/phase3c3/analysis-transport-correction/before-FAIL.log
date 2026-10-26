@@ -1,0 +1,33 @@
+test_irreducible_review_rejects_without_losing_original_source (tests.test_analysis_review_transport.AnalysisReviewTransportTests.test_irreducible_review_rejects_without_losing_original_source) ... ok
+test_preserved_rejection_round_trips_every_source_and_interpretation_field (tests.test_analysis_review_transport.AnalysisReviewTransportTests.test_preserved_rejection_round_trips_every_source_and_interpretation_field) ... 
+  test_preserved_rejection_round_trips_every_source_and_interpretation_field (tests.test_analysis_review_transport.AnalysisReviewTransportTests.test_preserved_rejection_round_trips_every_source_and_interpretation_field) (phase='review-analysis') ... ERROR
+  test_preserved_rejection_round_trips_every_source_and_interpretation_field (tests.test_analysis_review_transport.AnalysisReviewTransportTests.test_preserved_rejection_round_trips_every_source_and_interpretation_field) (phase='review-analysis-r2') ... ERROR
+test_small_review_retains_legacy_json_shape (tests.test_analysis_review_transport.AnalysisReviewTransportTests.test_small_review_retains_legacy_json_shape) ... ok
+test_transport_marker_collision_rejects_without_mutating_canonical_input (tests.test_analysis_review_transport.AnalysisReviewTransportTests.test_transport_marker_collision_rejects_without_mutating_canonical_input) ... ok
+
+======================================================================
+ERROR: test_preserved_rejection_round_trips_every_source_and_interpretation_field (tests.test_analysis_review_transport.AnalysisReviewTransportTests.test_preserved_rejection_round_trips_every_source_and_interpretation_field) (phase='review-analysis')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_analysis_review_transport.py", line 23, in test_preserved_rejection_round_trips_every_source_and_interpretation_field
+    prompt=ProductPlanningCore._prompt(phase,value)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 1220, in _prompt
+    raise ValueError('Planning context exceeds 55,000 characters; no silent truncation')
+ValueError: Planning context exceeds 55,000 characters; no silent truncation
+
+======================================================================
+ERROR: test_preserved_rejection_round_trips_every_source_and_interpretation_field (tests.test_analysis_review_transport.AnalysisReviewTransportTests.test_preserved_rejection_round_trips_every_source_and_interpretation_field) (phase='review-analysis-r2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\tests\test_analysis_review_transport.py", line 23, in test_preserved_rejection_round_trips_every_source_and_interpretation_field
+    prompt=ProductPlanningCore._prompt(phase,value)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 1220, in _prompt
+    raise ValueError('Planning context exceeds 55,000 characters; no silent truncation')
+ValueError: Planning context exceeds 55,000 characters; no silent truncation
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.055s
+
+FAILED (errors=2)

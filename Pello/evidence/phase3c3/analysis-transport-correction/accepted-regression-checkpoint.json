@@ -1,0 +1,62 @@
+{
+  "status": "ACCEPTED_CORRECTION_ONLY",
+  "at": "2026-10-26T22:12:08.570288+00:00",
+  "regression": {
+    "command": [
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "exit_code": 0,
+    "tests_run": 249,
+    "tests_passed": 249,
+    "seconds": 274.688
+  },
+  "protected_C2": 63,
+  "protected_C3_defect_checks": 32,
+  "historical_hashes": 1493,
+  "review": {
+    "verdict": "PASS",
+    "scope": "correct",
+    "correctness": "adequate",
+    "test_evidence": "pass",
+    "safety_and_preservation": "adequate",
+    "findings": [
+      "The localized change applies table encoding to the current factored review JSON, preserving earlier source factoring and the unchanged 55,000-character limit.",
+      "The supplied 83-test transcript supports exact reconstruction, input immutability, marker-collision rejection, oversized rejection and existing planning behavior.",
+      "The original held-out G FAIL remains preserved. Full regression remains required before an accepted checkpoint."
+    ],
+    "rationale": "The provided diff addresses the review-context rejection without changing schemas, validators, converters or business behavior. Tests cover initial and revision review phases and compare the complete reconstructed payload with the original. This PASS applies only to the transport correction; it establishes neither a blind evaluation PASS nor autonomous self-repair."
+  },
+  "proof": {
+    "prompt_characters": 45441,
+    "exact_round_trip_and_input_immutability_tests": "83 targeted PASS includes exact original StageMark replay for initial and revision review phases",
+    "canonical_fixture_sha256": "b98fbff2222fb76b9ec0b4c0c7d3894aee10f053cbbb3ac5b8d62e6565163f5b",
+    "C2_digest": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+    "SDK_count_before_after": [
+      74,
+      74
+    ],
+    "validators_unchanged": {
+      "validate_architecture": true,
+      "validate_increments": true,
+      "validate_contracts": true,
+      "manifest_from_contracts": true
+    },
+    "G_original_verdict": "FAIL",
+    "new_blind_case_required": true,
+    "no_G_retry": true
+  },
+  "source_sha256": "51eef8128d8d4a2d9c8df042838c0c791721b3b80923c67f27e4877b57fa4c53",
+  "seven_original_blind_FAILs_preserved": true,
+  "blind_generalization": "UNVERIFIED",
+  "fresh_case_required": true,
+  "no_corrected_G_SDK_rerun": true,
+  "no_product_implementation": true,
+  "Phase3D_started": false
+}

@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-26T22:12:03.138599+00:00",
+  "publication_only_after_original_G_FAIL": true,
+  "no_private_key_in_Git_before_Planner": true,
+  "records": [
+    {
+      "version": 1,
+      "file": "evidence\\phase3c3\\consumed-rubrics\\heldout-g-frozen-v1.json",
+      "sha256": "a8dfa2527e5a5044cb78a15e41bdbe54c8e773594fd2cd574d0f2796e2c3165c",
+      "operative_for_G": false
+    },
+    {
+      "version": 2,
+      "file": "evidence\\phase3c3\\consumed-rubrics\\heldout-g-frozen-v2.json",
+      "sha256": "253bd8784bb6b872e43748bf241c3603cec4277bf1c6dc0cfb969c414b4b58c7",
+      "operative_for_G": true
+    }
+  ]
+}
