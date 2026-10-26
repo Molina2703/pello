@@ -1,0 +1,8 @@
+{
+  "registered_at": "2026-10-26T22:45:11.496209+00:00",
+  "planner_project_rows": 0,
+  "objective_script_sha256": "526cffbe7a0c3a4aa1ab7cb75c8b3b4cdadbbf7ea743d4d7bbbb354da57cb283",
+  "criteria_source": "heldout-h-freeze-v2.json; frozen hidden rubric unchanged",
+  "critical_gate": "All structural checks, all critical semantic criteria, and >=90% total pass; no Reviewer override",
+  "previous_A_B_C_D_E_F_G_FAILs_preserved": true
+}

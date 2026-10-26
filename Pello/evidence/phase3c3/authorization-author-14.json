@@ -1,0 +1,17 @@
+{
+  "id": "phase3c3-author14-exception-20261026",
+  "authorized_at": "2026-10-26T22:33:14.148009+00:00",
+  "user_authorization": "Autorizo el autor hasta 14",
+  "project_id": "phase3c3-author",
+  "old_author_max_turns": 12,
+  "approved_author_max_turns": 14,
+  "author_used_turns_unchanged": 12,
+  "cumulative_sdk_limit": 101,
+  "charged_reservations_unchanged": 79,
+  "deadline": "2026-10-27T06:30:00+00:00",
+  "prior_authorization": "phase3c3-extension-101-20261026",
+  "other_project_limits_unchanged": 12,
+  "scope": "One exact-input/schema recovery of H preparation plus one author reserve; independent review required before Planner. No Phase3D.",
+  "external_business_operations": 0,
+  "no_counter_reset_or_replacement_project": true
+}

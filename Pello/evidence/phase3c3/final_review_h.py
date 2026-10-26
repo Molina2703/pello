@@ -27,7 +27,7 @@ try:
         charges=c.execute('select count(*) from pello_product_operations').fetchone()[0]
         sessions=[dict(r) for r in c.execute('select project_id,role,thread_id from pello_sessions where project_id in (?,?)',(pid,rid))]
     assert charges<101 and datetime.now(timezone.utc)<datetime.fromisoformat(auth[-1]['deadline'])
-    diff=subprocess.run(['git','diff','--unified=1','c1bb076e7059100f0c4b5abf623625d2843f0be2','--','athis_autopilot','tests'],capture_output=True,text=True,encoding='utf-8',check=True).stdout
+    diff=subprocess.run(['git','diff','--unified=0','c1bb076e7059100f0c4b5abf623625d2843f0be2','--','athis_autopilot','tests'],capture_output=True,text=True,encoding='utf-8',check=True).stdout
     code_review=read('final-code-review.json')
     assert code_review['review']['verdict']=='PASS' and code_review['diff_sha256']==hashlib.sha256(diff.encode()).hexdigest()
     assert code_review['input_sha256']==hashlib.sha256((out/'final-code-review-input.json').read_bytes()).hexdigest()
@@ -51,7 +51,7 @@ try:
       'checkpoint_before_planner':read('batch1-h-checkpoint.json')}
     evidence={'objective':'Final independent Phase 3C closure review against original objectives and untouched held-out evidence. PASS only if all mandatory objective gates pass and no critical semantic or independence defect remains.',
       'changed_files':['athis_autopilot/{ai_supervisor,codex_worker,engines,planning_contracts,product_planning}.py','nine protected Phase 3C-3 regression sources','frozen evaluation artifacts and local harnesses'],
-      'diff':json.dumps(packet,ensure_ascii=False,separators=(',',':')),'test_command':'Full unittest + six protected suites + hash/SQLite/checkpoint/restart gates',
+      'diff':'\n\n'.join('GRADING SOURCE '+name+'\n'+source for name,source in grading.items())+'\n\nCLOSURE METADATA JSON\n'+json.dumps({k:v for k,v in packet.items() if k!='evaluation_grading_source'},ensure_ascii=False,separators=(',',':')),'test_command':'Full unittest + six protected suites + hash/SQLite/checkpoint/restart gates',
       'test_exit_code':0,'tests_run':reg['tests_run'],'tests_passed':reg['tests_run'],'tests_failed':0,
       'scope_constraints':[{'plan_sha256':recovered['plan_sha256'],'regression':reg,'protected_suites_intact':True},'Planning acceptance only; no implementation authorization; no Phase 3D','Frozen rubric cannot be changed and objective FAIL cannot be overridden']}
     length=len(json.dumps(evidence,ensure_ascii=False));print('final_review_characters',length,flush=True)

@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-26T22:41:39.619798+00:00",
+  "native_author_writer_lock_absent_after_archive_restore": true,
+  "rollout_sha256_unchanged": "bbd8234594d163ff97c8e374d2546849a3b519d2bc9d0c0a818b4928f14e05ae",
+  "same_thread_project_and_history": true,
+  "no_process_terminated_or_lock_deleted_manually": true,
+  "author_used_max": [
+    13,
+    14
+  ],
+  "charged_before_recovery2": 80,
+  "next_recovery": "Single existing guarded invocation, exact original input/schema, after objective lifecycle state change",
+  "lock_probe_setup_failure": "Probe expected an existing lock file; native lifecycle had already removed it. FileStream Open failed because path absent; no lock acquired or removed by probe."
+}

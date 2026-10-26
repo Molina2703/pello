@@ -8,7 +8,7 @@ out=Path('evidence/phase3c3')
 def read(p):return json.loads((out/p).read_text(encoding='utf-8'))
 assert read('heldout-h-evaluation.json')['verdict']=='PASS'
 reg=read('final-regression.json');assert reg['exit_code']==0
-diff=subprocess.check_output(['git','diff','--unified=1','c1bb076e7059100f0c4b5abf623625d2843f0be2','--','athis_autopilot','tests'],text=True,encoding='utf-8')
+diff=subprocess.check_output(['git','diff','--unified=0','c1bb076e7059100f0c4b5abf623625d2843f0be2','--','athis_autopilot','tests'],text=True,encoding='utf-8')
 packet={'objective':'Independent final code review, first part of final Phase 3C closure review in this same Reviewer session. Review the complete relevant Git diff and protected defect tests for correctness, scope, SDK isolation, unchanged validators, source/context losslessness, budget and accepted-interface preservation. You must not modify code. Later final closure review will supply all grading source, semantic/objective results, full integrity and authorization. This turn alone cannot accept the phase. No private Planner reasoning is supplied.',
  'baseline':'c1bb076e7059100f0c4b5abf623625d2843f0be2','complete_production_and_new_tests_diff':diff,
  'diff_sha256':hashlib.sha256(diff.encode()).hexdigest(),'regression':reg,

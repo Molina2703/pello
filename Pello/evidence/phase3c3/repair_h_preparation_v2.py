@@ -28,7 +28,8 @@ try:
     request=json.loads(failed['request'])
     assert hashlib.sha256(json.dumps(payload,ensure_ascii=False,sort_keys=True).encode()).hexdigest()==request['input_sha256']
     assert hashlib.sha256(json.dumps(PreparationRepair.model_json_schema(),ensure_ascii=False,sort_keys=True).encode()).hexdigest()==request['schema_sha256']
-    repair,raw=core._invoke('phase3c3-author',1,'author-heldout-h-preparation-v2-recovery-1','tester',payload,PreparationRepair)
+    assert not Path('C:/Users/USUARIO/.codex/thread-writer-locks/01a1746f-48e4-7b53-a930-16be42bd2f5e.lock').exists()
+    repair,raw=core._invoke('phase3c3-author',1,'author-heldout-h-preparation-v2-recovery-2','tester',payload,PreparationRepair)
     assert repair.revised_minor_criterion.criterion_id=='C26' and repair.revised_minor_criterion.severity=='minor'
     spec_text=prefix+'## Acceptance and delivery expectations\n\n'+repair.acceptance_section_markdown.strip()+'\n'
     assert len(spec_text)<=8500 and spec_text.startswith(prefix)

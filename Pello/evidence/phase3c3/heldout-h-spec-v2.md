@@ -1,0 +1,37 @@
+# CueConform: subtitle adaptation for revised video edits
+
+## Purpose and boundaries
+A small localization studio needs to adapt translated subtitles when clients shorten instructional videos. The pilot covers 12 episodes, two target languages per episode and at most 10,000 source cues per episode. All video uses exactly 25 frames per second; times are integer frame positions and intervals include their start and exclude their end. The service does not edit video, recognize speech, generate translations, change playback speed or support variable-frame-rate media. Synthetic cue files, edit lists and glossary entries are available. External credentials, accounts and delivery authorizations are absent.
+
+## Source material and edit versions
+An editor can preview and accept source cues containing cue_id, episode_id, start_frame, end_frame, original_text and required_term_ids. Cues must have unique identifiers within an episode, nonempty text and bounds satisfying 0 ≤ start < end ≤ source runtime. Reject an invalid import entirely, with row-level reasons and no changes. An identical source version and content is a no-op; changed content under that version is rejected. Corrections create a new source version and preserve previous values, actor, time and reason.
+
+Each approved edit list names its source version and ordered retained source intervals. Intervals must be nonempty, nonoverlapping, in source order and within runtime. They concatenate without gaps to form the revised video. A cue entirely within one retained interval shifts by that interval's source-to-output offset, preserving its duration. A cue intersecting a removed region, including one removed entirely, requires editorial review; do not silently delete, split or shorten it. An editor can explicitly remove it or create reviewed replacement cues with lineage to the original. Revised cues must lie within the resulting video runtime. Edit validation and cue conforming can be planned locally before any delivery connection exists.
+
+## Translation and terminology
+A translator records target text per cue and language, retaining revisions and attribution. An empty target remains untranslated. Glossary entries have an identifier, target language, preferred phrase and version. For every required_term_id on a cue, its language-specific preferred phrase must appear as an exact case-sensitive substring in the target, or a language reviewer must record a reasoned exception. Missing glossary coverage blocks that cue's language approval, not other languages. Do not automatically substitute words. Changing target text, a required glossary entry or its exception invalidates the affected language approval. Translation and glossary validation can be planned independently using synthetic cues without resolving children's delivery policy.
+
+## Ordinary subtitle checks
+For ordinary videos, every target cue must last 25–175 frames inclusive, contain at most two lines and have at most 42 characters per line. Count Unicode code points, including spaces and punctuation but excluding line-break characters. Reading speed is that character count divided by duration in seconds and must not exceed 17 characters per second. Compare exact values rather than rounded display values. Consecutive cues in a language track must have at least two frames between the earlier end and later start; overlap fails. Untranslated text, unresolved editorial review or a failed check prevents approval of the affected track. A language reviewer may approve a track only against its current source, edit, translation and glossary versions. Review copies may be prepared while failures remain, clearly marked unapproved.
+
+## Children's-video contradiction
+The signed client specification says “children's subtitles must not exceed 12 characters per second.” The studio's binding accessibility agreement says “children's subtitles must not exceed 15 characters per second.” Both are described as the exact acceptance ceiling, and no precedence ruling exists. The client accessibility owner must resolve the contradiction. Do not choose either ceiling or approve or deliver a children's track until resolved. Source intake, conforming, translation and terminology review remain actionable, and ordinary-video approval remains available. Users disagree whether the review overview should initially group issues by episode or language; either grouping is acceptable and must not alter checks.
+
+## Review history and delivery
+The overview must expose untranslated cues, editorial-review items, terminology exceptions, failed checks, stale approvals and delivery outcomes. An approved track is a versioned package tied to the exact episode edit and target language. Relevant changes make its approval stale; a previously delivered package remains immutable. A correction requires a newly reviewed package linked to the previous delivery. Preserve cue lineage and the reasons for editorial removals and terminology exceptions.
+
+The client's media platform is expected to accept a subtitle track for an existing video asset. Its endpoint, authentication, asset permissions, asset-to-edit identification, accepted subtitle format and encoding, replacement behavior and acknowledgement meaning are unknown. These block live delivery, not local review copies or ordinary checks. Before an attempt, the studio producer must separately authorize the exact approved package version, client asset, edit version and language. This brief grants no execution permission. Track approval is not delivery authorization; changed package or destination details invalidate authorization. Recheck current approval and authorization before sending, and never silently replace a different asset's track.
+
+Distinguish awaiting acknowledgement, delivered, rejected and unknown outcomes. A timeout is unknown, not delivered; another attempt requires documented outcome resolution rather than automatic retry. Delivered status requires the positive evidence defined by the eventual platform contract. Link each outcome to its package, destination and authorization. Editors maintain sources, edit lists and editorial decisions; translators maintain target text; language reviewers approve terminology exceptions and tracks; only the studio producer authorizes delivery. Viewers can read review copies. Enforce permissions beyond screen visibility; only the client accessibility owner resolves the children's ceiling.
+
+## Acceptance and delivery expectations
+
+## Acceptance and delivery expectations
+
+Retaining source intervals [0,250) and [500,1000) produces a 750-frame video. A cue at [550,600) becomes [300,350), preserving its 50-frame duration. A cue at [240,510) requires editorial review rather than automatic shortening.
+
+For an ordinary track, 34 counted characters over 50 frames give exactly 17 characters per second and pass the reading-speed check; 35 give 17.5 and fail. If one cue ends at frame 100, the next may start at 102; starting at 101 fails the gap check. Passing these individual checks does not establish track approval.
+
+Changing an approved track's target text makes its approval stale. A delivery timeout remains unknown and does not establish delivery. No children's acceptance ceiling is selected while the contradiction remains unresolved.
+
+These examples define expected outcomes for proposed verification. This brief supplies no implementation, executed tests or live-platform evidence and grants no delivery execution permission.

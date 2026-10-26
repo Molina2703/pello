@@ -1,0 +1,8 @@
+{
+  "thread_id": "01a1746f-48e4-7b53-a930-16be42bd2f5e",
+  "source_rollout": "C:\\Users\\USUARIO\\.codex\\sessions\\2026\\10\\25\\rollout-2026-10-25T14-00-12-01a1746f-48e4-7b53-a930-16be42bd2f5e.jsonl",
+  "rollout_sha256": "bbd8234594d163ff97c8e374d2546849a3b519d2bc9d0c0a818b4928f14e05ae",
+  "rollout_bytes": 1326348,
+  "reason": "Native app reports idle author thread with11 completed turns while SDK resume cannot acquire active writer. Archive/unarchive metadata lifecycle to release idle session, preserving content and same thread/project/counters.",
+  "no_model_inference": true
+}

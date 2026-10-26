@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-26T22:39:25.038243+00:00",
+  "status": "NOT_SUBMITTED_ACTIVE_WRITER_RECONCILED",
+  "charge_retained": true,
+  "no_submission_receipt_or_result": true,
+  "all11_native_turns_completed": true,
+  "same_thread_id": "01a1746f-48e4-7b53-a930-16be42bd2f5e",
+  "same_rollout_sha256_before_after": "bbd8234594d163ff97c8e374d2546849a3b519d2bc9d0c0a818b4928f14e05ae",
+  "native_archive_restore_only": true,
+  "no_history_rewrite_or_new_project_or_model_call": true,
+  "repair_user_message_absent": true,
+  "worker_error": "InvalidRequestError: JSON-RPC error -32600: thread 01a1746f-48e4-7b53-a930-16be42bd2f5e already has an active writer"
+}

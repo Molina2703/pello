@@ -1,0 +1,59 @@
+{
+  "evaluation_id": "phase3c3-heldout-h-v1",
+  "version": 2,
+  "created_at": "2026-10-26T22:42:03.652994+00:00",
+  "specification_sha256": "cbabae826e30f8166a18d1d7f495ee83e3e092c4e7081ca8e7fdc1ac3f915d64",
+  "rubric_sha256": "8923f5c429cd974b2292e7473e57a933c1b87798a7ee6ad360520accfde09554",
+  "author_thread_id": "01a1746f-48e4-7b53-a930-16be42bd2f5e",
+  "author_turn_id": "01a17a60-926d-7df3-b4b5-ca4a21a8a56e",
+  "critical_criteria": 25,
+  "total_criteria": 26,
+  "threshold": {
+    "all_critical": true,
+    "total_pass_fraction": 0.9
+  },
+  "deny_read_roots": [
+    "C:\\Users\\USUARIO\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\PelloEvaluation",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\jobs.sqlite3",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-author",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\evidence\\phase3c3",
+    "C:\\Users\\USUARIO\\.codex",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-a",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-b",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-c",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-d",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-e",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-f",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-g",
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-h"
+  ],
+  "objective_check_registry": [
+    "source_hash_and_source_anchors",
+    "requirement_coverage_and_exclusions",
+    "acyclic_graph_and_valid_references",
+    "blocker_propagation_and_independent_readiness",
+    "contract_coverage_and_proposed_test_state",
+    "model_catalog_and_typed_efforts",
+    "existing_pipeline_manifest_validation",
+    "durable_restart_reconstruction_and_idempotence",
+    "no_product_implementation_or_external_effects",
+    "frozen_hidden_semantic_criteria"
+  ],
+  "critical_failure_conditions": [
+    "Missing mandatory capability",
+    "Violation of explicit exclusion",
+    "Unapproved assumption treated as authorization",
+    "Ignored blocking contradiction",
+    "Invalid dependency graph",
+    "Blocked work executable",
+    "Unpermitted external effect",
+    "Incompatible existing PipelineManifest",
+    "False executed/protected product-test claim"
+  ],
+  "status": "FROZEN_BEFORE_PLANNER",
+  "private_rubric_path": "C:\\Users\\USUARIO\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\PelloEvaluation\\phase3c3-h\\rubric-v2.json",
+  "fresh_case_reason": "All seven prior blind cases remain consumed FAIL. Independently authored new source; no Planner output or expected technical solution supplied. One unmatched C24 quote corrected by author before freeze/Planner; source and all expected outcomes unchanged.",
+  "author_original_turn_id": "01a17a48-8d1d-7ca0-ae19-afafcc2d3130",
+  "supersedes_for_first_planner_run": "heldout-h-freeze.json",
+  "change_reason": "Independent preparation FAIL preserved. Original body and all25 critical criteria unchanged; author completed dangling acceptance section with derived examples and corrected unsupported minor C26. No Planner project existed."
+}
