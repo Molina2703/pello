@@ -9,7 +9,7 @@ assert read('final-review.json')['verdict']=='PASS'
 state=read('closure-state.json');reg=read('final-regression.json');integrity=read('final-integrity.json')
 assert reg['exit_code']==0 and integrity['historical_hashes_matching']==1493
 plan=accepted['accepted']['plan'];analysis=plan['requirements'];st=plan['stages'];inspection=accepted['inspection']
-f=read('heldout-g-freeze.json');semantic=read('heldout-g-semantic-review.json');obj=read('heldout-g-objective.json')
+f=read('heldout-g-freeze-v2.json');semantic=read('heldout-g-semantic-review.json');obj=read('heldout-g-objective.json')
 digest=accepted['accepted']['plan_sha256'];count=reg['tests_run']
 head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
 implementation_head=subprocess.check_output(['git','log','-1','--format=%H','--','athis_autopilot'],text=True).strip()
@@ -18,7 +18,7 @@ boundary_count=len(read('full-boundary-g-objective.json')['native_checks'])
 case_names={'a':'CanalShare','b':'ArchiveLedger','c':'KilnBook','d':'FolioPay','e':'StackProof','f':'AssemblyCount','g':fresh_name}
 case_rows=[];hash_rows=[]
 for letter,name in case_names.items():
-    freeze=read(f'heldout-{letter}-freeze'+('-v2' if letter=='a' else '')+'.json')
+    freeze=read(f'heldout-{letter}-freeze'+('-v2' if letter in ('a','g') else '')+'.json')
     verdict=read(f'heldout-{letter}-evaluation.json')['verdict']
     case_rows.append(f"| {name} | {freeze['evaluation_id']} | {verdict} | {freeze['created_at']} |")
     hash_rows.append(f"| {name} | `{freeze['specification_sha256']}` | `{freeze['rubric_sha256']}` |")
@@ -30,13 +30,13 @@ task_rows=[]
 models={r['task_id']:r for r in st['models']['records']}
 for inc in increments:
     m=models[inc['task_id']]
-    task_rows.append(f"| {inc['task_id']} | {inc.get('title',inc.get('name',''))} | {', '.join(inc['depends_on']) or '—'} | {m['selected_model_profile']} / {m['selected_reasoning_effort']} |")
+    task_rows.append(f"| {inc['task_id']} | {inc.get('title',inc.get('objective',''))[:160].replace('|','/')} | {', '.join(inc['depends_on']) or '—'} | {m['selected_model_profile']} / {m['selected_reasoning_effort']} |")
 cp=[x for x in state['checkpoints'] if x['project_id']=='phase3c3-heldout-g' and x['phase']=='plan-accepted']
 assert len(cp)==1
 checkpoint=cp[0]['commit_sha']
 tests=sum(len(c['criteria']) for c in contracts)
 minor='; '.join(semantic['minor_findings']) or 'No minor finding reported.'
-critical='; '.join(semantic['critical_failures']) or 'None in the accepted {fresh_name} evaluation.'
+critical='; '.join(semantic['critical_failures']) or f'None in the accepted {fresh_name} evaluation.'
 semantic_passed=sum(c['verdict']=='PASS' for c in semantic['criteria'])
 report=f'''# Pello V1.3 — Phase 3C-3 Evaluation Report
 
@@ -52,7 +52,7 @@ Branch `codex/pello-phase3c`; initial HEAD `c1bb076e7059100f0c4b5abf623625d2843f
 
 Initial SQLite integrity was `ok`, fourteen prior checkpoint commits existed, STOP was absent, and the ledger contained 28 completed SDK turns against the historical cap 30. That historical authorization expired October 25 at 21:14:29 UTC. Accepted C1/C2 reports, project chat, journal, authorization rows and historical evidence were reconciled. Baseline recomputed 1493/1493 hashes and reran 63/63 protected checks. Historical full-suite count was 217.
 
-The user explicitly authorized 60 cumulative turns until October 26 00:45 UTC, then 75 until 03:30 UTC, then extended the deadline to **October 26 06:30 UTC / 01:30 Colombia**, and finally explicitly raised the cumulative cap to85 without changing that deadline. Append-only grants are preserved in `authorization.json`, `authorization-extension-75.json` `authorization-deadline-0630.json` and `authorization-extension-85.json`; no counters were reset. At closure: **{state['sdk_charged_reservations']}/{state['cumulative_limit']} charged reservations**, comprising {state['actual_completed_sdk_calls']} completed actual SDK calls, one terminal provider-quota failure and one conservatively retained never-submitted reservation. Remaining authorized slots: {state['remaining_authorized_slots']}. STOP stayed absent; no external business operations were authorized or executed. Evidence: `initial-state.json`, `baseline-protected.json`, `closure-state.json` and the hashed SQLite backup.
+The user explicitly authorized 60 cumulative turns until October 26 00:45 UTC, then 75 until 03:30 UTC, then extended the deadline to **October 26 06:30 UTC / 01:30 Colombia**, and finally explicitly raised the cumulative cap to85 without changing that deadline. Append-only grants are preserved in `authorization.json`, `authorization-extension-75.json` `authorization-deadline-0630.json` and `authorization-extension-85.json`; no counters were reset. For this continuation, the user explicitly authorized95 cumulative reservations until October27 06:30 UTC /01:30 Colombia; `authorization-extension-95.json` appends that renewal after the preserved decision to stop at69. The continuation began at HEAD `20e3195`, accepted correction `8a6b3b2`, with245/63 historical passing tests,22 valid checkpoints and69 charged reservations. At closure: **{state['sdk_charged_reservations']}/{state['cumulative_limit']} charged reservations**, comprising {state['actual_completed_sdk_calls']} completed actual SDK calls, one terminal provider-quota failure and one conservatively retained never-submitted reservation. Remaining authorized slots: {state['remaining_authorized_slots']}. STOP stayed absent; no external business operations were authorized or executed. Evidence: `initial-state.json`, `baseline-protected.json`, `closure-state.json` and the hashed SQLite backup.
 
 ## B. Evaluation preparation
 
@@ -66,13 +66,13 @@ An independent SDK author session created each synthetic business source and pri
 |---|---|---|
 {chr(10).join(hash_rows)}
 
-{fresh_name} has {f['total_criteria']} frozen criteria, including {f['critical_criteria']} critical. All critical criteria and at least 90% overall must pass. Mandatory failures include omitted capabilities, violated exclusions, unauthorized assumptions/effects, ignored contradictions, invalid dependencies, executable blocked work, incompatible PipelineManifest and false product-test claims. Source quotes, timestamps and hashes were frozen before Planner creation. Structural checks and the semantic-grading source were registered at `batch1-g-checkpoint.json`, committed before inference at `cdf7166`.
+{fresh_name} has {f['total_criteria']} frozen criteria, including {f['critical_criteria']} critical. All critical criteria and at least 90% overall must pass. Mandatory failures include omitted capabilities, violated exclusions, unauthorized assumptions/effects, ignored contradictions, invalid dependencies, executable blocked work, incompatible PipelineManifest and false product-test claims. Source quotes, timestamps and hashes were frozen before Planner creation. StageMark preparation v1 received FAIL for an unsupported navigation-link requirement in C18. The independent author corrected only that criterion, with original source, other26 criteria and thresholds unchanged; preparation v2 passed before any Planner access. Both versions remain preserved. Structural checks and the semantic-grading source were registered at `batch1-g-checkpoint.json`, committed before inference at `b5800db`.
 
 CanalShare preparation v1 failed for evaluator defects; independently revised v2 was frozen before its Planner run, with source unchanged. ArchiveLedger preparation required additional Windows alias proof. Their earlier records remain. No rubric was changed after observing that case's Planner result.
 
 Read-only access alone was insufficient, so a reviewed opt-in adapter correction selected the existing native named permission profile. It denies the private key directory, author artifacts, SQLite, evaluator evidence, Reviewer workspaces and Codex transcripts. Supplied-context reasoning roles also lose command/image/browser/computer/app/plugin/host-code and automatic project/skill/memory reading surfaces. The worker verifies the actual returned profile and instruction-source receipt before inference and enforces profile identity on resume. Ordinary executor behavior remains unchanged. `shell_tool=false` is the effective command gate; `unified_exec=false` alone is not treated as enforcement.
 
-Native positive controls read public data; all {boundary_count} F boundary controls passed, and exact frozen rubric paths plus their packaged/normal Windows aliases returned PermissionError. Parent same-file/hash checks establish alias identity. Reviewer preparation PASS records the limits of independently rerunning private checks. Raw native transcripts and actual SDK profile receipts support the boundary. Merely asking Planner not to read was not used as blindness. Private E material was not added to Git before the Planner completed. Evidence: `isolation/`, `full-boundary-g-objective.json`, `rubric-g-alias-proof.json`, freeze/preparation/checkpoint records and actual submission receipts.
+Native positive controls read public data; all {boundary_count} G boundary controls passed, and exact frozen rubric paths plus their packaged/normal Windows aliases returned PermissionError. Parent same-file/hash checks establish alias identity. Reviewer preparation PASS records the limits of independently rerunning private checks. Raw native transcripts and actual SDK profile receipts support the boundary. Merely asking Planner not to read was not used as blindness. Private G material was not added to Git before the Planner completed. Evidence: `isolation/`, `full-boundary-g-objective.json`, `rubric-g-alias-proof.json`, freeze/preparation/checkpoint records and actual submission receipts.
 
 ## C. Actual planning run
 
@@ -84,7 +84,7 @@ The result contains **{len(analysis['requirements'])} requirements, {len(analysi
 |---|---|---|---|
 {chr(10).join(task_rows)}
 
-The existing PipelineManifest consumed the generated plan without manual translation. First actionable increment: **{inspection['first_actionable']}**. Full readiness and blocked reasons: `heldout-g-pipeline-inspection.json` and objective scheduler-state proof. NOx policy/limits and unavailable portal contract/permissions remain scoped blockers; independent local work remains actionable. The full generated manifest is persisted under the project's `planning/execution-manifest.json`. Plan SHA-256: `{digest}`.
+The existing PipelineManifest consumed the generated plan without manual translation. First actionable increment: **{inspection['first_actionable']}**. Full readiness and blocked reasons: `heldout-g-pipeline-inspection.json` and objective scheduler-state proof. The fourth-stage cutoff contradiction and unavailable federation contract/permissions remain scoped blockers; independent local work remains actionable. The full generated manifest is persisted under the project's `planning/execution-manifest.json`. Plan SHA-256: `{digest}`.
 
 During the earlier StackProof run, its first architecture request terminated with provider `usageLimitExceeded` and no assistant output. Read-only thread inspection reconciled it; its charge remains. An attempted recovery was stopped by the expired deadline before reserving a new turn. After the explicit 06:30 extension, a separately charged recovery invoked existing `_invoke` with identical input/schema hashes, same model policy and unchanged architecture validator, then resumed ordinary `plan_product`. No source/rubric/design changed, no model switch or quota reset occurred, and no uncertain attempt was blindly repeated. Receipts: `sdk-provider-block-reconciliation.json`, `provider-recovery-renewed-authorization.json`, `resumed-planning-e.log`.
 
@@ -109,17 +109,17 @@ Evidence: `heldout-g-objective.json`, `heldout-g-semantic-review.json`, `heldout
 
 5. StackProof FAIL: increment planning context exceeded55,000 before reservation despite valid architecture. The localized correction limits increment active architecture to exact nodes/global IDs, retains the full original requirements/issues/assumptions and immutable architecture for validation, and uses reversible column/row transport for oversized plan inputs. Four protected defect tests,53 targeted PASS, independent correction PASS and240 full regression PASS. E remains FAIL; the current held-out was independently prepared afterward.
 
-Before these cases, six protected isolation/profile tests verified the necessary opt-in blind boundary. Corrections were small engineering changes, not autonomous self-repair by Pello. Each consumed fixture remained FAIL; {fresh_name} was independently authored and frozen afterward. Failure reproduction is in each original run log and raw rejected SDK output, with defect regression tests under `tests/`. Context preflight failures reserve no new turn; the older charged slot was retained and explicitly reconciled as never submitted. The prior 49-slot PARTIAL report is preserved under `interim-reports/`.
+6. AssemblyCount FAIL: contract context exceeded55,000 before reservation after valid requirements, architecture and eight increments. The accepted localized correction preflights every lossless contract batch, retains complete source and exact increment fields, verifies exact task coverage, and applies unchanged aggregate validators and PipelineManifest conversion. Five protected checks,58 targeted PASS, independent correction PASS and245 full regression PASS. F remains FAIL; G is a fresh independently authored specification. Actual G batching evidence is preserved with the current run.\n\nBefore these cases, six protected isolation/profile tests verified the necessary opt-in blind boundary. Corrections were small engineering changes, not autonomous self-repair by Pello. Each consumed fixture remained FAIL; {fresh_name} was independently authored and frozen afterward. Failure reproduction is in each original run log and raw rejected SDK output, with defect regression tests under `tests/`. Context preflight failures reserve no new turn; the older charged slot was retained and explicitly reconciled as never submitted. The prior 49-slot PARTIAL report is preserved under `interim-reports/`.
 
 ## F. Regression, integrity and checkpoints
 
 Complete current local suite: **{count}/{count} PASS**, exit 0. C2 protected suites: **63/63 PASS**, with original source and protected-copy hashes intact. The 63 overlap the full suite; they are not additional unique tests. Twenty-eight new protected Phase 3C-3 defect checks are included in the full suite. Full run command and duration: `final-regression.json`; logs preserve actual unittest counts.
 
-Historical integrity: **1493/1493 hashes match**. First 28 SDK operation rows and all five original project rows match their initial identities. Master specification, C1/C2 evidence, old FAIL/BLOCKED records and checkpoint history were preserved. SQLite integrity `ok`; every checkpoint Git object verified. Accepted C2 plan reconstructs with the same digest and no extra SDK turn or duplicate plan. Separate-process {fresh_name} reconstruction also preserves digest, history count and budget. New protected-test hashes and frozen objective source remain intact. Evidence: `final-integrity.json`, `final-protected.json`, C2 reconstruction records and `closure-state.json`.
+Historical integrity: **1493/1493 hashes match**. First 28 SDK operation rows and all four original project rows match their initial identities. Master specification, C1/C2 evidence, old FAIL/BLOCKED records and checkpoint history were preserved. SQLite integrity `ok`; every checkpoint Git object verified. Accepted C2 plan reconstructs with the same digest and no extra SDK turn or duplicate plan. Separate-process {fresh_name} reconstruction also preserves digest, history count and budget. New protected-test hashes and frozen objective source remain intact. Evidence: `final-integrity.json`, `final-protected.json`, C2 reconstruction records and `closure-state.json`.
 
 STOP and hard-budget tests remain in the full suite; actual SDK submissions retained their authoritative gates. Final acceptance checkpoint in {fresh_name} workspace: `{checkpoint}`. Source implementation HEAD: `{implementation_head}`. Code/evidence closure HEAD: `{head}`; the subsequent report-only Git commit is identified by the final delivery receipt. SQLite backup SHA-256: `{state['snapshot_sha256']}`.
 
-External business operations: **zero**. No n8n workflow mutations/readbacks, production webhook requests, messages, customer-data changes, Railway provisioning, new servers or `config.toml`/MCP reconfiguration occurred. Protected workflow IDs were never operated. Real integration evidence here means the Codex backend and existing local Pello planning pipeline; no live regulator portal integration is claimed.
+External business operations: **zero**. No n8n workflow mutations/readbacks, production webhook requests, messages, customer-data changes, Railway provisioning, new servers or `config.toml`/MCP reconfiguration occurred. Protected workflow IDs were never operated. Real integration evidence here means the Codex backend and existing local Pello planning pipeline; no live federation integration is claimed.
 
 ## G. Final verdict and limitations
 
@@ -133,8 +133,8 @@ Path('PELLO_PHASE3C3_EVALUATION_REPORT.md').write_text(report,encoding='utf-8')
 old=Path('PELLO_PHASE3C_FINAL_REPORT.md');archive=out/'interim-reports/phase3c2-original-final-report.md'
 if not archive.exists():archive.write_bytes(old.read_bytes())
 mapping=[
-('01','Specification understanding','Scoped real evidence','C1 interpretation; C2 familiar plan; E fresh blind requirements/architecture and manifest, no manual translation.'),
-('02','Autonomous decomposition','Scoped real evidence',f'E {len(increments)} increments, DAG, {len(contracts)} contracts/{tests} proposed criteria; existing PipelineManifest.'),
+('01','Specification understanding','Scoped real evidence','C1 interpretation; C2 familiar plan; G fresh blind requirements/architecture and manifest, no manual translation.'),
+('02','Autonomous decomposition','Scoped real evidence',f'G {len(increments)} increments, DAG, {len(contracts)} contracts/{tests} proposed criteria; existing PipelineManifest.'),
 ('03','Independent testing','Supporting, incomplete','Pello engineering tests protected before code; business-product tests remain ungenerated/unexecuted.'),
 ('04','Incremental pipeline','Supporting, incomplete','Existing pipeline consumes generated plan and inspects readiness; no multi-increment business Coder/Tester execution in C3.'),
 ('05','Autonomous correction','Not established by C3','Engineering session corrected real defects; do not label this autonomous Pello repair.'),
@@ -149,7 +149,7 @@ mapping=[
 ('14','Long-running execution','Supporting, incomplete','Actual planning stages chained under ledger; full business delivery without human transfers not demonstrated.'),
 ('15','Automated reporting','Not established by C3','Local evidence reports only; no daily emails sent.'),
 ('16','MCP permissions','Preserved, no new live proof','No MCP mutations or alternative customer access; blind evaluation uses native local deny profile.'),
-('17','Budgets','Scoped verified evidence','Append-only 60/75 authorizations, preserved historical charges, deadline/STOP/hard-cap regression and actual guarded submissions.'),
+('17','Budgets','Scoped verified evidence','Append-only 60/75/85/95 authorizations, preserved historical charges, deadline/STOP/hard-cap regression and actual guarded submissions.'),
 ('18','Requirement validation','Scoped real evidence','Original-source frozen evaluation of contradiction, critical missing limits/integration, assumptions and independently actionable local work.'),
 ('19','Independent review','Scoped real evidence','Distinct non-writing Reviewer contexts, source+frozen rubric, native key isolation, objective failures cannot be overridden; final hash-bound acceptance.'),
 ('20','Complete delivery','NOT COMPLETE','No full enterprise business product implemented, published, tested or delivered in Phase 3C.'),
@@ -157,6 +157,7 @@ mapping=[
 ('22','Production test-data management','No new C3 evidence','Only local synthetic data; no production test resources created.'),
 ('23','MCP access lifecycle','No new C3 evidence','No workflow creation/exposure/access handoff; historical evidence unchanged.')]
 rows='\n'.join(f'| V1-{n} | {title} | {scope} | {evidence} |' for n,title,scope,evidence in mapping)
+Path('PELLO_PHASE3C3_EVALUATION_REPORT.md').write_text(report+'\n## H. V1.3 acceptance coverage\n\nPlanning-level evidence only; V1-20 remains NOT COMPLETE.\n\n| Criterion | Capability | Scope | Evidence or limitation |\n|---|---|---|---|\n'+rows+'\n',encoding='utf-8')
 final=f'''# Pello V1.3 — Phase 3C Final Report
 
 Reference date October 25, 2026. Closeout {state['at']}. **Phase 3C ACCEPTED at planning level. Pello V1 is not globally complete. V1-20 is NOT COMPLETE.**
@@ -169,7 +170,7 @@ Phase 3C-1 and 3C-2 retain their accepted historical results. Phase 3C-3 now add
 |---|---|---|
 | C1 | 13 interpretation items; 16 source segments; 6 blockers/2 nonblocking; 2 assumptions; 28 targeted/154 full tests at that checkpoint | ACCEPTED |
 | C2 | Six sequential batches; 217 full and 63 protected; seven increments/contracts and 34 proposed criteria; 1493 preserved hashes; familiar Vendor Return Desk fixture | ACCEPTED |
-| C3 | Five original held-out FAILs retained; fresh {fresh_name} {obj['checks_passed']}/{obj['checks_run']} objectives, {semantic_passed}/{len(semantic['criteria'])} semantic criteria; {count} current full/63 protected;1493 hashes; final independent PASS | ACCEPTED within planning scope |
+| C3 | Six original held-out FAILs retained; fresh {fresh_name} {obj['checks_passed']}/{obj['checks_run']} objectives, {semantic_passed}/{len(semantic['criteria'])} semantic criteria; {count} current full/63 protected;1493 hashes; final independent PASS | ACCEPTED within planning scope |
 
 Original reports and evidence remain in Git and under `evidence/phase3c/`. The exact earlier PARTIAL final report is archived at `evidence/phase3c3/interim-reports/phase3c2-original-final-report.md`; the 49-reservation C3 PARTIAL checkpoint is separately preserved. Failed trials were not relabeled, deleted or retried as blind successes.
 
@@ -187,9 +188,9 @@ These are scoped evidence mappings, not new global acceptance declarations. Hist
 
 ## Verification, authorization and remaining limits
 
-Current complete regression: {count}/{count} PASS. Protected C2 checks: 63/63 PASS, overlapping the full suite. Historical hashes:1493/1493. Original operation/project rows and protected source/copy identities preserved. Actual C2 and E reconstruction keeps digest/history without extra SDK usage. All recorded checkpoint Git objects verified. Final independent review and objective evidence are bound to the accepted plan identity.
+Current complete regression: {count}/{count} PASS. Protected C2 checks: 63/63 PASS, overlapping the full suite. Historical hashes:1493/1493. Original operation/project rows and protected source/copy identities preserved. Actual C2 and G reconstruction keeps digest/history without extra SDK usage. All recorded checkpoint Git objects verified. Final independent review and objective evidence are bound to the accepted plan identity.
 
-Budget: {state['sdk_charged_reservations']}/{state['cumulative_limit']} charged reservations, {state['actual_completed_sdk_calls']} actual completed SDK calls plus one terminal provider rejection and one retained never-submitted slot; deadline October 26 06:30 UTC. All explicit extensions were recorded without resetting historical counters. The failed provider turn was reconciled before same-payload recovery; the intervening expired-deadline attempt was blocked before submission. Zero external business effects, no n8n operations, no config/MCP mutations and no Phase 3D execution. Source implementation HEAD `{implementation_head}`; accepted code/evidence HEAD `{head}` precedes the report-only delivery commit identified in the delivery receipt.
+Budget: {state['sdk_charged_reservations']}/{state['cumulative_limit']} charged reservations, {state['actual_completed_sdk_calls']} actual completed SDK calls plus one terminal provider rejection and one retained never-submitted slot; deadline {state["deadline"]}. All explicit extensions were recorded without resetting historical counters. The failed provider turn was reconciled before same-payload recovery; the intervening expired-deadline attempt was blocked before submission. Zero external business effects, no n8n operations, no config/MCP mutations and no Phase 3D execution. Source implementation HEAD `{implementation_head}`; accepted code/evidence HEAD `{head}` precedes the report-only delivery commit identified in the delivery receipt.
 
 One successful independent held-out result supports bounded generalization, not universal reliability. The six earlier FAILs show real reliability limitations and justify the small recorded corrections. No autonomous business self-repair, full enterprise delivery, production publication or long-running product implementation is claimed.
 

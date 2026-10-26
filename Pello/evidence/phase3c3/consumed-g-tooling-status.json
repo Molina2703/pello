@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-26T22:13:13.625628+00:00",
+  "G_original_verdict": "FAIL",
+  "G_fixture_consumed": true,
+  "success_report_tooling_status": "DRAFT_NOT_EXECUTED_NOT_ACCEPTANCE_EVIDENCE",
+  "success_report_draft_sha256": "743aea9b74c28c761b258c5e14086e81f1e6a2be9daeeab1d6028bf8d09a4a6f",
+  "no_G_corrected_model_retry": true,
+  "no_H_source_rubric_project_or_SDK_call_created": true,
+  "prior_unexecuted_g_tooling_manifest": "Historical checkpoint69 state retained in unexecuted-g-tooling.json and Git20e3195",
+  "current_reports": "build_checkpoint75_report.py generated PARTIAL report only"
+}
