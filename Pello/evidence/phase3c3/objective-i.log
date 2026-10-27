@@ -1,0 +1,252 @@
+{
+  "evaluation_id": "phase3c3-heldout-i-v1",
+  "plan_sha256": "b0199c77c21c1e0b66ffd2f2b6217a011c95760bb87f0cc4957b930233c5a722",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "frozen_source_and_rubric",
+      "verdict": "PASS",
+      "evidence": "phase3c3-heldout-i-v1"
+    },
+    {
+      "check": "traceable_source",
+      "verdict": "PASS",
+      "evidence": "d481313540b5f2959c4a8e10308262d08b920bb6dd8a33918ff48094ada91211"
+    },
+    {
+      "check": "mandatory_requirement_coverage",
+      "verdict": "PASS",
+      "evidence": {
+        "requirements": 35,
+        "covered": 35
+      }
+    },
+    {
+      "check": "existing_manifest_and_dag",
+      "verdict": "PASS",
+      "evidence": [
+        "W01",
+        "W02",
+        "W03",
+        "W04",
+        "W05",
+        "W06",
+        "W07",
+        "W08"
+      ]
+    },
+    {
+      "check": "blocked_and_external_branches_ineligible",
+      "verdict": "PASS",
+      "evidence": {
+        "blocked": [
+          "W04",
+          "W05",
+          "W06",
+          "W07",
+          "W08"
+        ],
+        "external": [
+          "W07",
+          "W08"
+        ],
+        "reachable_scheduler_states": 6
+      }
+    },
+    {
+      "check": "independent_local_progress",
+      "verdict": "PASS",
+      "evidence": {
+        "first": "W01",
+        "eventually_actionable_without_resolving_blockers": [
+          "W01",
+          "W02",
+          "W03"
+        ],
+        "independent_pairs": [
+          [
+            "W01",
+            "W02"
+          ],
+          [
+            "W01",
+            "W03"
+          ]
+        ],
+        "states": [
+          {
+            "hypothetically_completed": [],
+            "ready": [
+              "W01",
+              "W02"
+            ]
+          },
+          {
+            "hypothetically_completed": [
+              "W02"
+            ],
+            "ready": [
+              "W01",
+              "W03"
+            ]
+          },
+          {
+            "hypothetically_completed": [
+              "W02",
+              "W03"
+            ],
+            "ready": [
+              "W01"
+            ]
+          },
+          {
+            "hypothetically_completed": [
+              "W01",
+              "W02",
+              "W03"
+            ],
+            "ready": []
+          },
+          {
+            "hypothetically_completed": [
+              "W01",
+              "W02"
+            ],
+            "ready": [
+              "W03"
+            ]
+          },
+          {
+            "hypothetically_completed": [
+              "W01"
+            ],
+            "ready": [
+              "W02"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "check": "contract_lifecycle",
+      "verdict": "PASS",
+      "evidence": {
+        "contracts": 8,
+        "proposed_criteria": 86
+      }
+    },
+    {
+      "check": "typed_catalog_validated_model_assignments",
+      "verdict": "PASS",
+      "evidence": [
+        {
+          "task": "W01",
+          "model": "gpt-6-luna",
+          "effort": "medium"
+        },
+        {
+          "task": "W02",
+          "model": "gpt-6.1-sol",
+          "effort": "high"
+        },
+        {
+          "task": "W03",
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "task": "W04",
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        {
+          "task": "W05",
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        {
+          "task": "W06",
+          "model": "gpt-6-luna",
+          "effort": "medium"
+        },
+        {
+          "task": "W07",
+          "model": "gpt-6-luna",
+          "effort": "medium"
+        },
+        {
+          "task": "W08",
+          "model": "gpt-6-luna",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "check": "restart_reconstruction_without_inference",
+      "verdict": "PASS",
+      "evidence": {
+        "counter_before": 98,
+        "counter_after": 98,
+        "history_rows": 1,
+        "cli": {
+          "ready": [
+            "W01",
+            "W02"
+          ],
+          "first_actionable": "W01",
+          "completed": [],
+          "execution_authorized": false,
+          "protected_tests_required": true,
+          "blockers": {
+            "W01": [],
+            "W02": [],
+            "W03": [],
+            "W04": [
+              "specification:ISS-f1ee3142ec14"
+            ],
+            "W05": [
+              "specification:ISS-bf95e4f6bde7"
+            ],
+            "W06": [
+              "specification:ISS-f1ee3142ec14"
+            ],
+            "W07": [
+              "authorization",
+              "resource:cadastral_agency_account",
+              "resource:cadastral_agency_credentials",
+              "resource:cadastral_agency_endpoint",
+              "resource:cadastral_agency_firm_permissions",
+              "specification:ISS-34ee2e748ce4",
+              "specification:ISS-69a8509a76a6"
+            ],
+            "W08": [
+              "authorization",
+              "resource:cadastral_agency_account",
+              "resource:cadastral_agency_credentials",
+              "resource:cadastral_agency_endpoint",
+              "resource:cadastral_agency_firm_permissions",
+              "specification:ISS-34ee2e748ce4",
+              "specification:ISS-69a8509a76a6",
+              "specification:ISS-bf95e4f6bde7"
+            ]
+          },
+          "plan_sha256": "b0199c77c21c1e0b66ffd2f2b6217a011c95760bb87f0cc4957b930233c5a722",
+          "plan_approval": "PROPOSED",
+          "source_sha256": "d481313540b5f2959c4a8e10308262d08b920bb6dd8a33918ff48094ada91211"
+        }
+      }
+    },
+    {
+      "check": "no_product_implementation_or_authorized_effects",
+      "verdict": "PASS",
+      "evidence": {
+        "execution_authorized": false,
+        "business_product_tests": "not generated/protected/executed",
+        "workspace_python_files": 0
+      }
+    }
+  ],
+  "checks_run": 10,
+  "checks_passed": 10,
+  "semantic_verdict": "pending independent frozen-rubric review"
+}

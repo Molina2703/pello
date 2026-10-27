@@ -1,0 +1,20 @@
+{
+  "canonical_packet_characters": 235746,
+  "packed_packet_characters": 224727,
+  "semantic_chunks": [
+    32000,
+    32000,
+    32000,
+    32000,
+    32000,
+    32000,
+    32000,
+    727
+  ],
+  "semantic_calls": 9,
+  "code_review_calls": 2,
+  "closure_review_reserve_calls": 2,
+  "global_available": 16,
+  "reviewer_project_available": 11,
+  "complete_success_capacity": false
+}

@@ -1,0 +1,134 @@
+{
+  "verdict": "PASS",
+  "submitted_contexts": [
+    {
+      "phase": "plan-architecture",
+      "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+      "role": "planner",
+      "profile_valid": true,
+      "network_disabled": true,
+      "reading_and_external_surfaces_disabled": true,
+      "automatic_project_docs_disabled": true,
+      "all_frozen_roots_denied": true,
+      "no_evaluator_key_fields_in_context": true,
+      "input_file_sha256": "5e24dfd96ff8489ba2b4f443bf41d10f4e7103e0c1ec3fbc6a1efa81d913f5d1",
+      "receipt_sha256": "724d19a3b0ac40e3982a86aac09a358f2cbfafa80fdd48b8a55fa72e23fe97d6"
+    },
+    {
+      "phase": "plan-contracts-b1",
+      "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+      "role": "planner",
+      "profile_valid": true,
+      "network_disabled": true,
+      "reading_and_external_surfaces_disabled": true,
+      "automatic_project_docs_disabled": true,
+      "all_frozen_roots_denied": true,
+      "no_evaluator_key_fields_in_context": true,
+      "input_file_sha256": "5ebc403dce2f22990008d21d7a6aee2c6ff2f5c0c07f62bb2d01e27d66f39917",
+      "receipt_sha256": "11ffddbf6c4bd76a5af935b5adb1753eeb1f148a4991b89f48b9c0de460e2cb7"
+    },
+    {
+      "phase": "plan-contracts-b2",
+      "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+      "role": "planner",
+      "profile_valid": true,
+      "network_disabled": true,
+      "reading_and_external_surfaces_disabled": true,
+      "automatic_project_docs_disabled": true,
+      "all_frozen_roots_denied": true,
+      "no_evaluator_key_fields_in_context": true,
+      "input_file_sha256": "3118e499c2761e21b810d33c22d02f62ba7c4bfb155d0ddb857f834ec457e2bc",
+      "receipt_sha256": "da39dcd30d3fe29b92c18635f0f2a3bf46dff4978b8759452c6f48901ffe95b8"
+    },
+    {
+      "phase": "plan-contracts-b3",
+      "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+      "role": "planner",
+      "profile_valid": true,
+      "network_disabled": true,
+      "reading_and_external_surfaces_disabled": true,
+      "automatic_project_docs_disabled": true,
+      "all_frozen_roots_denied": true,
+      "no_evaluator_key_fields_in_context": true,
+      "input_file_sha256": "7664f610a489acfe36df476671c6a79fd7be172c1f5bb5c916b413edd278b6b8",
+      "receipt_sha256": "63c7c1a0a18b4349d07314ffcd227eb2631d84d277f4463791346747bc82690b"
+    },
+    {
+      "phase": "plan-increments",
+      "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+      "role": "planner",
+      "profile_valid": true,
+      "network_disabled": true,
+      "reading_and_external_surfaces_disabled": true,
+      "automatic_project_docs_disabled": true,
+      "all_frozen_roots_denied": true,
+      "no_evaluator_key_fields_in_context": true,
+      "input_file_sha256": "fae4e68a7e000fbb7553ac84172e92e1e4c606f3916cfbd3fcbcfd88c5a39659",
+      "receipt_sha256": "c1465c9d21fc413a23a9a40f9bb56da7cc12752be2d124d6892bd3936f022058"
+    },
+    {
+      "phase": "plan-models",
+      "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+      "role": "planner",
+      "profile_valid": true,
+      "network_disabled": true,
+      "reading_and_external_surfaces_disabled": true,
+      "automatic_project_docs_disabled": true,
+      "all_frozen_roots_denied": true,
+      "no_evaluator_key_fields_in_context": true,
+      "input_file_sha256": "31722aa6cc4705b938d04570ac763fe778e6231493eb871f24643af12d1becc7",
+      "receipt_sha256": "f30ad37f6e4c5726022dc5522df8c8a2676f6ea42c3b637e4d6c96dada620cde"
+    },
+    {
+      "phase": "review-analysis",
+      "thread_id": "01a17b58-ada7-76b2-ac41-da6bfe646fec",
+      "role": "reviewer",
+      "profile_valid": true,
+      "network_disabled": true,
+      "reading_and_external_surfaces_disabled": true,
+      "automatic_project_docs_disabled": true,
+      "all_frozen_roots_denied": true,
+      "no_evaluator_key_fields_in_context": true,
+      "input_file_sha256": "56b1a91987be5fea15e0767870b15a9c4ba728a7eca4ca32c6d7b1711aa0edcf",
+      "receipt_sha256": "cd176b40ffa84d11c24383d864f00551ed5fc0baf01c7304b95abd4e17b82a9b"
+    },
+    {
+      "phase": "understand",
+      "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+      "role": "planner",
+      "profile_valid": true,
+      "network_disabled": true,
+      "reading_and_external_surfaces_disabled": true,
+      "automatic_project_docs_disabled": true,
+      "all_frozen_roots_denied": true,
+      "no_evaluator_key_fields_in_context": true,
+      "input_file_sha256": "50048525eb1a168c6ccac5c345916775db7886759014ee2f9cbfd6648a9d3bc6",
+      "receipt_sha256": "d5022668fba4fcc34479e6fdf7e2d8d7efc5cc112f6daca56f4c1c65539f0b68"
+    }
+  ],
+  "sessions": [
+    {
+      "project_id": "phase3c3-author",
+      "role": "tester",
+      "thread_id": "01a1746f-48e4-7b53-a930-16be42bd2f5e"
+    },
+    {
+      "project_id": "phase3c3-heldout-i",
+      "role": "planner",
+      "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4"
+    },
+    {
+      "project_id": "phase3c3-heldout-i",
+      "role": "reviewer",
+      "thread_id": "01a17b58-ada7-76b2-ac41-da6bfe646fec"
+    },
+    {
+      "project_id": "phase3c3-review-i",
+      "role": "reviewer",
+      "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846"
+    }
+  ],
+  "author_and_evaluation_reviewer_separate_from_Pello_roles": true,
+  "private_key_unchanged": true,
+  "private_key_fields_not_supplied": true
+}

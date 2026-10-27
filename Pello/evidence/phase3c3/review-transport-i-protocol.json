@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-27T03:39:56.620201+00:00",
+  "status": "REVIEW_TRANSPORT_PREPARED_NOT_A_SEMANTIC_VERDICT",
+  "original_frozen_grading_source_unchanged": true,
+  "grading_text_equal_after_two_transport_only_substitutions": true,
+  "original_rubric_hash_unchanged": "2fa06bf103a54a03ab57148fcdce47bcdb7e25a1d92388ea412332e010150735",
+  "plan_sha256": "b0199c77c21c1e0b66ffd2f2b6217a011c95760bb87f0cc4957b930233c5a722",
+  "all_evidence_exact_round_trip": true,
+  "frozen_thresholds_unchanged": {
+    "all_critical": true,
+    "total_pass_fraction": 0.9
+  },
+  "actual_capacity_preflight": "heldout-i-semantic-capacity-preflight-v3.json",
+  "no_SDK_charges_for_capacity_rejections": true,
+  "no_Planner_reexecution_or_Pello_implementation_change": true,
+  "provenance": "Only evaluation-review encoding changed after complete planning output, before semantic review. Original grading source and preflights retained; no criterion or evidence selected, reclassified or removed. Independent final Reviewer must inspect this transport before any closure acceptance.",
+  "hashes": {
+    "pack_review_i_transport.py": "79ade964cdb14862064596cb7a94ee407ce6ff37322bbda8866deb9fb035c306",
+    "review_semantics_i_transport.py": "e2a56b08019c1dd52c6c49ba3942d59c66cbf28f852a0aa4dff3003420ded157",
+    "heldout-i-semantic-capacity-preflight-v3.json": "9c6967fe3f57e58e84541c5cf8e6ffb9d76d0b260fe6ad9c67a1e71a936447bf"
+  }
+}

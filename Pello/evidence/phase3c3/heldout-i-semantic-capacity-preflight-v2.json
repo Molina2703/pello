@@ -1,0 +1,28 @@
+{
+  "at": "2026-10-27T03:38:15.832137+00:00",
+  "canonical_packet_characters": 235746,
+  "packed_packet_characters": 194120,
+  "semantic_chunks": [
+    32000,
+    32000,
+    32000,
+    32000,
+    32000,
+    32000,
+    2120
+  ],
+  "semantic_calls": 8,
+  "code_review_calls": 2,
+  "closure_review_reserve_calls": 2,
+  "global_available": 16,
+  "reviewer_project_available": 11,
+  "complete_success_capacity": false,
+  "exact_round_trip": true,
+  "rubric_or_plan_changed": false,
+  "Pello_implementation_changed": false,
+  "frozen_original_driver_sha256": "79b06f5399b8e3694b0f224e22bc78e34f3397cae41944a58051c7b80e63433b",
+  "transport_driver_sha256": "f1856e789ae9268647efddba71b12cdf7da659b133f744ad4e01ef345e0f9e0c",
+  "review_transport_sha256": "79ade964cdb14862064596cb7a94ee407ce6ff37322bbda8866deb9fb035c306",
+  "baseline_capacity_rejection": "heldout-i-semantic-capacity-preflight.json; no SDK reservation",
+  "only_driver_difference": "Import the lossless review-only row/reference encoder; grading logic and all thresholds unchanged."
+}
