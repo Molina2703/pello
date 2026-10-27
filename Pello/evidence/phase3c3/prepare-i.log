@@ -1,0 +1,9 @@
+{
+  "evaluation_id": "phase3c3-heldout-i-v1",
+  "product_name": "ParcelProof",
+  "source_characters": 6662,
+  "critical_criteria": 24,
+  "total_criteria": 25,
+  "source_sha256": "d481313540b5f2959c4a8e10308262d08b920bb6dd8a33918ff48094ada91211",
+  "rubric_sha256": "2fa06bf103a54a03ab57148fcdce47bcdb7e25a1d92388ea412332e010150735"
+}

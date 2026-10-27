@@ -1,0 +1,15 @@
+{
+  "unchanged_validators": {
+    "validate_architecture": true,
+    "validate_increments": true,
+    "validate_contracts": true,
+    "manifest_from_contracts": true
+  },
+  "C2_plan_digest": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+  "focused_count": 40,
+  "focused_pass": true,
+  "implementation_changed": false,
+  "initial_runner_failure": "tests import uses top-level test_product_planning; corrected sys.path to match unittest discovery; original error retained",
+  "bounded_recovery_prior_independent_review": "architecture-recovery/review.json",
+  "real_SDK_recovery_efficacy": "UNVERIFIED_PENDING_FRESH_CASE"
+}

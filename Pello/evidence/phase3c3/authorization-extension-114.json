@@ -1,0 +1,25 @@
+{
+  "id": "phase3c3-extension-114-author18-20261027",
+  "authorized_at": "2026-10-27T02:59:49.688400+00:00",
+  "user_authorization": "Autorizo 114 globales, autor 18 y ese plazo",
+  "authorization_source": "Explicit user reply to the 114 global / author18 / October27 06:30 UTC question in this chat",
+  "cumulative_sdk_limit": 114,
+  "already_reserved": 88,
+  "deadline": "2026-10-27T06:30:00+00:00",
+  "author_project_id": "phase3c3-author",
+  "author_used_unchanged": 14,
+  "old_author_max_turns": 14,
+  "approved_author_max_turns": 18,
+  "remaining_global_slots": 26,
+  "allocation": {
+    "one_fresh_case_complete_planning_and_reviews": 20,
+    "failure_reserve": 6
+  },
+  "author_four_slots_included_in_global": true,
+  "other_project_limits_unchanged": 12,
+  "scope": "One fresh blind Phase3C-3 evaluation through complete planning, independent semantic/final reviews, justified localized correction and regression. No Phase3D or business-product Coder execution.",
+  "supersedes_preservation_decision_for_this_scope": true,
+  "external_business_operations": 0,
+  "no_counter_reset": true,
+  "prior_authorization": "phase3c3-author14-exception-20261026"
+}
