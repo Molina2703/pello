@@ -1,0 +1,7 @@
+warning: in the working copy of 'Pello/athis_autopilot/product_planning.py', LF will be replaced by CRLF the next time Git touches it
+review_input_characters 50804
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\evidence\phase3c3\review_model_capacity_correction.py", line 39, in <module>
+    print('review_input_characters',len(json.dumps(evidence,ensure_ascii=False)),flush=True);assert len(json.dumps(evidence,ensure_ascii=False))<=50000
+                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

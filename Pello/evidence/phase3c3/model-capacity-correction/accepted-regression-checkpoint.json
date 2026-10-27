@@ -1,0 +1,47 @@
+{
+  "status": "ACCEPTED_ENGINEERING_CORRECTION_ONLY",
+  "at": "2026-10-27T04:04:05.877352+00:00",
+  "HEAD_before_engineering_commit": "06a6cb6dbcc7892923e1d4c4b2fbf20db749cb00",
+  "scope": "Align model-selection advertised and validated post-reservation capacity, preserve new/legacy replay and fail before no-capacity reservation.",
+  "implementation_sha256": "40446024a5f93928762a040c013fd7f641b6e5bd214534d43c1bc4c3302c6e25",
+  "test_source_sha256": "ec344b774bd672c6c6b65a6c05c04a718ba44ab120638653428e5857a02e9844",
+  "review_sha256": "3f9d12dcb4e9e3cb2236fcfb00c7cb5ccdb2d20681193bec6add826acb4f7ff3",
+  "review": {
+    "verdict": "PASS",
+    "scope": "correct",
+    "correctness": "adequate",
+    "test_evidence": "pass",
+    "safety_and_preservation": "adequate",
+    "findings": [
+      "Fresh requests now advertise the same post-reservation capacity used by validation and aggregate reporting, and reject insufficient capacity before inference reservation.",
+      "Marked-context replay avoids double subtraction; legacy replay preserves its original payload and historical shortfall. Saved-artifact handling remains unchanged.",
+      "Supplied before/after transcripts demonstrate the defect and correction through controlled-engine Core/SQLite checks. Focused, protected and full regression results support the limited change.",
+      "The diff preserves validators, model policy and authorization boundaries. ParcelProof's semantic FAIL remains unresolved; real SDK efficacy and broader planning generalization remain unverified."
+    ],
+    "rationale": "The correction addresses the proven budget-context mismatch within its authorized scope. The supplied code and regression evidence support acceptance of this engineering change, without accepting the original plan or Phase 3C."
+  },
+  "regression": {
+    "command": [
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "exit_code": 0,
+    "tests_run": 261,
+    "tests_passed": 261,
+    "seconds": 261.297
+  },
+  "protected_C2_checks": 63,
+  "protected_new_checks": 4,
+  "historical_hashes": 1493,
+  "original_I_FAIL_unchanged": true,
+  "critical_semantic_scope_defect": "UNRESOLVED",
+  "fresh_held_out_after_implementation_change": "NOT_PERFORMED; insufficient authorized capacity for complete attempt",
+  "real_SDK_capacity_correction_efficacy": "UNVERIFIED",
+  "overall_phase3c": "PARTIAL"
+}

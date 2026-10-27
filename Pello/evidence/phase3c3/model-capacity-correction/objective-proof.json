@@ -1,0 +1,28 @@
+{
+  "C2_plan_digest": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+  "I_plan_digest_unchanged": "b0199c77c21c1e0b66ffd2f2b6217a011c95760bb87f0cc4957b930233c5a722",
+  "I_approval": "PROPOSED",
+  "counter_before": 106,
+  "counter_after": 106,
+  "unchanged_validator_converter_budget_ASTs": {
+    "validate_architecture": true,
+    "validate_increments": true,
+    "validate_contracts": true,
+    "manifest_from_contracts": true,
+    "validate_model_decision": true,
+    "model_budget_summary": true
+  },
+  "original_nine_FAILs": {
+    "a": "FAIL",
+    "b": "FAIL",
+    "c": "FAIL",
+    "d": "FAIL",
+    "e": "FAIL",
+    "f": "FAIL",
+    "g": "FAIL",
+    "h": "FAIL",
+    "i": "FAIL"
+  },
+  "actual_SDK_efficacy_of_capacity_fix": "UNVERIFIED; controlled-engine integration only",
+  "critical_semantic_blocker_defect": "UNRESOLVED; no source/graph/manifest edits or Validator weakening"
+}

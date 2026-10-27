@@ -822,13 +822,21 @@ class ProductPlanningCore(Bridge):
             grant=cx.execute('SELECT max_turns FROM pello_product_run_authorizations ORDER BY rowid DESC LIMIT 1').fetchone() if cx.execute("SELECT 1 FROM sqlite_master WHERE name='pello_product_run_authorizations'").fetchone() else None
             used=cx.execute('SELECT coalesce(sum(used_turns),0) FROM pello_product_projects').fetchone()[0]
         remaining=grant['max_turns']-used if grant else self.project_row(project_id)['max_turns']-self.project_row(project_id)['used_turns']
-        if not prior:payload['development_turns_remaining']=remaining
-        else:remaining=payload['development_turns_remaining']
+        if not prior:
+            capacity=remaining-1  # This model-selection request reserves one turn.
+            if capacity<1:
+                raise CodexBlocked('No development capacity remains after model-selection reservation')
+            payload['development_turns_remaining']=capacity
+            payload['development_capacity_scope']='after_model_selection_reservation'
+        else:
+            capacity=payload['development_turns_remaining']
+            if payload.get('development_capacity_scope')!='after_model_selection_reservation':
+                capacity-=1  # Preserve validation of legacy pre-reservation inputs.
         payload['planning_objective']='Select one justified initial Coder model/effort for every task. Luna is preferred; choose Low, Medium or High adaptively by complexity/risk/context/uncertainty and bounded scope. No mandatory starting level, retry ladder, or automatic Sol after errors. Sol initially only for specifically exceptional complex/high risk or critical risk. Use only the supplied actual catalog, no substitutions/prices/Astra. Set selection_kind=initial, previous_configuration=null, failure_evidence=null. expected_turns is an estimate of Coder attempts, not a reservation or product execution authorization; keep it within available measurable development capacity. Cite task/source IDs or contract evidence, consider decomposition, and preserve absent external permissions.'
         draft,_=self._invoke(project_id,version['version'],'plan-models','planner',payload,TaskModelAssignments)
         if {d.task_id for d in draft.decisions}!={i['task_id'] for i in increments} or len(draft.decisions)!=len(increments):
             raise ValueError('Model decisions must cover every increment exactly once')
-        records=[validate_model_decision(d,payload['capabilities'],budget_remaining=remaining-1) for d in draft.decisions]
+        records=[validate_model_decision(d,payload['capabilities'],budget_remaining=capacity) for d in draft.decisions]
         result={'proposal':draft.model_dump(mode='json'),'records':records,'budget_scope':'Planning estimates only; no planned product execution is authorized',
             'aggregate_budget_assessment':model_budget_summary(records)}
         path=self.folder(project_id)/'evidence'/f'version-{version["version"]}'/'planning'/'models.json'

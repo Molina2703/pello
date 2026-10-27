@@ -1,0 +1,18 @@
+{
+  "command": [
+    "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "runtime/phase3c/protected/3c3-model-capacity",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "tests_run": 4,
+  "tests_passed": 4,
+  "overlap_complete_regression": true
+}

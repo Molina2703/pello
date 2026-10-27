@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-27T03:51:51.416350+00:00",
+  "hashes": {
+    "tests\\test_model_capacity_context.py": "ec344b774bd672c6c6b65a6c05c04a718ba44ab120638653428e5857a02e9844"
+  },
+  "protected_copy": "runtime\\phase3c\\protected\\3c3-model-capacity\\test_model_capacity_context.py",
+  "protected_copy_sha256": "ec344b774bd672c6c6b65a6c05c04a718ba44ab120638653428e5857a02e9844",
+  "tests": 4,
+  "before_implementation_change": true,
+  "scope": "Only align advertised/validated post-model-selection capacity; retain legacy context and original semantic FAIL."
+}

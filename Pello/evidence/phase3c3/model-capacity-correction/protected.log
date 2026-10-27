@@ -1,0 +1,9 @@
+test_legacy_pre_reservation_context_replays_unchanged_and_retains_shortfall (test_model_capacity_context.ModelCapacityContextTests.test_legacy_pre_reservation_context_replays_unchanged_and_retains_shortfall) ... ok
+test_missing_stage_replay_keeps_same_capacity_and_no_duplicate_reservation (test_model_capacity_context.ModelCapacityContextTests.test_missing_stage_replay_keeps_same_capacity_and_no_duplicate_reservation) ... ok
+test_new_request_advertises_exact_post_reservation_validation_capacity (test_model_capacity_context.ModelCapacityContextTests.test_new_request_advertises_exact_post_reservation_validation_capacity) ... ok
+test_no_post_selection_capacity_blocks_before_reservation (test_model_capacity_context.ModelCapacityContextTests.test_no_post_selection_capacity_blocks_before_reservation) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 2.549s
+
+OK

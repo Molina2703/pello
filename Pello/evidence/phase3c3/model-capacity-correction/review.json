@@ -1,0 +1,14 @@
+{
+  "verdict": "PASS",
+  "scope": "correct",
+  "correctness": "adequate",
+  "test_evidence": "pass",
+  "safety_and_preservation": "adequate",
+  "findings": [
+    "Fresh requests now advertise the same post-reservation capacity used by validation and aggregate reporting, and reject insufficient capacity before inference reservation.",
+    "Marked-context replay avoids double subtraction; legacy replay preserves its original payload and historical shortfall. Saved-artifact handling remains unchanged.",
+    "Supplied before/after transcripts demonstrate the defect and correction through controlled-engine Core/SQLite checks. Focused, protected and full regression results support the limited change.",
+    "The diff preserves validators, model policy and authorization boundaries. ParcelProof's semantic FAIL remains unresolved; real SDK efficacy and broader planning generalization remain unverified."
+  ],
+  "rationale": "The correction addresses the proven budget-context mismatch within its authorized scope. The supplied code and regression evidence support acceptance of this engineering change, without accepting the original plan or Phase 3C."
+}
