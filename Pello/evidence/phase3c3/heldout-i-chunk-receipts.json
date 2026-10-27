@@ -1,0 +1,74 @@
+[
+  {
+    "index": 1,
+    "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+    "turn_id": "01a17b71-a44f-79a1-8382-0361c775136e",
+    "receipt": {
+      "evaluation_id": "phase3c3-heldout-i-v1",
+      "chunk_index": 1,
+      "received": true,
+      "status": "RECEIVED_NOT_A_VERDICT",
+      "notes": "Received chunk 1. Awaiting remaining evidence and the final grading request; no evaluation verdict issued."
+    }
+  },
+  {
+    "index": 2,
+    "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+    "turn_id": "01a17b71-cbb0-78c2-9875-878afcdeb13d",
+    "receipt": {
+      "evaluation_id": "phase3c3-heldout-i-v1",
+      "chunk_index": 2,
+      "received": true,
+      "status": "RECEIVED_NOT_A_VERDICT",
+      "notes": "Received chunk 2. Awaiting remaining evidence and the final grading request; no evaluation verdict issued."
+    }
+  },
+  {
+    "index": 3,
+    "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+    "turn_id": "01a17b71-f2dd-7082-b6c1-427fa7e98bdf",
+    "receipt": {
+      "evaluation_id": "phase3c3-heldout-i-v1",
+      "chunk_index": 3,
+      "received": true,
+      "status": "RECEIVED_NOT_A_VERDICT",
+      "notes": "Received chunk 3. Awaiting remaining evidence and the final grading request; no evaluation verdict issued."
+    }
+  },
+  {
+    "index": 4,
+    "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+    "turn_id": "01a17b72-1187-7fe1-99e5-3f751341ef2a",
+    "receipt": {
+      "evaluation_id": "phase3c3-heldout-i-v1",
+      "chunk_index": 4,
+      "received": true,
+      "status": "RECEIVED_NOT_A_VERDICT",
+      "notes": "Received chunk 4. Awaiting remaining evidence and the final grading request; no evaluation verdict issued."
+    }
+  },
+  {
+    "index": 5,
+    "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+    "turn_id": "01a17b72-23c9-7971-8f04-6fc607ea89c8",
+    "receipt": {
+      "evaluation_id": "phase3c3-heldout-i-v1",
+      "chunk_index": 5,
+      "received": true,
+      "status": "RECEIVED_NOT_A_VERDICT",
+      "notes": "Received chunk 5. Awaiting remaining evidence and the final grading request; no evaluation verdict issued."
+    }
+  },
+  {
+    "index": 6,
+    "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+    "turn_id": "01a17b72-31ff-7782-9689-c8b9bc140810",
+    "receipt": {
+      "evaluation_id": "phase3c3-heldout-i-v1",
+      "chunk_index": 6,
+      "received": true,
+      "status": "RECEIVED_NOT_A_VERDICT",
+      "notes": "Received chunk 6. Awaiting the final original-source/frozen-rubric grading request; no evaluation verdict issued."
+    }
+  }
+]

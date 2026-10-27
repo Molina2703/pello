@@ -1,0 +1,318 @@
+{
+  "verdict": "FAIL",
+  "criteria": [
+    {
+      "criterion_id": "C01",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-06f39dd5212f",
+        "REQ-6e96437eded6",
+        "W02-AC10"
+      ],
+      "rationale": "The plan preserves all pilot limits, integer-millimetre coordinates and named project reference systems."
+    },
+    {
+      "criterion_id": "C02",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-d9b9924548fd",
+        "W01-AC10",
+        "W02-AC12"
+      ],
+      "rationale": "All six exclusions remain explicit scope boundaries."
+    },
+    {
+      "criterion_id": "C03",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-14adb8842a0b",
+        "REQ-52dd2c9db9ce",
+        "W01-AC01",
+        "W01-AC02",
+        "W01-AC03"
+      ],
+      "rationale": "Preview, all five fields, project-scoped identity, atomic rejection and row-level reasons are specified."
+    },
+    {
+      "criterion_id": "C04",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-01b71e332251",
+        "REQ-c7c3d6e37689",
+        "W01-AC04",
+        "W01-AC05",
+        "W01-AC06"
+      ],
+      "rationale": "Identical replay is distinguished from reasoned, attributable coordinate revisions preserving original values."
+    },
+    {
+      "criterion_id": "C05",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-132321705dfa",
+        "REQ-db5c1ef22fe5",
+        "W01-AC07",
+        "W01-AC08",
+        "W04-AC02"
+      ],
+      "rationale": "Unapproved points remain visible, require licensed-surveyor approval and cannot support schedule approval."
+    },
+    {
+      "criterion_id": "C06",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-6e96437eded6",
+        "REQ-ade48752539e",
+        "REQ-66e378507287",
+        "W02-AC02",
+        "W02-AC03"
+      ],
+      "rationale": "Ordered point lineage and every stated structural outline validation are retained."
+    },
+    {
+      "criterion_id": "C07",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-66e378507287",
+        "W02-AC03",
+        "increment_contracts"
+      ],
+      "rationale": "Named invalid geometries receive measurement-unavailable reasons without reordering, snapping or repair."
+    },
+    {
+      "criterion_id": "C08",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-6e69c0b6dff5",
+        "ASM-2cd372b1da3e",
+        "W02-AC01",
+        "W02-AC04",
+        "architecture"
+      ],
+      "rationale": "Absolute shoelace area, exact conversion, unrounded comparisons and upward half rounding are preserved."
+    },
+    {
+      "criterion_id": "C09",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-6b1293d2c9e9",
+        "W02-AC01",
+        "W02-AC04"
+      ],
+      "rationale": "Edge endpoint identities and three-decimal metre lengths are specified independently of validation."
+    },
+    {
+      "criterion_id": "C10",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-89f294bcc3c3",
+        "REQ-ea69acf66fc4",
+        "W02-AC05",
+        "W02-AC07"
+      ],
+      "rationale": "Declared chains require exact reverse-traversal coincidence while permitting collinear subdivisions."
+    },
+    {
+      "criterion_id": "C11",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-a8a1d06da89f",
+        "REQ-ea69acf66fc4",
+        "W02-AC06",
+        "W02-AC08",
+        "W02-AC09"
+      ],
+      "rationale": "Positive-area overlap and declared gaps fail; shared edges and unrelated separation are allowed without tolerance or averaging."
+    },
+    {
+      "criterion_id": "C12",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-81260edf4501",
+        "ISS-f1ee3142ec14",
+        "W03-AC01",
+        "W03-AC05"
+      ],
+      "rationale": "Both claims and their document sources remain preserved, with authoritative resolution assigned to the conveyancer."
+    },
+    {
+      "criterion_id": "C13",
+      "verdict": "FAIL",
+      "evidence_references": [
+        "SRC-2c7e94188caf",
+        "W04",
+        "W04-AC04",
+        "dependency_graph",
+        "pipeline_manifest",
+        "independent_local_progress",
+        "restart_reconstruction_without_inference"
+      ],
+      "rationale": "The persisted graph and manifest attach the unresolved P-7 issue to all of W04, which includes unrelated parcel review. After W01\u2013W03 complete, no work is ready. This contradicts the source and W04's own promise that unrelated review remains available; narrative assurances do not remove the enforced blocker."
+    },
+    {
+      "criterion_id": "C14",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-f11cfd15cef9",
+        "REQ-fecc144ee522",
+        "W04-AC01",
+        "W04-AC02",
+        "W04-AC05"
+      ],
+      "rationale": "Versioned approval prerequisites and staleness after supporting point, outline and adjoining-declaration changes are specified."
+    },
+    {
+      "criterion_id": "C15",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-e91a15d726c9",
+        "W04-AC06",
+        "architecture"
+      ],
+      "rationale": "Submitted snapshots remain immutable, and amendments require separate review and original-submission linkage."
+    },
+    {
+      "criterion_id": "C16",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-87aae0308090",
+        "REQ-2162c35b0888",
+        "ASM-119dba445426",
+        "W05-AC08"
+      ],
+      "rationale": "The overview specifies all six categories and grouping invariance. Its scheduling obstruction is addressed separately under blocker scope."
+    },
+    {
+      "criterion_id": "C17",
+      "verdict": "PASS",
+      "evidence_references": [
+        "ISS-34ee2e748ce4",
+        "ISS-69a8509a76a6",
+        "REQ-abbdba73eef5",
+        "REQ-4449728ccdd6",
+        "W07"
+      ],
+      "rationale": "All seven agency unknowns, schedules, amendments and outcomes are identified without inventing access or equating receipt with registration or ownership."
+    },
+    {
+      "criterion_id": "C18",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-3e5173a00d0d",
+        "REQ-81d8c8fd191a",
+        "W05-AC02",
+        "W05-AC03",
+        "W07-AC04"
+      ],
+      "rationale": "Separate principal authorization binds every required detail, invalidates on changes and is checked immediately before dispatch without rebuilding."
+    },
+    {
+      "criterion_id": "C19",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-84510ef4d5fe",
+        "REQ-70cc26e44095",
+        "REQ-ac41f72c9167",
+        "W05-AC05",
+        "W05-AC07",
+        "W08-AC06"
+      ],
+      "rationale": "All outcomes, explicit registration evidence, unknown-timeout handling, documented resolution and package/authorization provenance are retained."
+    },
+    {
+      "criterion_id": "C20",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-9083a686884e",
+        "W01-AC07",
+        "W04-AC03",
+        "W05-AC02",
+        "W03-AC06"
+      ],
+      "rationale": "Role boundaries are mapped and enforced at operation handlers; the service records external resolution without adjudicating ownership."
+    },
+    {
+      "criterion_id": "C21",
+      "verdict": "PASS",
+      "evidence_references": [
+        "W02-AC01",
+        "W02-AC03",
+        "W02-AC04",
+        "W02-AC06",
+        "W02-AC09",
+        "W04-AC04",
+        "W04-AC05"
+      ],
+      "rationale": "Proposed acceptance cases preserve every supplied numerical, geometry, adjacency, staleness and unresolved-P-7 result."
+    },
+    {
+      "criterion_id": "C22",
+      "verdict": "PASS",
+      "evidence_references": [
+        "architecture",
+        "W01-AC09",
+        "W02-AC11",
+        "W03-AC08",
+        "W04-AC08",
+        "W05-AC10"
+      ],
+      "rationale": "Durable records, version relationships and proposed restart comparisons cover the required evidence and review/submission history."
+    },
+    {
+      "criterion_id": "C23",
+      "verdict": "PASS",
+      "evidence_references": [
+        "W01",
+        "W02",
+        "architecture",
+        "dependency_graph",
+        "independent_local_progress"
+      ],
+      "rationale": "Point validation and geometry are independently actionable local branches, and required downstream dependency links exist. Excess blocker scope fails C13."
+    },
+    {
+      "criterion_id": "C24",
+      "verdict": "PASS",
+      "evidence_references": [
+        "ASM-119dba445426",
+        "ASM-2b41eb962d73",
+        "ASM-2cd372b1da3e",
+        "ASM-3539a5fdc7c9",
+        "ASM-c4ac2771aa6e",
+        "REQ-f329556281ff",
+        "acceptance_lifecycle"
+      ],
+      "rationale": "Reversible choices remain explicitly unapproved assumptions, and product verification remains proposed without implementation or execution claims."
+    },
+    {
+      "criterion_id": "C25",
+      "verdict": "PASS",
+      "evidence_references": [
+        "REQ-87aae0308090",
+        "W05",
+        "W05-AC08"
+      ],
+      "rationale": "The overview description is intelligible, with no identifiable minor presentation defect."
+    }
+  ],
+  "critical_failures": [
+    "P-7's unresolved dispute blocks the entire shared review increment W04 and its dependants, preventing unrelated parcel review despite the source's explicit narrow blocker scope.",
+    "W05 independently carries the unresolved recovery-policy blocker even though its local authorization, history, overview and refusal safeguards expressly require no positive recovery decision. The graph and manifest contradict those local completion boundaries."
+  ],
+  "minor_findings": [
+    "W08's model justification says 17 estimated coder turns match capacity, while the decision rows report capacity of 16 and the supplied aggregate assessment records a one-turn shortfall. This is a planning-feasibility inconsistency outside the frozen business criteria."
+  ],
+  "reproduction": [
+    "Inspect dependency_graph and pipeline_manifest: W04 carries specification:ISS-f1ee3142ec14, while W05 carries specification:ISS-bf95e4f6bde7.",
+    "Inspect independent_local_progress: with W01, W02 and W03 hypothetically completed, the ready set is empty although unrelated parcel review should remain available.",
+    "Compare those enforced blockers with W04-AC04, W05-AC11 and their increment preconditions, which explicitly preserve local work without those resolutions.",
+    "Compare model_decisions estimates totaling 17 with the reported remaining development capacity of 16. These are artifact inspections, not executed product tests."
+  ],
+  "remediation": [
+    "Scope the P-7 resolution blocker to the conditional positive P-7 branch, retaining its approval/submission refusal within the shared review workflow.",
+    "Scope unresolved positive recovery decisions to W08 while preserving W05's local history, overview and refusal safeguards.",
+    "Regenerate consistent graph and manifest blockers, then verify that W04 and W05 become actionable after their ordinary dependencies complete without resolving P-7 or recovery policy.",
+    "Reconcile the aggregate turn estimate and available capacity without silently dropping mandatory scope or treating estimates as execution authorization."
+  ],
+  "explanation": "23 of 24 critical criteria and 24 of 25 total criteria pass. The total fraction exceeds 90%, but C13 fails, so the all-critical requirement is unmet. The ten reported objective checks do not establish correct blocker scope: their own scheduler evidence exposes the defect. This verdict assesses planning artifacts only."
+}

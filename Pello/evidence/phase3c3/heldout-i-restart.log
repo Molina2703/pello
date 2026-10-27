@@ -1,0 +1,46 @@
+{
+  "ready": [
+    "W01",
+    "W02"
+  ],
+  "first_actionable": "W01",
+  "completed": [],
+  "execution_authorized": false,
+  "protected_tests_required": true,
+  "blockers": {
+    "W01": [],
+    "W02": [],
+    "W03": [],
+    "W04": [
+      "specification:ISS-f1ee3142ec14"
+    ],
+    "W05": [
+      "specification:ISS-bf95e4f6bde7"
+    ],
+    "W06": [
+      "specification:ISS-f1ee3142ec14"
+    ],
+    "W07": [
+      "authorization",
+      "resource:cadastral_agency_account",
+      "resource:cadastral_agency_credentials",
+      "resource:cadastral_agency_endpoint",
+      "resource:cadastral_agency_firm_permissions",
+      "specification:ISS-34ee2e748ce4",
+      "specification:ISS-69a8509a76a6"
+    ],
+    "W08": [
+      "authorization",
+      "resource:cadastral_agency_account",
+      "resource:cadastral_agency_credentials",
+      "resource:cadastral_agency_endpoint",
+      "resource:cadastral_agency_firm_permissions",
+      "specification:ISS-34ee2e748ce4",
+      "specification:ISS-69a8509a76a6",
+      "specification:ISS-bf95e4f6bde7"
+    ]
+  },
+  "plan_sha256": "b0199c77c21c1e0b66ffd2f2b6217a011c95760bb87f0cc4957b930233c5a722",
+  "plan_approval": "PROPOSED",
+  "source_sha256": "d481313540b5f2959c4a8e10308262d08b920bb6dd8a33918ff48094ada91211"
+}

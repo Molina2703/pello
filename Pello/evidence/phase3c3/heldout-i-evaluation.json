@@ -1,0 +1,16 @@
+{
+  "evaluation_id": "phase3c3-heldout-i-v1",
+  "plan_sha256": "b0199c77c21c1e0b66ffd2f2b6217a011c95760bb87f0cc4957b930233c5a722",
+  "verdict": "FAIL",
+  "objective_verdict": "PASS",
+  "reviewer_verdict": "FAIL",
+  "criterion_identity_valid": true,
+  "citation_ids_valid": true,
+  "all_critical_pass": false,
+  "total_pass_fraction": 0.96,
+  "review_thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+  "review_turn_id": "01a17b72-417a-76d2-b3ee-8bd821478e06",
+  "specification_sha256": "d481313540b5f2959c4a8e10308262d08b920bb6dd8a33918ff48094ada91211",
+  "rubric_sha256": "2fa06bf103a54a03ab57148fcdce47bcdb7e25a1d92388ea412332e010150735",
+  "no_product_implementation": true
+}
