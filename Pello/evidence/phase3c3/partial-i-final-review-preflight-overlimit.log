@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\evidence\phase3c3\review_partial_checkpoint_i.py", line 39, in <module>
+    assert len(core._prompt('partial-i-checkpoint-final-review',packet))<=55000
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USUARIO\OneDrive\Documents\ChatGPT\DESARROLLO PELLO\Pello\athis_autopilot\product_planning.py", line 1243, in _prompt
+    raise ValueError('Planning context exceeds 55,000 characters; no silent truncation')
+ValueError: Planning context exceeds 55,000 characters; no silent truncation

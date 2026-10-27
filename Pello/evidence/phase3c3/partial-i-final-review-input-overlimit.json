@@ -1,0 +1,1961 @@
+{
+  "objective": "Independent final review of HONEST PARTIAL CHECKPOINT PRESERVATION ONLY. This is not the successful Phase3C closure review: the genuine original ParcelProof FAIL is still mandatory. You previously reviewed the complete original source/rubric/plan in this SAME independent SDK session, emitted its per-criterion FAIL, diagnosed the defects, and independently accepted only the small budget correction. Verify the supplied state, actual regression, authorization, isolation, original-failure preservation and all23 conservatively scoped V1 mappings. PASS here approves preservation/reporting only and MUST NOT accept Phase3C or the business plan. No private Planner reasoning or implementation modifications are allowed. If any evidence overclaims success, return FAIL/BLOCKED. Do not grant more budget or launch another case.",
+  "state_before_this_final_reserved_review": {
+    "at": "2026-10-27T04:05:52.594251+00:00",
+    "HEAD": "8e70f3ed7be79f91380095ce1334b2379915a40e",
+    "branch": "codex/pello-phase3c",
+    "phase3c3": "PARTIAL",
+    "overall_phase3c": "PARTIAL",
+    "blind_generalization": "UNVERIFIED",
+    "execution": "BOUNDED_CASE_FINISHED_NO_FRESH_CASE_CAPACITY",
+    "cumulative_limit": 114,
+    "charged_reservations": 107,
+    "completed_SDK_calls": 103,
+    "statuses": {
+      "COMPLETED": 103,
+      "NOT_SUBMITTED_CONTEXT_REJECTED": 1,
+      "FAILED_PROVIDER_QUOTA_RECONCILED": 1,
+      "NOT_SUBMITTED_ACTIVE_WRITER_RECONCILED": 2
+    },
+    "remaining_global_slots": 7,
+    "author_used_max": [
+      15,
+      18
+    ],
+    "deadline": "2026-10-27T06:30:00+00:00",
+    "STOP": false,
+    "sqlite_integrity": "ok",
+    "first_88_operation_rows_unchanged": true,
+    "checkpoints": [
+      {
+        "project_id": "phase3c-3c1-live",
+        "version": 1,
+        "phase": "analyzed",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "1ffb1fd687a156288dc42c3e5de4da5529a42b73b5a9fa96e6e825af9ac61537",
+        "commit_sha": "6fd63ab36f78427761b9c7223ddd4c268d2f5ce2",
+        "created": "2026-10-25T07:30:23+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live",
+        "version": 1,
+        "phase": "analysis-accepted",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "59e8c1a607d161f53416f949a328a8232bcd67e87047fc0a4251701802ebf6ef",
+        "commit_sha": "a574565805fac4273898005857fd902705b9d996",
+        "created": "2026-10-25T07:31:31+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live",
+        "version": 1,
+        "phase": "analysis-correction-r2",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "84ba024d61fe1a054542e23913f2e9fdb320731026d38cd704c137d736b83697",
+        "commit_sha": "7dcc2f6ab3e9f3baf857e689e9da14efd5c91edf",
+        "created": "2026-10-25T07:36:18+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live",
+        "version": 1,
+        "phase": "analysis-accepted-r2",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "99532b04f05a3c304111620c69b70d302467163a4bb08910b6c0685fda833dbd",
+        "commit_sha": "da061177e631405f1325448b8250c8f7dd9ba3f9",
+        "created": "2026-10-25T07:36:42+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "analyzed",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "3f3faac6f17ef434ad1f0629212293a27e98dbd6f6308680f1090b9178ae29b6",
+        "commit_sha": "dbc97efb1beabc593f8e151aa8e34a27ad94496a",
+        "created": "2026-10-25T08:03:56+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "analysis-accepted",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "713c53c4531f1af39515baea0fbf0ddb27eae841436e5791389fead15bd1d116",
+        "commit_sha": "db0aa72a49db9218d0d310c66d17a8a9618d08ce",
+        "created": "2026-10-25T08:04:32+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "analysis-manifest-integrity-correction",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "095f079d801674c68de24adc9bd040dc703d8e485fd840874be89601892b13c1",
+        "commit_sha": "9c168b2f7f7e0b7b4fd2aa682c308794e766250a",
+        "created": "2026-10-25T08:33:59+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "3c2-b1",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "8dd56144b38f564be27478248b11f39bec6f8c93809d10619dc462f0188d4c3b",
+        "commit_sha": "a5238c13a829a26977e7206539b12e06daaecf9b",
+        "created": "2026-10-25T17:18:50+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "3c2-b2",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "c16c47f881c07a25040f1d1545be375d7b076b7fb19a3f7fe484db900482a120",
+        "commit_sha": "57dbbbef309de34ca034ca85f1ed6558c34c098c",
+        "created": "2026-10-25T17:26:05+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "3c2-b3",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "466319a989fd8f890a9f944c9bf1dc30b099dcbec28fbefcb7826405e87e8cca",
+        "commit_sha": "1b0335c77cc951dfe9172ec70fe409cc0fdec34a",
+        "created": "2026-10-25T17:36:15+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "3c2-b4",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "303544f18f936313bed498c43786bac322dfff948bd95c0ab3ab3d134f25c4e1",
+        "commit_sha": "e41e338c9efe85c6d3cf6fba488271fc4867a827",
+        "created": "2026-10-25T17:43:14+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "3c2-b5",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "a03c9d5832a320f46cdfaea81b6fab7593198cb63a2161e142a1c36fd73c80c0",
+        "commit_sha": "41e0ab60b12fcefcea9e96e7651bb76a32125118",
+        "created": "2026-10-25T17:55:14+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "plan-accepted",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "bdaa414038ba8d5ba2364a6b123596e9365ba670ef322b755ea62c1305e02f26",
+        "commit_sha": "e931fecf1966936dbc53f0f6514d2fb0de834f6a",
+        "created": "2026-10-25T18:13:13+00:00"
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "version": 1,
+        "phase": "3c2-b6",
+        "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+        "artifact_hash": "991e9f5abceaac59a2eaca7f7853f25bc752f954e3ba63ae413cce394d696c2b",
+        "commit_sha": "5c4c5f908b68f299c3e838f2a8373bbb514e4494",
+        "created": "2026-10-25T18:13:15+00:00"
+      },
+      {
+        "project_id": "phase3c3-heldout-a",
+        "version": 1,
+        "phase": "analyzed",
+        "source_hash": "9ade6c83162fcf07f3d959ff59343c5804934c59c2d89c3cdd68268370845b2c",
+        "artifact_hash": "781fd95c905415298f7f80739fe6651aa9179aa35d08fb14724a97cdd158ee2f",
+        "commit_sha": "ebe1fe744594fb0fbb2c7fccb8fd3231684f821b",
+        "created": "2026-10-25T22:11:24+00:00"
+      },
+      {
+        "project_id": "phase3c3-heldout-c",
+        "version": 1,
+        "phase": "analyzed",
+        "source_hash": "ab227a640a8a4e25fdadbf3c3c9900873549b26eaaeaffe4fb7a2ebad4c624b7",
+        "artifact_hash": "b964d7c3c3e53b9c3671d071fc60758e98cd70078d6ad18fc9b711a6328423de",
+        "commit_sha": "21ff9a6eaee96c385e65d36feb2a9ae24445c1bc",
+        "created": "2026-10-25T22:48:08+00:00"
+      },
+      {
+        "project_id": "phase3c3-heldout-d",
+        "version": 1,
+        "phase": "analyzed",
+        "source_hash": "8b5d08d9e415098e0e58800353297ac4f09cb8000f720ff640f1e9d226d441f8",
+        "artifact_hash": "8692d9201c6cf9a9c548a2e3dd57272cd69f90f2f6d6d9229851ee1be1031b77",
+        "commit_sha": "7f39f75fb87b0fbe557231a0dc7816747f1cf355",
+        "created": "2026-10-25T23:23:56+00:00"
+      },
+      {
+        "project_id": "phase3c3-heldout-d",
+        "version": 1,
+        "phase": "analysis-accepted",
+        "source_hash": "8b5d08d9e415098e0e58800353297ac4f09cb8000f720ff640f1e9d226d441f8",
+        "artifact_hash": "fc87fb57c3912fc945a4aa5a84874a9b12604f50f96bf1dbd0b83063d951755e",
+        "commit_sha": "55f88b0e11b942bb14a39e8977402d618daffefd",
+        "created": "2026-10-25T23:24:28+00:00"
+      },
+      {
+        "project_id": "phase3c3-heldout-e",
+        "version": 1,
+        "phase": "analyzed",
+        "source_hash": "af17a121b305c02f88f3179d16770a6827e76db4f7a4b647f4d20098b1bcfc5e",
+        "artifact_hash": "e1d5eddd992767016b2c31b006483ea72b802bebde88260dfdb80d33bc6f460d",
+        "commit_sha": "87420c5884af060e9fbc0f867de63f2715808531",
+        "created": "2026-10-25T23:45:45+00:00"
+      },
+      {
+        "project_id": "phase3c3-heldout-e",
+        "version": 1,
+        "phase": "analysis-accepted",
+        "source_hash": "af17a121b305c02f88f3179d16770a6827e76db4f7a4b647f4d20098b1bcfc5e",
+        "artifact_hash": "0a8484a6ee19de1523fa20ca3f6a4ff296554eeeb4dc29c2092e36eed71aec92",
+        "commit_sha": "910fcfcdcfead7c541d3c52f6098bcfe3e3607aa",
+        "created": "2026-10-25T23:46:20+00:00"
+      },
+      {
+        "project_id": "phase3c3-heldout-f",
+        "version": 1,
+        "phase": "analyzed",
+        "source_hash": "7bbb93f73283a3b54262c1cd4da52b8fee5ee628854e66036adce9e0467c4cec",
+        "artifact_hash": "2ee94b040e1dc388b881941b21c2e2c97000cf3441b49bece1e6c08acb75e4dd",
+        "commit_sha": "ae3110871a3be37163f9b761d663c9cba1ee4028",
+        "created": "2026-10-26T04:47:11+00:00"
+      },
+      {
+        "project_id": "phase3c3-heldout-f",
+        "version": 1,
+        "phase": "analysis-accepted",
+        "source_hash": "7bbb93f73283a3b54262c1cd4da52b8fee5ee628854e66036adce9e0467c4cec",
+        "artifact_hash": "a68880eb9e40ddd206f3c5088834f1d0f65738e1488792998869020f8191e1f9",
+        "commit_sha": "d0788eeb545ffa469b995e46ee4be82193f80f9e",
+        "created": "2026-10-26T04:47:54+00:00"
+      },
+      {
+        "project_id": "phase3c3-heldout-g",
+        "version": 1,
+        "phase": "analyzed",
+        "source_hash": "1d7dc574a864f7b091d856891ea66816e8d30490f27499ed81679fc4374f97a2",
+        "artifact_hash": "26cb3e3bc6cd813f6b3361ddc1327664e25b5c5cdbdfe38fa8d87f3e59c0c84c",
+        "commit_sha": "c16d84d029fa9655950d7102c4344d2c0ac7d70c",
+        "created": "2026-10-26T22:02:19+00:00"
+      },
+      {
+        "project_id": "phase3c3-heldout-h",
+        "version": 1,
+        "phase": "analyzed",
+        "source_hash": "cbabae826e30f8166a18d1d7f495ee83e3e092c4e7081ca8e7fdc1ac3f915d64",
+        "artifact_hash": "151654beb33f88a078e306ea800358162e64d24b1a4c785cb6265b03ccf5ec57",
+        "commit_sha": "d3a546414e52d3e6a8a372fcb1da321bd9b4dbc2",
+        "created": "2026-10-26T22:48:26+00:00"
+      },
+      {
+        "project_id": "phase3c3-heldout-h",
+        "version": 1,
+        "phase": "analysis-accepted",
+        "source_hash": "cbabae826e30f8166a18d1d7f495ee83e3e092c4e7081ca8e7fdc1ac3f915d64",
+        "artifact_hash": "f4ab42c0ff2e7ffb084f33e333277388a10683be870c6442e51c618021dfb5e3",
+        "commit_sha": "4dd5f1b18dde12cb50f82d4580f591f2aa78369e",
+        "created": "2026-10-26T22:48:46+00:00"
+      },
+      {
+        "project_id": "phase3c3-heldout-i",
+        "version": 1,
+        "phase": "analyzed",
+        "source_hash": "d481313540b5f2959c4a8e10308262d08b920bb6dd8a33918ff48094ada91211",
+        "artifact_hash": "e1370ef8521cd3660b0ed55482088e5a50ab7ed41b0297ec29d9b596a83bd588",
+        "commit_sha": "622048c796556b2e6f7f437001d48398442735e0",
+        "created": "2026-10-27T03:12:50+00:00"
+      },
+      {
+        "project_id": "phase3c3-heldout-i",
+        "version": 1,
+        "phase": "analysis-accepted",
+        "source_hash": "d481313540b5f2959c4a8e10308262d08b920bb6dd8a33918ff48094ada91211",
+        "artifact_hash": "e338d1b96a3f0dea225020ecdf80d3c5bb36bc88dbd44efa2550ef5c7c51a6b1",
+        "commit_sha": "c5770f24d1733bc263a4f28113abb73bd32103df",
+        "created": "2026-10-27T03:13:37+00:00"
+      }
+    ],
+    "all_checkpoint_Git_objects_present": true,
+    "C2_accepted_plan_digest": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+    "I_proposed_plan_digest": "b0199c77c21c1e0b66ffd2f2b6217a011c95760bb87f0cc4957b930233c5a722",
+    "I_plan_approval": "PROPOSED",
+    "I_first_actionable": "W01",
+    "nine_original_FAILs": {
+      "a": "FAIL",
+      "b": "FAIL",
+      "c": "FAIL",
+      "d": "FAIL",
+      "e": "FAIL",
+      "f": "FAIL",
+      "g": "FAIL",
+      "h": "FAIL",
+      "i": "FAIL"
+    },
+    "I_semantic_score": {
+      "critical_passed": 23,
+      "critical_total": 24,
+      "passed": 24,
+      "total": 25,
+      "fraction": 0.96,
+      "verdict": "FAIL"
+    },
+    "snapshot_sha256": "0e5f458d3d7ea8f512b4644e15a5f35cbfa9cabffc2ac4a5e794464ba713bf6a",
+    "backup_path": "evidence\\phase3c3\\checkpoint-107-jobs.sqlite3",
+    "external_business_operations": 0,
+    "business_Coder_calls": 0,
+    "Phase3D_started": false,
+    "accepted_engineering_checkpoint": {
+      "at": "2026-10-27T04:04:06.823601+00:00",
+      "implementation_HEAD": "8e70f3ed7be79f91380095ce1334b2379915a40e",
+      "accepted_record": "model-capacity-correction/accepted-regression-checkpoint.json",
+      "engineering_only": true,
+      "phase3c3": "PARTIAL",
+      "overall_phase3c": "PARTIAL"
+    },
+    "full_regression": {
+      "command": [
+        "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tests_run": 261,
+      "tests_passed": 261,
+      "seconds": 261.297
+    },
+    "protected_C2": 63,
+    "protected_C3": 44,
+    "protected_C3_sources": 12,
+    "historical_hashes": 1493,
+    "no_case_J_started": true,
+    "no_case_I_rerun_after_implementation_change": true
+  },
+  "expected_single_final_review_charge": {
+    "maximum_after_completion": 108,
+    "global_cap": 114,
+    "reserve_remaining_after_completion": 6
+  },
+  "latest_full_authorization": {
+    "id": "phase3c3-extension-114-author18-20261027",
+    "authorized_at": "2026-10-27T02:59:49.688400+00:00",
+    "user_authorization": "Autorizo 114 globales, autor 18 y ese plazo",
+    "authorization_source": "Explicit user reply to the 114 global / author18 / October27 06:30 UTC question in this chat",
+    "cumulative_sdk_limit": 114,
+    "already_reserved": 88,
+    "deadline": "2026-10-27T06:30:00+00:00",
+    "author_project_id": "phase3c3-author",
+    "author_used_unchanged": 14,
+    "old_author_max_turns": 14,
+    "approved_author_max_turns": 18,
+    "remaining_global_slots": 26,
+    "allocation": {
+      "one_fresh_case_complete_planning_and_reviews": 20,
+      "failure_reserve": 6
+    },
+    "author_four_slots_included_in_global": true,
+    "other_project_limits_unchanged": 12,
+    "scope": "One fresh blind Phase3C-3 evaluation through complete planning, independent semantic/final reviews, justified localized correction and regression. No Phase3D or business-product Coder execution.",
+    "supersedes_preservation_decision_for_this_scope": true,
+    "external_business_operations": 0,
+    "no_counter_reset": true,
+    "prior_authorization": "phase3c3-author14-exception-20261026"
+  },
+  "original_frozen_source_and_rubric": {
+    "threshold": {
+      "all_critical": true,
+      "total_pass_fraction": 0.9
+    },
+    "objective_check_registry": [
+      "source_hash_and_source_anchors",
+      "requirement_coverage_and_exclusions",
+      "acyclic_graph_and_valid_references",
+      "blocker_propagation_and_independent_readiness",
+      "contract_coverage_and_proposed_test_state",
+      "model_catalog_and_typed_efforts",
+      "existing_pipeline_manifest_validation",
+      "durable_restart_reconstruction_and_idempotence",
+      "no_product_implementation_or_external_effects",
+      "frozen_hidden_semantic_criteria"
+    ],
+    "critical_failure_conditions": [
+      "Missing mandatory capability",
+      "Violation of explicit exclusion",
+      "Unapproved assumption treated as authorization",
+      "Ignored blocking contradiction",
+      "Invalid dependency graph",
+      "Blocked work executable",
+      "Unpermitted external effect",
+      "Incompatible existing PipelineManifest",
+      "False executed/protected product-test claim"
+    ],
+    "evaluation_id": "phase3c3-heldout-i-v1",
+    "version": 1,
+    "created_at": "2026-10-27T03:04:49.333667+00:00",
+    "specification_sha256": "d481313540b5f2959c4a8e10308262d08b920bb6dd8a33918ff48094ada91211",
+    "rubric_sha256": "2fa06bf103a54a03ab57148fcdce47bcdb7e25a1d92388ea412332e010150735",
+    "private_rubric_path": "C:\\Users\\USUARIO\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\PelloEvaluation\\phase3c3-i\\rubric.json",
+    "deny_read_roots": [
+      "C:\\Users\\USUARIO\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\PelloEvaluation",
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\jobs.sqlite3",
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-author",
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\evidence\\phase3c3",
+      "C:\\Users\\USUARIO\\.codex",
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-a",
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-b",
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-c",
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-d",
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-e",
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-f",
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-g",
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-h",
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\runtime\\phase3c\\projects\\phase3c3-review-i"
+    ],
+    "author_thread_id": "01a1746f-48e4-7b53-a930-16be42bd2f5e",
+    "author_turn_id": "01a17b4e-b22c-7d41-8264-0bd3d43913c2",
+    "critical_criteria": 24,
+    "total_criteria": 25,
+    "status": "FROZEN_BEFORE_PLANNER",
+    "fresh_case_reason": "Eight original cases remain FAIL. New source and rubric independently authored without Planner outputs or an expected technical solution; no Planner project exists yet."
+  },
+  "preparation": {
+    "status": "ACCEPTED",
+    "freeze_sha256": "0984c37f6595008f92d630a9ba36e62fbbbaeabc2fb2f29ca40542485cf6ef85",
+    "checks": {
+      "spec_hash": true,
+      "rubric_hash": true,
+      "source_quotes": true,
+      "independent_capabilities": true,
+      "threshold": true,
+      "isolation_review": true,
+      "native_boundary": true,
+      "no_planner_yet": true
+    },
+    "review": {
+      "verdict": "PASS",
+      "scope": "correct",
+      "correctness": "adequate",
+      "test_evidence": "pass",
+      "safety_and_preservation": "adequate",
+      "findings": [
+        "ParcelProof presents a substantive surveying problem distinct from the listed demos, with exact geometry, adjoining-boundary checks and independently actionable local work.",
+        "The rubric covers mandatory behavior, exclusions, disputes, authority, persistence and proposed verification. It permits alternative sound designs and distinguishes critical behavioral failures from minor presentation defects.",
+        "Submitted freeze records, native denial logs, alias-path checks and runtime-profile evidence support pre-Planner freezing and answer-key isolation.",
+        "The supplied interpretation introduces no prescribed architecture, manual increments or submission permission."
+      ],
+      "rationale": "The specification and structured criteria align without a concrete omission or contradiction. The supplied boundary-test evidence supports proceeding to Planner evaluation; it does not establish product implementation, executed product tests or live-agency access."
+    },
+    "created_at": "2026-10-27T03:07:20.822994+00:00"
+  },
+  "independent_semantic_gate": {
+    "evaluation_id": "phase3c3-heldout-i-v1",
+    "plan_sha256": "b0199c77c21c1e0b66ffd2f2b6217a011c95760bb87f0cc4957b930233c5a722",
+    "verdict": "FAIL",
+    "objective_verdict": "PASS",
+    "reviewer_verdict": "FAIL",
+    "criterion_identity_valid": true,
+    "citation_ids_valid": true,
+    "all_critical_pass": false,
+    "total_pass_fraction": 0.96,
+    "review_thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+    "review_turn_id": "01a17b72-417a-76d2-b3ee-8bd821478e06",
+    "specification_sha256": "d481313540b5f2959c4a8e10308262d08b920bb6dd8a33918ff48094ada91211",
+    "rubric_sha256": "2fa06bf103a54a03ab57148fcdce47bcdb7e25a1d92388ea412332e010150735",
+    "no_product_implementation": true
+  },
+  "your_original_semantic_verdict": {
+    "verdict": "FAIL",
+    "criteria": [
+      {
+        "criterion_id": "C01",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-06f39dd5212f",
+          "REQ-6e96437eded6",
+          "W02-AC10"
+        ],
+        "rationale": "The plan preserves all pilot limits, integer-millimetre coordinates and named project reference systems."
+      },
+      {
+        "criterion_id": "C02",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-d9b9924548fd",
+          "W01-AC10",
+          "W02-AC12"
+        ],
+        "rationale": "All six exclusions remain explicit scope boundaries."
+      },
+      {
+        "criterion_id": "C03",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-14adb8842a0b",
+          "REQ-52dd2c9db9ce",
+          "W01-AC01",
+          "W01-AC02",
+          "W01-AC03"
+        ],
+        "rationale": "Preview, all five fields, project-scoped identity, atomic rejection and row-level reasons are specified."
+      },
+      {
+        "criterion_id": "C04",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-01b71e332251",
+          "REQ-c7c3d6e37689",
+          "W01-AC04",
+          "W01-AC05",
+          "W01-AC06"
+        ],
+        "rationale": "Identical replay is distinguished from reasoned, attributable coordinate revisions preserving original values."
+      },
+      {
+        "criterion_id": "C05",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-132321705dfa",
+          "REQ-db5c1ef22fe5",
+          "W01-AC07",
+          "W01-AC08",
+          "W04-AC02"
+        ],
+        "rationale": "Unapproved points remain visible, require licensed-surveyor approval and cannot support schedule approval."
+      },
+      {
+        "criterion_id": "C06",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-6e96437eded6",
+          "REQ-ade48752539e",
+          "REQ-66e378507287",
+          "W02-AC02",
+          "W02-AC03"
+        ],
+        "rationale": "Ordered point lineage and every stated structural outline validation are retained."
+      },
+      {
+        "criterion_id": "C07",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-66e378507287",
+          "W02-AC03",
+          "increment_contracts"
+        ],
+        "rationale": "Named invalid geometries receive measurement-unavailable reasons without reordering, snapping or repair."
+      },
+      {
+        "criterion_id": "C08",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-6e69c0b6dff5",
+          "ASM-2cd372b1da3e",
+          "W02-AC01",
+          "W02-AC04",
+          "architecture"
+        ],
+        "rationale": "Absolute shoelace area, exact conversion, unrounded comparisons and upward half rounding are preserved."
+      },
+      {
+        "criterion_id": "C09",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-6b1293d2c9e9",
+          "W02-AC01",
+          "W02-AC04"
+        ],
+        "rationale": "Edge endpoint identities and three-decimal metre lengths are specified independently of validation."
+      },
+      {
+        "criterion_id": "C10",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-89f294bcc3c3",
+          "REQ-ea69acf66fc4",
+          "W02-AC05",
+          "W02-AC07"
+        ],
+        "rationale": "Declared chains require exact reverse-traversal coincidence while permitting collinear subdivisions."
+      },
+      {
+        "criterion_id": "C11",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-a8a1d06da89f",
+          "REQ-ea69acf66fc4",
+          "W02-AC06",
+          "W02-AC08",
+          "W02-AC09"
+        ],
+        "rationale": "Positive-area overlap and declared gaps fail; shared edges and unrelated separation are allowed without tolerance or averaging."
+      },
+      {
+        "criterion_id": "C12",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-81260edf4501",
+          "ISS-f1ee3142ec14",
+          "W03-AC01",
+          "W03-AC05"
+        ],
+        "rationale": "Both claims and their document sources remain preserved, with authoritative resolution assigned to the conveyancer."
+      },
+      {
+        "criterion_id": "C13",
+        "verdict": "FAIL",
+        "evidence_references": [
+          "SRC-2c7e94188caf",
+          "W04",
+          "W04-AC04",
+          "dependency_graph",
+          "pipeline_manifest",
+          "independent_local_progress",
+          "restart_reconstruction_without_inference"
+        ],
+        "rationale": "The persisted graph and manifest attach the unresolved P-7 issue to all of W04, which includes unrelated parcel review. After W01–W03 complete, no work is ready. This contradicts the source and W04's own promise that unrelated review remains available; narrative assurances do not remove the enforced blocker."
+      },
+      {
+        "criterion_id": "C14",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-f11cfd15cef9",
+          "REQ-fecc144ee522",
+          "W04-AC01",
+          "W04-AC02",
+          "W04-AC05"
+        ],
+        "rationale": "Versioned approval prerequisites and staleness after supporting point, outline and adjoining-declaration changes are specified."
+      },
+      {
+        "criterion_id": "C15",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-e91a15d726c9",
+          "W04-AC06",
+          "architecture"
+        ],
+        "rationale": "Submitted snapshots remain immutable, and amendments require separate review and original-submission linkage."
+      },
+      {
+        "criterion_id": "C16",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-87aae0308090",
+          "REQ-2162c35b0888",
+          "ASM-119dba445426",
+          "W05-AC08"
+        ],
+        "rationale": "The overview specifies all six categories and grouping invariance. Its scheduling obstruction is addressed separately under blocker scope."
+      },
+      {
+        "criterion_id": "C17",
+        "verdict": "PASS",
+        "evidence_references": [
+          "ISS-34ee2e748ce4",
+          "ISS-69a8509a76a6",
+          "REQ-abbdba73eef5",
+          "REQ-4449728ccdd6",
+          "W07"
+        ],
+        "rationale": "All seven agency unknowns, schedules, amendments and outcomes are identified without inventing access or equating receipt with registration or ownership."
+      },
+      {
+        "criterion_id": "C18",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-3e5173a00d0d",
+          "REQ-81d8c8fd191a",
+          "W05-AC02",
+          "W05-AC03",
+          "W07-AC04"
+        ],
+        "rationale": "Separate principal authorization binds every required detail, invalidates on changes and is checked immediately before dispatch without rebuilding."
+      },
+      {
+        "criterion_id": "C19",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-84510ef4d5fe",
+          "REQ-70cc26e44095",
+          "REQ-ac41f72c9167",
+          "W05-AC05",
+          "W05-AC07",
+          "W08-AC06"
+        ],
+        "rationale": "All outcomes, explicit registration evidence, unknown-timeout handling, documented resolution and package/authorization provenance are retained."
+      },
+      {
+        "criterion_id": "C20",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-9083a686884e",
+          "W01-AC07",
+          "W04-AC03",
+          "W05-AC02",
+          "W03-AC06"
+        ],
+        "rationale": "Role boundaries are mapped and enforced at operation handlers; the service records external resolution without adjudicating ownership."
+      },
+      {
+        "criterion_id": "C21",
+        "verdict": "PASS",
+        "evidence_references": [
+          "W02-AC01",
+          "W02-AC03",
+          "W02-AC04",
+          "W02-AC06",
+          "W02-AC09",
+          "W04-AC04",
+          "W04-AC05"
+        ],
+        "rationale": "Proposed acceptance cases preserve every supplied numerical, geometry, adjacency, staleness and unresolved-P-7 result."
+      },
+      {
+        "criterion_id": "C22",
+        "verdict": "PASS",
+        "evidence_references": [
+          "architecture",
+          "W01-AC09",
+          "W02-AC11",
+          "W03-AC08",
+          "W04-AC08",
+          "W05-AC10"
+        ],
+        "rationale": "Durable records, version relationships and proposed restart comparisons cover the required evidence and review/submission history."
+      },
+      {
+        "criterion_id": "C23",
+        "verdict": "PASS",
+        "evidence_references": [
+          "W01",
+          "W02",
+          "architecture",
+          "dependency_graph",
+          "independent_local_progress"
+        ],
+        "rationale": "Point validation and geometry are independently actionable local branches, and required downstream dependency links exist. Excess blocker scope fails C13."
+      },
+      {
+        "criterion_id": "C24",
+        "verdict": "PASS",
+        "evidence_references": [
+          "ASM-119dba445426",
+          "ASM-2b41eb962d73",
+          "ASM-2cd372b1da3e",
+          "ASM-3539a5fdc7c9",
+          "ASM-c4ac2771aa6e",
+          "REQ-f329556281ff",
+          "acceptance_lifecycle"
+        ],
+        "rationale": "Reversible choices remain explicitly unapproved assumptions, and product verification remains proposed without implementation or execution claims."
+      },
+      {
+        "criterion_id": "C25",
+        "verdict": "PASS",
+        "evidence_references": [
+          "REQ-87aae0308090",
+          "W05",
+          "W05-AC08"
+        ],
+        "rationale": "The overview description is intelligible, with no identifiable minor presentation defect."
+      }
+    ],
+    "critical_failures": [
+      "P-7's unresolved dispute blocks the entire shared review increment W04 and its dependants, preventing unrelated parcel review despite the source's explicit narrow blocker scope.",
+      "W05 independently carries the unresolved recovery-policy blocker even though its local authorization, history, overview and refusal safeguards expressly require no positive recovery decision. The graph and manifest contradict those local completion boundaries."
+    ],
+    "minor_findings": [
+      "W08's model justification says 17 estimated coder turns match capacity, while the decision rows report capacity of 16 and the supplied aggregate assessment records a one-turn shortfall. This is a planning-feasibility inconsistency outside the frozen business criteria."
+    ],
+    "reproduction": [
+      "Inspect dependency_graph and pipeline_manifest: W04 carries specification:ISS-f1ee3142ec14, while W05 carries specification:ISS-bf95e4f6bde7.",
+      "Inspect independent_local_progress: with W01, W02 and W03 hypothetically completed, the ready set is empty although unrelated parcel review should remain available.",
+      "Compare those enforced blockers with W04-AC04, W05-AC11 and their increment preconditions, which explicitly preserve local work without those resolutions.",
+      "Compare model_decisions estimates totaling 17 with the reported remaining development capacity of 16. These are artifact inspections, not executed product tests."
+    ],
+    "remediation": [
+      "Scope the P-7 resolution blocker to the conditional positive P-7 branch, retaining its approval/submission refusal within the shared review workflow.",
+      "Scope unresolved positive recovery decisions to W08 while preserving W05's local history, overview and refusal safeguards.",
+      "Regenerate consistent graph and manifest blockers, then verify that W04 and W05 become actionable after their ordinary dependencies complete without resolving P-7 or recovery policy.",
+      "Reconcile the aggregate turn estimate and available capacity without silently dropping mandatory scope or treating estimates as execution authorization."
+    ],
+    "explanation": "23 of 24 critical criteria and 24 of 25 total criteria pass. The total fraction exceeds 90%, but C13 fails, so the all-critical requirement is unmet. The ten reported objective checks do not establish correct blocker scope: their own scheduler evidence exposes the defect. This verdict assesses planning artifacts only."
+  },
+  "your_independent_diagnosis": {
+    "diagnosis": {
+      "classification": "mixed",
+      "original_FAIL_justified": true,
+      "critical_findings": [
+        "The earliest observable semantic mismatch is in interpretation granularity: blocking issues reference requirements combining condition-dependent outcomes with independently implementable safeguards. Architecture then links those requirements to shared local workflows, producing the excessive blockers.",
+        "validate_architecture deterministically blocks every node whose requirement_ids intersect a blocking issue's affected_requirement_ids. The supplied graph follows that rule; no transport corruption or erroneous execution of that rule is demonstrated.",
+        "Architecture prose promises independent local completion, but its structured references produce contrary eligibility. Those promises cannot override enforced blockers.",
+        "A separate deterministic context mismatch is demonstrated: model planning receives capacity 17, while decision validation uses remaining-1, or 16."
+      ],
+      "earliest_failure_stage": "Requirement interpretation and issue-to-requirement scope, subsequently carried into architecture references. The separate budget mismatch originates in model-stage request construction.",
+      "deterministic_code_defect_demonstrated": true,
+      "implementation_change_justified": true,
+      "smallest_generic_remediation": "Limit the proven implementation correction to computing post-planning capacity once and exposing that same value to model selection, validation and aggregate reporting, with focused fresh-call and replay checks. For the semantic failure, provide generic guidance distinguishing blocked business outcomes from independently implementable safeguards in structured scope. No change to conservative blocker propagation is justified by this evidence.",
+      "budget_finding": "The model's total estimate of 17 matches the actual request value of 17. Its claim of matching available capacity therefore cannot fairly be diagnosed solely as model arithmetic error. The pipeline subsequently validates against 16 and reports a one-turn shortfall. Align the advertised and validated accounting; retain the aggregate warning and absence of execution authorization. No aggregate rejection rule is established by the supplied code.",
+      "explanation": "The original semantic FAIL remains justified because unrelated review and local safeguards become ineligible. The supplied source shows how the mismatch propagates, but does not establish a defect in the validator's conservative intersection rule or reveal private Planner reasoning. Semantic production changes would require a better specified scope contract and further evidence. The demonstrated implementation defect is limited to budget context accounting; correcting it would not resolve the semantic FAIL."
+    },
+    "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+    "turn_id": "01a17b78-0db0-7763-8682-22a654d4390c",
+    "input_sha256": "069504de278137b64ec751543b1b13de00e4ef7191255ffeb960adf94671c25b",
+    "original_I_verdict": "FAIL"
+  },
+  "frozen_10_objective_checks": {
+    "evaluation_id": "phase3c3-heldout-i-v1",
+    "plan_sha256": "b0199c77c21c1e0b66ffd2f2b6217a011c95760bb87f0cc4957b930233c5a722",
+    "verdict": "PASS",
+    "checks": [
+      {
+        "check": "frozen_source_and_rubric",
+        "verdict": "PASS",
+        "evidence": "phase3c3-heldout-i-v1"
+      },
+      {
+        "check": "traceable_source",
+        "verdict": "PASS",
+        "evidence": "d481313540b5f2959c4a8e10308262d08b920bb6dd8a33918ff48094ada91211"
+      },
+      {
+        "check": "mandatory_requirement_coverage",
+        "verdict": "PASS",
+        "evidence": {
+          "requirements": 35,
+          "covered": 35
+        }
+      },
+      {
+        "check": "existing_manifest_and_dag",
+        "verdict": "PASS",
+        "evidence": [
+          "W01",
+          "W02",
+          "W03",
+          "W04",
+          "W05",
+          "W06",
+          "W07",
+          "W08"
+        ]
+      },
+      {
+        "check": "blocked_and_external_branches_ineligible",
+        "verdict": "PASS",
+        "evidence": {
+          "blocked": [
+            "W04",
+            "W05",
+            "W06",
+            "W07",
+            "W08"
+          ],
+          "external": [
+            "W07",
+            "W08"
+          ],
+          "reachable_scheduler_states": 6
+        }
+      },
+      {
+        "check": "independent_local_progress",
+        "verdict": "PASS",
+        "evidence": {
+          "first": "W01",
+          "eventually_actionable_without_resolving_blockers": [
+            "W01",
+            "W02",
+            "W03"
+          ],
+          "independent_pairs": [
+            [
+              "W01",
+              "W02"
+            ],
+            [
+              "W01",
+              "W03"
+            ]
+          ],
+          "states": [
+            {
+              "hypothetically_completed": [],
+              "ready": [
+                "W01",
+                "W02"
+              ]
+            },
+            {
+              "hypothetically_completed": [
+                "W02"
+              ],
+              "ready": [
+                "W01",
+                "W03"
+              ]
+            },
+            {
+              "hypothetically_completed": [
+                "W02",
+                "W03"
+              ],
+              "ready": [
+                "W01"
+              ]
+            },
+            {
+              "hypothetically_completed": [
+                "W01",
+                "W02",
+                "W03"
+              ],
+              "ready": []
+            },
+            {
+              "hypothetically_completed": [
+                "W01",
+                "W02"
+              ],
+              "ready": [
+                "W03"
+              ]
+            },
+            {
+              "hypothetically_completed": [
+                "W01"
+              ],
+              "ready": [
+                "W02"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "check": "contract_lifecycle",
+        "verdict": "PASS",
+        "evidence": {
+          "contracts": 8,
+          "proposed_criteria": 86
+        }
+      },
+      {
+        "check": "typed_catalog_validated_model_assignments",
+        "verdict": "PASS",
+        "evidence": [
+          {
+            "task": "W01",
+            "model": "gpt-6-luna",
+            "effort": "medium"
+          },
+          {
+            "task": "W02",
+            "model": "gpt-6.1-sol",
+            "effort": "high"
+          },
+          {
+            "task": "W03",
+            "model": "gpt-6-luna",
+            "effort": "low"
+          },
+          {
+            "task": "W04",
+            "model": "gpt-6-luna",
+            "effort": "high"
+          },
+          {
+            "task": "W05",
+            "model": "gpt-6-luna",
+            "effort": "high"
+          },
+          {
+            "task": "W06",
+            "model": "gpt-6-luna",
+            "effort": "medium"
+          },
+          {
+            "task": "W07",
+            "model": "gpt-6-luna",
+            "effort": "medium"
+          },
+          {
+            "task": "W08",
+            "model": "gpt-6-luna",
+            "effort": "medium"
+          }
+        ]
+      },
+      {
+        "check": "restart_reconstruction_without_inference",
+        "verdict": "PASS",
+        "evidence": {
+          "counter_before": 98,
+          "counter_after": 98,
+          "history_rows": 1,
+          "cli": {
+            "ready": [
+              "W01",
+              "W02"
+            ],
+            "first_actionable": "W01",
+            "completed": [],
+            "execution_authorized": false,
+            "protected_tests_required": true,
+            "blockers": {
+              "W01": [],
+              "W02": [],
+              "W03": [],
+              "W04": [
+                "specification:ISS-f1ee3142ec14"
+              ],
+              "W05": [
+                "specification:ISS-bf95e4f6bde7"
+              ],
+              "W06": [
+                "specification:ISS-f1ee3142ec14"
+              ],
+              "W07": [
+                "authorization",
+                "resource:cadastral_agency_account",
+                "resource:cadastral_agency_credentials",
+                "resource:cadastral_agency_endpoint",
+                "resource:cadastral_agency_firm_permissions",
+                "specification:ISS-34ee2e748ce4",
+                "specification:ISS-69a8509a76a6"
+              ],
+              "W08": [
+                "authorization",
+                "resource:cadastral_agency_account",
+                "resource:cadastral_agency_credentials",
+                "resource:cadastral_agency_endpoint",
+                "resource:cadastral_agency_firm_permissions",
+                "specification:ISS-34ee2e748ce4",
+                "specification:ISS-69a8509a76a6",
+                "specification:ISS-bf95e4f6bde7"
+              ]
+            },
+            "plan_sha256": "b0199c77c21c1e0b66ffd2f2b6217a011c95760bb87f0cc4957b930233c5a722",
+            "plan_approval": "PROPOSED",
+            "source_sha256": "d481313540b5f2959c4a8e10308262d08b920bb6dd8a33918ff48094ada91211"
+          }
+        }
+      },
+      {
+        "check": "no_product_implementation_or_authorized_effects",
+        "verdict": "PASS",
+        "evidence": {
+          "execution_authorized": false,
+          "business_product_tests": "not generated/protected/executed",
+          "workspace_python_files": 0
+        }
+      }
+    ],
+    "checks_run": 10,
+    "checks_passed": 10,
+    "semantic_verdict": "pending independent frozen-rubric review"
+  },
+  "actual_contract_batching": {
+    "verdict": "PASS",
+    "batches": [
+      {
+        "phase": "plan-contracts-b1",
+        "complete_requirements_exact": true,
+        "source_hash_exact": true,
+        "global_requirements_exact": true,
+        "submitted_prompt_exact": true,
+        "prompt_characters": 51736,
+        "within_preflight_limit": true,
+        "exact_batch_task_coverage": true,
+        "input_sha256": "5ebc403dce2f22990008d21d7a6aee2c6ff2f5c0c07f62bb2d01e27d66f39917",
+        "prompt_sha256": "ea6c145ab5f96303ba2f9df6200a5194a93bf83c53ff26e1283cc3715dd631a3",
+        "response_sha256": "23134476e3feec3e27a71a043385eb6c59ca8e866fd25906ee43464f00b50fe1"
+      },
+      {
+        "phase": "plan-contracts-b2",
+        "complete_requirements_exact": true,
+        "source_hash_exact": true,
+        "global_requirements_exact": true,
+        "submitted_prompt_exact": true,
+        "prompt_characters": 51655,
+        "within_preflight_limit": true,
+        "exact_batch_task_coverage": true,
+        "input_sha256": "3118e499c2761e21b810d33c22d02f62ba7c4bfb155d0ddb857f834ec457e2bc",
+        "prompt_sha256": "c6313f544affeceebb99d7b0969d84c23f589b772dea67ca0441fa7f89c349c4",
+        "response_sha256": "212f9d7dc0d8c64b4110f38dcbbd2b359e47e073340c0ff704ba0de9affa90df"
+      },
+      {
+        "phase": "plan-contracts-b3",
+        "complete_requirements_exact": true,
+        "source_hash_exact": true,
+        "global_requirements_exact": true,
+        "submitted_prompt_exact": true,
+        "prompt_characters": 49842,
+        "within_preflight_limit": true,
+        "exact_batch_task_coverage": true,
+        "input_sha256": "7664f610a489acfe36df476671c6a79fd7be172c1f5bb5c916b413edd278b6b8",
+        "prompt_sha256": "fe0f28f72d2b16d71a38415b08f7a23c2cbbd407430bb9c8ee98f0aa2a030ded",
+        "response_sha256": "88eebaa44f9ef2f295bf94cba753c3ec83ade48135480b1a460daf745691a4f0"
+      }
+    ],
+    "all_increment_fields_and_order_exact": true,
+    "merged_contracts_exactly_equal_all_batch_responses": true,
+    "unique_criterion_ids": true,
+    "merged_contracts": 8,
+    "proposed_criteria": 86,
+    "aggregate_existing_validation": {
+      "criteria_count": 86,
+      "contract_count": 8,
+      "test_lifecycle": "not_generated",
+      "tests_protected": false,
+      "tests_executed": false,
+      "observed_results": [],
+      "external_verification_required": [
+        "W07",
+        "W08"
+      ],
+      "readiness": {
+        "order": [
+          "W01",
+          "W02",
+          "W03",
+          "W04",
+          "W05",
+          "W06",
+          "W07",
+          "W08"
+        ],
+        "blockers": {
+          "W01": [],
+          "W02": [],
+          "W03": [
+            "dependency:W02"
+          ],
+          "W04": [
+            "dependency:W01",
+            "dependency:W02",
+            "dependency:W03",
+            "specification:ISS-f1ee3142ec14"
+          ],
+          "W05": [
+            "dependency:W04",
+            "specification:ISS-bf95e4f6bde7"
+          ],
+          "W06": [
+            "dependency:W03",
+            "dependency:W04",
+            "specification:ISS-f1ee3142ec14"
+          ],
+          "W07": [
+            "authorization",
+            "dependency:W05",
+            "resource:cadastral_agency_account",
+            "resource:cadastral_agency_credentials",
+            "resource:cadastral_agency_endpoint",
+            "resource:cadastral_agency_firm_permissions",
+            "specification:ISS-34ee2e748ce4",
+            "specification:ISS-69a8509a76a6"
+          ],
+          "W08": [
+            "authorization",
+            "dependency:W05",
+            "dependency:W07",
+            "resource:cadastral_agency_account",
+            "resource:cadastral_agency_credentials",
+            "resource:cadastral_agency_endpoint",
+            "resource:cadastral_agency_firm_permissions",
+            "specification:ISS-34ee2e748ce4",
+            "specification:ISS-69a8509a76a6",
+            "specification:ISS-bf95e4f6bde7"
+          ]
+        },
+        "ready": [
+          "W01",
+          "W02"
+        ],
+        "completed": [],
+        "coverage": [
+          "REQ-01b71e332251",
+          "REQ-06f39dd5212f",
+          "REQ-132321705dfa",
+          "REQ-14adb8842a0b",
+          "REQ-2162c35b0888",
+          "REQ-27ff0d0836a6",
+          "REQ-3e5173a00d0d",
+          "REQ-4449728ccdd6",
+          "REQ-52dd2c9db9ce",
+          "REQ-58714f995712",
+          "REQ-66e378507287",
+          "REQ-6b1293d2c9e9",
+          "REQ-6e69c0b6dff5",
+          "REQ-6e96437eded6",
+          "REQ-70cc26e44095",
+          "REQ-81260edf4501",
+          "REQ-81d8c8fd191a",
+          "REQ-84510ef4d5fe",
+          "REQ-87aae0308090",
+          "REQ-89f294bcc3c3",
+          "REQ-9083a686884e",
+          "REQ-a1663f1f646d",
+          "REQ-a8a1d06da89f",
+          "REQ-abbdba73eef5",
+          "REQ-ac41f72c9167",
+          "REQ-ade48752539e",
+          "REQ-c7c3d6e37689",
+          "REQ-d9b9924548fd",
+          "REQ-db5c1ef22fe5",
+          "REQ-e91a15d726c9",
+          "REQ-ea69acf66fc4",
+          "REQ-f11cfd15cef9",
+          "REQ-f19104d3a44e",
+          "REQ-f329556281ff",
+          "REQ-fecc144ee522"
+        ],
+        "execution_authorized": false,
+        "states": {
+          "W01": "ready",
+          "W02": "ready",
+          "W03": "dependency_blocked",
+          "W04": "specification_blocked",
+          "W05": "specification_blocked",
+          "W06": "specification_blocked",
+          "W07": "specification_blocked",
+          "W08": "specification_blocked"
+        },
+        "first_actionable": "W01",
+        "readiness_meaning": "Ready to prepare protected tests and request execution authorization, not permission to run a Coder."
+      }
+    },
+    "no_business_implementation_or_tests_executed": true
+  },
+  "actual_SDK_isolation_audit": {
+    "verdict": "PASS",
+    "submitted_contexts": [
+      {
+        "phase": "plan-architecture",
+        "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+        "role": "planner",
+        "profile_valid": true,
+        "network_disabled": true,
+        "reading_and_external_surfaces_disabled": true,
+        "automatic_project_docs_disabled": true,
+        "all_frozen_roots_denied": true,
+        "no_evaluator_key_fields_in_context": true,
+        "input_file_sha256": "5e24dfd96ff8489ba2b4f443bf41d10f4e7103e0c1ec3fbc6a1efa81d913f5d1",
+        "receipt_sha256": "724d19a3b0ac40e3982a86aac09a358f2cbfafa80fdd48b8a55fa72e23fe97d6"
+      },
+      {
+        "phase": "plan-contracts-b1",
+        "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+        "role": "planner",
+        "profile_valid": true,
+        "network_disabled": true,
+        "reading_and_external_surfaces_disabled": true,
+        "automatic_project_docs_disabled": true,
+        "all_frozen_roots_denied": true,
+        "no_evaluator_key_fields_in_context": true,
+        "input_file_sha256": "5ebc403dce2f22990008d21d7a6aee2c6ff2f5c0c07f62bb2d01e27d66f39917",
+        "receipt_sha256": "11ffddbf6c4bd76a5af935b5adb1753eeb1f148a4991b89f48b9c0de460e2cb7"
+      },
+      {
+        "phase": "plan-contracts-b2",
+        "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+        "role": "planner",
+        "profile_valid": true,
+        "network_disabled": true,
+        "reading_and_external_surfaces_disabled": true,
+        "automatic_project_docs_disabled": true,
+        "all_frozen_roots_denied": true,
+        "no_evaluator_key_fields_in_context": true,
+        "input_file_sha256": "3118e499c2761e21b810d33c22d02f62ba7c4bfb155d0ddb857f834ec457e2bc",
+        "receipt_sha256": "da39dcd30d3fe29b92c18635f0f2a3bf46dff4978b8759452c6f48901ffe95b8"
+      },
+      {
+        "phase": "plan-contracts-b3",
+        "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+        "role": "planner",
+        "profile_valid": true,
+        "network_disabled": true,
+        "reading_and_external_surfaces_disabled": true,
+        "automatic_project_docs_disabled": true,
+        "all_frozen_roots_denied": true,
+        "no_evaluator_key_fields_in_context": true,
+        "input_file_sha256": "7664f610a489acfe36df476671c6a79fd7be172c1f5bb5c916b413edd278b6b8",
+        "receipt_sha256": "63c7c1a0a18b4349d07314ffcd227eb2631d84d277f4463791346747bc82690b"
+      },
+      {
+        "phase": "plan-increments",
+        "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+        "role": "planner",
+        "profile_valid": true,
+        "network_disabled": true,
+        "reading_and_external_surfaces_disabled": true,
+        "automatic_project_docs_disabled": true,
+        "all_frozen_roots_denied": true,
+        "no_evaluator_key_fields_in_context": true,
+        "input_file_sha256": "fae4e68a7e000fbb7553ac84172e92e1e4c606f3916cfbd3fcbcfd88c5a39659",
+        "receipt_sha256": "c1465c9d21fc413a23a9a40f9bb56da7cc12752be2d124d6892bd3936f022058"
+      },
+      {
+        "phase": "plan-models",
+        "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+        "role": "planner",
+        "profile_valid": true,
+        "network_disabled": true,
+        "reading_and_external_surfaces_disabled": true,
+        "automatic_project_docs_disabled": true,
+        "all_frozen_roots_denied": true,
+        "no_evaluator_key_fields_in_context": true,
+        "input_file_sha256": "31722aa6cc4705b938d04570ac763fe778e6231493eb871f24643af12d1becc7",
+        "receipt_sha256": "f30ad37f6e4c5726022dc5522df8c8a2676f6ea42c3b637e4d6c96dada620cde"
+      },
+      {
+        "phase": "review-analysis",
+        "thread_id": "01a17b58-ada7-76b2-ac41-da6bfe646fec",
+        "role": "reviewer",
+        "profile_valid": true,
+        "network_disabled": true,
+        "reading_and_external_surfaces_disabled": true,
+        "automatic_project_docs_disabled": true,
+        "all_frozen_roots_denied": true,
+        "no_evaluator_key_fields_in_context": true,
+        "input_file_sha256": "56b1a91987be5fea15e0767870b15a9c4ba728a7eca4ca32c6d7b1711aa0edcf",
+        "receipt_sha256": "cd176b40ffa84d11c24383d864f00551ed5fc0baf01c7304b95abd4e17b82a9b"
+      },
+      {
+        "phase": "understand",
+        "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+        "role": "planner",
+        "profile_valid": true,
+        "network_disabled": true,
+        "reading_and_external_surfaces_disabled": true,
+        "automatic_project_docs_disabled": true,
+        "all_frozen_roots_denied": true,
+        "no_evaluator_key_fields_in_context": true,
+        "input_file_sha256": "50048525eb1a168c6ccac5c345916775db7886759014ee2f9cbfd6648a9d3bc6",
+        "receipt_sha256": "d5022668fba4fcc34479e6fdf7e2d8d7efc5cc112f6daca56f4c1c65539f0b68"
+      }
+    ],
+    "sessions": [
+      {
+        "project_id": "phase3c3-author",
+        "role": "tester",
+        "thread_id": "01a1746f-48e4-7b53-a930-16be42bd2f5e"
+      },
+      {
+        "project_id": "phase3c3-heldout-i",
+        "role": "planner",
+        "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4"
+      },
+      {
+        "project_id": "phase3c3-heldout-i",
+        "role": "reviewer",
+        "thread_id": "01a17b58-ada7-76b2-ac41-da6bfe646fec"
+      },
+      {
+        "project_id": "phase3c3-review-i",
+        "role": "reviewer",
+        "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846"
+      }
+    ],
+    "author_and_evaluation_reviewer_separate_from_Pello_roles": true,
+    "private_key_unchanged": true,
+    "private_key_fields_not_supplied": true
+  },
+  "review_transport": {
+    "protocol": {
+      "at": "2026-10-27T03:39:56.620201+00:00",
+      "status": "REVIEW_TRANSPORT_PREPARED_NOT_A_SEMANTIC_VERDICT",
+      "original_frozen_grading_source_unchanged": true,
+      "grading_text_equal_after_two_transport_only_substitutions": true,
+      "original_rubric_hash_unchanged": "2fa06bf103a54a03ab57148fcdce47bcdb7e25a1d92388ea412332e010150735",
+      "plan_sha256": "b0199c77c21c1e0b66ffd2f2b6217a011c95760bb87f0cc4957b930233c5a722",
+      "all_evidence_exact_round_trip": true,
+      "frozen_thresholds_unchanged": {
+        "all_critical": true,
+        "total_pass_fraction": 0.9
+      },
+      "actual_capacity_preflight": "heldout-i-semantic-capacity-preflight-v3.json",
+      "no_SDK_charges_for_capacity_rejections": true,
+      "no_Planner_reexecution_or_Pello_implementation_change": true,
+      "provenance": "Only evaluation-review encoding changed after complete planning output, before semantic review. Original grading source and preflights retained; no criterion or evidence selected, reclassified or removed. Independent final Reviewer must inspect this transport before any closure acceptance.",
+      "hashes": {
+        "pack_review_i_transport.py": "79ade964cdb14862064596cb7a94ee407ce6ff37322bbda8866deb9fb035c306",
+        "review_semantics_i_transport.py": "e2a56b08019c1dd52c6c49ba3942d59c66cbf28f852a0aa4dff3003420ded157",
+        "heldout-i-semantic-capacity-preflight-v3.json": "9c6967fe3f57e58e84541c5cf8e6ffb9d76d0b260fe6ad9c67a1e71a936447bf"
+      }
+    },
+    "preflight": {
+      "at": "2026-10-27T03:39:14.111800+00:00",
+      "canonical_packet_characters": 235746,
+      "packed_packet_characters": 194120,
+      "semantic_chunks": [
+        34000,
+        34000,
+        34000,
+        34000,
+        34000,
+        24120
+      ],
+      "semantic_calls": 7,
+      "code_review_calls": 2,
+      "closure_review_reserve_calls": 2,
+      "global_available": 16,
+      "reviewer_project_available": 11,
+      "complete_success_capacity": true,
+      "exact_round_trip": true,
+      "rubric_or_plan_changed": false,
+      "Pello_implementation_changed": false,
+      "frozen_original_driver_sha256": "79b06f5399b8e3694b0f224e22bc78e34f3397cae41944a58051c7b80e63433b",
+      "transport_driver_sha256": "e2a56b08019c1dd52c6c49ba3942d59c66cbf28f852a0aa4dff3003420ded157",
+      "review_transport_sha256": "79ade964cdb14862064596cb7a94ee407ce6ff37322bbda8866deb9fb035c306",
+      "baseline_capacity_rejection": "heldout-i-semantic-capacity-preflight.json; no SDK reservation",
+      "only_driver_difference": "Import the reversible review-only row/reference encoder and use 34000-character candidate parts. All actual requests still preflight <=45000 characters. Same grading logic, criterion IDs, citation validation, critical/90% gates, and original source/rubric/plan.",
+      "request_characters": [
+        36063,
+        35920,
+        35456,
+        35829,
+        35701,
+        27330
+      ]
+    },
+    "complete_review_only_encoder_source": "\"\"\"Reuse exact source references and existing row transport for review only.\"\"\"\nimport copy,json\nfrom pack_review import pack_review as base_pack\n\ndef pack_review(packet):\n    packed,aliases=base_pack(packet)\n    original=copy.deepcopy(packed)\n    base_key='pello_exact_architecture_node_ref'\n    assert base_key not in json.dumps(packed,ensure_ascii=False)\n    factored=copy.deepcopy(packed)\n    if 'functional_increments' in factored and 'architecture' in factored:\n        nodes={n['task_id']:(index,n) for index,n in enumerate(factored['architecture']['nodes'])}\n        for index,inc in enumerate(factored['functional_increments']['increments']):\n            position,node=nodes[inc['task_id']]\n            assert all(inc[k]==v for k,v in node.items())\n            factored['functional_increments']['increments'][index]={base_key:position,**{k:v for k,v in inc.items() if k not in node}}\n    markers={'pello_table_columns','pello_table_rows','pello_context_encoding'}\n    def conflict(v):\n        if isinstance(v,dict):return bool(markers.intersection(v)) or any(conflict(x) for x in v.values())\n        return isinstance(v,list) and any(conflict(x) for x in v)\n    assert not conflict(factored)\n    def table(v):\n        if isinstance(v,list):\n            if len(v)>1 and all(isinstance(x,dict) for x in v) and all(list(x)==list(v[0]) for x in v):\n                columns=list(v[0]);return {'pello_table_columns':columns,'pello_table_rows':[[table(x[k]) for k in columns] for x in v]}\n            return [table(x) for x in v]\n        if isinstance(v,dict):return {k:table(x) for k,x in v.items()}\n        return v\n    def untab(v):\n        if isinstance(v,dict):\n            if set(v)=={'pello_table_columns','pello_table_rows'}:\n                return [{k:untab(x) for k,x in zip(v['pello_table_columns'],row)} for row in v['pello_table_rows']]\n            return {k:untab(x) for k,x in v.items()}\n        if isinstance(v,list):return [untab(x) for x in v]\n        return v\n    encoded=table(factored)\n    encoded['pello_context_encoding']='Object lists use pello_table_columns and pello_table_rows: every row is an object with those ordered keys, recursively reconstructed unchanged. An increment with pello_exact_architecture_node_ref=N inherits ALL unchanged fields of architecture.nodes[N] (zero-based), then adds its supplied fields. Equality of every inherited field was asserted before encoding. No fact, criterion, severity, threshold, contract or scope was removed. This is transport only; use canonical evidence IDs/aliases in the verdict.'\n    restored=copy.deepcopy(encoded);restored.pop('pello_context_encoding');restored=untab(restored)\n    if 'functional_increments' in restored and 'architecture' in restored:\n        for index,inc in enumerate(restored['functional_increments']['increments']):\n            position=inc.pop(base_key)\n            restored['functional_increments']['increments'][index]={**restored['architecture']['nodes'][position],**inc}\n    assert restored==original\n    assert json.dumps(restored,ensure_ascii=False,sort_keys=True)==json.dumps(original,ensure_ascii=False,sort_keys=True)\n    return encoded,aliases\n",
+    "complete_original_alias_encoder_source": "\"\"\"Lossless presentation packing for an independent review, not product planning.\"\"\"\nimport copy,re\n\ndef pack_review(packet):\n    original=copy.deepcopy(packet);p=copy.deepcopy(packet);source=p['original_specification']\n    for criterion in p['frozen_rubric']:\n        quote=criterion.pop('source_quote')\n        start=source.index(quote) if quote else None\n        criterion['source_quote_ref']=None if start is None else {\n            'start_character':start,'end_character':start+len(quote),\n            'start_line':source[:start].count('\\n')+1,'end_line':source[:start+len(quote)].count('\\n')+1}\n    ids=sorted(x for x in p['valid_evidence_refs'] if re.match(r'^(REQ|SRC|ISS|ASM|ASS|AC)-',x))\n    aliases={value:f'E{index:03d}' for index,value in enumerate(ids,1)}\n    reverse={value:key for key,value in aliases.items()}\n    def walk(value,mapping):\n        if isinstance(value,str):return mapping.get(value,value)\n        if isinstance(value,list):return [walk(x,mapping) for x in value]\n        if isinstance(value,dict):return {mapping.get(k,k):walk(v,mapping) for k,v in value.items()}\n        return value\n    packed=walk(p,aliases)\n    packed['_reference_aliases']=reverse\n    packed['_context_encoding']='E### aliases refer exactly to IDs in _reference_aliases. Frozen rubric quotation strings are represented by exact character offsets and line ranges in the complete original_specification supplied once. Expected outcomes, failure conditions and severity are unchanged. Cite supplied evidence labels or aliases.'\n    restored=copy.deepcopy(packed);restored.pop('_reference_aliases');restored.pop('_context_encoding')\n    restored=walk(restored,reverse)\n    for criterion in restored['frozen_rubric']:\n        ref=criterion.pop('source_quote_ref')\n        criterion['source_quote']='' if ref is None else source[ref['start_character']:ref['end_character']]\n    assert restored==original,'Reviewer context packing must reconstruct every original field exactly'\n    return packed,reverse\n",
+    "note": "Only review encoding and candidate part size changed before first semantic review. Frozen original grading source unchanged; exact round trip and exact driver-text comparison verified. Source, rubric, Pello output and thresholds did not change. This did not rerun Planner."
+  },
+  "engineering_checkpoint": {
+    "at": "2026-10-27T04:04:06.823601+00:00",
+    "implementation_HEAD": "8e70f3ed7be79f91380095ce1334b2379915a40e",
+    "accepted_record": "model-capacity-correction/accepted-regression-checkpoint.json",
+    "engineering_only": true,
+    "phase3c3": "PARTIAL",
+    "overall_phase3c": "PARTIAL"
+  },
+  "engineering_acceptance": {
+    "status": "ACCEPTED_ENGINEERING_CORRECTION_ONLY",
+    "at": "2026-10-27T04:04:05.877352+00:00",
+    "HEAD_before_engineering_commit": "06a6cb6dbcc7892923e1d4c4b2fbf20db749cb00",
+    "scope": "Align model-selection advertised and validated post-reservation capacity, preserve new/legacy replay and fail before no-capacity reservation.",
+    "implementation_sha256": "40446024a5f93928762a040c013fd7f641b6e5bd214534d43c1bc4c3302c6e25",
+    "test_source_sha256": "ec344b774bd672c6c6b65a6c05c04a718ba44ab120638653428e5857a02e9844",
+    "review_sha256": "3f9d12dcb4e9e3cb2236fcfb00c7cb5ccdb2d20681193bec6add826acb4f7ff3",
+    "review": {
+      "verdict": "PASS",
+      "scope": "correct",
+      "correctness": "adequate",
+      "test_evidence": "pass",
+      "safety_and_preservation": "adequate",
+      "findings": [
+        "Fresh requests now advertise the same post-reservation capacity used by validation and aggregate reporting, and reject insufficient capacity before inference reservation.",
+        "Marked-context replay avoids double subtraction; legacy replay preserves its original payload and historical shortfall. Saved-artifact handling remains unchanged.",
+        "Supplied before/after transcripts demonstrate the defect and correction through controlled-engine Core/SQLite checks. Focused, protected and full regression results support the limited change.",
+        "The diff preserves validators, model policy and authorization boundaries. ParcelProof's semantic FAIL remains unresolved; real SDK efficacy and broader planning generalization remain unverified."
+      ],
+      "rationale": "The correction addresses the proven budget-context mismatch within its authorized scope. The supplied code and regression evidence support acceptance of this engineering change, without accepting the original plan or Phase 3C."
+    },
+    "regression": {
+      "command": [
+        "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tests_run": 261,
+      "tests_passed": 261,
+      "seconds": 261.297
+    },
+    "protected_C2_checks": 63,
+    "protected_new_checks": 4,
+    "historical_hashes": 1493,
+    "original_I_FAIL_unchanged": true,
+    "critical_semantic_scope_defect": "UNRESOLVED",
+    "fresh_held_out_after_implementation_change": "NOT_PERFORMED; insufficient authorized capacity for complete attempt",
+    "real_SDK_capacity_correction_efficacy": "UNVERIFIED",
+    "overall_phase3c": "PARTIAL"
+  },
+  "engineering_objective_proof": {
+    "C2_plan_digest": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+    "I_plan_digest_unchanged": "b0199c77c21c1e0b66ffd2f2b6217a011c95760bb87f0cc4957b930233c5a722",
+    "I_approval": "PROPOSED",
+    "counter_before": 106,
+    "counter_after": 106,
+    "unchanged_validator_converter_budget_ASTs": {
+      "validate_architecture": true,
+      "validate_increments": true,
+      "validate_contracts": true,
+      "manifest_from_contracts": true,
+      "validate_model_decision": true,
+      "model_budget_summary": true
+    },
+    "original_nine_FAILs": {
+      "a": "FAIL",
+      "b": "FAIL",
+      "c": "FAIL",
+      "d": "FAIL",
+      "e": "FAIL",
+      "f": "FAIL",
+      "g": "FAIL",
+      "h": "FAIL",
+      "i": "FAIL"
+    },
+    "actual_SDK_efficacy_of_capacity_fix": "UNVERIFIED; controlled-engine integration only",
+    "critical_semantic_blocker_defect": "UNRESOLVED; no source/graph/manifest edits or Validator weakening"
+  },
+  "full_regression": {
+    "command": [
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "exit_code": 0,
+    "tests_run": 261,
+    "tests_passed": 261,
+    "seconds": 261.297
+  },
+  "protected_C2": [
+    {
+      "batch": 1,
+      "exit_code": 0,
+      "tests_run": 6,
+      "source_hashes_intact": true,
+      "protected_copy_hash_intact": true
+    },
+    {
+      "batch": 2,
+      "exit_code": 0,
+      "tests_run": 10,
+      "source_hashes_intact": true,
+      "protected_copy_hash_intact": true
+    },
+    {
+      "batch": 3,
+      "exit_code": 0,
+      "tests_run": 11,
+      "source_hashes_intact": true,
+      "protected_copy_hash_intact": true
+    },
+    {
+      "batch": 4,
+      "exit_code": 0,
+      "tests_run": 8,
+      "source_hashes_intact": true,
+      "protected_copy_hash_intact": true
+    },
+    {
+      "batch": 5,
+      "exit_code": 0,
+      "tests_run": 13,
+      "source_hashes_intact": true,
+      "protected_copy_hash_intact": true
+    },
+    {
+      "batch": 6,
+      "exit_code": 0,
+      "tests_run": 15,
+      "source_hashes_intact": true,
+      "protected_copy_hash_intact": true
+    }
+  ],
+  "new_protected_copy": {
+    "command": [
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "runtime/phase3c/protected/3c3-model-capacity",
+      "-p",
+      "test_*.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "tests_run": 4,
+    "tests_passed": 4,
+    "overlap_complete_regression": true
+  },
+  "integrity": {
+    "historical_hashes_checked": 1493,
+    "historical_hashes_matching": 1493,
+    "mismatches": [],
+    "first_28_sdk_operation_rows_unchanged": true,
+    "new_protected_test_sources": [
+      {
+        "file": "tests\\test_planning_isolation.py",
+        "matches": true
+      },
+      {
+        "file": "tests\\test_blind_permissions.py",
+        "matches": true
+      },
+      {
+        "file": "tests\\test_planning_context_budget.py",
+        "matches": true
+      },
+      {
+        "file": "tests\\test_authorization_schema_contract.py",
+        "matches": true
+      },
+      {
+        "file": "tests\\test_review_source_references.py",
+        "matches": true
+      },
+      {
+        "file": "tests\\test_architecture_schema_contract.py",
+        "matches": true
+      },
+      {
+        "file": "tests\\test_planning_context_transport.py",
+        "matches": true
+      },
+      {
+        "file": "tests\\test_contract_context_batches.py",
+        "matches": true
+      },
+      {
+        "file": "tests\\test_analysis_review_transport.py",
+        "matches": true
+      },
+      {
+        "file": "tests\\test_architecture_validation_recovery.py",
+        "matches": true
+      },
+      {
+        "file": "tests\\test_architecture_recovery_ledger.py",
+        "matches": true
+      },
+      {
+        "file": "tests\\test_model_capacity_context.py",
+        "matches": true
+      }
+    ],
+    "frozen_objective_script_intact": true,
+    "sqlite_integrity": "ok",
+    "checkpoint_commits": [
+      {
+        "project_id": "phase3c-3c1-live",
+        "phase": "analyzed",
+        "commit_sha": "6fd63ab36f78427761b9c7223ddd4c268d2f5ce2",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c-3c1-live",
+        "phase": "analysis-accepted",
+        "commit_sha": "a574565805fac4273898005857fd902705b9d996",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c-3c1-live",
+        "phase": "analysis-correction-r2",
+        "commit_sha": "7dcc2f6ab3e9f3baf857e689e9da14efd5c91edf",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c-3c1-live",
+        "phase": "analysis-accepted-r2",
+        "commit_sha": "da061177e631405f1325448b8250c8f7dd9ba3f9",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "phase": "analyzed",
+        "commit_sha": "dbc97efb1beabc593f8e151aa8e34a27ad94496a",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "phase": "analysis-accepted",
+        "commit_sha": "db0aa72a49db9218d0d310c66d17a8a9618d08ce",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "phase": "analysis-manifest-integrity-correction",
+        "commit_sha": "9c168b2f7f7e0b7b4fd2aa682c308794e766250a",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "phase": "3c2-b1",
+        "commit_sha": "a5238c13a829a26977e7206539b12e06daaecf9b",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "phase": "3c2-b2",
+        "commit_sha": "57dbbbef309de34ca034ca85f1ed6558c34c098c",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "phase": "3c2-b3",
+        "commit_sha": "1b0335c77cc951dfe9172ec70fe409cc0fdec34a",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "phase": "3c2-b4",
+        "commit_sha": "e41e338c9efe85c6d3cf6fba488271fc4867a827",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "phase": "3c2-b5",
+        "commit_sha": "41e0ab60b12fcefcea9e96e7651bb76a32125118",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "phase": "plan-accepted",
+        "commit_sha": "e931fecf1966936dbc53f0f6514d2fb0de834f6a",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c-3c1-live-r2",
+        "phase": "3c2-b6",
+        "commit_sha": "5c4c5f908b68f299c3e838f2a8373bbb514e4494",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c3-heldout-a",
+        "phase": "analyzed",
+        "commit_sha": "ebe1fe744594fb0fbb2c7fccb8fd3231684f821b",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c3-heldout-c",
+        "phase": "analyzed",
+        "commit_sha": "21ff9a6eaee96c385e65d36feb2a9ae24445c1bc",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c3-heldout-d",
+        "phase": "analyzed",
+        "commit_sha": "7f39f75fb87b0fbe557231a0dc7816747f1cf355",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c3-heldout-d",
+        "phase": "analysis-accepted",
+        "commit_sha": "55f88b0e11b942bb14a39e8977402d618daffefd",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c3-heldout-e",
+        "phase": "analyzed",
+        "commit_sha": "87420c5884af060e9fbc0f867de63f2715808531",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c3-heldout-e",
+        "phase": "analysis-accepted",
+        "commit_sha": "910fcfcdcfead7c541d3c52f6098bcfe3e3607aa",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c3-heldout-f",
+        "phase": "analyzed",
+        "commit_sha": "ae3110871a3be37163f9b761d663c9cba1ee4028",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c3-heldout-f",
+        "phase": "analysis-accepted",
+        "commit_sha": "d0788eeb545ffa469b995e46ee4be82193f80f9e",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c3-heldout-g",
+        "phase": "analyzed",
+        "commit_sha": "c16d84d029fa9655950d7102c4344d2c0ac7d70c",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c3-heldout-h",
+        "phase": "analyzed",
+        "commit_sha": "d3a546414e52d3e6a8a372fcb1da321bd9b4dbc2",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c3-heldout-h",
+        "phase": "analysis-accepted",
+        "commit_sha": "4dd5f1b18dde12cb50f82d4580f591f2aa78369e",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c3-heldout-i",
+        "phase": "analyzed",
+        "commit_sha": "622048c796556b2e6f7f437001d48398442735e0",
+        "commit_present": true
+      },
+      {
+        "project_id": "phase3c3-heldout-i",
+        "phase": "analysis-accepted",
+        "commit_sha": "c5770f24d1733bc263a4f28113abb73bd32103df",
+        "commit_present": true
+      }
+    ],
+    "stop_set": false,
+    "sdk_statuses": [
+      {
+        "status": "COMPLETED",
+        "operations": 102
+      },
+      {
+        "status": "FAILED_PROVIDER_QUOTA_RECONCILED",
+        "operations": 1
+      },
+      {
+        "status": "NOT_SUBMITTED_ACTIVE_WRITER_RECONCILED",
+        "operations": 2
+      },
+      {
+        "status": "NOT_SUBMITTED_CONTEXT_REJECTED",
+        "operations": 1
+      }
+    ],
+    "sdk_turns_consumed": 106,
+    "original_projects_preserved": true
+  },
+  "all23_criteria_mapping": {
+    "scope": "Phase3C evidence only; no global V1 completion percentage inferred. The96% score is ParcelProof rubric coverage only.",
+    "master_version": "1.3",
+    "criteria": [
+      {
+        "id": "V1-01",
+        "status": "PARTIAL",
+        "evidence_or_limitation": "C1/C2 remain accepted. ParcelProof generated a complete plan but failed critical semantic scope C13; generalization is unverified."
+      },
+      {
+        "id": "V1-02",
+        "status": "PARTIAL",
+        "evidence_or_limitation": "Eight autonomous increments, valid DAG, eight contracts and86 proposed criteria; enforced blocker scope is semantically wrong."
+      },
+      {
+        "id": "V1-03",
+        "status": "SUPPORTING",
+        "evidence_or_limitation": "261 engineering tests,63 protected C2 checks and44 protected C3 checks; these overlap. No business-product tests generated/protected/executed."
+      },
+      {
+        "id": "V1-04",
+        "status": "PARTIAL",
+        "evidence_or_limitation": "Real SDK planning stages chained into existing PipelineManifest. No multi-increment business Coder/Tester implementation."
+      },
+      {
+        "id": "V1-05",
+        "status": "NOT_ESTABLISHED_BY_C3",
+        "evidence_or_limitation": "Architecture retry has controlled-engine tests; initial ParcelProof architecture was structurally valid, so retry was not exercised. Budget repair was made by the engineering session."
+      },
+      {
+        "id": "V1-06",
+        "status": "SCOPED_POLICY_EVIDENCE",
+        "evidence_or_limitation": "Typed task-specific Luna Low/Medium/High and justified initial Sol High with actual catalog. No real runtime business escalation demonstrated."
+      },
+      {
+        "id": "V1-07",
+        "status": "NO_NEW_C3_EVIDENCE",
+        "evidence_or_limitation": "No n8n operations in C3; historical accepted integration results retain their own evidence."
+      },
+      {
+        "id": "V1-08",
+        "status": "NO_NEW_C3_EVIDENCE",
+        "evidence_or_limitation": "No publishing in this phase."
+      },
+      {
+        "id": "V1-09",
+        "status": "PARTIAL",
+        "evidence_or_limitation": "Real Codex SDK and local planning/persistence integration verified; no live business integration tests."
+      },
+      {
+        "id": "V1-10",
+        "status": "NOT_ESTABLISHED_BY_C3",
+        "evidence_or_limitation": "External cadastral operations were unavailable and unauthorized, with no verified business effects."
+      },
+      {
+        "id": "V1-11",
+        "status": "SUPPORTING_LOCAL_EVIDENCE",
+        "evidence_or_limitation": "Git checkpoints,27 SQLite checkpoint objects, original FAILs and immutable source/plan identities preserved; no new production configuration restoration."
+      },
+      {
+        "id": "V1-12",
+        "status": "SCOPED_REAL_EVIDENCE",
+        "evidence_or_limitation": "C2 accepted plan and ParcelProof proposed plan reconstruct with stable digests and no extra inference or duplicate plan history."
+      },
+      {
+        "id": "V1-13",
+        "status": "SUPPORTING_INCOMPLETE",
+        "evidence_or_limitation": "Historical provider/writer reconciliation retained. Controlled-engine new/legacy model replay preserves reservations; broader business recovery remains unproven."
+      },
+      {
+        "id": "V1-14",
+        "status": "PARTIAL",
+        "evidence_or_limitation": "Eight actual planning invocations chained without human technical manifest transfer. Long-running enterprise implementation/delivery remains unverified."
+      },
+      {
+        "id": "V1-15",
+        "status": "NOT_ESTABLISHED_BY_C3",
+        "evidence_or_limitation": "Local reports only; no daily emails sent."
+      },
+      {
+        "id": "V1-16",
+        "status": "PRESERVED_NO_NEW_LIVE_MCP_PROOF",
+        "evidence_or_limitation": "Native SDK evaluation deny profiles verified; no MCP business operations or alternative production access."
+      },
+      {
+        "id": "V1-17",
+        "status": "SCOPED_VERIFIED_EVIDENCE",
+        "evidence_or_limitation": "Explicit append-only114/author18 authorization, conserved charges/deadline/STOP controls; post-reservation capacity mismatch corrected with protected replay tests. No product execution budget granted."
+      },
+      {
+        "id": "V1-18",
+        "status": "PARTIAL_CRITICAL_GAP",
+        "evidence_or_limitation": "P-7 contradiction, missing agency details and unapproved assumptions identified; scope granularity wrongly blocks unrelated local work."
+      },
+      {
+        "id": "V1-19",
+        "status": "SCOPED_REAL_EVIDENCE",
+        "evidence_or_limitation": "Separate author/Planner/Reviewer contexts, native rubric denial, frozen criteria and independently preserved semantic FAIL. Reviewer PASS cannot override a critical FAIL."
+      },
+      {
+        "id": "V1-20",
+        "status": "NOT_COMPLETE",
+        "evidence_or_limitation": "No complete business software product implemented, integrated, tested or delivered in C3."
+      },
+      {
+        "id": "V1-21",
+        "status": "SUPPORTING_LOCAL_EVIDENCE",
+        "evidence_or_limitation": "STOP/budget regression preserved, STOP remains absent. No new production STOP/lifecycle incident demonstrated."
+      },
+      {
+        "id": "V1-22",
+        "status": "NO_NEW_C3_EVIDENCE",
+        "evidence_or_limitation": "Synthetic local data only; no production test resources created."
+      },
+      {
+        "id": "V1-23",
+        "status": "NO_NEW_C3_EVIDENCE",
+        "evidence_or_limitation": "No workflow creation, MCP exposure or access handoff. Earlier milestones retain their own evidence."
+      }
+    ]
+  },
+  "remaining_limits": [
+    "Nine original blind failures remain FAIL; only ParcelProof produced a complete plan and a complete semantic score. The earlier incomplete cases have no invented score.",
+    "Original I plan remains PROPOSED, digest unchanged; no manual graph, dependency or manifest repair.",
+    "Critical blocker granularity remains unresolved; conservative validator was not weakened.",
+    "Budget correction has controlled-engine tests but no fresh real SDK held-out demonstration. I was not rerun after the implementation change.",
+    "No complete accepted blind plan, no Phase3C acceptance, no V1-20 completion or new accepted final consolidation.",
+    "Remaining capacity cannot finish a new independent case with review and reserve; no case J started.",
+    "Zero business Coder calls, messages, webhooks, customer/n8n/Railway/config/MCP mutations, or Phase3D."
+  ]
+}

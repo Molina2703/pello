@@ -1,120 +1,153 @@
-# Pello V1.3 — Phase3C-3 Evaluation Report
+# Pello V1.3 — Phase 3C-3 Evaluation Report
 
-Reference date: October25,2026. Evidence checkpoint: 2026-10-26T23:17:59.989286+00:00.
+Reference date: October 25, 2026. Continuation closeout: 2026-10-27T04:14:35.498698+00:00.
 
-**Phase3C-3 PARTIAL; overall Phase3C PARTIAL; blind generalization UNVERIFIED.** Eight original held-out evaluations remain FAIL. A new bounded architecture-recovery capability is accepted as engineering work only; its real SDK efficacy on an untouched case is unverified. C1/C2 remain ACCEPTED. No business product was implemented or delivered. Phase3D was not started.
+**Phase 3C-3: PARTIAL. Overall Phase 3C: PARTIAL. Blind generalization: UNVERIFIED.** C1 and C2 remain ACCEPTED. ParcelProof produced the first complete held-out planning artifact, but independent evaluation found a critical semantic error. A 96% total rubric score cannot override a failed critical criterion. Nine original blind FAILs remain preserved.
 
-## A. Starting state and authorization
+This report describes planning and Pello engineering evidence. No business software was implemented, published, tested or delivered. Phase 3D was not started. Paths below are relative to the Pello directory.
 
-Branch `codex/pello-phase3c`; this continuation started at `927b7be1591250dea17fa04c3c824e835c47fecd`, after accepted review-transport implementation `07c0494dd23309b3913a37b0593e9c8afe5f9329`. Actual history, working tree, SQLite, journal, STOP, grants and prior reports were inspected without reset. Original C2 implementation remains `90ea13053fa31bf12b4031b45e5f5e620bc86331`; prior C3 corrections and historical reports are preserved.
+## A. Initial state and authorization
 
-The user explicitly granted101 cumulative reservations until **October27,2026 06:30 UTC /01:30 Colombia**, preserving75 charges, then explicitly authorized only the evaluation author up to14, preserving its12 charged reservations and the global101 cap. Append-only records: `authorization-extension-101.json`, `authorization-author-14.json` and SQLite. Ordinary project creation remains capped at12. No project was recreated or counter reset.
+Read-only verification began at branch `codex/pello-phase3c`, HEAD `0ab160e9c50397780a0dcf6f568ccca5992aafa1`. Git root was the parent DESARROLLO PELLO directory. No reset occurred. The accepted engineering implementation was `94c2bb9b8f7174bf06afe8758df5b11926421b88`; delivery checkpoint `6020a3d0640f5d115200aee19dc85ab9a2046be5` and later preservation-only commits were retained. Preexisting unrelated/untracked artifacts were preserved.
 
-Current ledger: **88/101 charged** =84 completed SDK calls,1 retained terminal provider-quota failure,1 retained historical never-submitted context rejection and2 retained never-submitted writer rejections. Thirteen global slots remain; author is14/14. No model operation is in flight or uncertain. STOP is absent and deadline remains valid. Proposed114 global/18 author capacity is **not authorized**.
+SQLite integrity was `ok`, STOP absent, all 25 historical SQLite checkpoint Git objects present, no uncertain/in-flight operation, and 1493/1493 historical hashes matched. The ledger held 88 charged reservations, 84 completed SDK calls, and four retained historical failure/non-submission charges. Author usage was14/14. The last full accepted regression was257/257; C2 protected baseline63/63. The first 28 operation rows and four original projects were unchanged. The accepted C2 digest reconstructed unchanged: `7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87`.
 
-## B. Fresh independent CueConform evaluation
+The earlier proposal114/author 18 had been declined. The new explicit user reply, **“Autorizo 114 globales, autor 18 y ese plazo”**, authorized one bounded fresh case and justified localized correction/review until **October 27, 2026, 06:30 UTC /01:30 Colombia**. `authorization-extension-114.json` and the append-only SQLite grant record this approval, preserving 88 global and 14 author charges. Other project caps remained12. No replacement author project or counter reset occurred. This grant superseded the previous preservation decision only for the newly approved scope.
 
-CueConform adapts translated subtitles after revised video edits. Source includes atomic/versioned imports, retained-frame interval conforming, explicit editorial decisions, translation/glossary approval, exact code-point/speed/gap rules, a disputed children's ceiling, immutable delivered packages, role authorization and a future media-platform integration. Independent local capabilities remain plannable while disputed approval and external delivery stay blocked.
+Initial verification reran40 existing focused checks. One runner invocation failed to import a top-level test helper; its transcript remains `continuation114-focused-runner-FAIL.log`. Correcting the invocation's search path yielded40/40 PASS without implementation changes. The unchanged-validator AST and C2 reconstruction evidence is in `continuation114-recovery-verification.json`. The master v1.3 byte hash remains `6bca1e0b8d871201601e83b6cdbeadb0554fa52be18a8d624a29ca46ca44674d`.
 
-An independent author created source and private rubric without Planner outputs or manual architecture/increments. An exact-quote check first rejected C24; author corrected only its citation. Preparation v1 then received independent FAIL for an unfinished acceptance section and unsupported minor C26 preference. Those records remain unchanged. Before any Planner project existed, author completed only the final section with derived observable examples and corrected the minor criterion, preserving the existing body and all25 critical criteria. The duplicate acceptance heading was accepted as cosmetic. No rubric expectation changed after Planner exposure.
+## B. Independent evaluation preparation
 
-| Freeze | Time UTC | Source SHA256 | Rubric SHA256 |
-|---|---|---|---|
-| Preparation v1, rejected | 2026-10-26T22:19:24.263296+00:00 | `d47fb32b1ceccb9f84a9b5f6656019431da8168a62af28f5baeec25d74c2c380` | `9815d782a1ca64e59f4604fd6c48500234d4693d4aa26d80eba4a1d7cc2ee367` |
-| Operative v2, accepted before Planner | 2026-10-26T22:42:03.652994+00:00 | `cbabae826e30f8166a18d1d7f495ee83e3e092c4e7081ca8e7fdc1ac3f915d64` | `8923f5c429cd974b2292e7473e57a933c1b87798a7ee6ad360520accfde09554` |
+**ParcelProof**, identity `phase3c3-heldout-i-v1`, version 1, was independently authored in the existing authorized evaluation-author SDK context. That context is separate from Pello Planner and evaluation Reviewer and received no Planner outputs or technical solution. The business domain is survey-point validation, exact parcel geometry, disputes, approval and cadastral submission. It differs from the eight consumed cases, Vendor Return Desk and HMP/ADSA demos. It contains meaningful rules, exclusions, dependencies, two independent local branches, external integration gaps, a genuine P-7 contradiction, reversible assumptions and exact-package authorization restrictions.
 
-Operative source is7497 characters; rubric has26 criteria,25 critical/1 minor. Every critical criterion and at least90% overall must pass. Missing capabilities, exclusions violations, unapproved assumptions/effects, ignored blockers, invalid dependencies, executable blocked work, invalid manifests or false product-test claims are critical failures. Frozen source/quote hashes, timestamps, objective checks and semantic grading protocol are registered in `batch1-h-checkpoint.json`; pre-Planner Git checkpoint **`ba62a7a`**.
+Source: `heldout-i-spec.md`, 6662 characters. Frozen at `2026-10-27T03:04:49.333667+00:00`. Source SHA-256: `d481313540b5f2959c4a8e10308262d08b920bb6dd8a33918ff48094ada91211`. Original private rubric SHA-256: `2fa06bf103a54a03ab57148fcdce47bcdb7e25a1d92388ea412332e010150735`. All 24 critical criteria and at least90% of 25 total criteria must pass. Critical failures include missing mandatory capabilities, exclusion violations, unauthorized assumptions/effects, ignored contradictions, invalid dependencies, executable blocked work, manifest incompatibility and false product-test claims.
 
-Fourteen native boundary controls passed, plus denial of exact private-key and normal Windows alias paths with same-file/hash proof. The existing native supplied-context profile denies evaluator/author/ledger/Reviewer/transcript surfaces, disables automatic project/skill/memory reading and tool/network access, and is verified before inference. Planner received source, existing resources and limits only. Private rubrics were published for audit only after the original H FAIL; private author reasoning stayed private. No Planner reasoning was given to Reviewers.
+The private rubric stayed outside Planner's working surface in the existing denied evaluation directory. Native profile `pello_supplied_context` extends read-only, denies key/author/ledger/evaluation/Reviewer/transcript paths, and disables network access. Supplied-context SDK roles also disable command, image, host-code, browser, computer, app/plugin/MCP and automatic project-document/skill/memory surfaces. The worker verifies effective profile identity before inference. Actual submitted contexts contain no evaluator-key fields.
+
+All 15 native root checks passed: one readable public control and 14 denied roots. Both exact-key Windows alias checks denied reads, with same-file and hash proof. All eight real Pello SDK submission receipts passed the actual isolation audit. Evidence: `full-boundary-i-objective.json`, `rubric-i-alias-proof.json`, `heldout-i-actual-isolation-audit.json`, `isolation/` and runtime submission receipts. Official documentation describes the [Codex Python SDK](https://learn.chatgpt.com/docs/codex-sdk) and [filesystem deny permissions](https://learn.chatgpt.com/docs/permissions); the local probes establish this evaluation's actual boundary.
+
+Independent preparation review PASS preceded Planner creation. Source/rubric expectations, structural checks and semantic grading source were registered at `batch1-i-checkpoint.json` and committed in **`ba9380e`** before the first Planner invocation. The original rubric and grading gates were not rewritten after seeing results. The consumed rubric was exported unchanged only after the semantic FAIL, with timing/hash evidence in `consumed-rubrics-i-publication.json`; the private original remains intact.
 
 ## C. Actual autonomous planning run
 
-The real existing `ProductPlanningCore.plan_product` completed `understand` and independent `review-analysis` with **PASS**:34 requirements,5 issues,2 assumptions,22 source segments. The next actual SDK call generated8 proposed architecture nodes. This was genuine SDK execution with actual backend role-model availability checks, not a mocked Planner demonstration.
+Existing `ProductPlanningCore.plan_product` ran through the real authorized SDK: understand → independent interpretation review → architecture → increments → three contract batches → model decisions → durable plan/manifest. Eight Pello SDK invocations completed. The Planner received the original source, authorized inventory/constraints and its own preceding structured outputs; no manually prepared architecture, increments, contracts or manifest were supplied.
 
-The unchanged architecture validator rejected the proposal: `Task graph loses source requirement prerequisites`. N06 claims pre-send enforcement requirement `REQ-62c8b340f20b`, whose accepted prerequisite `REQ-9ef64b340a28` is owned by downstream N07. That prerequisite is absent from N06 and its ancestors. Simply adding the reverse dependency would introduce a cycle. Coverage/reference/acyclicity checks preceding this prerequisite check did not establish a valid complete plan.
+The complete result contains **35 requirements, 6 issues, 5 unapproved assumptions, 8 architecture nodes, 8 functional increments, 8 contracts and 86 proposed acceptance criteria**. Exclusions, source IDs, permissions and proposed completion conditions remain inspectable in `heldout-i-plan.json`. Issues:
 
-The run stopped before functional increments, contracts, proposed business criteria, Coder model assignments, PipelineManifest, complete-plan reconstruction or first actionable increment. These are **not available for H**. Raw8-node JSON is a rejected proposal, not an accepted manifest. No product Coder, business tests or external delivery ran. Source interpretation alone does not establish correct planning.
+| Issue | Severity | Description |
+|---|---|---|
+| ISS-f1ee3142ec14 | blocking | P-7 has two different mandatory western-boundary claims, A–B and C–D, with no authoritative precedence or resolution. |
+| ISS-69a8509a76a6 | blocking | The agency endpoint, authentication contract, required reference-system identification, coordinate precision, package schema and duplicate-lodgement behavior are unknown. |
+| ISS-34ee2e748ce4 | blocking | External accounts, credentials and submission authorizations are absent, and the firm's agency permissions are unknown. The brief supplies no execution permission. |
+| ISS-bf95e4f6bde7 | blocking | Documented resolution is required after an unknown timeout outcome, but acceptable resolution evidence, the responsible resolver and its relationship to agency duplicate-lodgement handling are unspecified. |
+| ISS-c70edf298df8 | non_blocking | Users prefer different initial grouping keys, but the source explicitly accepts either client reference or parcel identifier. |
+| ISS-e8b835f8a7df | non_blocking | Edge lengths require three decimal places, but the exact-half rounding convention is specified only for area. |
 
-Evidence: `heldout-h-planning.log`, `heldout-h-run-status.json`, `heldout-h-rejected-architecture.json`, `heldout-h-graph-diagnosis.json`, `heldout-h-evaluation.json` and durable runtime SDK inputs/outputs/journal.
-
-## D. Objective and independent evaluation
-
-**H original verdict FAIL.** Complete structural/semantic evaluation and its score are unavailable because no valid complete plan exists. A prerequisite-violating graph is a critical failure. No preparation or engineering Reviewer PASS overrides it.
-
-Independent diagnosis classified the failure as **Planner output**, with rejection justified and no demonstrated deterministic validator bug. It found inconsistent requirement ownership/dependency coverage; source allows local control development plus integrated enforcement before actual delivery, and ordinary local approval must remain independent. It recommended regenerating consistent ownership without dropping prerequisites or introducing cycles. The diagnosis supplied no manually prepared replacement architecture. Full diagnosis is preserved at `heldout-h-independent-graph-diagnosis.json`.
-
-All eight original cases remain FAIL: CanalShare, ArchiveLedger, KilnBook, FolioPay, StackProof, AssemblyCount, StageMark and CueConform. Earlier transport/schema/resource defects and original quota/recovery history remain in their reports. H's original output was not corrected and relabeled as a blind PASS. Its first failure is reproducible without SDK by passing the captured architecture and accepted analysis to unchanged `validate_architecture`.
-
-## E. Localized bounded recovery and DORA evidence
-
-The validator was preserved. The new15-line functional change in `propose_architecture` addresses the operational limitation of stopping immediately on invalid model architecture. After a typed proposal fails validation, Core records its source identity, original proposal and error, then permits **one** additional Planner call containing the exact original source plus that rejected output/error. The same validator must accept the second result. A second invalid proposal still fails and cannot be saved as valid. Initial valid behavior and legacy result shape remain unchanged.
-
-The correction uses existing `_invoke` source, STOP, deadline, availability, context, budget, session and durable-cache guards. It introduces no model ladder, automatic escalation, authorization grant, replacement graph, new orchestrator, database or service. Oversized correction input still rejects before reservation. Original model output and journal phases remain durable; restart uses cached results. This is an added recovery capability, not a claimed deterministic validator fix.
-
-Five checks were protected before implementation and first failed against missing recovery. Initial80 focused checks passed, but the independent engineering Reviewer issued **BLOCKED**: in-memory `_invoke` stubs did not prove production guard/ledger/restart behavior, and full regression was not yet evidenced. That verdict/input/log remain preserved.
-
-Three additional controlled-engine tests exercise real production `_invoke`, SQLite accounting, source identity, STOP/global-budget rejection before a second reservation, durable phase records and restart replay without another model call. The expanded focused suite passed **83/83**. The earlier254-test run remains archived; the actual expanded complete run passed257. Re-review received the complete new test source and regression/integrity evidence and issued **PASS**. Its minor changed-files inventory omission is documented; the integration-test content was included and reviewed. No review input was retroactively edited.
-
-A re-review packet initially exceeded50000 characters and was rejected before reservation. Its preflight FAIL is retained. Repeated unchanged pre-correction transcript content was then referenced by exact hash in the same Reviewer session that had already received it; all new source, test and full-regression evidence remained supplied. No frozen scoring expectation was altered.
-
-**H was not rerun after this change.** Mock/controlled-engine results verify the mechanism, not real SDK recovery efficacy or blind generalization. A fresh independently prepared/frozen case is required. No I fixture or project was created.
-
-Evidence: `architecture-recovery/` protections, before-FAIL, first BLOCKED, production invocation tests,83-targeted log, initial254 records,257 full regression, re-review PASS, coverage supplement and `accepted-regression-checkpoint.json`.
-
-## F. Regression, integrity, SDK accounting and recovery
-
-Actual complete current regression: **257/257 PASS**, exit0. Protected C2 suites: **63/63 PASS**, overlapping257. Protected C3 defect checks: **40 across11 sources**, included in257. Protected source/copy identities and frozen H objective script match. Historical integrity: **1493/1493 hashes**, first28 operation rows and four initial project rows unchanged. SQLite integrity `ok`;25 recorded checkpoint Git objects verified. Accepted C2 digest remains `7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87`, reconstructing without new inference or duplicate history. Architecture/increment/contract validators and PipelineManifest converter ASTs remain identical to accepted C2.
-
-The author encountered two native `active writer` rejections before inference. Read-only reconciliation proved11 prior completed turns and no repair message, submission receipt or result; both charges stayed counted. An idle author session was archived/restored using native lifecycle metadata, preserving the same thread/project and exact rollout hash. The writer lock disappeared naturally; no process was terminated or lock file deleted. A later successful author turn preserved every old rollout byte as a verified prefix. The last approved author reserve used original input/schema through guarded `_invoke`; no project/counter bypass occurred. [Official native archive/restore lifecycle](https://learn.chatgpt.com/docs/app-server).
-
-Final current consumption is88/101, with84 actual completed SDK calls and4 conservatively retained failure/non-submission charges as detailed in A. Author remains14/14. The historical provider rejection and all earlier author/STOP/deadline records are preserved. No inference is in flight. Local SQLite snapshot SHA256 `6c5a853f74d2e2a5a84b3a9d24f6b164410c4b4a08548930ad4092c532a50fdb` (`checkpoint-88-jobs.sqlite3`, ignored by Git); durable current state: `checkpoint-88-state.json`.
-
-Source/evidence engineering checkpoint: `94c2bb9b8f7174bf06afe8758df5b11926421b88`. Subsequent report-only delivery HEAD is recorded in the final response/delivery receipt. Master v1.3 remains unchanged, SHA256 `6bca1e0b8d871201601e83b6cdbeadb0554fa52be18a8d624a29ca46ca44674d`.
-
-External business operations **zero**. No n8n reads/mutations, workflow publication, production webhook, message, customer-data modification, Railway provisioning, new server, `config.toml` or MCP reconfiguration occurred. Only synthetic local data, authorized SDK inference and native session metadata recovery were used. Planning criteria are not generated/protected/executed product tests.
-
-## G. Final verdict and capacity gate
-
-**Phase3C-3 PARTIAL; overall Phase3C PARTIAL; generalization UNVERIFIED.** C1/C2 and localized engineering work remain accepted. No valid complete unfamiliar plan, frozen-rubric semantic PASS or independent final Phase3C closure PASS exists. Pello V1 and V1-20 are not complete. `PELLO_PHASE3C_FINAL_REPORT.md` remains the historical PARTIAL C2 report; no ACCEPTED consolidation was generated.
-
-The next bounded route needs about20 SDK calls for a fresh source/preparation, actual pipeline, complete semantic review and final reviews, plus6 failure reserve. Current availability13 is insufficient, and the author has no remaining capacity. Proposed authorization: **114 cumulative globally**, preserving88 and providing26; **author18**, preserving14 and providing4 preparation/reserve slots; unchanged **October27 06:30 UTC /01:30 Colombia** deadline; zero external effects and no Phase3D. This proposal grants nothing. No new case starts before explicit recording.
-
-The next trial must test the new recovery path as part of real autonomous planning while preserving all initial model failures; it must not tune and replay H as a fresh case. One future success would support scoped planning capability, not broad reliability or enterprise delivery. Eight prior failures remain material limitations.
-
-Recommendation only after valid Phase3C closure: demonstrate a small realistic business product over multiple dependent increments through the existing protected Tester, Coder, Tester execution, independent Reviewer, localized correction and integration path without human prompt transfers. Use synthetic local data first. No Phase3D files or implementation work were created.
-
-## H. All23 V1.3 acceptance criteria — scoped evidence
-
-Engineering counts do not imply completion percentages or full product delivery.
-
-| ID | Capability | Evidence scope | Support or limitation |
+| Increment | Autonomous objective | Dependencies | Proposed Coder configuration |
 |---|---|---|---|
-| V1-01 | Specification understanding | Partial planning evidence | C1/C2 remain accepted; H extracted34 requirements and passed independent interpretation review, then failed architecture validation. No complete blind plan. |
-| V1-02 | Autonomous decomposition | Historical C2 evidence | Accepted familiar decomposition preserved. H produced8 proposed nodes but no accepted DAG, increments or contracts. |
-| V1-03 | Independent testing | Supporting engineering evidence | 40 C3 protected checks;257 full/63 C2 protected PASS. No business-product tests generated/protected/executed. |
-| V1-04 | Incremental pipeline | Partial | C2 manifest compatibility preserved. H stopped before increments; no complete unfamiliar product pipeline or business implementation. |
-| V1-05 | Autonomous correction | Mechanism only | One bounded architecture regeneration is implemented and tested with a controlled engine; actual SDK efficacy and business self-repair remain unverified. |
-| V1-06 | Adaptive escalation | Historical typed-policy evidence | C2 task decisions/catalog checks preserved. H used real available role models but generated no Coder assignments. No automatic model escalation was added. |
-| V1-07 | n8n integration | No new C3 proof | Earlier milestones retain their own results; zero n8n operations in this continuation. |
-| V1-08 | Autonomous publishing | No new C3 proof | No workflow or business result published. |
-| V1-09 | Real integration testing | Planning backend only | Actual authorized SDK used; no live business integration or webhook test. |
-| V1-10 | Auxiliary integration | Not established here | Media platform unavailable and unauthorized; no external business effects. |
-| V1-11 | Change control | Scoped local evidence | Git checkpoints, frozen inputs,8 original FAILs and intermediate BLOCKED records preserved. No production rollback claimed. |
-| V1-12 | Memory and sessions | Scoped local evidence | Exact C2 digest reconstruction; production _invoke/SQLite restart-cache tests; native author archive/restore preserves prior rollout bytes. |
-| V1-13 | Recovery | Supporting, incomplete | Provider failure and3 non-submitted charges retained; writer recovery reconciled before retry; broader uncertain business-effect recovery not proved. |
-| V1-14 | Long-running execution | Incomplete | Guarded planning stages run; no completed multi-increment unfamiliar business implementation. |
-| V1-15 | Automated reporting | Not established here | Local evidence reports only; no daily email sent. |
-| V1-16 | MCP permissions | Preserved; no new live proof | No MCP operations or alternate customer access. Blind evaluation uses reviewed native deny profile. |
-| V1-17 | Budgets | Scoped evidence | 101 global cap,88 retained charges; explicit author14 exception; no resets/replacement projects. STOP/budget gates tested through production invocation. |
-| V1-18 | Requirement validation | Partial | H34 requirements,5 issues,2 assumptions passed interpretation review; later architecture loses one accepted prerequisite and correctly FAILs. |
-| V1-19 | Independent review | Scoped evidence | Separate contexts and frozen private rubric; H preparation revisions reviewed before Planner; failure diagnosis and engineering BLOCKED/PASS preserved. No full H semantic/closure PASS. |
-| V1-20 | Complete delivery | NOT COMPLETE | No enterprise business product implemented, integrated, tested or delivered in Phase3C. |
-| V1-21 | STOP and recovery | Supporting local evidence | Actual production guard tests block a correction before reservation. STOP absent; no delivered workflow disabled. |
-| V1-22 | Production test-data management | No new C3 proof | Local synthetic data only; no production test resources created. |
-| V1-23 | MCP access lifecycle | No new C3 proof | No workflow creation/access handoff in this continuation; historical evidence unchanged. |
+| W01 | Propose the local point workflow and reusable role enforcement: preview required fields, atomically reject invalid files, preserve project-scoped uniqueness, make identical reimports no-ops, retain reasoned revisions and expose licensed-surveyor point approvals and unapproved points. Use available synthetic inputs and proposed durable local storage; this creates neither external credentials nor execution authority. | None | gpt-6-luna / medium |
+| W02 | Propose the independent geometry module using explicit synthetic point snapshots: capture ordered outlines, enforce project/reference-system consistency, validate without repair, calculate exact area and displayed measurements, record adjoining chains, compare reversed chains with collinear subdivisions and detect all positive-area project overlaps. Its planning does not require W01 or agency access. | None | gpt-6.1-sol / high |
+| W03 | Propose local dispute records and candidate checks: preserve both mandatory P-7 claims and their sources without precedence, record authoritative conveyancer resolution when supplied and permit candidate geometry checks only with disputed/unapproved labels. No resolution is required to preserve claims or check labeled candidates. | W02 | gpt-6-luna / low |
+| W04 | Propose versioned local schedule review using point, geometry, adjoining and dispute results. Enforce licensed-surveyor approval and all prerequisites; refuse unresolved P-7 approval while allowing other parcels; stale affected approvals after supporting changes; preserve submitted snapshots and require newly reviewed linked amendments. The unresolved P-7 decision does not block implementation or synthetic verification of these gates. | W01, W02, W03 | gpt-6-luna / high |
+| W05 | Propose local package-authority controls, submission history and overview. Bind principal authorization to exact approved package details, invalidate changes, perform immediate preflight without rebuilding, preserve linked outcomes and registration evidence, classify timeouts as unknown and deny automatic or unresolved repeat attempts. Expose all overview conditions and viewer schedule access. Use synthetic attempt history independently of the agency and unresolved positive recovery branch; grouping remains provisional. | W04 | gpt-6-luna / high |
+| W06 | Conditional P-7 positive review branch, blocked by ISS-f1ee3142ec14: after an actual authoritative conveyancer resolution is supplied as input, record it without deciding ownership and review the resulting P-7 schedule through all ordinary approval prerequisites. Do not choose A–B or C–D, fabricate a resolution or claim this branch complete while the contradiction remains. This node performs no submission. | W03, W04 | gpt-6-luna / medium |
+| W07 | Propose the first eligible live lodgement of a schedule or amendment and capture its outcome. This external-operation node is blocked by ISS-69a8509a76a6 and ISS-34ee2e748ce4: require a confirmed agency contract, actual agency access and firm permissions, and separately supplied principal-surveyor execution authorization matching the exact approved package, project, parcel set and destination. Invoke W05 preflight immediately before sending. Exclude unresolved P-7 and any repeat attempt after unknown outcome; the latter belongs to W08. Planning does not perform this operation. | W05 | gpt-6-luna / medium |
+| W08 | Conditional live recovery branch following an unknown attempted lodgement. In addition to W07's integration/access blockers, ISS-bf95e4f6bde7 blocks acceptance until the responsible resolver, acceptable documented outcome-resolution evidence and agency duplicate-lodgement behavior are established. Only then may a subsequent attempt be considered, with current approval, matching separate principal authorization and immediate preflight; never retry automatically. W05's local unknown-outcome and refusal safeguards do not depend on this branch. Planning performs no recovery contact or subsequent transmission. | W05, W07 | gpt-6-luna / medium |
 
-## User preservation decision
+Initial planning readiness was W01 and W02; **first actionable increment W01**. This means ready to prepare protected tests and request execution authorization. It is not permission to execute. Two external-operation branches remain unauthorized/unavailable. The graph is acyclic and structurally covers the source, but its enforced blocker scope is semantically wrong as described below.
 
-2026-10-26T23:23:55.229748+00:00: the user explicitly selected **“Conservar el checkpoint”**. The proposed114 global/18 author limits were declined. Maximums remain101 globally and14 for the author, preserving88 global charges and14 author charges. No authorization row, counter or deadline was changed. No additional SDK execution, new I evaluation, external business operation or Phase3D work starts from this checkpoint. The capacity proposal in G is historical and is not a pending approval.
+The architecture passed structural validation on its first attempt. **The bounded architecture retry was not exercised through this SDK run.** Its prior controlled-engine evidence remains accepted; real SDK recovery efficacy is still unverified. No artificial error was injected to force that path.
 
-The accepted engineering source remains `94c2bb9b8f7174bf06afe8758df5b11926421b88`; preserved delivery checkpoint `6020a3d0640f5d115200aee19dc85ab9a2046be5`. Phase3C-3 and overall Phase3C remain PARTIAL, with eight original blind FAILs and generalization UNVERIFIED. Evidence: `user-decision-preserve-checkpoint-88.json`, `checkpoint-88-preserved-state.json`.
+The existing context mechanism split contract generation into3/3/2 increments. Each request retained the full original requirements and exact supplied increment fields. Exact comparison proved submitted prompts match generated prompts, all eight increment records survive batching unchanged, and the merged eight contracts equal the complete ordered batch responses. Existing aggregate validation and PipelineManifest conversion passed. Evidence: `heldout-i-actual-contract-batching.json` and runtime `contracts-context-batches.json`.
+
+Models were selected adaptively from the actual catalog: Luna Low/Medium/High and specifically justified initial Sol High for exact topology. These are future Coder assignments, not executed Coder calls. The original model request advertised17 available turns while validation/reporting used16; the original plan truthfully retains the resulting one-turn shortfall. This accounting defect was corrected later for new requests, without editing the failed plan.
+
+Plan digest: `b0199c77c21c1e0b66ffd2f2b6217a011c95760bb87f0cc4957b930233c5a722`. SQLite history has one plan row; a separate CLI process reconstructed the same plan without additional inference. Existing `IncrementalPipeline.inspect_planned_manifest` consumed the generated manifest without manual technical translation. Stable IDs, stage hashes and plan identity survived restart and the later engineering correction. Approval remains **PROPOSED**, execution authorization **false**. No business-product Python implementation exists in the project workspace. All 86 criteria remain proposed; product tests are not generated, protected or executed.
+
+## D. Independent semantic and structural evaluation
+
+Frozen structural checks: **10/10 PASS**. They establish source/rubric identity, traceability, coverage, valid manifest/DAG, ineligible blocked/external work, at least two independent local tasks, proposed-only criteria lifecycle, typed model availability, restart idempotence and no implementation/effects. They do not prove all business semantics.
+
+The full semantic packet was235746 canonical characters. Initial alias packing needed eight parts, leaving insufficient Reviewer-project capacity for closure. These preflights reserved no SDK call. Existing row transport and exact shared-node references reduced repeated labels/identical fields to194120 characters. Six candidate parts of at most34000 characters each produced actual requests between27330 and 36063, all below45000. Composition of both reversible encoders was asserted to reconstruct every original field/value. The original frozen driver remained unchanged; a separate transport driver differs only by encoder import and candidate part size. Hashes, complete preflights and proof are in `review-transport-i-protocol.json` and capacity-preflight records. No source, rubric, grading threshold or Pello implementation was changed during this evaluation. No Planner rerun occurred.
+
+All six parts entered the SAME independent Reviewer SDK session before grading. Receipts were explicitly not verdicts. The Reviewer then evaluated the complete original source, unchanged rubric and all plan artifacts. Criterion identity and citations were verified. Result: **23/24 critical PASS;24/25 total PASS (96%); FAIL**. This percentage is only the held-out rubric score, not global V1 completion.
+
+Critical criterion **C13** failed. The persisted graph/manifest attaches P-7's unresolved dispute to all W04, preventing unrelated parcel review. It also attaches unresolved positive recovery policy to W05, blocking its independent local authorization/history/overview/refusal safeguards. The prose and contracts promise these capabilities remain available, but enforced blockers prevail. After W01, W02, W03 are hypothetically completed, scheduler readiness is empty. W04-AC04 and W05-AC11 conflict with those eligibility decisions.
+
+Reproduction: reconstruct the unchanged plan; call `IncrementalPipeline.inspect_planned_manifest(plan['manifest'], completed={'W01', 'W02', 'W03'})`; inspect W04's `specification:ISS-f1ee3142ec14` and W05's `specification:ISS-bf95e4f6bde7`. Compare the original source and cited criteria. This is artifact/scheduler inspection, not an executed business-product test.
+
+Independent diagnosis classified the cause as mixed: earliest semantic mismatch in requirement/issue scope granularity, then architecture references; the validator correctly applies its conservative intersection rule. No validator weakening is justified. It separately confirmed the deterministic model-budget context mismatch. Evidence: `heldout-i-semantic-review.json`, `heldout-i-evaluation.json`, `heldout-i-independent-failure-diagnosis.json`. Original FAIL and score were committed in **`06a6cb6`** before implementation correction.
+
+## E. Localized engineering correction and preserved failures
+
+Only the demonstrated capacity mismatch was corrected in `ProductPlanningCore.propose_models`. New requests compute post-selection capacity once and expose that same value to model selection, validation and aggregate reporting. A context marker distinguishes new capacity semantics from legacy pre-reservation inputs. Stored completed requests replay their original payload; old shortfalls are retained. No usable post-selection capacity blocks before a new reservation. Model policy, aggregate-warning behavior, validators, PipelineManifest and authorization rules remain unchanged.
+
+Four new checks were hashed/copied outside implementation scope before code modification. Baseline:4 tests, 3 FAIL; original transcript preserved. Corrected code:40 focused PASS, 4/4 protected-copy PASS, 261/261 full PASS and independent engineering Reviewer PASS. New/missing-stage/legacy replay use real Core/SQLite with a controlled engine; **they are not a real SDK efficacy demonstration**. Accepted engineering implementation/checkpoint: **`8e70f3ed7be79f91380095ce1334b2379915a40e`**, supported by `model-capacity-correction/accepted-regression-checkpoint.json` and its full review input/output.
+
+This engineering change does **not** fix C13, constitute autonomous Pello self-repair or accept the failed plan. Neither the original I source/rubric/plan nor any earlier FAIL was altered. I was not rerun after the change and cannot be reused as untouched blind evidence. Another complete fresh evaluation needs more capacity than remains; no case J was prepared or launched.
+
+| Case | Original verdict | Earliest stopping point | Semantic score |
+|---|---|---|---|
+| CanalShare | FAIL | Interpretation-review context | Not scored: plan incomplete |
+| ArchiveLedger | FAIL | Interpretation authorization invariant | Not scored: plan incomplete |
+| KilnBook | FAIL | Interpretation-review context | Not scored: plan incomplete |
+| FolioPay | FAIL | Architecture requirement/resource classification | Not scored: plan incomplete |
+| StackProof | FAIL | Increment context | Not scored: plan incomplete |
+| AssemblyCount | FAIL | Contract context | Not scored: plan incomplete |
+| StageMark | FAIL | Interpretation-review context | Not scored: plan incomplete |
+| CueConform | FAIL | Architecture prerequisite validation | Not scored: plan incomplete |
+| ParcelProof | FAIL | Complete plan; critical semantic scope C13 | 23/24 critical;24/25 total |
+
+Earlier localized corrections and their original FAIL/BLOCKED evidence remain in their committed records and archived reports. The complete pre-continuation report is preserved at `interim-reports/before-continuation114-evaluation-report.md`. Current review/transport size rejections were stopped before reservation; their packets/logs remain. They were not reclassified as successful planning results.
+
+## F. Current regression, integrity, accounting and checkpoints
+
+Actual complete regression: **261/261 PASS**, exit0, 261.297 seconds. C2 protected suites: **63/63 PASS** with original source and protected-copy hashes intact. C3 now has44 protected defect checks across12 source files, including the four new capacity checks. The 63 and 44 overlap the full 261; they are not additional unique tests. See `model-capacity-regression.json`, `model-capacity-protected.json`, `model-capacity-integrity.json` and complete logs.
+
+Historical hashes: **1493/1493 matching**. First28 operations, four original projects, and all first 88 pre-continuation operation rows remain unchanged. All 27 SQLite checkpoint Git objects exist. Master, frozen objective script, rubric/source identities and protected tests are intact. SQLite integrity is `ok`; no uncertain/in-flight operation remains. C2 digest and rejected I digest reconstruct unchanged with no additional SDK call. I has no accepted-plan checkpoint.
+
+Final accounting: **108/114 charged reservations**, **104 completed SDK calls**, one retained provider-quota failure, two retained active-writer rejections and one retained context-rejected historical reservation. **6 global slots remain**; author 15/18. Deadline remains October 27, 06:30 UTC. All 20 new SDK calls completed within authorization; counters were not reset. STOP remains absent. Snapshot: `evidence\phase3c3\checkpoint-108-jobs.sqlite3`, SHA-256 `5bc52b75f573f672d90d2e9558e0b32994e1bfec2b1f6603d8d9c675871cb68f`. Complete state: `checkpoint-108-state.json`.
+
+The final independent preservation review returned **PASS for partial-checkpoint preservation only**, with Phase 3C acceptance explicitly prohibited. It did not override the semantic FAIL. Evidence: `partial-i-final-review.json`, bound to its actual input hash and SDK thread/turn. Oversized preservation metadata was stopped before SDK submission; repeated already-received verdict prose and duplicate Git references were factored without removing new code/test evidence.
+
+External business operations: **zero**. Business Coder calls: **zero**. No n8n workflow operations, webhooks, messages, customer data, Railway provisioning, config/MCP changes or Phase 3D work occurred. Real integration evidence is the Codex SDK and existing local planning pipeline. No live cadastral integration is claimed.
+
+## G. Final verdict and limitations
+
+**Phase 3C-3 PARTIAL; overall Phase 3C PARTIAL.** The first complete autonomous held-out plan is durable and inspectable, but no accepted blind plan exists. The original critical semantic defect remains unresolved. The budget-context engineering correction is accepted within its narrow tested scope. Fresh real SDK efficacy after that correction remains unverified, as does real SDK architecture recovery.
+
+Final implementation HEAD: `8e70f3ed7be79f91380095ce1334b2379915a40e`. Original blind FAIL checkpoint: `06a6cb6`. Final state/checkpoint receipt: `checkpoint-108-state.json`; the subsequent reporting-only delivery HEAD is recorded in the companion delivery receipt and final response. Existing accepted C1/C2 checkpoints remain valid. The repository was not reset and historical results were not rewritten.
+
+`PELLO_PHASE3C_FINAL_REPORT.md` remains the earlier historical document; no new accepted Phase 3C consolidation is generated because the acceptance condition is unmet. No global V1 percentage is inferred from rubric scores or engineering test counts. **V1-20 remains NOT COMPLETE.**
+
+The next necessary Phase 3C work is to resolve structured blocker scope against the consumed regression evidence, preserve conservative safety semantics, independently review any justified small change, and then fund/freeze a different unseen complete evaluation. Do not tune I and call it blind. No further case can be completed with the six-slot reserve. The later multi-increment business implementation milestone remains a recommendation conditional on valid Phase 3C acceptance; no Phase 3D files or execution were started.
+
+## H. Evidence mapping to all 23 V1.3 criteria
+
+Scoped Phase 3C evidence only. Previous milestones retain their own historical evidence. No row below declares the entire V1 complete.
+
+| Criterion | Current evidence scope | Evidence or limitation |
+|---|---|---|
+| V1-01 | PARTIAL | C1/C2 remain accepted. ParcelProof generated a complete plan but failed critical semantic scope C13; generalization is unverified. |
+| V1-02 | PARTIAL | Eight autonomous increments, valid DAG, eight contracts and 86 proposed criteria; enforced blocker scope is semantically wrong. |
+| V1-03 | SUPPORTING | 261 engineering tests, 63 protected C2 checks and 44 protected C3 checks; these overlap. No business-product tests generated/protected/executed. |
+| V1-04 | PARTIAL | Real SDK planning stages chained into existing PipelineManifest. No multi-increment business Coder/Tester implementation. |
+| V1-05 | NOT_ESTABLISHED_BY_C3 | Architecture retry has controlled-engine tests; initial ParcelProof architecture was structurally valid, so retry was not exercised. Budget repair was made by the engineering session. |
+| V1-06 | SCOPED_POLICY_EVIDENCE | Typed task-specific Luna Low/Medium/High and justified initial Sol High with actual catalog. No real runtime business escalation demonstrated. |
+| V1-07 | NO_NEW_C3_EVIDENCE | No n8n operations in C3; historical accepted integration results retain their own evidence. |
+| V1-08 | NO_NEW_C3_EVIDENCE | No publishing in this phase. |
+| V1-09 | PARTIAL | Real Codex SDK and local planning/persistence integration verified; no live business integration tests. |
+| V1-10 | NOT_ESTABLISHED_BY_C3 | External cadastral operations were unavailable and unauthorized, with no verified business effects. |
+| V1-11 | SUPPORTING_LOCAL_EVIDENCE | Git checkpoints, 27 SQLite checkpoint objects, original FAILs and immutable source/plan identities preserved; no new production configuration restoration. |
+| V1-12 | SCOPED_REAL_EVIDENCE | C2 accepted plan and ParcelProof proposed plan reconstruct with stable digests and no extra inference or duplicate plan history. |
+| V1-13 | SUPPORTING_INCOMPLETE | Historical provider/writer reconciliation retained. Controlled-engine new/legacy model replay preserves reservations; broader business recovery remains unproven. |
+| V1-14 | PARTIAL | Eight actual planning invocations chained without human technical manifest transfer. Long-running enterprise implementation/delivery remains unverified. |
+| V1-15 | NOT_ESTABLISHED_BY_C3 | Local reports only; no daily emails sent. |
+| V1-16 | PRESERVED_NO_NEW_LIVE_MCP_PROOF | Native SDK evaluation deny profiles verified; no MCP business operations or alternative production access. |
+| V1-17 | SCOPED_VERIFIED_EVIDENCE | Explicit append-only114/author 18 authorization, conserved charges/deadline/STOP controls; post-reservation capacity mismatch corrected with protected replay tests. No product execution budget granted. |
+| V1-18 | PARTIAL_CRITICAL_GAP | P-7 contradiction, missing agency details and unapproved assumptions identified; scope granularity wrongly blocks unrelated local work. |
+| V1-19 | SCOPED_REAL_EVIDENCE | Separate author/Planner/Reviewer contexts, native rubric denial, frozen criteria and independently preserved semantic FAIL. Reviewer PASS cannot override a critical FAIL. |
+| V1-20 | NOT_COMPLETE | No complete business software product implemented, integrated, tested or delivered in C3. |
+| V1-21 | SUPPORTING_LOCAL_EVIDENCE | STOP/budget regression preserved, STOP remains absent. No new production STOP/lifecycle incident demonstrated. |
+| V1-22 | NO_NEW_C3_EVIDENCE | Synthetic local data only; no production test resources created. |
+| V1-23 | NO_NEW_C3_EVIDENCE | No workflow creation, MCP exposure or access handoff. Earlier milestones retain their own evidence. |

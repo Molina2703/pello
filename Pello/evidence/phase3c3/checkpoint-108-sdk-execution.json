@@ -1,0 +1,668 @@
+{
+  "charged_before_continuation": 88,
+  "charged_after_continuation": 108,
+  "new_actual_completed_calls": 20,
+  "native_usage_note": "Recorded per operation as returned; no sum inferred from possibly cumulative native counters and no monetary/token hard limit claimed.",
+  "operations": [
+    {
+      "project_id": "phase3c3-author",
+      "phase": "author-heldout-i",
+      "role": "tester",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:01:52+00:00",
+      "completed": "2026-10-27T03:04:49+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "medium",
+      "thread_id": "01a1746f-48e4-7b53-a930-16be42bd2f5e",
+      "turn_id": "01a17b4e-b22c-7d41-8264-0bd3d43913c2",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 89373,
+          "output_tokens": 5990,
+          "reasoning_output_tokens": 1034,
+          "total_tokens": 95363
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 174336,
+          "input_tokens": 709022,
+          "output_tokens": 63282,
+          "reasoning_output_tokens": 7012,
+          "total_tokens": 772304
+        }
+      },
+      "input_sha256": "1faf6c11ac00ad649862efb9d0a5874042684be1ed953ba1d3b2fceec89049ad",
+      "schema_sha256": "fc8d884d7d04c3e66d1b02dcbfa1dabbe18a9c49146fd6eca39aef38ca0cc3e9"
+    },
+    {
+      "project_id": "phase3c3-review-i",
+      "phase": "engineering-review-3c3-heldout-i-preparation-complete",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:06:15+00:00",
+      "completed": "2026-10-27T03:07:20+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+      "turn_id": "01a17b52-af7c-7df2-aaf9-f878b9ce2f56",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 23099,
+          "output_tokens": 1900,
+          "reasoning_output_tokens": 1681,
+          "total_tokens": 24999
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 23099,
+          "output_tokens": 1900,
+          "reasoning_output_tokens": 1681,
+          "total_tokens": 24999
+        }
+      },
+      "input_sha256": "431e1ae21497b13f9b8e5e94a5ddebd7de7e5c41329f76d993d475fa1b76f865",
+      "schema_sha256": "891669e3f40375809ee321cbd8f9fa13fdbf951e1c350bb5d5d8cc12ac396bd8"
+    },
+    {
+      "project_id": "phase3c3-heldout-i",
+      "phase": "understand",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:08:39+00:00",
+      "completed": "2026-10-27T03:12:50+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+      "turn_id": "01a17b54-e0c7-7f22-af7a-c2ad849eaed6",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 16575,
+          "output_tokens": 11011,
+          "reasoning_output_tokens": 2517,
+          "total_tokens": 27586
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 16575,
+          "output_tokens": 11011,
+          "reasoning_output_tokens": 2517,
+          "total_tokens": 27586
+        }
+      },
+      "input_sha256": "c4bf6deec05e163fb7f7496a80844676d323a0d15e22d2daf5c9b651afca0761",
+      "schema_sha256": "714becb98977303d8cf78273ef3f7b34100cb7490c4f891f301a698bbacdd1bd"
+    },
+    {
+      "project_id": "phase3c3-heldout-i",
+      "phase": "review-analysis",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:12:50+00:00",
+      "completed": "2026-10-27T03:13:36+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b58-ada7-76b2-ac41-da6bfe646fec",
+      "turn_id": "01a17b58-af86-7db1-bc7b-aee6ac49c99b",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 23274,
+          "output_tokens": 1109,
+          "reasoning_output_tokens": 777,
+          "total_tokens": 24383
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 23274,
+          "output_tokens": 1109,
+          "reasoning_output_tokens": 777,
+          "total_tokens": 24383
+        }
+      },
+      "input_sha256": "6931dd1efc85395257299e42cd7007f4c0473e94177aa53b7d472c6b9f86aec6",
+      "schema_sha256": "f10829255d63b9e98bfcbf88a94d277d27ee964e7deb3f87212b6739cb56544b"
+    },
+    {
+      "project_id": "phase3c3-heldout-i",
+      "phase": "plan-architecture",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:13:37+00:00",
+      "completed": "2026-10-27T03:17:34+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+      "turn_id": "01a17b59-6065-7731-9b5a-bb60962d80a0",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 37668,
+          "output_tokens": 8087,
+          "reasoning_output_tokens": 3106,
+          "total_tokens": 45755
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 54243,
+          "output_tokens": 19098,
+          "reasoning_output_tokens": 5623,
+          "total_tokens": 73341
+        }
+      },
+      "input_sha256": "ca21ffcc3e97d7d6629aa058d6773a37edc2fe4e6b9695cd034193c34ec2078e",
+      "schema_sha256": "bb4ea946994424990b621c9051600337dca9c4e8d4176d295b7218b7100032b9"
+    },
+    {
+      "project_id": "phase3c3-heldout-i",
+      "phase": "plan-increments",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:17:34+00:00",
+      "completed": "2026-10-27T03:22:10+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+      "turn_id": "01a17b5d-0183-7fc0-adf3-6e904051e888",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 57936,
+          "output_tokens": 10752,
+          "reasoning_output_tokens": 1448,
+          "total_tokens": 68688
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 112179,
+          "output_tokens": 29850,
+          "reasoning_output_tokens": 7071,
+          "total_tokens": 142029
+        }
+      },
+      "input_sha256": "fed7499d3ca64869904d507a8f00add2d33ec05dfcd9f67fb220c89b38bc3e01",
+      "schema_sha256": "dce6449bd3f801c48ec6b556d66cf1219716451a95b33dd82f3de0a3c7d9f335"
+    },
+    {
+      "project_id": "phase3c3-heldout-i",
+      "phase": "plan-contracts-b1",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:22:10+00:00",
+      "completed": "2026-10-27T03:26:02+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+      "turn_id": "01a17b61-3755-7f30-a2f9-2ee59e5ea3cc",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 80412,
+          "output_tokens": 9790,
+          "reasoning_output_tokens": 2070,
+          "total_tokens": 90202
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 192591,
+          "output_tokens": 39640,
+          "reasoning_output_tokens": 9141,
+          "total_tokens": 232231
+        }
+      },
+      "input_sha256": "1c9ccb08d387c93b95a9e454e36667a9f571c9c0d5211def789579e90838adda",
+      "schema_sha256": "57a8121b996b27903240c2ac15f56c1c122816093bf6f56358932db72b48623f"
+    },
+    {
+      "project_id": "phase3c3-heldout-i",
+      "phase": "plan-contracts-b2",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:26:02+00:00",
+      "completed": "2026-10-27T03:29:01+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+      "turn_id": "01a17b64-c316-7cd2-891c-702870a9f580",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 89984,
+          "input_tokens": 101906,
+          "output_tokens": 8399,
+          "reasoning_output_tokens": 1034,
+          "total_tokens": 110305
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 89984,
+          "input_tokens": 294497,
+          "output_tokens": 48039,
+          "reasoning_output_tokens": 10175,
+          "total_tokens": 342536
+        }
+      },
+      "input_sha256": "4ca684c7c52bf107ea906d2ae6e26ac4e47c6bc8639c6c995787224b26e6feb0",
+      "schema_sha256": "57a8121b996b27903240c2ac15f56c1c122816093bf6f56358932db72b48623f"
+    },
+    {
+      "project_id": "phase3c3-heldout-i",
+      "phase": "plan-contracts-b3",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:29:01+00:00",
+      "completed": "2026-10-27T03:32:00+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+      "turn_id": "01a17b67-7d82-75e1-8a7e-65278a81e191",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 110080,
+          "input_tokens": 121470,
+          "output_tokens": 7457,
+          "reasoning_output_tokens": 1242,
+          "total_tokens": 128927
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 200064,
+          "input_tokens": 415967,
+          "output_tokens": 55496,
+          "reasoning_output_tokens": 11417,
+          "total_tokens": 471463
+        }
+      },
+      "input_sha256": "fa3b0123570ae52b42577d4d5738bb16ea4e7d0d259a7c9ff620a52ebb641f4c",
+      "schema_sha256": "57a8121b996b27903240c2ac15f56c1c122816093bf6f56358932db72b48623f"
+    },
+    {
+      "project_id": "phase3c3-heldout-i",
+      "phase": "plan-models",
+      "role": "planner",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:32:00+00:00",
+      "completed": "2026-10-27T03:33:15+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b54-df35-7803-8038-6241c2af5ff4",
+      "turn_id": "01a17b6a-3630-78d2-9902-e1b3eec0696c",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 140780,
+          "output_tokens": 2888,
+          "reasoning_output_tokens": 1034,
+          "total_tokens": 143668
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 200064,
+          "input_tokens": 556747,
+          "output_tokens": 58384,
+          "reasoning_output_tokens": 12451,
+          "total_tokens": 615131
+        }
+      },
+      "input_sha256": "c7408d41e1b544cb0f7922cb92368c683ee7203b569d1c1478783a380dc383b0",
+      "schema_sha256": "d362f11a4ce05182f97c385959e6034f247ad4449ca6fb372074d47db73ddb6a"
+    },
+    {
+      "project_id": "phase3c3-review-i",
+      "phase": "heldout-i-evidence-01",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:40:03+00:00",
+      "completed": "2026-10-27T03:40:17+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+      "turn_id": "01a17b71-a44f-79a1-8382-0361c775136e",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 32965,
+          "output_tokens": 131,
+          "reasoning_output_tokens": 63,
+          "total_tokens": 33096
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 56064,
+          "output_tokens": 2031,
+          "reasoning_output_tokens": 1744,
+          "total_tokens": 58095
+        }
+      },
+      "input_sha256": "602c81d13e5631344c3f22cf90207473ff55b10f6e8ae7a9dff3aa79da872d90",
+      "schema_sha256": "e08f65615820e91baae4f525623971a40e061ebfe80091c83ca1f416e5d34fa6"
+    },
+    {
+      "project_id": "phase3c3-review-i",
+      "phase": "heldout-i-evidence-02",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:40:17+00:00",
+      "completed": "2026-10-27T03:40:27+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+      "turn_id": "01a17b71-cbb0-78c2-9875-878afcdeb13d",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 32896,
+          "input_tokens": 41534,
+          "output_tokens": 97,
+          "reasoning_output_tokens": 29,
+          "total_tokens": 41631
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 32896,
+          "input_tokens": 97598,
+          "output_tokens": 2128,
+          "reasoning_output_tokens": 1773,
+          "total_tokens": 99726
+        }
+      },
+      "input_sha256": "c4874fbe86ced6b6ceb0380902d6b8ce7d71e0b9416856cf1f907bb62e444d4e",
+      "schema_sha256": "e08f65615820e91baae4f525623971a40e061ebfe80091c83ca1f416e5d34fa6"
+    },
+    {
+      "project_id": "phase3c3-review-i",
+      "phase": "heldout-i-evidence-03",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:40:27+00:00",
+      "completed": "2026-10-27T03:40:35+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+      "turn_id": "01a17b71-f2dd-7082-b6c1-427fa7e98bdf",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 41472,
+          "input_tokens": 48881,
+          "output_tokens": 66,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 48947
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 74368,
+          "input_tokens": 146479,
+          "output_tokens": 2194,
+          "reasoning_output_tokens": 1773,
+          "total_tokens": 148673
+        }
+      },
+      "input_sha256": "33d4b2fc0cdd08298140d4c245a69769d11d189bc1b87cf2104f6b43ec64db34",
+      "schema_sha256": "e08f65615820e91baae4f525623971a40e061ebfe80091c83ca1f416e5d34fa6"
+    },
+    {
+      "project_id": "phase3c3-review-i",
+      "phase": "heldout-i-evidence-04",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:40:35+00:00",
+      "completed": "2026-10-27T03:40:40+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+      "turn_id": "01a17b72-1187-7fe1-99e5-3f751341ef2a",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 57139,
+          "output_tokens": 66,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 57205
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 74368,
+          "input_tokens": 203618,
+          "output_tokens": 2260,
+          "reasoning_output_tokens": 1773,
+          "total_tokens": 205878
+        }
+      },
+      "input_sha256": "8815c51f9b0b11fb5916c4ab5e29788d5c0b38cce43a0fdeca1e61ce2bcfe1c1",
+      "schema_sha256": "e08f65615820e91baae4f525623971a40e061ebfe80091c83ca1f416e5d34fa6"
+    },
+    {
+      "project_id": "phase3c3-review-i",
+      "phase": "heldout-i-evidence-05",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:40:40+00:00",
+      "completed": "2026-10-27T03:40:43+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+      "turn_id": "01a17b72-23c9-7971-8f04-6fc607ea89c8",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 57088,
+          "input_tokens": 64712,
+          "output_tokens": 66,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 64778
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 131456,
+          "input_tokens": 268330,
+          "output_tokens": 2326,
+          "reasoning_output_tokens": 1773,
+          "total_tokens": 270656
+        }
+      },
+      "input_sha256": "e91a8e67f0e16d0069e66b4ca5ca3e1fe665202ce7e0ab170becbcc03dc985dc",
+      "schema_sha256": "e08f65615820e91baae4f525623971a40e061ebfe80091c83ca1f416e5d34fa6"
+    },
+    {
+      "project_id": "phase3c3-review-i",
+      "phase": "heldout-i-evidence-06",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:40:43+00:00",
+      "completed": "2026-10-27T03:40:47+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+      "turn_id": "01a17b72-31ff-7782-9689-c8b9bc140810",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 64640,
+          "input_tokens": 72217,
+          "output_tokens": 70,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 72287
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 196096,
+          "input_tokens": 340547,
+          "output_tokens": 2396,
+          "reasoning_output_tokens": 1773,
+          "total_tokens": 342943
+        }
+      },
+      "input_sha256": "80e938e4d43256fe3fc640677ce1fb863af9e7dd7a44fba71a3ebe3d06f501e8",
+      "schema_sha256": "e08f65615820e91baae4f525623971a40e061ebfe80091c83ca1f416e5d34fa6"
+    },
+    {
+      "project_id": "phase3c3-review-i",
+      "phase": "heldout-i-semantic-review",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:40:47+00:00",
+      "completed": "2026-10-27T03:42:00+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+      "turn_id": "01a17b72-417a-76d2-b3ee-8bd821478e06",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 78322,
+          "output_tokens": 4058,
+          "reasoning_output_tokens": 1552,
+          "total_tokens": 82380
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 196096,
+          "input_tokens": 418869,
+          "output_tokens": 6454,
+          "reasoning_output_tokens": 3325,
+          "total_tokens": 425323
+        }
+      },
+      "input_sha256": "759cc7e42b0c15db9f7d25708ac3ba67d5add6c7644c48fad4e08dc4af42e5a4",
+      "schema_sha256": "1467d64ef6ad473154fdaa5985054680da0a347d25936b6a493e4fb76b230cc3"
+    },
+    {
+      "project_id": "phase3c3-review-i",
+      "phase": "heldout-i-failure-diagnosis",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-27T03:47:04+00:00",
+      "completed": "2026-10-27T03:48:23+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+      "turn_id": "01a17b78-0db0-7763-8682-22a654d4390c",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 92902,
+          "output_tokens": 1913,
+          "reasoning_output_tokens": 1433,
+          "total_tokens": 94815
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 196096,
+          "input_tokens": 511771,
+          "output_tokens": 8367,
+          "reasoning_output_tokens": 4758,
+          "total_tokens": 520138
+        }
+      },
+      "input_sha256": "bc233fea23c31a7aba25c13a9c04fa25dec10a270f27e2bd84809fda12454955",
+      "schema_sha256": "4849b1830c4fa7b241c44c2c4dc518aeb382943856fe5d4b1e26a3d6f30d1e63"
+    },
+    {
+      "project_id": "phase3c3-review-i",
+      "phase": "engineering-review-3c3-model-capacity-correction",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-27T04:00:34+00:00",
+      "completed": "2026-10-27T04:01:08+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+      "turn_id": "01a17b84-6cf8-7bf0-bf9a-7dc93180a237",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 105052,
+          "output_tokens": 747,
+          "reasoning_output_tokens": 516,
+          "total_tokens": 105799
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 196096,
+          "input_tokens": 616823,
+          "output_tokens": 9114,
+          "reasoning_output_tokens": 5274,
+          "total_tokens": 625937
+        }
+      },
+      "input_sha256": "6cc7677c619bcacf5d0b9cea32b542e7cefb37f14bd890f7853728746f5098d7",
+      "schema_sha256": "891669e3f40375809ee321cbd8f9fa13fdbf951e1c350bb5d5d8cc12ac396bd8"
+    },
+    {
+      "project_id": "phase3c3-review-i",
+      "phase": "partial-i-checkpoint-final-review",
+      "role": "reviewer",
+      "status": "COMPLETED",
+      "created": "2026-10-27T04:08:25+00:00",
+      "completed": "2026-10-27T04:09:14+00:00",
+      "actual_model": "gpt-6.1-sol",
+      "actual_effort": "high",
+      "thread_id": "01a17b52-ad85-7cf1-85d1-59d7de53c846",
+      "turn_id": "01a17b8b-9c1a-7f40-a17f-6ac5534ac3e4",
+      "native_usage": {
+        "last": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 120722,
+          "output_tokens": 1244,
+          "reasoning_output_tokens": 913,
+          "total_tokens": 121966
+        },
+        "model_context_window": 475000,
+        "total": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 196096,
+          "input_tokens": 737545,
+          "output_tokens": 10358,
+          "reasoning_output_tokens": 6187,
+          "total_tokens": 747903
+        }
+      },
+      "input_sha256": "f25b0c2509c852ab59d66c12ffbd42954ac93bf7f1e62dc9dd1d2236645baa17",
+      "schema_sha256": "1bec2d13d69908c975fd31d38323214da63afd91e946226ac563431c53cbc89d"
+    }
+  ]
+}

@@ -1,0 +1,331 @@
+{
+  "at": "2026-10-27T04:14:35.498698+00:00",
+  "HEAD": "8e70f3ed7be79f91380095ce1334b2379915a40e",
+  "branch": "codex/pello-phase3c",
+  "phase3c3": "PARTIAL",
+  "overall_phase3c": "PARTIAL",
+  "blind_generalization": "UNVERIFIED",
+  "execution": "BOUNDED_CASE_FINISHED_NO_FRESH_CASE_CAPACITY",
+  "cumulative_limit": 114,
+  "charged_reservations": 108,
+  "completed_SDK_calls": 104,
+  "statuses": {
+    "COMPLETED": 104,
+    "NOT_SUBMITTED_CONTEXT_REJECTED": 1,
+    "FAILED_PROVIDER_QUOTA_RECONCILED": 1,
+    "NOT_SUBMITTED_ACTIVE_WRITER_RECONCILED": 2
+  },
+  "remaining_global_slots": 6,
+  "author_used_max": [
+    15,
+    18
+  ],
+  "deadline": "2026-10-27T06:30:00+00:00",
+  "STOP": false,
+  "sqlite_integrity": "ok",
+  "first_88_operation_rows_unchanged": true,
+  "checkpoints": [
+    {
+      "project_id": "phase3c-3c1-live",
+      "version": 1,
+      "phase": "analyzed",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "1ffb1fd687a156288dc42c3e5de4da5529a42b73b5a9fa96e6e825af9ac61537",
+      "commit_sha": "6fd63ab36f78427761b9c7223ddd4c268d2f5ce2",
+      "created": "2026-10-25T07:30:23+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live",
+      "version": 1,
+      "phase": "analysis-accepted",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "59e8c1a607d161f53416f949a328a8232bcd67e87047fc0a4251701802ebf6ef",
+      "commit_sha": "a574565805fac4273898005857fd902705b9d996",
+      "created": "2026-10-25T07:31:31+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live",
+      "version": 1,
+      "phase": "analysis-correction-r2",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "84ba024d61fe1a054542e23913f2e9fdb320731026d38cd704c137d736b83697",
+      "commit_sha": "7dcc2f6ab3e9f3baf857e689e9da14efd5c91edf",
+      "created": "2026-10-25T07:36:18+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live",
+      "version": 1,
+      "phase": "analysis-accepted-r2",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "99532b04f05a3c304111620c69b70d302467163a4bb08910b6c0685fda833dbd",
+      "commit_sha": "da061177e631405f1325448b8250c8f7dd9ba3f9",
+      "created": "2026-10-25T07:36:42+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "analyzed",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "3f3faac6f17ef434ad1f0629212293a27e98dbd6f6308680f1090b9178ae29b6",
+      "commit_sha": "dbc97efb1beabc593f8e151aa8e34a27ad94496a",
+      "created": "2026-10-25T08:03:56+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "analysis-accepted",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "713c53c4531f1af39515baea0fbf0ddb27eae841436e5791389fead15bd1d116",
+      "commit_sha": "db0aa72a49db9218d0d310c66d17a8a9618d08ce",
+      "created": "2026-10-25T08:04:32+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "analysis-manifest-integrity-correction",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "095f079d801674c68de24adc9bd040dc703d8e485fd840874be89601892b13c1",
+      "commit_sha": "9c168b2f7f7e0b7b4fd2aa682c308794e766250a",
+      "created": "2026-10-25T08:33:59+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "3c2-b1",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "8dd56144b38f564be27478248b11f39bec6f8c93809d10619dc462f0188d4c3b",
+      "commit_sha": "a5238c13a829a26977e7206539b12e06daaecf9b",
+      "created": "2026-10-25T17:18:50+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "3c2-b2",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "c16c47f881c07a25040f1d1545be375d7b076b7fb19a3f7fe484db900482a120",
+      "commit_sha": "57dbbbef309de34ca034ca85f1ed6558c34c098c",
+      "created": "2026-10-25T17:26:05+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "3c2-b3",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "466319a989fd8f890a9f944c9bf1dc30b099dcbec28fbefcb7826405e87e8cca",
+      "commit_sha": "1b0335c77cc951dfe9172ec70fe409cc0fdec34a",
+      "created": "2026-10-25T17:36:15+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "3c2-b4",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "303544f18f936313bed498c43786bac322dfff948bd95c0ab3ab3d134f25c4e1",
+      "commit_sha": "e41e338c9efe85c6d3cf6fba488271fc4867a827",
+      "created": "2026-10-25T17:43:14+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "3c2-b5",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "a03c9d5832a320f46cdfaea81b6fab7593198cb63a2161e142a1c36fd73c80c0",
+      "commit_sha": "41e0ab60b12fcefcea9e96e7651bb76a32125118",
+      "created": "2026-10-25T17:55:14+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "plan-accepted",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "bdaa414038ba8d5ba2364a6b123596e9365ba670ef322b755ea62c1305e02f26",
+      "commit_sha": "e931fecf1966936dbc53f0f6514d2fb0de834f6a",
+      "created": "2026-10-25T18:13:13+00:00"
+    },
+    {
+      "project_id": "phase3c-3c1-live-r2",
+      "version": 1,
+      "phase": "3c2-b6",
+      "source_hash": "bf987f9f0c4e838b42603d3a4002a7bfbd11e4687618d384ba5713aea4cdf0df",
+      "artifact_hash": "991e9f5abceaac59a2eaca7f7853f25bc752f954e3ba63ae413cce394d696c2b",
+      "commit_sha": "5c4c5f908b68f299c3e838f2a8373bbb514e4494",
+      "created": "2026-10-25T18:13:15+00:00"
+    },
+    {
+      "project_id": "phase3c3-heldout-a",
+      "version": 1,
+      "phase": "analyzed",
+      "source_hash": "9ade6c83162fcf07f3d959ff59343c5804934c59c2d89c3cdd68268370845b2c",
+      "artifact_hash": "781fd95c905415298f7f80739fe6651aa9179aa35d08fb14724a97cdd158ee2f",
+      "commit_sha": "ebe1fe744594fb0fbb2c7fccb8fd3231684f821b",
+      "created": "2026-10-25T22:11:24+00:00"
+    },
+    {
+      "project_id": "phase3c3-heldout-c",
+      "version": 1,
+      "phase": "analyzed",
+      "source_hash": "ab227a640a8a4e25fdadbf3c3c9900873549b26eaaeaffe4fb7a2ebad4c624b7",
+      "artifact_hash": "b964d7c3c3e53b9c3671d071fc60758e98cd70078d6ad18fc9b711a6328423de",
+      "commit_sha": "21ff9a6eaee96c385e65d36feb2a9ae24445c1bc",
+      "created": "2026-10-25T22:48:08+00:00"
+    },
+    {
+      "project_id": "phase3c3-heldout-d",
+      "version": 1,
+      "phase": "analyzed",
+      "source_hash": "8b5d08d9e415098e0e58800353297ac4f09cb8000f720ff640f1e9d226d441f8",
+      "artifact_hash": "8692d9201c6cf9a9c548a2e3dd57272cd69f90f2f6d6d9229851ee1be1031b77",
+      "commit_sha": "7f39f75fb87b0fbe557231a0dc7816747f1cf355",
+      "created": "2026-10-25T23:23:56+00:00"
+    },
+    {
+      "project_id": "phase3c3-heldout-d",
+      "version": 1,
+      "phase": "analysis-accepted",
+      "source_hash": "8b5d08d9e415098e0e58800353297ac4f09cb8000f720ff640f1e9d226d441f8",
+      "artifact_hash": "fc87fb57c3912fc945a4aa5a84874a9b12604f50f96bf1dbd0b83063d951755e",
+      "commit_sha": "55f88b0e11b942bb14a39e8977402d618daffefd",
+      "created": "2026-10-25T23:24:28+00:00"
+    },
+    {
+      "project_id": "phase3c3-heldout-e",
+      "version": 1,
+      "phase": "analyzed",
+      "source_hash": "af17a121b305c02f88f3179d16770a6827e76db4f7a4b647f4d20098b1bcfc5e",
+      "artifact_hash": "e1d5eddd992767016b2c31b006483ea72b802bebde88260dfdb80d33bc6f460d",
+      "commit_sha": "87420c5884af060e9fbc0f867de63f2715808531",
+      "created": "2026-10-25T23:45:45+00:00"
+    },
+    {
+      "project_id": "phase3c3-heldout-e",
+      "version": 1,
+      "phase": "analysis-accepted",
+      "source_hash": "af17a121b305c02f88f3179d16770a6827e76db4f7a4b647f4d20098b1bcfc5e",
+      "artifact_hash": "0a8484a6ee19de1523fa20ca3f6a4ff296554eeeb4dc29c2092e36eed71aec92",
+      "commit_sha": "910fcfcdcfead7c541d3c52f6098bcfe3e3607aa",
+      "created": "2026-10-25T23:46:20+00:00"
+    },
+    {
+      "project_id": "phase3c3-heldout-f",
+      "version": 1,
+      "phase": "analyzed",
+      "source_hash": "7bbb93f73283a3b54262c1cd4da52b8fee5ee628854e66036adce9e0467c4cec",
+      "artifact_hash": "2ee94b040e1dc388b881941b21c2e2c97000cf3441b49bece1e6c08acb75e4dd",
+      "commit_sha": "ae3110871a3be37163f9b761d663c9cba1ee4028",
+      "created": "2026-10-26T04:47:11+00:00"
+    },
+    {
+      "project_id": "phase3c3-heldout-f",
+      "version": 1,
+      "phase": "analysis-accepted",
+      "source_hash": "7bbb93f73283a3b54262c1cd4da52b8fee5ee628854e66036adce9e0467c4cec",
+      "artifact_hash": "a68880eb9e40ddd206f3c5088834f1d0f65738e1488792998869020f8191e1f9",
+      "commit_sha": "d0788eeb545ffa469b995e46ee4be82193f80f9e",
+      "created": "2026-10-26T04:47:54+00:00"
+    },
+    {
+      "project_id": "phase3c3-heldout-g",
+      "version": 1,
+      "phase": "analyzed",
+      "source_hash": "1d7dc574a864f7b091d856891ea66816e8d30490f27499ed81679fc4374f97a2",
+      "artifact_hash": "26cb3e3bc6cd813f6b3361ddc1327664e25b5c5cdbdfe38fa8d87f3e59c0c84c",
+      "commit_sha": "c16d84d029fa9655950d7102c4344d2c0ac7d70c",
+      "created": "2026-10-26T22:02:19+00:00"
+    },
+    {
+      "project_id": "phase3c3-heldout-h",
+      "version": 1,
+      "phase": "analyzed",
+      "source_hash": "cbabae826e30f8166a18d1d7f495ee83e3e092c4e7081ca8e7fdc1ac3f915d64",
+      "artifact_hash": "151654beb33f88a078e306ea800358162e64d24b1a4c785cb6265b03ccf5ec57",
+      "commit_sha": "d3a546414e52d3e6a8a372fcb1da321bd9b4dbc2",
+      "created": "2026-10-26T22:48:26+00:00"
+    },
+    {
+      "project_id": "phase3c3-heldout-h",
+      "version": 1,
+      "phase": "analysis-accepted",
+      "source_hash": "cbabae826e30f8166a18d1d7f495ee83e3e092c4e7081ca8e7fdc1ac3f915d64",
+      "artifact_hash": "f4ab42c0ff2e7ffb084f33e333277388a10683be870c6442e51c618021dfb5e3",
+      "commit_sha": "4dd5f1b18dde12cb50f82d4580f591f2aa78369e",
+      "created": "2026-10-26T22:48:46+00:00"
+    },
+    {
+      "project_id": "phase3c3-heldout-i",
+      "version": 1,
+      "phase": "analyzed",
+      "source_hash": "d481313540b5f2959c4a8e10308262d08b920bb6dd8a33918ff48094ada91211",
+      "artifact_hash": "e1370ef8521cd3660b0ed55482088e5a50ab7ed41b0297ec29d9b596a83bd588",
+      "commit_sha": "622048c796556b2e6f7f437001d48398442735e0",
+      "created": "2026-10-27T03:12:50+00:00"
+    },
+    {
+      "project_id": "phase3c3-heldout-i",
+      "version": 1,
+      "phase": "analysis-accepted",
+      "source_hash": "d481313540b5f2959c4a8e10308262d08b920bb6dd8a33918ff48094ada91211",
+      "artifact_hash": "e338d1b96a3f0dea225020ecdf80d3c5bb36bc88dbd44efa2550ef5c7c51a6b1",
+      "commit_sha": "c5770f24d1733bc263a4f28113abb73bd32103df",
+      "created": "2026-10-27T03:13:37+00:00"
+    }
+  ],
+  "all_checkpoint_Git_objects_present": true,
+  "C2_accepted_plan_digest": "7d9b1b7d59d711ff5c892d9844aedfd0f99125bf0fbf2c276e50606a94abea87",
+  "I_proposed_plan_digest": "b0199c77c21c1e0b66ffd2f2b6217a011c95760bb87f0cc4957b930233c5a722",
+  "I_plan_approval": "PROPOSED",
+  "I_first_actionable": "W01",
+  "nine_original_FAILs": {
+    "a": "FAIL",
+    "b": "FAIL",
+    "c": "FAIL",
+    "d": "FAIL",
+    "e": "FAIL",
+    "f": "FAIL",
+    "g": "FAIL",
+    "h": "FAIL",
+    "i": "FAIL"
+  },
+  "I_semantic_score": {
+    "critical_passed": 23,
+    "critical_total": 24,
+    "passed": 24,
+    "total": 25,
+    "fraction": 0.96,
+    "verdict": "FAIL"
+  },
+  "snapshot_sha256": "5bc52b75f573f672d90d2e9558e0b32994e1bfec2b1f6603d8d9c675871cb68f",
+  "backup_path": "evidence\\phase3c3\\checkpoint-108-jobs.sqlite3",
+  "external_business_operations": 0,
+  "business_Coder_calls": 0,
+  "Phase3D_started": false,
+  "accepted_engineering_checkpoint": {
+    "at": "2026-10-27T04:04:06.823601+00:00",
+    "implementation_HEAD": "8e70f3ed7be79f91380095ce1334b2379915a40e",
+    "accepted_record": "model-capacity-correction/accepted-regression-checkpoint.json",
+    "engineering_only": true,
+    "phase3c3": "PARTIAL",
+    "overall_phase3c": "PARTIAL"
+  },
+  "full_regression": {
+    "command": [
+      "C:\\Users\\USUARIO\\OneDrive\\Documents\\ChatGPT\\DESARROLLO PELLO\\Pello\\.venv\\Scripts\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "exit_code": 0,
+    "tests_run": 261,
+    "tests_passed": 261,
+    "seconds": 261.297
+  },
+  "protected_C2": 63,
+  "protected_C3": 44,
+  "protected_C3_sources": 12,
+  "historical_hashes": 1493,
+  "no_case_J_started": true,
+  "no_case_I_rerun_after_implementation_change": true
+}

@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-27T04:18:37.732940+00:00",
+  "report_sha256": "047bcbb5b1c8b2d9035be00de5beecf94fa987428c4b8a79a1bd54fdb52a737a",
+  "criteria_mapped": 23,
+  "historical_hashes_matching": 1493,
+  "historical_mismatches": [],
+  "charged_reservations": 108,
+  "no_I_accepted_plan_checkpoint": true,
+  "older_final_report_tracked_diff_empty": true,
+  "source_implementation_HEAD": "8e70f3ed7be79f91380095ce1334b2379915a40e",
+  "STOP": false,
+  "Phase3D_started": false
+}

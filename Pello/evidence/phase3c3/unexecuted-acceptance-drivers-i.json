@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-27T04:18:36.761203+00:00",
+  "status": "UNEXECUTED_ACCEPTANCE_DRAFTS_NOT_EVIDENCE",
+  "reason": "Original I semantic FAIL prevented the successful Phase3C acceptance route. Actual regression was the separately scoped engineering-preservation run. No Core approve_plan call or accepted I checkpoint occurred.",
+  "drivers": {
+    "run_regression_i.py": "d7d3a8700180d62d227e2419ef6d821bcfc9f781fbc42e711e09818b03ef42c5",
+    "review_final_code_i.py": "efeb61815abe7cb52487630dd4d700deeaad768f9c94b6f0c89dd12bca3a635a",
+    "final_review_i.py": "5351adeecb06df9add71ff3cadb472c1cc87748000c9c08dc619572ad50eb333",
+    "collect_closure_state_i.py": "4e9cab60e32437979ecc31d3def6e8b02c47f0da95aa966ef278a7d0e019d2c0"
+  }
+}
