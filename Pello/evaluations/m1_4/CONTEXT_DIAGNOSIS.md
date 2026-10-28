@@ -1,0 +1,19 @@
+# M1.4 offline context diagnosis
+
+Measurements are Python Unicode characters in compact JSON. Original prompt counts come only from persisted `codex_prompt.txt`; reconstructed and hypothetical counts below are offline and are not historical submissions. Source and evidence remain unchanged. The 55,000-character limit was not bypassed for a model call.
+
+| Preserved increment input | Raw reconstructed | Original submitted prompt | Existing baseline | Current prompt | Hypothetical generic | Hypothetical specialized | Hypothetical combined |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Live r2 | 35,365 | 35,365 | 35,365 | 35,365 | 30,434 | unavailable | unavailable |
+| Live r2 revision | 36,071 | 36,071 | 36,071 | 36,071 | 31,140 | 33,889 | 31,685 |
+| F | 58,421 | 47,645 | 47,645 | 47,645 | 47,645 | 50,695 | 48,190 |
+| I | 53,834 | 53,834 | 53,834 | 46,570 | 43,420 | 46,570 | 43,965 |
+| E saved legacy input | 76,415 | unavailable | rejected | rejected | 64,812 | 67,996 | 65,357 |
+
+The live r2 input has two legitimate legacy differences: a full architecture shape and no top-level `tool_catalog`; it fails the current specialized projection checks. The revision also has the legacy full architecture shape, so current behavior falls back. Its hypothetical specialized and combined values factor requirement rows while retaining every full-architecture field; they are not prompts submitted or produced by the current routing. F's raw prompt exceeds the guard, so specialized projection is skipped; generic packing succeeds and is smaller than the hypothetical specialized-only candidate. I has the canonical reduced shape and a raw prompt below the guard, so specialized projection activates. E also uses a legitimate older full architecture shape; it is not a corrupted structure. The hypothetical E specialized and combined candidates retain every original architecture field, and both remain over the limit.
+
+E's figures reconstruct its saved envelope and are not its unpreserved historical rejected prompt. E's `heldout-e-evaluation.json` records rejection before SDK reservation; `heldout-f-evaluation.json` records a contract-stage rejection before reservation. M0 lists other historical context failures; they are not all increment-stage inputs and their missing rejected prompts cannot be assigned sizes. F's hypothetical candidate is not an input that was rejected by the limit: generic packing had already made the original increment stage eligible. E remains above 55,000 for the candidates examined, with full architecture preserved. This examination does not prove no other reversible encoding could work.
+
+The code first serializes the raw payload, and only calls specialized projection for matching increment phases when the raw prompt already fits 55,000 characters. After that it applies generic recursive table packing if the resulting prompt exceeds the limit, then enforces the limit before SDK reservation. Thus generic packing can rescue an oversized raw input but cannot trigger the earlier specialized projection. The specialized function also checks canonical analysis, references, source hash, exact WorkNode shape, graph and reduced architecture shape. It intentionally falls back on legacy full architecture rather than silently discard those fields.
+
+For I the accepted analysis and full validated architecture exist; the stage input includes its exact nodes and global requirement IDs. The source's independent local eligibility remains a material limitation: the existing validator ties the P-7 and recovery issues to W04/W05, independently of representation. The historical held-out I complete-plan semantic evaluation failed, so acceptance of its upstream analysis does not establish acceptance of the final plan. A fresh second accepted source would require upstream Planner and review calls or fabricated acceptance; this increment uses the expressly permitted single-pair fallback.
